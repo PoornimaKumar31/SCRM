@@ -1,6 +1,7 @@
-﻿Feature: Google
+﻿@Software_Requirement_ID_1234
+Feature: Google
 
-@mytag
+@TestCaseID_1234 
 Scenario: Add two numbers
 	Given user launch chrome browser
 	And navigate to google search page
