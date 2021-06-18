@@ -1,0 +1,8 @@
+﻿{
+  "BaseURL": "https://incubator.deviot.hillrom.com/apps/remotemanagement/index.html#/",
+  "BrowserName": "chrome",
+  "validEmailID" : "ltts_testing@hillrom.com",
+  "validPassword" : "$umm3r2021",
+  "invalidEmailID" : "ltts_testinhillrocom",
+  "invalidPassword" : "12dds22"
+}
