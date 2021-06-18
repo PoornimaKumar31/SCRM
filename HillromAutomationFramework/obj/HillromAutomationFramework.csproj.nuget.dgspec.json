@@ -72,6 +72,14 @@
               "target": "Package",
               "version": "[16.10.0, )"
             },
+            "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.2.8, )"
+            },
+            "Microsoft.TestPlatform.TestHost": {
+              "target": "Package",
+              "version": "[16.10.0, )"
+            },
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[4.0.0, )"
@@ -94,11 +102,15 @@
             },
             "SpecFlow.NUnit": {
               "target": "Package",
-              "version": "[3.8.14, )"
+              "version": "[3.9.8, )"
             },
             "SpecFlow.Plus.LivingDocPlugin": {
               "target": "Package",
-              "version": "[3.8.35, )"
+              "version": "[3.9.5, )"
+            },
+            "SpecFlow.Tools.MsBuild.Generation": {
+              "target": "Package",
+              "version": "[3.9.8, )"
             },
             "nunit": {
               "target": "Package",
