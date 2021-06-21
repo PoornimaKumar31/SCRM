@@ -9,6 +9,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         //Initializing Driver
         public static IWebDriver Driver { get; set; }
 
+        //Base URL
+        public static string BaseURL=Environment.GetEnvironmentVariable("BaseURL");
+
+        //Browser Name
+        public static string BrowserName=Environment.GetEnvironmentVariable("BrowserName");
+
         //Configuration files
         public static ReadConfig readConfig;
 
