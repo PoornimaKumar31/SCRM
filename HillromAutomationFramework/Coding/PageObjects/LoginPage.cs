@@ -16,7 +16,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         /// Locators of all the elements of login page are listed.
         public static class Locator
         {
-            //login
+            //Login
             public const string LogoXPath = "//*[@id=\"smartcare\"]/div[1]/img";
             public const string LoginButtonXPath = "//*[@id=\"smartcare\"]/c8y-credentials/form/button";
             public const string EmailFieldXPath = "//*[@id=\"user\"]";
