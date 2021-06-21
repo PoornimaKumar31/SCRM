@@ -1,5 +1,5 @@
 ﻿@Software_Requirement_ID_5682
-Feature: Login Functionality
+Feature: Login
 The Customer Portal shall provide users to sign in using an email formatted login ID and password.
 
 @TestCaseID_6212

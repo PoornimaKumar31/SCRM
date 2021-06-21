@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Features.Login
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.8.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Login Functionality")]
+    [NUnit.Framework.DescriptionAttribute("Login")]
     [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5682")]
-    public partial class LoginFunctionalityFeature
+    public partial class LoginFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.Login
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Login Functionality", "The Customer Portal shall provide users to sign in using an email formatted login" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Login", "The Customer Portal shall provide users to sign in using an email formatted login" +
                     " ID and password.", ProgrammingLanguage.CSharp, new string[] {
                         "Software_Requirement_ID_5682"});
             testRunner.OnFeatureStart(featureInfo);
