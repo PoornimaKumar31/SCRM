@@ -83,7 +83,7 @@ namespace HillromAutomationFramework.Hooks
             //Browser setup
             switch (PropertyClass.BrowserName.ToLower())
             {
-                case "Google Chrome": // to set the chrome download directory
+                case "google chrome": // to set the chrome download directory
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
                     chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
@@ -93,7 +93,7 @@ namespace HillromAutomationFramework.Hooks
                     _specFlowOutputHelper.WriteLine("Chrome browser Launched");
                     break;
 
-                case "Mozilla Firefox":
+                case "mozilla firefox":
                     FirefoxOptions firefoxoptions = new FirefoxOptions();
                     //firefoxoptions.Profile.SetPreference("","");
                     firefoxoptions.SetPreference("browser.downLoad.folderList", 2);
@@ -104,7 +104,7 @@ namespace HillromAutomationFramework.Hooks
                     PropertyClass.Driver = new FirefoxDriver(firefoxoptions);
                     break;
 
-                case "Microsoft Edge": // Setting up edge driver
+                case "microsoft edge": // Setting up edge driver
                     var options = new EdgeOptions();
                     options.UseChromium = true;
                     PropertyClass.Driver = new EdgeDriver(PropertyClass.driverPath, options);
