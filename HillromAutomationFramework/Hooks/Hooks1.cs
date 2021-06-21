@@ -58,10 +58,9 @@ namespace HillromAutomationFramework.Hooks
             extent.AttachReporter(htmlReporter);
 
             //Adding system info to the project
-            extent.AddSystemInfo("Base URl", PropertyClass.readConfig.BaseURL);
+            extent.AddSystemInfo("Base URl", PropertyClass.BaseURL);
             extent.AddSystemInfo("Operating System", Environment.OSVersion.ToString());
-            extent.AddSystemInfo("Browser", PropertyClass.readConfig.BrowserName);
-
+            extent.AddSystemInfo("Browser", PropertyClass.BrowserName);
         }
 
         // After the test generate the extent report 
@@ -82,9 +81,9 @@ namespace HillromAutomationFramework.Hooks
         public void beforeScenario()
         {
             //Browser setup
-            switch (PropertyClass.readConfig.BrowserName.ToLower())
+            switch (PropertyClass.BrowserName.ToLower())
             {
-                case "chrome": // to set the chrome download directory
+                case "Google Chrome": // to set the chrome download directory
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
                     chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
@@ -94,7 +93,7 @@ namespace HillromAutomationFramework.Hooks
                     _specFlowOutputHelper.WriteLine("Chrome browser Launched");
                     break;
 
-                case "firefox":
+                case "Mozilla Firefox":
                     FirefoxOptions firefoxoptions = new FirefoxOptions();
                     //firefoxoptions.Profile.SetPreference("","");
                     firefoxoptions.SetPreference("browser.downLoad.folderList", 2);
@@ -105,7 +104,7 @@ namespace HillromAutomationFramework.Hooks
                     PropertyClass.Driver = new FirefoxDriver(firefoxoptions);
                     break;
 
-                case "edge": // Setting up edge driver
+                case "Microsoft Edge": // Setting up edge driver
                     var options = new EdgeOptions();
                     options.UseChromium = true;
                     PropertyClass.Driver = new EdgeDriver(PropertyClass.driverPath, options);

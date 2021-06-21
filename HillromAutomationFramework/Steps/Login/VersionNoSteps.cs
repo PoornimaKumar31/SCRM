@@ -14,10 +14,6 @@ namespace HillromAutomationFramework.Steps.Login
         {
             Assert.IsTrue(PropertyClass.Driver.PageSource.Contains(ExpectedText));
             Hooks1.CaptureNow();
-            //adding attachment parts
-            /*var attachmentFilePath = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName}.jpg";
-            ((ITakesScreenshot)(PropertyClass.Driver)).GetScreenshot().SaveAsFile(attachmentFilePath);
-            TestContext.AddTestAttachment(attachmentFilePath);*/
         }
     }
 }
