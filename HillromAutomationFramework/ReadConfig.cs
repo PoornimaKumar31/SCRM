@@ -6,8 +6,6 @@ namespace HillromAutomationFramework
 {
     public class ReadConfig
     {
-        
-
         //Inputs
         public string validEmailID { get; set; }
         public string validPassword { get; set; }
