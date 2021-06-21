@@ -16,9 +16,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Given(@"user is in login page")]
         public void GivenTheUserIsInTheLoginPage()
         {
-            //Configuring the URL as environment variable.
-            String environmentUrl=Environment.GetEnvironmentVariable("BaseURL"); 
-            PropertyClass.Driver.Navigate().GoToUrl(environmentUrl);  // Launch the Application
+            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.readConfig.BaseURL);  // Launch the Application
             PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
             PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60); // Implicit wait for 60 seconds
             // Explicit wait-> Wait till logo is displayed
