@@ -13,7 +13,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenVerifyIsDisplayed(string ExpectedText)
         {
             Assert.IsTrue(PropertyClass.Driver.PageSource.Contains(ExpectedText));
-            Hooks1.CaptureNow();
+            //Hooks1.CaptureNow();
             //adding attachment parts
             var attachmentFilePath = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName}.jpg";
             ((ITakesScreenshot)(PropertyClass.Driver)).GetScreenshot().SaveAsFile(attachmentFilePath);
