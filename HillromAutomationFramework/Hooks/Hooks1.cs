@@ -121,36 +121,34 @@ namespace HillromAutomationFramework.Hooks
         public void ReportSteps()
         {
             var stepType = _scenarioContext.CurrentScenarioBlock.ToString();
+            Console.WriteLine(_scenarioContext.TestError);
 
             if (_scenarioContext.TestError != null)
             {
                 _specFlowOutputHelper.AddAttachment(SeleniumGetMethods.getScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
                 var mediaEntity = SeleniumGetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
                 if (stepType == "Given")
-                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.StepContext.TestError.InnerException, mediaEntity);
+                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
                 else if (stepType == "When")
-                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.StepContext.TestError.InnerException, mediaEntity);
+                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
                 else if (stepType == "Then")
-                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.StepContext.TestError.Message, mediaEntity);
+                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message, mediaEntity);
                 else if (stepType == "And")
-                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.StepContext.TestError.InnerException, mediaEntity);
+                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
                 screenShotNameCounter++;
             }
 
             // Log test results in extent report with the screenshot.
             else if (_scenarioContext.TestError == null)
             {
-                //Take the screenshot
-                _specFlowOutputHelper.AddAttachment(SeleniumGetMethods.getScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
-                var mediaEntity = SeleniumGetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
                 if (stepType == "Given")
-                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
+                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "When")
-                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
+                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "Then")
-                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
+                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "And")
-                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
+                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
             }
 
             // Log the test results in the extent report with screenshot if test fails.
