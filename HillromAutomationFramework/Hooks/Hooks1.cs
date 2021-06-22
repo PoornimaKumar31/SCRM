@@ -123,7 +123,16 @@ namespace HillromAutomationFramework.Hooks
             var stepType = _scenarioContext.CurrentScenarioBlock.ToString();
             Console.WriteLine(_scenarioContext.TestError);
 
-            if (_scenarioContext.TestError != null)
+            if(_scenarioContext.TestError!=null)
+            {
+                Console.WriteLine("Test Error:Not null");
+            }
+            else
+            {
+                Console.WriteLine("Test Error:null");
+            }
+
+            if (_scenarioContext.TestError!=null)
             {
                 _specFlowOutputHelper.AddAttachment(SeleniumGetMethods.getScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
                 var mediaEntity = SeleniumGetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
@@ -137,9 +146,7 @@ namespace HillromAutomationFramework.Hooks
                     scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
                 screenShotNameCounter++;
             }
-
-            // Log test results in extent report with the screenshot.
-            else if (_scenarioContext.TestError == null)
+            else
             {
                 if (stepType == "Given")
                     scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
