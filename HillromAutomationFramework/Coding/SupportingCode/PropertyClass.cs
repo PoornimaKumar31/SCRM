@@ -10,10 +10,10 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static IWebDriver Driver { get; set; }
 
         //Base URL
-        public static string BaseURL=Environment.GetEnvironmentVariable("BaseURL");
+        public static string BaseURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/index.html#/";//Environment.GetEnvironmentVariable("BaseURL");
 
         //Browser Name
-        public static string BrowserName=Environment.GetEnvironmentVariable("BrowserName");
+        public static string BrowserName = "Google Chrome";//Environment.GetEnvironmentVariable("BrowserName");
 
         //Configuration files
         public static ReadConfig readConfig;
