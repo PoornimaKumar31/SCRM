@@ -12,8 +12,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"verify ""(.*)"" is displayed")]
         public void ThenVerifyIsDisplayed(string ExpectedText)
         {
-            Assert.IsTrue(PropertyClass.Driver.PageSource.Contains(ExpectedText));
-            Hooks1.CaptureNow();
+            Assert.IsFalse(PropertyClass.Driver.PageSource.Contains(ExpectedText));
         }
     }
 }

@@ -135,9 +135,7 @@ namespace HillromAutomationFramework.Steps.Login
             Assert.IsTrue(!string.IsNullOrEmpty(popup)); // checking if new tab was opened
             PropertyClass.Driver.SwitchTo().Window(popup); // Switch to new tab.
             Assert.AreEqual(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, PropertyClass.Driver.Url);
-            // Delay to load pdf completely
-            Thread.Sleep(500);
-            Hooks1.CaptureNow();
+            
         }
         
         [Then(@"redirect to Instructions for Use PDF page")]
@@ -147,9 +145,7 @@ namespace HillromAutomationFramework.Steps.Login
             Assert.IsTrue(!string.IsNullOrEmpty(popup)); // check if new tab was opened
             PropertyClass.Driver.SwitchTo().Window(popup); // Switch to new tab.
             Assert.AreEqual(LoginPage.ExpectedValues.InstructionForUsePDFURL, PropertyClass.Driver.Url);
-            //To load pdf completely and taking the screenshot
-            Thread.Sleep(500);
-            Hooks1.CaptureNow();
+            
         }
         
         [Then(@"redirect to Release Notes PDF page")]
@@ -159,9 +155,6 @@ namespace HillromAutomationFramework.Steps.Login
             Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
             PropertyClass.Driver.SwitchTo().Window(popup); //Switch to new tab
             Assert.AreEqual(LoginPage.ExpectedValues.RealeaseNotesPDFURL, PropertyClass.Driver.Url);
-            //To load pdf completely and taking the screenshot
-            Thread.Sleep(500);
-            Hooks1.CaptureNow();
         }
     }
 }
