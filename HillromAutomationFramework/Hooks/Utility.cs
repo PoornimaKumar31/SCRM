@@ -1,23 +1,18 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
-using BoDi;
 using HillromAutomationFramework.Coding.SupportingCode;
 using Microsoft.Edge.SeleniumTools;
 using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using System;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
-/**
-* To run some some functions before and after test/feature/scenarios.
-*/
 
 namespace HillromAutomationFramework.Hooks
 {
     [Binding]
-    public sealed class Hooks1
+    public sealed class Utility
     {
         //Declaration of variables to handle extent report
         private static ExtentTest featureName;
@@ -28,7 +23,7 @@ namespace HillromAutomationFramework.Hooks
         //Living doc
         private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
         private readonly ScenarioContext _scenarioContext;
-        public Hooks1(ISpecFlowOutputHelper specFlowOutputHelper,ScenarioContext scenarioContext)
+        public Utility(ISpecFlowOutputHelper specFlowOutputHelper,ScenarioContext scenarioContext)
         {
             _specFlowOutputHelper = specFlowOutputHelper;
             _scenarioContext = scenarioContext;
@@ -78,7 +73,7 @@ namespace HillromAutomationFramework.Hooks
         }
 
         [BeforeScenario]
-        public void beforeScenario()
+        public void BeforeScenario()
         {
             //Browser setup
             switch (PropertyClass.BrowserName.ToLower())
@@ -93,21 +88,13 @@ namespace HillromAutomationFramework.Hooks
                     _specFlowOutputHelper.WriteLine("Chrome browser Launched");
                     break;
 
-                case "mozilla firefox":
-                    FirefoxOptions firefoxoptions = new FirefoxOptions();
-                    //firefoxoptions.Profile.SetPreference("","");
-                    firefoxoptions.SetPreference("browser.downLoad.folderList", 2);
-                    firefoxoptions.SetPreference("browser.download.dir", PropertyClass.DownloadPath);
-                    firefoxoptions.SetPreference("browser.download.panel.shown", false);
-                    firefoxoptions.SetPreference("browser.download.manager.showWhenStarting", false);
-                    firefoxoptions.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/zip;");
-                    PropertyClass.Driver = new FirefoxDriver(firefoxoptions);
-                    break;
-
                 case "microsoft edge": // Setting up edge driver
-                    var options = new EdgeOptions();
-                    options.UseChromium = true;
+                    EdgeOptions options = new EdgeOptions
+                    {
+                        UseChromium = true
+                    };
                     PropertyClass.Driver = new EdgeDriver(PropertyClass.driverPath, options);
+                    _specFlowOutputHelper.WriteLine("Edge browser Launched");
                     break;
 
                 default:
@@ -121,21 +108,12 @@ namespace HillromAutomationFramework.Hooks
         public void ReportSteps()
         {
             var stepType = _scenarioContext.CurrentScenarioBlock.ToString();
-            Console.WriteLine(_scenarioContext.TestError);
 
-            if(_scenarioContext.TestError!=null)
-            {
-                Console.WriteLine("Test Error:Not null");
-            }
-            else
-            {
-                Console.WriteLine("Test Error:null");
-            }
-
+            // Log the test results in the extent report with screenshot if test fails.
             if (_scenarioContext.TestError!=null)
             {
-                _specFlowOutputHelper.AddAttachment(SeleniumGetMethods.getScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
-                var mediaEntity = SeleniumGetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
+                _specFlowOutputHelper.AddAttachment(GetMethods.GetScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
+                var mediaEntity = GetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
                 if (stepType == "Given")
                     scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
                 else if (stepType == "When")
@@ -148,6 +126,7 @@ namespace HillromAutomationFramework.Hooks
             }
             else
             {
+                // Log the test results in the extent report with screenshot if test pass.
                 if (stepType == "Given")
                     scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "When")
@@ -156,10 +135,7 @@ namespace HillromAutomationFramework.Hooks
                     scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "And")
                     scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
-            }
-
-            // Log the test results in the extent report with screenshot if test fails.
-            
+            }    
         }
 
         // Log the scenario
@@ -169,7 +145,7 @@ namespace HillromAutomationFramework.Hooks
             scenario = featureName.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
         }
 
-
+        //Closing the driver and setting the driver reference to null
         [AfterScenario]
         public void CleanUp()
         {

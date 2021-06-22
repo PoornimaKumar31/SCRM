@@ -12,12 +12,12 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding]
     public class LogoutSteps
     {
-        LoginPage loginPage=new LoginPage();
+        readonly LoginPage loginPage=new LoginPage();
         [When(@"user enters a valid email id and password")]
         public void WhenUserEntersAValidEmailIdAndPassword()
         {
-            loginPage.EmailField.enterText(PropertyClass.readConfig.validEmailID);
-            loginPage.PasswordField.enterText(PropertyClass.readConfig.validPassword);
+            loginPage.EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
+            loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
         }
 
 

@@ -1,7 +1,6 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 

@@ -7,9 +7,9 @@ namespace HillromAutomationFramework
     public class ReadConfig
     {
         //Inputs
-        public string validEmailID { get; set; }
-        public string validPassword { get; set; }
-        public string invalidEmailID { get; set; }
-        public string invalidPassword { get; set; }
+        public string ValidEmailID { get; set; }
+        public string ValidPassword { get; set; }
+        public string InvalidEmailID { get; set; }
+        public string InvalidPassword { get; set; }
     }
 }

@@ -1,14 +1,11 @@
 ﻿using AventStack.ExtentReports;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
 {
-    public static class SeleniumGetMethods
+    public static class GetMethods
     {
         /*for getting the value from text field*/
         public static string GetText(IWebElement element)
@@ -31,7 +28,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 
 
         //screenshots
-        public static string getScreenshot(string name)
+        public static string GetScreenshot(string name)
         {
             var screenshot = ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot();
             string screenshotfilename = PropertyClass.screenshotFolder + name + ".png";

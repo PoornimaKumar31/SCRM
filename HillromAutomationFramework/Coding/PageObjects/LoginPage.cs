@@ -121,14 +121,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.XPath, Using = Locator.LandingPageLogOutButtonXpath)]
         public IWebElement LandingPageLogOutButton { get; set; }
 
-        /*Login Function that will return the pageobject of landing page
-        public void LoginToSite(string email, string pass)
-        {
-            EmailField.enterText(email);
-            PasswordField.enterText(pass);
-            LoginButton.Clicks();
-        }*/
-
         //Forget Password
 
         // Forget Password Link

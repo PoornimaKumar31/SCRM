@@ -4,15 +4,14 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
-using HillromAutomationFramework.Hooks;
 using NUnit.Framework;
 
 namespace HillromAutomationFramework.Steps.Login
 {
     [Binding]
-    public class LoginFunctionalitySteps
+    public class LoginSteps
     {
-        LoginPage loginPage = new LoginPage();
+        readonly LoginPage loginPage = new LoginPage();
         [Given(@"user is in login page")]
         public void GivenTheUserIsInTheLoginPage()
         {
@@ -27,13 +26,13 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user enters a valid email id")]
         public void WhenTheUserEntersAValidEmailId()
         {
-            loginPage.EmailField.enterText(PropertyClass.readConfig.validEmailID);
+            loginPage.EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
         }
         
         [When(@"enters a valid password")]
         public void WhenEntersAValidPassword()
         {
-            loginPage.PasswordField.enterText(PropertyClass.readConfig.validPassword);
+            loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
         }
         
         [When(@"click on login button")]
@@ -45,14 +44,14 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"enter invalid email id")]
         public void WhenEnterInvalidEmailId()
         {
-            loginPage.EmailField.enterText(PropertyClass.readConfig.invalidEmailID);
+            loginPage.EmailField.EnterText(PropertyClass.readConfig.InvalidEmailID);
             
         }
         
         [When(@"enter invalid password")]
         public void WhenEnterInvalidPassword()
         {
-            loginPage.PasswordField.enterText(PropertyClass.readConfig.invalidPassword);
+            loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);
         }
         
         [Then(@"user will login successfully")]
@@ -62,7 +61,7 @@ namespace HillromAutomationFramework.Steps.Login
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LandingPageTileXPath)));
             string actualTitle = PropertyClass.Driver.Title;
-            string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle + "aa";
+            string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
             Assert.AreEqual(expectedTitle, actualTitle); //Compare the title
         }
         

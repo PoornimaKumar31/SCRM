@@ -1,10 +1,7 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
-using HillromAutomationFramework.Hooks;
 using NUnit.Framework;
-using System;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -13,7 +10,7 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding]
     public class DownloadSoftwareAndPDFSteps
     {
-        LoginPage loginPage = new LoginPage();
+        readonly LoginPage loginPage = new LoginPage();
         [When(@"user click on PartnerConnect™")]
         public void WhenUserClickOnPartnerConnect()
         {

@@ -22,7 +22,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"enters a valid email")]
         public void WhenEntersAValidEmail()
         {
-            loginPage.ForgetPasswordEmailFeild.enterText(PropertyClass.readConfig.validEmailID);
+            loginPage.ForgetPasswordEmailFeild.EnterText(PropertyClass.readConfig.ValidEmailID);
             
         }
         
@@ -35,7 +35,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"enter invalid email in forgot password page")]
         public void WhenEnterInvalidEmailInForgotPasswordPage()
         {
-            loginPage.ForgetPasswordEmailFeild.enterText(PropertyClass.readConfig.invalidEmailID);
+            loginPage.ForgetPasswordEmailFeild.EnterText(PropertyClass.readConfig.InvalidEmailID);
         }
         
         [When(@"click on Login button in forgot password page")]
@@ -59,6 +59,7 @@ namespace HillromAutomationFramework.Steps.Login
         }
         
         [Then(@"invalid email error message is displayed")]
+        [Obsolete]
         public void ThenInvalidEmailAddressTryAgainMessageIsDisplayed()
         {
             //to do->(bug in the application->Message is not displaying)
@@ -72,7 +73,6 @@ namespace HillromAutomationFramework.Steps.Login
             //checking login page element
             Assert.IsTrue(loginPage.ForgotPasswordLink.Displayed);
             Assert.IsTrue(loginPage.EmailField.Displayed);
-            
         }
     }
 }
