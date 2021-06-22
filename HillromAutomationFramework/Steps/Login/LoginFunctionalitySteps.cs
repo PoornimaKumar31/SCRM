@@ -28,7 +28,6 @@ namespace HillromAutomationFramework.Steps.Login
         public void WhenTheUserEntersAValidEmailId()
         {
             loginPage.EmailField.enterText(PropertyClass.readConfig.validEmailID);
-            Hooks.Hooks1.CaptureNow(); //Take a screenshot
         }
         
         [When(@"enters a valid password")]
@@ -47,7 +46,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void WhenEnterInvalidEmailId()
         {
             loginPage.EmailField.enterText(PropertyClass.readConfig.invalidEmailID);
-            Hooks.Hooks1.CaptureNow(); //Take screenshot
+            
         }
         
         [When(@"enter invalid password")]
@@ -63,8 +62,7 @@ namespace HillromAutomationFramework.Steps.Login
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LandingPageTileXPath)));
             string actualTitle = PropertyClass.Driver.Title;
-            string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
-            Hooks.Hooks1.CaptureNow(); //Take screenshot
+            string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle + "aa";
             Assert.AreEqual(expectedTitle, actualTitle); //Compare the title
         }
         
@@ -73,7 +71,6 @@ namespace HillromAutomationFramework.Steps.Login
         {
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.InvalidEntryErrorMessage;
-            Hooks.Hooks1.CaptureNow(); //Take screenshot
             Assert.AreEqual(ExpectedErrorText, ActualErrortext); //Compare the error message displayed.
         }
         
@@ -82,7 +79,6 @@ namespace HillromAutomationFramework.Steps.Login
         {
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.NoEntryErrorMessage;
-            Hooks.Hooks1.CaptureNow(); //Take screenshot
             Assert.AreEqual(ExpectedErrorText, ActualErrortext); //Compare the error message displayed.
         }
     }

@@ -27,7 +27,7 @@ namespace HillromAutomationFramework.Hooks
 
         //Living doc
         private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
-        private static ScenarioContext _scenarioContext;
+        private readonly ScenarioContext _scenarioContext;
         public Hooks1(ISpecFlowOutputHelper specFlowOutputHelper,ScenarioContext scenarioContext)
         {
             _specFlowOutputHelper = specFlowOutputHelper;
@@ -116,53 +116,14 @@ namespace HillromAutomationFramework.Hooks
             }
         }
 
-        // Before Step reset the screenshot flag
-        [BeforeStep]
-        public void Beforesteps()
-        {
-            //set screenshot flag to zero
-            _scenarioContext.StepContext.Add("value", 0);
-        }
-
         // After step log the test results in extent report
         [AfterStep]
         public void ReportSteps()
         {
             var stepType = _scenarioContext.CurrentScenarioBlock.ToString();
-            var flag = (int)_scenarioContext.StepContext["value"];
 
-            // Log test results in extent report with the screenshot.
-            if (_scenarioContext.StepContext.TestError == null && flag == 1)
+            if (_scenarioContext.TestError != null)
             {
-                //Take the screenshot
-                _specFlowOutputHelper.AddAttachment(SeleniumGetMethods.getScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
-                var mediaEntity = SeleniumGetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
-                if (stepType == "Given")
-                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!", mediaEntity);
-                else if (stepType == "When")
-                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!", mediaEntity);
-                else if (stepType == "Then")
-                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!", mediaEntity);
-                else if (stepType == "And")
-                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!", mediaEntity);
-            }
-
-            // Log test results without the screenshot
-            else if (_scenarioContext.StepContext.TestError == null && flag == 0)
-            {
-                if (stepType == "Given")
-                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
-                else if (stepType == "When")
-                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
-                else if (stepType == "Then")
-                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
-                else if (stepType == "And")
-                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
-            }
-
-            // Log the test results in the extent report with screenshot if test fails.
-            else if (_scenarioContext.StepContext.TestError != null)
-             {
                 _specFlowOutputHelper.AddAttachment(SeleniumGetMethods.getScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
                 var mediaEntity = SeleniumGetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
                 if (stepType == "Given")
@@ -175,6 +136,25 @@ namespace HillromAutomationFramework.Hooks
                     scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.StepContext.TestError.InnerException, mediaEntity);
                 screenShotNameCounter++;
             }
+
+            // Log test results in extent report with the screenshot.
+            else if (_scenarioContext.TestError == null)
+            {
+                //Take the screenshot
+                _specFlowOutputHelper.AddAttachment(SeleniumGetMethods.getScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
+                var mediaEntity = SeleniumGetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
+                if (stepType == "Given")
+                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
+                else if (stepType == "When")
+                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
+                else if (stepType == "Then")
+                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
+                else if (stepType == "And")
+                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass("Step Passed!!");
+            }
+
+            // Log the test results in the extent report with screenshot if test fails.
+            
         }
 
         // Log the scenario
@@ -192,10 +172,5 @@ namespace HillromAutomationFramework.Hooks
             PropertyClass.Driver = null;
         }
 
-        // capture the screenshot
-        public static void CaptureNow()
-        {
-            _scenarioContext.StepContext["value"] = 1;
-        }
     }
 }

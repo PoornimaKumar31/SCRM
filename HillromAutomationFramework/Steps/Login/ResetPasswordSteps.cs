@@ -23,7 +23,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void WhenEntersAValidEmail()
         {
             loginPage.ForgetPasswordEmailFeild.enterText(PropertyClass.readConfig.validEmailID);
-            Hooks.Hooks1.CaptureNow(); // Take a screenshot
+            
         }
         
         [When(@"click on submit button")]
@@ -72,7 +72,7 @@ namespace HillromAutomationFramework.Steps.Login
             //checking login page element
             Assert.IsTrue(loginPage.ForgotPasswordLink.Displayed);
             Assert.IsTrue(loginPage.EmailField.Displayed);
-            Hooks.Hooks1.CaptureNow();
+            
         }
     }
 }
