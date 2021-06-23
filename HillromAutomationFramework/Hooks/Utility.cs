@@ -23,7 +23,7 @@ namespace HillromAutomationFramework.Hooks
         //Living doc
         private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
         private readonly ScenarioContext _scenarioContext;
-        public Utility(ISpecFlowOutputHelper specFlowOutputHelper,ScenarioContext scenarioContext)
+        public Utility(ISpecFlowOutputHelper specFlowOutputHelper, ScenarioContext scenarioContext)
         {
             _specFlowOutputHelper = specFlowOutputHelper;
             _scenarioContext = scenarioContext;
@@ -110,7 +110,7 @@ namespace HillromAutomationFramework.Hooks
             var stepType = _scenarioContext.CurrentScenarioBlock.ToString();
 
             // Log the test results in the extent report with screenshot if test fails.
-            if (_scenarioContext.TestError!=null)
+            if (_scenarioContext.TestError != null)
             {
                 _specFlowOutputHelper.AddAttachment(GetMethods.GetScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
                 var mediaEntity = GetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
@@ -135,7 +135,7 @@ namespace HillromAutomationFramework.Hooks
                     scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "And")
                     scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
-            }    
+            }
         }
 
         // Log the scenario

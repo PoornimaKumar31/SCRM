@@ -2,13 +2,6 @@
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-/***
- * Web Elements, 
- * expected values, 
- * Inputs 
- * for login page are defined in this file.
- */
-
 namespace HillromAutomationFramework.Coding.PageObjects
 {
     public class LoginPage
