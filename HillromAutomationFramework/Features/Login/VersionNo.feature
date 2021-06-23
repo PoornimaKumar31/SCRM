@@ -5,4 +5,4 @@ Feature: VersionNo
 @TestCaseID_6205 
 Scenario: Verification of version
     Given user is in login page
-    Then verify "Version 6.0.0" is displayed
+    Then verify "Version 6.0.1" is displayed

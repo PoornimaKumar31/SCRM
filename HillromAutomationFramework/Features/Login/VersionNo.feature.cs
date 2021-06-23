@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("user is in login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-    testRunner.Then("verify \"Version 6.0.0\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("verify \"Version 6.0.1\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
