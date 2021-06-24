@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.IO;
 
@@ -25,10 +26,10 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 
         //Extent Report Path
-        readonly public static string extentReportPath = @projectDirectory + "\\Reports\\ExtentReport.html";
+        readonly public static string extentReportPath = TestContext.CurrentContext.TestDirectory + "\\ExtentReport.html";//@projectDirectory + "\\Reports\\ExtentReport.html";
 
         //Screenshot path
-        readonly public static string screenshotFolder = projectDirectory + "\\Screenshots\\";
+        //public static readonly string screenshotFolder = @projectDirectory + "\\Screenshots\\";
 
 
         // Configuration file path

@@ -1,4 +1,5 @@
 ﻿using AventStack.ExtentReports;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static string GetScreenshot(string name)
         {
             var screenshot = ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot();
-            string screenshotfilename = PropertyClass.screenshotFolder + name + ".png";
+            string screenshotfilename = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName}.png";//PropertyClass.screenshotFolder + name + ".png";
             screenshot.SaveAsFile(screenshotfilename, ScreenshotImageFormat.Png);
             return (screenshotfilename);
         }
