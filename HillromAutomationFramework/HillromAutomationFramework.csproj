@@ -42,6 +42,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Configuration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Drivers\msedgedriver.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
