@@ -32,7 +32,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 
 
         // Configuration file path
-        public static readonly string configSettingPath = @projectDirectory + "\\Configuration.json";
+        public static readonly string configSettingPath = Environment.CurrentDirectory+"\\Configuration.json";//@projectDirectory + "\\Configuration.json";
 
         // Driver path
         public static string driverPath = projectDirectory + "\\Drivers";
