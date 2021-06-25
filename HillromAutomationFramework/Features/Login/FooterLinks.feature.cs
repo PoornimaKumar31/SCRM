@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Features.Login
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("FooterLinks")]
+    [NUnit.Framework.DescriptionAttribute("Login Page FooterLinks")]
     [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5898")]
-    public partial class FooterLinksFeature
+    public partial class LoginPageFooterLinksFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.Login
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "FooterLinks", "\tThe customer portal shall provide URL links to Global Privacy notice and Terms o" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Login Page FooterLinks", "\tThe customer portal shall provide URL links to Global Privacy notice and Terms o" +
                     "f use", ProgrammingLanguage.CSharp, new string[] {
                         "Software_Requirement_ID_5898"});
             testRunner.OnFeatureStart(featureInfo);
@@ -78,14 +78,16 @@ namespace HillromAutomationFramework.Features.Login
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verification of Privacy Policy link")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_6314")]
-        public virtual void VerificationOfPrivacyPolicyLink()
+        [NUnit.Framework.DescriptionAttribute("Login Privacy Policy")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8923")]
+        [NUnit.Framework.CategoryAttribute("UISID_8661")]
+        public virtual void LoginPrivacyPolicy()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_6314"};
+                    "TestCaseID_8923",
+                    "UISID_8661"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of Privacy Policy link", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Privacy Policy", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,27 +109,29 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-    testRunner.Given("user is in login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-    testRunner.When("User click on Privacy Policy link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user clicks Privacy Policy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
-    testRunner.Then("It will display \"Global Privacy Notice\" page.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("Privacy Policy page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verification of Terms of use link")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_6314")]
-        public virtual void VerificationOfTermsOfUseLink()
+        [NUnit.Framework.DescriptionAttribute("Login Terms of Use")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8924")]
+        [NUnit.Framework.CategoryAttribute("UISID_8661")]
+        public virtual void LoginTermsOfUse()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_6314"};
+                    "TestCaseID_8924",
+                    "UISID_8661"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of Terms of use link", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Terms of Use", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -149,13 +153,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 13
-    testRunner.Given("user is in login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
-    testRunner.When("User click on Terms of use link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user clicks Terms of Use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
-    testRunner.Then("It will display \"Hillrom Terms and Conditions\" page.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("Terms and Conditions page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

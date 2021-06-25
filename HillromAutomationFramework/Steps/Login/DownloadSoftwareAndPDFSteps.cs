@@ -11,8 +11,9 @@ namespace HillromAutomationFramework.Steps.Login
     public class DownloadSoftwareAndPDFSteps
     {
         readonly LoginPage loginPage = new LoginPage();
-        [When(@"user click on PartnerConnect™")]
-        public void WhenUserClickOnPartnerConnect()
+
+        [When(@"user clicks PartnerConnect")]
+        public void WhenUserClicksPartnerConnect()
         {
             loginPage.PartnerConnectLink.Clicks();
             // Checking if download starts.
@@ -26,57 +27,7 @@ namespace HillromAutomationFramework.Steps.Login
                 }
             }
         }
-        
-        [When(@"user click on Service Monitor")]
-        public void WhenUserClickOnServiceMonitor()
-        {
-            loginPage.ServiceMoniterLink.Clicks();
-            // Checking if download starts.
-            bool file_exist = false;
-            while (file_exist != true)
-            {
-                Task.Delay(10000).Wait();
-                if (File.Exists(PropertyClass.ServiceMonitorFilePath))
-                {
-                    file_exist = true;
-                }
-            }
-        }
-        
-        [When(@"user click on DCP")]
-        public void WhenUserClickOnDCP()
-        {
-            loginPage.DCPLink.Clicks();
-            // Checking if download starts.
-            bool file_exist = false;
-            while (file_exist != true)
-            {
-                Task.Delay(1000).Wait();
-                if (File.Exists(PropertyClass.DCPFilePath))
-                {
-                    file_exist = true;
-                }
-            }
-        }
-        
-        [When(@"user click on Administrator's Guide")]
-        public void WhenUserClickOnAdministratorSGuide()
-        {
-            loginPage.AdministratorsGuidePDFLink.Clicks();
-        }
-        
-        [When(@"user click on Instructions for Use")]
-        public void WhenUserClickOnInstructionsForUse()
-        {
-            loginPage.InstructionForUsePDFLink.Clicks();
-        }
-        
-        [When(@"user click on Release Notes")]
-        public void WhenUserClickOnReleaseNotes()
-        {
-            loginPage.ReleaseNotesPDFLink.Click();
-        }
-        
+
         [Then(@"PartnerConnect zip file is downloaded")]
         public void ThenPartnerConnectZipFileIsDownloaded()
         {
@@ -92,7 +43,23 @@ namespace HillromAutomationFramework.Steps.Login
                 Assert.Fail("Directory/Folder Does not exist");
             }
         }
-        
+
+        [When(@"user clicks Service Monitor")]
+        public void WhenUserClicksServiceMonitor()
+        {
+            loginPage.ServiceMoniterLink.Clicks();
+            // Checking if download starts.
+            bool file_exist = false;
+            while (file_exist != true)
+            {
+                Task.Delay(10000).Wait();
+                if (File.Exists(PropertyClass.ServiceMonitorFilePath))
+                {
+                    file_exist = true;
+                }
+            }
+        }
+
         [Then(@"Service Monitor zip file is downloaded")]
         public void ThenServiceMonitorZipFileIsDownloaded()
         {
@@ -108,7 +75,23 @@ namespace HillromAutomationFramework.Steps.Login
                 Assert.Fail("Directory/Folder Does not exist");
             }
         }
-        
+
+        [When(@"user clicks DCP")]
+        public void WhenUserClicksDCP()
+        {
+            loginPage.DCPLink.Clicks();
+            // Checking if download starts.
+            bool file_exist = false;
+            while (file_exist != true)
+            {
+                Task.Delay(1000).Wait();
+                if (File.Exists(PropertyClass.DCPFilePath))
+                {
+                    file_exist = true;
+                }
+            }
+        }
+
         [Then(@"DCP zip file is downloaded")]
         public void ThenDCPZipFileIsDownloaded()
         {
@@ -124,29 +107,45 @@ namespace HillromAutomationFramework.Steps.Login
                 Assert.Fail("Directory/Folder Does not exist");
             }
         }
-        
-        [Then(@"redirect to Administrator's Guide PDF page")]
-        public void ThenRedirectToAdministratorSGuidePDFPage()
+
+        [When(@"user clicks Administrator Guide")]
+        public void WhenUserClicksAdministratorGuide()
+        {
+            loginPage.AdministratorsGuidePDFLink.Clicks();
+        }
+
+        [Then(@"Administrator Guide PDF opens in browser")]
+        public void ThenAdministratorGuidePDFOpensInBrowser()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
             Assert.IsTrue(!string.IsNullOrEmpty(popup)); // checking if new tab was opened
             PropertyClass.Driver.SwitchTo().Window(popup); // Switch to new tab.
             Assert.AreEqual(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, PropertyClass.Driver.Url);
-            
         }
-        
-        [Then(@"redirect to Instructions for Use PDF page")]
-        public void ThenRedirectToInstructionsForUsePDFPage()
+
+        [When(@"user clicks Instructions for Use")]
+        public void WhenUserClicksInstructionsForUse()
+        {
+            loginPage.InstructionForUsePDFLink.Clicks();
+        }
+
+        [Then(@"Instructions for Use PDF opens in browser")]
+        public void ThenInstructionsForUsePDFOpensInBrowser()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
             Assert.IsTrue(!string.IsNullOrEmpty(popup)); // check if new tab was opened
             PropertyClass.Driver.SwitchTo().Window(popup); // Switch to new tab.
             Assert.AreEqual(LoginPage.ExpectedValues.InstructionForUsePDFURL, PropertyClass.Driver.Url);
-            
         }
-        
-        [Then(@"redirect to Release Notes PDF page")]
-        public void ThenRedirectToReleaseNotesPDFPage()
+
+        [When(@"user clicks Release Notes")]
+        public void WhenUserClicksReleaseNotes()
+        {
+            loginPage.ReleaseNotesPDFLink.Click();
+        }
+
+        [Then(@"Release Notes PDF opens in browser")]
+        public void ThenReleaseNotesPDFOpensInBrowser()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
             Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened

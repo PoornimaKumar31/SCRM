@@ -101,6 +101,8 @@ namespace HillromAutomationFramework.Hooks
                     Console.WriteLine("Invalid browser Name");
                     break;
             }
+            PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
+            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60); // Implicit wait for 60 seconds
         }
 
         // After step log the test results in extent report

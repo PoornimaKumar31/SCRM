@@ -1,5 +1,7 @@
-﻿using HillromAutomationFramework.Coding.SupportingCode;
+﻿using HillromAutomationFramework.Coding.PageObjects;
+using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
+using System;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
@@ -7,8 +9,9 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding]
     public class VersionNoSteps
     {
-        [Then(@"verify ""(.*)"" is displayed")]
-        public void ThenVerifyIsDisplayed(string ExpectedText)
+        LoginPage loginPage = new LoginPage();
+        [Then(@"""(.*)"" is displayed")]
+        public void ThenIsDisplayed(string ExpectedText)
         {
             Assert.IsTrue(PropertyClass.Driver.PageSource.Contains(ExpectedText));
         }

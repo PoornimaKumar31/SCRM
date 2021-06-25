@@ -13,37 +13,26 @@ namespace HillromAutomationFramework.Steps.Login
     public class LogoutSteps
     {
         readonly LoginPage loginPage=new LoginPage();
-        [When(@"user enters a valid email id and password")]
-        public void WhenUserEntersAValidEmailIdAndPassword()
+
+        [Given(@"user is logged in")]
+        public void GivenUserIsLoggedIn()
         {
+            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
             loginPage.EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
             loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
-        }
-
-
-        [When(@"click on profile icon")]
-        public void WhenClickOnProfileIcon()
-        {
+            loginPage.LoginButton.Click();
             // Wait till User logo is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LandingPageUserNameLogoXpath)));
+        }
+
+        [When(@"user clicks Logout button")]
+        public void WhenUserClicksLogoutButton()
+        {
+            //Clicks on profile logo
             loginPage.LandingPageUserNameLogo.Clicks();
-        }
-
-
-        [When(@"click on logout button")]
-        public void WhenClickOnLogoutButton()
-        {
+            //Clicks on logout button
             loginPage.LandingPageLogOutButton.Clicks();
-        }
-        
-        [Then(@"user will logout successfully")]
-        public void ThenUserWillLogoutSuccessfully()
-        {
-            // Verifying in the login page
-            Assert.IsTrue(loginPage.EmailField.Displayed);
-            Assert.IsTrue(loginPage.PasswordField.Displayed);
-            Assert.IsTrue(loginPage.LoginButton.Displayed);
         }
     }
 }

@@ -1,40 +1,41 @@
-﻿@Software_Requirement_ID_5685
+﻿@SoftwareRequirementID_5685
 Feature: DownloadSoftwareAndPDF
 	The Customer Portal shall allow user to download the Partner Connect, Service Monitor, DCP application, Administrator's guide, User Guide and Release Notes
 
-
-@TestCaseID_6267
-Scenario: download PartnerConnect software
-    Given user is in login page
-    When user click on PartnerConnect™
+@TestCaseID_8917 @UISID_8661
+Scenario: Login Download PartnerConnect
+    Given user is on Login page
+    When user clicks PartnerConnect
     Then PartnerConnect zip file is downloaded
 
-@TestCaseID_6287
-Scenario: download Service Monitor software
-    Given user is in login page
-    When user click on Service Monitor
+
+@TestCaseID_8918 @UISID_8661
+Scenario: Login Download Service Monitor
+    Given user is on Login page
+    When user clicks Service Monitor
     Then Service Monitor zip file is downloaded
 
-@TestCaseID_6288
-Scenario: download DCP software
-    Given user is in login page
-    When user click on DCP
+@TestCaseID_8919 @UISID_8661
+Scenario: Login Download DCP
+    Given user is on Login page
+    When user clicks DCP
     Then DCP zip file is downloaded
  
- @TestCaseID_6289
- Scenario: download access Administrator's Guide documentation
-    Given user is in login page
-    When user click on Administrator's Guide
-    Then redirect to Administrator's Guide PDF page
+ @TestCaseID_8920 @UISID_8661
+ Scenario: Login Download Administrator Guide
+    Given user is on Login page
+    When user clicks Administrator Guide
+    Then Administrator Guide PDF opens in browser
 
-@TestCaseID_6290 
-Scenario: download access Instructions for Use
-    Given user is in login page
-    When user click on Instructions for Use
-    Then redirect to Instructions for Use PDF page
+@TestCaseID_8921 @UISID_8661 
+Scenario: Login Download IFU
+    Given user is on Login page
+    When user clicks Instructions for Use
+    Then Instructions for Use PDF opens in browser
 
-@TestCaseID_6608
-Scenario: download access Release Notes
-    Given user is in login page
-    When user click on Release Notes
-    Then redirect to Release Notes PDF page
+@TestCaseID_8922 @UISID_8661
+Scenario: Login Download Release Notes
+    Given user is on Login page
+    When user clicks Release Notes
+    Then Release Notes PDF opens in browser
+ 

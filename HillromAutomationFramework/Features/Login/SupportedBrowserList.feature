@@ -1,10 +1,15 @@
-﻿@Software_Requirement_ID_5899
-Feature: SupportedBrowserList
+﻿@SoftwareRequirementID_5899
+Feature: Supported Browser List
 	The customer portal shall display Supported Browsers.
 
-@TestCaseID_6352 
-Scenario: Verification of supported browsers link
-    Given user is in login page
-    When user click on supported Browsers
-    Then popup is displayed with list of supported browsers
-    And click on close button
+@TestCaseID_8925 @UISID_8660 
+Scenario: Login Supported Browsers
+    Given user is on Login page
+    When user clicks Supported Browsers
+    Then Supported Browsers dialog is displayed
+
+@TestCaseID_8926 @UISID_8660 
+Scenario: Login Supported Browsers Close
+    Given user is on Supported Browsers dialog
+    When user clicks Close button
+    Then Supported Browsers dialog is closed

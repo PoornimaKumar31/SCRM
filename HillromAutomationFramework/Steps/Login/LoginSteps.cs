@@ -12,43 +12,61 @@ namespace HillromAutomationFramework.Steps.Login
     public class LoginSteps
     {
         readonly LoginPage loginPage = new LoginPage();
-        [Given(@"user is in login page")]
+        [Given(@"user is on Login page")]
         public void GivenTheUserIsInTheLoginPage()
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
-            PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60); // Implicit wait for 60 seconds
+           
             // Explicit wait-> Wait till logo is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LogoXPath)));
         }
         
-        [When(@"user enters a valid email id")]
+        [When(@"user enters valid email ID")]
         public void WhenTheUserEntersAValidEmailId()
         {
             loginPage.EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
         }
         
-        [When(@"enters a valid password")]
+        [When(@"enters valid password")]
         public void WhenEntersAValidPassword()
         {
             loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
         }
         
-        [When(@"click on login button")]
+        [When(@"clicks Login button")]
         public void WhenClickOnLoginButton()
         {
             loginPage.LoginButton.Clicks();
         }
-        
-        [When(@"enter invalid email id")]
+
+        [When(@"user clicks Login button")]
+        public void WhenUserClicksLoginButton()
+        {
+            loginPage.LoginButton.Clicks();
+        }
+
+
+        [When(@"user enters invalid email ID")]
         public void WhenEnterInvalidEmailId()
         {
             loginPage.EmailField.EnterText(PropertyClass.readConfig.InvalidEmailID);
             
         }
-        
-        [When(@"enter invalid password")]
+
+        [When(@"enters any password")]
+        public void WhenEntersAnyPassword()
+        {
+            loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);
+        }
+
+        [When(@"user enters any password")]
+        public void WhenUserEntersAnyPassword()
+        {
+            loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);
+        }
+
+        [When(@"enters invalid password")]
         public void WhenEnterInvalidPassword()
         {
             loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);
@@ -65,20 +83,49 @@ namespace HillromAutomationFramework.Steps.Login
             Assert.AreEqual(expectedTitle, actualTitle); //Compare the title
         }
         
-        [Then(@"username or password is invalid error message will display")]
+        [Then(@"login invalid error message will display")]
         public void ThenUsernameOrPasswordIsInvalidErrorMessageWillDisplay()
         {
+            Assert.IsTrue(loginPage.ErrorMessage.Displayed);
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.InvalidEntryErrorMessage;
             Assert.AreEqual(ExpectedErrorText, ActualErrortext); //Compare the error message displayed.
         }
         
-        [Then(@"authentication error message will display")]
+        [Then(@"login authentication error message will display")]
         public void AuthenticationErrorMessageWillDisplay()
         {
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.NoEntryErrorMessage;
             Assert.AreEqual(ExpectedErrorText, ActualErrortext); //Compare the error message displayed.
+        }
+
+        [When(@"username field is blank")]
+        public void WhenUsernameFieldIsBlank()
+        {
+            Assert.IsTrue(loginPage.EmailField.Text.Length == 0);
+        }
+
+        [Then(@"username field contains hint text")]
+        public void ThenUsernameFieldContainsHintText()
+        {
+            String ActualhintText = loginPage.EmailField.GetAttribute("placeholder");
+            String ExpectedhintText = LoginPage.ExpectedValues.EmailFieldHintText;
+            Assert.AreEqual(ExpectedhintText, ActualhintText);
+        }
+
+        [When(@"password field is blank")]
+        public void WhenPasswordFieldIsBlank()
+        {
+            Assert.IsTrue(loginPage.PasswordField.Text.Length == 0);
+        }
+
+        [Then(@"password field contains hint text")]
+        public void ThenPasswordFieldContainsHintText()
+        {
+            String ActualhintText = loginPage.PasswordField.GetAttribute("placeholder");
+            String ExpectedhintText = LoginPage.ExpectedValues.PasswordFieldHintText;
+            Assert.AreEqual(ExpectedhintText, ActualhintText);
         }
     }
 }

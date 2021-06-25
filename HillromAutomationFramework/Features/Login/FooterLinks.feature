@@ -1,16 +1,16 @@
-﻿@Software_Requirement_ID_5898
-Feature: FooterLinks
+﻿@SoftwareRequirementID_5898
+Feature: Login Page FooterLinks
 	The customer portal shall provide URL links to Global Privacy notice and Terms of use
 
-@TestCaseID_6314    
-Scenario: Verification of Privacy Policy link
-    Given user is in login page
-    When User click on Privacy Policy link
-    Then It will display "Global Privacy Notice" page.
+@TestCaseID_8923 @UISID_8661    
+Scenario: Login Privacy Policy
+    Given user is on Login page
+    When user clicks Privacy Policy
+    Then Privacy Policy page is displayed
 
-@TestCaseID_6314     
-Scenario: Verification of Terms of use link
-    Given user is in login page
-    When User click on Terms of use link
-    Then It will display "Hillrom Terms and Conditions" page.
+@TestCaseID_8924 @UISID_8661     
+Scenario: Login Terms of Use
+    Given user is on Login page
+    When user clicks Terms of Use
+    Then Terms and Conditions page is displayed
  

@@ -78,14 +78,16 @@ namespace HillromAutomationFramework.Features.Login
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Verification of version")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_6205")]
-        public virtual void VerificationOfVersion()
+        [NUnit.Framework.DescriptionAttribute("Login Version")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8915")]
+        [NUnit.Framework.CategoryAttribute("UISID_8660")]
+        public virtual void LoginVersion()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_6205"};
+                    "TestCaseID_8915",
+                    "UISID_8660"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verification of version", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Version", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -107,10 +109,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-    testRunner.Given("user is in login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-    testRunner.Then("verify \"Version 6.0.0\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("\"Version 6.0.1\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

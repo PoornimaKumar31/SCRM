@@ -1,8 +1,8 @@
-﻿@Software_Requirement_ID_5678
+﻿@SoftwareRequirementID_5678
 Feature: VersionNo
 	The Customer Portal shall have a feature for displaying the version of the customer portal
 
-@TestCaseID_6205 
-Scenario: Verification of version
-    Given user is in login page
-    Then verify "Version 6.0.0" is displayed
+@TestCaseID_8915 @UISID_8660 
+Scenario: Login Version
+    Given user is on Login page
+    Then "Version 6.0.1" is displayed

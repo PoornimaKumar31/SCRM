@@ -34,7 +34,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string ReleaseNotesLinkText = "Release Notes";
 
 
-            //Login Page footers
+            //Login Page footers               
             public const string VersionXpath = "/html/body/c8y-bootstrap/c8y-login/div/div[4]/span/text()[1]";
             public const string PrivacyPolicyLinkText = "Privacy Policy";
             public const string TermsOfUseLinkText = "Terms of Use";
@@ -54,11 +54,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //login
             public const string InvalidEntryErrorMessage = "Username or password invalid.";
             public const string NoEntryErrorMessage = "Full authentication is required to access this resource";
+            public const string EmailFieldHintText = "Email address";
+            public const string PasswordFieldHintText = "Password";
             public const string LandingPageTitle = "SmartCare™ Remote Management";
 
-            //reset password
-            public const string ResetPasswordSuccessMessage = "You will receive an email with a link to update your password";
-            public const string ResetPasswordFailedMessage = "Invalid email address Try again";
+            //Forgot password
+            public const string ForgotPasswordSuccessMessage = "You will receive an email with a link to update your password";
+            
 
             //Software Downloads
 
@@ -119,18 +121,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
         // Forget Password Link
         [FindsBy(How = How.XPath, Using = Locator.ForgetPasswordLinkXpath)]
         public IWebElement ForgotPasswordLink { get; set; }
-
-        // Email Field in forget password form
-        [FindsBy(How = How.XPath, Using = Locator.ForgetPasswordEmailFieldXpath)]
-        public IWebElement ForgetPasswordEmailFeild { get; set; }
-
-        // Submit button in Forget password form
-        [FindsBy(How = How.XPath, Using = Locator.ForgetPasswordSubmitButtonXpath)]
-        public IWebElement ForgetPasswordSubmitButton { get; set; }
-
-        // Login link forgot password form
-        [FindsBy(How = How.XPath, Using = Locator.ForgetPasswordLoginLinkXpath)]
-        public IWebElement ForgetPasswordLoginLink { get; set; }
 
         // Sucess message in forgot password
         [FindsBy(How = How.XPath, Using = Locator.ForgetPasswordSuccessMessageXpath)]

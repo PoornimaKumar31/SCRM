@@ -10,34 +10,38 @@ namespace HillromAutomationFramework.Steps.Login
     {
         readonly LoginPage loginPage = new LoginPage();
 
-        [When(@"User click on Privacy Policy link")]
-        public void WhenUserClickOnPrivacyPolicyLink()
+        [When(@"user clicks Privacy Policy")]
+        public void WhenUserClicksPrivacyPolicy()
         {
             loginPage.PrivacyPolicylink.Clicks();
         }
-        
-        [When(@"User click on Terms of use link")]
-        public void WhenUserClickOnTermsOfUseLink()
-        {
-            loginPage.TermsOfUseLink.Clicks();
-        }
-        
-        [Then(@"It will display ""(.*)"" page\.")]
-        public void ThenItWillDisplayPage_(string ExpectedPage)
+
+        [Then(@"Privacy Policy page is displayed")]
+        public void ThenPrivacyPolicyPageIsDisplayed()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
             string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
-            if (ExpectedPage.Equals("Global Privacy Notice"))
-            {
-                Assert.AreEqual(LoginPage.ExpectedValues.PrivacyPolicyURL, ActualPageURL);
-            }
-            else if (ExpectedPage.Equals("Hillrom Terms and Conditions"))
-            {
-                Assert.AreEqual(LoginPage.ExpectedValues.TermsOfUseURL, ActualPageURL);
-            }
+            Assert.AreEqual(LoginPage.ExpectedValues.PrivacyPolicyURL, ActualPageURL);
+        }
+
+        [When(@"user clicks Terms of Use")]
+        public void WhenUserClicksTermsOfUse()
+        {
+            loginPage.TermsOfUseLink.Clicks();
+        }
+
+        [Then(@"Terms and Conditions page is displayed")]
+        public void ThenTermsAndConditionsPageIsDisplayed()
+        {
+            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
+            // Check if new tab is opened
+            Assert.IsTrue(!string.IsNullOrEmpty(popup));
+            //Get the URL of new tab.
+            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            Assert.AreEqual(LoginPage.ExpectedValues.TermsOfUseURL, ActualPageURL);
         }
     }
 }

@@ -1,7 +1,10 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
@@ -11,14 +14,14 @@ namespace HillromAutomationFramework.Steps.Login
     {
         readonly LoginPage loginPage = new LoginPage();
 
-        [When(@"user click on supported Browsers")]
-        public void WhenUserClickOnSupportedBrowsers()
+        [When(@"user clicks Supported Browsers")]
+        public void WhenUserClicksSupportedBrowsers()
         {
             loginPage.SupportedBrowsersLink.Clicks();
         }
-        
-        [Then(@"popup is displayed with list of supported browsers")]
-        public void ThenPopupIsDisplayedWithListOfSupportedBrowsers()
+
+        [Then(@"Supported Browsers dialog is displayed")]
+        public void ThenSupportedBrowsersDialogIsDisplayed()
         {
             Assert.IsTrue(loginPage.SupportedBrowserPopup.Displayed);
             String SupportedBrowserList = loginPage.SupportedBrowserPopup.Text;
@@ -29,11 +32,30 @@ namespace HillromAutomationFramework.Steps.Login
             //Apple Safari
             Assert.IsTrue(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserAppleSafari));
         }
-        
-        [Then(@"click on close button")]
-        public void ThenClickOnCloseButton()
+
+
+        [Given(@"user is on Supported Browsers dialog")]
+        public void GivenUserIsOnSupportedBrowsersDialog()
+        {
+            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
+            // Explicit wait-> Wait till logo is displayed
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LogoXPath)));
+            loginPage.SupportedBrowsersLink.Clicks();
+            Assert.IsTrue(loginPage.SupportedBrowserPopup.Displayed);
+        }
+
+        [When(@"user clicks Close button")]
+        public void WhenUserClicksCloseButton()
         {
             loginPage.SupportedBrowserclosebutton.Clicks();
         }
+
+        [Then(@"Supported Browsers dialog is closed")]
+        public void ThenSupportedBrowsersDialogIsClosed()
+        {
+            Assert.IsFalse(loginPage.SupportedBrowserclosebutton.Displayed);
+        }
+
     }
 }
