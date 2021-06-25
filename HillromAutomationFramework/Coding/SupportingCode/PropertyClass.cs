@@ -26,14 +26,14 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 
         //Extent Report Path
-        readonly public static string extentReportPath = TestContext.CurrentContext.TestDirectory + "\\ExtentReport.html";//@projectDirectory + "\\Reports\\ExtentReport.html";
+        readonly public static string extentReportPath = workingDirectory + "\\ExtentReport.html";//TestContext.CurrentContext.TestDirectory + "\\ExtentReport.html";//@projectDirectory + "\\Reports\\ExtentReport.html";
 
         //Screenshot path
         //public static readonly string screenshotFolder = @projectDirectory + "\\Screenshots\\";
 
 
         // Configuration file path
-        public static readonly string configSettingPath = Environment.CurrentDirectory+"\\Configuration.json";//@projectDirectory + "\\Configuration.json";
+        public static readonly string configSettingPath = workingDirectory + "\\Configuration.json";//@projectDirectory + "\\Configuration.json";
 
         // Driver path
         public static string driverPath = projectDirectory + "\\Drivers";
