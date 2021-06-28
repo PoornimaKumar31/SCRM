@@ -33,6 +33,7 @@ namespace HillromAutomationFramework.Steps.Login
             Assert.IsTrue(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserAppleSafari));
         }
 
+        
 
         [Given(@"user is on Supported Browsers dialog")]
         public void GivenUserIsOnSupportedBrowsersDialog()
@@ -54,7 +55,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Supported Browsers dialog is closed")]
         public void ThenSupportedBrowsersDialogIsClosed()
         {
-            Assert.IsFalse(loginPage.SupportedBrowserclosebutton.Displayed);
+            Assert.IsTrue(PropertyClass.Driver.FindElements(By.XPath(LoginPage.Locator.SupportedBrowserPopupXpath)).Count == 0);
         }
 
     }
