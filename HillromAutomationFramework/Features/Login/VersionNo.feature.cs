@@ -21,14 +21,14 @@ namespace HillromAutomationFramework.Features.Login
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("VersionNo")]
-    [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5678")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5678")]
     public partial class VersionNoFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "Software_Requirement_ID_5678"};
+                "SoftwareRequirementID_5678"};
         
 #line 1 "VersionNo.feature"
 #line hidden
@@ -39,7 +39,7 @@ namespace HillromAutomationFramework.Features.Login
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "VersionNo", "\tThe Customer Portal shall have a feature for displaying the version of the custo" +
                     "mer portal", ProgrammingLanguage.CSharp, new string[] {
-                        "Software_Requirement_ID_5678"});
+                        "SoftwareRequirementID_5678"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

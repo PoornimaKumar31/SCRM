@@ -21,14 +21,14 @@ namespace HillromAutomationFramework.Features.Login
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("DownloadSoftwareAndPDF")]
-    [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5685")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5685")]
     public partial class DownloadSoftwareAndPDFFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "Software_Requirement_ID_5685"};
+                "SoftwareRequirementID_5685"};
         
 #line 1 "DownloadSoftwareAndPDF.feature"
 #line hidden
@@ -39,7 +39,7 @@ namespace HillromAutomationFramework.Features.Login
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "DownloadSoftwareAndPDF", "\tThe Customer Portal shall allow user to download the Partner Connect, Service Mo" +
                     "nitor, DCP application, Administrator\'s guide, User Guide and Release Notes", ProgrammingLanguage.CSharp, new string[] {
-                        "Software_Requirement_ID_5685"});
+                        "SoftwareRequirementID_5685"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

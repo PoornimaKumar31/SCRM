@@ -21,14 +21,14 @@ namespace HillromAutomationFramework.Features.Login
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Login Page FooterLinks")]
-    [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5898")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5898")]
     public partial class LoginPageFooterLinksFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "Software_Requirement_ID_5898"};
+                "SoftwareRequirementID_5898"};
         
 #line 1 "FooterLinks.feature"
 #line hidden
@@ -39,7 +39,7 @@ namespace HillromAutomationFramework.Features.Login
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Login Page FooterLinks", "\tThe customer portal shall provide URL links to Global Privacy notice and Terms o" +
                     "f use", ProgrammingLanguage.CSharp, new string[] {
-                        "Software_Requirement_ID_5898"});
+                        "SoftwareRequirementID_5898"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

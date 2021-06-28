@@ -21,14 +21,14 @@ namespace HillromAutomationFramework.Features.Login
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Login")]
-    [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5682")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5682")]
     public partial class LoginFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "Software_Requirement_ID_5682"};
+                "SoftwareRequirementID_5682"};
         
 #line 1 "Login.feature"
 #line hidden
@@ -39,7 +39,7 @@ namespace HillromAutomationFramework.Features.Login
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Login", " The Customer Portal shall provide users to sign in using an email formatted logi" +
                     "n ID and password.", ProgrammingLanguage.CSharp, new string[] {
-                        "Software_Requirement_ID_5682"});
+                        "SoftwareRequirementID_5682"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -21,14 +21,14 @@ namespace HillromAutomationFramework.Features.Login
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Logout")]
-    [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5680")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5680")]
     public partial class LogoutFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "Software_Requirement_ID_5680"};
+                "SoftwareRequirementID_5680"};
         
 #line 1 "Logout.feature"
 #line hidden
@@ -39,7 +39,7 @@ namespace HillromAutomationFramework.Features.Login
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Logout", "    The Customer Portal shall have a feature for users to log out while logged in" +
                     ".", ProgrammingLanguage.CSharp, new string[] {
-                        "Software_Requirement_ID_5680"});
+                        "SoftwareRequirementID_5680"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
