@@ -62,9 +62,8 @@ namespace HillromAutomationFramework.Hooks
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            Console.WriteLine("ExtentReport Generated");
+            
             extent.Flush();
-            Console.WriteLine("ExtentReport Generated1234567890");
         }
 
         // Before feature runs create a node in extent report.
