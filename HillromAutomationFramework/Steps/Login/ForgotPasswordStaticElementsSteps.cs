@@ -1,5 +1,8 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
+using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
@@ -12,6 +15,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"user will see forgot Hillrom logo")]
         public void ThenUserWillSeeForgotHillromLogo()
         {
+            Thread.Sleep(100);
             Assert.IsTrue(forgotPassword.HillromLogo.Displayed);
         }
         

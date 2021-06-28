@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using OpenQA.Selenium.Chrome;
 using System;
 using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Infrastructure;
 
 namespace HillromAutomationFramework.Hooks
 {
@@ -97,7 +96,7 @@ namespace HillromAutomationFramework.Hooks
                     break;
             }
             PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20); // Implicit wait for 20 seconds
+            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60); // Implicit wait for 60 seconds
         }
 
         // After step log the test results in extent report
@@ -111,26 +110,26 @@ namespace HillromAutomationFramework.Hooks
             {
                 var mediaEntity = GetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
                 if (stepType == "Given")
-                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
+                    _ = scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
                 else if (stepType == "When")
-                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
+                    _ = scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
                 else if (stepType == "Then")
-                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message, mediaEntity);
+                    _ = scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message, mediaEntity);
                 else if (stepType == "And")
-                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
+                    _ = scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
                 screenShotNameCounter++;
             }
             else
             {
                 // Log the test results in the extent report with screenshot if test pass.
                 if (stepType == "Given")
-                    scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
+                    _ = scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "When")
-                    scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
+                    _ = scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "Then")
-                    scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
+                    _ = scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
                 else if (stepType == "And")
-                    scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
+                    _ = scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
             }
         }
 

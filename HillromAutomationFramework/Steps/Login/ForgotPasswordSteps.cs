@@ -43,8 +43,7 @@ namespace HillromAutomationFramework.Steps.Login
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
             loginPage.ForgotPasswordLink.Click();
             //Wait till forgot password apge is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(ForgotPasswordPage.Locator.EmailFieldXpath)));
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(15));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(ForgotPasswordPage.Locator.HillromLogoXpath)));
         }
 
@@ -58,7 +57,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenEmailFieldContainsHintText()
         {
             string ExpectedHintText = ForgotPasswordPage.ExpectedValues.EmailFieldHintText;
-            String ActualHintText = forgotPasswordPage.EmailFeild.GetAttribute("placeholder");
+            String ActualHintText = forgotPasswordPage.EmailFeild.GetAttribute("placeholder").ToString();
             Assert.AreEqual(ExpectedHintText, ActualHintText);
         }
 
