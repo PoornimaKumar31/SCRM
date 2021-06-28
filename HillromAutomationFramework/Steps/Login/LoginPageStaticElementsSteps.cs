@@ -1,4 +1,5 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
+using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using System;
 using TechTalk.SpecFlow;
@@ -15,7 +16,7 @@ namespace HillromAutomationFramework.Steps.Login
         {
             //Assert.IsTrue(loginpage.LoginPageLogo.Displayed);
         }
-        
+
         [Then(@"login SmartCare Remote Management title")]
         public void ThenLoginSmartCareRemoteManagementTitle()
         {
@@ -24,7 +25,7 @@ namespace HillromAutomationFramework.Steps.Login
             string ActualApplicationText = loginpage.ApplicationTitle.Text;
             Assert.AreEqual(ExpectedApplicationText, ActualApplicationText);
         }
-        
+
         [Then(@"login instructions")]
         public void ThenLoginInstructions()
         {
@@ -33,12 +34,12 @@ namespace HillromAutomationFramework.Steps.Login
             string ActualInstructionsText = loginpage.LoginInstructions.Text;
             Assert.AreEqual(ExpectedInstructionsText, ActualInstructionsText);
         }
-        
+
         [Then(@"a Ready to Get Started message")]
         public void ThenAReadyToGetStartedMessage()
         {
             Assert.IsTrue(loginpage.GetStartedTitle.Displayed);
-            string ExpectedGetStartedTitle =LoginPage.ExpectedValues.GetStartedTitleText;
+            string ExpectedGetStartedTitle = LoginPage.ExpectedValues.GetStartedTitleText;
             string ActualGetStartedTitle = loginpage.GetStartedTitle.Text;
             Assert.AreEqual(ExpectedGetStartedTitle, ActualGetStartedTitle);
 
@@ -48,11 +49,11 @@ namespace HillromAutomationFramework.Steps.Login
             Assert.AreEqual(ExpectedGetStartedMessage, ActualGetStartedMessage);
 
         }
-        
+
         [Then(@"a copyright message")]
         public void ThenACopyrightMessage()
         {
-            ScenarioContext.Current.Pending();
+            Assert.IsTrue(PropertyClass.Driver.PageSource.Contains(LoginPage.ExpectedValues.CopyRightMessage));
         }
     }
 }

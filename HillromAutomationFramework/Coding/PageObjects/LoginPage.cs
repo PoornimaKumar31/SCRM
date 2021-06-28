@@ -82,7 +82,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RealeaseNotesPDFURL = "https://www.hillrom.com/content/dam/hillrom-aem/us/en/sap-documents/LIT/80028/80028399LITPDF.pdf";
 
             //footer links
-            public const string FooterVersionMessage = "Version 6.0.0  |  © 2021 Hillrom™. All rights reserved.";
+            public const string CopyRightMessage = "© 2021 Hillrom™. All rights reserved.";
             public const string PrivacyPolicyURL = "https://www.hillrom.com/en/about-us/global-privacy-notice/";
             public const string TermsOfUseURL = "https://www.hillrom.com/en/about-us/hill-rom-terms-and-conditions/";
 
@@ -90,6 +90,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SupportedBrowserEdge = "Microsoft Edge : version 89.0.774.68 and higher";
             public const string SupportedBrowserChrome = "Google Chrome : version 86 and higher";
             public const string SupportedBrowserAppleSafari = "Apple Safari : iOS 11 and higher";
+            
 
         }
         /// Constructor for login page which intializes all Web elements of login page.

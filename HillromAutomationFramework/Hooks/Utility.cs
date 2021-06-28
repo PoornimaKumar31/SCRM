@@ -57,7 +57,6 @@ namespace HillromAutomationFramework.Hooks
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            
             extent.Flush();
         }
 
