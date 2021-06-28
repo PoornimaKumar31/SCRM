@@ -7,15 +7,15 @@ Scenario: Valid Login
     Given user is on Login page
     When user enters valid email ID
     And enters valid password
-    And clicks Login button
+    And user clicks Login button
     Then user will login successfully
 
 @TestCaseID_8902 @UISID_8660	
 Scenario: Invalid Login Email Error
     Given user is on Login page
     When user enters invalid email ID
-    And enters any password
-    And clicks Login button
+    And user enters any password
+    And user clicks Login button
     Then login invalid error message will display
 	
 @TestCaseID_8903 @UISID_8660	
@@ -23,7 +23,7 @@ Scenario: Invalid Login Password Error
     Given user is on Login page
     When user enters valid email ID
     And enters invalid password
-    And clicks Login button
+    And user clicks Login button
     Then login invalid error message will display
 
 @TestCaseID_8904 @UISID_8660	
@@ -36,14 +36,14 @@ Scenario: Invalid Login Blank
 Scenario: Invalid Login No Email
     Given user is on Login page
     When user enters any password
-    And  clicks Login button
+    And  user clicks Login button
     Then login authentication error message will display
 
 @TestCaseID_8906 @UISID_8660	
 Scenario: Invalid Login No Password
     Given user is on Login page
     When user enters valid email ID
-    And clicks Login button
+    And user clicks Login button
     Then login authentication error message will display
 
 @TestCaseID_8907 @UISID_8660 @UISID_8721	

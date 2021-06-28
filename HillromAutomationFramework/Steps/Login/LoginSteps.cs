@@ -33,7 +33,7 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
         }
         
-        [When(@"(.*)clicks Login button")]
+        [When(@"user clicks Login button")]
         public void WhenUserClicksLoginButton()
         {
             loginPage.LoginButton.Clicks();
@@ -45,7 +45,7 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.EmailField.EnterText(PropertyClass.readConfig.InvalidEmailID);
         }
 
-        [When(@"(.*)enters any password")]
+        [When("user enters any password")]
         public void WhenEntersAnyPassword()
         {
             loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);

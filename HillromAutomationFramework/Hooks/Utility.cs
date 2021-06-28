@@ -19,13 +19,9 @@ namespace HillromAutomationFramework.Hooks
         private static ExtentTest scenario;
         private static ExtentReports extent;
         private static int screenShotNameCounter = 0;
-
-        //Living doc
-        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
         private readonly ScenarioContext _scenarioContext;
-        public Utility(ISpecFlowOutputHelper specFlowOutputHelper, ScenarioContext scenarioContext)
+        public Utility(ScenarioContext scenarioContext)
         {
-            _specFlowOutputHelper = specFlowOutputHelper;
             _scenarioContext = scenarioContext;
         }
 
@@ -46,7 +42,7 @@ namespace HillromAutomationFramework.Hooks
             //Declatation of HTML Reporter for Extent Report
             var htmlReporter = new ExtentHtmlReporter(PropertyClass.extentReportPath);
             htmlReporter.Config.ReportName = "Automated testing of Smart Care Remote Management";
-            htmlReporter.Config.DocumentTitle = "Test Case of Report";
+            htmlReporter.Config.DocumentTitle = "Reported Test Cases";
 
             //Attach report to reporter
             extent = new ExtentReports();
@@ -86,7 +82,6 @@ namespace HillromAutomationFramework.Hooks
 
                     // Setting up the chrome driver
                     PropertyClass.Driver = new ChromeDriver(chromeOptions);
-                    _specFlowOutputHelper.WriteLine("Extent report path"+PropertyClass.extentReportPath);
                     break;
 
                 case "microsoft edge": // Setting up edge driver
@@ -95,7 +90,6 @@ namespace HillromAutomationFramework.Hooks
                         UseChromium = true
                     };
                     PropertyClass.Driver = new EdgeDriver(PropertyClass.driverPath, options);
-                    _specFlowOutputHelper.WriteLine("Edge browser Launched");
                     break;
 
                 default:
@@ -115,7 +109,6 @@ namespace HillromAutomationFramework.Hooks
             // Log the test results in the extent report with screenshot if test fails.
             if (_scenarioContext.TestError != null)
             {
-                _specFlowOutputHelper.AddAttachment(GetMethods.GetScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss")));
                 var mediaEntity = GetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
                 if (stepType == "Given")
                     scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
@@ -153,7 +146,6 @@ namespace HillromAutomationFramework.Hooks
         public void CleanUp()
         {
             PropertyClass.Driver.Quit();
-            PropertyClass.Driver = null;
         }
 
     }

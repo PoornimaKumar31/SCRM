@@ -52,8 +52,6 @@
 
   <ItemGroup>
     <Folder Include="Downloads\" />
-    <Folder Include="Reports\" />
-    <Folder Include="Screenshots\" />
   </ItemGroup>
 
 </Project>
