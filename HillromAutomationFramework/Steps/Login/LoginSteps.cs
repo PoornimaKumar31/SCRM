@@ -16,7 +16,6 @@ namespace HillromAutomationFramework.Steps.Login
         public void GivenTheUserIsInTheLoginPage()
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
-           
             // Explicit wait-> Wait till logo is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LogoXPath)));
@@ -34,34 +33,20 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
         }
         
-        [When(@"clicks Login button")]
-        public void WhenClickOnLoginButton()
-        {
-            loginPage.LoginButton.Clicks();
-        }
-
-        [When(@"user clicks Login button")]
+        [When(@"(.*)clicks Login button")]
         public void WhenUserClicksLoginButton()
         {
             loginPage.LoginButton.Clicks();
         }
 
-
         [When(@"user enters invalid email ID")]
         public void WhenEnterInvalidEmailId()
         {
             loginPage.EmailField.EnterText(PropertyClass.readConfig.InvalidEmailID);
-            
         }
 
-        [When(@"enters any password")]
+        [When(@"(.*)enters any password")]
         public void WhenEntersAnyPassword()
-        {
-            loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);
-        }
-
-        [When(@"user enters any password")]
-        public void WhenUserEntersAnyPassword()
         {
             loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);
         }

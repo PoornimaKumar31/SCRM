@@ -21,14 +21,14 @@ namespace HillromAutomationFramework.Features.Login
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Supported Browser List")]
-    [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5899")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5899")]
     public partial class SupportedBrowserListFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "Software_Requirement_ID_5899"};
+                "SoftwareRequirementID_5899"};
         
 #line 1 "SupportedBrowserList.feature"
 #line hidden
@@ -38,7 +38,7 @@ namespace HillromAutomationFramework.Features.Login
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Supported Browser List", "\tThe customer portal shall display Supported Browsers.", ProgrammingLanguage.CSharp, new string[] {
-                        "Software_Requirement_ID_5899"});
+                        "SoftwareRequirementID_5899"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

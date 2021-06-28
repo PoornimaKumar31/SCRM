@@ -45,6 +45,7 @@ namespace HillromAutomationFramework.Steps.Login
             //Wait till forgot password apge is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(ForgotPasswordPage.Locator.EmailFieldXpath)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(ForgotPasswordPage.Locator.HillromLogoXpath)));
         }
 
         [When(@"email field is blank")]

@@ -9,8 +9,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         /// Locators of all the elements of login page are listed.
         public static class Locator
         {
-            //Login
+            //Static Elements  
             public const string LogoXPath = "//*[@id=\"smartcare\"]/div[1]/img";
+            public const string ApplicationTitleXpath= "//*[@id=\"smartcare\"]/div[2]";
+            public const string LoginInstructionsXpath= "//*[@id=\"smartcare\"]/c8y-credentials/div[1]/p/span";
+            public const string GetStartedTitleID = "get_started_title";
+            public const string GetStartedMessageID = "get_started_message";
+
+            //Login
             public const string LoginButtonXPath = "//*[@id=\"smartcare\"]/c8y-credentials/form/button";
             public const string EmailFieldXPath = "//*[@id=\"user\"]";
             public const string PasswordFieldXPath = "//*[@id=\"password\"]";
@@ -51,6 +57,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
         /// Expected values in the login page.
         public static class ExpectedValues
         {
+            //static elements
+            public const string ApplicationTitleText= "SmartCare™\r\nRemote Management";
+            public const string LoginInstructionsText = "Enter your credentials to sign in.";
+            public const string GetStartedTitleText = "Ready to get started?";
+            public const string GetStartedMessageText = "Learn the value of the SmartCare™ Remote Management, download software, and access documentation.";
+
             //login
             public const string InvalidEntryErrorMessage = "Username or password invalid.";
             public const string NoEntryErrorMessage = "Full authentication is required to access this resource";
@@ -88,6 +100,27 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         /*Attributes for assigning values to the webelement*/
 
+        /// Hillrom Logo
+        [FindsBy(How = How.XPath, Using = Locator.LogoXPath)]
+        public IWebElement LoginPageLogo { get; set; }
+
+        /// Application title
+        [FindsBy(How = How.XPath, Using = Locator.ApplicationTitleXpath)]
+        public IWebElement ApplicationTitle { get; set; }
+
+        ///Login Instructions
+        [FindsBy(How = How.XPath, Using = Locator.LoginInstructionsXpath)]
+        public IWebElement LoginInstructions { get; set; }
+
+
+        /// GetStartedTitle
+        [FindsBy(How = How.Id, Using = Locator.GetStartedTitleID)]
+        public IWebElement GetStartedTitle { get; set; }
+
+        /// GetStartedMessage
+        [FindsBy(How = How.Id, Using = Locator.GetStartedMessageID)]
+        public IWebElement GetStartedMessage { get; set; }
+
         /// Email field
         [FindsBy(How = How.XPath, Using = Locator.EmailFieldXPath)]
         public IWebElement EmailField { get; set; }
@@ -99,10 +132,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
         /// Login Button
         [FindsBy(How = How.XPath, Using = Locator.LoginButtonXPath)]
         public IWebElement LoginButton { get; set; }
-
-        /// Hillrom Logo
-        [FindsBy(How = How.XPath, Using = Locator.LogoXPath)]
-        public IWebElement LoginPageLogo { get; set; }
 
         /// Credential Error message
         [FindsBy(How = How.XPath, Using = Locator.ErrorMessageXPath)]

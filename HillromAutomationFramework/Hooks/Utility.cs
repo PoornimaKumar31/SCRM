@@ -87,7 +87,7 @@ namespace HillromAutomationFramework.Hooks
 
                     // Setting up the chrome driver
                     PropertyClass.Driver = new ChromeDriver(chromeOptions);
-                    _specFlowOutputHelper.WriteLine("Chrome browser Launched");
+                    _specFlowOutputHelper.WriteLine("Extent report path"+PropertyClass.extentReportPath);
                     break;
 
                 case "microsoft edge": // Setting up edge driver

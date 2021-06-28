@@ -36,7 +36,7 @@ Scenario: Invalid Login Blank
 Scenario: Invalid Login No Email
     Given user is on Login page
     When user enters any password
-    And clicks Login button
+    And  clicks Login button
     Then login authentication error message will display
 
 @TestCaseID_8906 @UISID_8660	

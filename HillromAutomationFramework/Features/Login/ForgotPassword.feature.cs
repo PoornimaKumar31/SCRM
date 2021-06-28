@@ -21,14 +21,14 @@ namespace HillromAutomationFramework.Features.Login
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("Forgot Password")]
-    [NUnit.Framework.CategoryAttribute("Software_Requirement_ID_5684")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5684")]
     public partial class ForgotPasswordFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "Software_Requirement_ID_5684"};
+                "SoftwareRequirementID_5684"};
         
 #line 1 "ForgotPassword.feature"
 #line hidden
@@ -39,7 +39,7 @@ namespace HillromAutomationFramework.Features.Login
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Forgot Password", "\t The Customer Portal shall have a mechanism for users to reset their password us" +
                     "ing the email address registered with the Customer Portal.", ProgrammingLanguage.CSharp, new string[] {
-                        "Software_Requirement_ID_5684"});
+                        "SoftwareRequirementID_5684"});
             testRunner.OnFeatureStart(featureInfo);
         }
         

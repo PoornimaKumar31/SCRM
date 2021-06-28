@@ -20,26 +20,22 @@ namespace HillromAutomationFramework.Features.Login
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("VersionNo")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5678")]
-    public partial class VersionNoFeature
+    [NUnit.Framework.DescriptionAttribute("Forgot Password Static Elements")]
+    public partial class ForgotPasswordStaticElementsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5678"};
+        private string[] _featureTags = ((string[])(null));
         
-#line 1 "VersionNo.feature"
+#line 1 "ForgotPasswordStaticElements.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "VersionNo", "\tThe Customer Portal shall have a feature for displaying the version of the custo" +
-                    "mer portal", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5678"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Forgot Password Static Elements", "\tTo verify the static elements of the Forgot password page in SCRM portal.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,17 +74,15 @@ namespace HillromAutomationFramework.Features.Login
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Version")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8915")]
-        [NUnit.Framework.CategoryAttribute("UISID_8660")]
-        public virtual void LoginVersion()
+        [NUnit.Framework.DescriptionAttribute("Forgot Password Static Elements")]
+        [NUnit.Framework.CategoryAttribute("mytag")]
+        public virtual void ForgotPasswordStaticElements()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8915",
-                    "UISID_8660"};
+                    "mytag"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Version", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Forgot Password Static Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -108,11 +102,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 6
+ testRunner.Given("user is on Forgot Password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 7
-    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("user will see forgot Hillrom logo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 8
-    testRunner.Then("\"Version 6.0.1\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("forgot SmartCare Remote Management title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 9
+ testRunner.And("reset instructions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
