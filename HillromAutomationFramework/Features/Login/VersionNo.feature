@@ -5,4 +5,4 @@ Feature: VersionNo
 @TestCaseID_8915 @UISID_8660 
 Scenario: Login Version
     Given user is on Login page
-    Then "Version 6.0.1" is displayed
+    Then "Version 6.0.0" is displayed

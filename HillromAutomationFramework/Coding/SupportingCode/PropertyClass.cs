@@ -22,23 +22,17 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         //Current Working Directory i.e. //bin
         static readonly string workingDirectory = Environment.CurrentDirectory;
 
-        //Current Project Directory i.e. //HillRomAutomation
-        public static string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-
         //Extent Report Path
         readonly public static string extentReportPath = workingDirectory + "\\TestResults\\ExtentReport.html";
 
-        //Screenshot path
-        //public static readonly string screenshotFolder = @projectDirectory + "\\Screenshots\\";
-
-
+       
         // Configuration file path
-        public static readonly string configSettingPath = workingDirectory + "\\Configuration.json";//@projectDirectory + "\\Configuration.json";
+        public static readonly string configSettingPath = workingDirectory + "\\Configuration.json";
 
         // Driver path
-        public static string driverPath = projectDirectory + "\\Drivers";
+        public static string driverPath = workingDirectory + "\\Drivers";
 
-        public static string DownloadPath = @projectDirectory + "\\Downloads";
+        public static string DownloadPath = workingDirectory + "\\Downloads";
 
         // path in which Software Zip files are downloaded
         readonly public static string PartnerConnectFilePath = @DownloadPath + "\\PartnerConnect.zip";
