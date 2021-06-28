@@ -26,7 +26,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
 
         //Extent Report Path
-        readonly public static string extentReportPath = Environment.CurrentDirectory+"\\TestResults\\ExtentReport.html";//TestContext.CurrentContext.TestDirectory + "\\TestResults\\ExtentReport.html";//@projectDirectory + "\\Reports\\ExtentReport.html";
+        readonly public static string extentReportPath = $(System.DefaultWorkingDirectory)\\TestResults;
 
         //Screenshot path
         //public static readonly string screenshotFolder = @projectDirectory + "\\Screenshots\\";
