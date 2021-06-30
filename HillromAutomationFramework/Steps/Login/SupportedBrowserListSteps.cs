@@ -24,7 +24,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenSupportedBrowsersDialogIsDisplayed()
         {
             Assert.IsTrue(loginPage.SupportedBrowserPopup.Displayed);
-            String SupportedBrowserList = loginPage.SupportedBrowserPopup.Text;
+            string SupportedBrowserList = loginPage.SupportedBrowserPopup.Text;
             // Microsoft Edge
             Assert.IsTrue(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserEdge));
             // Google Chrome
@@ -41,7 +41,7 @@ namespace HillromAutomationFramework.Steps.Login
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
             // Explicit wait-> Wait till logo is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LogoXPath)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
             loginPage.SupportedBrowsersLink.Clicks();
             Assert.IsTrue(loginPage.SupportedBrowserPopup.Displayed);
         }

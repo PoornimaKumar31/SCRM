@@ -9,7 +9,7 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding]
     public class LoginPageStaticElementsSteps
     {
-        LoginPage loginpage = new LoginPage();
+        readonly LoginPage loginpage = new LoginPage();
 
         [Then(@"user will see login Hillrom logo")]
         public void ThenUserWillSeeLoginHillromLogo()

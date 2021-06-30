@@ -18,7 +18,7 @@ namespace HillromAutomationFramework.Steps.Login
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
             // Explicit wait-> Wait till logo is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LogoXPath)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
         }
         
         [When(@"user enters valid email ID")]
@@ -62,7 +62,7 @@ namespace HillromAutomationFramework.Steps.Login
         {
             // Explicit wait-> Wait till the organization list is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LandingPageTileXPath)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
             string actualTitle = PropertyClass.Driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
             Assert.AreEqual(expectedTitle, actualTitle); //Compare the title

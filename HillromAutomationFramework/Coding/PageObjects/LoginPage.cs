@@ -10,55 +10,52 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public static class Locator
         {
             //Static Elements  
-            public const string LogoXPath = "//*[@id=\"smartcare\"]/div[1]/img";
-            public const string ApplicationTitleXpath= "//*[@id=\"smartcare\"]/div[2]";
-            public const string LoginInstructionsXpath= "//*[@id=\"smartcare\"]/c8y-credentials/div[1]/p/span";
+            public const string LogoID = "logo_main";
+            public const string ApplicationTitleID= "lbl_app_title";
+            public const string LoginInstructionsID= "lbl_login";
             public const string GetStartedTitleID = "get_started_title";
             public const string GetStartedMessageID = "get_started_message";
 
             //Login
-            public const string LoginButtonXPath = "//*[@id=\"smartcare\"]/c8y-credentials/form/button";
-            public const string EmailFieldXPath = "//*[@id=\"user\"]";
-            public const string PasswordFieldXPath = "//*[@id=\"password\"]";
-            public const string ErrorMessageXPath = "//*[@id=\"smartcare\"]/c8y-credentials/div[1]/p/c8y-alert-outlet/div/div/p/span";
+            public const string LoginButtonID = "btn_login";
+            public const string EmailFieldID = "user";
+            public const string PasswordFieldID = "password";
+            public const string ErrorMessageXPath = "//*[@id=\"lbl_login_error\"]/div/div/p/span";
+            public const string ForgetPasswordLinkID = "forgot_pwd";
+            public const string ForgetPasswordSuccessMessageID = "snackbar";
 
-            //Forget password
-            public const string ForgetPasswordLinkXpath = "//*[@id=\"smartcare\"]/c8y-credentials/form/div/a";
-            public const string ForgetPasswordEmailFieldXpath = "//*[@id=\"smartcare\"]/c8y-recover-password/form/c8y-form-group/input";
-            public const string ForgetPasswordSubmitButtonXpath = "//*[@id=\"smartcare\"]/c8y-recover-password/form/button";
-            public const string ForgetPasswordLoginLinkXpath = "//*[@id=\"smartcare\"]/c8y-recover-password/form/div/p/a";
-            public const string ForgetPasswordSuccessMessageXpath = "//*[@id=\"snackbar\"]";
+
 
             //Software Downloads
-            public const string PartnerConnectLinkText = "PartnerConnect™";
-            public const string ServiceMoniterLinkText = "Service Monitor";
-            public const string DCPLinkText = "DCP";
+            public const string PartnerConnectID = "partnerconnect";
+            public const string ServiceMoniterID = "servicemonitor";
+            public const string DCPID = "dcp";
 
             //PDF downloads
-            public const string AdministartorsGuideLinkText = "Administrator's Guide";
-            public const string InstructionForUseLinkText = "Instructions for Use";
-            public const string ReleaseNotesLinkText = "Release Notes";
+            public const string AdministartorsGuideID = "adminguide";
+            public const string InstructionForUseID = "useguide";
+            public const string ReleaseNotesID = "releasenotes";
 
 
             //Login Page footers               
-            public const string VersionXpath = "/html/body/c8y-bootstrap/c8y-login/div/div[4]/span/text()[1]";
-            public const string PrivacyPolicyLinkText = "Privacy Policy";
-            public const string TermsOfUseLinkText = "Terms of Use";
-            public const string SupportedBrowsersLinkText = "Supported Browsers";
-            public const string SupportedBrowserPopupXpath = "//*[@id=\"browser-supported\"]";
+            public const string VersionXpath = "/html/body/c8y-bootstrap/c8y-login/div/div[4]/span";
+            public const string PrivacyPolicyID = "privacy";
+            public const string TermsOfUseID = "terms";
+            public const string SupportedBrowsersID = "supportbrowsers";
+            public const string SupportedBrowserPopupID = "browser-supported";
             public const string SupportedBrowserclosebuttonXpath = "//*[@id=\"browser-supported\"]/div/div/button";
 
             // Landing page web elements
-            public const string LandingPageTileXPath = "//*[@id=\"org0\"]/div";
-            public const string LandingPageUserNameLogoXpath = "//*[@id=\"header\"]/div[1]/div/button";
-            public const string LandingPageLogOutButtonXpath = "//*[@id=\"header\"]/div[1]/div/div/a";
+            public const string LandingPageTileID = "card";
+            public const string LandingPageUserNameLogoID = "userprofile_logo";
+            public const string LandingPageLogOutButtonID = "logout";
         }
 
         /// Expected values in the login page.
         public static class ExpectedValues
         {
             //static elements
-            public const string ApplicationTitleText= "SmartCare™\r\nRemote Management";
+            public const string ApplicationTitleText= "SmartCare™";
             public const string LoginInstructionsText = "Enter your credentials to sign in.";
             public const string GetStartedTitleText = "Ready to get started?";
             public const string GetStartedMessageText = "Learn the value of the SmartCare™ Remote Management, download software, and access documentation.";
@@ -72,6 +69,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             //Forgot password
             public const string ForgotPasswordSuccessMessage = "You will receive an email with a link to update your password";
+
             
 
             //Software Downloads
@@ -83,13 +81,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             //footer links
             public const string CopyRightMessage = "© 2021 Hillrom™. All rights reserved.";
-            public const string PrivacyPolicyURL = "https://www.hillrom.com/en/about-us/global-privacy-notice/";
-            public const string TermsOfUseURL = "https://www.hillrom.com/en/about-us/hill-rom-terms-and-conditions/";
+            public const string PrivacyPolicyURL = "https://www.welchallyn.com/en/other/privacy-policy.html";
+            public const string TermsOfUseURL = "https://www.welchallyn.com/en/other/terms-of-use.html";
 
             //Supported Browser List
-            public const string SupportedBrowserEdge = "Microsoft Edge : version 89.0.774.68 and higher";
+            public const string SupportedBrowserEdge = "Microsoft Edge : version 89 and higher";
             public const string SupportedBrowserChrome = "Google Chrome : version 86 and higher";
-            public const string SupportedBrowserAppleSafari = "Apple Safari : iOS 11 and higher";
+            public const string SupportedBrowserAppleSafari = "Apple Safari : iOS 14 and higher";
             
 
         }
@@ -102,15 +100,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
         /*Attributes for assigning values to the webelement*/
 
         /// Hillrom Logo
-        [FindsBy(How = How.XPath, Using = Locator.LogoXPath)]
+        [FindsBy(How = How.Id, Using = Locator.LogoID)]
         public IWebElement LoginPageLogo { get; set; }
 
         /// Application title
-        [FindsBy(How = How.XPath, Using = Locator.ApplicationTitleXpath)]
+        [FindsBy(How = How.Id, Using = Locator.ApplicationTitleID)]
         public IWebElement ApplicationTitle { get; set; }
 
         ///Login Instructions
-        [FindsBy(How = How.XPath, Using = Locator.LoginInstructionsXpath)]
+        [FindsBy(How = How.Id, Using = Locator.LoginInstructionsID)]
         public IWebElement LoginInstructions { get; set; }
 
 
@@ -123,15 +121,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement GetStartedMessage { get; set; }
 
         /// Email field
-        [FindsBy(How = How.XPath, Using = Locator.EmailFieldXPath)]
+        [FindsBy(How = How.Id, Using = Locator.EmailFieldID)]
         public IWebElement EmailField { get; set; }
 
         /// Password Field
-        [FindsBy(How = How.XPath, Using = Locator.PasswordFieldXPath)]
+        [FindsBy(How = How.Id, Using = Locator.PasswordFieldID)]
         public IWebElement PasswordField { get; set; }
 
         /// Login Button
-        [FindsBy(How = How.XPath, Using = Locator.LoginButtonXPath)]
+        [FindsBy(How = How.Id, Using = Locator.LoginButtonID)]
         public IWebElement LoginButton { get; set; }
 
         /// Credential Error message
@@ -139,50 +137,50 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement ErrorMessage { get; set; }
 
         /// Landing page user name logo
-        [FindsBy(How = How.XPath, Using = Locator.LandingPageUserNameLogoXpath)]
+        [FindsBy(How = How.Id, Using = Locator.LandingPageUserNameLogoID)]
         public IWebElement LandingPageUserNameLogo { get; set; }
 
         // Landing page logout button
-        [FindsBy(How = How.XPath, Using = Locator.LandingPageLogOutButtonXpath)]
+        [FindsBy(How = How.Id, Using = Locator.LandingPageLogOutButtonID)]
         public IWebElement LandingPageLogOutButton { get; set; }
 
         //Forget Password
 
         // Forget Password Link
-        [FindsBy(How = How.XPath, Using = Locator.ForgetPasswordLinkXpath)]
+        [FindsBy(How = How.Id, Using = Locator.ForgetPasswordLinkID)]
         public IWebElement ForgotPasswordLink { get; set; }
 
         // Sucess message in forgot password
-        [FindsBy(How = How.XPath, Using = Locator.ForgetPasswordSuccessMessageXpath)]
+        [FindsBy(How = How.Id, Using = Locator.ForgetPasswordSuccessMessageID)]
         public IWebElement ForgetPasswordSuccessMessage { get; set; }
 
 
         //Sofware Downloads
 
         // Partner connect software download link
-        [FindsBy(How = How.LinkText, Using = Locator.PartnerConnectLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.PartnerConnectID)]
         public IWebElement PartnerConnectLink { get; set; }
 
         // Service Moniter software download link
-        [FindsBy(How = How.LinkText, Using = Locator.ServiceMoniterLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.ServiceMoniterID)]
         public IWebElement ServiceMoniterLink { get; set; }
 
         // DCP Software download link
-        [FindsBy(How = How.LinkText, Using = Locator.DCPLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.DCPID)]
         public IWebElement DCPLink { get; set; }
 
         //PDF downloads
 
         // Administrative Guide PDF link
-        [FindsBy(How = How.LinkText, Using = Locator.AdministartorsGuideLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.AdministartorsGuideID)]
         public IWebElement AdministratorsGuidePDFLink { get; set; }
 
         // Instruction for use PDF link
-        [FindsBy(How = How.LinkText, Using = Locator.InstructionForUseLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.InstructionForUseID)]
         public IWebElement InstructionForUsePDFLink { get; set; }
 
         // Release Notes PDF link
-        [FindsBy(How = How.LinkText, Using = Locator.ReleaseNotesLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.ReleaseNotesID)]
         public IWebElement ReleaseNotesPDFLink { get; set; }
 
 
@@ -194,19 +192,19 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement VersionNumber { get; set; }
 
         // Privacy policy link
-        [FindsBy(How = How.LinkText, Using = Locator.PrivacyPolicyLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.PrivacyPolicyID)]
         public IWebElement PrivacyPolicylink { get; set; }
 
         // Terms of use link
-        [FindsBy(How = How.LinkText, Using = Locator.TermsOfUseLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.TermsOfUseID)]
         public IWebElement TermsOfUseLink { get; set; }
 
         // Supported browser list Link
-        [FindsBy(How = How.LinkText, Using = Locator.SupportedBrowsersLinkText)]
+        [FindsBy(How = How.Id, Using = Locator.SupportedBrowsersID)]
         public IWebElement SupportedBrowsersLink { get; set; }
 
         // Suppoterd browser list Pop-up   
-        [FindsBy(How = How.XPath, Using = Locator.SupportedBrowserPopupXpath)]
+        [FindsBy(How = How.Id, Using = Locator.SupportedBrowserPopupID)]
         public IWebElement SupportedBrowserPopup { get; set; }
 
         // Close button in supported browser list Pop-up.

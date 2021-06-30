@@ -26,15 +26,5 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             var screenshot = ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot().AsBase64EncodedString;
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, name).Build();
         }
-
-
-        //screenshots
-        public static string GetScreenshot(string name)
-        {
-            var screenshot = ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot();
-            string screenshotfilename = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName}.png";//PropertyClass.screenshotFolder + name + ".png";
-            screenshot.SaveAsFile(screenshotfilename, ScreenshotImageFormat.Png);
-            return (screenshotfilename);
-        }
     }
 }

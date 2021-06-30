@@ -34,17 +34,17 @@ namespace HillromAutomationFramework.Steps.Login
         {
             Assert.IsTrue(forgotPasswordPage.EmailFeild.Displayed);
             Assert.IsTrue(forgotPasswordPage.SubmitButton.Displayed);
-            Assert.IsTrue(forgotPasswordPage.LoginButton.Displayed);
+            Assert.IsTrue(forgotPasswordPage.LoginLink.Displayed);
         }
 
         [Given(@"user is on Forgot Password page")]
         public void GivenUserIsOnForgotPasswordPage()
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
-            loginPage.ForgotPasswordLink.Click();
-            //Wait till forgot password apge is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(15));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(ForgotPasswordPage.Locator.HillromLogoXpath)));
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            loginPage.ForgotPasswordLink.Clicks();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));
         }
 
         [When(@"email field is blank")]
@@ -57,7 +57,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenEmailFieldContainsHintText()
         {
             string ExpectedHintText = ForgotPasswordPage.ExpectedValues.EmailFieldHintText;
-            String ActualHintText = forgotPasswordPage.EmailFeild.GetAttribute("placeholder").ToString();
+            string ActualHintText = forgotPasswordPage.EmailFeild.GetAttribute("placeholder");
             Assert.AreEqual(ExpectedHintText, ActualHintText);
         }
 
@@ -68,7 +68,7 @@ namespace HillromAutomationFramework.Steps.Login
         }
 
         [When(@"user clicks Submit button")]
-        public void whenclickonsubmitbutton()
+        public void Whenclickonsubmitbutton()
         {
             forgotPasswordPage.SubmitButton.Click();
         }
@@ -110,7 +110,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks Login")]
         public void WhenUserClicksLogin()
         {
-            forgotPasswordPage.LoginButton.Click();
+            forgotPasswordPage.LoginLink.Click();
         }
     }
 }

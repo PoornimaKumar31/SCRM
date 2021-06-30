@@ -23,7 +23,7 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.LoginButton.Click();
             // Wait till User logo is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LoginPage.Locator.LandingPageUserNameLogoXpath)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageUserNameLogoID)));
         }
 
         [When(@"user clicks Logout button")]

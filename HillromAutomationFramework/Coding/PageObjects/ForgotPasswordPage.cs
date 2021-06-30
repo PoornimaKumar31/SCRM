@@ -8,12 +8,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
     {
         public static class Locator
         {
-            public const string EmailFieldXpath = "//*[@id=\"smartcare\"]/c8y-recover-password/form/c8y-form-group/input";
-            public const string SubmitButtonXpath = "//*[@id=\"smartcare\"]/c8y-recover-password/form/button";
-            public const string LoginButtonXpath = "//*[@id=\"smartcare\"]/c8y-recover-password/form/div/p/a";
-            public const string HillromLogoXpath= "//*[@id=\"smartcare\"]/div[1]/img";
-            public const string ApplicationTitleXpath= "//*[@id=\"smartcare\"]/div[2]";
-            public const string ResetPasswordInstructionsXpath= "//*[@id=\"smartcare\"]/c8y-recover-password/div/span";
+            //Forget password
+            public const string LinkID = "forgot_pwd";
+            public const string EmailFieldID = "forgot_email";
+            public const string SubmitButtonID = "btn_forgot_submit";
+            public const string LoginLinkID = "lnk_nav_login";
+            public const string SuccessMessageID = "snackbar";    
+            public const string HillromLogoID= "logo_main";
+            public const string ApplicationTitleID= "lbl_app_title";
+            public const string ResetPasswordInstructionsID = "lbl_forgot_email";
         }
         public static class ExpectedValues
         {
@@ -28,27 +31,27 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
 
         // Email Field in forget password form
-        [FindsBy(How = How.XPath, Using = Locator.EmailFieldXpath)]
+        [FindsBy(How = How.Id, Using = Locator.EmailFieldID)]
         public IWebElement EmailFeild { get; set; }
 
         // Submit button in Forget password form
-        [FindsBy(How = How.XPath, Using = Locator.SubmitButtonXpath)]
+        [FindsBy(How = How.Id, Using = Locator.SubmitButtonID)]
         public IWebElement SubmitButton { get; set; }
 
         // Login link forgot password form
-        [FindsBy(How = How.XPath, Using = Locator.LoginButtonXpath)]
-        public IWebElement LoginButton { get; set; }
+        [FindsBy(How = How.Id, Using = Locator.LoginLinkID)]
+        public IWebElement LoginLink { get; set; }
 
         //Hillrom Logo
-        [FindsBy(How = How.XPath, Using = Locator.HillromLogoXpath)]
+        [FindsBy(How = How.Id, Using = Locator.HillromLogoID)]
         public IWebElement HillromLogo { get; set; }
 
         //Application Title
-        [FindsBy(How = How.XPath, Using = Locator.ApplicationTitleXpath)]
+        [FindsBy(How = How.Id, Using = Locator.ApplicationTitleID)]
         public IWebElement ApplicationTitle { get; set; }
 
         //Rest password instructions
-        [FindsBy(How = How.XPath, Using = Locator.ResetPasswordInstructionsXpath)]
+        [FindsBy(How = How.Id, Using = Locator.ResetPasswordInstructionsID)]
         public IWebElement ResetPasswordInstructions { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding]
     public class VersionNoSteps
     {
-        LoginPage loginPage = new LoginPage();
+     
         [Then(@"""(.*)"" is displayed")]
         public void ThenIsDisplayed(string ExpectedText)
         {

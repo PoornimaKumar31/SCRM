@@ -10,12 +10,12 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding]
     public class ForgotPasswordStaticElementsSteps
     {
-        ForgotPasswordPage forgotPassword = new ForgotPasswordPage();
+        readonly ForgotPasswordPage forgotPassword = new ForgotPasswordPage();
 
         [Then(@"user will see forgot Hillrom logo")]
         public void ThenUserWillSeeForgotHillromLogo()
         {
-            Thread.Sleep(100);
+            Thread.Sleep(500);
             Assert.IsTrue(forgotPassword.HillromLogo.Displayed);
         }
         
