@@ -18,14 +18,7 @@ namespace HillromAutomationFramework.Steps.Landing
         [Given(@"user is on landing page")]
         public void GivenUserIsOnLandingPage()
         {
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
-            // Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
-            loginPage.EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
-            loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
-            loginPage.LoginButton.Clicks();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
+            loginPage.SignIn();
         }
 
         [Given(@"user clicks on organization")]

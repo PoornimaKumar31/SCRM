@@ -1,6 +1,8 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using System;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
@@ -211,5 +213,19 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.XPath, Using = Locator.SupportedBrowserclosebuttonXpath)]
         public IWebElement SupportedBrowserclosebutton { get; set; }
 
+
+
+        //Function for Login
+        public void SignIn()
+        {
+            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
+            // Explicit wait-> Wait till logo is displayed
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
+            PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+            LoginButton.Clicks();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
+        }
     }
 }
