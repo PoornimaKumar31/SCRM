@@ -218,19 +218,22 @@ namespace HillromAutomationFramework.Coding.PageObjects
             {
                 EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
                 PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+                LoginButton.Clicks();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
             }
             else if(signinType.ToLower().Trim().Contains("adminwithoutrollup"))
             {
                 EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
                 PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+                LoginButton.Clicks();
             }
             else if(signinType.ToLower().Trim().Contains("standarduserwithoutrollup"))
             {
                 EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
                 PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+                LoginButton.Clicks();
             }
-            LoginButton.Clicks();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
+            
         }
     }
 }
