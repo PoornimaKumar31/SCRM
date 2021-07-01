@@ -13,26 +13,22 @@ namespace HillromAutomationFramework.Steps.Login
     public class LogoutSteps
     {
         readonly LoginPage loginPage=new LoginPage();
+        readonly LandingPage landingPage = new LandingPage();
 
         [Given(@"user is logged in")]
         public void GivenUserIsLoggedIn()
         {
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
-            loginPage.EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
-            loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
-            loginPage.LoginButton.Click();
-            // Wait till User logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageUserNameLogoID)));
+            //Log in as Admin user with rollup
+            loginPage.SignIn("adminwithrollup");
         }
 
         [When(@"user clicks Logout button")]
         public void WhenUserClicksLogoutButton()
         {
             //Clicks on profile logo
-            loginPage.LandingPageUserNameLogo.Clicks();
+            landingPage.LandingPageUserNameLogo.Clicks();
             //Clicks on logout button
-            loginPage.LandingPageLogOutButton.Clicks();
+            landingPage.LandingPageLogOutButton.Clicks();
         }
     }
 }

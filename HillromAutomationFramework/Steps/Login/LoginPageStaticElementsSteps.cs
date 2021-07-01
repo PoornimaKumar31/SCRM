@@ -1,7 +1,7 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
-using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
@@ -14,7 +14,8 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"user will see login Hillrom logo")]
         public void ThenUserWillSeeLoginHillromLogo()
         {
-            //Assert.IsTrue(loginpage.LoginPageLogo.Displayed);
+            Thread.Sleep(500);
+            Assert.IsTrue(loginpage.LoginPageLogo.Displayed);
         }
 
         [Then(@"login SmartCare Remote Management title")]

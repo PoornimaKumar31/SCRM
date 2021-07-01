@@ -47,10 +47,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SupportedBrowserPopupID = "browser-supported";
             public const string SupportedBrowserclosebuttonXpath = "//*[@id=\"browser-supported\"]/div/div/button";
 
-            // Landing page web elements
+            // Landing page web elements for login purpose
             public const string LandingPageTileID = "card";
-            public const string LandingPageUserNameLogoID = "userprofile_logo";
-            public const string LandingPageLogOutButtonID = "logout";
         }
 
         /// Expected values in the login page.
@@ -138,14 +136,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.XPath, Using = Locator.ErrorMessageXPath)]
         public IWebElement ErrorMessage { get; set; }
 
-        /// Landing page user name logo
-        [FindsBy(How = How.Id, Using = Locator.LandingPageUserNameLogoID)]
-        public IWebElement LandingPageUserNameLogo { get; set; }
-
-        // Landing page logout button
-        [FindsBy(How = How.Id, Using = Locator.LandingPageLogOutButtonID)]
-        public IWebElement LandingPageLogOutButton { get; set; }
-
+        
         //Forget Password
 
         // Forget Password Link
@@ -238,7 +229,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
                 PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
             }
-            
             LoginButton.Clicks();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
         }
