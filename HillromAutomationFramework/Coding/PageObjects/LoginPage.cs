@@ -83,8 +83,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             //footer links
             public const string CopyRightMessage = "© 2021 Hillrom™. All rights reserved.";
-            public const string PrivacyPolicyURL = "https://www.welchallyn.com/en/other/privacy-policy.html";
-            public const string TermsOfUseURL = "https://www.welchallyn.com/en/other/terms-of-use.html";
+            public const string PrivacyPolicyURL = "https://www.hillrom.com/en/about-us/global-privacy-notice/";
+            public const string TermsOfUseURL = "https://www.hillrom.com/en/about-us/hill-rom-terms-and-conditions/";
 
             //Supported Browser List
             public const string SupportedBrowserEdge = "Microsoft Edge : version 89 and higher";
@@ -216,14 +216,29 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
 
         //Function for Login
-        public void SignIn()
+        public void SignIn(string signinType)
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
             // Explicit wait-> Wait till logo is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
-            EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
-            PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+
+            if (signinType.ToLower().Trim().Contains("adminwithrollup"))
+            {
+                EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
+                PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+            }
+            else if(signinType.ToLower().Trim().Contains("adminwithoutrollup"))
+            {
+                EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
+                PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+            }
+            else if(signinType.ToLower().Trim().Contains("standarduserwithoutrollup"))
+            {
+                EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
+                PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+            }
+            
             LoginButton.Clicks();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
         }
