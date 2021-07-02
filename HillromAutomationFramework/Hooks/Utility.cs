@@ -71,29 +71,32 @@ namespace HillromAutomationFramework.Hooks
         public void BeforeScenario()
         {
             //Browser setup
-            switch (PropertyClass.BrowserName.ToLower())
+            string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
+            if(BrowserName.Contains("chrome"))
             {
-                case "google chrome": // to set the chrome download directory
-                    var chromeOptions = new ChromeOptions();
-                    chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
-                    chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
+                // to set the chrome download directory
+                var chromeOptions = new ChromeOptions();
+                chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
+                chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
 
-                    // Setting up the chrome driver
-                    PropertyClass.Driver = new ChromeDriver(chromeOptions);
-                    break;
-
-                case "microsoft edge": // Setting up edge driver
-                    EdgeOptions options = new EdgeOptions
-                    {
-                        UseChromium = true
-                    };
-                    PropertyClass.Driver = new EdgeDriver(PropertyClass.driverPath, options);
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid browser Name");
-                    break;
+                // Setting up the chrome driver
+                PropertyClass.Driver = new ChromeDriver(chromeOptions);
             }
+            else if(BrowserName.Contains("edge"))
+            {
+                EdgeOptions options = new EdgeOptions
+                {
+                    UseChromium = true
+                };
+                PropertyClass.Driver = new EdgeDriver(PropertyClass.driverPath, options);
+            }
+            else
+            {
+                Console.WriteLine("Invalid browser name!!!!");
+                Environment.Exit(1);
+            }
+
+           
             PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
             PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60); // Implicit wait for 60 seconds
         }

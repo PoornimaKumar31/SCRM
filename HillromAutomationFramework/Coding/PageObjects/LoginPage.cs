@@ -231,6 +231,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 PasswordField.EnterText(PropertyClass.readConfig.PasswordStandardWithoutRollUp);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
                 LoginButton.Clicks();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
             }
             
         }
