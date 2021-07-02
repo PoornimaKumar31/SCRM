@@ -48,6 +48,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"email field is blank")]
         public void WhenEmailFieldIsBlank()
         {
+            Thread.Sleep(500);
             Assert.IsTrue(forgotPasswordPage.EmailFeild.Text.Length == 0);
         }
 
