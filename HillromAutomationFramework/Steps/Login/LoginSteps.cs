@@ -64,7 +64,7 @@ namespace HillromAutomationFramework.Steps.Login
         {
             // Explicit wait-> Wait till the organization list is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.LandingPageTileID)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization01Facility01TileID)));
             string actualTitle = PropertyClass.Driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
             Assert.AreEqual(expectedTitle, actualTitle); //Compare the title
