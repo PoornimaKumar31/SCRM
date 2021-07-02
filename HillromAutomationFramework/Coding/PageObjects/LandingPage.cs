@@ -16,27 +16,33 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         public static class Locator
         {
-            public const string LandingPageTileID = "fac00";
-            public const string LandingPageUserNameLogoID = "userprofile_logo";
-            public const string LandingPageLogOutButtonID = "logout";
-
+            public const string Organization01Facility01TileID = "fac00";
+            public const string Organization01Facility02TileID = "fac01";
+            public const string Organization02Facility01TileID = "fac10";
+            public const string UserNameLogoID = "userprofile_logo";
+            public const string LogOutButtonID = "logout";
             public const string OrganizationalTitleID = "organization_title";
             public const string HeaderLogoID = "servicehub_logo";
-            public const string OrganizationID = "org0";
-            public const string OrganizationCardID = "card";
+         
         }
 
 
         /// Landing page user name logo
-        [FindsBy(How = How.Id, Using = Locator.LandingPageUserNameLogoID)]
-        public IWebElement LandingPageUserNameLogo { get; set; }
+        [FindsBy(How = How.Id, Using = Locator.UserNameLogoID)]
+        public IWebElement UserNameLogo { get; set; }
 
         // Landing page logout button
-        [FindsBy(How = How.Id, Using = Locator.LandingPageLogOutButtonID)]
-        public IWebElement LandingPageLogOutButton { get; set; }
+        [FindsBy(How = How.Id, Using = Locator.LogOutButtonID)]
+        public IWebElement LogOutButton { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.OrganizationID)]
-        public IList<IWebElement> TileList { get; set; }
+        [FindsBy(How = How.Id, Using = Locator.Organization01Facility01TileID)]
+        public IWebElement Organization01Facility01Tile { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.Organization01Facility02TileID)]
+        public IWebElement Organization01Facility02Tile { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.Organization02Facility01TileID)]
+        public IWebElement Organization02Facility01Tile { get; set; }
 
     }
 }

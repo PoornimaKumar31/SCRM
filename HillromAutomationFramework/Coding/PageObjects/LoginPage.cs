@@ -216,7 +216,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
                 PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
                 LoginButton.Clicks();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.LandingPageTileID)));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization01Facility01TileID))); ;
             }
             else if(signinType.ToLower().Trim().Contains("adminwithoutrollup"))
             {
