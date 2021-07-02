@@ -16,7 +16,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         public static class Locator
         {
-            public const string LandingPageTileID = "card";
+            public const string LandingPageTileID = "fac00";
             public const string LandingPageUserNameLogoID = "userprofile_logo";
             public const string LandingPageLogOutButtonID = "logout";
 

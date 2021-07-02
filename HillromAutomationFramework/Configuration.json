@@ -1,6 +1,10 @@
 ﻿{
-  "validEmailID" : "ltts_testing@hillrom.com",
-  "validPassword" : "$umm3r2021",
-  "invalidEmailID" : "ltts_testinhillrocom",
-  "invalidPassword" : "12dds22"
+  "EmailIDAdminWithRollUp": "ltts_testing@hillrom.com",
+  "PasswordAdminWithRollUp": "$umm3r2021",
+  "EmailAdminWithoutRollUp": "ltts_testing_nr@hillrom.com",
+  "PasswordAdminWithoutRollUp": "$umm3r2021",
+  "EmailStandardWithoutRollUp": " ltts_testing_nr_basic@hillrom.com",
+  "PasswordStandardWithoutRollUp": "$umm3r2021",
+  "InvalidEmailID": "ltts_testinhillrocom",
+  "InvalidPassword": "12dds22"
 }

@@ -21,8 +21,6 @@ namespace HillromAutomationFramework.Steps.Login
             _scenarioContext = scenarioContext;
         }
 
-
-
         [When(@"user clicks forgot password")]
         public void WhenUserClickOnForgotPassword()
         {
@@ -83,7 +81,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user enters valid email address")]
         public void WhenUserEntersValidEmailAddress()
         {
-            forgotPasswordPage.EmailFeild.EnterText(PropertyClass.readConfig.ValidEmailID);
+            forgotPasswordPage.EmailFeild.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
         }
 
         [Then(@"Login page is displayed")]

@@ -46,9 +46,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SupportedBrowsersID = "supportbrowsers";
             public const string SupportedBrowserPopupID = "browser-supported";
             public const string SupportedBrowserclosebuttonXpath = "//*[@id=\"browser-supported\"]/div/div/button";
-
-            // Landing page web elements for login purpose
-            public const string LandingPageTileID = "card";
         }
 
         /// Expected values in the login page.
@@ -216,21 +213,23 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             if (signinType.ToLower().Trim().Contains("adminwithrollup"))
             {
-                EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
-                PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+                EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
+                PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
                 LoginButton.Clicks();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.LandingPageTileID)));
             }
             else if(signinType.ToLower().Trim().Contains("adminwithoutrollup"))
             {
-                EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
-                PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+                EmailField.EnterText(PropertyClass.readConfig.EmailAdminWithoutRollUp);
+                PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithoutRollUp);
                 LoginButton.Clicks();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
             }
             else if(signinType.ToLower().Trim().Contains("standarduserwithoutrollup"))
             {
-                EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
-                PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+                EmailField.EnterText(PropertyClass.readConfig.EmailStandardWithoutRollUp);
+                PasswordField.EnterText(PropertyClass.readConfig.PasswordStandardWithoutRollUp);
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
                 LoginButton.Clicks();
             }
             

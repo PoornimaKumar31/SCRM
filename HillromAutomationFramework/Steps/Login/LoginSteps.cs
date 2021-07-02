@@ -26,13 +26,13 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user enters valid email ID")]
         public void WhenTheUserEntersAValidEmailId()
         {
-            loginPage.EmailField.EnterText(PropertyClass.readConfig.ValidEmailID);
+            loginPage.EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
         }
         
         [When(@"enters valid password")]
         public void WhenEntersAValidPassword()
         {
-            loginPage.PasswordField.EnterText(PropertyClass.readConfig.ValidPassword);
+            loginPage.PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
         }
         
         [When(@"user clicks Login button")]
@@ -64,7 +64,7 @@ namespace HillromAutomationFramework.Steps.Login
         {
             // Explicit wait-> Wait till the organization list is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LandingPageTileID)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.LandingPageTileID)));
             string actualTitle = PropertyClass.Driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
             Assert.AreEqual(expectedTitle, actualTitle); //Compare the title
