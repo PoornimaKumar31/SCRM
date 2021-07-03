@@ -14,9 +14,9 @@ namespace HillromAutomationFramework.Hooks
     public sealed class Utility
     {
         //Declaration of variables to handle extent report
-        private static ExtentTest featureName;
-        private static ExtentTest scenario;
-        private static ExtentReports extent;
+        private static ExtentTest _feature;
+        private static ExtentTest _scenario;
+        private static ExtentReports _extentReports;
         private static int screenShotNameCounter = 0;
         private readonly ScenarioContext _scenarioContext;
         public Utility(ScenarioContext scenarioContext)
@@ -41,35 +41,38 @@ namespace HillromAutomationFramework.Hooks
             //Declatation of HTML Reporter for Extent Report
             var htmlReporter = new ExtentHtmlReporter(PropertyClass.extentReportPath);
             htmlReporter.Config.ReportName = "Automated testing of Smart Care Remote Management";
-            htmlReporter.Config.DocumentTitle = "Reported Test Cases";
+            htmlReporter.Config.DocumentTitle = "Test Cases Report";
 
             //Attach report to reporter
-            extent = new ExtentReports();
-            extent.AttachReporter(htmlReporter);
+            _extentReports = new ExtentReports();
+            _extentReports.AttachReporter(htmlReporter);
 
             //Adding system info to the project
-            extent.AddSystemInfo("Base URl", PropertyClass.BaseURL);
-            extent.AddSystemInfo("Operating System", Environment.OSVersion.ToString());
-            extent.AddSystemInfo("Browser", PropertyClass.BrowserName);
+            _extentReports.AddSystemInfo("Base URl", PropertyClass.BaseURL);
+            _extentReports.AddSystemInfo("Operating System", Environment.OSVersion.ToString());
+            _extentReports.AddSystemInfo("Browser", PropertyClass.BrowserName);
         }
 
         // After the test generate the extent report 
         [AfterTestRun]
         public static void AfterTestRun()
         {
-            extent.Flush();
+            _extentReports.Flush();
         }
 
         // Before feature runs create a node in extent report.
         [BeforeFeature]
         public static void BeforeFeature(FeatureContext featureContext)
         {
-            featureName = extent.CreateTest<Feature>(featureContext.FeatureInfo.Title);
+            _feature = _extentReports.CreateTest<Feature>(featureContext.FeatureInfo.Title,featureContext.FeatureInfo.Description);
         }
 
         [BeforeScenario]
         public void BeforeScenario()
         {
+            //log scenario in extent report
+            _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
+            
             //Browser setup
             string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
             if(BrowserName.Contains("chrome"))
@@ -105,48 +108,54 @@ namespace HillromAutomationFramework.Hooks
         [AfterStep]
         public void ReportSteps()
         {
-            var stepType = _scenarioContext.CurrentScenarioBlock.ToString();
+            ScenarioBlock scenarioBlock = _scenarioContext.CurrentScenarioBlock;
 
-            // Log the test results in the extent report with screenshot if test fails.
-            if (_scenarioContext.TestError != null)
+            switch (scenarioBlock)
             {
-                var mediaEntity = GetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
-                if (stepType == "Given")
-                    _ = scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
-                else if (stepType == "When")
-                    _ = scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
-                else if (stepType == "Then")
-                    _ = scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message, mediaEntity);
-                else if (stepType == "And")
-                    _ = scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.InnerException, mediaEntity);
-                screenShotNameCounter++;
-            }
-            else
-            {
-                // Log the test results in the extent report with screenshot if test pass.
-                if (stepType == "Given")
-                    _ = scenario.CreateNode<Given>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
-                else if (stepType == "When")
-                    _ = scenario.CreateNode<When>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
-                else if (stepType == "Then")
-                    _ = scenario.CreateNode<Then>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
-                else if (stepType == "And")
-                    _ = scenario.CreateNode<And>(_scenarioContext.StepContext.StepInfo.Text).Pass(_scenarioContext.ScenarioExecutionStatus.ToString());
+                case ScenarioBlock.Given:
+                    CreateNode<Given>();
+                    break;
+                case ScenarioBlock.When:
+                    CreateNode<When>();
+                    break;
+                case ScenarioBlock.Then:
+                    CreateNode<Then>();
+                    break;
+                default:
+                    CreateNode<And>();
+                    break;
             }
         }
 
-        // Log the scenario
-        [BeforeScenario]
-        public void Initialize()
+        public void CreateNode<T>() where T : IGherkinFormatterModel
         {
-            scenario = featureName.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title);
-        }
+            ScenarioExecutionStatus scenarioExecutionStatus = _scenarioContext.ScenarioExecutionStatus;
 
+            switch (scenarioExecutionStatus)
+            {
+                case ScenarioExecutionStatus.OK:
+                    _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Pass("");
+                    break;
+
+                case ScenarioExecutionStatus.TestError:
+                    var mediaEntity = GetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
+                    _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message + "\n" + _scenarioContext.TestError.InnerException,mediaEntity);
+                    screenShotNameCounter++;
+                    break;
+
+                case ScenarioExecutionStatus.StepDefinitionPending:
+                    _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Skip("Step Defination Pending");
+                    break;
+                default:
+                    _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Info(_scenarioContext.ScenarioExecutionStatus.ToString());
+                    break;
+            }
+        }
         //Closing the driver and setting the driver reference to null
         [AfterScenario]
         public void CleanUp()
         {
-            PropertyClass.Driver.Quit();
+           PropertyClass.Driver.Quit();
         }
 
     }
