@@ -8,9 +8,24 @@ namespace HillromAutomationFramework.Coding.PageObjects
     {
         public static class Locators
         {
+            //Links
             public const string GlobalSeviceCenterID = "gsc";
             public const string ContactUsID = "contactus";
+
+            //Tabs
             public const string AssetsTabID = "assetsTab";
+            public const string ReportsTabID = "reportsTab";
+            public const string UpdatesTabID = "updatesTab";
+            public const string AdvancedTabID = "advancedTab";
+
+            public const string DeviceListRowID = "555566667777";
+            public const string DeviceTypeClassName = "ng-star-inserted";
+            public const string FirmwareVersionClassName = "firmware";
+            public const string ConfigFileClassName = "configFile";
+            public const string AssetTagClassName = "asset";
+            public const string SerialNumberClassName = "serial";
+            public const string LocationClassName = "location";
+            public const string LastConnectionClassName = "connection";
         }
         public static class ExpectedValues
         {
