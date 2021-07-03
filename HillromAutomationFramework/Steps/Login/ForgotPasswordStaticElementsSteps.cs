@@ -16,19 +16,19 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenUserWillSeeForgotHillromLogo()
         {
             Thread.Sleep(500);
-            Assert.IsTrue(forgotPassword.HillromLogo.Displayed);
+            Assert.IsTrue(forgotPassword.HillromLogo.GetElementVisibility());
         }
         
         [Then(@"forgot SmartCare Remote Management title")]
         public void ThenForgotSmartCareRemoteManagementTitle()
         {
-            Assert.IsTrue(forgotPassword.ApplicationTitle.Displayed);
+            Assert.IsTrue(forgotPassword.ApplicationTitle.GetElementVisibility());
         }
         
         [Then(@"reset instructions")]
         public void ThenResetInstructions()
         {
-            Assert.IsTrue(forgotPassword.ResetPasswordInstructions.Displayed);
+            Assert.IsTrue(forgotPassword.ResetPasswordInstructions.GetElementVisibility());
             string ExpectedInstructions = ForgotPasswordPage.ExpectedValues.ResetPasswordInstructionsText;
             string ActualInstructions = forgotPassword.ResetPasswordInstructions.Text;
             Assert.AreEqual(ExpectedInstructions, ActualInstructions);

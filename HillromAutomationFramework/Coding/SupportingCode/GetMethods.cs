@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.Linq;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
@@ -26,5 +27,18 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             var screenshot = ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot().AsBase64EncodedString;
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, name).Build();
         }
+
+        //Get element visibilty
+        public static bool GetElementVisibility(this IWebElement element)
+        {
+            try
+            {
+                return (element.Displayed);
+            }catch(Exception)
+            {
+                return (false);
+            }
+        }
+
     }
 }
