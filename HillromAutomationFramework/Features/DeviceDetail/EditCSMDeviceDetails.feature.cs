@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.EditDeviceDetails
+namespace HillromAutomationFramework.Features.DeviceDetail
 {
     using TechTalk.SpecFlow;
     using System;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.EditDeviceDetails
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/EditDeviceDetails", "Edit CSM Device Details", "\tThe Customer Portal shall have a mechanism for editing the following device deta" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Edit CSM Device Details", "\tThe Customer Portal shall have a mechanism for editing the following device deta" +
                     "ils for CSM devices: Room, Bed", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5703"});
             testRunner.OnFeatureStart(featureInfo);
