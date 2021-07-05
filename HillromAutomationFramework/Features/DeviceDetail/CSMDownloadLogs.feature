@@ -1,4 +1,5 @@
-﻿Feature: Downloading CSM Log File
+﻿@SoftwareRequirementID_5699
+Feature: Downloading CSM Log File
 
 @mytag
 Scenario: CSM Log Files Display

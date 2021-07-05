@@ -4,8 +4,6 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -14,6 +12,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     [Binding]
     class CSMDownloadLogsSteps
     {
+        LoginPage loginPage = new LoginPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
@@ -26,14 +25,15 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"logs for CSM device are displayed")]
         public void ThenLogsForCSMDeviceAreDisplayed()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             Assert.IsTrue(csmDeviceDetailsPage.LogFiles.Displayed);
         }
 
         [Given(@"user is on CSM Log Files page")]
         public void GivenUserIsOnCSMLogFilesPage()
         {
-            ScenarioContext.Current.Pending();
+            loginPage.SignIn("adminwithrollup");
+            csmDeviceDetailsPage.CSMDevices[0].Click();
         }
 
         [Given(@"at least one log is present")]

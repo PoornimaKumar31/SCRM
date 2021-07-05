@@ -23,11 +23,7 @@ namespace HillromAutomationFramework.Steps.EditDeviceDetails
         [Given(@"user has selected CSM device")]
         public void GivenUserHasSelectedCSMDevice()
         {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            List<IWebElement> rows = PropertyClass.Driver.FindElements(By.Id("555566667777")).ToList<IWebElement>();
-            Console.WriteLine("Number OF Rows:" + rows.Count);
-
-            rows[0].Click();
+            
         }
         
         [Given(@"user is on Device Details page")]
