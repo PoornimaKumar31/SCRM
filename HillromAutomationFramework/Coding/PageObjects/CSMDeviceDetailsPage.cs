@@ -25,5 +25,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.Id, Using = Locator.LogFilesID)]
         public IWebElement LogFiles { get; set; }
+
+        [FindsBy(How = How.Id, Using = "555566667777")]
+        public IList<IWebElement> CSMDevices { get; set; }
     }
 }

@@ -24,11 +24,10 @@ namespace HillromAutomationFramework.Steps.EditDeviceDetails
         public void GivenUserHasSelectedCSMDevice()
         {
             loginPage.SignIn("AdminWithoutRollupPage");
-            List<IWebElement> rows = PropertyClass.Driver.FindElements(By.XPath("//table[@id=\"deviceTable\"]/tbody/tr")).ToList<IWebElement>();
+            List<IWebElement> rows = PropertyClass.Driver.FindElements(By.Id("555566667777")).ToList<IWebElement>();
             Console.WriteLine("Number OF Rows:" + rows.Count);
 
-            List<IWebElement> colums = PropertyClass.Driver.FindElements(By.XPath("//table[@id=\"deviceTable\"]/tbody/tr[1]/td")).ToList<IWebElement>();
-            Console.WriteLine("Number of Columns:" + colums.Count);
+            rows[0].Click();
         }
         
         [Given(@"user is on Device Details page")]
