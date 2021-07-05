@@ -25,8 +25,16 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RoomAndBedDetailsXpath = "//*[@id=\"device-main\"]/div[1]/div[3]/p[6]";
 
             //Log files
-            public const string LogsButtonXpath = "//*[@id=\"device-main\"]/div[2]/div/div/div[3]";
-            public const string LogFilesID = "device-details";
+            public const string LogsButtonXpath = "//*[@id=\"mat-tab-label-0-2\"]/div";
+            public const string LogFilesID = "logName";
+            public const string LogsNextButtonID = "next";
+            public const string LogsPreviousButtonID = "previous";
+            public const string LogsPageNumberClassName = "pageNumber";
+            public const string LogsPageRequestButtonID = "request-logs";
+            public const string LogsPendingMessageXPath = "//*[@id=\"mat-tab-content-1-2\"]/div/div/c8y-hillrom-request-logs/div/div[3]/div[1]/div[1]";
+            public const string LogsDescendingClassName = "col-md-4 descending";
+            public const string LogsAscendingClassName = "col-md-4 ascending";
+            public const string DateSortingID = "date";
         }
 
         public static class ExpectedValues
@@ -65,8 +73,24 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement LogsButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LogFilesID)]
-        public IWebElement LogFiles { get; set; }
+        public IList<IWebElement> LogFiles { get; set; }
 
-        
+        [FindsBy(How =How.Id, Using = Locators.LogsNextButtonID)]
+        public IWebElement LogsNextButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LogsPreviousButtonID)]
+        public IWebElement LogsPreviousButton { get; set; }
+
+        [FindsBy(How =How.ClassName,Using =Locators.LogsPageNumberClassName)]
+        public IWebElement LogsCurrentPageNumber { get; set; }
+
+        [FindsBy(How =How.Id,Using =Locators.LogsPageRequestButtonID)]
+        public IWebElement LogsRequestButton { get; set; }
+
+        [FindsBy(How =How.XPath,Using =Locators.LogsPendingMessageXPath)]
+        public IWebElement LogsPendingMessage { get; set; }
+
+        [FindsBy(How =How.ClassName, Using =Locators.DateSortingID)]
+        public IWebElement DateSorting { get; set; }
     }
 }

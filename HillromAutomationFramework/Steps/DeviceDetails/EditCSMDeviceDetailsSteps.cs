@@ -30,15 +30,12 @@ namespace HillromAutomationFramework.Steps.EditDeviceDetails
         [Given(@"user has selected CSM device with details not set")]
         public void GivenUserHasSelectedCSMDevice()
         {
-<<<<<<< HEAD
-            
-=======
+
             loginPage.SignIn("AdminWithoutRollupPage");
             SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
             selectAssetType.SelectByText(MainPage.ExpectedValues.CSMDeviceName);
             //select the row according to the data
             cSMDeviceDetailsPage.CSMDevices[0].Clicks();
->>>>>>> 0e9de7d74c51f765d5ef38f8af94c1c73b4ad6db
         }
         
         [Given(@"user is on Device Details page")]

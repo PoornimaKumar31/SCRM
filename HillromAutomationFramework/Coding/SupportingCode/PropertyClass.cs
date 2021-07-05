@@ -38,5 +38,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         readonly public static string PartnerConnectFilePath = @DownloadPath + "\\PartnerConnect.zip";
         readonly public static string ServiceMonitorFilePath = @DownloadPath + "\\ServiceMonitor.zip";
         readonly public static string DCPFilePath = @DownloadPath + "\\DCP.zip";
+        
     }
 }

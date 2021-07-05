@@ -4,7 +4,7 @@ Feature: Downloading CSM Log File
 @mytag
 Scenario: CSM Log Files Display
 	Given user has selected CSM device
-	And user is on Main page
+	And user is on Device Details page
 	When user clicks Logs tab
 	Then logs for CSM device are displayed
 
