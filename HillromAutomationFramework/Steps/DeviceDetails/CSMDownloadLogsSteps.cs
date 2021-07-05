@@ -14,11 +14,17 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     {
         LoginPage loginPage = new LoginPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
+        private ScenarioContext _scenarioContext;
+        public CSMDownloadLogsSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
         {
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(CSMDeviceDetailsPage.Locator.LogsButtonXpath)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(CSMDeviceDetailsPage.Locators.LogsButtonXpath)));
             csmDeviceDetailsPage.LogsButton.Click();
         }
 
@@ -32,188 +38,192 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on CSM Log Files page")]
         public void GivenUserIsOnCSMLogFilesPage()
         {
+<<<<<<< HEAD
             loginPage.SignIn("adminwithrollup");
             csmDeviceDetailsPage.CSMDevices[0].Click();
+=======
+            _scenarioContext.Pending();
+>>>>>>> 0e9de7d74c51f765d5ef38f8af94c1c73b4ad6db
         }
 
         [Given(@"at least one log is present")]
         public void GivenAtLeastOneLogIsPresent()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [When(@"user clicks log")]
         public void WhenUserClicksLog()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"log is downloaded to computer")]
         public void ThenLogIsDownloadedToComputer()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"downloaded filename matches")]
         public void ThenDownloadedFilenameMatches()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"CSM has ten logs")]
         public void GivenCSMHasTenLogs()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"ten logs for CSM device are displayed")]
         public void ThenTenLogsForCSMDeviceAreDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [When(@"user clicks Request Logs button")]
         public void WhenUserClicksRequestLogsButton()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"user can navigate to next logs page")]
         public void ThenUserCanNavigateToNextLogsPage()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [When(@"user navigates to next logs page")]
         public void WhenUserNavigatesToNextLogsPage()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [When(@"user navigates to previous logs page")]
         public void WhenUserNavigatesToPreviousLogsPage()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"Log files are sorted by decreasing date")]
         public void GivenLogFilesAreSortedByDecreasingDate()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"CSM has (.*) logs")]
         public void GivenCSMHasLogs(int p0)
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"newest ten logs are displayed")]
         public void GivenNewestTenLogsAreDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"user will see next ten older logs")]
         public void ThenUserWillSeeNextTenOlderLogs()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"user will see logs page (.*) indicator")]
         public void ThenUserWillSeeLogsPageIndicator(int p0)
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"logs are sorted by decreasing date")]
         public void GivenLogsAreSortedByDecreasingDate()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"second ten logs are displayed")]
         public void GivenSecondTenLogsAreDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"user will see next five older logs")]
         public void ThenUserWillSeeNextFiveOlderLogs()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"logs are sorted by increasing date")]
         public void GivenLogsAreSortedByIncreasingDate()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [When(@"user clicks Date column heading")]
         public void WhenUserClicksDateColumnHeading()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"logs sort by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"user will see decreasing date sorting indicator")]
         public void ThenUserWillSeeDecreasingDateSortingIndicator()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"logs sort by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"user will see increasing date sorting indicator")]
         public void ThenUserWillSeeIncreasingDateSortingIndicator()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Given(@"Pending or Executing message is not displayed")]
         public void GivenPendingOrExecutingMessageIsNotDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
     }

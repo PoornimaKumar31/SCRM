@@ -4,7 +4,7 @@ Feature: Edit CSM Device Details
 
 @TestCaseID_ @UISID_8673
 Scenario: Add CSM Device Details
-	Given user has selected CSM device
+	Given user has selected CSM device with details not set
 	And user is on Device Details page
 	When user clicks Edit button
 	Then Room and Bed can be entered 
@@ -22,7 +22,7 @@ Scenario: Edit CSM Device Details
 
 @TestCaseID_ @UISID_8673
 Scenario: Remove CSM Device Details
-	Given user has selected CSM device with Room, Bed
+	Given user has selected CSM device with Room, Bed details
 	And user is on Device Details page
 	When user clicks Edit button
 	Then the existing Room , Bed can be removed
@@ -31,7 +31,7 @@ Scenario: Remove CSM Device Details
 
 @TestCaseID_ @UISID_8673
 Scenario: Cancel on Add CSM Device Details
-	Given user has selected CSM device
+	Given user has selected CSM device with details not set
 	And user is on Device Details page
 	When user clicks Edit button
 	And Room, Bed is entered and cancelled
@@ -47,7 +47,7 @@ Scenario: Cancel on Edit CSM Device Details
 
 @TestCaseID_ @UISID_8673
 Scenario: Cancel on Removal of CSM Device Details
-	Given user has selected CSM device with Room, Bed
+	Given user has selected CSM device with Room, Bed details
 	And user is on Device Details page
 	When user clicks Edit button
 	And Room, Bed is removed and cancelled
