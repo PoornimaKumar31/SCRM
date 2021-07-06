@@ -33,6 +33,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
         public static class ExpectedValues
         {
+            public const string MainpageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement-centrella/index.html#/landing-page/devices";
+
             public const string GlobalServiceCenterURL = "https://www.hillrom.com/en/services/";
             public const string ContactUsURL = "https://www.hillrom.com/en/about-us/contact-us/";
 
