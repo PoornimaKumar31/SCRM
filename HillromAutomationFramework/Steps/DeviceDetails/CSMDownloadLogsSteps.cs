@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
-    [Binding]
+    [Binding, Scope(Tag = "SoftwareRequirementID_5699")]
     class CSMDownloadLogsSteps
     {
         LoginPage loginPage = new LoginPage();
