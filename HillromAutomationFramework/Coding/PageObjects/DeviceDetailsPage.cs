@@ -8,6 +8,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
     {
         public static class Locators
         {
+            //Asset details
             public const string AssetLabelClassName = "deviceLabel";
             public const string AssetDataClassName = "deviceData";
             //Editing device details

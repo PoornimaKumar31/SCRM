@@ -1,27 +1,24 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
-    class CSMDeviceDetailsPage
+    class CVSMDeviceDetailsPage
     {
-        public CSMDeviceDetailsPage()
-        {
-            PageFactory.InitElements(PropertyClass.Driver, this);
-        }
-
         public static class Locators
         {
             //Editing device details
-            public const string CSMDeviceEditButtonID = "csm-edit";
+            public const string EditButtonID = "cvsm-edit";
             public const string RoomFieldID = "room";
             public const string BedFieldID = "bed";
             public const string SaveButtonID = "save-device-detail";
             public const string CancelButtonID = "cancel-device-detail";
-            public const string RoomAndBedDetailsID = "csm_room";
-            public const string CSMDeviceID = "555566667777";
+            public const string RoomAndBedDetailsID = "cvsm_room";
+            public const string CVSMDeviceID = "555566667777";
 
             //Log files
             public const string LogsTabID = "mat-tab-label-0-2";
@@ -35,7 +32,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LogsAscendingClassName = "col-md-4 ascending";
             public const string DateSortingID = "date";
         }
-
         public static class ExpectedValues
         {
             public const string NewRoomValue = "New Room";
@@ -45,12 +41,17 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RoomAndBedNotSet = "(not set)";
         }
 
-        [FindsBy(How = How.Id, Using = Locators.CSMDeviceID)]
-        public IList<IWebElement> CSMDevices { get; set; }
+        public CVSMDeviceDetailsPage()
+        {
+            PageFactory.InitElements(PropertyClass.Driver, this);
+        }
+
+        [FindsBy(How = How.Id, Using = Locators.CVSMDeviceID)]
+        public IList<IWebElement> CVSMDevices { get; set; }
 
         //Device details related
-        [FindsBy(How = How.Id, Using = Locators.CSMDeviceEditButtonID)]
-        public IWebElement CSMDeviceEditButton { get; set; }
+        [FindsBy(How = How.Id, Using = Locators.EditButtonID)]
+        public IWebElement EditButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.RoomFieldID)]
         public IWebElement RoomField { get; set; }
@@ -74,22 +75,23 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.LogFilesID)]
         public IList<IWebElement> LogFiles { get; set; }
 
-        [FindsBy(How =How.Id, Using = Locators.LogsNextButtonID)]
+        [FindsBy(How = How.Id, Using = Locators.LogsNextButtonID)]
         public IWebElement LogsNextButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LogsPreviousButtonID)]
         public IWebElement LogsPreviousButton { get; set; }
 
-        [FindsBy(How =How.ClassName,Using =Locators.LogsPageNumberClassName)]
+        [FindsBy(How = How.ClassName, Using = Locators.LogsPageNumberClassName)]
         public IWebElement LogsCurrentPageNumber { get; set; }
 
-        [FindsBy(How =How.Id,Using =Locators.LogsPageRequestButtonID)]
+        [FindsBy(How = How.Id, Using = Locators.LogsPageRequestButtonID)]
         public IWebElement LogsRequestButton { get; set; }
 
-        [FindsBy(How =How.XPath,Using =Locators.LogsPendingMessageXPath)]
+        [FindsBy(How = How.XPath, Using = Locators.LogsPendingMessageXPath)]
         public IWebElement LogsPendingMessage { get; set; }
 
-        [FindsBy(How =How.ClassName, Using =Locators.DateSortingID)]
+        [FindsBy(How = How.ClassName, Using = Locators.DateSortingID)]
         public IWebElement DateSorting { get; set; }
+
     }
 }
