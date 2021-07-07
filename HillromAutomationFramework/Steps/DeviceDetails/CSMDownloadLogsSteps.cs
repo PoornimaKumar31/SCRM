@@ -18,6 +18,11 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         MainPage mainPage = new MainPage();
+        private ScenarioContext _scenarioContext;
+        public CSMDownloadLogsSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
 
         [Given(@"user has selected CSM device")]
         public void GivenUserHasSelectedCSMDevice()
@@ -166,7 +171,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"CSM has (.*) logs")]
         public void GivenCSMHasLogs(int p0)
         {
-            
+            _scenarioContext.Pending();   
         }
 
         [Given(@"newest ten logs are displayed")]
@@ -190,73 +195,73 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user will see logs page (.*) indicator")]
         public void ThenUserWillSeeLogsPageIndicator(int p0)
         {
-            
+            _scenarioContext.Pending();
         }
 
         [Given(@"logs are sorted by decreasing date")]
         public void GivenLogsAreSortedByDecreasingDate()
         {
-           
+            _scenarioContext.Pending();
         }
 
         [Given(@"second ten logs are displayed")]
         public void GivenSecondTenLogsAreDisplayed()
         {
-           
+            _scenarioContext.Pending();
         }
 
         [Then(@"user will see next five older logs")]
         public void ThenUserWillSeeNextFiveOlderLogs()
         {
-            
+            _scenarioContext.Pending();
         }
 
         [Given(@"logs are sorted by increasing date")]
         public void GivenLogsAreSortedByIncreasingDate()
         {
-           
+            _scenarioContext.Pending();
         }
 
         [When(@"user clicks Date column heading")]
         public void WhenUserClicksDateColumnHeading()
         {
-            
+            _scenarioContext.Pending();
         }
 
         [Then(@"logs sort by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            
+            _scenarioContext.Pending();
         }
 
         [Then(@"user will see decreasing date sorting indicator")]
         public void ThenUserWillSeeDecreasingDateSortingIndicator()
         {
-           
+            _scenarioContext.Pending();
         }
 
         [Then(@"logs sort by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-           
+            _scenarioContext.Pending();
         }
 
         [Then(@"user will see increasing date sorting indicator")]
         public void ThenUserWillSeeIncreasingDateSortingIndicator()
         {
-           
+            _scenarioContext.Pending();
         }
 
         [Given(@"Pending or Executing message is not displayed")]
         public void GivenPendingOrExecutingMessageIsNotDisplayed()
         {
-           
+            _scenarioContext.Pending();
         }
 
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            
+            _scenarioContext.Pending();
         }
 
     }

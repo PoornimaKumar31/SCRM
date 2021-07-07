@@ -1,9 +1,7 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
@@ -23,6 +21,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SaveButtonID = "save-device-detail";
             public const string CancelButtonID = "cancel-device-detail";
             public const string RoomAndBedDetailsXpath = "//*[@id=\"device-main\"]/div[1]/div[3]/p[6]";
+            public const string CSMDeviceID = "555566667777";
 
             //Log files
             public const string LogsButtonXpath = "//*[@id=\"mat-tab-label-0-2\"]/div";
@@ -46,7 +45,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RoomAndBedNotSet = "(not set)";
         }
 
-        [FindsBy(How = How.Id, Using = "555566667777")]
+        [FindsBy(How = How.Id, Using = Locators.CSMDeviceID)]
         public IList<IWebElement> CSMDevices { get; set; }
 
         //Device details related
