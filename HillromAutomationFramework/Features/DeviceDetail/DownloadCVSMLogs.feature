@@ -1,9 +1,10 @@
-﻿Feature: DownloadCVSMLogs
-	Simple calculator for adding two numbers
+﻿@SoftwareRequirementID_5692
+Feature: The Customer Portal shall have a feature for downloading CVSM/CIWS log files.
 
-@mytag
-Scenario: Add two numbers
-	Given the first number is 50
-	And the second number is 70
-	When the two numbers are added
-	Then the result should be 120
+@TestCaseID_8963
+Scenario: CVSM Log Files Download
+	Given user is on CVSM Log Files page
+	And at least one log is present
+	When user clicks log
+	Then log is downloaded to computer
+	And downloaded filename matches 
