@@ -37,8 +37,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(CSMDeviceDetailsPage.Locators.LogsButtonXpath)));
-            csmDeviceDetailsPage.LogsButton.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+            csmDeviceDetailsPage.LogsTab.Click();
         }
 
         [Then(@"logs for CSM device are displayed")]
@@ -54,8 +54,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             loginPage.SignIn("adminwithoutrollup");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("devices")));
             csmDeviceDetailsPage.CSMDevices[2].Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(CSMDeviceDetailsPage.Locators.LogsButtonXpath)));
-            csmDeviceDetailsPage.LogsButton.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+            csmDeviceDetailsPage.LogsTab.Click();
 
         }
 
