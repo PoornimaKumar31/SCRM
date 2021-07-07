@@ -223,7 +223,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 EmailField.EnterText(PropertyClass.readConfig.EmailAdminWithoutRollUp);
                 PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithoutRollUp);
                 LoginButton.Clicks();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             }
             else if(signinType.ToLower().Trim().Contains("standarduserwithoutrollup"))
             {

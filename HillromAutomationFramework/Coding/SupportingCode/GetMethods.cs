@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
@@ -39,6 +40,18 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                 return (false);
             }
         }
+
+        public static int GetElementCount(this IList<IWebElement> webElement)
+        {
+            try
+            {
+                return (webElement.Count);
+            }catch(Exception)
+            {
+                return (0);
+            }
+        }
+
 
     }
 }

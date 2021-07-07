@@ -68,7 +68,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement RoomAndBedDetails { get; set; }
 
         //Log files related
-        [FindsBy(How = How.XPath, Using = Locators.LogsTabID)]
+        [FindsBy(How = How.Id, Using = Locators.LogsTabID)]
         public IWebElement LogsTab { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LogFilesID)]
@@ -89,7 +89,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How =How.XPath,Using =Locators.LogsPendingMessageXPath)]
         public IWebElement LogsPendingMessage { get; set; }
 
-        [FindsBy(How =How.ClassName, Using =Locators.DateSortingID)]
+        [FindsBy(How =How.Id, Using =Locators.DateSortingID)]
         public IWebElement DateSorting { get; set; }
     }
 }

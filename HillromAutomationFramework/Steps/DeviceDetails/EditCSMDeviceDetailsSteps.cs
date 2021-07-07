@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.EditDeviceDetails
 {
-    [Binding]
+    [Binding,Scope(Tag = "SoftwareRequirementID_5703")]
     public class EditCSMDeviceDetailsSteps
     {
         readonly ScenarioContext _scenarioContext;

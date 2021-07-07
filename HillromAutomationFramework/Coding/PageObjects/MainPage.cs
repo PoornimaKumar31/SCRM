@@ -21,7 +21,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //dropdownID
             public const string AssetTypeDropDownID = "assetFilter";
 
-
+            //device list
+            public const string DeviceListTableID = "deviceTable";
             public const string DeviceListRowID = "555566667777";
             public const string DeviceTypeClassName = "ng-star-inserted";
             public const string FirmwareVersionClassName = "firmware";
