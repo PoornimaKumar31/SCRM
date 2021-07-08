@@ -233,6 +233,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 LoginButton.Clicks();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
             }
+            else if(signinType.ToLower().Trim().Contains("rv700"))
+            {
+                LandingPage landingPage = new LandingPage();
+                EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
+                PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
+                LoginButton.Clicks();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
+                landingPage.Organization1Title.Click();
+            }
             
         }
     }

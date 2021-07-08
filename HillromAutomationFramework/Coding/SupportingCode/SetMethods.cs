@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
 {
@@ -22,6 +24,38 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static void SelectDDL(this IWebElement element, string value)
         {
             new SelectElement(element).SelectByText(value);
+        }
+
+        public static bool isDateSorted(this IList<IWebElement> dateList, string typeOfSort = "a")
+        {
+            List<string> ActualDateList = new List<string>();
+
+            foreach (IWebElement i in dateList)
+            {
+                if (i.Text != "Date")
+                {
+                    ActualDateList.Add(i.Text);
+                }
+            }
+
+            List<DateTime> FormatedDateList = new List<DateTime>();
+            for (int i = 0; i < ActualDateList.Count; i++)
+            {
+                FormatedDateList.Add(DateTime.Parse(ActualDateList[i]));
+            }
+
+            List<DateTime> SortedList = new List<DateTime>(FormatedDateList);
+            SortedList.Sort();
+            if (typeOfSort.ToLower() == "d")
+            {
+                SortedList.Reverse();
+            }
+            if (SortedList == FormatedDateList)
+            {
+                return true;
+            }
+            else
+                return false;
         }
     }
 }

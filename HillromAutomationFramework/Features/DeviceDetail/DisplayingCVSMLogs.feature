@@ -10,14 +10,14 @@ Scenario: CVSM Log Files Empty
 @TestCaseID_8955
 Scenario: CVSM Log Files Ten Files
 	Given user is on CVSM Log Files page
-	And CVSM has ten logs
+	And CVSM has 10 logs
 	Then ten logs for CVSM device are displayed
 	And user cannot navigate to next logs page
 
 @TestCaseID_8956
 Scenario: CVSM Log Files Ten Files Request Next
 	Given user is on CVSM Log Files page
-	And CVSM has ten logs
+	And CVSM has 10 logs
 	When user clicks Request Logs button
 	Then Pending or Executing message is displayed
 	And user can navigate to next logs page
@@ -25,7 +25,7 @@ Scenario: CVSM Log Files Ten Files Request Next
 @TestCaseID_8957
 Scenario: CVSM Log Files Ten Files Request Previous
 	Given user is on CVSM Log Files page
-	And CVSM has ten logs
+	And CVSM has 10 logs
 	And Pending or Executing message is displayed
 	When user navigates to next logs page
 	And user navigates to previous logs page

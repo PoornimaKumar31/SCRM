@@ -44,6 +44,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LogsDescendingClassName = "col-md-4 descending";
             public const string LogsAscendingClassName = "col-md-4 ascending";
             public const string DateSortingID = "date";
+            public const string LogDateClassName = "col-md-4";
         }
         public static class ExpectedValues
         {
@@ -139,6 +140,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.ClassName, Using = Locators.DateSortingID)]
         public IWebElement DateSorting { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]
+        public IList<IWebElement> LogDateList { get; set; }
 
     }
 }
