@@ -1,115 +1,151 @@
-﻿using TechTalk.SpecFlow;
+﻿using HillromAutomationFramework.Coding.PageObjects;
+using HillromAutomationFramework.Coding.SupportingCode;
+using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
+using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5691")]
     class DisplayingCVSMLogsSteps
     {
-       private ScenarioContext _scenarioContext;
+        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        LoginPage loginPage = new LoginPage();
+        MainPage mainPage = new MainPage();
+        CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
+        private ScenarioContext _scenarioContext;
         public DisplayingCVSMLogsSteps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
+
         [Given(@"user is on CVSM Log Files page")]
         public void GivenUserIsOnCVSMLogFilesPage()
         {
-           _scenarioContext.Pending();
+            loginPage.SignIn("AdminWithoutRollupPage");
+            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
+            selectAssetType.SelectByText(MainPage.ExpectedValues.CVSMDeviceName);
+            cvsmDeviceDetailsPage.CVSMDevices[1].Click();
+            cvsmDeviceDetailsPage.LogsTab.Click();
         }
 
         [Given(@"CVSM has no logs")]
         public void GivenCVSMHasNoLogs()
         {
-            _scenarioContext.Pending();
+            Assert.AreEqual(cvsmDeviceDetailsPage.LogFiles.GetElementCount(), 0);
         }
 
         [Then(@"no logs for CVSM device are displayed")]
         public void ThenNoLogsForCVSMDeviceAreDisplayed()
         {
-           _scenarioContext.Pending();
+            Assert.IsFalse(cvsmDeviceDetailsPage.LogFiles[0].Displayed);
         }
 
-        [Given(@"CVSM has ten logs")]
-        public void GivenCVSMHasTenLogs()
+        [Given(@"CVSM has (.*) logs")]
+        public void GivenCVSMHasLogs(int noOfLogs)
         {
-           _scenarioContext.Pending();
+            switch (noOfLogs)
+            {
+                case 0:
+                    //Selecting CSM device with no log files
+                    cvsmDeviceDetailsPage.CVSMDevices[0].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+                    cvsmDeviceDetailsPage.LogsTab.Click();
+                    Assert.AreEqual(cvsmDeviceDetailsPage.LogFiles.GetElementCount(), 0);
+                    break;
+
+                case 10:
+                    //selecting CSM device with 10 log files
+                    cvsmDeviceDetailsPage.CVSMDevices[1].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+                    cvsmDeviceDetailsPage.LogsTab.Click();
+                    Assert.AreEqual(cvsmDeviceDetailsPage.LogFiles.GetElementCount(), 10);
+                    break;
+                case 25:
+                    //selecting CSM device with 25 log files
+                    cvsmDeviceDetailsPage.CVSMDevices[2].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+                    cvsmDeviceDetailsPage.LogsTab.Click();
+                    Assert.AreEqual(cvsmDeviceDetailsPage.LogFiles.GetElementCount(), 25);
+                    break;
+            }
         }
 
         [Then(@"ten logs for CVSM device are displayed")]
         public void ThenTenLogsForCVSMDeviceAreDisplayed()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
         }
 
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-           _scenarioContext.Pending();
+            Assert.IsFalse(cvsmDeviceDetailsPage.LogsNextButton.Enabled);
         }
 
         [When(@"user clicks Request Logs button")]
         public void WhenUserClicksRequestLogsButton()
         {
-           _scenarioContext.Pending();
+            cvsmDeviceDetailsPage.LogsRequestButton.Click();
         }
 
         [Then(@"Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogsPendingMessage.Displayed);
         }
 
         [Then(@"user can navigate to next logs page")]
         public void ThenUserCanNavigateToNextLogsPage()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogsNextButton.Enabled);
         }
 
         [Given(@"Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogsPendingMessage.Displayed);
         }
 
         [When(@"user navigates to next logs page")]
         public void WhenUserNavigatesToNextLogsPage()
         {
-           _scenarioContext.Pending();
+            cvsmDeviceDetailsPage.LogsNextButton.Click();
         }
 
         [When(@"user navigates to previous logs page")]
         public void WhenUserNavigatesToPreviousLogsPage()
         {
-           _scenarioContext.Pending();
+            cvsmDeviceDetailsPage.LogsPreviousButton.Click();
         }
 
         [Given(@"Log files are sorted by decreasing date")]
         public void GivenLogFilesAreSortedByDecreasingDate()
         {
-           _scenarioContext.Pending();
-        }
-
-        [Given(@"CVSM has (.*) logs")]
-        public void GivenCVSMHasLogs(int p0)
-        {
-           _scenarioContext.Pending();
+            if (cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
+            {
+                cvsmDeviceDetailsPage.DateSorting.Click();
+            }
         }
 
         [Given(@"newest ten logs are displayed")]
         public void GivenNewestTenLogsAreDisplayed()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
         }
 
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
         {
-           _scenarioContext.Pending();
+            cvsmDeviceDetailsPage.LogsNextButton.Click();
         }
 
         [Then(@"user will see next ten older logs")]
         public void ThenUserWillSeeNextTenOlderLogs()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
         }
 
         [Then(@"user will see logs page (.*) indicator")]
@@ -121,55 +157,61 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"logs are sorted by decreasing date")]
         public void GivenLogsAreSortedByDecreasingDate()
         {
-           _scenarioContext.Pending();
+            if (cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
+            {
+                cvsmDeviceDetailsPage.DateSorting.Click();
+            }
         }
 
         [Given(@"second ten logs are displayed")]
         public void GivenSecondTenLogsAreDisplayed()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
         }
 
         [Then(@"user will see next five older logs")]
         public void ThenUserWillSeeNextFiveOlderLogs()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 5);
         }
 
         [Given(@"logs are sorted by increasing date")]
         public void GivenLogsAreSortedByIncreasingDate()
         {
-           _scenarioContext.Pending();
+            if (cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending")
+            {
+                cvsmDeviceDetailsPage.DateSorting.Click();
+            }
         }
 
         [When(@"user clicks Date column heading")]
         public void WhenUserClicksDateColumnHeading()
         {
-           _scenarioContext.Pending();
+            cvsmDeviceDetailsPage.DateSorting.Click();
         }
 
         [Then(@"logs sort by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogDateList.isDateSorted("d"));
         }
 
         [Then(@"user will see decreasing date sorting indicator")]
         public void ThenUserWillSeeDecreasingDateSortingIndicator()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending");
         }
 
         [Then(@"logs sort by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogDateList.isDateSorted("a"));
         }
 
         [Then(@"user will see increasing date sorting indicator")]
         public void ThenUserWillSeeIncreasingDateSortingIndicator()
         {
-           _scenarioContext.Pending();
+            Assert.IsTrue(cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending");
         }
     }
 }

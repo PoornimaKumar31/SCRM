@@ -216,9 +216,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount()==0);
         }
 
-
-
-
         [Given(@"newest ten logs are displayed")]
         public void GivenNewestTenLogsAreDisplayed()
         {
@@ -246,7 +243,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"logs are sorted by decreasing date")]
         public void GivenLogsAreSortedByDecreasingDate()
         {
-            _scenarioContext.Pending();
+            if (csmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
+            {
+                csmDeviceDetailsPage.DateSorting.Click();
+            }
         }
 
         [Given(@"second ten logs are displayed")]
@@ -280,8 +280,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"logs are sorted by increasing date")]
         public void GivenLogsAreSortedByIncreasingDate()
         {
-            Thread.Sleep(5000);
-            Console.WriteLine(csmDeviceDetailsPage.LogDateList[1].Text); 
             if(csmDeviceDetailsPage.DateSorting.GetAttribute("class")== "col-md-4 descending")
             {
                 csmDeviceDetailsPage.DateSorting.Click();
@@ -297,7 +295,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"logs sort by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            Assert.IsTrue(csmDeviceDetailsPage.isDateSorted(csmDeviceDetailsPage.LogDateList, "d"));
+            Assert.IsTrue(csmDeviceDetailsPage.LogDateList.isDateSorted("d"));
         }
 
         [Then(@"user will see decreasing date sorting indicator")]
@@ -310,7 +308,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"logs sort by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-            Assert.IsTrue(csmDeviceDetailsPage.isDateSorted(csmDeviceDetailsPage.LogDateList,"a"));
+            Assert.IsTrue(csmDeviceDetailsPage.LogDateList.isDateSorted("a"));
         }
 
         [Then(@"user will see increasing date sorting indicator")]
