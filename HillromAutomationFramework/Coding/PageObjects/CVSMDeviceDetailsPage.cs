@@ -13,10 +13,23 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             //Editing device details
             public const string EditButtonID = "cvsm-edit";
+            public const string EditAssetDetailsPopUpTitleID = "lbl_edit_asset_details";
+            //Asset Tag
+            public const string EditAssetDetailsPopUPAssetTagLabelID = "lbl_asset_tag";
+            public const string EditAssetDetailsPopUPAssetTagValueID = "asset_tag_value";
+            //Facility
+            public const string EditAssetDetailsPopUPFacilityLabelID = "lbl_facility";
+            public const string EditAssetDetailsPopUPFacilityValueID = "facility_value";
+            //Location
+            public const string EditAssetDetailsPopUPLocationLabelID = "lbl_location";
+            public const string EditAssetDetailsPopUPLocationValueID = "location_value";
+
+            public const string RoomLabelID = "lbl_room";
+            public const string BedLabelID = "lbl_bed";
             public const string RoomFieldID = "room";
             public const string BedFieldID = "bed";
-            public const string SaveButtonID = "save-device-detail";
-            public const string CancelButtonID = "cancel-device-detail";
+            public const string SaveButtonID = "save_device_detail";
+            public const string CancelButtonID = "cancel_device_detail";
             public const string RoomAndBedDetailsID = "cvsm_room";
             public const string CVSMDeviceID = "555566667777";
 
@@ -34,6 +47,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
         public static class ExpectedValues
         {
+            public const string EditAssetDetailsPopUpTitle = "EDIT ASSET DETAILS";
+            public const string EditAssetDetailsPopUpAssetTagLabel = "Asset tag";
+            public const string EditAssetDetailsPopUpFacilityLabel = "Facility";
+            public const string EditAssetDetailsPopUpLocationLabel = "Location";
+            public const string RoomLabelHintText = "Room";
+            public const string BedLabelHintText = "Bed";
+
             public const string NewRoomValue = "New Room";
             public const string NewBedValue = "New Bed";
             public const string UpdateRoomValue = "Update Room";
@@ -52,6 +72,33 @@ namespace HillromAutomationFramework.Coding.PageObjects
         //Device details related
         [FindsBy(How = How.Id, Using = Locators.EditButtonID)]
         public IWebElement EditButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.EditAssetDetailsPopUpTitleID)]
+        public IWebElement EditAssetDetailsPopUpTitle { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.EditAssetDetailsPopUPAssetTagLabelID)]
+        public IWebElement EditAssetDetailsPopUPAssetTagLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.EditAssetDetailsPopUPAssetTagValueID)]
+        public IWebElement EditAssetDetailsPopUPAssetTagValue { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.EditAssetDetailsPopUPFacilityLabelID)]
+        public IWebElement EditAssetDetailsPopUPFacilityLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.EditAssetDetailsPopUPFacilityValueID)]
+        public IWebElement EditAssetDetailsPopUPFacilityValue { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.EditAssetDetailsPopUPLocationLabelID)]
+        public IWebElement EditAssetDetailsPopUPLocationLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.EditAssetDetailsPopUPLocationValueID)]
+        public IWebElement EditAssetDetailsPopUPLocationValue { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.RoomLabelID)]
+        public IWebElement RoomLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.BedLabelID)]
+        public IWebElement BedLabel { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.RoomFieldID)]
         public IWebElement RoomField { get; set; }

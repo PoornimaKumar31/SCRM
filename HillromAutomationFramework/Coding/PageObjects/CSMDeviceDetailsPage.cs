@@ -19,8 +19,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMDeviceEditButtonID = "csm-edit";
             public const string RoomFieldID = "room";
             public const string BedFieldID = "bed";
-            public const string SaveButtonID = "save-device-detail";
-            public const string CancelButtonID = "cancel-device-detail";
+            public const string SaveButtonID = "save_device_detail";
+            public const string CancelButtonID = "cancel_device_detail";
             public const string RoomAndBedDetailsID = "csm_room";
             public const string CSMDeviceID = "555566667777";
 

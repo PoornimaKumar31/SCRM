@@ -52,6 +52,17 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
         }
 
+        public static bool IsReadOnly(this IWebElement webElement)
+        {
+            try
+            {
+                webElement.SendKeys("Text");
+                return (false);
+            }catch(Exception)
+            {
+                return (true);
+            }
+        }
 
     }
 }
