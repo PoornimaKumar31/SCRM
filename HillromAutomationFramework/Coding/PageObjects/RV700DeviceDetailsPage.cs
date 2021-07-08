@@ -15,8 +15,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string EditButtonID = "rv700-edit";
             public const string RoomFieldID = "room";
             public const string BedFieldID = "bed";
-            public const string SaveButtonID = "save-device-detail";
-            public const string CancelButtonID = "cancel-device-detail";
+            public const string SaveButtonID = "save_device_detail";
+            public const string CancelButtonID = "cancel_device_detail";
             public const string RoomAndBedDetailsID = "rv700_room";
             public const string RV700DeviceID = "555566667777";
 
