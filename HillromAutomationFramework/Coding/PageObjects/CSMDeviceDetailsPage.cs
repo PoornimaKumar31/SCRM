@@ -1,6 +1,7 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System;
 using System.Collections.Generic;
 
 namespace HillromAutomationFramework.Coding.PageObjects
@@ -34,6 +35,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LogsDescendingClassName = "col-md-4 descending";
             public const string LogsAscendingClassName = "col-md-4 ascending";
             public const string DateSortingID = "date";
+            public const string LogDateClassName = "col-md-4";
         }
 
         public static class ExpectedValues
@@ -91,5 +93,41 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How =How.Id, Using =Locators.DateSortingID)]
         public IWebElement DateSorting { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]
+        public IList<IWebElement> LogDateList { get; set; }
+
+
+        public bool isDateSorted(IList<IWebElement> dateList,string typeOfSort="a")
+        {
+            List<string> ActualDateList = new List<string>();
+
+            foreach (IWebElement i in dateList)
+            {
+                if (i.Text != "Date")
+                {
+                    ActualDateList.Add(i.Text);
+                }
+            }
+            
+            List<DateTime> FormatedDateList = new List<DateTime>();
+            for(int i =0;i<ActualDateList.Count;i++)
+            {
+                FormatedDateList.Add(DateTime.Parse(ActualDateList[i]));
+            }
+
+            List<DateTime> SortedList = new List<DateTime>(FormatedDateList);
+            SortedList.Sort();
+            if(typeOfSort.ToLower() == "d")
+            {
+                SortedList.Reverse();
+            }
+            if (SortedList == FormatedDateList)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }

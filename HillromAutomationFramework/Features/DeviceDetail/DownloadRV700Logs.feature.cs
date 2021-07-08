@@ -20,25 +20,25 @@ namespace HillromAutomationFramework.Features.DeviceDetail
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("The Customer Portal shall have a feature for downloading CVSM/CIWS log files.")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5692")]
-    public partial class TheCustomerPortalShallHaveAFeatureForDownloadingCVSMCIWSLogFiles_Feature
+    [NUnit.Framework.DescriptionAttribute("The Customer Portal shall have a mechanism for downloading the RV700 log files")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5712")]
+    public partial class TheCustomerPortalShallHaveAMechanismForDownloadingTheRV700LogFilesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5692"};
+                "SoftwareRequirementID_5712"};
         
-#line 1 "DownloadCVSMLogs.feature"
+#line 1 "DownloadRV700Logs.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "The Customer Portal shall have a feature for downloading CVSM/CIWS log files.", null, ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5692"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "The Customer Portal shall have a mechanism for downloading the RV700 log files", null, ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5712"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,14 +77,14 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Log Files Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8963")]
-        public virtual void CVSMLogFilesDownload()
+        [NUnit.Framework.DescriptionAttribute("RV700 Log Files Download")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8988")]
+        public virtual void RV700LogFilesDownload()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8963"};
+                    "TestCaseID_8988"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("user is on CVSM Log Files page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on RV700 Log Files page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
  testRunner.And("at least one log is present", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

@@ -75,6 +75,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             csmDeviceDetailsPage.CSMDevices[2].Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
             csmDeviceDetailsPage.LogsTab.Click();
+            Console.WriteLine(csmDeviceDetailsPage.LogsPreviousButton.Enabled);
             Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount() > 0);
         }
 
@@ -188,6 +189,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                         csmDeviceDetailsPage.CSMDevices[1].Click();
                         wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                         csmDeviceDetailsPage.LogsTab.Click();
+                        Assert.AreEqual(csmDeviceDetailsPage.LogFiles.GetElementCount(), 0);
                         break;
 
                 case 10:
@@ -195,12 +197,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                         csmDeviceDetailsPage.CSMDevices[7].Click();
                         wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                         csmDeviceDetailsPage.LogsTab.Click();
-                        break;
+                    Assert.AreEqual(csmDeviceDetailsPage.LogFiles.GetElementCount(), 10);
+                    break;
                 case 25:
                     //selecting CSM device with 25 log files
                     csmDeviceDetailsPage.CSMDevices[2].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
+                    Assert.AreEqual(csmDeviceDetailsPage.LogFiles.GetElementCount(), 25);
                     break;
             }
             
@@ -260,7 +264,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
 
         [Given(@"user is on CSM Log File page")]
-        public void GivenUserIsOnCSMLogFilePage()
+            public void GivenUserIsOnCSMLogFilePage()
         {
             loginPage.SignIn("AdminWithoutRollupPage");
             SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
@@ -276,7 +280,12 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"logs are sorted by increasing date")]
         public void GivenLogsAreSortedByIncreasingDate()
         {
-            _scenarioContext.Pending();
+            Thread.Sleep(5000);
+            Console.WriteLine(csmDeviceDetailsPage.LogDateList[1].Text); 
+            if(csmDeviceDetailsPage.DateSorting.GetAttribute("class")== "col-md-4 descending")
+            {
+                csmDeviceDetailsPage.DateSorting.Click();
+            }
         }
 
         [When(@"user clicks Date column heading")]
@@ -288,19 +297,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"logs sort by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            _scenarioContext.Pending();
+            Assert.IsTrue(csmDeviceDetailsPage.isDateSorted(csmDeviceDetailsPage.LogDateList, "d"));
         }
 
         [Then(@"user will see decreasing date sorting indicator")]
         public void ThenUserWillSeeDecreasingDateSortingIndicator()
         {
+            Thread.Sleep(3000);
             Assert.IsTrue(csmDeviceDetailsPage.DateSorting.GetAttribute("class")==CSMDeviceDetailsPage.Locators.LogsDescendingClassName);
         }
 
         [Then(@"logs sort by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-            _scenarioContext.Pending();
+            Assert.IsTrue(csmDeviceDetailsPage.isDateSorted(csmDeviceDetailsPage.LogDateList,"a"));
         }
 
         [Then(@"user will see increasing date sorting indicator")]
