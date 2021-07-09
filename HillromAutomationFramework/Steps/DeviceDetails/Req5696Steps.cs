@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5696")]
-    public class EditCVSMDeviceDetailsSteps
+    public class Req5696Steps
     {
         readonly LoginPage loginPage = new LoginPage();
         readonly MainPage mainPage = new MainPage();

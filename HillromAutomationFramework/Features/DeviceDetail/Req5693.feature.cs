@@ -20,25 +20,27 @@ namespace HillromAutomationFramework.Features.DeviceDetail
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("The Customer Portal shall have a feature for downloading CVSM/CIWS log files.")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5692")]
-    public partial class TheCustomerPortalShallHaveAFeatureForDownloadingCVSMCIWSLogFiles_Feature
+    [NUnit.Framework.DescriptionAttribute("The Customer Portal shall have a mechanism for requesting log files from register" +
+        "ed CVSM/CIWS devices.")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5693")]
+    public partial class TheCustomerPortalShallHaveAMechanismForRequestingLogFilesFromRegisteredCVSMCIWSDevices_Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5692"};
+                "SoftwareRequirementID_5693"};
         
-#line 1 "DownloadCVSMLogs.feature"
+#line 1 "Req5693.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "The Customer Portal shall have a feature for downloading CVSM/CIWS log files.", null, ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5692"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "The Customer Portal shall have a mechanism for requesting log files from register" +
+                    "ed CVSM/CIWS devices.", null, ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5693"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,14 +79,14 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Log Files Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8963")]
-        public virtual void CVSMLogFilesDownload()
+        [NUnit.Framework.DescriptionAttribute("CVSM Log Files Request")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8964")]
+        public virtual void CVSMLogFilesRequest()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8963"};
+                    "TestCaseID_8964"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Request", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,16 +111,55 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CVSM Log Files page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.And("at least one log is present", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Pending or Executing message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
- testRunner.When("user clicks log", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Request Logs button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("log is downloaded to computer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 10
- testRunner.And("downloaded filename matches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("CVSM Log Files Request Disabled")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8965")]
+        public virtual void CVSMLogFilesRequestDisabled()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_8965"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Request Disabled", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 12
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 13
+ testRunner.Given("user is on CVSM Log Files page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 14
+ testRunner.And("Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.Then("Request Logs button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

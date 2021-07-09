@@ -20,26 +20,26 @@ namespace HillromAutomationFramework.Features.DeviceDetail
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EditCVSMDeviceDetails")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5696")]
-    public partial class EditCVSMDeviceDetailsFeature
+    [NUnit.Framework.DescriptionAttribute("Edit CSM Device Details")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5703")]
+    public partial class EditCSMDeviceDetailsFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5696"};
+                "SoftwareRequirementID_5703"};
         
-#line 1 "EditCVSMDeviceDetails.feature"
+#line 1 "Req5703.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "EditCVSMDeviceDetails", "\tThe Customer Portal shall have a feature for editing the following device detail" +
-                    "s for CVSM/CIWS devices", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5696"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Edit CSM Device Details", "\tThe Customer Portal shall have a mechanism for editing the following device deta" +
+                    "ils for CSM devices: Room, Bed", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5703"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,16 +78,16 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Static Elements")]
+        [NUnit.Framework.DescriptionAttribute("Add CSM Device Details")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
-        public virtual void EditCVSMAssetDetailsStaticElements()
+        public virtual void AddCSMDeviceDetails()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_",
                     "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Static Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add CSM Device Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,51 +109,39 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("user is on CVSM Asset Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user has selected CSM device with details not set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("user clicks Edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user is on Device Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.Then("Edit Asset Details dialog will display", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("user clicks Edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.And("user can see Edit Asset Details title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Room and Bed can be entered", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
- testRunner.And("user can see Facility label", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("user can see Location Label", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 13
- testRunner.And("user can see Room entry field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 14
- testRunner.And("user can see Bed entry field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
- testRunner.And("user can see Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 16
- testRunner.And("user can see Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Entered Room, Bed is displayed on Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Save")]
+        [NUnit.Framework.DescriptionAttribute("Edit CSM Device Details")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
-        public virtual void EditCVSMAssetDetailsSave()
+        public virtual void EditCSMDeviceDetails()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_",
                     "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Save", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 19
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CSM Device Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -173,34 +161,40 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 16
+ testRunner.Given("user has selected CSM device with Room, Bed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 17
+ testRunner.And("user is on Device Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+ testRunner.When("user clicks Edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 19
+ testRunner.Then("the existing Room , Bed is editable", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 20
- testRunner.Given("user is on CVSM Edit Asset Details dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("Saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
- testRunner.When("user changes Room and Bed fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 22
- testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 23
- testRunner.Then("changed Room and Bed are displayed on the CVSM Asset Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Updated Room, Bed is displayed on Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Cancel")]
+        [NUnit.Framework.DescriptionAttribute("Remove CSM Device Details")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
-        public virtual void EditCVSMAssetDetailsCancel()
+        public virtual void RemoveCSMDeviceDetails()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_",
                     "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Cancel", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 26
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Remove CSM Device Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -220,35 +214,39 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 25
+ testRunner.Given("user has selected CSM device with Room, Bed details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 26
+ testRunner.And("user is on Device Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 27
- testRunner.Given("user is on CVSM Edit Asset Details dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("user clicks Edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 28
- testRunner.When("user changes Room and Bed fields", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("the existing Room , Bed can be removed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 29
- testRunner.And("user clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Saved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
- testRunner.Then("original Room and Bed are displayed on the CVSM Asset Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Blank Room, Bed is displayed on Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Bed Entry Field Empty")]
+        [NUnit.Framework.DescriptionAttribute("Cancel on Add CSM Device Details")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
-        [NUnit.Framework.CategoryAttribute("UISID_8721")]
-        public virtual void EditCVSMAssetDetailsBedEntryFieldEmpty()
+        public virtual void CancelOnAddCSMDeviceDetails()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_",
-                    "UISID_8673",
-                    "UISID_8721"};
+                    "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Bed Entry Field Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel on Add CSM Device Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -270,78 +268,36 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 34
- testRunner.Given("user is on CVSM Edit Asset Details dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user has selected CSM device with details not set", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 35
- testRunner.When("Bed field is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("user is on Device Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
- testRunner.Then("Bed field contains hint text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("user clicks Edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
+ testRunner.And("Room, Bed is entered and cancelled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 38
+ testRunner.Then("Entered Room, Bed is not displayed on Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Room Entry Field Empty")]
+        [NUnit.Framework.DescriptionAttribute("Cancel on Edit CSM Device Details")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
-        [NUnit.Framework.CategoryAttribute("UISID_8721")]
-        public virtual void EditCVSMAssetDetailsRoomEntryFieldEmpty()
+        public virtual void CancelOnEditCSMDeviceDetails()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_",
-                    "UISID_8673",
-                    "UISID_8721"};
+                    "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Room Entry Field Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 39
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 40
- testRunner.Given("user is on CVSM Edit Asset Details dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel on Edit CSM Device Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 41
- testRunner.When("Room field is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 42
- testRunner.Then("Room field contains hint text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Asset Details Read Only")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
-        [NUnit.Framework.CategoryAttribute("UISID_8673")]
-        [NUnit.Framework.CategoryAttribute("UISID_8721")]
-        public virtual void CVSMAssetDetailsReadOnly()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
-                    "UISID_8673",
-                    "UISID_8721"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Asset Details Read Only", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 45
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -361,26 +317,70 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 42
+ testRunner.Given("user has selected CSM device with Room, Bed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 43
+ testRunner.And("user is on Device Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 44
+ testRunner.When("user clicks Edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 45
+ testRunner.And("Room, Bed is updated and cancelled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 46
- testRunner.Given("user is on CVSM Edit Asset Details dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("Updated Room, Bed is not displayed on Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 47
- testRunner.Then("the Asset Tag value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 48
- testRunner.And("the Asset Tag value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Cancel on Removal of CSM Device Details")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("UISID_8673")]
+        public virtual void CancelOnRemovalOfCSMDeviceDetails()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_",
+                    "UISID_8673"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel on Removal of CSM Device Details", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 49
- testRunner.And("the Facility value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
 #line 50
- testRunner.And("the Facility value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("user has selected CSM device with Room, Bed details", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 51
- testRunner.And("the Location ID value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user is on Device Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 52
- testRunner.And("the Location ID value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user clicks Edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 53
+ testRunner.And("Room, Bed is removed and cancelled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 54
+ testRunner.Then("Room, Bed is not removed on Device page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -9,14 +9,14 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5691")]
-    class DisplayingCVSMLogsSteps
+    class Req5691Steps
     {
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
         CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
         private ScenarioContext _scenarioContext;
-        public DisplayingCVSMLogsSteps(ScenarioContext scenarioContext)
+        public Req5691Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }

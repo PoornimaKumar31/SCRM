@@ -30,7 +30,7 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         private string[] _featureTags = new string[] {
                 "SoftwareRequirementID_5699"};
         
-#line 1 "CSMDownloadLogs.feature"
+#line 1 "Req5699.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]

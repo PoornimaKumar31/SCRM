@@ -12,7 +12,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.EditDeviceDetails
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5703")]
-    public class EditCSMDeviceDetailsSteps
+    public class Req5703Steps
     {
         readonly ScenarioContext _scenarioContext;
         readonly LoginPage loginPage = new LoginPage();
@@ -22,7 +22,7 @@ namespace HillromAutomationFramework.Steps.EditDeviceDetails
         string ExistingRoomAndBed;
 
 
-        public EditCSMDeviceDetailsSteps(ScenarioContext scenarioContext)
+        public Req5703Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }

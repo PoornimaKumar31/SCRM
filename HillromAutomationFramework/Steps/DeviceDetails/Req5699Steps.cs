@@ -12,7 +12,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
     [Binding, Scope(Tag ="SoftwareRequirementID_5699")]
-    class CSMDownloadLogsSteps
+    class Req5699Steps
     {
         LoginPage loginPage = new LoginPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
@@ -22,7 +22,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         private ScenarioContext _scenarioContext;
 
 
-        public CSMDownloadLogsSteps(ScenarioContext scenarioContext)
+        public Req5699Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }

@@ -4,12 +4,11 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
+    [Binding,Scope(Tag = "SoftwareRequirementID_5693")]
     class Req5693Steps
     {
         LoginPage loginPage = new LoginPage();

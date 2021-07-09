@@ -20,27 +20,25 @@ namespace HillromAutomationFramework.Features.DeviceDetail
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("The customer portal shall have a mechanism for requesting log files from a RV700 " +
-        "device.")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5713")]
-    public partial class TheCustomerPortalShallHaveAMechanismForRequestingLogFilesFromARV700Device_Feature
+    [NUnit.Framework.DescriptionAttribute("The Customer Portal shall have a mechanism for downloading the RV700 log files")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5712")]
+    public partial class TheCustomerPortalShallHaveAMechanismForDownloadingTheRV700LogFilesFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5713"};
+                "SoftwareRequirementID_5712"};
         
-#line 1 "RequestRV700Logs.feature"
+#line 1 "Req5712.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "The customer portal shall have a mechanism for requesting log files from a RV700 " +
-                    "device.", null, ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5713"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "The Customer Portal shall have a mechanism for downloading the RV700 log files", null, ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5712"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,14 +77,14 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV700 Log Files Request")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8989")]
-        public virtual void RV700LogFilesRequest()
+        [NUnit.Framework.DescriptionAttribute("RV700 Log Files Download")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8988")]
+        public virtual void RV700LogFilesDownload()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8989"};
+                    "TestCaseID_8988"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Request", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,55 +109,16 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on RV700 Log Files page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.And("Pending or Executing message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("at least one log is present", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 8
- testRunner.When("user clicks Request Logs button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks log", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("log is downloaded to computer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV700 Log Files Request Disabled")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8990")]
-        public virtual void RV700LogFilesRequestDisabled()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8990"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Request Disabled", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 12
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 13
- testRunner.Given("user is on RV700 Log Files page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 14
- testRunner.And("Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 15
- testRunner.Then("Request Logs button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 10
+ testRunner.And("downloaded filename matches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

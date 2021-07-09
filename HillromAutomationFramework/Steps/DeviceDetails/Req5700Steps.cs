@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5700")]
-    public class RequestCSMLogsSteps
+    public class Req5700Steps
     {
         LoginPage loginPage = new LoginPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
