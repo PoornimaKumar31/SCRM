@@ -23,14 +23,14 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Supported Browsers dialog is displayed")]
         public void ThenSupportedBrowsersDialogIsDisplayed()
         {
-            Assert.IsTrue(loginPage.SupportedBrowserPopup.Displayed);
+            Assert.AreEqual(loginPage.SupportedBrowserPopup.Displayed,true,"Supported browser dialog box is not displayed");
             string SupportedBrowserList = loginPage.SupportedBrowserPopup.Text;
             // Microsoft Edge
-            Assert.IsTrue(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserEdge));
+            Assert.AreEqual(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserEdge),true,"Microsoft Edge Supported Browser text does not match with the expected value");
             // Google Chrome
-            Assert.IsTrue(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserChrome));
+            Assert.AreEqual(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserChrome),true, "Google Chrome Supported Browser text does not match with the expected value");
             //Apple Safari
-            Assert.IsTrue(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserAppleSafari));
+            Assert.AreEqual(SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserAppleSafari),true, "Apple Safari Supported Browser text does not match with the expected value");
         }
 
 
@@ -43,7 +43,7 @@ namespace HillromAutomationFramework.Steps.Login
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
             loginPage.SupportedBrowsersLink.Clicks();
-            Assert.IsTrue(loginPage.SupportedBrowserPopup.Displayed);
+            Assert.AreEqual(loginPage.SupportedBrowserPopup.Displayed,true,"Supported browser dialog ox is not displayed");
         }
 
         [When(@"user clicks Close button")]
@@ -56,7 +56,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Supported Browsers dialog is closed")]
         public void ThenSupportedBrowsersDialogIsClosed()
         {
-            Assert.AreEqual(PropertyClass.Driver.PageSource.Contains(LoginPage.ExpectedValues.SupportedBrowserAppleSafari), false);
+            Assert.AreEqual(PropertyClass.Driver.PageSource.Contains(LoginPage.ExpectedValues.SupportedBrowserAppleSafari), false,"Supported browser dialog box is not closed");
         }
 
     }

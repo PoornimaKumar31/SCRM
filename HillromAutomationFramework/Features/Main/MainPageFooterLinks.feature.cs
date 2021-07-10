@@ -79,12 +79,12 @@ namespace HillromAutomationFramework.Features.Main
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Main Terms of Use")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8947")]
         [NUnit.Framework.CategoryAttribute("UISID_8718")]
         public virtual void MainTermsOfUse()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_8947",
                     "UISID_8718"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Main Terms of Use", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -123,12 +123,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Main Global Service Center")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8948")]
         [NUnit.Framework.CategoryAttribute("UISID_8718")]
         public virtual void MainGlobalServiceCenter()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_8948",
                     "UISID_8718"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Main Global Service Center", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -167,12 +167,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Main Privacy Policy")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8949")]
         [NUnit.Framework.CategoryAttribute("UISID_8718")]
         public virtual void MainPrivacyPolicy()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_8949",
                     "UISID_8718"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Main Privacy Policy", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -211,12 +211,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Main Contact Us")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8950")]
         [NUnit.Framework.CategoryAttribute("UISID_8718")]
         public virtual void MainContactUs()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_8950",
                     "UISID_8718"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Main Contact Us", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

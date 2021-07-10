@@ -79,12 +79,12 @@ namespace HillromAutomationFramework.Features.Landing
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Landing Terms of Use")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8945")]
         [NUnit.Framework.CategoryAttribute("UISID_8664")]
         public virtual void LandingTermsOfUse()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_8945",
                     "UISID_8664"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Landing Terms of Use", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -123,12 +123,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Landing Privacy Policy")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8946")]
         [NUnit.Framework.CategoryAttribute("UISID_8664")]
         public virtual void LandingPrivacyPolicy()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_8946",
                     "UISID_8664"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Landing Privacy Policy", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

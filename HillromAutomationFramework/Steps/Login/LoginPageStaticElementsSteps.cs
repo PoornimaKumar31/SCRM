@@ -15,46 +15,47 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenUserWillSeeLoginHillromLogo()
         {
             Thread.Sleep(500);
-            Assert.IsTrue(loginpage.LoginPageLogo.Displayed);
+            Assert.AreEqual(loginpage.LoginPageLogo.Displayed,true,"Hillrom logo is not displayed.\n");
         }
 
         [Then(@"login SmartCare Remote Management title")]
         public void ThenLoginSmartCareRemoteManagementTitle()
         {
-            Assert.IsTrue(loginpage.ApplicationTitle.Displayed);
+            Assert.AreEqual(loginpage.ApplicationTitle.Displayed,true,"Smartcare remote mangement title is not displayed\n");
             string ExpectedApplicationText = LoginPage.ExpectedValues.ApplicationTitleText;
             string ActualApplicationText = loginpage.ApplicationTitle.Text;
-            Assert.AreEqual(ExpectedApplicationText, ActualApplicationText);
+            Assert.AreEqual(ExpectedApplicationText, ActualApplicationText, "Smartcare remote mangement title is not matching with the expected value");
         }
 
         [Then(@"login instructions")]
         public void ThenLoginInstructions()
         {
-            Assert.IsTrue(loginpage.LoginInstructions.Displayed);
+            Assert.AreEqual(loginpage.LoginInstructions.Displayed,true,"Login instructions are not displayed");
             string ExpectedInstructionsText = LoginPage.ExpectedValues.LoginInstructionsText;
             string ActualInstructionsText = loginpage.LoginInstructions.Text;
-            Assert.AreEqual(ExpectedInstructionsText, ActualInstructionsText);
+            Assert.AreEqual(ExpectedInstructionsText, ActualInstructionsText,"Login instructions text is not matching with expected value");
         }
 
         [Then(@"a Ready to Get Started message")]
         public void ThenAReadyToGetStartedMessage()
         {
-            Assert.IsTrue(loginpage.GetStartedTitle.Displayed);
+            Assert.AreEqual(loginpage.GetStartedTitle.Displayed,true,"Ready to get started title is not displayed");
             string ExpectedGetStartedTitle = LoginPage.ExpectedValues.GetStartedTitleText;
             string ActualGetStartedTitle = loginpage.GetStartedTitle.Text;
-            Assert.AreEqual(ExpectedGetStartedTitle, ActualGetStartedTitle);
+            Assert.AreEqual(ExpectedGetStartedTitle, ActualGetStartedTitle,"Ready to get started title text not matches with the expected value");
 
-            Assert.IsTrue(loginpage.GetStartedMessage.Displayed);
+            Assert.AreEqual(loginpage.GetStartedMessage.Displayed,true, "Ready to get started message is not displayed");
             string ExpectedGetStartedMessage = LoginPage.ExpectedValues.GetStartedMessageText;
             string ActualGetStartedMessage = loginpage.GetStartedMessage.Text;
-            Assert.AreEqual(ExpectedGetStartedMessage, ActualGetStartedMessage);
+            Assert.AreEqual(ExpectedGetStartedMessage, ActualGetStartedMessage, "Ready to get started message text not matches with the expected value");
 
         }
 
         [Then(@"a copyright message")]
         public void ThenACopyrightMessage()
         {
-            Assert.IsTrue(PropertyClass.Driver.PageSource.Contains(LoginPage.ExpectedValues.CopyRightMessage));
+            Assert.AreEqual(LoginPage.ExpectedValues.CopyRight, loginpage.CopyRight.Text, "Copyright message is not matching with the expected value.");
+            Assert.AreEqual(LoginPage.ExpectedValues.RightsReservedMessage, loginpage.Rights.Text, "Right reserved message is not matching with the expected value");
         }
     }
 }

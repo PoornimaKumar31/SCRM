@@ -41,6 +41,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             //Login Page footers               
             public const string VersionNoID = "app_version";
+            public const string CopyrightID = "copyright";
+            public const string RightsID = "rights";
             public const string PrivacyPolicyID = "privacy";
             public const string TermsOfUseID = "terms";
             public const string SupportedBrowsersID = "supportbrowsers";
@@ -77,7 +79,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RealeaseNotesPDFURL = "https://www.hillrom.com/content/dam/hillrom-aem/us/en/sap-documents/LIT/80028/80028399LITPDF.pdf";
 
             //footer links
-            public const string CopyRightMessage = "© 2021 Hillrom™. All rights reserved.";
+            public const string CopyRight = "© 2021 Hillrom™. ";
+            public const string RightsReservedMessage = "All rights reserved. ";
             public const string PrivacyPolicyURL = "https://www.hillrom.com/en/about-us/global-privacy-notice/";
             public const string TermsOfUseURL = "https://www.hillrom.com/en/about-us/hill-rom-terms-and-conditions/";
 
@@ -180,6 +183,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
         // Version No of SCRM portal
         [FindsBy(How = How.Id, Using = Locator.VersionNoID)]
         public IWebElement VersionNumber { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.CopyrightID)]
+        public IWebElement CopyRight { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.RightsID)]
+        public IWebElement Rights { get; set; }
 
         // Privacy policy link
         [FindsBy(How = How.Id, Using = Locator.PrivacyPolicyID)]

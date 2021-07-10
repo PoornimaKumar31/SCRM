@@ -30,9 +30,9 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Forgot Password page is displayed")]
         public void ThenForgotPasswordPageIsDisplayed()
         {
-            Assert.IsTrue(forgotPasswordPage.EmailFeild.Displayed);
-            Assert.IsTrue(forgotPasswordPage.SubmitButton.Displayed);
-            Assert.IsTrue(forgotPasswordPage.LoginLink.Displayed);
+            Assert.AreEqual(forgotPasswordPage.EmailFeild.Displayed,true,"Forgot password page is not displayed");
+            Assert.AreEqual(forgotPasswordPage.SubmitButton.Displayed,true, "Forgot password page is not displayed");
+            Assert.AreEqual(forgotPasswordPage.LoginLink.Displayed,true, "Forgot password page is not displayed");
         }
 
         [Given(@"user is on Forgot Password page")]
@@ -49,7 +49,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void WhenEmailFieldIsBlank()
         {
             Thread.Sleep(500);
-            Assert.IsTrue(forgotPasswordPage.EmailFeild.Text.Length == 0);
+            Assert.AreEqual(forgotPasswordPage.EmailFeild.Text.Length == 0,true,"Email field is not blank.\n");
         }
 
         [Then(@"email field contains hint text")]
@@ -57,7 +57,7 @@ namespace HillromAutomationFramework.Steps.Login
         {
             string ExpectedHintText = ForgotPasswordPage.ExpectedValues.EmailFieldHintText;
             string ActualHintText = forgotPasswordPage.EmailFeild.GetAttribute("placeholder");
-            Assert.AreEqual(ExpectedHintText, ActualHintText);
+            Assert.AreEqual(ExpectedHintText, ActualHintText,"Email field hint text is not matching with expected value.\n");
         }
 
         [When(@"user enters invalid email address")]
@@ -88,22 +88,22 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Login page is displayed")]
         public void ThenLoginPageIsDisplayed()
         {
-            Assert.IsTrue(loginPage.EmailField.Displayed);
-            Assert.IsTrue(loginPage.PasswordField.Displayed);
-            Assert.IsTrue(loginPage.ForgotPasswordLink.Displayed);
+            Assert.AreEqual(loginPage.EmailField.Displayed,true,"Login page is not displayed.\n");
+            Assert.AreEqual(loginPage.PasswordField.Displayed,true, "Login page is not displayed.\n");
+            Assert.AreEqual(loginPage.ForgotPasswordLink.Displayed,true, "Login page is not displayed..\n");
         }
 
         [Then(@"notification message is displayed")]
         public void ThenNotificationMessageIsDisplayed()
         {
-            Assert.IsTrue(loginPage.ForgetPasswordSuccessMessage.Displayed);
+            Assert.AreEqual(loginPage.ForgetPasswordSuccessMessage.Displayed,true,"Notification message is not displayed.\n");
         }
 
         [Then(@"notification message disappears after a few seconds")]
         public void ThenNotificationMessageDisappearsAfterAFewSeconds()
         {
             Thread.Sleep(10000);
-            Assert.IsFalse(loginPage.ForgetPasswordSuccessMessage.Displayed);
+            Assert.AreEqual(loginPage.ForgetPasswordSuccessMessage.Displayed,false, "Notification message is not disappear.\n");
         }
 
         [When(@"user clicks Login")]

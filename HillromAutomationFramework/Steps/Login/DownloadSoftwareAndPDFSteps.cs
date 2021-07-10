@@ -34,7 +34,7 @@ namespace HillromAutomationFramework.Steps.Login
             // Checking if Partner Connect ZIP file is downloaded successfuly.
             if (Directory.Exists(PropertyClass.DownloadPath))
             {
-                Assert.IsTrue(File.Exists(PropertyClass.PartnerConnectFilePath));
+                Assert.AreEqual(File.Exists(PropertyClass.PartnerConnectFilePath), true, "PartnerConnect zip file is not downloaded");
                 //Delete file after verifying
                 File.Delete(PropertyClass.PartnerConnectFilePath);
             }
@@ -66,7 +66,7 @@ namespace HillromAutomationFramework.Steps.Login
             // Checking if Partner Connect ZIP file is downloaded successfuly.
             if (Directory.Exists(PropertyClass.DownloadPath))
             {
-                Assert.IsTrue(File.Exists(PropertyClass.ServiceMonitorFilePath));
+                Assert.AreEqual(File.Exists(PropertyClass.ServiceMonitorFilePath), true, "Service Moniter Zip file is not downloaded");
                 // Delete after Verifying.
                 File.Delete(PropertyClass.ServiceMonitorFilePath);
             }
@@ -98,7 +98,7 @@ namespace HillromAutomationFramework.Steps.Login
             // Checking if Partner Connect ZIP file is downloaded successfuly.
             if (Directory.Exists(PropertyClass.DownloadPath))
             {
-                Assert.IsTrue(File.Exists(PropertyClass.DCPFilePath));
+                Assert.AreEqual(File.Exists(PropertyClass.DCPFilePath), true, "Dcp zip file is not downloaded\n");
                 // Delete after verifying.
                 File.Delete(PropertyClass.DCPFilePath);
             }
@@ -118,9 +118,9 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenAdministratorGuidePDFOpensInBrowser()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
-            Assert.IsTrue(!string.IsNullOrEmpty(popup)); // checking if new tab was opened
+            Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"PDF is not opened in new tab"); // checking if new tab was opened
             PropertyClass.Driver.SwitchTo().Window(popup); // Switch to new tab.
-            Assert.AreEqual(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, PropertyClass.Driver.Url);
+            Assert.AreEqual(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, PropertyClass.Driver.Url,"Administator guide PDF is not opened");
         }
 
         [When(@"user clicks Instructions for Use")]
@@ -133,9 +133,9 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenInstructionsForUsePDFOpensInBrowser()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
-            Assert.IsTrue(!string.IsNullOrEmpty(popup)); // check if new tab was opened
+            Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"New tab is not opened"); // check if new tab was opened
             PropertyClass.Driver.SwitchTo().Window(popup); // Switch to new tab.
-            Assert.AreEqual(LoginPage.ExpectedValues.InstructionForUsePDFURL, PropertyClass.Driver.Url);
+            Assert.AreEqual(LoginPage.ExpectedValues.InstructionForUsePDFURL, PropertyClass.Driver.Url,"Instructions for use PDF is not opened");
         }
 
         [When(@"user clicks Release Notes")]
@@ -148,9 +148,9 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenReleaseNotesPDFOpensInBrowser()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
-            Assert.IsTrue(!string.IsNullOrEmpty(popup)); // tab was opened
+            Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"New tab is not opened"); // tab was opened
             PropertyClass.Driver.SwitchTo().Window(popup); //Switch to new tab
-            Assert.AreEqual(LoginPage.ExpectedValues.RealeaseNotesPDFURL, PropertyClass.Driver.Url);
+            Assert.AreEqual(LoginPage.ExpectedValues.RealeaseNotesPDFURL, PropertyClass.Driver.Url,"Release notes pdf is not opened");
         }
     }
 }

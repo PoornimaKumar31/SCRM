@@ -67,30 +67,31 @@ namespace HillromAutomationFramework.Steps.Login
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
             string actualTitle = PropertyClass.Driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
-            Assert.AreEqual(expectedTitle, actualTitle); //Compare the title
+            Assert.AreEqual(expectedTitle, actualTitle,"User is not on the landing page"); //Compare the title
         }
         
         [Then(@"login invalid error message will display")]
         public void ThenUsernameOrPasswordIsInvalidErrorMessageWillDisplay()
         {
-            Assert.IsTrue(loginPage.ErrorMessage.Displayed);
+            Assert.AreEqual(loginPage.ErrorMessage.Displayed,true,"Login invalid error message is not diaplayed");
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.InvalidEntryErrorMessage;
-            Assert.AreEqual(ExpectedErrorText, ActualErrortext); //Compare the error message displayed.
+            Assert.AreEqual(ExpectedErrorText, ActualErrortext,"Error message not matches with the expected value"); //Compare the error message displayed.
         }
         
         [Then(@"login authentication error message will display")]
         public void AuthenticationErrorMessageWillDisplay()
         {
+            Assert.AreEqual(loginPage.ErrorMessage.Displayed, true, "Authentication error message is not displayed");
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.NoEntryErrorMessage;
-            Assert.AreEqual(ExpectedErrorText, ActualErrortext); //Compare the error message displayed.
+            Assert.AreEqual(ExpectedErrorText, ActualErrortext,"Authentication error message is not matching with the expected value"); //Compare the error message displayed.
         }
 
         [When(@"username field is blank")]
         public void WhenUsernameFieldIsBlank()
         {
-            Assert.IsTrue(loginPage.EmailField.Text.Length == 0);
+            Assert.AreEqual(loginPage.EmailField.Text.Length == 0,true,"Username field is not empty");
         }
 
         [Then(@"username field contains hint text")]
@@ -98,13 +99,13 @@ namespace HillromAutomationFramework.Steps.Login
         {
             String ActualhintText = loginPage.EmailField.GetAttribute("placeholder");
             String ExpectedhintText = LoginPage.ExpectedValues.EmailFieldHintText;
-            Assert.AreEqual(ExpectedhintText, ActualhintText);
+            Assert.AreEqual(ExpectedhintText, ActualhintText,"Username field hint text does not match with the expeceted value");
         }
 
         [When(@"password field is blank")]
         public void WhenPasswordFieldIsBlank()
         {
-            Assert.IsTrue(loginPage.PasswordField.Text.Length == 0);
+            Assert.AreEqual(loginPage.PasswordField.Text.Length == 0,true,"Password field is not blank");
         }
 
         [Then(@"password field contains hint text")]
@@ -112,7 +113,7 @@ namespace HillromAutomationFramework.Steps.Login
         {
             String ActualhintText = loginPage.PasswordField.GetAttribute("placeholder");
             String ExpectedhintText = LoginPage.ExpectedValues.PasswordFieldHintText;
-            Assert.AreEqual(ExpectedhintText, ActualhintText);
+            Assert.AreEqual(ExpectedhintText, ActualhintText,"Password field hint text does not match with the expected value");
         }
     }
 }

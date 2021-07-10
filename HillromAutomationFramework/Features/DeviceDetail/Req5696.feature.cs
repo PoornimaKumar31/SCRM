@@ -79,12 +79,12 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Static Elements")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9001")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
         public virtual void EditCVSMAssetDetailsStaticElements()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9001",
                     "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Static Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -144,12 +144,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Save")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9002")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
         public virtual void EditCVSMAssetDetailsSave()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9002",
                     "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Save", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -191,12 +191,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Cancel")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9003")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
         public virtual void EditCVSMAssetDetailsCancel()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9003",
                     "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Cancel", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -238,13 +238,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Bed Entry Field Empty")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9004")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
         [NUnit.Framework.CategoryAttribute("UISID_8721")]
         public virtual void EditCVSMAssetDetailsBedEntryFieldEmpty()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9004",
                     "UISID_8673",
                     "UISID_8721"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -284,13 +284,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Room Entry Field Empty")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9005")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
         [NUnit.Framework.CategoryAttribute("UISID_8721")]
         public virtual void EditCVSMAssetDetailsRoomEntryFieldEmpty()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9005",
                     "UISID_8673",
                     "UISID_8721"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
@@ -330,13 +330,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CVSM Asset Details Read Only")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9006")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
         [NUnit.Framework.CategoryAttribute("UISID_8721")]
         public virtual void CVSMAssetDetailsReadOnly()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9006",
                     "UISID_8673",
                     "UISID_8721"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

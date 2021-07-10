@@ -16,22 +16,22 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenUserWillSeeForgotHillromLogo()
         {
             Thread.Sleep(500);
-            Assert.IsTrue(forgotPassword.HillromLogo.GetElementVisibility());
+            Assert.AreEqual(forgotPassword.HillromLogo.GetElementVisibility(),true,"Hillrom logo is not displayed");
         }
         
         [Then(@"forgot SmartCare Remote Management title")]
         public void ThenForgotSmartCareRemoteManagementTitle()
         {
-            Assert.IsTrue(forgotPassword.ApplicationTitle.GetElementVisibility());
+            Assert.AreEqual(forgotPassword.ApplicationTitle.GetElementVisibility(),true,"Smartcare remote management title is not displayed");
         }
         
         [Then(@"reset instructions")]
         public void ThenResetInstructions()
         {
-            Assert.IsTrue(forgotPassword.ResetPasswordInstructions.GetElementVisibility());
+            Assert.AreEqual(forgotPassword.ResetPasswordInstructions.GetElementVisibility(),true,"Reset instructions are not displayed");
             string ExpectedInstructions = ForgotPasswordPage.ExpectedValues.ResetPasswordInstructionsText;
             string ActualInstructions = forgotPassword.ResetPasswordInstructions.Text;
-            Assert.AreEqual(ExpectedInstructions, ActualInstructions);
+            Assert.AreEqual(ExpectedInstructions, ActualInstructions,"Reset instructions does not match with the expected text");
         }
     }
 }
