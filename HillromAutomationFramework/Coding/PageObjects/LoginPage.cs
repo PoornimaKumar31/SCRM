@@ -40,7 +40,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
 
             //Login Page footers               
-            public const string VersionXpath = "/html/body/c8y-bootstrap/c8y-login/div/div[4]/span";
+            public const string VersionNoID = "app_version";
             public const string PrivacyPolicyID = "privacy";
             public const string TermsOfUseID = "terms";
             public const string SupportedBrowsersID = "supportbrowsers";
@@ -178,7 +178,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         // Login Page Footer
 
         // Version No of SCRM portal
-        [FindsBy(How = How.XPath, Using = Locator.VersionXpath)]
+        [FindsBy(How = How.Id, Using = Locator.VersionNoID)]
         public IWebElement VersionNumber { get; set; }
 
         // Privacy policy link
