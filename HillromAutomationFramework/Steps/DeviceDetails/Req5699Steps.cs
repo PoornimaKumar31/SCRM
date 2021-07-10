@@ -89,10 +89,12 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenLogIsDownloadedToComputer()
         {
             bool file_exist = false;
+            int count = 0;
             while (file_exist != true)
             {
                 Task.Delay(1000).Wait();
-                if (File.Exists(PropertyClass.DownloadPath +"\\"+ csmDeviceDetailsPage.LogFiles[0].Text))
+                count++;
+                if (File.Exists(PropertyClass.DownloadPath +"\\"+ csmDeviceDetailsPage.LogFiles[0].Text) || count ==15)
                 {
                     file_exist = true;
                 }
@@ -189,7 +191,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                         csmDeviceDetailsPage.CSMDevices[1].Click();
                         wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                         csmDeviceDetailsPage.LogsTab.Click();
-                        Assert.AreEqual(csmDeviceDetailsPage.LogFiles.GetElementCount(), 0);
+                        Assert.AreEqual(0,csmDeviceDetailsPage.LogFiles.GetElementCount());
                         break;
 
                 case 10:
@@ -197,14 +199,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                         csmDeviceDetailsPage.CSMDevices[7].Click();
                         wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                         csmDeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(csmDeviceDetailsPage.LogFiles.GetElementCount(), 10);
+                        Assert.AreEqual(10,csmDeviceDetailsPage.LogFiles.GetElementCount());
                     break;
                 case 25:
                     //selecting CSM device with 25 log files
                     csmDeviceDetailsPage.CSMDevices[2].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(csmDeviceDetailsPage.LogFiles.GetElementCount(), 25);
+                    Assert.AreEqual(25,csmDeviceDetailsPage.LogFiles.GetElementCount());
                     break;
             }
             

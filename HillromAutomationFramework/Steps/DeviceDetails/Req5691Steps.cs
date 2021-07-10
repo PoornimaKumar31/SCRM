@@ -4,6 +4,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
@@ -20,32 +21,45 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             _scenarioContext = scenarioContext;
         }
-
-        [Given(@"user is on CVSM Log Files page")]
-        public void GivenUserIsOnCVSMLogFilesPage()
+        [Given(@"user has selected CVSM device")]
+        public void GivenUserHasSelectedCVSMDevice()
         {
             loginPage.SignIn("AdminWithoutRollupPage");
             SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
             selectAssetType.SelectByText(MainPage.ExpectedValues.CVSMDeviceName);
-            cvsmDeviceDetailsPage.CVSMDevices[1].Click();
+            //select the row according to the data
+            Thread.Sleep(2000);
+            cvsmDeviceDetailsPage.CVSMDevices[1].Clicks();
+        }
+
+        [When(@"user clicks Logs tab")]
+        public void WhenUserClicksLogsTab()
+        {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
             cvsmDeviceDetailsPage.LogsTab.Click();
         }
 
-        [Given(@"CVSM has no logs")]
-        public void GivenCVSMHasNoLogs()
+        [Given(@"user is on device details page")]
+        public void GivenUserIsOnDeviceDetailsPage()
         {
-            Assert.AreEqual(cvsmDeviceDetailsPage.LogFiles.GetElementCount(), 0);
+            Assert.IsTrue(cvsmDeviceDetailsPage.EditButton.GetElementVisibility());
         }
 
-        [Then(@"no logs for CVSM device are displayed")]
-        public void ThenNoLogsForCVSMDeviceAreDisplayed()
-        {
-            Assert.IsFalse(cvsmDeviceDetailsPage.LogFiles[0].Displayed);
-        }
 
-        [Given(@"CVSM has (.*) logs")]
-        public void GivenCVSMHasLogs(int noOfLogs)
+        [Then(@"logs for CVSM device are displayed")]
+        public void ThenLogsForCVSMDeviceAreDisplayed()
         {
+            Thread.Sleep(2000);
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() > 0);
+        }
+        [Given(@"user is on CVSM Log Files page with (.*) logs")]
+        public void GivenUserIsOnCVSMLogFilesPageWithLogs(int noOfLogs)
+        {
+            loginPage.SignIn("AdminWithoutRollupPage");
+            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
+            selectAssetType.SelectByText(MainPage.ExpectedValues.CVSMDeviceName);
+            Thread.Sleep(2000);
+
             switch (noOfLogs)
             {
                 case 0:
@@ -53,24 +67,28 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     cvsmDeviceDetailsPage.CVSMDevices[0].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     cvsmDeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(cvsmDeviceDetailsPage.LogFiles.GetElementCount(), 0);
                     break;
 
                 case 10:
                     //selecting CSM device with 10 log files
-                    cvsmDeviceDetailsPage.CVSMDevices[1].Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
-                    cvsmDeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(cvsmDeviceDetailsPage.LogFiles.GetElementCount(), 10);
-                    break;
-                case 25:
-                    //selecting CSM device with 25 log files
                     cvsmDeviceDetailsPage.CVSMDevices[2].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     cvsmDeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(cvsmDeviceDetailsPage.LogFiles.GetElementCount(), 25);
+                    break;
+                case 24:
+                    //selecting CSM device with 25 log files
+                    cvsmDeviceDetailsPage.CVSMDevices[1].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+                    cvsmDeviceDetailsPage.LogsTab.Click();
                     break;
             }
+        }
+
+
+        [Then(@"no logs for CVSM device are displayed")]
+        public void ThenNoLogsForCVSMDeviceAreDisplayed()
+        {
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 0);
         }
 
         [Then(@"ten logs for CVSM device are displayed")]

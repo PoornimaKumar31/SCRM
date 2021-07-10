@@ -240,7 +240,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
                 LoginButton.Clicks();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
-                landingPage.Organization1Title.Click();
+                landingPage.Organization1Facility0Title.Click();
             }
             
         }
