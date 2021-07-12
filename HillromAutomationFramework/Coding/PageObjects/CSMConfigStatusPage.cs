@@ -17,23 +17,20 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string InformationButtonId = "cu-info";       //"fs-info"
             public const string InformationPopUpId = "myHelp";
             public const string InformationPopUpHeaderClassName = "heading";
-            public const string InformationPopUpStatusClassName = "key";
             public const string InformationPopUpCloseButtonclassName = "ok";
 
             public const string InformationPopUpDataClassName = "para";
-            //public const string tableColumn1Xpath = "//*[@class='para']/tr/td[1]";
-            //public const string tableColumn2Xpath = "//*[@class='para']/tr/td[2]";
         }
         public static class ExpectedValues
         {
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CSMConfiguration = "CFG Update Status";
             public const string InformationPopUPHeaderText = "CSM Configuration Report Statuses:";
-            public const string stratredDefinition = "Configuration update has been initiated.";
-            public const string transferred_Definitation = "Configuration update has been transferred.";
-            public const string availableDefinitation = "Configuration update has been received by Service Monitor and is waiting for device to call home.";
-            public const string appliedDefinitation = "Configuration update successful. Device is currently using the new configuration.";
-            public const string failedDefinition = "Configuration update aborted. Check logs for details.";
+            public const string StratedDefinition = "Configuration update has been initiated.";
+            public const string TransferredDefinitation = "Configuration update has been transferred.";
+            public const string AvailableDefinitation = "Configuration update has been received by Service Monitor and is waiting for device to call home.";
+            public const string AppliedDefinitation = "Configuration update successful. Device is currently using the new configuration.";
+            public const string FailedDefinition = "Configuration update aborted. Check logs for details.";
         }
 
         public CSMConfigStatusPage()
@@ -60,9 +57,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.ClassName, Using = Locators.InformationPopUpCloseButtonclassName)]
         public IWebElement InformationPopUpCloseButton { get; set; }
-
-        [FindsBy(How = How.ClassName, Using = Locators.InformationPopUpStatusClassName)]
-        public IList<IWebElement> InformationPopUpStatus { get; set; }
 
         [FindsBy(How = How.ClassName, Using = Locators.InformationPopUpDataClassName)]
         public IWebElement InformationPopUpData { get; set; }

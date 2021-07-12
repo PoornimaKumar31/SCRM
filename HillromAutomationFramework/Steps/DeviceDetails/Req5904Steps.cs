@@ -64,19 +64,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch(statustitle.ToLower().Trim())
             {
                 case "started":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.stratredDefinition;
+                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.StratedDefinition;
                     break;
                 case "transferred":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.transferred_Definitation;
+                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.TransferredDefinitation;
                     break;
                 case "available":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.availableDefinitation;
+                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.AvailableDefinitation;
                     break;
                 case "applied":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.appliedDefinitation;
+                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.AppliedDefinitation;
                     break;
                 case "failed":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.failedDefinition;
+                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.FailedDefinition;
                     break;
                 default: Assert.Fail(statustitle+" does not exist in test data");
                     break;
