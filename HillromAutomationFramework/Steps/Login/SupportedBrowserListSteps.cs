@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
 {
-    [Binding]
+    [Binding,Scope(Tag = "SoftwareRequirementID_5899")]
     public class SupportedBrowserListSteps
     {
         readonly LoginPage loginPage = new LoginPage();

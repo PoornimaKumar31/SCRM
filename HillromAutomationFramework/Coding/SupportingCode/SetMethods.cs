@@ -20,6 +20,14 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             element.Click();
         }
 
+        //Clicking using javascipt
+        public static void JavaSciptClick(this IWebElement webElement)
+        {
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)PropertyClass.Driver;
+            executor.ExecuteScript("arguments[0].click()", webElement);
+        }
+
+
         /*for selecting value from drop down list*/
         public static void SelectDDL(this IWebElement element, string value)
         {

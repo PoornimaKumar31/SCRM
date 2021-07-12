@@ -58,6 +58,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.AssetsTabID)]
         public IWebElement AssetsTab { get; set; }
 
+        [FindsBy(How = How.Id, Using = Locators.ReportsTabID)]
+        public IWebElement ReportsTab { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.UpdatesTabID)]
+        public IWebElement UpdatesTab { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.AdvancedTabID)]
+        public IWebElement AdvancedTab { get; set; }
+
         [FindsBy(How =How.Id, Using =Locators.AssetTypeDropDownID)]
         public IWebElement AssetTypeDropDown { get; set; }
     }
