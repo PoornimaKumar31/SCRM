@@ -1,5 +1,6 @@
 ﻿@SoftwareRequirementID_5692
-Feature: The Customer Portal shall have a feature for downloading CVSM/CIWS log files.
+Feature: Software Requirement 5692
+The Customer Portal shall have a feature for downloading CVSM/CIWS log files.
 
 @TestCaseID_8963
 Scenario: CVSM Log Files Download

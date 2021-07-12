@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5696
-Feature: EditCVSMDeviceDetails
+Feature: Software Requirement 5696
 	The Customer Portal shall have a feature for editing the following device details for CVSM/CIWS devices
 
 @TestCaseID_9001 @UISID_8673

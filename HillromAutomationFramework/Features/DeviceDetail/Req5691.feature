@@ -1,5 +1,6 @@
 ﻿@SoftwareRequirementID_5691
-Feature:  The Customer Portal shall have a feature for displaying a list of CVSM log files
+Feature: Software Requirement 5691  
+The Customer Portal shall have a feature for displaying a list of CVSM log files
 
 @TestCaseID_8952
 Scenario: CVSM Log Files

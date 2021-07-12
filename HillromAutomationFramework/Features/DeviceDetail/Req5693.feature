@@ -1,5 +1,6 @@
 ﻿@SoftwareRequirementID_5693
-Feature: The Customer Portal shall have a mechanism for requesting log files from registered CVSM/CIWS devices.
+Feature: Software Requirement 5693
+The Customer Portal shall have a mechanism for requesting log files from registered CVSM/CIWS devices.
 
 @TestCaseID_8964
 Scenario: CVSM Log Files Request

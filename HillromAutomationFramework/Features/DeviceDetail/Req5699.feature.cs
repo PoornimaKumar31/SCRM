@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Features.DeviceDetail
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Downloading and displaying CSM Log File")]
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5699")]
     [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5699")]
-    public partial class DownloadingAndDisplayingCSMLogFileFeature
+    public partial class SoftwareRequirement5699Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Downloading and displaying CSM Log File", "  The Customer Portal shall have a mechanism for displaying and downloading CSM l" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5699", "  The Customer Portal shall have a mechanism for displaying and downloading CSM l" +
                     "og files.", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5699"});
             testRunner.OnFeatureStart(featureInfo);

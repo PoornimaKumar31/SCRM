@@ -1,5 +1,7 @@
 ﻿@SoftwareRequirementID_5711
-Feature:  The customer portal shall have a mechanism for displaying RV700 log files.
+Feature: Software Requirement 5711 
+
+The customer portal shall have a mechanism for displaying RV700 log files.
 
 @TestCaseID_8978
 Scenario: RV700 Log Files

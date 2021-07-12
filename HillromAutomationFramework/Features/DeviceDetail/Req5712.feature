@@ -1,5 +1,6 @@
 ﻿@SoftwareRequirementID_5712
-Feature: The Customer Portal shall have a mechanism for downloading the RV700 log files
+Feature: Software Requirement 5712
+The Customer Portal shall have a mechanism for downloading the RV700 log files
 
 @TestCaseID_8988
 Scenario: RV700 Log Files Download

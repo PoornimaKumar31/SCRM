@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Features.DeviceDetail
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("EditCVSMDeviceDetails")]
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5696")]
     [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5696")]
-    public partial class EditCVSMDeviceDetailsFeature
+    public partial class SoftwareRequirement5696Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "EditCVSMDeviceDetails", "\tThe Customer Portal shall have a feature for editing the following device detail" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5696", "\tThe Customer Portal shall have a feature for editing the following device detail" +
                     "s for CVSM/CIWS devices", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5696"});
             testRunner.OnFeatureStart(featureInfo);

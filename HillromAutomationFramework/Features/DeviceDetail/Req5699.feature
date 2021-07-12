@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5699
-Feature: Downloading and displaying CSM Log File
+Feature: Software Requirement 5699
   The Customer Portal shall have a mechanism for displaying and downloading CSM log files.
 
 @TestCaseID_8966 @UISID_8678

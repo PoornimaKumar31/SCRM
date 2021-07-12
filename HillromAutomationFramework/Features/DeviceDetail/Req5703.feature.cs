@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Features.DeviceDetail
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Edit CSM Device Details")]
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5703")]
     [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5703")]
-    public partial class EditCSMDeviceDetailsFeature
+    public partial class SoftwareRequirement5703Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Edit CSM Device Details", "\tThe Customer Portal shall have a mechanism for editing the following device deta" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5703", "\tThe Customer Portal shall have a mechanism for editing the following device deta" +
                     "ils for CSM devices: Room, Bed", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5703"});
             testRunner.OnFeatureStart(featureInfo);

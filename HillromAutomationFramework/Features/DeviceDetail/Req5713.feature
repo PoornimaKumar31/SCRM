@@ -1,5 +1,6 @@
 ﻿@SoftwareRequirementID_5713
-Feature: The customer portal shall have a mechanism for requesting log files from a RV700 device.
+Feature: Software Requirement 5713
+The customer portal shall have a mechanism for requesting log files from a RV700 device.
 
 @TestCaseID_8989
 Scenario: RV700 Log Files Request

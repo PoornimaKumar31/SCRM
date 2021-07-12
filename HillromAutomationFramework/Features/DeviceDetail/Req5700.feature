@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5700
-Feature: RequestCSMLogs
+Feature: Software Requirement 5700
 	The Customer Portal shall have a mechanism for requesting log files from registered CSM devices.
 
 @TestCaseID_8976 @UISID_8678
