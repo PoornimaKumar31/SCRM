@@ -17,9 +17,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string InformationButtonId = "cu-info";       //"fs-info"
             public const string InformationPopUpId = "myHelp";
             public const string InformationPopUpHeaderClassName = "heading";
-            public const string InformationPopUpCloseButtonclassName = "ok";
-
+            public const string InformationPopUpCloseButtonclassName = "ok"; 
             public const string InformationPopUpDataClassName = "para";
+            public const string StatusLabelClassName = "key";
         }
         public static class ExpectedValues
         {
@@ -61,6 +61,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.ClassName, Using = Locators.InformationPopUpDataClassName)]
         public IWebElement InformationPopUpData { get; set; }
 
+        [FindsBy(How = How.ClassName, Using = Locators.StatusLabelClassName)]
+        public IList<IWebElement> StatusLabel { get; set; }
+
         public IDictionary<string,string> GetstatusTable(string statusData)
         {
             string[] splitRowdata = statusData.Split("\r\n");
@@ -68,10 +71,17 @@ namespace HillromAutomationFramework.Coding.PageObjects
             for (int row = 0; row <= splitRowdata.Length - 1; row++)
             {
                 string ele = splitRowdata[row];
-                string[] splitrow = ele.Split(" ", 2);
-                statusDefinationPairs.Add(splitrow[0], splitrow[1]);
+                string label = GetStatusLabel(row);
+                string stat = ele.Substring(0, label.Length);
+                string defination = ele.Substring(label.Length);
+                statusDefinationPairs.Add(stat, defination.Trim());
             }
             return (statusDefinationPairs);
+        }
+
+        public string GetStatusLabel(int row)
+        {
+            return (StatusLabel[row].Text);
         }
     }
 }

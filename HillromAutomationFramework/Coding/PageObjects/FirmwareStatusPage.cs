@@ -36,7 +36,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMUpdatingDefination = "Device is currently installing the new firmware.";
             public const string CSMAppliedDefination = "Firmware update successful. Device is currently running the new firmware.";
             public const string CSMCancelRequestedDefination = "Cancelation of the Firmware update has been requested.";
-            public const string CSMCancelingDefination = "Cancelation of the Firmware update has been requested.";
+            public const string CSMCancelingDefination = "Cancelation of the Firmware update has been received and is awaiting device confirmation.";
             public const string CSMDownloadFailedDefination = "Download of Firmware update to the device has failed. Download will attempt again at next call home.";
             public const string CSMFailedDefination = "Firmware update aborted. Check device log for details.";
 
@@ -87,17 +87,16 @@ namespace HillromAutomationFramework.Coding.PageObjects
             for (int row = 0; row <= splitRowdata.Length - 1; row++)
             {
                 string ele = splitRowdata[row];
-                //string[] splitrow = ele.Split(new string[] { getStatusLabel(row) },StringSplitOptions.None);
-                string[] splitrow = ele.Split(" ", 2);
-                statusDefinationPairs.Add(splitrow[0], splitrow[1]);
+                string label = GetStatusLabel(row);
+                string stat = ele.Substring(0, label.Length);
+                string defination = ele.Substring(label.Length);
+                statusDefinationPairs.Add(stat, defination.Trim());
             }
             return (statusDefinationPairs);
         }
 
-        public string getStatusLabel(int row)
+        public string GetStatusLabel(int row)
         {
-            Console.WriteLine("Row no:"+row);
-            Console.WriteLine("Text:" + StatusLabel[row].Text);
             return (StatusLabel[row].Text);
         }
     }
