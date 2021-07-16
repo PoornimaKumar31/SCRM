@@ -60,13 +60,36 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(csmDeviceDetailsPage.LogFiles.Count>0);
         }
 
-        [Given(@"user is on CSM Log Files page")]
-        public void GivenUserIsOnCSMLogFilesPage()
+        [Given(@"user is on CSM Log Files page with (.*) logs")]
+        public void GivenUserIsOnCSMLogFilesPageWithLogs(int noOfLogs)
         {
-            loginPage.SignIn("adminwithoutrollup");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("devices")));
+            loginPage.SignIn("AdminWithoutRollupPage");
             SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
             selectAssetType.SelectByText(MainPage.ExpectedValues.CSMDeviceName);
+            Thread.Sleep(2000);
+
+            switch (noOfLogs)
+            {
+                case 0:
+                    //Selecting CSM device with no log files
+                    csmDeviceDetailsPage.CSMDevices[0].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    csmDeviceDetailsPage.LogsTab.Click();
+                    break;
+
+                case 10:
+                    //selecting CSM device with 10 log files
+                    csmDeviceDetailsPage.CSMDevices[2].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    csmDeviceDetailsPage.LogsTab.Click();
+                    break;
+                case 25:
+                    //selecting CSM device with 25 log files
+                    csmDeviceDetailsPage.CSMDevices[1].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    csmDeviceDetailsPage.LogsTab.Click();
+                    break;
+            }
         }
 
         [Given(@"at least one log is present")]
