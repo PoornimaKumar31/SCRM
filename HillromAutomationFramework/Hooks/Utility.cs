@@ -102,7 +102,7 @@ namespace HillromAutomationFramework.Hooks
 
            
             PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15); // Implicit wait for 60 seconds
+            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20); // Implicit wait for 15 seconds
         }
 
         // After step log the test results in extent report

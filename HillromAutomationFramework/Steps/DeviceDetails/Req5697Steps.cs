@@ -20,7 +20,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
         public Req5697Steps(ScenarioContext scenarioContext)
         {
-            scenarioContext = _scenarioContext;
+            _scenarioContext=scenarioContext;
         }
 
         [Given(@"user is on Main page")]

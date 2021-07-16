@@ -45,6 +45,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LocationHirarcyID = "caret0";
             public const string PreviousButtonXpath = "/html/body/c8y-bootstrap/div/div[2]/div/c8y-hillrom-home-page/c8y-hillrom-landing-page/div/div/div[2]/c8y-hillrom-cvsm-deployment/div/div[2]/div/button[1]";
             public const string SelectDeviceNextButtonID = "nextbtn";
+            //select device table elements
+            public const string SelectAllDeviceCheckBoxID = "selectall";
+            public const string FirmwareHeadingID = "firmware";
+            public const string ConfigHeadingID = "Config";
+            public const string AssetTagHeadingID = "AssetTag";
+            public const string SerialHeadingID = "Sno";
+            public const string LocationHeadingID = "Location";
+            public const string LastFilesDeployedHeadingID = "LastFile";
         }
 
         public static class ExpectedValues
@@ -54,6 +62,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string UpdateTypeUpgrade = "Upgrade";
             public const string ConfigListTableNameHeadingText = "Name";
             public const string ConfigListTableDateHeadingText = "Date created";
+
+            //select device heading text
+            public const string FirmwareHeadingText = "Firmware";
+            public const string ConfigHeadingText = "Config";
+            public const string AssetTagHeadingText = "Asset tag";
+            public const string SerialHeadingText = "Serial";
+            public const string LocationHeadingText = "Location";
+            public const string LastFilesDeployedHeadingText = "Last Files Deployed";
 
             public const string HighlightedCircleClassName = "circle selectedStep";
         }
@@ -146,6 +162,27 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.SelectDeviceNextButtonID)]
         public IWebElement SelectDeviceNextButton { get; set; }
 
+        [FindsBy(How = How.Id, Using = Locators.SelectAllDeviceCheckBoxID)]
+        public IWebElement SelectAllDeviceCheckBox { get; set; }
+
+        //select device table elements
+        [FindsBy(How = How.Id, Using = Locators.FirmwareHeadingID)]
+        public IWebElement FirmwareHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.ConfigHeadingID)]
+        public IWebElement ConfigHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.AssetTagHeadingID)]
+        public IWebElement AssetTagHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.SerialHeadingID)]
+        public IWebElement SerialHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LocationHeadingID)]
+        public IWebElement LocationHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LastFilesDeployedHeadingID)]
+        public IWebElement LastFilesDeployedHeading { get; set; }
 
         public bool IsConfigFileSorted(IList<IWebElement> elements)
         {

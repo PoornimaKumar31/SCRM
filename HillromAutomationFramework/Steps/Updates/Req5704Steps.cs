@@ -249,6 +249,7 @@ namespace HillromAutomationFramework.Steps.Updates
             csmConfigDeliverPage.UpdateTypeDropDown.SelectDDL(CSMConfigDeliverPage.ExpectedValues.UpdateTypeConfiguration);
             csmConfigDeliverPage.FirstConfigFile.Click();
             csmConfigDeliverPage.SelectUpdateNextButton.Click();
+            Assert.AreEqual(true, csmConfigDeliverPage.ItemToPushLabel.GetElementVisibility(), "user is not on CSM Configuration Select assets page");
         }
 
         [Then(@"Select update indicator is not highlighted")]
@@ -322,13 +323,46 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Select all checkbox in column 1 is displayed")]
         public void ThenSelectAllCheckboxInColumnIsDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            Assert.AreEqual(true, csmConfigDeliverPage.SelectAllDeviceCheckBox.GetElementVisibility(), "Select all checkbox in column 1 is not displayed");
         }
 
         [Then(@"""(.*)"" column (.*) heading is displayed")]
-        public void ThenColumnHeadingIsDisplayed(string p0, int p1)
+        public void ThenColumnHeadingIsDisplayed(string HeadingName, int p1)
         {
-            ScenarioContext.Current.Pending();
+            IWebElement HeadingElement=null;
+            string ExpectedHeadingText=null;
+            switch(HeadingName.ToLower().Trim())
+            {
+                case "firmware": HeadingElement = csmConfigDeliverPage.FirmwareHeading;
+                    ExpectedHeadingText = CSMConfigDeliverPage.ExpectedValues.FirmwareHeadingText;
+                    break;
+                case "config":
+                    HeadingElement = csmConfigDeliverPage.ConfigHeading;
+                    ExpectedHeadingText = CSMConfigDeliverPage.ExpectedValues.ConfigHeadingText;
+                    break;
+                case "asset tag":
+                    HeadingElement = csmConfigDeliverPage.AssetTagHeading;
+                    ExpectedHeadingText = CSMConfigDeliverPage.ExpectedValues.AssetTagHeadingText;
+                    break;
+                case "serial":
+                    HeadingElement = csmConfigDeliverPage.SerialHeading;
+                    ExpectedHeadingText = CSMConfigDeliverPage.ExpectedValues.SerialHeadingText;
+                    break;
+                case "location":
+                    HeadingElement = csmConfigDeliverPage.LocationHeading;
+                    ExpectedHeadingText = CSMConfigDeliverPage.ExpectedValues.LocationHeadingText;
+                    break;
+                case "last files deployed":
+                    HeadingElement = csmConfigDeliverPage.LastFilesDeployedHeading;
+                    ExpectedHeadingText = CSMConfigDeliverPage.ExpectedValues.LastFilesDeployedHeadingText;
+                    break;
+                default: Assert.Fail(HeadingName + " is a invalid heading name");
+                    break;
+            }
+            Assert.AreEqual(true, HeadingElement.GetElementVisibility(), HeadingName+" is not displayed.");
+            string ActualHeadingText = HeadingElement.Text.ToLower();
+            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText, HeadingName+" not matches with the expected value");
+
         }
 
       
