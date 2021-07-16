@@ -91,11 +91,12 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 0);
         }
 
-        [Then(@"ten logs for CVSM device are displayed")]
-        public void ThenTenLogsForCVSMDeviceAreDisplayed()
+        [Then(@"(.*) logs for CVSM device are displayed")]
+        public void ThenLogsForCVSMDeviceAreDisplayed(int p0)
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
+            Assert.AreEqual(p0, cvsmDeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
         }
+
 
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
@@ -148,10 +149,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
         }
 
-        [Given(@"newest ten logs are displayed")]
-        public void GivenNewestTenLogsAreDisplayed()
+        [Given(@"newest (.*) logs are displayed")]
+        public void GivenNewestLogsAreDisplayed(int num)
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
+            _scenarioContext.Pending();
         }
 
         [When(@"user clicks Next page button")]
@@ -160,10 +161,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             cvsmDeviceDetailsPage.LogsNextButton.Click();
         }
 
-        [Then(@"user will see next ten older logs")]
-        public void ThenUserWillSeeNextTenOlderLogs()
+        [Then(@"user will see next (.*) older logs")]
+        public void ThenUserWillSeeNextOlderLogs(int num)
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
+            Assert.AreEqual(num,cvsmDeviceDetailsPage.LogFiles.GetElementCount(),"Number of Logs are not as expected");
         }
 
         [Then(@"user will see logs page (.*) indicator")]
@@ -231,5 +232,18 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending");
         }
+
+        [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]
+        public void ThenDisplayingToOfResultsLabelIsDisplayed(int p0, int p1, int p2)
+        {
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"page (.*) of (.*) label is displayed")]
+        public void ThenPageOfLabelIsDisplayed(int p0, int p1)
+        {
+            _scenarioContext.Pending();
+        }
+
     }
 }

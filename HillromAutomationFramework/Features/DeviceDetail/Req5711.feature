@@ -18,7 +18,7 @@ Scenario: RV700 Log Files Empty
 @TestCaseID_8980
 Scenario: RV700 Log Files Ten Files
 	Given user is on RV700 Log Files page with 10 logs
-	Then ten logs for RV700 device are displayed
+	Then 10 logs for RV700 device are displayed
 	And user cannot navigate to next logs page
 
 @TestCaseID_8981
@@ -38,16 +38,19 @@ Scenario: RV700 Log Files Ten Files Request Previous
 
 @TestCaseID_8983
 Scenario: RV700 Log Files 25 Files Next1
-	Given user is on RV700 Log Files page with 25 logs
+	Given user is on RV700 Log Files page with 24 logs
 	And Log files are sorted by decreasing date
-	And newest 10 logs are displayed
-	Then user will see logs page 1 indicator
+	Then newest 10 logs are displayed
+	And displaying 11 to 20 of 24 results label is displayed
+	And page 1 of 3 label is displayed
 	When user clicks Next page button
 	Then user will see next 10 older logs
-	And user will see logs page 2 indicator
+	And displaying 11 to 20 of 24 results label is displayed
+	And page 2 of 3 label displayed
 	When user clicks Next page button
-	Then user will see next 5 older logs
-	And user will see logs page 3 indicator
+	Then next 4 older logs are displayed
+	And displaying 21 to 24 of 24 results label is displayed
+	And page 3 of 3 label is displayed
 
 @TestCaseID_8985
 Scenario: RV700 Log Files Sort Decreasing Date

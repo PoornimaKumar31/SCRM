@@ -92,16 +92,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
         }
 
-        [Given(@"at least one log is present")]
-        public void GivenAtLeastOneLogIsPresent()
-        {
-            csmDeviceDetailsPage.CSMDevices[2].Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
-            csmDeviceDetailsPage.LogsTab.Click();
-            Console.WriteLine(csmDeviceDetailsPage.LogsPreviousButton.Enabled);
-            Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount() > 0);
-        }
-
         [When(@"user clicks log")]
         public void WhenUserClicksLog()
         {
@@ -128,14 +118,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenDownloadedFilenameMatches()
         {
             Assert.IsTrue(File.Exists(PropertyClass.DownloadPath +"\\"+ csmDeviceDetailsPage.LogFiles[0].Text));
-        }
-
-         
-
-        [Then(@"ten logs for CSM device are displayed")]
-        public void ThenTenLogsForCSMDeviceAreDisplayed()
-        {
-            Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
         }
 
         [Then(@"user cannot navigate to next logs page")]
@@ -241,22 +223,11 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount()==0);
         }
 
-        [Given(@"newest ten logs are displayed")]
-        public void GivenNewestTenLogsAreDisplayed()
-        {
-            Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
-        }
 
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
         {
             csmDeviceDetailsPage.LogsNextButton.Click();
-        }
-
-        [Then(@"user will see next ten older logs")]
-        public void ThenUserWillSeeNextTenOlderLogs()
-        {
-            Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
         }
 
         [Then(@"user will see logs page (.*) indicator")]
@@ -272,19 +243,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 csmDeviceDetailsPage.DateSorting.Click();
             }
-        }
-
-        [Given(@"second ten logs are displayed")]
-        public void GivenSecondTenLogsAreDisplayed()
-        {
-            csmDeviceDetailsPage.LogsNextButton.Click();
-            Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
-        }
-
-        [Then(@"user will see next five older logs")]
-        public void ThenUserWillSeeNextFiveOlderLogs()
-        {
-            Assert.IsTrue(csmDeviceDetailsPage.LogFiles.GetElementCount() == 5);
         }
 
 
@@ -341,5 +299,37 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             Assert.IsTrue(csmDeviceDetailsPage.DateSorting.GetAttribute("class") == CSMDeviceDetailsPage.Locators.LogsAscendingClassName);
         }
+
+        [Then(@"(.*) logs for CSM device are displayed")]
+        public void ThenLogsForCSMDeviceAreDisplayed(int p0)
+        {
+            _scenarioContext.Pending();
+        }
+
+        [Given(@"newest (.*) logs are displayed")]
+        public void GivenNewestLogsAreDisplayed(int p0)
+        {
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"user will see next (.*) older logs")]
+        public void ThenUserWillSeeNextOlderLogs(int p0)
+        {
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]
+        public void ThenDisplayingToOfResultsLabelIsDisplayed(int p0, int p1, int p2)
+        {
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"page (.*) of (.*) label is displayed")]
+        public void ThenPageOfLabelIsDisplayed(int p0, int p1)
+        {
+            _scenarioContext.Pending();
+        }
+
     }
+
 }

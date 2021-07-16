@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Features.Main
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("MainPageFooterLinks")]
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5898 Part 2")]
     [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5898")]
-    public partial class MainPageFooterLinksFeature
+    public partial class SoftwareRequirement5898Part2Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.Main
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Main", "MainPageFooterLinks", "\tThe customer portal shall provide URL links to the following:\r\n\tGlobal Service C" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Main", "Software Requirement 5898 Part 2", "\tThe customer portal shall provide URL links to the following:\r\n\tGlobal Service C" +
                     "enter\r\n\tPrivacy Policy\r\n\tTerms of Use\r\n\tContact Us", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5898"});
             testRunner.OnFeatureStart(featureInfo);

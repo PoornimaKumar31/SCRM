@@ -17,7 +17,7 @@ Scenario: CVSM Log Files Empty
 @TestCaseID_8955
 Scenario: CVSM Log Files Ten Files
 	Given user is on CVSM Log Files page with 10 logs
-	Then ten logs for CVSM device are displayed
+	Then 10 logs for CVSM device are displayed
 	And user cannot navigate to next logs page
 
 @TestCaseID_8956
@@ -39,10 +39,15 @@ Scenario: CVSM Log Files Ten Files Request Previous
 Scenario: CVSM Log Files 24 Files Next1
 	Given user is on CVSM Log Files page with 24 logs
 	And Log files are sorted by decreasing date
-	And newest ten logs are displayed
+	And newest 10 logs are displayed
 	When user clicks Next page button
-	Then user will see next ten older logs
-	And user will see logs page 2 indicator
+	Then user will see next 10 older logs
+	And Displaying 11 to 20 of 24 results label is displayed
+	And page 2 of 3 label is displayed
+	When user clicks Next page button
+	Then user will see next 4 older logs
+	And Displaying 21 to 24 of 24 results label is displayed
+	And page 3 of 3 label is displayed
 
 @TestCaseID_8960
 Scenario: CVSM Log Files 24 Files Next2 

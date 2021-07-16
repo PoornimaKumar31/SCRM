@@ -35,8 +35,8 @@ namespace HillromAutomationFramework.Steps.Main
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
-            Assert.AreEqual(MainPage.ExpectedValues.GlobalServiceCenterURL, ActualPageURL);
+            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
+            Assert.AreEqual(MainPage.ExpectedValues.GlobalServiceCenterTitle, ActualPageTitle, "Title is not matching");
         }
 
         [When(@"user clicks Contact Us")]
@@ -52,9 +52,32 @@ namespace HillromAutomationFramework.Steps.Main
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
-            Assert.AreEqual(MainPage.ExpectedValues.ContactUsURL, ActualPageURL);
+            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
+            Assert.AreEqual(MainPage.ExpectedValues.ContactUsTitle, ActualPageTitle, "Title is not matching");
         }
+
+        [Then(@"Terms and Conditions page is displayed")]
+        public void ThenTermsAndConditionsPageIsDisplayed()
+        {
+            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
+            // Check if new tab is opened
+            Assert.IsTrue(!string.IsNullOrEmpty(popup));
+            //Get the URL of new tab.
+            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
+            Assert.AreEqual(MainPage.ExpectedValues.TermsConditonTitle, ActualPageTitle, "Title is not matching");
+        }
+
+        [Then(@"Privacy Policy page is displayed")]
+        public void ThenPrivacyPolicyPageIsDisplayed()
+        {
+            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
+            // Check if new tab is opened
+            Assert.IsTrue(!string.IsNullOrEmpty(popup));
+            //Get the URL of new tab.
+            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
+            Assert.AreEqual(MainPage.ExpectedValues.PrivacyPolicyTitle, ActualPageTitle,"Title is not matching");
+        }
+
 
 
     }
