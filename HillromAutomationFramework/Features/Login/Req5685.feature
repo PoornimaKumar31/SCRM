@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5685
-Feature: DownloadSoftwareAndPDF
+Feature: Software Requirement 5685
 	The Customer Portal shall allow user to download the Partner Connect, Service Monitor, DCP application, Administrator's guide, User Guide and Release Notes
 
 @TestCaseID_8917 @UISID_8661

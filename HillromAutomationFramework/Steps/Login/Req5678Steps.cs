@@ -1,13 +1,12 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
-using System;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
 {
     [Binding]
-    public class VersionNoSteps
+    public class Req5678Steps
     {
         LoginPage loginPage = new LoginPage();
 

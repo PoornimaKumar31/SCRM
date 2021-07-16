@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.Login
 {
     [Binding]
-    public class DownloadSoftwareAndPDFSteps
+    public class Req5685Steps
     {
         readonly LoginPage loginPage = new LoginPage();
 

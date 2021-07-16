@@ -10,7 +10,7 @@ namespace HillromAutomationFramework.Steps.Login
 {
     
     [Binding]
-    public class LogoutSteps
+    public class Req5680Steps
     {
         readonly LoginPage loginPage=new LoginPage();
         readonly LandingPage landingPage = new LandingPage();

@@ -56,20 +56,14 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 
         public static bool isDateSorted(this IList<IWebElement> dateList, string typeOfSort = "a")
         {
-            List<string> ActualDateList = new List<string>();
-
-            foreach (IWebElement i in dateList)
-            {
-                if (i.Text != "Date")
-                {
-                    ActualDateList.Add(i.Text);
-                }
-            }
-
             List<DateTime> FormatedDateList = new List<DateTime>();
-            for (int i = 0; i < ActualDateList.Count; i++)
+            foreach (IWebElement element in dateList)
             {
-                FormatedDateList.Add(DateTime.Parse(ActualDateList[i]));
+                if (element.Text != "Date")
+                {
+
+                    FormatedDateList.Add(DateTime.Parse(element.Text)); ;
+                }
             }
 
             List<DateTime> SortedList = new List<DateTime>(FormatedDateList);
@@ -78,12 +72,27 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             {
                 SortedList.Reverse();
             }
-            if (SortedList == FormatedDateList)
+            if (SortedList.Equals(FormatedDateList))
             {
                 return true;
             }
             else
                 return false;
+        }
+
+        public static List<DateTime> GetSortedLogs(List<DateTime> AllDateList,string typeOfSort = "a")
+        {
+            if (typeOfSort.ToLower() == "d")
+            {
+                AllDateList.Sort();
+                return AllDateList;
+            }
+            else
+            {
+                AllDateList.Sort();
+                AllDateList.Reverse();
+                return AllDateList;
+            }
         }
     }
 }

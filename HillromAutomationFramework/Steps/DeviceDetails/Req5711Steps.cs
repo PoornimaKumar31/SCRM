@@ -4,6 +4,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
@@ -47,33 +49,55 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             Assert.IsTrue(rv700DeviceDetailsPage.LogFiles.GetElementCount() != 0); 
         }
-
-        [Given(@"user is on RV700 Log Files page")]
-        public void GivenUserIsOnRV700LogFilesPage()
+  
+        [Given(@"user is on RV700 Log Files page with (.*) logs")]
+        public void GivenUserIsOnRVLogFilesPageWithLogs(int noOfLogs)
         {
             loginPage.SignIn("rv700");
             SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.RV700DeviceName);
-            rv700DeviceDetailsPage.RV700Devices[1].Click();
-            rv700DeviceDetailsPage.LogsTab.Click();
+            selectAssetType.SelectByText(MainPage.ExpectedValues.RV700DeviceName);         
+            Thread.Sleep(2000);
+
+            switch (noOfLogs)
+            {
+                case 0:
+                    //Selecting RV700 device with no log files
+                    rv700DeviceDetailsPage.RV700Devices[1].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
+                    rv700DeviceDetailsPage.LogsTab.Click();
+                    break;
+
+                case 10:
+                    //selecting RV700 device with 10 log files
+                    rv700DeviceDetailsPage.RV700Devices[0].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
+                    rv700DeviceDetailsPage.LogsTab.Click();
+                    break;
+                case 25:
+                    //selecting RV700 device with 25 log files
+                    rv700DeviceDetailsPage.RV700Devices[2].Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
+                    rv700DeviceDetailsPage.LogsTab.Click();
+                    break;
+            }
         }
 
-        [Given(@"RV700 has no logs")]
-        public void GivenRV700HasNoLogs()
+        [Given(@"newest (.*) logs are displayed")]
+        public void GivenNewestLogsAreDisplayed(int p0)
         {
-            Assert.IsTrue(rv700DeviceDetailsPage.LogFiles.GetElementCount() == 0);
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"user will see next (.*) older logs")]
+        public void ThenUserWillSeeNextOlderLogs(int p0)
+        {
+            _scenarioContext.Pending();
         }
 
         [Then(@"no logs for RV700 device are displayed")]
         public void ThenNoLogsForRV700DeviceAreDisplayed()
         {
             Assert.IsFalse(rv700DeviceDetailsPage.LogFiles[0].Displayed);
-        }
-
-        [Given(@"RV700 has ten logs")]
-        public void GivenRV700HasTenLogs()
-        {
-            Assert.IsTrue(rv700DeviceDetailsPage.LogFiles.GetElementCount() == 10);
         }
 
         [Then(@"ten logs for RV700 device are displayed")]
@@ -130,36 +154,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             if (rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
             {
                 rv700DeviceDetailsPage.DateSorting.Click();
-            }
-        }
-
-        [Given(@"RV700 has (.*) logs")]
-        public void GivenRV700HasLogs(int noOfLogs)
-        {
-            switch (noOfLogs)
-            {
-                case 0:
-                    //Selecting CSM device with no log files
-                    rv700DeviceDetailsPage.RV700Devices[1].Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
-                    rv700DeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(rv700DeviceDetailsPage.LogFiles.GetElementCount(), 0);
-                    break;
-
-                case 10:
-                    //selecting CSM device with 10 log files
-                    rv700DeviceDetailsPage.RV700Devices[0].Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
-                    rv700DeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(rv700DeviceDetailsPage.LogFiles.GetElementCount(), 10);
-                    break;
-                case 25:
-                    //selecting CSM device with 25 log files
-                    rv700DeviceDetailsPage.RV700Devices[2].Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
-                    rv700DeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(rv700DeviceDetailsPage.LogFiles.GetElementCount(), 25);
-                    break;
             }
         }
 

@@ -20,26 +20,26 @@ namespace HillromAutomationFramework.Features.Login
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("DownloadSoftwareAndPDF")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5685")]
-    public partial class DownloadSoftwareAndPDFFeature
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5684")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5684")]
+    public partial class SoftwareRequirement5684Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5685"};
+                "SoftwareRequirementID_5684"};
         
-#line 1 "DownloadSoftwareAndPDF.feature"
+#line 1 "Req5684.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "DownloadSoftwareAndPDF", "\tThe Customer Portal shall allow user to download the Partner Connect, Service Mo" +
-                    "nitor, DCP application, Administrator\'s guide, User Guide and Release Notes", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5685"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Software Requirement 5684", "\t The Customer Portal shall have a mechanism for users to reset their password us" +
+                    "ing the email address registered with the Customer Portal.", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5684"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,16 +78,18 @@ namespace HillromAutomationFramework.Features.Login
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Download PartnerConnect")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8917")]
-        [NUnit.Framework.CategoryAttribute("UISID_8661")]
-        public virtual void LoginDownloadPartnerConnect()
+        [NUnit.Framework.DescriptionAttribute("Forgot Password")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8909")]
+        [NUnit.Framework.CategoryAttribute("UISID_8660")]
+        [NUnit.Framework.CategoryAttribute("UISID_8662")]
+        public virtual void ForgotPassword()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8917",
-                    "UISID_8661"};
+                    "TestCaseID_8909",
+                    "UISID_8660",
+                    "UISID_8662"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Download PartnerConnect", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Forgot Password", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,27 +114,29 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-    testRunner.When("user clicks PartnerConnect", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user clicks forgot password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
-    testRunner.Then("PartnerConnect zip file is downloaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("Forgot Password page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Download Service Monitor")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8918")]
-        [NUnit.Framework.CategoryAttribute("UISID_8661")]
-        public virtual void LoginDownloadServiceMonitor()
+        [NUnit.Framework.DescriptionAttribute("Field Entry Email Empty")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8910")]
+        [NUnit.Framework.CategoryAttribute("UISID_8721")]
+        [NUnit.Framework.CategoryAttribute("UISID_8662")]
+        public virtual void FieldEntryEmailEmpty()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8918",
-                    "UISID_8661"};
+                    "TestCaseID_8910",
+                    "UISID_8721",
+                    "UISID_8662"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Download Service Monitor", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Field Entry Email Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -152,31 +156,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 13
+    testRunner.Given("user is on Forgot Password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 14
-    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.When("email field is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
-    testRunner.When("user clicks Service Monitor", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 16
-    testRunner.Then("Service Monitor zip file is downloaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("email field contains hint text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Download DCP")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8919")]
-        [NUnit.Framework.CategoryAttribute("UISID_8661")]
-        public virtual void LoginDownloadDCP()
+        [NUnit.Framework.DescriptionAttribute("Forgot Password Invalid Email")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8911")]
+        [NUnit.Framework.CategoryAttribute("UISID_8660")]
+        [NUnit.Framework.CategoryAttribute("UISID_8662")]
+        public virtual void ForgotPasswordInvalidEmail()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8919",
-                    "UISID_8661"};
+                    "TestCaseID_8911",
+                    "UISID_8660",
+                    "UISID_8662"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Download DCP", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 19
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Forgot Password Invalid Email", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -196,32 +202,37 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 19
+    testRunner.Given("user is on Forgot Password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 20
-    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.When("user enters invalid email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 21
-    testRunner.When("user clicks DCP", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.And("user clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
-    testRunner.Then("DCP zip file is downloaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("forgot invalid error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Download Administrator Guide")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8920")]
-        [NUnit.Framework.CategoryAttribute("UISID_8661")]
-        public virtual void LoginDownloadAdministratorGuide()
+        [NUnit.Framework.DescriptionAttribute("Forgot Password Valid Email")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8912")]
+        [NUnit.Framework.CategoryAttribute("UISID_8660")]
+        [NUnit.Framework.CategoryAttribute("UISID_8662")]
+        public virtual void ForgotPasswordValidEmail()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8920",
-                    "UISID_8661"};
+                    "TestCaseID_8912",
+                    "UISID_8660",
+                    "UISID_8662"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Download Administrator Guide", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Forgot Password Valid Email", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 25
- this.ScenarioInitialize(scenarioInfo);
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -241,74 +252,41 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 26
-    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user is on Forgot Password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 27
-    testRunner.When("user clicks Administrator Guide", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user enters valid email address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 28
-    testRunner.Then("Administrator Guide PDF opens in browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("user clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Download IFU")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8921")]
-        [NUnit.Framework.CategoryAttribute("UISID_8661")]
-        public virtual void LoginDownloadIFU()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8921",
-                    "UISID_8661"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Download IFU", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 29
+    testRunner.Then("Login page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 30
+    testRunner.And("notification message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 31
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 32
-    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 33
-    testRunner.When("user clicks Instructions for Use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 34
-    testRunner.Then("Instructions for Use PDF opens in browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.And("notification message disappears after a few seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Download Release Notes")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8922")]
-        [NUnit.Framework.CategoryAttribute("UISID_8661")]
-        public virtual void LoginDownloadReleaseNotes()
+        [NUnit.Framework.DescriptionAttribute("Forgot Password No Email")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8913")]
+        [NUnit.Framework.CategoryAttribute("UISID_8660")]
+        [NUnit.Framework.CategoryAttribute("UISID_8662")]
+        public virtual void ForgotPasswordNoEmail()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8922",
-                    "UISID_8661"};
+                    "TestCaseID_8913",
+                    "UISID_8660",
+                    "UISID_8662"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Download Release Notes", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 37
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Forgot Password No Email", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 34
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -328,14 +306,60 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 38
-    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 35
+    testRunner.Given("user is on Forgot Password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 39
-    testRunner.When("user clicks Release Notes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+    testRunner.When("user clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 37
+    testRunner.Then("forgot invalid error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Forgot Password Login")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8914")]
+        [NUnit.Framework.CategoryAttribute("UISID_8660")]
+        [NUnit.Framework.CategoryAttribute("UISID_8662")]
+        public virtual void ForgotPasswordLogin()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_8914",
+                    "UISID_8660",
+                    "UISID_8662"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Forgot Password Login", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 40
-    testRunner.Then("Release Notes PDF opens in browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 41
+    testRunner.Given("user is on Forgot Password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 42
+    testRunner.When("user clicks Login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 43
+    testRunner.Then("Login page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

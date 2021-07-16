@@ -20,26 +20,26 @@ namespace HillromAutomationFramework.Features.Login
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("VersionNo")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5678")]
-    public partial class VersionNoFeature
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5680")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5680")]
+    public partial class SoftwareRequirement5680Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5678"};
+                "SoftwareRequirementID_5680"};
         
-#line 1 "VersionNo.feature"
+#line 1 "Req5680.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "VersionNo", "\tThe Customer Portal shall have a feature for displaying the version of the custo" +
-                    "mer portal", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5678"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Software Requirement 5680", "    The Customer Portal shall have a feature for users to log out while logged in" +
+                    ".", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5680"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,16 +78,16 @@ namespace HillromAutomationFramework.Features.Login
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Version")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8915")]
-        [NUnit.Framework.CategoryAttribute("UISID_8660")]
-        public virtual void LoginVersion()
+        [NUnit.Framework.DescriptionAttribute("Logout")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8916")]
+        [NUnit.Framework.CategoryAttribute("UISID_8717")]
+        public virtual void Logout()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8915",
-                    "UISID_8660"};
+                    "TestCaseID_8916",
+                    "UISID_8717"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Version", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Logout", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,10 +109,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user is logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-    testRunner.Then("\"Version 7.0.0 ENG01\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.When("user clicks Logout button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 9
+    testRunner.Then("Login page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

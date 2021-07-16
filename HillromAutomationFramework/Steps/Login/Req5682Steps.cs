@@ -11,7 +11,7 @@ using System.Linq;
 namespace HillromAutomationFramework.Steps.Login
 {
     [Binding]
-    public class LoginSteps
+    public class Req5682Steps
     {
         readonly LoginPage loginPage = new LoginPage();
         [Given(@"user is on Login page")]
