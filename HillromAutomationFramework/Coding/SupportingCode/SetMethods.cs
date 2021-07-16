@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
 {
@@ -27,6 +28,25 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             executor.ExecuteScript("arguments[0].click()", webElement);
         }
 
+        //scroll till bottom of page
+        public static void ScrollToBottomofWebpage()
+        {
+            long scrollHeight = 0;
+            do
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)(PropertyClass.Driver);
+                var newScrollHeight = (long)js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;");
+                if (newScrollHeight == scrollHeight)
+                {
+                    break;
+                }
+                else
+                {
+                    scrollHeight = newScrollHeight;
+                    Thread.Sleep(400);
+                }
+            } while (true);
+        }
 
         /*for selecting value from drop down list*/
         public static void SelectDDL(this IWebElement element, string value)

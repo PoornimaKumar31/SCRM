@@ -11,15 +11,15 @@ namespace HillromAutomationFramework.Coding.SupportingCode
     public static class GetMethods
     {
         /*for getting the value from text field*/
-        public static string GetText(IWebElement element)
+        public static string GetTextFromField(this IWebElement element)
         {
-            return element.GetAttribute("value");
+            return element.Text;
         }
 
         /*for getting the value from Drop Down List*/
-        public static string GetTextFromDDL(IWebElement element)
+        public static string GetSelectedOptionFromDDL(this IWebElement element)
         {
-            return new SelectElement(element).AllSelectedOptions.SingleOrDefault().Text;
+            return new SelectElement(element).SelectedOption.Text;
         }
 
         // Takes screenshot of current screen.
