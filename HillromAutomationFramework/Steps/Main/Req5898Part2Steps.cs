@@ -56,6 +56,7 @@ namespace HillromAutomationFramework.Steps.Main
             Assert.AreEqual(MainPage.ExpectedValues.ContactUsTitle, ActualPageTitle, "Title is not matching");
         }
 
+        [Scope(Tag = "TestCaseID_8947")]
         [Then(@"Terms and Conditions page is displayed")]
         public void ThenTermsAndConditionsPageIsDisplayed()
         {
@@ -67,7 +68,8 @@ namespace HillromAutomationFramework.Steps.Main
             Assert.AreEqual(MainPage.ExpectedValues.TermsConditonTitle, ActualPageTitle, "Title is not matching");
         }
 
-        [Then(@"Privacy Policy page is displayed")]
+        
+        [Then(@"Privacy Policy page is displayed"), Scope(Tag = "TestCaseID_8949")]
         public void ThenPrivacyPolicyPageIsDisplayed()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab

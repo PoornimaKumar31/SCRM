@@ -16,8 +16,8 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.PrivacyPolicylink.Clicks();
         }
 
-        [Scope(Tag = "TestCaseID_8923")]
-        [Then(@"Privacy Policy page is displayed")]
+        
+        [Then(@"Privacy Policy page is displayeds")]
         public void ThenPrivacyPolicyPageIsDisplayed()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
@@ -34,8 +34,8 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.TermsOfUseLink.Clicks();
         }
 
-        [Scope(Tag = "TestCaseID_8924")]
-        [Then(@"Terms and Conditions page is displayed")]
+       
+        [Then(@"Terms and Conditions page is displayeds")]
         public void ThenTermsAndConditionsPageIsDisplayed()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
