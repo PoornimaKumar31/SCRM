@@ -73,7 +73,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"login invalid error message will display")]
         public void ThenUsernameOrPasswordIsInvalidErrorMessageWillDisplay()
         {
-            Assert.AreEqual(loginPage.ErrorMessage.Displayed,true,"Login invalid error message is not diaplayed");
+            Assert.AreEqual(true, loginPage.ErrorMessage.GetElementVisibility(), "Login invalid error message is not diaplayed");
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.InvalidEntryErrorMessage;
             Assert.AreEqual(ExpectedErrorText, ActualErrortext,"Error message not matches with the expected value"); //Compare the error message displayed.
@@ -82,7 +82,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"login authentication error message will display")]
         public void AuthenticationErrorMessageWillDisplay()
         {
-            Assert.AreEqual(loginPage.ErrorMessage.Displayed, true, "Authentication error message is not displayed");
+            Assert.AreEqual(true, loginPage.ErrorMessage.GetElementVisibility(), "Authentication error message is not displayed");
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.NoEntryErrorMessage;
             Assert.AreEqual(ExpectedErrorText, ActualErrortext,"Authentication error message is not matching with the expected value"); //Compare the error message displayed.

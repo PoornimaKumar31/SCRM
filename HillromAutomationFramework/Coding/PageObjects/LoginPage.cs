@@ -22,7 +22,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LoginButtonID = "btn_login";
             public const string EmailFieldID = "user";
             public const string PasswordFieldID = "password";
-            public const string ErrorMessageXPath = "//*[@id=\"lbl_login_error\"]/div/div/p/span";
+            public const string ErrorMessageID = "lbl_login_error";
             public const string ForgetPasswordLinkID = "forgot_pwd";
             public const string ForgetPasswordSuccessMessageID = "snackbar";
 
@@ -133,7 +133,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement LoginButton { get; set; }
 
         /// Credential Error message
-        [FindsBy(How = How.XPath, Using = Locator.ErrorMessageXPath)]
+        [FindsBy(How = How.Id, Using = Locator.ErrorMessageID)]
         public IWebElement ErrorMessage { get; set; }
 
         

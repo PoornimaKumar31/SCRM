@@ -26,7 +26,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string FirstConfigFileID = "cvsm_config0";
             public const string SelectUpdateNextButtonID = "update";
             public const string DeleteButtonID = "delete";
-            
+
+            //delete config file elements
+            public const string DeleteConfigFilePopUpID = "usrmgt_confirmation_win";
+            public const string DeleteConfigFileNameID = "usrmgt_confirmation_user";
+            public const string DeleteAreYouSureMessageXpath= "//*[@id=\"usrmgt_confirmation_win\"]/div[1]/p[2]/span";
+            public const string DeletePopUpYesButtonXpath = "/html/body/c8y-bootstrap/div/div[2]/div/c8y-hillrom-home-page/c8y-hillrom-landing-page/div/div/div[2]/c8y-hillrom-updates/div/div[2]/div/div[2]/button[1]";
+            public const string DeletePopUpNoButtonXpath = "/html/body/c8y-bootstrap/div/div[2]/div/c8y-hillrom-home-page/c8y-hillrom-landing-page/div/div/div[2]/c8y-hillrom-updates/div/div[2]/div/div[2]/button[2]";
+
 
             //select devices
             public const string DeployHeadID = "deployhead";
@@ -77,6 +84,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //select update
             public const string NameHeadingText = "Name";
             public const string DateColumnHeadingText = "Date created";
+
 
             //select devices or select assets
             public const string ItemToPushLabelText = "Item to push";
@@ -145,6 +153,22 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.Id, Using = Locators.DeleteButtonID)]
         public IWebElement DeleteButton { get; set; }
+
+        //deleteconfig file elements
+        [FindsBy(How = How.Id, Using = Locators.DeleteConfigFilePopUpID)]
+        public IWebElement DeleteConfigFilePopUp { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DeleteConfigFileNameID)]
+        public IWebElement DeleteConfigFileName { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.DeleteAreYouSureMessageXpath)]
+        public IWebElement DeleteAreYouSureMessage { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.DeletePopUpYesButtonXpath)]
+        public IWebElement DeletePopUpYesButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.DeletePopUpNoButtonXpath)]
+        public IWebElement DeletePopUpNoButton { get; set; }
 
         //select devices
         [FindsBy(How = How.Id, Using = Locators.DeployHeadID)]

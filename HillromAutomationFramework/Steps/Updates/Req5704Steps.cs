@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Updates
 {
-    [Binding,Scope(Tag = "SoftwareRequirementID_5704")]
+    [Binding, Scope(Tag = "SoftwareRequirementID_5704")]
     public class Req5704Steps
     {
         LoginPage loginPage = new LoginPage();
@@ -40,7 +40,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             string SelectedAssetType = csmConfigDeliverPage.AssetTypeDropDown.GetSelectedOptionFromDDL();
             string ExpectedAssetType = CSMConfigDeliverPage.ExpectedValues.CSMDeviceName;
-            Assert.AreEqual(ExpectedAssetType, SelectedAssetType,"CSM is not selected as asset type.\n");
+            Assert.AreEqual(ExpectedAssetType, SelectedAssetType, "CSM is not selected as asset type.\n");
         }
 
         [Then(@"Update type drop down contains Upgrade and Configuration entries")]
@@ -48,7 +48,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             IList<IWebElement> DropdownElements = csmConfigDeliverPage.UpdateTypeDropDown.GetAllOptionsFromDDL();
             List<string> DropDownOptionsList = new List<string>();
-            foreach(IWebElement option in DropdownElements)
+            foreach (IWebElement option in DropdownElements)
             {
                 DropDownOptionsList.Add(option.Text);
             }
@@ -136,7 +136,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Given(@"Configuration list is not empty")]
         public void GivenConfigurationListIsNotEmpty()
         {
-            Assert.AreEqual(true,csmConfigDeliverPage.ConfigFileName.GetElementCount()>0,"Configuration list is empty"); 
+            Assert.AreEqual(true, csmConfigDeliverPage.ConfigFileName.GetElementCount() > 0, "Configuration list is empty");
         }
 
         [Then(@"configuration files are sorted in ascending alphabetical order")]
@@ -148,7 +148,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Given(@"user is on CSM Updates page with ""(.*)"" entries")]
         public void GivenUserIsOnCSMUpdatesPageWithEntries(string noOfEntries)
         {
-            switch(noOfEntries)
+            switch (noOfEntries)
             {
                 case "<= 50": _scenarioContext.Pending();
                     break;
@@ -192,7 +192,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [When(@"user clicks Next page icon")]
         public void WhenUserClicksNextPageIcon()
         {
-           // SetMethods.ScrollToBottomofWebpage();
+            // SetMethods.ScrollToBottomofWebpage();
             csmConfigDeliverPage.PaginationNextIcon.JavaSciptClick();
         }
 
@@ -238,7 +238,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenCSMSelectDevicesPageIsDisplayed()
         {
             bool result = (csmConfigDeliverPage.ItemToPushLabel.GetElementVisibility()) || (csmConfigDeliverPage.DestinationDeviceCount.GetElementVisibility());
-            Assert.AreEqual(true,result , "User is not on Select devices page.");
+            Assert.AreEqual(true, result, "User is not on Select devices page.");
         }
 
         [Given(@"user is on CSM Configuration Select assets page")]
@@ -255,7 +255,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Select update indicator is not highlighted")]
         public void ThenSelectUpdateIndicatorIsNotHighlighted()
         {
-            Assert.AreNotEqual(CSMConfigDeliverPage.ExpectedValues.HighlightedCircleClassName,csmConfigDeliverPage.SelectUpdateCircle.GetAttribute("class"), "Select update indicator is highlighted"); 
+            Assert.AreNotEqual(CSMConfigDeliverPage.ExpectedValues.HighlightedCircleClassName, csmConfigDeliverPage.SelectUpdateCircle.GetAttribute("class"), "Select update indicator is highlighted");
         }
 
         [Then(@"Select devices indicator is highlighted")]
@@ -273,8 +273,8 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"""(.*)"" label is displayed")]
         public void ThenLabelIsDisplayed(string labelName)
         {
-            IWebElement labelElement=null;
-            switch(labelName.ToLower().Trim())
+            IWebElement labelElement = null;
+            switch (labelName.ToLower().Trim())
             {
                 case "item to push": labelElement = csmConfigDeliverPage.ItemToPushLabel;
                     break;
@@ -293,7 +293,7 @@ namespace HillromAutomationFramework.Steps.Updates
                 default: Assert.Fail(labelName + " is an invalid label name");
                     break;
             }
-            Assert.AreEqual(true, labelElement.GetElementVisibility(), labelName+" label is not dispalyed");
+            Assert.AreEqual(true, labelElement.GetElementVisibility(), labelName + " label is not dispalyed");
         }
 
         [Then(@"location hierarchy selectors are displayed")]
@@ -329,9 +329,9 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"""(.*)"" column (.*) heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string HeadingName, int p1)
         {
-            IWebElement HeadingElement=null;
-            string ExpectedHeadingText=null;
-            switch(HeadingName.ToLower().Trim())
+            IWebElement HeadingElement = null;
+            string ExpectedHeadingText = null;
+            switch (HeadingName.ToLower().Trim())
             {
                 case "firmware": HeadingElement = csmConfigDeliverPage.FirmwareHeading;
                     ExpectedHeadingText = CSMConfigDeliverPage.ExpectedValues.FirmwareHeadingText;
@@ -359,13 +359,129 @@ namespace HillromAutomationFramework.Steps.Updates
                 default: Assert.Fail(HeadingName + " is a invalid heading name");
                     break;
             }
-            Assert.AreEqual(true, HeadingElement.GetElementVisibility(), HeadingName+" is not displayed.");
+            Assert.AreEqual(true, HeadingElement.GetElementVisibility(), HeadingName + " is not displayed.");
             string ActualHeadingText = HeadingElement.Text.ToLower();
-            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText, HeadingName+" not matches with the expected value");
+            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText, HeadingName + " not matches with the expected value");
 
         }
 
-      
+        [When(@"user selects one device")]
+        public void WhenUserSelectsOneDevice()
+        {
+            csmConfigDeliverPage.FirstDeviceInTable.Click();
+        }
+
+        [Then(@"count of selected devices changes from (.*) to (.*)")]
+        public void ThenCountOfSelectedDevicesChangesFromTo(int p0, int p1)
+        {
+            string ActualDesinationCountText = csmConfigDeliverPage.DestinationDeviceCount.Text;
+            string ExpectedDestinationCountText = CSMConfigDeliverPage.ExpectedValues.Destination1DeviceCountText;
+            Assert.AreEqual(ExpectedDestinationCountText, ActualDesinationCountText, "Count of selected devices are not changed.");
+        }
+
+        [Then(@"Next button is enabled")]
+        public void ThenNextButtonIsEnabled()
+        {
+            Assert.AreEqual(true, csmConfigDeliverPage.SelectDeviceNextButton.Enabled, "Next button is not enabled.");
+        }
+
+        [When(@"user clicks Previous button")]
+        public void WhenUserClicksPreviousButton()
+        {
+            csmConfigDeliverPage.PreviousButton.Click();
+        }
+
+        [Then(@"user is on CSM Updates page")]
+        public void ThenUserIsOnCSMUpdatesPage()
+        {
+            bool IsUpdatePage = (csmConfigDeliverPage.AssetTypeDropDown.GetElementVisibility()) || (csmConfigDeliverPage.UpdateTypeDropDown.GetElementVisibility());
+            Assert.AreEqual(true, IsUpdatePage, "CSM update page is not displayed");
+        }
+
+        [When(@"clicks Next button")]
+        public void WhenClicksNextButton()
+        {
+            csmConfigDeliverPage.SelectUpdateNextButton.Click();
+        }
+
+        [Then(@"CSM Review Action page is displayed")]
+        public void ThenCSMReviewActionPageIsDisplayed()
+        {
+            bool IsReviewActionPage = (csmConfigDeliverPage.ReviewActionItemToPushLabel.GetElementVisibility()) || (csmConfigDeliverPage.ReviewActionDestinationLabel.GetElementVisibility());
+            Assert.AreEqual(true, IsReviewActionPage, "CSM Reiew action page is not displayed.");
+        }
+
+        [Given(@"user is on CSM Review Action page")]
+        public void GivenUserIsOnCSMReviewActionPage()
+        {
+            GivenUserIsOnCSMConfigurationSelectAssetsPage();
+            csmConfigDeliverPage.FirstDeviceInTable.Click();
+            csmConfigDeliverPage.SelectUpdateNextButton.Click();
+            Assert.AreEqual(true, csmConfigDeliverPage.ReviewActionItemToPushLabel.GetElementVisibility(), "User is not CSM Review action page.");
+        }
+
+        [Then(@"Item to push label is displayed")]
+        public void ThenItemToPushLabelIsDisplayed()
+        {
+            Assert.AreEqual(true, csmConfigDeliverPage.ReviewActionItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");
+        }
+
+        [Then(@"Item to push value is displayed")]
+        public void ThenItemToPushValueIsDisplayed()
+        {
+            Assert.AreEqual(true, csmConfigDeliverPage.ReviewActionItemToPushValue.GetElementVisibility(), "Item to push value is not displayed.");
+        }
+
+        [Then(@"Destinations label is displayed")]
+        public void ThenDestinationsLabelIsDisplayed()
+        {
+            Assert.AreEqual(true, csmConfigDeliverPage.ReviewActionDestinationLabel.GetElementVisibility(), "Destinations label is not displayed.");
+        }
+
+        [Then(@"Destinations value is displayed")]
+        public void ThenDestinationsValueIsDisplayed()
+        {
+            Assert.AreEqual(true, csmConfigDeliverPage.ReviewActionDestinationValue.GetElementVisibility(), "Destinations value is not displayed.");
+        }
+
+        [Then(@"Select devices indicator is not highlighted")]
+        public void ThenSelectDevicesIndicatorIsNotHighlighted()
+        {
+            Assert.AreNotEqual(CSMConfigDeliverPage.ExpectedValues.HighlightedCircleClassName, csmConfigDeliverPage.SelectDevicesCircle.GetAttribute("class"), "Select device indicator is highlighted");
+        }
+
+        [Then(@"Review action indicator is highlighted")]
+        public void ThenReviewActionIndicatorIsHighlighted()
+        {
+            Assert.AreEqual(CSMConfigDeliverPage.ExpectedValues.HighlightedCircleClassName, csmConfigDeliverPage.ReviewActionCircle.GetAttribute("class"), "Review action indicator is not highlighted");
+        }
+
+        [Then(@"Confirm button is enabled")]
+        public void ThenConfirmButtonIsEnabled()
+        {
+            Assert.AreEqual(true, csmConfigDeliverPage.ReviewActionConfirmButton.Enabled, "Confirm button is not enabled");
+        }
+
+        [When(@"user clicks Confirm button")]
+        public void WhenUserClicksConfirmButton()
+        {
+            csmConfigDeliverPage.ReviewActionConfirmButton.Click();
+        }
+
+        [Then(@"Update process has been established message is displayed")]
+        public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
+        {
+            //Message Id is not available
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"Select devices page is displayed")]
+        public void ThenSelectDevicesPageIsDisplayed()
+        {
+            bool IsSelectDevicePage = (csmConfigDeliverPage.ItemToPushLabel.GetElementVisibility()) || (csmConfigDeliverPage.DeviceType.GetElementVisibility());
+            Assert.AreEqual(true, IsSelectDevicePage, "Select devices page is not displayed");
+        }
+
 
     }
 }

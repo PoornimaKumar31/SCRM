@@ -53,6 +53,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SerialHeadingID = "Sno";
             public const string LocationHeadingID = "Location";
             public const string LastFilesDeployedHeadingID = "LastFile";
+            public const string FirstDeviceInTableID = "checkbox-0";
+
+            //select review action page
+            public const string ReviewActionItemToPushLabelID = "lbl_push_item";
+            public const string ReviewActionItemToPushValueID = "push_item_value";
+            public const string ReviewActionDestinationLabelXpath = "/html/body/c8y-bootstrap/div/div[2]/div/c8y-hillrom-home-page/c8y-hillrom-landing-page/div/div/div[2]/c8y-hillrom-cvsm-deployment/div/div[1]/div[6]/div/div[2]/span";
+            public const string ReviewActionDestinationValueID = "destination_value";
+            public const string ReviewActionConfirmButtonID = "confirm";
         }
 
         public static class ExpectedValues
@@ -70,7 +78,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SerialHeadingText = "Serial";
             public const string LocationHeadingText = "Location";
             public const string LastFilesDeployedHeadingText = "Last Files Deployed";
-
+            public const string Destination1DeviceCountText = "1 assets selected in 1 locations";
             public const string HighlightedCircleClassName = "circle selectedStep";
         }
 
@@ -183,6 +191,25 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.Id, Using = Locators.LastFilesDeployedHeadingID)]
         public IWebElement LastFilesDeployedHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.FirstDeviceInTableID)]
+        public IWebElement FirstDeviceInTable { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.ReviewActionItemToPushLabelID)]
+        public IWebElement ReviewActionItemToPushLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.ReviewActionItemToPushValueID)]
+        public IWebElement ReviewActionItemToPushValue { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.ReviewActionDestinationLabelXpath)]
+        public IWebElement ReviewActionDestinationLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.ReviewActionDestinationValueID)]
+        public IWebElement ReviewActionDestinationValue { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.ReviewActionConfirmButtonID)]
+        public IWebElement ReviewActionConfirmButton { get; set; }
+
 
         public bool IsConfigFileSorted(IList<IWebElement> elements)
         {

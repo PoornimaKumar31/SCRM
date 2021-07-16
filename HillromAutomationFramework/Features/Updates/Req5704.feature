@@ -30,11 +30,11 @@ Scenario: CSM Configuration Update Default Sort Order
 	And Configuration list is not empty
 	Then configuration files are sorted in ascending alphabetical order
 
-#@TestCaseID_9086 @UISID_8696
-#Scenario: CSM Configuration <= 50
-#	Given user is on CSM Updates page with <= 50 entries
-#	Then Previous page icon is disabled
-#	And Next page icon is disabled
+@TestCaseID_9086 @UISID_8696
+Scenario: CSM Configuration <= 50 entries
+	Given user is on CSM Updates page with "<= 50" entries
+	Then Previous page icon is disabled
+	And Next page icon is disabled
 
 @TestCaseID_9087 @UISID_8696
 Scenario: CSM Configuration Files > 50
