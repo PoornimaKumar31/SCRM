@@ -1,17 +1,16 @@
 ﻿@SoftwareRequirementID_5689
-Feature: Software Requirement 5689
+Feature: RollUpPage
 	The Customer Portal shall display a system roll-up view based on setup configuration.
 
-@TestCaseID_9098 @UISID_8664 @UISID_8665
-Scenario: System Roll-up View
-	Given user logins with roll-up access
-	Then Roll-up page is displayed
+@TestCaseID_ @UISID_
+Scenario: System with rollup
+	Given user is logging in with rollup page configuration
+	Then user will see Organization titles
+	And facility panel with the titles
+	And location information on each facility panel
 
-@TestCaseID_9099 @UISID_8664 @UISID_8665
-Scenario: System Rollup View Elements
-	Given user is on Landing page
-	And Roll-up page is displayed
-	Then Organization name is displayed
-	And Facility name is displayed
-	And Servers are displayed
-	And Devices are displayed
+@TestCaseID_ @UISID_
+Scenario: System withot Rollup
+	Given user is logged without rollup page configuration
+	Then user will see the Mainpage
+	And without roll up
