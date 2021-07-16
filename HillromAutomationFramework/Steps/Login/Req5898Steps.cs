@@ -16,6 +16,7 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.PrivacyPolicylink.Clicks();
         }
 
+        [Scope(Tag = "TestCaseID_8923")]
         [Then(@"Privacy Policy page is displayed")]
         public void ThenPrivacyPolicyPageIsDisplayed()
         {
@@ -33,6 +34,7 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.TermsOfUseLink.Clicks();
         }
 
+        [Scope(Tag = "TestCaseID_8924")]
         [Then(@"Terms and Conditions page is displayed")]
         public void ThenTermsAndConditionsPageIsDisplayed()
         {

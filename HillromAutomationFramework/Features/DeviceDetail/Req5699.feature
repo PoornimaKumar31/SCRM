@@ -24,7 +24,7 @@ Scenario: CSM Log Files Download
 @TestCaseID_8969 @UISID_8678
 Scenario: CSM Log Files Ten Files
 	Given user is on CSM Log Files page with 10 logs
-	Then ten logs for CSM device are displayed
+	Then 10 logs for CSM device are displayed
 	And user cannot navigate to next logs page
 
 @TestCaseID_8970 @UISID_8678
@@ -44,21 +44,17 @@ Scenario: CSM Log Files Ten Files Request Previous
 
 @TestCaseID_8972 @UISID_8678
 Scenario: CSM Log Files 25 Files Next1
-	Given user is on CSM Log Files page with 25 logs
+	Given user is on CSM Log Files page with 24 logs
 	And Log files are sorted by decreasing date	
-	And newest ten logs are displayed
+	And newest 10 logs are displayed
 	When user clicks Next page button
-	Then user will see next ten older logs
-	And user will see logs page 2 indicator
-
-@TestCaseID_8973 @UISID_8678
-Scenario: CSM Log Files 25 Files Next2 
-	Given user is on CSM Log Files page with 25 logs
-	And logs are sorted by decreasing date
-	And second ten logs are displayed
+	Then user will see next 10 older logs
+	And Displaying 11 to 20 of 24 results label is displayed
+	And page 2 of 3 label is displayed
 	When user clicks Next page button
-	Then user will see next five older logs
-	And user will see logs page 3 indicator
+	Then user will see next 4 older logs
+	And Displaying 21 to 24 of 24 results label is displayed
+	And page 3 of 3 label is displayed
 
 @TestCaseID_8974 @UISID_8678
 Scenario: CSM Log Files Sort Decreasing Date

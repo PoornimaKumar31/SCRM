@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5898
-Feature: MainPageFooterLinks
+Feature: Software Requirement 5898 Part 2
 	The customer portal shall provide URL links to the following:
 	Global Service Center
 	Privacy Policy

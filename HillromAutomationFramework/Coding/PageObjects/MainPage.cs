@@ -36,8 +36,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             public const string MainpageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement-centrella/index.html#/landing-page/devices";
 
-            public const string GlobalServiceCenterURL = "https://www.hillrom.com/en/services/";
-            public const string ContactUsURL = "https://www.hillrom.com/en/about-us/contact-us/";
+            public const string GlobalServiceCenterTitle = "Services | Hillrom";
+            public const string ContactUsTitle = "Contact Us | Hillrom";
+            public const string TermsConditonTitle = "Hillrom Terms and Conditions | Hillrom";
+            public const string PrivacyPolicyTitle = "Global Privacy Notice | Hillrom";
 
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";

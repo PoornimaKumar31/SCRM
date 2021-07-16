@@ -17,10 +17,12 @@ namespace HillromAutomationFramework.Steps.Login
         {
             loginPage.PartnerConnectLink.Clicks();
             // Checking if download starts.
+            int count = 0;
             bool file_exist = false;
-            while (file_exist != true)
+            while (file_exist != true || count <= 30)
             {
                 Task.Delay(10000).Wait();
+                count++;
                 if (File.Exists(PropertyClass.PartnerConnectFilePath))
                 {
                     file_exist = true;
@@ -50,9 +52,11 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.ServiceMoniterLink.Clicks();
             // Checking if download starts.
             bool file_exist = false;
-            while (file_exist != true)
+            int count = 0;
+            while (file_exist != true || count <= 30)
             {
                 Task.Delay(10000).Wait();
+                count++;
                 if (File.Exists(PropertyClass.ServiceMonitorFilePath))
                 {
                     file_exist = true;
@@ -82,9 +86,11 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.DCPLink.Clicks();
             // Checking if download starts.
             bool file_exist = false;
-            while (file_exist != true)
+            int count = 0;
+            while (file_exist != true || count<=30)
             {
                 Task.Delay(1000).Wait();
+                count++;
                 if (File.Exists(PropertyClass.DCPFilePath))
                 {
                     file_exist = true;

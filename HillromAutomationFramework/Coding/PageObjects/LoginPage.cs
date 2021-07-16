@@ -217,7 +217,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
             // Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(20));
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
 
             if (signinType.ToLower().Trim().Contains("adminwithrollup"))
