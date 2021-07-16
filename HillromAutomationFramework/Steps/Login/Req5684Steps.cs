@@ -10,13 +10,13 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.Login
 {
     [Binding]
-    public class ForgotPasswordSteps
+    public class Req5684Steps
     {
         private readonly ScenarioContext _scenarioContext;
         readonly LoginPage loginPage = new LoginPage();
         readonly ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
 
-        public ForgotPasswordSteps(ScenarioContext scenarioContext)
+        public Req5684Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
@@ -24,7 +24,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks forgot password")]
         public void WhenUserClickOnForgotPassword()
         {
-            loginPage.ForgotPasswordLink.Clicks();
+            loginPage.ForgotPasswordLink.Click();
         }
 
         [Then(@"Forgot Password page is displayed")]

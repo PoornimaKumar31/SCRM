@@ -30,7 +30,7 @@ namespace HillromAutomationFramework.Features.Main
         private string[] _featureTags = new string[] {
                 "SoftwareRequirementID_5898"};
         
-#line 1 "MainPageFooterLinks.feature"
+#line 1 "Req5898Part2.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]

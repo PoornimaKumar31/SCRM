@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.Landing
 {
     [Binding]
-    public class LandingPageFooterLinksSteps
+    public class Req5898Steps
     {
         readonly LoginPage loginPage = new LoginPage();
 

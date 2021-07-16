@@ -79,10 +79,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RealeaseNotesPDFURL = "https://www.hillrom.com/content/dam/hillrom-aem/us/en/sap-documents/LIT/80028/80028399LITPDF.pdf";
 
             //footer links
-            public const string CopyRight = "© 2021 Hillrom™. ";
-            public const string RightsReservedMessage = "All rights reserved. ";
-            public const string PrivacyPolicyURL = "https://www.hillrom.com/en/about-us/global-privacy-notice/";
-            public const string TermsOfUseURL = "https://www.hillrom.com/en/about-us/hill-rom-terms-and-conditions/";
+            public const string CopyRight = "© 2021 Hillrom™.";
+            public const string RightsReservedMessage = "All rights reserved.";
+            public const string PrivacyPolicyTitle = "Privacy Policy";
+            public const string TermsOfUseTitle = "Terms of Use";
 
             //Supported Browser List
             public const string SupportedBrowserEdge = "Microsoft Edge : version 89 and higher";

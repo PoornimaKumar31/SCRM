@@ -7,7 +7,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.Landing
 {
     [Binding]
-    public class RollUpPageSteps
+    public class Req5689Steps
     {
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();

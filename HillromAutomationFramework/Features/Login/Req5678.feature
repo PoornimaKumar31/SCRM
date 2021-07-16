@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5678
-Feature: VersionNo
+Feature: Software Requirement 5678
 	The Customer Portal shall have a feature for displaying the version of the customer portal
 
 @TestCaseID_8915 @UISID_8660 

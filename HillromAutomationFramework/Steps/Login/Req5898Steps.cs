@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.Login
 {
     [Binding]
-    public class FooterLinksSteps
+    public class Req5898Steps
     {
         readonly LoginPage loginPage = new LoginPage();
 
@@ -23,8 +23,8 @@ namespace HillromAutomationFramework.Steps.Login
             // Check if new tab is opened
             Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"New tab for privacy policy link is not opened");
             //Get the URL of new tab.
-            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
-            Assert.AreEqual(LoginPage.ExpectedValues.PrivacyPolicyURL, ActualPageURL,"Privacy policy link is not matching with the expected");
+            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
+            Assert.AreEqual(LoginPage.ExpectedValues.PrivacyPolicyTitle, ActualPageTitle,"Privacy policy link is not matching with the expected");
         }
 
         [When(@"user clicks Terms of Use")]
@@ -40,8 +40,8 @@ namespace HillromAutomationFramework.Steps.Login
             // Check if new tab is opened
             Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"New tab for Terms and conditions page is not opened");
             //Get the URL of new tab.
-            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
-            Assert.AreEqual(LoginPage.ExpectedValues.TermsOfUseURL, ActualPageURL,"Terms and condition page URL does not match with the expected URL");
+            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
+            Assert.AreEqual(LoginPage.ExpectedValues.TermsOfUseTitle, ActualPageTitle,"Terms and condition page URL does not match with the expected URL");
         }
     }
 }

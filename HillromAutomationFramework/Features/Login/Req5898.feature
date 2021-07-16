@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5898
-Feature: Login Page FooterLinks
+Feature: Software Requirement 5898
 	The customer portal shall provide URL links to Global Privacy notice and Terms of use
 
 @TestCaseID_8923 @UISID_8661    

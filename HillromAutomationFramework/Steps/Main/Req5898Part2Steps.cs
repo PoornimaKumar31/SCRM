@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.Main
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5898")]
-    public class MainPageFooterLinksSteps
+    public class Req5898Part2Steps
     {
         readonly LoginPage loginPage = new LoginPage();
         readonly MainPage mainPage = new MainPage();

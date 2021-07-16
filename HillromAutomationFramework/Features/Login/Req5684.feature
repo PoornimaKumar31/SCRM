@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5684
-Feature: Forgot Password
+Feature: Software Requirement 5684
 	 The Customer Portal shall have a mechanism for users to reset their password using the email address registered with the Customer Portal.
 
 @TestCaseID_8909 @UISID_8660 @UISID_8662	

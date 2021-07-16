@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.Login
+namespace HillromAutomationFramework.Features.Landing
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,25 +20,26 @@ namespace HillromAutomationFramework.Features.Login
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Supported Browser List")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5899")]
-    public partial class SupportedBrowserListFeature
+    [NUnit.Framework.DescriptionAttribute("LandingPageLinks")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5898")]
+    public partial class LandingPageLinksFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5899"};
+                "SoftwareRequirementID_5898"};
         
-#line 1 "SupportedBrowserList.feature"
+#line 1 "Req5898.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Login", "Supported Browser List", "\tThe customer portal shall display Supported Browsers.", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5899"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Landing", "LandingPageLinks", "\tThe customer portal shall provide URL links to the Privacy Policy and Terms of U" +
+                    "se", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5898"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,16 +78,16 @@ namespace HillromAutomationFramework.Features.Login
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Supported Browsers")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8925")]
-        [NUnit.Framework.CategoryAttribute("UISID_8660")]
-        public virtual void LoginSupportedBrowsers()
+        [NUnit.Framework.DescriptionAttribute("Landing Terms of Use")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8945")]
+        [NUnit.Framework.CategoryAttribute("UISID_8664")]
+        public virtual void LandingTermsOfUse()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8925",
-                    "UISID_8660"};
+                    "TestCaseID_8945",
+                    "UISID_8664"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Supported Browsers", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Landing Terms of Use", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -108,29 +109,29 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-    testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-    testRunner.When("user clicks Supported Browsers", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Terms of Use", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
-    testRunner.Then("Supported Browsers dialog is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Terms and Conditions page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Login Supported Browsers Close")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_8926")]
-        [NUnit.Framework.CategoryAttribute("UISID_8660")]
-        public virtual void LoginSupportedBrowsersClose()
+        [NUnit.Framework.DescriptionAttribute("Landing Privacy Policy")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8946")]
+        [NUnit.Framework.CategoryAttribute("UISID_8664")]
+        public virtual void LandingPrivacyPolicy()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8926",
-                    "UISID_8660"};
+                    "TestCaseID_8946",
+                    "UISID_8664"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Login Supported Browsers Close", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Landing Privacy Policy", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -152,13 +153,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 13
-    testRunner.Given("user is on Supported Browsers dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
-    testRunner.When("user clicks Close button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Privacy Policy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
-    testRunner.Then("Supported Browsers dialog is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Privacy Policy page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

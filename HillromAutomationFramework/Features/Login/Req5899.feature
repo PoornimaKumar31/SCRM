@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5899
-Feature: Supported Browser List
+Feature: Software Requirement 5899
 	The customer portal shall display Supported Browsers.
 
 @TestCaseID_8925 @UISID_8660 

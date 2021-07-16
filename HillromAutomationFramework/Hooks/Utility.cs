@@ -4,6 +4,7 @@ using AventStack.ExtentReports.Reporter;
 using HillromAutomationFramework.Coding.SupportingCode;
 using Microsoft.Edge.SeleniumTools;
 using Microsoft.Extensions.Configuration;
+using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using System;
 using TechTalk.SpecFlow;
@@ -95,13 +96,13 @@ namespace HillromAutomationFramework.Hooks
             }
             else
             {
-                Console.WriteLine("Invalid browser name!!!!");
+                Assert.Fail("Invalid Browser Name");
                 Environment.Exit(1);
             }
 
            
             PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60); // Implicit wait for 60 seconds
+            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(15); // Implicit wait for 60 seconds
         }
 
         // After step log the test results in extent report
