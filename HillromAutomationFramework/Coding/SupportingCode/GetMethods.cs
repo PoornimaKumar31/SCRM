@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,6 +21,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static string GetSelectedOptionFromDDL(this IWebElement element)
         {
             return new SelectElement(element).SelectedOption.Text;
+        }
+
+        //Geting the dropdownoptions
+        public static IList<IWebElement> GetAllOptionsFromDDL(this IWebElement element)
+        {
+            return new SelectElement(element).Options;
         }
 
         // Takes screenshot of current screen.

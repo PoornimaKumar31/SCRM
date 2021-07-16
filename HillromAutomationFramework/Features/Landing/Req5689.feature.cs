@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Features.Landing
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("RollUpPage")]
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5689")]
     [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5689")]
-    public partial class RollUpPageFeature
+    public partial class SoftwareRequirement5689Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.Landing
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Landing", "RollUpPage", "\tThe Customer Portal shall display a system roll-up view based on setup configura" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Landing", "Software Requirement 5689", "\tThe Customer Portal shall display a system roll-up view based on setup configura" +
                     "tion.", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5689"});
             testRunner.OnFeatureStart(featureInfo);
@@ -78,16 +78,18 @@ namespace HillromAutomationFramework.Features.Landing
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("System with rollup")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
-        [NUnit.Framework.CategoryAttribute("UISID_")]
-        public virtual void SystemWithRollup()
+        [NUnit.Framework.DescriptionAttribute("System Roll-up View")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9098")]
+        [NUnit.Framework.CategoryAttribute("UISID_8664")]
+        [NUnit.Framework.CategoryAttribute("UISID_8665")]
+        public virtual void SystemRoll_UpView()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
-                    "UISID_"};
+                    "TestCaseID_9098",
+                    "UISID_8664",
+                    "UISID_8665"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("System with rollup", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("System Roll-up View", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,33 +111,29 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("user is logging in with rollup page configuration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user logins with roll-up access", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("user will see Organization titles", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 9
- testRunner.And("facility panel with the titles", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 10
- testRunner.And("location information on each facility panel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Roll-up page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("System withot Rollup")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
-        [NUnit.Framework.CategoryAttribute("UISID_")]
-        public virtual void SystemWithotRollup()
+        [NUnit.Framework.DescriptionAttribute("System Rollup View Elements")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9099")]
+        [NUnit.Framework.CategoryAttribute("UISID_8664")]
+        [NUnit.Framework.CategoryAttribute("UISID_8665")]
+        public virtual void SystemRollupViewElements()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
-                    "UISID_"};
+                    "TestCaseID_9099",
+                    "UISID_8664",
+                    "UISID_8665"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("System withot Rollup", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 13
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("System Rollup View Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -155,14 +153,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 12
+ testRunner.Given("user is on Landing page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 13
+ testRunner.And("Roll-up page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 14
- testRunner.Given("user is logged without rollup page configuration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("Organization name is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
- testRunner.Then("user will see the Mainpage", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Facility name is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And("without roll up", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Servers are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+ testRunner.And("Devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

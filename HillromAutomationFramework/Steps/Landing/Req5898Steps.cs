@@ -3,8 +3,8 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Landing
 {
-    [Binding]
-    public class Req5898Steps
+    [Binding,Scope(Tag = "SoftwareRequirementID_5898")]
+    public class LandingPageFooterLinksSteps
     {
         readonly LoginPage loginPage = new LoginPage();
 

@@ -14,7 +14,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string AssetTypeDropdownId = "modelFilter";
             public const string ReportTypeDropdownId = "typeFilter";
             public const string GetReportButtonId = "getReport";
-            public const string InformationButtonId = "cu-info";       //"fs-info"
+            public const string InformationButtonId = "cu-info";
             public const string InformationPopUpId = "myHelp";
             public const string InformationPopUpHeaderClassName = "heading";
             public const string InformationPopUpCloseButtonclassName = "ok"; 
