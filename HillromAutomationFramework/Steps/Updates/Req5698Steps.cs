@@ -2,6 +2,7 @@
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Updates
@@ -106,9 +107,13 @@ namespace HillromAutomationFramework.Steps.Updates
             switch(condition.ToLower().Trim())
             {
                 //implement a function to check is deleted or not
-                case "deleted": _scenarioContext.Pending();
+                case "deleted":
+                    //to wait till file list is updated
+                    Thread.Sleep(3000);
+                    Assert.AreEqual(false,cvsmUpdateConfig.IsConfigFilePresent(ConfigFileName),"Config file is not deleted");
                     break;
-                case "not deleted":_scenarioContext.Pending();
+                case "not deleted":
+                    Assert.AreEqual(true, cvsmUpdateConfig.IsConfigFilePresent(ConfigFileName), "Config file is deleted");
                     break;
                 default: Assert.Fail("Deleted or not deleted should be mentioned");
                     break;

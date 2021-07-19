@@ -63,20 +63,20 @@ Scenario: Service Monitor Settings <= 50
 	Then Previous page button is disabled
 	And Next page button is disabled
 
-#@TestCaseID_9075 @UISID_8699
-#Scenario: Service Monitor Settings > 50 entries
-#	Given user is on Service Monitor Settings page with > 50 entries
-#	Then Previous page button is disabled
-#	And Next page button is enabled
+@TestCaseID_9075 @UISID_8699
+Scenario: Service Monitor Settings > 50 entries
+	Given user is on Service Monitor Settings page with ">50" entries
+	Then Previous page button is disabled
+	And Next page button is enabled
 
-#@TestCaseID_9076 @UISID_8699
-#Scenario: Service Monitor Settings > 50 and <= 100 Next
-#	Given user is on Service Monitor Settings page with > 50 and <= 100 entries
-#	And first 50 entries are displayed
-#	When user clicks Next page button
-#	Then second page of entries is displayed
-#	And Next page button is disabled
-#	And Previous page button is disabled
+@TestCaseID_9076 @UISID_8699
+Scenario: Service Monitor Settings > 50 and <= 100 Next
+	Given user is on Service Monitor Settings page with ">50 and <=100" entries
+	And first 50 entries are displayed
+	When user clicks Next page button
+	Then second page of entries is displayed
+	And Next page button is disabled
+	And Previous page button is disabled
 
 @TestCaseID_9077 @UISID_8699
 Scenario: Service Monitor Settings Select Device

@@ -1,6 +1,7 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System.Collections.Generic;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
@@ -26,6 +27,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string FirstConfigFileID = "cvsm_config0";
             public const string SelectUpdateNextButtonID = "update";
             public const string DeleteButtonID = "delete";
+            public const string SelectUpdateConfigFileNameID = "name";
+            public const string SelectUpdateConfigFileNameListID = "name";
 
             //delete config file elements
             public const string DeleteConfigFilePopUpID = "usrmgt_confirmation_win";
@@ -258,5 +261,27 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.Id, Using = Locators.PaginationXOfYID)]
         public IWebElement PaginationXOfY { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.SelectUpdateConfigFileNameID)]
+        public IWebElement SelectUpdateConfigFileNames { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.SelectUpdateConfigFileNameListID)]
+        public IList<IWebElement> SelectUpdateConfigFileNameList { get; set; }
+
+
+        public bool IsConfigFilePresent(string rowname)
+        {
+            foreach(IWebElement configfile in SelectUpdateConfigFileNameList)
+            {
+                string fileName = configfile.Text;
+                bool result=rowname.ToLower().Trim().Contains(fileName.ToLower().Trim());
+                if(result.Equals(true))
+                {
+                    return (true);
+                }
+            }
+            return (false);
+        }
+
     }
 }

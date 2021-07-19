@@ -16,6 +16,12 @@ namespace HillromAutomationFramework.Steps.Updates
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
         ServiceMoniterPage serviceMoniterPage = new ServiceMoniterPage();
+        private ScenarioContext _scenarioContext;
+
+        public Req5709Steps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
 
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
@@ -251,6 +257,12 @@ namespace HillromAutomationFramework.Steps.Updates
                 case "<=50":
                     GivenUserIsOnServiceMonitorSettingsPage();
                     break;
+                case ">50":
+                    _scenarioContext.Pending();
+                    break;
+                case "50 and <=100":
+                    _scenarioContext.Pending();
+                    break;
                 default: Assert.Fail("Invalid no of service moniter");
                     break;
 
@@ -275,6 +287,17 @@ namespace HillromAutomationFramework.Steps.Updates
             string PageNumberAfterClick = serviceMoniterPage.PaginationXofY.Text;
             Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page button is enabled");
         }
+
+        [Then(@"Next page button is enabled")]
+        public void ThenNextPageButtonIsEnabled()
+        {
+            String PageNumberBeforeClick = serviceMoniterPage.PaginationXofY.Text;
+            serviceMoniterPage.PaginationNextButton.JavaSciptClick();
+            string PageNumberAfterClick = serviceMoniterPage.PaginationXofY.Text;
+            Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page button is not enabled");
+        }
+
+
 
         [Given(@"user selects Call home period as P1D \(24 HOURS\) and Deployment mode as FALSE")]
         public void GivenUserSelectsCallHomePeriodAsPDHOURSAndDeploymentModeAsFALSE()
@@ -319,5 +342,27 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             Assert.AreEqual(true, serviceMoniterPage.AssetTypeDropDown.GetElementVisibility(), "Select Update page is not displayed");
         }
+
+        [Given(@"first (.*) entries are displayed")]
+        public void GivenFirstEntriesAreDisplayed(int p0)
+        {
+            //id's are not available
+            _scenarioContext.Pending();
+        }
+
+        [When(@"user clicks Next page button")]
+        public void WhenUserClicksNextPageButton()
+        {
+            SetMethods.ScrollToBottomofWebpage();
+            serviceMoniterPage.PaginationNextButton.JavaSciptClick();
+        }
+
+        [Then(@"second page of entries is displayed")]
+        public void ThenSecondPageOfEntriesIsDisplayed()
+        {
+            _scenarioContext.Pending();
+        }
+
+
     }
 }
