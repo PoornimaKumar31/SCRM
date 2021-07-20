@@ -1,8 +1,8 @@
 ﻿@SoftwareRequirementID_5706
 Feature: Software Requiremetn 5706
-	The Customer Portal shall have a mechanism for delivering 
-	scheduled firmware upgrade to one or more CSM devices.
+	The Customer Portal shall have a mechanism for delivering scheduled firmware upgrade to one or more CSM devices.
 
+@TestCaseID_9166 @UISID_8698
 Scenario: CSM Review Action Schedule Elements
 	Given user is on CSM Review Action page
 	When user clicks on schedule 
@@ -14,18 +14,21 @@ Scenario: CSM Review Action Schedule Elements
 	And Confirm button is displayed
 	And Previous button is displayed
 
+@TestCaseID_9167 @UISID_8698
 Scenario: CSM Schedule Time Hour Elements
 	Given user is on CSM Review Action page
 	When user clicks on schedule
 	And clicks Hour dropdown
 	Then Hour dropdown show 00 to 23 
 
+@TestCaseID_9168 @UISID_8698
 Scenario: CSM Schedule Time Minutes Elements
 	Given user is on CSM Review Action page
 	When user clicks on schedule
 	And clicks Minutes dropdown
 	Then Minutes dropdown displays 00, 15, 30 and 45
 
+@TestCaseID_9169 @UISID_8698
 Scenario: CSM Schedule Date and Time
 	Given user is on CSM Review Action page
 	When user clicks on schedule

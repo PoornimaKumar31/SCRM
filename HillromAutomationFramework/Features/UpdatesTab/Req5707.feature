@@ -1,8 +1,8 @@
 ﻿@SoftwareRequirementID_5707
 Feature: Software Requiremetn 5707
-	The Customer Portal shall have a mechanism for canceling scheduled firmware 
-	upgrade to one or more CSM devices.
+	The Customer Portal shall have a mechanism for canceling scheduled firmware upgrade to one or more CSM devices.
 
+@TestCaseID_9170 @UISID_8700
 Scenario: CSM Manage Active Updates
 	Given user is on Select Updates page
 	And CSM Asset type is selected
@@ -10,6 +10,7 @@ Scenario: CSM Manage Active Updates
 	When user clicks Manage Active Updates button
 	Then Manage Upgrades page is displayed
 
+@TestCaseID_9171 @UISID_8700 @UISID_8669
 Scenario: CSM Manage Active Updates Elements
 	Given user is on Manage Upgrades page
 	Then Destinations label is displayed
@@ -20,6 +21,7 @@ Scenario: CSM Manage Active Updates Elements
 	And Cancel Upgrade button is displayed
 	And Cancel Upgrade button is disabled
 
+@TestCaseID_9172 @UISID_8700
 Scenario: CSM Manage Active Updates Elements Table
 	Given user is on Manage Upgrades page
 	Then Select all checkbox in column 1 is unchecked
@@ -29,6 +31,7 @@ Scenario: CSM Manage Active Updates Elements Table
 	And column 5 heading "Location" is displayed
 	And column 6 heading "Schedule" is displayed
 
+@TestCaseID_9173 @UISID_8700
 Scenario: CSM Schedule Upgrade Cancel
 	Given user is on Manage Upgrades page
 	When user selects device
