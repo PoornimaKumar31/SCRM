@@ -253,13 +253,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CVSM Configuration<=50")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9078")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void CVSMConfiguration50()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
-                    "UISID_8696"};
+                    "TestCaseID_9078",
+                    "UISID_8696",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration<=50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 38
@@ -297,13 +299,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CVSM Configuration>50 entries")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9079")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void CVSMConfiguration50Entries()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
-                    "UISID_8696"};
+                    "TestCaseID_9079",
+                    "UISID_8696",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration>50 entries", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 44
@@ -341,13 +345,15 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CVSM Configuration>50 and <= 100 Next")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9080")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void CVSMConfiguration50And100Next()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
-                    "UISID_8696"};
+                    "TestCaseID_9080",
+                    "UISID_8696",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration>50 and <= 100 Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 50

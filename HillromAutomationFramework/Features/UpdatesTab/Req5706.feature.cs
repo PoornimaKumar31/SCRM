@@ -37,8 +37,8 @@ namespace HillromAutomationFramework.Features.UpdatesTab
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Updates", "Software Requiremetn 5706", "\tThe Customer Portal shall have a mechanism for delivering \r\n\tscheduled firmware " +
-                    "upgrade to one or more CSM devices.", ProgrammingLanguage.CSharp, new string[] {
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/UpdatesTab", "Software Requiremetn 5706", "\tThe Customer Portal shall have a mechanism for delivering scheduled firmware upg" +
+                    "rade to one or more CSM devices.", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5706"});
             testRunner.OnFeatureStart(featureInfo);
         }

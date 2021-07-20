@@ -397,11 +397,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Service Monitor Settings <= 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9074")]
         [NUnit.Framework.CategoryAttribute("UISID_8699")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void ServiceMonitorSettings50()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9074",
-                    "UISID_8699"};
+                    "UISID_8699",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings <= 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 61
@@ -441,11 +443,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Service Monitor Settings > 50 entries")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9075")]
         [NUnit.Framework.CategoryAttribute("UISID_8699")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void ServiceMonitorSettings50Entries()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9075",
-                    "UISID_8699"};
+                    "UISID_8699",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings > 50 entries", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 67
@@ -485,11 +489,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Service Monitor Settings > 50 and <= 100 Next")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9076")]
         [NUnit.Framework.CategoryAttribute("UISID_8699")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void ServiceMonitorSettings50And100Next()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9076",
-                    "UISID_8699"};
+                    "UISID_8699",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings > 50 and <= 100 Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 73
