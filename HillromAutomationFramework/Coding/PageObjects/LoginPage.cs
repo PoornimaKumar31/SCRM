@@ -250,6 +250,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 LoginButton.Clicks();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
                 landingPage.Organization1Facility0Title.Click();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
             }
             
         }

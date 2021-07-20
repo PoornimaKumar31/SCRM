@@ -3,6 +3,7 @@ using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium.Support.UI;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -21,6 +22,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             loginPage.SignIn("AdminWithoutRollupPage");
             SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
             selectAssetType.SelectByText(MainPage.ExpectedValues.CVSMDeviceName);
+            Thread.Sleep(2000);
             cvsmDeviceDetailsPage.CVSMDevices[1].Click();
             cvsmDeviceDetailsPage.LogsTab.Click();
         }
@@ -28,7 +30,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"at least one log is present")]
         public void GivenAtLeastOneLogIsPresent()
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() != 0);
+            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() > 0);
         }
 
         [When(@"user clicks log")]

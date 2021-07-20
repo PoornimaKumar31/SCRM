@@ -212,18 +212,21 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"logs sort by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
+            Thread.Sleep(5000);
             Assert.IsTrue(cvsmDeviceDetailsPage.LogDateList.isDateSorted("d"));
         }
 
         [Then(@"user will see decreasing date sorting indicator")]
         public void ThenUserWillSeeDecreasingDateSortingIndicator()
         {
+            
             Assert.IsTrue(cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending");
         }
 
         [Then(@"logs sort by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
+            Thread.Sleep(5000);
             Assert.IsTrue(cvsmDeviceDetailsPage.LogDateList.isDateSorted("a"));
         }
 

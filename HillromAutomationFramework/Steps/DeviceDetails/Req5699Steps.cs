@@ -34,7 +34,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
             selectAssetType.SelectByText(MainPage.ExpectedValues.CSMDeviceName);
             //select the row according to the data
-            csmDeviceDetailsPage.CSMDevices[2].Clicks();
+            csmDeviceDetailsPage.CSMDevices[14].Clicks();
         }
 
         [Given(@"user is on Device Details page")]
@@ -79,11 +79,11 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
                 case 10:
                     //selecting CSM device with 10 log files
-                    csmDeviceDetailsPage.CSMDevices[2].Click();
+                    csmDeviceDetailsPage.CSMDevices[14].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
                     break;
-                case 25:
+                case 2:
                     //selecting CSM device with 25 log files
                     csmDeviceDetailsPage.CSMDevices[1].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));

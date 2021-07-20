@@ -34,8 +34,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            loginPage.SignIn("rv700");
+            
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
+            Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "Assets tab is not displayed");
         }
 
         [When(@"user clicks Logs tab")]
@@ -62,20 +63,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 case 0:
                     //Selecting RV700 device with no log files
-                    rv700DeviceDetailsPage.RV700Devices[1].Click();
+                    rv700DeviceDetailsPage.RV700Devices[2].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     rv700DeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
                     //selecting RV700 device with 10 log files
-                    rv700DeviceDetailsPage.RV700Devices[0].Click();
+                    rv700DeviceDetailsPage.RV700Devices[4].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     rv700DeviceDetailsPage.LogsTab.Click();
                     break;
-                case 25:
-                    //selecting RV700 device with 25 log files
-                    rv700DeviceDetailsPage.RV700Devices[2].Click();
+                case 24:
+                    //selecting RV700 device with 24 log files
+                    rv700DeviceDetailsPage.RV700Devices[1].Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     rv700DeviceDetailsPage.LogsTab.Click();
                     break;
@@ -97,7 +98,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"no logs for RV700 device are displayed")]
         public void ThenNoLogsForRV700DeviceAreDisplayed()
         {
-            Assert.IsFalse(rv700DeviceDetailsPage.LogFiles[0].Displayed);
+            Assert.AreEqual(true,rv700DeviceDetailsPage.LogFiles.Count==0,"Number of Logs are not 0");
         }
 
         [Then(@"(.*) logs for RV700 device are displayed")]

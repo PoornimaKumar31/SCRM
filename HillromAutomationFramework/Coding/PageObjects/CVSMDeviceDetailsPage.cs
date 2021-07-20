@@ -138,7 +138,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.XPath, Using = Locators.LogsPendingMessageXPath)]
         public IWebElement LogsPendingMessage { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = Locators.DateSortingID)]
+        [FindsBy(How = How.Id, Using = Locators.DateSortingID)]
         public IWebElement DateSorting { get; set; }
 
         [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]

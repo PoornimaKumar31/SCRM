@@ -128,11 +128,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("Select CSM Configuration Update Type")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9084")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void SelectCSMConfigurationUpdateType()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9084",
-                    "UISID_8696"};
+                    "UISID_8696",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Select CSM Configuration Update Type", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 13
@@ -243,11 +245,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("CSM Configuration <= 50 entries")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9086")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void CSMConfiguration50Entries()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9086",
-                    "UISID_8696"};
+                    "UISID_8696",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration <= 50 entries", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 34
@@ -287,11 +291,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("CSM Configuration Files > 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9087")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void CSMConfigurationFiles50()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9087",
-                    "UISID_8696"};
+                    "UISID_8696",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Files > 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 40
@@ -334,11 +340,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("CSM Configuration Files > 50 and <= 100 Next")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9088")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void CSMConfigurationFiles50And100Next()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9088",
-                    "UISID_8696"};
+                    "UISID_8696",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Files > 50 and <= 100 Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 47

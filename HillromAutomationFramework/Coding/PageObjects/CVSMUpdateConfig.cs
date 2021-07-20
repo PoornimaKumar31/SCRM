@@ -25,7 +25,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string NameColumnHeadingID = "config-heading-name";
             public const string DateColumnHeadingID = "config-heading-date";
             public const string FirstConfigFileID = "cvsm_config0";
-            public const string SelectUpdateNextButtonID = "update";
+            public const string SelectUpdateNextButtonID = "nextbtn";
             public const string DeleteButtonID = "delete";
             public const string SelectUpdateConfigFileNameID = "name";
             public const string SelectUpdateConfigFileNameListID = "name";
