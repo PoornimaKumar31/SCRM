@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.DeviceDetail
+namespace HillromAutomationFramework.Features.ReportsTab
 {
     using TechTalk.SpecFlow;
     using System;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5904", "\tThe customer portal shall provide information display explaining each CSM CFG st" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ReportsTab", "Software Requirement 5904", "\tThe customer portal shall provide information display explaining each CSM CFG st" +
                     "atus.", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5904"});
             testRunner.OnFeatureStart(featureInfo);
@@ -80,10 +80,12 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Config Status Information")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8995")]
+        [NUnit.Framework.CategoryAttribute("UISID_8688")]
         public virtual void CSMConfigStatusInformation()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8995"};
+                    "TestCaseID_8995",
+                    "UISID_8688"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Config Status Information", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
@@ -143,10 +145,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Config Status Information Close")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8996")]
+        [NUnit.Framework.CategoryAttribute("UISID_8688")]
         public virtual void CSMConfigStatusInformationClose()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8996"};
+                    "TestCaseID_8996",
+                    "UISID_8688"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Config Status Information Close", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 19

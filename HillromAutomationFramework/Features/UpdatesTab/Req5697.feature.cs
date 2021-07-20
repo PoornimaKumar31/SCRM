@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.DeviceDetail
+namespace HillromAutomationFramework.Features.UpdatesTab
 {
     using TechTalk.SpecFlow;
     using System;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5697", "\t The Customer Portal shall have a mechanism for distributing a selected configur" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/UpdatesTab", "Software Requirement 5697", "\t The Customer Portal shall have a mechanism for distributing a selected configur" +
                     "ation to CVSM/CIWS devices.", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5697"});
             testRunner.OnFeatureStart(featureInfo);

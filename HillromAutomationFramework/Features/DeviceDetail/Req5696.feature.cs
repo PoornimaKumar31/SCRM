@@ -332,13 +332,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("CVSM Asset Details Read Only")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9006")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
-        [NUnit.Framework.CategoryAttribute("UISID_8721")]
         public virtual void CVSMAssetDetailsReadOnly()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9006",
-                    "UISID_8673",
-                    "UISID_8721"};
+                    "UISID_8673"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Asset Details Read Only", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 45

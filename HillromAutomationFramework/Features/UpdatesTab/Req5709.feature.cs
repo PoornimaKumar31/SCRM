@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.Updates
+namespace HillromAutomationFramework.Features.UpdatesTab
 {
     using TechTalk.SpecFlow;
     using System;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.Updates
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Updates", "Software Requirement 5709", "\tThe Customer Portal shall have a feature for displaying the following Service Mo" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/UpdatesTab", "Software Requirement 5709", "\tThe Customer Portal shall have a feature for displaying the following Service Mo" +
                     "nitor configurable settings:\r\nCall home interval\r\nDeployment mode", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5709"});
             testRunner.OnFeatureStart(featureInfo);

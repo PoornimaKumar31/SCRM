@@ -34,19 +34,19 @@ Scenario: Select CVSM Configuration Update Type
 	And Delete button is visible
 	And Next button is disabled
 
-@TestCaseID_ @UISID_8696
+@TestCaseID_9078 @UISID_8696 @UISID_8669
 Scenario: CVSM Configuration<=50
 	Given user is on CVSM Updates page with "<=50" entries
 	Then Previous page button is disabled
 	And Next page button is disabled
 
-@TestCaseID_ @UISID_8696
+@TestCaseID_9079 @UISID_8696 @UISID_8669
 Scenario: CVSM Configuration>50 entries
 	Given user is on CVSM Updates page with ">50" entries
 	Then Previous page button is disabled
 	And Next page button is enabled
 
-@TestCaseID_ @UISID_8696
+@TestCaseID_9080 @UISID_8696 @UISID_8669
 Scenario: CVSM Configuration>50 and <= 100 Next
 	Given user is on CVSM Updates page with ">50 and <= 100" entries
 	And first 50 entries are displayed

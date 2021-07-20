@@ -80,10 +80,12 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Log Files Request")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8989")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void RV700LogFilesRequest()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8989"};
+                    "TestCaseID_8989",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Request", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
@@ -125,10 +127,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Log Files Request Disabled")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8990")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void RV700LogFilesRequestDisabled()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8990"};
+                    "TestCaseID_8990",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Request Disabled", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 13

@@ -59,8 +59,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string NewFirmwareID = "NewFirmware";
             public const string ScheduleID = "Schedule";
             public const string SerialNumberID = "SerialNumber";
-
-
         }
 
         public static class ExpectedValue

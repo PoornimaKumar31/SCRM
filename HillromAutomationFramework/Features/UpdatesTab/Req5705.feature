@@ -3,7 +3,8 @@ Feature: Software Requirement 5705
 	The Customer Portal shall have a mechanism for delivering upgrade firmware 
 	to one or more CSM devices.
 
-Scenario: Select CSM Upgrade Update Type
+@TestCaseID_9153 @UISID_8696 @UISID_8669
+Scenario: CSM Upgrade Elements
 	Given user is on CSM Updates page
 	And CSM Asset type is selected
 	When user selects Upgrade Update type
@@ -16,16 +17,19 @@ Scenario: Select CSM Upgrade Update Type
 	And Page x of y label is displayed
 	And Displaying x to y of z results label is displayed
 
+@TestCaseID_9154 @UISID_8696 @UISID_8669
 Scenario: CSM Upgrade files less than equal 50 entries
 	Given user is on CSM Updates page with "<= 50" entries
 	Then Previous page arrow is disabled
 	And Next page arrow is disabled
 
+@TestCaseID_9155 @UISID_8696 @UISID_8669
 Scenario: CSM Upgrade files greater than 50 entries
 	Given user is on CSM Updates page with "> 50" entries
 	Then Previous page button is disabled
 	And Next page arrow is enabled
 
+@TestCaseID_9156 @UISID_8696 @UISID_8669
 Scenario: CSM Upgrade files greater than 50 and smaller than equal 100 entries
 	Given user is on CSM Updates page with "> 50 and <= 100" entries
 	And first 50 entries are displayed
@@ -34,6 +38,7 @@ Scenario: CSM Upgrade files greater than 50 and smaller than equal 100 entries
 	And Next page arrow is disabled
 	And Previous page arrow is disabled
 
+@TestCaseID_9157 @UISID_8697
 Scenario: CSM Upgrade Selected
 	Given user is on CSM Updates page
 	And CSM Asset type is selected
@@ -42,6 +47,7 @@ Scenario: CSM Upgrade Selected
 	When user clicks Next button
 	Then CSM Select assets page is displayed
 
+@TestCaseID_9158 @UISID_8697 @UISID_8669
 Scenario: CSM Select Assets Elements
 	Given user is on CSM Upgrade Select assets page
 	Then Select update indicator is not highlighted
@@ -59,6 +65,7 @@ Scenario: CSM Select Assets Elements
 	And Page x of y label is displayed
 	And Displaying x to y of z results label is displayed
 
+@TestCaseID_9159 @UISID_8697
 Scenario: CSM Select Assets Elements Table
 	Given user is on CSM Upgrade Select assets page
 	Then Select all checkbox in column 1 is unchecked
@@ -69,23 +76,27 @@ Scenario: CSM Select Assets Elements Table
 	And column 6 heading "Location" is displayed
 	And column 7 heading "Last Files Deployed" is displayed
 
+@TestCaseID_9160 @UISID_8699
 Scenario: CSM Select assets
 	Given user is on CSM Upgrade Select assets page
 	When user selects one device
 	Then count of selected devices changes from 0 to 1
 	And Next button is enabled
 
+@TestCaseID_9161 @UISID_8697
 Scenario: CSM Select assets Previous
 	Given user is on CSM Upgrade Select assets page
 	When user clicks Previous button
 	Then user is on CSM Updates page
 
+@TestCaseID_9162 @UISID_8698
 Scenario: CSM Review Action page
 	Given user is on CSM Upgrade Select assets page
 	When user selects one device
 	And Clicks Next button
 	Then CSM Review Action page is displayed
 
+@TestCaseID_9163 @UISID_8698
 Scenario: CSM Review Action Elements
 Given user is on CSM Review Action page
 Then Item to push label is displayed
@@ -104,12 +115,14 @@ And Review action indicator is highlighted
 And Previous button is enabled
 And Confirm button is enabled
 
+@TestCaseID_9164 @UISID_8698
 Scenario: CSM Review Action Confirm
 	Given user is on CSM Review Action page
 	When user clicks Confirm button
 	Then Update process has been established message is displayed
 	And Select assets page is displayed
 
+@TestCaseID_9165 @UISID_8698
 Scenario: CSM Review Action Previous
 	Given user is on CSM Review Action page
 	When user clicks Previous button

@@ -41,7 +41,7 @@ Scenario: Edit CVSM Asset Details Room Entry Field Empty
 	When Room field is blank
 	Then Room field contains hint text
 
-@TestCaseID_9006 @UISID_8673 @UISID_8721
+@TestCaseID_9006 @UISID_8673
 Scenario: CVSM Asset Details Read Only
 	Given user is on CVSM Edit Asset Details dialog
 	Then the Asset Tag value is displayed

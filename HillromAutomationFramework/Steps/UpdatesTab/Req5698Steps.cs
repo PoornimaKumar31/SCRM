@@ -119,13 +119,10 @@ namespace HillromAutomationFramework.Steps.Updates
                     break;
             }
         }
-
         [When(@"user clicks No button")]
         public void WhenUserClicksNoButton()
         {
             cvsmUpdateConfig.DeletePopUpNoButton.Click();
         }
-
-
     }
 }

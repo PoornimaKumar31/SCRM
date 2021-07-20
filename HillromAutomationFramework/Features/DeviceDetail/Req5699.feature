@@ -9,7 +9,7 @@ Scenario: CSM Log Files
 	When user clicks Logs tab
 	Then logs for CSM device are displayed
 
-@TestCaseID_8967 @UISID_8678 @UISID_8669
+@TestCaseID_8967 @UISID_8678
 Scenario: CSM Log Files Empty
 	Given user is on CSM Log Files page with 0 logs
 	Then no logs for CSM device are displayed
@@ -42,8 +42,8 @@ Scenario: CSM Log Files Ten Files Request Previous
 	And user navigates to previous logs page
 	Then Pending or Executing message is displayed
 
-@TestCaseID_8972 @UISID_8678
-Scenario: CSM Log Files 25 Files Next1
+@TestCaseID_8972 @UISID_8678 @UISID_8669
+Scenario: CSM Log Files 24 Files All Pages
 	Given user is on CSM Log Files page with 24 logs
 	And Log files are sorted by decreasing date	
 	And newest 10 logs are displayed

@@ -2,7 +2,7 @@
 Feature: Software Requirement 5904
 	The customer portal shall provide information display explaining each CSM CFG status.
 
-@TestCaseID_8995
+@TestCaseID_8995 @UISID_8688
 Scenario: CSM Config Status Information
 	Given user is on CSM Configuration Update Status page 
 	When user clicks Information button
@@ -15,7 +15,7 @@ Scenario: CSM Config Status Information
 	And user can see "Failed" status and definition
 	And user can see Close button
 
-@TestCaseID_8996
+@TestCaseID_8996 @UISID_8688
 Scenario: CSM Config Status Information Close
 	Given user is on CSM Configuration Update Status page 
 	And CSM Configuration Report Statuses dialog is displayed

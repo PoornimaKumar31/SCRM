@@ -79,10 +79,12 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Log Files Download")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8988")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void RV700LogFilesDownload()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8988"};
+                    "TestCaseID_8988",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6

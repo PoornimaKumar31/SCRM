@@ -9,7 +9,7 @@ Scenario: Select CSM Asset Type
 	Then CSM displays as Asset type
 	And Update type drop down contains Upgrade and Configuration entries
 
-@TestCaseID_9084 @UISID_8696
+@TestCaseID_9084 @UISID_8696 @UISID_8669
 Scenario: Select CSM Configuration Update Type
 	Given user is on CSM Updates page
 	And CSM Asset type is selected
@@ -30,20 +30,20 @@ Scenario: CSM Configuration Update Default Sort Order
 	And Configuration list is not empty
 	Then configuration files are sorted in ascending alphabetical order
 
-@TestCaseID_9086 @UISID_8696
+@TestCaseID_9086 @UISID_8696 @UISID_8669
 Scenario: CSM Configuration <= 50 entries
 	Given user is on CSM Updates page with "<= 50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
 
-@TestCaseID_9087 @UISID_8696
+@TestCaseID_9087 @UISID_8696 @UISID_8669
 Scenario: CSM Configuration Files > 50
 	Given user is on CSM Updates page with "> 50" entries
 	And user is on page 1
 	Then Previous page icon is disabled
 	And Next page icon is enabled
 
-@TestCaseID_9088 @UISID_8696
+@TestCaseID_9088 @UISID_8696 @UISID_8669
 Scenario: CSM Configuration Files > 50 and <= 100 Next
 	Given user is on CSM Updates page with "> 50 and <= 100" entries
 	And user is on page 1

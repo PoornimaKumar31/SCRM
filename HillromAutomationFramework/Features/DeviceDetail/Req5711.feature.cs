@@ -79,10 +79,12 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Log Files")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8978")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void RV700LogFiles()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8978"};
+                    "TestCaseID_8978",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
@@ -124,10 +126,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Log Files Empty")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8979")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void RV700LogFilesEmpty()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8979"};
+                    "TestCaseID_8979",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 14
@@ -161,14 +165,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV700 Log Files Ten Files")]
+        [NUnit.Framework.DescriptionAttribute("RV700 Log Files 10 Files")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8980")]
-        public virtual void RV700LogFilesTenFiles()
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
+        public virtual void RV700LogFiles10Files()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8980"};
+                    "TestCaseID_8980",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Ten Files", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files 10 Files", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 19
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -203,14 +209,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV700 Log Files Ten Files Request Next")]
+        [NUnit.Framework.DescriptionAttribute("RV700 Log Files 10 Files Request Next")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8981")]
-        public virtual void RV700LogFilesTenFilesRequestNext()
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
+        public virtual void RV700LogFiles10FilesRequestNext()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8981"};
+                    "TestCaseID_8981",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Ten Files Request Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files 10 Files Request Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -248,14 +256,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV700 Log Files Ten Files Request Previous")]
+        [NUnit.Framework.DescriptionAttribute("RV700 Log Files 10 Files Request Previous")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8982")]
-        public virtual void RV700LogFilesTenFilesRequestPrevious()
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
+        public virtual void RV700LogFiles10FilesRequestPrevious()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8982"};
+                    "TestCaseID_8982",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Ten Files Request Previous", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files 10 Files Request Previous", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -296,14 +306,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV700 Log Files 25 Files Next1")]
+        [NUnit.Framework.DescriptionAttribute("RV700 Log Files 24 Files All Pages")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8983")]
-        public virtual void RV700LogFiles25FilesNext1()
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
+        public virtual void RV700LogFiles24FilesAllPages()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8983"};
+                    "TestCaseID_8983",
+                    "UISID_8678",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files 25 Files Next1", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files 24 Files All Pages", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 40
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -370,10 +384,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Log Files Sort Decreasing Date")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8985")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void RV700LogFilesSortDecreasingDate()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8985"};
+                    "TestCaseID_8985",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Sort Decreasing Date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 56
@@ -418,10 +434,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Log Files Sort Increasing Date")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8986")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void RV700LogFilesSortIncreasingDate()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8986"};
+                    "TestCaseID_8986",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Log Files Sort Increasing Date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 64

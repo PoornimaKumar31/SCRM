@@ -80,10 +80,12 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CVSM Log Files Request")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8964")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void CVSMLogFilesRequest()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8964"};
+                    "TestCaseID_8964",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Request", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
@@ -125,10 +127,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CVSM Log Files Request Disabled")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8965")]
+        [NUnit.Framework.CategoryAttribute("UISID_8678")]
         public virtual void CVSMLogFilesRequestDisabled()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_8965"};
+                    "TestCaseID_8965",
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Request Disabled", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 13

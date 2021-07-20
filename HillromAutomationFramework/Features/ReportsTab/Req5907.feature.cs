@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.DeviceDetail
+namespace HillromAutomationFramework.Features.ReportsTab
 {
     using TechTalk.SpecFlow;
     using System;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5907", "\tThe customer portal shall provide information display explaining Firmware Status" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ReportsTab", "Software Requirement 5907", "\tThe customer portal shall provide information display explaining Firmware Status" +
                     ".", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5907"});
             testRunner.OnFeatureStart(featureInfo);

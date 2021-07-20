@@ -128,13 +128,11 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("CSM Log Files Empty")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8967")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
-        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void CSMLogFilesEmpty()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8967",
-                    "UISID_8678",
-                    "UISID_8669"};
+                    "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 13
@@ -356,16 +354,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Log Files 25 Files Next1")]
+        [NUnit.Framework.DescriptionAttribute("CSM Log Files 24 Files All Pages")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8972")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
-        public virtual void CSMLogFiles25FilesNext1()
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
+        public virtual void CSMLogFiles24FilesAllPages()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8972",
-                    "UISID_8678"};
+                    "UISID_8678",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files 25 Files Next1", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files 24 Files All Pages", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 46
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

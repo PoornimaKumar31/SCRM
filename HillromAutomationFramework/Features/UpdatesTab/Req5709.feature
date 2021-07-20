@@ -57,19 +57,19 @@ Scenario: Service Monitor Settings Elements Table
 	And "Location" in column 5 heading is displayed
 	And "Last files deployed" in column 6 heading is displayed
 
-@TestCaseID_9074 @UISID_8699
+@TestCaseID_9074 @UISID_8699 @UISID_8669
 Scenario: Service Monitor Settings <= 50
 	Given user is on Service Monitor Settings page with "<=50" entries
 	Then Previous page button is disabled
 	And Next page button is disabled
 
-@TestCaseID_9075 @UISID_8699
+@TestCaseID_9075 @UISID_8699 @UISID_8669
 Scenario: Service Monitor Settings > 50 entries
 	Given user is on Service Monitor Settings page with ">50" entries
 	Then Previous page button is disabled
 	And Next page button is enabled
 
-@TestCaseID_9076 @UISID_8699
+@TestCaseID_9076 @UISID_8699 @UISID_8669
 Scenario: Service Monitor Settings > 50 and <= 100 Next
 	Given user is on Service Monitor Settings page with ">50 and <=100" entries
 	And first 50 entries are displayed

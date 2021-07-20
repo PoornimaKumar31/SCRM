@@ -2,7 +2,7 @@
 Feature: Software Requirement 5712
 The Customer Portal shall have a mechanism for downloading the RV700 log files
 
-@TestCaseID_8988
+@TestCaseID_8988 @UISID_8678
 Scenario: RV700 Log Files Download
 	Given user is on RV700 Log Files page
 	And at least one log is present
