@@ -188,6 +188,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
 
                 case ">50":
+                    //Yet to get updates about the no of configuration files
                     _scenarioContext.Pending();
                     break;
 
@@ -508,7 +509,35 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, SelectDevicePageElements, "Select devices page is not displayed.\n");
         }
 
+        [Then(@"Next page button is enabled")]
+        public void ThenNextPageButtonIsEnabled()
+        {
+            SetMethods.ScrollToBottomofWebpage();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMUpdateConfig.Locators.PaginationNextIconID)));
+            string PaginationTextBeforeClick = cvsmUpdateConfig.PaginationXOfY.Text;
+            cvsmUpdateConfig.PaginationNextIcon.Click();
+            string PaginationTextAfterClick = cvsmUpdateConfig.PaginationXOfY.Text;
+            Assert.AreNotEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Next page button is not disabled");
+        }
 
+        [Given(@"first (.*) entries are displayed")]
+        public void GivenFirstEntriesAreDisplayed(int p0)
+        {
+            Assert.AreEqual(50, cvsmUpdateConfig.SelectUpdateConfigFileNameList.GetElementCount(), "First 50 entries are not displayed");
+        }
+
+        [When(@"user clicks Next page button")]
+        public void WhenUserClicksNextPageButton()
+        {
+            SetMethods.ScrollToBottomofWebpage();
+            cvsmUpdateConfig.PaginationNextIcon.Click();
+        }
+
+        [Then(@"second page of entries is displayed")]
+        public void ThenSecondPageOfEntriesIsDisplayed()
+        {
+            Assert.AreEqual(true, cvsmUpdateConfig.SelectUpdateConfigFileNameList.GetElementCount() > 0, "second page of entries are not displayed");
+        }
 
     }
 }
