@@ -46,7 +46,7 @@ namespace HillromAutomationFramework.Steps.Login
             Assert.AreEqual(loginPage.SupportedBrowserPopup.Displayed,true,"Supported browser dialog ox is not displayed");
         }
 
-        [When(@"user clicks Close button")]
+        [When(@"user clicks close button")]
         public void WhenUserClicksCloseButton()
         {
             Thread.Sleep(5000);

@@ -16,18 +16,6 @@ namespace HillromAutomationFramework.Steps.Login
             loginPage.PrivacyPolicylink.Clicks();
         }
 
-        
-        [Then(@"Privacy Policy page is displayeds")]
-        public void ThenPrivacyPolicyPageIsDisplayed()
-        {
-            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
-            // Check if new tab is opened
-            Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"New tab for privacy policy link is not opened");
-            //Get the URL of new tab.
-            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
-            Assert.AreEqual(LoginPage.ExpectedValues.PrivacyPolicyTitle, ActualPageTitle,"Privacy policy link is not matching with the expected");
-        }
-
         [When(@"user clicks Terms of Use")]
         public void WhenUserClicksTermsOfUse()
         {

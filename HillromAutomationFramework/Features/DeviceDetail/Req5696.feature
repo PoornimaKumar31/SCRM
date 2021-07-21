@@ -9,7 +9,7 @@ Scenario: Edit CVSM Asset Details Static Elements
 	Then Edit Asset Details dialog will display
 	And user can see Edit Asset Details title
 	And user can see Facility label
-	And user can see Location Label
+	And user can see Location label
 	And user can see Room entry field
 	And user can see Bed entry field
 	And user can see Save button
@@ -30,13 +30,13 @@ Scenario: Edit CVSM Asset Details Cancel
 	Then original Room and Bed are displayed on the CVSM Asset Details page
 
 @TestCaseID_9004 @UISID_8673 @UISID_8721
-Scenario: Edit CVSM Asset Details Bed Entry Field Empty
+Scenario: Edit CVSM Asset Details Bed Field Empty
 	Given user is on CVSM Edit Asset Details dialog
 	When Bed field is blank
 	Then Bed field contains hint text
 
 @TestCaseID_9005 @UISID_8673 @UISID_8721
-Scenario: Edit CVSM Asset Details Room Entry Field Empty
+Scenario: Edit CVSM Asset Details Room Field Empty
 	Given user is on CVSM Edit Asset Details dialog
 	When Room field is blank
 	Then Room field contains hint text
@@ -44,9 +44,9 @@ Scenario: Edit CVSM Asset Details Room Entry Field Empty
 @TestCaseID_9006 @UISID_8673
 Scenario: CVSM Asset Details Read Only
 	Given user is on CVSM Edit Asset Details dialog
-	Then the Asset Tag value is displayed
-	And the Asset Tag value is read only
-	And the Facility value is displayed
-	And the Facility value is read only
-	And the Location ID value is displayed
-	And the Location ID value is read only
+	Then Asset Tag value is displayed
+	And Asset Tag value is read only
+	And Facility value is displayed
+	And Facility value is read only
+	And Location ID value is displayed
+	And Location ID value is read only

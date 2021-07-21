@@ -10,24 +10,24 @@ Scenario: CSM Upgrade Elements
 	When user selects Upgrade Update type
 	Then Upgrade displays as Update type
 	And CSM upgrade list is displayed
-	And Manage Active Updates label is displayed
+	And Manage Active Updates button is displayed
 	And Name column heading is displayed
 	And Date created column heading is displayed
 	And Next button is disabled
 	And Page x of y label is displayed
 	And Displaying x to y of z results label is displayed
-
+		
 @TestCaseID_9154 @UISID_8696 @UISID_8669
 Scenario: CSM Upgrade files less than equal 50 entries
 	Given user is on CSM Updates page with "<= 50" entries
-	Then Previous page arrow is disabled
-	And Next page arrow is disabled
+	Then Previous page icon is disabled
+	And Next page icon is disabled
 
 @TestCaseID_9155 @UISID_8696 @UISID_8669
 Scenario: CSM Upgrade files greater than 50 entries
 	Given user is on CSM Updates page with "> 50" entries
-	Then Previous page button is disabled
-	And Next page arrow is enabled
+	Then Previous page icon is disabled 
+	And Next page icon is enabled
 
 @TestCaseID_9156 @UISID_8696 @UISID_8669
 Scenario: CSM Upgrade files greater than 50 and smaller than equal 100 entries
@@ -35,15 +35,15 @@ Scenario: CSM Upgrade files greater than 50 and smaller than equal 100 entries
 	And first 50 entries are displayed
 	When user clicks Next page button
 	Then second page of entries is displayed
-	And Next page arrow is disabled
-	And Previous page arrow is disabled
+	And Next page icon is disabled
+	And Previous page icon is disabled
 
 @TestCaseID_9157 @UISID_8697
 Scenario: CSM Upgrade Selected
 	Given user is on CSM Updates page
 	And CSM Asset type is selected
 	And Upgrade Update type is selected
-	And Select Upgrade file
+	And user has selected Upgrade file
 	When user clicks Next button
 	Then CSM Select assets page is displayed
 
@@ -61,7 +61,7 @@ Scenario: CSM Select Assets Elements
 	And location hierarchy selectors are displayed
 	And count of selected devices is displayed
 	And Previous button is enabled
-	And Next button is disabled in select device page
+	And Next button is disabled
 	And Page x of y label is displayed
 	And Displaying x to y of z results label is displayed
 
@@ -69,29 +69,29 @@ Scenario: CSM Select Assets Elements
 Scenario: CSM Select Assets Elements Table
 	Given user is on CSM Upgrade Select assets page
 	Then Select all checkbox in column 1 is unchecked
-	And column 2 heading "Firmware" is displayed
-	And column 3 heading "Config" is displayed
-	And column 4 heading "Asset Tag" is displayed
-	And column 5 heading "Serial" is displayed
-	And column 6 heading "Location" is displayed
-	And column 7 heading "Last Files Deployed" is displayed
+	And "Firmware" column heading is displayed
+	And "Config" column heading is displayed
+	And "Asset Tag" column heading is displayed
+	And "Serial" column heading is displayed
+	And "Location" column heading is displayed
+	And "Last Files Deployed" column heading is displayed
 
 @TestCaseID_9160 @UISID_8699
 Scenario: CSM Select assets
-	Given user is on CSM Upgrade Select assets page
+	Given user is on CSM Upgrade Select Assets page
 	When user selects one device
 	Then count of selected devices changes from 0 to 1
 	And Next button is enabled
 
 @TestCaseID_9161 @UISID_8697
 Scenario: CSM Select assets Previous
-	Given user is on CSM Upgrade Select assets page
+	Given user is on CSM Upgrade Select Assets page
 	When user clicks Previous button
-	Then user is on CSM Updates page
+	Then CSM Updates page is displayed
 
 @TestCaseID_9162 @UISID_8698
-Scenario: CSM Review Action page
-	Given user is on CSM Upgrade Select assets page
+Scenario: CSM Review Action Page
+	Given user is on CSM Upgrade Select Assets page
 	When user selects one device
 	And Clicks Next button
 	Then CSM Review Action page is displayed

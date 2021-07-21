@@ -213,16 +213,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Log Files Ten Files")]
+        [NUnit.Framework.DescriptionAttribute("CSM Log Files 10 Files")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8969")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
-        public virtual void CSMLogFilesTenFiles()
+        public virtual void CSMLogFiles10Files()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8969",
                     "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files Ten Files", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files 10 Files", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 25
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -257,16 +257,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Log Files Ten Files Request Next")]
+        [NUnit.Framework.DescriptionAttribute("CSM Log Files 10 Files Request Next")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8970")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
-        public virtual void CSMLogFilesTenFilesRequestNext()
+        public virtual void CSMLogFiles10FilesRequestNext()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8970",
                     "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files Ten Files Request Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files 10 Files Request Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -304,16 +304,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Log Files Ten Files Request Previous")]
+        [NUnit.Framework.DescriptionAttribute("CSM Log Files 10 Files Request Previous")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8971")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
-        public virtual void CSMLogFilesTenFilesRequestPrevious()
+        public virtual void CSMLogFiles10FilesRequestPrevious()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8971",
                     "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files Ten Files Request Previous", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Log Files 10 Files Request Previous", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -467,7 +467,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("logs sort by decreasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 65
- testRunner.And("user will see decreasing date sorting indicator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("decreasing date sorting indicator is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -517,7 +517,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("logs sort by increasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 73
- testRunner.And("user will see increasing date sorting indicator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("increasing date sorting indicator is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

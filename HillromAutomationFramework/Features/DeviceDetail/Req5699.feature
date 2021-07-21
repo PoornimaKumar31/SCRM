@@ -22,20 +22,20 @@ Scenario: CSM Log Files Download
 	And downloaded filename matches 
 
 @TestCaseID_8969 @UISID_8678
-Scenario: CSM Log Files Ten Files
+Scenario: CSM Log Files 10 Files
 	Given user is on CSM Log Files page with 10 logs
 	Then 10 logs for CSM device are displayed
 	And user cannot navigate to next logs page
 
 @TestCaseID_8970 @UISID_8678
-Scenario: CSM Log Files Ten Files Request Next 
+Scenario: CSM Log Files 10 Files Request Next 
 	Given user is on CSM Log Files page with 10 logs
 	When user clicks Request Logs button
 	Then Pending or Executing message is displayed
 	And user can navigate to next logs page
 
 @TestCaseID_8971 @UISID_8678
-Scenario: CSM Log Files Ten Files Request Previous
+Scenario: CSM Log Files 10 Files Request Previous
 	Given user is on CSM Log Files page with 10 logs
 	And Pending or Executing message is displayed
 	When user navigates to next logs page
@@ -62,7 +62,7 @@ Scenario: CSM Log Files Sort Decreasing Date
 	And logs are sorted by increasing date
 	When user clicks Date column heading
 	Then logs sort by decreasing date
-	And user will see decreasing date sorting indicator
+	And decreasing date sorting indicator is displayed
 
 @TestCaseID_8975 @UISID_8678
 Scenario: CSM Log Files Sort Increasing Date
@@ -70,4 +70,4 @@ Scenario: CSM Log Files Sort Increasing Date
 	And logs are sorted by decreasing date
 	When user clicks Date column heading
 	Then logs sort by increasing date
-	And user will see increasing date sorting indicator
+	And increasing date sorting indicator is displayed

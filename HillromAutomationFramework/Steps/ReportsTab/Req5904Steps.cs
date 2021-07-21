@@ -43,7 +43,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(csmConfigStatusPage.InformationPopUp.GetElementVisibility(), true, "Information popup is not displayed.\n");
         }
         
-        [Then(@"user can see CSM Configuration Report Statuses header")]
+        [Then(@"CSM Configuration Report Statuses header is displayed")]
         public void ThenUserCanSeeCSMConfigurationReportStatusesHeader()
         {
             Assert.AreEqual(csmConfigStatusPage.InformationPopUpHeader.GetElementVisibility(), true, "CSM Configuration report status header is not visible");
@@ -52,7 +52,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedHeaderText, ActualHeaderText, "CSM Configuration report status header text is not matching with the expected value.\n");
         }
 
-        [Then(@"user can see ""(.*)"" status and definition")]
+        [Then(@"""(.*)"" status and definition is displayed")]
         public void ThenUserCanSeeStartedStatusAndDefinition(string statustitle)
         {
             //defination
@@ -82,7 +82,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
             Assert.AreEqual(ExpectedDefinaton, ActualDefination, statustitle + " defination does not match with expected");
         }        
-        [Then(@"user can see Close button")]
+        [Then(@"Close button is displayed")]
         public void ThenUserCanSeeCloseButton()
         {
             Assert.AreEqual(csmConfigStatusPage.InformationPopUpCloseButton.GetElementVisibility(), true, "Close button is not displayed.\n");
@@ -107,8 +107,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(csmConfigStatusPage.InformationPopUp.GetElementVisibility(), false, "CSM Configuration report status is not closed");
         }
 
-        [Then(@"user is on CSM Configuration Update Status page")]
-        public void ThenUserIsOnCSMConfigurationUpdateStatusPage()
+        [Then(@"CSM Configuration Update Status page is displayed")]
+        public void ThenCSMConfigurationUpdateStatusPageIsDisplayed()
         {
             Assert.AreEqual(csmConfigStatusPage.InformationButton.GetElementVisibility(), true, "User is not on Configuration update status page");
         }

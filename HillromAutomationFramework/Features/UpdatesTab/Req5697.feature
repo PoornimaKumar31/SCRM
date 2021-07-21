@@ -9,10 +9,10 @@ Scenario: Select Updates Elements
 	Then Select update indicator is highlighted
 	And Select assets indicator is not highlighted
 	And Review action indicator is not highlighted
-	And Asset type label is visible
-	And Update type label is visible
-	And Asset type drop down is visible
-	And Update type drop down is visible
+	And Asset type label is displayed
+	And Update type label is displayed
+	And Asset type drop down is displayed
+	And Update type drop down is displayed
 	And Next button is disabled
 
 @TestCaseID_9032 @UISID_8696
@@ -28,32 +28,32 @@ Scenario: Select CVSM Configuration Update Type
 	And CVSM Asset type is selected
 	When user selects Configuration Update type
 	Then Configuration displays as Update type
-	And CVSM configuration list is visible
-	And Name column heading is visible
-	And Date created column heading is visible
-	And Delete button is visible
+	And CVSM configuration list is displayed
+	And Name column heading is displayed
+	And Date created column heading is displayed
+	And Delete button is displayed
 	And Next button is disabled
 
 @TestCaseID_9078 @UISID_8696 @UISID_8669
 Scenario: CVSM Configuration<=50
 	Given user is on CVSM Updates page with "<=50" entries
-	Then Previous page button is disabled
-	And Next page button is disabled
+	Then Previous page icon is disabled
+	And Next page icon is disabled
 
 @TestCaseID_9079 @UISID_8696 @UISID_8669
 Scenario: CVSM Configuration>50 entries
 	Given user is on CVSM Updates page with ">50" entries
-	Then Previous page button is disabled
-	And Next page button is enabled
+	Then Previous page icon is disabled
+	And Next page icon is enabled
 
 @TestCaseID_9080 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration>50 and <= 100 Next
+Scenario: CVSM Configuration > 50 and <= 100 Next
 	Given user is on CVSM Updates page with ">50 and <= 100" entries
 	And first 50 entries are displayed
 	When user clicks Next page button
 	Then second page of entries is displayed
-	And Next page button is disabled
-	And Previous page button is disabled
+	And Next page icon is disabled
+	And Previous page icon is disabled
 
 @TestCaseID_9035 @UISID_8696 @UISID_8697
 Scenario: CVSM Configuration Selected
@@ -62,26 +62,26 @@ Scenario: CVSM Configuration Selected
 	And Configuration Update type is selected
 	When user selects CVSM configuration from the list
 	Then Next button is enabled
-	And clicks next button
-	Then Select assets page is displayed
+	And user clicks next button
+	Then Select Assets page is displayed
 
 @TestCaseID_9036 @UISID_8697 @UISID_8669
-Scenario: CVSM Select assets Elements
+Scenario: CVSM Select Assets Elements
 	Given user is on CVSM Configuration Select assets page
 	Then Select update indicator is not highlighted
 	And Select assets indicator is highlighted
 	And Review action indicator is not highlighted
-	And Item to push label is visible
-	And device type label is visible
-	And update type label is visible
-	And config file to push label is visible
-	And Destinations label is visible
+	And Item to push label is displayed
+	And device type label is displayed
+	And update type label is displayed
+	And config file to push label is displayed
+	And Destinations label is displayed
 	And location hierarchy selectors are displayed
 	And count of selected devices is displayed
 	And Previous button is enabled
-	And Next button is disabled in select assets page
-	And user will see Page x of y indicator
-	And user will see Displaying x to y of z results indicator
+	And Next button is disabled
+	And Page x of y indicator is displayed
+	And Displaying x to y of z results indicator is displayed
 
 @TestCaseID_9038 @UISID_8697
 Scenario: CVSM Select Assets Elements Table
@@ -99,7 +99,7 @@ Scenario: CVSM Select Assets
 	Given user is on CVSM Configuration Select assets page
 	When user selects one device
 	Then count of selected devices changes from 0 to 1
-	And Next button is enabled on select assets page
+	And Next button is enabled
 
 @TestCaseID_9040 @UISID_8697
 Scenario: CVSM Select Assets Previous

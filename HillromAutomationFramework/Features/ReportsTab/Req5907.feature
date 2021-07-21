@@ -7,37 +7,37 @@ Scenario: CSM Firmware Status Information
 	Given user is on CSM Firmware Upgrade Status report page
 	When user clicks Information button
 	Then CSM Firmware Report Statuses dialog is displayed
-	And user can see CSM Firmware Report Statuses header
-	And user can see "Started" status and definition
-	And user can see "Available" status and definition
-	And user can see "Downloading" status and definition
-	And user can see "Scheduled" status and definition
-	And user can see "Updating" status and definition
-	And user can see "Applied" status and definition
-	And user can see "Cancel Requested" status and definition
-	And user can see "Canceling" status and definition
-	And user can see "Download Failed" status and definition
-	And user can see "Failed" status and definition
-	And user can see Close button
+	And CSM Firmware Report Statuses header is displayed
+	And "Started" status and definition is displayed
+	And "Available" status and definition is displayed
+	And "Downloading" status and definition is displayed
+	And "Scheduled" status and definition is displayed
+	And "Updating" status and definition is displayed
+	And "Applied" status and definition is displayed
+	And "Cancel Requested" status and definition is displayed
+	And "Canceling" status and definition is displayed
+	And "Download Failed" status and definition is displayed
+	And "Failed" status and definition is displayed
+	And Close button is displayed
 
 @TestCaseID_8998 @UISID_8692
 Scenario: CSM Firmware Status Information Close
-	Given user is on CSM Firmware Upgrade Status page
+	Given user is on CSM Firmware Upgrade Status report page
 	And CSM Firmware Report Statuses dialog is displayed
 	When user clicks Close button
 	Then CSM Firmware Report Statuses dialog closes
-	And user is on CSM Firmware Upgrade Status page
+	And CSM Firmware Upgrade Status page is displayed
 
 @TestCaseID_8999 @UISID_8692
 Scenario: RV700 Firmware Status information
 	Given user is on RV700 Firmware Upgrade Status report page
 	When user clicks Information button
 	Then RV700 Firmware Report Statuses dialog is displayed
-	And user can see RV700 Firmware Report Statuses header
-	And user can see "Started" status and definition of RV700
-	And user can see "Available" status and definition of RV700
-	And user can see "Failure" status and definition of RV700
-	And user can see Close button
+	And RV700 Firmware Report Statuses header is displayed
+	And "Started" status and definition of RV700 is displayed
+	And "Available" status and definition of RV700 is displayed
+	And "Failure" status and definition of RV700 is displayed
+	And Close button is displayed
 
 @TestCaseID_9000 @UISID_8692
 Scenario: RV700 Firmware Status Information Close
@@ -45,4 +45,4 @@ Scenario: RV700 Firmware Status Information Close
 	And RV700 Firmware Report Statuses dialog is displayed
 	When user clicks Close button
 	Then RV700 Firmware Report Statuses dialog closes
-	And user is on RV700 Firmware Upgrade Status page
+	And RV700 Firmware Upgrade Status page is displayed

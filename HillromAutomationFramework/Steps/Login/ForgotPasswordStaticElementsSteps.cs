@@ -7,25 +7,25 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
 {
-    [Binding]
+    [Binding,Scope(Feature = "Forgot Password Static Elements")]
     public class ForgotPasswordStaticElementsSteps
     {
         readonly ForgotPasswordPage forgotPassword = new ForgotPasswordPage();
 
-        [Then(@"user will see forgot Hillrom logo")]
-        public void ThenUserWillSeeForgotHillromLogo()
+        [Then(@"Hillrom logo is displayed")]
+        public void ThenUserWillSeeHillromLogo()
         {
             Thread.Sleep(500);
             Assert.AreEqual(forgotPassword.HillromLogo.GetElementVisibility(),true,"Hillrom logo is not displayed");
         }
         
-        [Then(@"forgot SmartCare Remote Management title")]
+        [Then(@"SmartCare Remote Management title is displayed")]
         public void ThenForgotSmartCareRemoteManagementTitle()
         {
             Assert.AreEqual(forgotPassword.ApplicationTitle.GetElementVisibility(),true,"Smartcare remote management title is not displayed");
         }
         
-        [Then(@"reset instructions")]
+        [Then(@"reset instructions is displayed")]
         public void ThenResetInstructions()
         {
             Assert.AreEqual(forgotPassword.ResetPasswordInstructions.GetElementVisibility(),true,"Reset instructions are not displayed");

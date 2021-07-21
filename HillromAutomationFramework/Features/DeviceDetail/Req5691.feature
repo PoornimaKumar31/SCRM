@@ -15,20 +15,20 @@ Scenario: CVSM Log Files Empty
 	Then no logs for CVSM device are displayed
 
 @TestCaseID_8955 @UISID_8678
-Scenario: CVSM Log Files Ten Files
+Scenario: CVSM Log Files 10 Files
 	Given user is on CVSM Log Files page with 10 logs
 	Then 10 logs for CVSM device are displayed
 	And user cannot navigate to next logs page
 
 @TestCaseID_8956 @UISID_8678 @UISID_8669
-Scenario: CVSM Log Files Ten Files Request Next
+Scenario: CVSM Log Files 10 Files Request Next
 	Given user is on CVSM Log Files page with 10 logs
 	When user clicks Request Logs button
 	Then Pending or Executing message is displayed
 	And user can navigate to next logs page
 
 @TestCaseID_8957 @UISID_8678 @UISID_8669
-Scenario: CVSM Log Files Ten Files Request Previous
+Scenario: CVSM Log Files 10 Files Request Previous
 	Given user is on CVSM Log Files page with 10 logs
 	And Pending or Executing message is displayed
 	When user navigates to next logs page
@@ -41,11 +41,11 @@ Scenario: CVSM Log Files 24 Files Next1
 	And Log files are sorted by decreasing date
 	And newest 10 logs are displayed
 	When user clicks Next page button
-	Then user will see next 10 older logs
+	Then user will see next 10 logs
 	And Displaying 11 to 20 of 24 results label is displayed
 	And page 2 of 3 label is displayed
 	When user clicks Next page button
-	Then user will see next 4 older logs
+	Then user will see next 4 logs
 	And Displaying 21 to 24 of 24 results label is displayed
 	And page 3 of 3 label is displayed
 
@@ -55,7 +55,7 @@ Scenario: CVSM Log Files Sort Decreasing Date
 	And logs are sorted by increasing date
 	When user clicks Date column heading
 	Then logs sort by decreasing date
-	And user will see decreasing date sorting indicator
+	And decreasing date sorting indicator is displayed
 
 @TestCaseID_8962 @UISID_8678
 Scenario: CVSM Log Files Sort Increasing Date
@@ -63,4 +63,4 @@ Scenario: CVSM Log Files Sort Increasing Date
 	And logs are sorted by decreasing date
 	When user clicks Date column heading
 	Then logs sort by increasing date
-	And user will see increasing date sorting indicator
+	And increasing date sorting indicator is displayed

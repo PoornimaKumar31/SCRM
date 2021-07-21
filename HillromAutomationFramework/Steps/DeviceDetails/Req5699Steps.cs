@@ -281,8 +281,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(csmDeviceDetailsPage.LogDateList.isDateSorted("d"));
         }
 
-        [Then(@"user will see decreasing date sorting indicator")]
-        public void ThenUserWillSeeDecreasingDateSortingIndicator()
+        [Then(@"decreasing date sorting indicator is displayed")]
+        public void DecreasingDateSortingIndicatorIsDisplayed()
         {
             Thread.Sleep(3000);
             Assert.IsTrue(csmDeviceDetailsPage.DateSorting.GetAttribute("class")==CSMDeviceDetailsPage.Locators.LogsDescendingClassName);
@@ -294,8 +294,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(csmDeviceDetailsPage.LogDateList.isDateSorted("a"));
         }
 
-        [Then(@"user will see increasing date sorting indicator")]
-        public void ThenUserWillSeeIncreasingDateSortingIndicator()
+        [Then(@"increasing date sorting indicator is displayed")]
+        public void IncreasingDateSortingIndicatorIsDisplayed()
         {
             Assert.IsTrue(csmDeviceDetailsPage.DateSorting.GetAttribute("class") == CSMDeviceDetailsPage.Locators.LogsAscendingClassName);
         }

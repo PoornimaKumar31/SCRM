@@ -8,7 +8,6 @@ Scenario: CSM Log Files Request
 	And Pending or Executing message is not displayed
 	When user clicks Request Logs button
 	Then Pending or Executing message is displayed
-	And Request Logs button is disabled
 
 @TestCaseID_8977 @UISID_8678
 Scenario: CSM Log Files Request Disabled

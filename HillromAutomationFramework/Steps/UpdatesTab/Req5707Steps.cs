@@ -108,8 +108,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(false, csmUpdatesPage.CancelUpgradeButton.Enabled,"Button is Enabled");
         }
 
-        [Then(@"column (.*) heading ""(.*)"" is displayed")]
-        public void ThenColumnHeadingFirmwareIsDisplayed(int p0, string HeadingName)
+        [Then(@"""(.*)"" column heading is displayed")]
+        public void ThenColumnHeadingIsDisplayed(string HeadingName)
         {
             IWebElement HeadingElement = null;
             string ExpectedHeadingText = null;

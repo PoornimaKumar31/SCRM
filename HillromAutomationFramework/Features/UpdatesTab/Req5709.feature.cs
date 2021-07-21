@@ -375,37 +375,37 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Select all checkbox in column 1 is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 54
- testRunner.And("\"Serial Number\" in column 2 heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Serial Number\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 55
- testRunner.And("\"Call home period\" in column 3 heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Call home period\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 56
- testRunner.And("\"Deployment mode\" in column 4 heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Deployment mode\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
- testRunner.And("\"Location\" in column 5 heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 58
- testRunner.And("\"Last files deployed\" in column 6 heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Last files deployed\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings <= 50")]
+        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings is less than equal 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9074")]
         [NUnit.Framework.CategoryAttribute("UISID_8699")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void ServiceMonitorSettings50()
+        public virtual void ServiceMonitorSettingsIsLessThanEqual50()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9074",
                     "UISID_8699",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings <= 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings is less than equal 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 61
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -430,28 +430,28 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Service Monitor Settings page with \"<=50\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 63
- testRunner.Then("Previous page button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Previous page icon is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 64
- testRunner.And("Next page button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Next page icon is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings > 50 entries")]
+        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings is greater than 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9075")]
         [NUnit.Framework.CategoryAttribute("UISID_8699")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void ServiceMonitorSettings50Entries()
+        public virtual void ServiceMonitorSettingsIsGreaterThan50()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9075",
                     "UISID_8699",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings > 50 entries", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings is greater than 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 67
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -476,28 +476,28 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Service Monitor Settings page with \">50\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 69
- testRunner.Then("Previous page button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Previous page icon is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 70
- testRunner.And("Next page button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Next page icon is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings > 50 and <= 100 Next")]
+        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings is greater than 50 and smaller than equal 100")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9076")]
         [NUnit.Framework.CategoryAttribute("UISID_8699")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void ServiceMonitorSettings50And100Next()
+        public virtual void ServiceMonitorSettingsIsGreaterThan50AndSmallerThanEqual100()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9076",
                     "UISID_8699",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings > 50 and <= 100 Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings is greater than 50 and smaller than equal 100", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 73
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -531,10 +531,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("second page of entries is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 78
- testRunner.And("Next page button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Next page icon is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 79
- testRunner.And("Previous page button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Previous page icon is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

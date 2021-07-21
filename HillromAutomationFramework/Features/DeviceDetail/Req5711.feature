@@ -58,7 +58,7 @@ Scenario: RV700 Log Files Sort Decreasing Date
 	And logs are sorted by increasing date
 	When user clicks Date column heading
 	Then logs sort by decreasing date
-	And user will see decreasing date sorting indicator
+	And decreasing date sorting indicator is displayed
 
 @TestCaseID_8986 @UISID_8678
 Scenario: RV700 Log Files Sort Increasing Date
@@ -66,4 +66,4 @@ Scenario: RV700 Log Files Sort Increasing Date
 	And logs are sorted by decreasing date
 	When user clicks Date column heading
 	Then logs sort by increasing date
-	And user will see increasing date sorting indicator
+	And increasing date sorting indicator is displayed

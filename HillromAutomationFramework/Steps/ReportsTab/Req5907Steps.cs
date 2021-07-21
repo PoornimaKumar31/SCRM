@@ -44,8 +44,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(firmwareStatusPage.InformationPopUp.GetElementVisibility(), true, "CSM firmware report status dialog box is not displayed");
         }
         
-        [Then(@"user can see CSM Firmware Report Statuses header")]
-        public void ThenUserCanSeeCSMFirmwareReportStatusesHeader()
+        [Then(@"CSM Firmware Report Statuses header is displayed")]
+        public void ThenCSMFirmwareReportStatusesHeaderIsDisplayed()
         {
             Assert.AreEqual(firmwareStatusPage.InformationPopUpHeader.GetElementVisibility(), true, "CSM Firmware report staus header is not displayed");
             string ActualHeaderText = firmwareStatusPage.InformationPopUpHeader.Text;
@@ -53,8 +53,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedHeaderText, ActualHeaderText, "CSM Firmware report status header text does not match the expected text.\n");
         }
 
-        [Then(@"user can see ""(.*)"" status and definition")]
-        public void ThenUserCanSeeStatusAndDefinition(string statustitle)
+        [Then(@"""(.*)"" status and definition is displayed")]
+        public void ThenStatusAndDefinitionIsDisplayed(string statustitle)
         {
             //defination
             string statusTabledata = firmwareStatusPage.InformationPopUpData.Text;
@@ -103,19 +103,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedDefinaton, ActualDefination, statustitle + " defination does not match with expected text");
         }
 
-        [Then(@"user can see Close button")]
-        public void ThenUserCanSeeCloseButton()
+        [Then(@"Close button is displayed")]
+        public void CloseButtonIsDisplayed()
         {
             Assert.AreEqual(firmwareStatusPage.InformationPopUpCloseButton.GetElementVisibility(), true, "Close button is not displayed");
-        }
-
-
-        [Given(@"user is on CSM Firmware Upgrade Status page")]
-        public void GivenUserIsOnCSMFirmwareUpgradeStatusPage()
-        {
-            GivenUserIsOnCSMFirmwareUpgradeStatusReportPage();
-
-
         }
 
         [Given(@"CSM Firmware Report Statuses dialog is displayed")]
@@ -137,7 +128,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(false, firmwareStatusPage.InformationPopUp.GetElementVisibility(), "Firmware report status dialog is not closed");
         }
 
-        [Then(@"user is on CSM Firmware Upgrade Status page")]
+        [Then(@"CSM Firmware Upgrade Status page is displayed")]
         public void ThenUserIsOnCSMFirmwareUpgradeStatusPage()
         {
             Assert.AreEqual(true, firmwareStatusPage.InformationButton.GetElementVisibility(), "User is not on Upgrade status page");
@@ -162,8 +153,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, firmwareStatusPage.InformationPopUp.GetElementVisibility(), "RV700 Firmware Report Statuses dialog is not displayed");
         }
 
-        [Then(@"user can see RV700 Firmware Report Statuses header")]
-        public void ThenUserCanSeeRVFirmwareReportStatusesHeader()
+        [Then(@"RV700 Firmware Report Statuses header is displayed")]
+        public void ThenRVFirmwareReportStatusesHeaderIsDisplayed()
         {
             Assert.AreEqual(true, firmwareStatusPage.InformationPopUpHeader.GetElementVisibility(), "Rv700 Firmware report status header is not displayed");
             string ActualHeaderText = firmwareStatusPage.InformationPopUpHeader.Text;
@@ -171,7 +162,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedHeaderText, ActualHeaderText, "RV700 report status header text is not matching with expected.\n");
         }
 
-        [Then(@"user can see ""(.*)"" status and definition of RV700")]
+        [Then(@"""(.*)"" status and definition of RV700 is displayed")]
         public void ThenUserCanSeeStatusAndDefinitionOfRV(string statusTitle)
         {
             //defination
@@ -214,8 +205,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(false, firmwareStatusPage.InformationPopUp.GetElementVisibility(), "RV700 Firmware Report Statuses dialog is not closed");
         }
 
-        [Then(@"user is on RV700 Firmware Upgrade Status page")]
-        public void ThenUserIsOnRVFirmwareUpgradeStatusPage()
+        [Then(@"RV700 Firmware Upgrade Status page is displayed")]
+        public void ThenRVFirmwareUpgradeStatusPageIsDisplayed()
         {
             Assert.AreEqual(true, firmwareStatusPage.InformationButton.GetElementVisibility(), "User is not on rv700 firmware upgrade status page");
         }

@@ -25,11 +25,11 @@ Scenario: CSM Manage Active Updates Elements
 Scenario: CSM Manage Active Updates Elements Table
 	Given user is on Manage Upgrades page
 	Then Select all checkbox in column 1 is unchecked
-	And column 2 heading "Firmware" is displayed
-	And column 3 heading "Serial number" is displayed
-	And column 4 heading "New firmware" is displayed
-	And column 5 heading "Location" is displayed
-	And column 6 heading "Schedule" is displayed
+	And "Firmware" column heading is displayed
+	And "Serial number" column heading is displayed
+	And "New firmware" column heading is displayed
+	And "Location" column heading is displayed
+	And "Schedule" column heading is displayed
 
 @TestCaseID_9173 @UISID_8700
 Scenario: CSM Schedule Upgrade Cancel

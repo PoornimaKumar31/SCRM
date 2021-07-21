@@ -11,5 +11,5 @@ Scenario: Login Supported Browsers
 @TestCaseID_8926 @UISID_8660 
 Scenario: Login Supported Browsers Close
     Given user is on Supported Browsers dialog
-    When user clicks Close button
+    When user clicks close button
     Then Supported Browsers dialog is closed

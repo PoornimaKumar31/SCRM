@@ -200,8 +200,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
         }
 
-        [Then(@"user will see decreasing date sorting indicator")]
-        public void ThenUserWillSeeDecreasingDateSortingIndicator()
+        [Then(@"decreasing date sorting indicator is displayed")]
+        public void DecreasingDateSortingIndicatorIsDisplayed()
         {
             Assert.IsTrue(rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending");
         }
@@ -212,8 +212,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(rv700DeviceDetailsPage.LogDateList.isDateSorted("a"));
         }
 
-        [Then(@"user will see increasing date sorting indicator")]
-        public void ThenUserWillSeeIncreasingDateSortingIndicator()
+        [Then(@"increasing date sorting indicator is displayed")]
+        public void IncreasingDateSortingIndicatorDisplayed()
         {
             Assert.IsTrue(rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending");
         }

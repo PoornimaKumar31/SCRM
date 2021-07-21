@@ -174,8 +174,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             cvsmDeviceDetailsPage.LogsNextButton.Click();
         }
 
-        [Then(@"user will see next (.*) older logs")]
-        public void ThenUserWillSeeNextOlderLogs(int num)
+        [Then(@"user will see next (.*) logs")]
+        public void ThenUserWillSeeNextLogs(int num)
         {
             Assert.AreEqual(num,cvsmDeviceDetailsPage.LogFiles.GetElementCount(),"Number of Logs are not as expected");
         }
@@ -229,8 +229,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(cvsmDeviceDetailsPage.LogDateList.isDateSorted("d"));
         }
 
-        [Then(@"user will see decreasing date sorting indicator")]
-        public void ThenUserWillSeeDecreasingDateSortingIndicator()
+        [Then(@"decreasing date sorting indicator is displayed")]
+        public void DecreasingDateSortingIndicatorIsDisplayed()
         {
             
             Assert.IsTrue(cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending");
@@ -243,8 +243,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(cvsmDeviceDetailsPage.LogDateList.isDateSorted("a"));
         }
 
-        [Then(@"user will see increasing date sorting indicator")]
-        public void ThenUserWillSeeIncreasingDateSortingIndicator()
+        [Then(@"increasing date sorting indicator is displayed")]
+        public void IncreasingDateSortingIndicatorIsDisplayed()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending");
         }

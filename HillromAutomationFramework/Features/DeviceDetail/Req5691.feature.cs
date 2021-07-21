@@ -167,16 +167,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Log Files Ten Files")]
+        [NUnit.Framework.DescriptionAttribute("CVSM Log Files 10 Files")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8955")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
-        public virtual void CVSMLogFilesTenFiles()
+        public virtual void CVSMLogFiles10Files()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8955",
                     "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Ten Files", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files 10 Files", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -211,18 +211,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Log Files Ten Files Request Next")]
+        [NUnit.Framework.DescriptionAttribute("CVSM Log Files 10 Files Request Next")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8956")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void CVSMLogFilesTenFilesRequestNext()
+        public virtual void CVSMLogFiles10FilesRequestNext()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8956",
                     "UISID_8678",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Ten Files Request Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files 10 Files Request Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -260,18 +260,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Log Files Ten Files Request Previous")]
+        [NUnit.Framework.DescriptionAttribute("CVSM Log Files 10 Files Request Previous")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8957")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void CVSMLogFilesTenFilesRequestPrevious()
+        public virtual void CVSMLogFiles10FilesRequestPrevious()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8957",
                     "UISID_8678",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Ten Files Request Previous", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files 10 Files Request Previous", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 31
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -357,7 +357,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks Next page button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 44
- testRunner.Then("user will see next 10 older logs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("user will see next 10 logs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 45
  testRunner.And("Displaying 11 to 20 of 24 results label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -369,7 +369,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks Next page button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 48
- testRunner.Then("user will see next 4 older logs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("user will see next 4 logs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 49
  testRunner.And("Displaying 21 to 24 of 24 results label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -425,7 +425,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("logs sort by decreasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 58
- testRunner.And("user will see decreasing date sorting indicator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("decreasing date sorting indicator is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -475,7 +475,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("logs sort by increasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 66
- testRunner.And("user will see increasing date sorting indicator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("increasing date sorting indicator is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

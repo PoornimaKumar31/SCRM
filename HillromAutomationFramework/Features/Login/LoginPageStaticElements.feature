@@ -4,8 +4,8 @@
 @TestCaseID_8927 @UISID_8660
 Scenario: Login Static Elements
 	Given user is on Login page
-	Then user will see login Hillrom logo
-	And login SmartCare Remote Management title
-	And login instructions
-	And a Ready to Get Started message
-	And a copyright message
+	Then Hillrom logo is displayed
+	And SmartCare Remote Management title is displayed
+	And login instructions is displayed
+	And Ready to Get Started message is displayed
+	And copyright message is displayed

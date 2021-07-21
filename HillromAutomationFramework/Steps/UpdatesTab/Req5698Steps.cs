@@ -95,29 +95,10 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, cvsmUpdateConfig.DeletePopUpNoButton.GetElementVisibility(), "No button is not displayed");
         }
 
-        [When(@"user clicks Yes button")]
-        public void WhenUserClicksYesButton()
+        [Then(@"configuration is not deleted from Configuration list")]
+        public void ThenConfigurationIsFromConfigurationList()
         {
-            cvsmUpdateConfig.DeletePopUpYesButton.Click();
-        }
-
-        [Then(@"configuration is ""(.*)"" from Configuration list")]
-        public void ThenConfigurationIsFromConfigurationList(string condition)
-        {
-            switch(condition.ToLower().Trim())
-            {
-                //implement a function to check is deleted or not
-                case "deleted":
-                    //to wait till file list is updated
-                    Thread.Sleep(3000);
-                    Assert.AreEqual(false,cvsmUpdateConfig.IsConfigFilePresent(ConfigFileName),"Config file is not deleted");
-                    break;
-                case "not deleted":
-                    Assert.AreEqual(true, cvsmUpdateConfig.IsConfigFilePresent(ConfigFileName), "Config file is deleted");
-                    break;
-                default: Assert.Fail("Deleted or not deleted should be mentioned");
-                    break;
-            }
+            Assert.AreEqual(true, cvsmUpdateConfig.IsConfigFilePresent(ConfigFileName), "Config file is deleted");        
         }
         [When(@"user clicks No button")]
         public void WhenUserClicksNoButton()

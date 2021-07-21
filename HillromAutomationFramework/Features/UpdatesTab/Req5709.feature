@@ -51,32 +51,32 @@ Scenario: Service Monitor Settings Elements
 Scenario: Service Monitor Settings Elements Table
 	Given user is on Service Monitor Settings page
 	Then Select all checkbox in column 1 is unchecked
-	And "Serial Number" in column 2 heading is displayed
-	And "Call home period" in column 3 heading is displayed
-	And "Deployment mode" in column 4 heading is displayed
-	And "Location" in column 5 heading is displayed
-	And "Last files deployed" in column 6 heading is displayed
+	And "Serial Number" column heading is displayed
+	And "Call home period" column heading is displayed
+	And "Deployment mode" column heading is displayed
+	And "Location" column heading is displayed
+	And "Last files deployed" column heading is displayed
 
 @TestCaseID_9074 @UISID_8699 @UISID_8669
-Scenario: Service Monitor Settings <= 50
+Scenario: Service Monitor Settings is less than equal 50
 	Given user is on Service Monitor Settings page with "<=50" entries
-	Then Previous page button is disabled
-	And Next page button is disabled
+	Then Previous page icon is disabled
+	And Next page icon is disabled
 
 @TestCaseID_9075 @UISID_8699 @UISID_8669
-Scenario: Service Monitor Settings > 50 entries
+Scenario: Service Monitor Settings is greater than 50
 	Given user is on Service Monitor Settings page with ">50" entries
-	Then Previous page button is disabled
-	And Next page button is enabled
+	Then Previous page icon is disabled
+	And Next page icon is enabled
 
 @TestCaseID_9076 @UISID_8699 @UISID_8669
-Scenario: Service Monitor Settings > 50 and <= 100 Next
+Scenario: Service Monitor Settings is greater than 50 and smaller than equal 100
 	Given user is on Service Monitor Settings page with ">50 and <=100" entries
 	And first 50 entries are displayed
 	When user clicks Next page button
 	Then second page of entries is displayed
-	And Next page button is disabled
-	And Previous page button is disabled
+	And Next page icon is disabled
+	And Previous page icon is disabled
 
 @TestCaseID_9077 @UISID_8699
 Scenario: Service Monitor Settings Select Device

@@ -314,12 +314,6 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, csmConfigDeliverPage.PreviousButton.Enabled, "Previous button is enabled");
         }
 
-        [Then(@"Next button is disabled in select device page")]
-        public void ThenNextButtonIsDisabledInSelectDevicePage()
-        {
-            Assert.AreEqual(false, csmConfigDeliverPage.SelectDeviceNextButton.Enabled, "Next button is not disabled in select device page");
-        }
-
         [Then(@"Select all checkbox in column 1 is displayed")]
         public void ThenSelectAllCheckboxInColumnIsDisplayed()
         {

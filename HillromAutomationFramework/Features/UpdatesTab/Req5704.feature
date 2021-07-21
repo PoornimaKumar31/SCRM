@@ -31,7 +31,7 @@ Scenario: CSM Configuration Update Default Sort Order
 	Then configuration files are sorted in ascending alphabetical order
 
 @TestCaseID_9086 @UISID_8696 @UISID_8669
-Scenario: CSM Configuration <= 50 entries
+Scenario: CSM Configuration <= 50
 	Given user is on CSM Updates page with "<= 50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
@@ -75,7 +75,7 @@ Scenario: CSM Select Assets Elements
 	And location hierarchy selectors are displayed
 	And count of selected devices is displayed
 	And Previous button is enabled
-	And Next button is disabled in select device page
+	And Next button is disabled
 	And Page x of y label is displayed
 	And Displaying x to y of z label is displayed
 

@@ -75,11 +75,13 @@ namespace HillromAutomationFramework.Features.Login
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Forgot Password Static Elements")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_8928")]
+        [NUnit.Framework.CategoryAttribute("UISID_8662")]
         public virtual void ForgotPasswordStaticElements()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "TestCaseID_8928",
+                    "UISID_8662"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Forgot Password Static Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
@@ -106,13 +108,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Forgot Password page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
- testRunner.Then("user will see forgot Hillrom logo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Hillrom logo is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 8
- testRunner.And("forgot SmartCare Remote Management title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("SmartCare Remote Management title is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
- testRunner.And("reset instructions", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("reset instructions is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

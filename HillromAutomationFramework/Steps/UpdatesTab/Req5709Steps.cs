@@ -213,8 +213,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(false, serviceMoniterPage.SelectAllCheckBox.Selected, "Select all checkbox in column 1 is checked");
         }
 
-        [Then(@"""(.*)"" in column (.*) heading is displayed")]
-        public void ThenInColumnIsDisplayed(string headingName, int p1)
+        [Then(@"""(.*)"" column heading is displayed")]
+        public void ThenInColumnIsDisplayed(string headingName)
         {
             IWebElement headingElement=null;
             string ExpectedHeadingText=null;
@@ -270,8 +270,8 @@ namespace HillromAutomationFramework.Steps.Updates
             }
         }
 
-        [Then(@"Previous page button is disabled")]
-        public void ThenPreviousPageButtonIsDisabled()
+        [Then(@"Previous page icon is disabled")]
+        public void ThenPreviousPageIconIsDisabled()
         {
             String PageNumberBeforeClick = serviceMoniterPage.PaginationXofY.Text;
             serviceMoniterPage.PaginationPreviousButton.JavaSciptClick();
@@ -279,8 +279,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Previous page button is enabled");
         }
 
-        [Then(@"Next page button is disabled")]
-        public void ThenNextPageButtonIsDisabled()
+        [Then(@"Next page icon is disabled")]
+        public void ThenNextPageIconIsDisabled()
         {
             String PageNumberBeforeClick = serviceMoniterPage.PaginationXofY.Text;
             serviceMoniterPage.PaginationNextButton.JavaSciptClick();
@@ -288,8 +288,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page button is enabled");
         }
 
-        [Then(@"Next page button is enabled")]
-        public void ThenNextPageButtonIsEnabled()
+        [Then(@"Next page icon is enabled")]
+        public void ThenNextPageIconIsEnabled()
         {
             String PageNumberBeforeClick = serviceMoniterPage.PaginationXofY.Text;
             serviceMoniterPage.PaginationNextButton.JavaSciptClick();

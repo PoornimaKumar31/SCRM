@@ -56,7 +56,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(cvsmDeviceDetailsPage.EditAssetDetailsPopUPFacilityLabel.GetElementVisibility());
         }
         
-        [Then(@"user can see Location Label")]
+        [Then(@"user can see Location label")]
         public void ThenUserCanSeeLocationLabel()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditAssetDetailsPopUPLocationLabel.GetElementVisibility());
@@ -167,37 +167,37 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedHintText, ActualHintText);
         }
 
-        [Then(@"the Asset Tag value is displayed")]
+        [Then(@"Asset Tag value is displayed")]
         public void ThenTheAssetTagValueIsDisplayed()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditAssetDetailsPopUPAssetTagValue.GetElementVisibility());
         }
 
-        [Then(@"the Asset Tag value is read only")]
+        [Then(@"Asset Tag value is read only")]
         public void ThenTheAssetTagValueIsReadOnly()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditAssetDetailsPopUPAssetTagValue.IsReadOnly());
         }
 
-        [Then(@"the Facility value is displayed")]
+        [Then(@"Facility value is displayed")]
         public void ThenTheFacilityValueIsDisplayed()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditAssetDetailsPopUPFacilityValue.GetElementVisibility());
         }
 
-        [Then(@"the Facility value is read only")]
+        [Then(@"Facility value is read only")]
         public void ThenTheFacilityValueIsReadOnly()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditAssetDetailsPopUPFacilityValue.IsReadOnly());
         }
 
-        [Then(@"the Location ID value is displayed")]
+        [Then(@"Location ID value is displayed")]
         public void ThenTheLocationIDValueIsDisplayed()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditAssetDetailsPopUPLocationValue.GetElementVisibility());
         }
 
-        [Then(@"the Location ID value is read only")]
+        [Then(@"Location ID value is read only")]
         public void ThenTheLocationIDValueIsReadOnly()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditAssetDetailsPopUPLocationValue.IsReadOnly());

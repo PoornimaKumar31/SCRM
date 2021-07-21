@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("user can see Facility label", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("user can see Location Label", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user can see Location label", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
  testRunner.And("user can see Room entry field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -237,18 +237,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Bed Entry Field Empty")]
+        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Bed Field Empty")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9004")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
         [NUnit.Framework.CategoryAttribute("UISID_8721")]
-        public virtual void EditCVSMAssetDetailsBedEntryFieldEmpty()
+        public virtual void EditCVSMAssetDetailsBedFieldEmpty()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9004",
                     "UISID_8673",
                     "UISID_8721"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Bed Entry Field Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Bed Field Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -283,18 +283,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Room Entry Field Empty")]
+        [NUnit.Framework.DescriptionAttribute("Edit CVSM Asset Details Room Field Empty")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9005")]
         [NUnit.Framework.CategoryAttribute("UISID_8673")]
         [NUnit.Framework.CategoryAttribute("UISID_8721")]
-        public virtual void EditCVSMAssetDetailsRoomEntryFieldEmpty()
+        public virtual void EditCVSMAssetDetailsRoomFieldEmpty()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9005",
                     "UISID_8673",
                     "UISID_8721"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Room Entry Field Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit CVSM Asset Details Room Field Empty", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -363,22 +363,22 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CVSM Edit Asset Details dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 47
- testRunner.Then("the Asset Tag value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Asset Tag value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 48
- testRunner.And("the Asset Tag value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Asset Tag value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 49
- testRunner.And("the Facility value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Facility value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 50
- testRunner.And("the Facility value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Facility value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 51
- testRunner.And("the Location ID value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Location ID value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 52
- testRunner.And("the Location ID value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Location ID value is read only", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

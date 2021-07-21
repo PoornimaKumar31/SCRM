@@ -19,14 +19,9 @@ Scenario: CVSM Configuration File Delete Dialog Elements
 	And Yes button is displayed
 	And No button is displayed
 
-@TestCaseID_9047 @UISID_8696
-Scenario: CVSM Configuration File Deleted
-	Given user is on CVSM Configuration File Delete dialog
-	When user clicks Yes button
-	Then configuration is "deleted" from Configuration list
 
 @TestCaseID_9048 @UISID_8696
 Scenario: CVSM Configuration File Not Deleted
 	Given user is on CVSM Configuration File Delete dialog
 	When user clicks No button
-	Then configuration is "not deleted" from Configuration list
+	Then configuration is not deleted from Configuration list

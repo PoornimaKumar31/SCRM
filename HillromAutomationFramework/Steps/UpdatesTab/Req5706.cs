@@ -42,8 +42,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, IsReviewActionPage, "CSM Reiew action page is not displayed.");
         }
 
-        [When(@"user clicks on schedule")]
-        public void WhenUserClicksSchedule()
+        [When(@"user clicks schedule radio button")]
+        public void WhenUserClicksScheduleRadioButton()
         {
             csmUpdatesPage.ScheduleCheckbox.Click();
 
@@ -73,7 +73,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, csmUpdatesPage.HourDDL.GetElementVisibility(), "Hour Label is not displayed");
         }
 
-        [Then(@"minutes dropdown is displayed")]
+        [Then(@"Minutes dropdown is displayed")]
         public void ThenMinutesDropdownIsDisplayed()
         {
             Assert.AreEqual(true, csmUpdatesPage.MinuteDDL.GetElementVisibility(), "Minute Label is not displayed");
@@ -97,8 +97,8 @@ namespace HillromAutomationFramework.Steps.Updates
             csmUpdatesPage.HourDDL.Click();
         }
 
-        [Then(@"Hour dropdown show (.*) to (.*)")]
-        public void ThenHourDropdownShowTo(int p0, int p1)
+        [Then(@"Hour dropdown displays (.*) to (.*)")]
+        public void ThenHourDropdownDisplaysTo(int p0, int p1)
         {
             IList<IWebElement> AllOptions = csmUpdatesPage.HourDDL.GetAllOptionsFromDDL();
             Assert.AreEqual((p1 - p0)+1, AllOptions.Count, "All elements are not present");
@@ -142,7 +142,7 @@ namespace HillromAutomationFramework.Steps.Updates
             csmUpdatesPage.MinuteDDL.SelectDDL(AllOptions[index].Text);
         }
 
-        [When(@"clicks confirm button")]
+        [When(@"clicks Confirm button")]
         public void WhenClicksConfirmButton()
         {
             csmUpdatesPage.ConfirmButton.Click();

@@ -59,8 +59,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, csmUpdatesPage.UpgradeList.GetElementVisibility(), "CSM Update List is not displayed");
         }
 
-        [Then(@"Manage Active Updates label is displayed")]
-        public void ThenManageActiveUpdatesLabelIsDisplayed()
+        [Then(@"Manage Active Updates button is displayed")]
+        public void ThenManageActiveUpdatesButtonIsDisplayed()
         {
             Assert.AreEqual(true, csmUpdatesPage.ManageActiveUpdate.Displayed, "Manage Active button label is not displayed");
         }
@@ -118,8 +118,8 @@ namespace HillromAutomationFramework.Steps.Updates
         }
 
 
-        [Then(@"Previous page arrow is disabled")]
-        public void ThenPreviousPageArrowIsDisabled()
+        [Then(@"Previous page icon is disabled")]
+        public void ThenPreviousPageIconIsDisabled()
         {
             string PageNumberBeforeClick = csmUpdatesPage.PaginationLabel.Text;
             csmUpdatesPage.PreviousPageArrow.JavaSciptClick();
@@ -127,8 +127,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Previous page icon is not disabled.");
         }
 
-        [Then(@"Next page arrow is disabled")]
-        public void ThenNextPageArrowIsDisabled()
+        [Then(@"Next page icon is disabled")]
+        public void ThenNextPageIconIsDisabled()
         {
             string PageNumberBeforeClick = csmUpdatesPage.PaginationLabel.Text;
             csmUpdatesPage.NextPageArrow.JavaSciptClick();
@@ -142,8 +142,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(false, csmConfigDeliverPage.PreviousButton.Enabled, "Previous Button is Enabled");
         }
 
-        [Then(@"Next page arrow is enabled")]
-        public void ThenNextPageArrowIsEnabled()
+        [Then(@"Next page icon is enabled")]
+        public void ThenNextPageIconIsEnabled()
         {
             _scenarioContext.Pending();
         }
@@ -174,8 +174,8 @@ namespace HillromAutomationFramework.Steps.Updates
 
         }
 
-        [Given(@"Select Upgrade file")]
-        public void GivenSelectUpgradeFile()
+        [Given(@"user has selected Upgrade file")]
+        public void GivenUserHasSelectedUpgradeFile()
         {
             csmUpdatesPage.UpgradeFile.Click();
         }
@@ -193,13 +193,13 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, IsSelectDevicePage, "Select devices page is not displayed");
         }
 
-        [Given(@"user is on CSM Upgrade Select assets page")]
+        [Given(@"user is on CSM Upgrade Select Assets page")]
         public void GivenUserIsOnCSMUpgradeSelectAssetsPage()
         {
             GivenUserIsOnCSMUpdatesPage();
             GivenCSMAssetTypeIsSelected();
             WhenUserSelectsUpgradeUpdateType();
-            GivenSelectUpgradeFile();
+            GivenUserHasSelectedUpgradeFile();
             WhenUserClicksNextButton();
             ThenCSMSelectAssetsPageIsDisplayed();
 
@@ -269,12 +269,6 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, csmConfigDeliverPage.PreviousButton.Enabled, "Previous button is enabled");
         }
 
-        [Then(@"Next button is disabled in select device page")]
-        public void ThenNextButtonIsDisabledInSelectDevicePage()
-        {
-            Assert.AreEqual(false, csmConfigDeliverPage.SelectDeviceNextButton.Enabled, "Next button is not disabled in select device page");
-        }
-
         [Then(@"Select all checkbox in column 1 is unchecked")]
         public void ThenSelectAllCheckboxInColumnIsUnchecked()
         {
@@ -282,8 +276,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.Pass("Some issue");
         }
 
-        [Then(@"column (.*) heading ""(.*)"" is displayed")]
-        public void ThenColumnHeadingFirmwareIsDisplayed(int p0,string HeadingName)
+        [Then(@"""(.*)"" column heading is displayed")]
+        public void ThenColumnHeadingIsDisplayed(string HeadingName)
         {
             IWebElement HeadingElement = null;
             string ExpectedHeadingText = null;
@@ -348,8 +342,8 @@ namespace HillromAutomationFramework.Steps.Updates
             csmConfigDeliverPage.PreviousButton.Click();
         }
 
-        [Then(@"user is on CSM Updates page")]
-        public void ThenUserIsOnCSMUpdatesPage()
+        [Then(@"CSM Updates page is displayed")]
+        public void ThenCSMUpdatesPageIsDisplayed()
         {
             bool IsUpdatePage = (csmConfigDeliverPage.AssetTypeDropDown.GetElementVisibility()) || (csmConfigDeliverPage.UpdateTypeDropDown.GetElementVisibility());
             Assert.AreEqual(true, IsUpdatePage, "CSM update page is not displayed");

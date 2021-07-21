@@ -7,13 +7,13 @@ Scenario: CSM Config Status Information
 	Given user is on CSM Configuration Update Status page 
 	When user clicks Information button
 	Then CSM Configuration report Statuses dialog is displayed
-	And user can see CSM Configuration Report Statuses header
-	And user can see "Started" status and definition
-	And user can see "Transferred" status and definition
-	And user can see "Available" status and definition
-	And user can see "Applied" status and definition
-	And user can see "Failed" status and definition
-	And user can see Close button
+	And CSM Configuration Report Statuses header is displayed
+	And "Started" status and definition is displayed
+	And "Transferred" status and definition is displayed
+	And "Available" status and definition is displayed
+	And "Applied" status and definition is displayed
+	And "Failed" status and definition is displayed
+	And Close button is displayed
 
 @TestCaseID_8996 @UISID_8688
 Scenario: CSM Config Status Information Close
@@ -21,4 +21,4 @@ Scenario: CSM Config Status Information Close
 	And CSM Configuration Report Statuses dialog is displayed
 	When user clicks Close button
 	Then CSM Configuration Report Statuses dialog closes
-	And user is on CSM Configuration Update Status page
+	And CSM Configuration Update Status page is displayed

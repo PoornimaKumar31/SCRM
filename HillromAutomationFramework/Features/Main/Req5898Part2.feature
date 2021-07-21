@@ -10,7 +10,7 @@ Feature: Software Requirement 5898 Part 2
 Scenario: Main Terms of Use
 	Given user is on Main page
 	When user clicks Terms of Use
-	Then Terms and Conditions page is displayed
+	Then Terms of use page is displayed
 
 @TestCaseID_8948 @UISID_8718
 Scenario: Main Global Service Center

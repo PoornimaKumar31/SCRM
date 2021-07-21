@@ -57,7 +57,7 @@ namespace HillromAutomationFramework.Steps.Main
         }
 
         [Scope(Tag = "TestCaseID_8947")]
-        [Then(@"Terms and Conditions page is displayed")]
+        [Then(@"Terms of use page is displayed")]
         public void ThenTermsAndConditionsPageIsDisplayed()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab

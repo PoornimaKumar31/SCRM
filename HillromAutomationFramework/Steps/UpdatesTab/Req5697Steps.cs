@@ -61,27 +61,21 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             //string HighlightedText = cvsmUpdateConfig.HighlightedSectionHeading.Text;
             //Assert.AreNotEqual("Review action", HighlightedText, "Review action indicator is highlighted.\n");
         }
-
-        [Then(@"Asset type label is visible")]
-        public void ThenAssetTypeLabelIsVisible()
-        {
-            Assert.AreEqual(true, cvsmUpdateConfig.AssetTypeLabel.GetElementVisibility(), "Asset type label is not displayed.\n");
-        }
         
-        [Then(@"Update type label is visible")]
-        public void ThenUpdateTypeLabelIsVisible()
+        [Then(@"Update type label is displayed")]
+        public void ThenUpdateTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.UpgradeTypeLabel.GetElementVisibility(), "Update type label is not displayed.\n");
         }
         
-        [Then(@"Asset type drop down is visible")]
-        public void ThenAssetTypeDropDownIsVisible()
+        [Then(@"Asset type drop down is displayed")]
+        public void ThenAssetTypeDropDownIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.AssetTypeDropDown.GetElementVisibility(), "Asset type dropdown is not displayed.\n");
         }
         
-        [Then(@"Update type drop down is visible")]
-        public void ThenUpdateTypeDropDownIsVisible()
+        [Then(@"Update type drop down is displayed")]
+        public void ThenUpdateTypeDropDownIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.UpgradeTypeDropDown.GetElementVisibility(), "Update type drop down is not displayed.\n");
         }
@@ -147,14 +141,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(CVSMUpdateConfig.ExpectedValues.UpdateTypeConfiguration, cvsmUpdateConfig.UpgradeTypeDropDown.GetSelectedOptionFromDDL(), "Configuration is not displayed as update type.\n");
         }
 
-        [Then(@"CVSM configuration list is visible")]
-        public void ThenCVSMConfigurationListIsVisible()
+        [Then(@"CVSM configuration list is displayed")]
+        public void ThenCVSMConfigurationListIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.ConfigList.GetElementVisibility(), "CVSM configuration list is not displayed.\n");
         }
 
-        [Then(@"Name column heading is visible")]
-        public void ThenNameColumnHeadingIsVisible()
+        [Then(@"Name column heading is displayed")]
+        public void ThenNameColumnHeadingIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.NameColumnHeading.GetElementVisibility(), "Name heading is not displayed");
             string ActualNameText = cvsmUpdateConfig.NameColumnHeading.Text;
@@ -162,8 +156,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpecedNameText, ActualNameText, "Name column heading is not matching the expected value.\n");
         }
 
-        [Then(@"Date created column heading is visible")]
-        public void ThenDateCreatedColumnHeadingIsVisible()
+        [Then(@"Date created column heading is displayed")]
+        public void ThenDateCreatedColumnHeadingIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.DateColumnHeading.GetElementVisibility(), "Date created column heading is not displayed");
             string ActualNameText = cvsmUpdateConfig.DateColumnHeading.Text;
@@ -171,8 +165,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpecedNameText, ActualNameText, "Date created column heading is not matching the expected value.\n");
         }
 
-        [Then(@"Delete button is visible")]
-        public void ThenDeleteButtonIsVisible()
+        [Then(@"Delete button is displayed")]
+        public void ThenDeleteButtonIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.DeleteButton.GetElementVisibility(), "Delete button is not displayed");
         }
@@ -199,8 +193,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
         }
 
-        [Then(@"Previous page button is disabled")]
-        public void ThenPreviousPageButtonIsDisabled()
+        [Then(@"Previous page icon is disabled")]
+        public void ThenPreviousPageiconIsDisabled()
         {
             SetMethods.ScrollToBottomofWebpage();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMUpdateConfig.Locators.PaginationPreviousIconID)));
@@ -210,8 +204,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Previous page button is not disabled");
         }
 
-        [Then(@"Next page button is disabled")]
-        public void ThenNextPageButtonIsDisabled()
+        [Then(@"Next page icon is disabled")]
+        public void ThenNextPageIconIsDisabled()
         {
             SetMethods.ScrollToBottomofWebpage();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMUpdateConfig.Locators.PaginationNextIconID)));
@@ -241,13 +235,13 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, cvsmUpdateConfig.SelectUpdateNextButton.Enabled, "Next button is not enabled");
         }
 
-        [Then(@"clicks next button")]
+        [Then(@"user clicks next button")]
         public void ThenClicksNextButton()
         {
             cvsmUpdateConfig.SelectUpdateNextButton.Click();
         }
 
-        [Then(@"Select assets page is displayed")]
+        [Then(@"Select Assets page is displayed")]
         public void ThenSelectAssetsPageIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.DeployHead.GetElementVisibility(), "Select assets page is not displayed");
@@ -279,8 +273,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             //Assert.AreEqual("Select devices", HighlightedText, "Select devices indicator is not highlighted.\n");
         }
 
-        [Then(@"Item to push label is visible")]
-        public void ThenItemToPushLabelIsVisible()
+        [Then(@"Item to push label is displayed")]
+        public void ThenItemToPushLabelIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.ItemtoPush.GetElementVisibility(), "Item to push label is not displayed.\n");
             string ActualText = cvsmUpdateConfig.ItemtoPush.Text;
@@ -288,26 +282,26 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.\n");
         }
 
-        [Then(@"device type label is visible")]
-        public void ThenDeviceTypeLabelIsVisible()
+        [Then(@"device type label is displayed")]
+        public void ThenDeviceTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.DeviceTypeLabel.GetElementVisibility(), "Device type label is not displayed.\n");
         }
 
-        [Then(@"update type label is visible")]
-        public void ThenupdateTypeLabelIsVisible()
+        [Then(@"update type label is displayed")]
+        public void ThenupdateTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.TypeofUpdateLabel.GetElementVisibility(), "Update type label is not displayed.\n");
         }
 
-        [Then(@"config file to push label is visible")]
-        public void ThenConfigFileToPushLabelIsVisible()
+        [Then(@"config file to push label is displayed")]
+        public void ThenConfigFileToPushLabelIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.ConfigFileName.GetElementVisibility(), "Config file name is not displayed.\n");
         }
 
-        [Then(@"Destinations label is visible")]
-        public void ThenDestinationsLabelIsVisible()
+        [Then(@"Destinations label is displayed")]
+        public void ThenDestinationsLabelIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.\n");
             string ActualLabelText = cvsmUpdateConfig.DestinationLabel.Text;
@@ -333,20 +327,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, cvsmUpdateConfig.PreviousButton.Enabled, "Previous button is not enabled.\n");
         }
 
-        [Then(@"Next button is disabled in select assets page")]
-        public void ThenNextButtonIsDisabled1()
-        {
-            Assert.AreEqual(false, cvsmUpdateConfig.SelectDevicesNextButton.Enabled, "Next button is not disabled.\n");
-        }
-
-        [Then(@"user will see Page x of y indicator")]
-        public void ThenUserWillSeePageXOfYIndicator()
+        [Then(@"Page x of y indicator is displayed")]
+        public void ThenPageXOfYIndicatorIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.PaginationXOfY.GetElementVisibility(), "Page x of y indicator is not displayed.\n");
         }
 
-        [Then(@"user will see Displaying x to y of z results indicator")]
-        public void ThenUserWillSeeDisplayingXToYOfZResultsIndicator()
+        [Then(@"Displaying x to y of z results indicator is displayed")]
+        public void ThenDisplayingXToYOfZResultsIndicatorIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.DisplayPaginationText.GetElementVisibility(), "x to y of z results indicator is not diisplayed");
         }
@@ -409,12 +397,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedDestinationCountText, ActualDestinationCountText, "Count of selected devices does not change.\n");
         }
 
-        [Then(@"Next button is enabled on select assets page")]
-        public void ThenNextButtonIsEnabledOnSelectAssetsPage()
-        {
-            Assert.AreEqual(true, cvsmUpdateConfig.SelectDevicesNextButton.Enabled, "Next button is not enabled.\n");
-        }
-
         [When(@"user clicks Previous button")]
         public void WhenUserClicksPreviousButton()
         {
@@ -451,22 +433,11 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, cvsmUpdateConfig.ReviewActionPushItems.GetElementVisibility(), "CVSM review action page is not displayed.\n");
         }
 
-        [Then(@"Item to push label is displayed")]
-        public void ThenItemToPushLabelIsDisplayed()
-        {
-            Assert.AreEqual(true,cvsmUpdateConfig.ReviewActionItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.\n");
-        }
 
         [Then(@"Item to push value is displayed")]
         public void ThenItemToPushValueIsDisplayed()
         {
             Assert.AreEqual(true, cvsmUpdateConfig.ReviewActionItemToPushValue.GetElementVisibility(), "Item to push value is not displayed");
-        }
-
-        [Then(@"Destinations label is displayed")]
-        public void ThenDestinationsLabelIsDisplayed()
-        {
-            Assert.AreEqual(true, cvsmUpdateConfig.ReviewActionDestinationLabel.GetElementVisibility(), "Destinations label is not displayed.\n");
         }
 
         [Then(@"Destinations value is displayed")]
@@ -509,8 +480,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, SelectDevicePageElements, "Select devices page is not displayed.\n");
         }
 
-        [Then(@"Next page button is enabled")]
-        public void ThenNextPageButtonIsEnabled()
+        [Then(@"Next page icon is enabled")]
+        public void ThenNextPageIconIsEnabled()
         {
             SetMethods.ScrollToBottomofWebpage();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMUpdateConfig.Locators.PaginationNextIconID)));
