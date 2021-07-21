@@ -31,20 +31,20 @@ Scenario: CSM Configuration Update Default Sort Order
 	Then configuration files are sorted in ascending alphabetical order
 
 @TestCaseID_9086 @UISID_8696 @UISID_8669
-Scenario: CSM Configuration <= 50
+Scenario: CSM Configuration less than 50
 	Given user is on CSM Updates page with "<= 50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
 
 @TestCaseID_9087 @UISID_8696 @UISID_8669
-Scenario: CSM Configuration Files > 50
+Scenario: CSM Configuration Files greater than 50
 	Given user is on CSM Updates page with "> 50" entries
 	And user is on page 1
 	Then Previous page icon is disabled
 	And Next page icon is enabled
 
 @TestCaseID_9088 @UISID_8696 @UISID_8669
-Scenario: CSM Configuration Files > 50 and <= 100 Next
+Scenario: CSM Configuration Files greter than 50 and less than 100
 	Given user is on CSM Updates page with "> 50 and <= 100" entries
 	And user is on page 1
 	When user clicks Next page icon
@@ -83,12 +83,12 @@ Scenario: CSM Select Assets Elements
 Scenario: CSM Select Assets Elements Table
 	Given user is on CSM Configuration Select assets page
 	Then Select all checkbox in column 1 is displayed
-	And "Firmware" column 2 heading is displayed
-	And "Config" column 3 heading is displayed
-	And "Asset Tag" column 4 heading is displayed
-	And "Serial" column 5 heading is displayed
-	And "Location" column 6 heading is displayed
-	And "Last Files Deployed" column 7 heading is displayed
+	And "Firmware" column heading is displayed
+	And "Config" column heading is displayed
+	And "Asset Tag" column heading is displayed
+	And "Serial" column heading is displayed
+	And "Location" column heading is displayed
+	And "Last Files Deployed" column heading is displayed
 
 @TestCaseID_9092 @UISID_8697
 Scenario: CSM Select Assets

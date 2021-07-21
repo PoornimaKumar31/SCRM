@@ -320,8 +320,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, csmConfigDeliverPage.SelectAllDeviceCheckBox.GetElementVisibility(), "Select all checkbox in column 1 is not displayed");
         }
 
-        [Then(@"""(.*)"" column (.*) heading is displayed")]
-        public void ThenColumnHeadingIsDisplayed(string HeadingName, int p1)
+        [Then(@"""(.*)"" column heading is displayed")]
+        public void ThenColumnHeadingIsDisplayed(string HeadingName)
         {
             IWebElement HeadingElement = null;
             string ExpectedHeadingText = null;

@@ -35,19 +35,19 @@ Scenario: Select CVSM Configuration Update Type
 	And Next button is disabled
 
 @TestCaseID_9078 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration<=50
+Scenario: CVSM Configuration less than 50
 	Given user is on CVSM Updates page with "<=50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
 
 @TestCaseID_9079 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration>50 entries
+Scenario: CVSM Configuration greater than 50
 	Given user is on CVSM Updates page with ">50" entries
 	Then Previous page icon is disabled
 	And Next page icon is enabled
 
 @TestCaseID_9080 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration > 50 and <= 100 Next
+Scenario: CVSM Configuration greater than 50 and less than 100 Next
 	Given user is on CVSM Updates page with ">50 and <= 100" entries
 	And first 50 entries are displayed
 	When user clicks Next page button
@@ -87,12 +87,12 @@ Scenario: CVSM Select Assets Elements
 Scenario: CVSM Select Assets Elements Table
 	Given user is on CVSM Configuration Select assets page
 	Then Select all checkbox in column 1 is unchecked
-	And "Firmware" column 2 heading is displayed
-	And "Config" column 3 heading is displayed
-	And "Asset Tag" column 4 heading is displayed
-	And "Serial" column 5 heading is displayed
-	And "Location" column 6 heading is displayed
-	And "Last Files Deployed" column 7 heading is displayed
+	And "Firmware" column heading is displayed
+	And "Config" column heading is displayed
+	And "Asset Tag" column heading is displayed
+	And "Serial" column heading is displayed
+	And "Location" column heading is displayed
+	And "Last Files Deployed" column heading is displayed
 
 @TestCaseID_9039 @UISID_8697
 Scenario: CVSM Select Assets

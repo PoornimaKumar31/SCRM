@@ -30,7 +30,7 @@ Scenario: CSM Upgrade files greater than 50 entries
 	And Next page icon is enabled
 
 @TestCaseID_9156 @UISID_8696 @UISID_8669
-Scenario: CSM Upgrade files greater than 50 and smaller than equal 100 entries
+Scenario: CSM Upgrade files greater than 50 and less than equal 100 Next
 	Given user is on CSM Updates page with "> 50 and <= 100" entries
 	And first 50 entries are displayed
 	When user clicks Next page button
@@ -98,22 +98,22 @@ Scenario: CSM Review Action Page
 
 @TestCaseID_9163 @UISID_8698
 Scenario: CSM Review Action Elements
-Given user is on CSM Review Action page
-Then Item to push label is displayed
-And Item to push value is displayed
-And Destinations label is displayed
-And Destinations value is displayed
-And Date or Time of push label is displayed
-And Immediately label is displayed
-And Immediately label is by default selected
-And Checkbox is displayed for immediately and it is selected
-And Checkbox is displayed for schedule
-And Schedule label is displayed
-And Select update indicator is not highlighted
-And Select assets indicator is not highlighted
-And Review action indicator is highlighted
-And Previous button is enabled
-And Confirm button is enabled
+	Given user is on CSM Review Action page
+	Then Item to push label is displayed
+	And Item to push value is displayed
+	And Destinations label is displayed
+	And Destinations value is displayed
+	And Date or Time of push label is displayed
+	And Immediately label is displayed
+	And Immediately label is by default selected
+	And Checkbox is displayed for immediately and it is selected
+	And Checkbox is displayed for schedule
+	And Schedule label is displayed
+	And Select update indicator is not highlighted
+	And Select assets indicator is not highlighted
+	And Review action indicator is highlighted
+	And Previous button is enabled
+	And Confirm button is enabled
 
 @TestCaseID_9164 @UISID_8698
 Scenario: CSM Review Action Confirm

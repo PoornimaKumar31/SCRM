@@ -240,18 +240,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Upgrade files greater than 50 and smaller than equal 100 entries")]
+        [NUnit.Framework.DescriptionAttribute("CSM Upgrade files greater than 50 and less than equal 100 Next")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9156")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void CSMUpgradeFilesGreaterThan50AndSmallerThanEqual100Entries()
+        public virtual void CSMUpgradeFilesGreaterThan50AndLessThanEqual100Next()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9156",
                     "UISID_8696",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Upgrade files greater than 50 and smaller than equal 100 entries", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Upgrade files greater than 50 and less than equal 100 Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

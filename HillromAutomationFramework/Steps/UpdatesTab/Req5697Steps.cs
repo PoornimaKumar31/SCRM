@@ -345,8 +345,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(false, cvsmUpdateConfig.SelectAllcheckBox.Selected,"Select all check box is not uncheked.\n");
         }
 
-        [Then(@"""(.*)"" column (.*) heading is displayed")]
-        public void ThenColumnHeadingIsDisplayed(string HeadingName, int p1)
+        [Then(@"""(.*)"" column heading is displayed")]
+        public void ThenColumnHeadingIsDisplayed(string HeadingName)
         {
             IWebElement Heading=null;
             string ExpectedHeadingText=null;
