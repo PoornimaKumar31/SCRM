@@ -23,7 +23,7 @@ namespace HillromAutomationFramework.Steps.Login
         }
 
        
-        [Then(@"Terms and Conditions page is displayeds")]
+        [Then(@"Terms of Use page is displayed")]
         public void ThenTermsAndConditionsPageIsDisplayed()
         {
             var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
