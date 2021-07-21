@@ -1,6 +1,9 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
@@ -18,12 +21,27 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string UpdatesTabID = "updatesTab";
             public const string AdvancedTabID = "advancedTab";
 
-            //dropdownID
+            //Device filter elements
+            public const string OrganizationLabelXpath= "//*[@id=\"leftNav\"]/div[2]/c8y-hillrom-devices/div[1]/div[1]/div/label";
+            public const string OrganizationDropdownID = "orgFilter";
+            public const string AssetTypeLabelID = "";
             public const string AssetTypeDropDownID = "assetFilter";
+            public const string SearchFieldID = "search";
 
             //device list
             public const string DeviceListTableID = "deviceTable";
             public const string DeviceListRowID = "555566667777";
+            //table headings
+            public const string TypeHeadingID = "type";
+            public const string FirmwareHeadingID = "firmware";
+            public const string ConfigFileHeadingID = "config";
+            public const string AssetTagHeadingID = "asset";
+            public const string SerialNumberHeadingID = "serialNo";
+            public const string LocationHeadingID = "loc";
+            public const string LastConnectedHeadingID = "last";
+            public const string PMDueHeadingID = "calibration";
+
+            //rows
             public const string DeviceTypeClassName = "ng-star-inserted";
             public const string FirmwareVersionClassName = "firmware";
             public const string ConfigFileClassName = "configFile";
@@ -31,6 +49,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SerialNumberClassName = "serial";
             public const string LocationClassName = "location";
             public const string LastConnectionClassName = "connection";
+
+            //pagination
+            public const string PaginationXOfYLabelID = "currentPage";
+            public const string PaginationDisplayID = "displayMsg";
         }
         public static class ExpectedValues
         {
@@ -69,7 +91,61 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.AdvancedTabID)]
         public IWebElement AdvancedTab { get; set; }
 
+        [FindsBy(How = How.XPath, Using = Locators.OrganizationLabelXpath)]
+        public IWebElement OrganizationLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.OrganizationDropdownID)]
+        public IWebElement OrganizationDropdown { get; set; }
+
         [FindsBy(How =How.Id, Using =Locators.AssetTypeDropDownID)]
         public IWebElement AssetTypeDropDown { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.SearchFieldID)]
+        public IWebElement SearchField { get; set; }
+
+        //table headings
+        [FindsBy(How = How.Id, Using = Locators.TypeHeadingID)]
+        public IWebElement TypeHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.FirmwareHeadingID)]
+        public IWebElement FirmwareHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.ConfigFileHeadingID)]
+        public IWebElement ConfigFileHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.AssetTagHeadingID)]
+        public IWebElement AssetTagHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.SerialNumberHeadingID)]
+        public IWebElement SerialNumberHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LocationHeadingID)]
+        public IWebElement LocationHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LastConnectedHeadingID)]
+        public IWebElement LastConnectedHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PMDueHeadingID)]
+        public IWebElement PMDueHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DeviceListRowID)]
+        public IList<IWebElement> DeviceListRow { get; set; }
+
+        //Pagination 
+        [FindsBy(How = How.Id, Using = Locators.PaginationXOfYLabelID)]
+        public IWebElement PaginationXOfYLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PaginationDisplayID)]
+        public IWebElement PaginationDisplay { get; set; }
+
+
+        //Search the Serial number and click on the device.
+        public void SearchSerialNumberAndClick(string serialNumber)
+        {
+            SearchField.EnterText(serialNumber + Keys.Enter);
+            Thread.Sleep(1000);
+            Assert.AreEqual(1, DeviceListRow.GetElementCount(), "Not selected the specified device.");
+            DeviceListRow[0].Click();
+        }
     }
 }

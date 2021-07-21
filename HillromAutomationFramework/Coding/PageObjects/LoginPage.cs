@@ -1,4 +1,5 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
@@ -8,6 +9,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
 {
     public class LoginPage
     {
+        public enum LogInType
+        {
+            AdminWithRollUpPage,
+            AdminWithOutRollUpPage,
+            StandardUserWithoutRollUp
+        }
+
         /// Locators of all the elements of login page are listed.
         public static class Locator
         {
@@ -255,5 +263,38 @@ namespace HillromAutomationFramework.Coding.PageObjects
             }
             
         }
+
+        public void LogIn(LogInType Type)
+        {
+            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
+            // Explicit wait-> Wait till logo is displayed
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            switch(Type)
+            {
+                case LogInType.AdminWithRollUpPage:
+                    EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
+                    PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
+                    LoginButton.Clicks();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
+                    break;
+                case LogInType.AdminWithOutRollUpPage:
+                    EmailField.EnterText(PropertyClass.readConfig.EmailAdminWithoutRollUp);
+                    PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithoutRollUp);
+                    LoginButton.Clicks();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+                    break;
+                case LogInType.StandardUserWithoutRollUp:
+                    EmailField.EnterText(PropertyClass.readConfig.EmailStandardWithoutRollUp);
+                    PasswordField.EnterText(PropertyClass.readConfig.PasswordStandardWithoutRollUp);
+                    LoginButton.Clicks();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
+                    break;
+                default: Assert.Fail(Type + " is a invalid login type.");
+                    break;
+            }
+        }
+
+
     }
 }

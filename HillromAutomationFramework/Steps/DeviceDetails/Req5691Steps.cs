@@ -14,6 +14,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     {
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         LoginPage loginPage = new LoginPage();
+        LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
         CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
         private ScenarioContext _scenarioContext;
@@ -24,12 +25,13 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user has selected CVSM device")]
         public void GivenUserHasSelectedCVSMDevice()
         {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.CVSMDeviceName);
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization0Facility0Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             //select the row according to the data
             Thread.Sleep(2000);
-            cvsmDeviceDetailsPage.CVSMDevices[1].Clicks();
+            mainPage.SearchSerialNumberAndClick("100020000001");
         }
 
         [When(@"user clicks Logs tab")]
@@ -55,31 +57,34 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on CVSM Log Files page with (.*) logs")]
         public void GivenUserIsOnCVSMLogFilesPageWithLogs(int noOfLogs)
         {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.CVSMDeviceName);
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization0Facility0Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(2000);
 
             switch (noOfLogs)
             {
                 case 0:
                     //Selecting CSM device with no log files
-                    cvsmDeviceDetailsPage.CVSMDevices[0].Click();
+                    mainPage.SearchSerialNumberAndClick("100020000000");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     cvsmDeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
                     //selecting CSM device with 10 log files
-                    cvsmDeviceDetailsPage.CVSMDevices[2].Click();
+                    mainPage.SearchSerialNumberAndClick("100020000007");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     cvsmDeviceDetailsPage.LogsTab.Click();
                     break;
                 case 24:
                     //selecting CSM device with 25 log files
-                    cvsmDeviceDetailsPage.CVSMDevices[1].Click();
+                    mainPage.SearchSerialNumberAndClick("100020000001");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     cvsmDeviceDetailsPage.LogsTab.Click();
+                    break;
+                default: Assert.Fail(noOfLogs + " is a invalid log files number.");
                     break;
             }
         }
@@ -92,16 +97,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
         [Then(@"(.*) logs for CVSM device are displayed")]
-        public void ThenLogsForCVSMDeviceAreDisplayed(int p0)
+        public void ThenLogsForCVSMDeviceAreDisplayed(int logfilesCount)
         {
-            Assert.AreEqual(p0, cvsmDeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
+            Assert.AreEqual(logfilesCount, cvsmDeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
         }
 
 
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            Assert.IsFalse(cvsmDeviceDetailsPage.LogsNextButton.Enabled);
+            SetMethods.ScrollToBottomofWebpage();
+            string PageNumberBeforeClick = cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
+            cvsmDeviceDetailsPage.LogsNextButton.Click();
+            string PageNumberAfterClick= cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
+            Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "User can navigate to the next page.");
         }
 
         [When(@"user clicks Request Logs button")]
@@ -113,19 +122,23 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogsPendingMessage.Displayed);
+            Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
         }
 
         [Then(@"user can navigate to next logs page")]
         public void ThenUserCanNavigateToNextLogsPage()
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogsNextButton.Enabled);
+            SetMethods.ScrollToBottomofWebpage();
+            string PageNumberBeforeClick = cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
+            cvsmDeviceDetailsPage.LogsNextButton.Click();
+            string PageNumberAfterClick = cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
+            Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "User cannot navigate to the next page.");
         }
 
         [Given(@"Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogsPendingMessage.Displayed);
+            Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
         }
 
         [When(@"user navigates to next logs page")]
