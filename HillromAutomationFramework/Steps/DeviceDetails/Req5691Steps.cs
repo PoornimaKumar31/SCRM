@@ -26,7 +26,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserHasSelectedCVSMDevice()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization0Facility0Title.Click();
+            landingPage.Organization1Facility0Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             //select the row according to the data

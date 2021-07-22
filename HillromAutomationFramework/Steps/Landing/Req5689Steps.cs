@@ -57,22 +57,29 @@ namespace HillromAutomationFramework.Steps.Landing
         [Then(@"Facility name is displayed")]
         public void ThenFacilityNameIsDisplayed()
         {
-            //Organization0-Tile0
+            //Organization0-Tile-0
             Assert.AreEqual(true, landingPage.Organization0Facility0Title.GetElementVisibility(), "Facility " + LandingPage.ExpectedValues.Organization0FacilityPanel0Title + " name is not displayed.");
             string ActualFacilityPanlelTitle = landingPage.Organization0Facility0Title.Text;
             string ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.Organization0FacilityPanel0Title;
             Assert.AreEqual(ExpectedFacilityPanelTitle, ActualFacilityPanlelTitle, "Organization1 facility1 title is not matching with the expected value.");
-            //Organization0-Tile1
-            Assert.AreEqual(true, landingPage.Organization0Facility1Title.GetElementVisibility(), "Facility " + LandingPage.ExpectedValues.Organization0FacilityPanel1Title + " name is not displayed.");
-            ActualFacilityPanlelTitle = landingPage.Organization0Facility1Title.Text;
-            ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.Organization0FacilityPanel1Title;
-            Assert.AreEqual(ExpectedFacilityPanelTitle, ActualFacilityPanlelTitle, "Organization1 facility2 title is not matching with the expected value.");
-
-            //Organization1
+            
+            //Organization1-Tile-0
             Assert.AreEqual(true, landingPage.Organization1Facility0Title.GetElementVisibility(), "Facility " + LandingPage.ExpectedValues.Organization1FacilityPanel0Title + " name is not displayed.");
             ActualFacilityPanlelTitle = landingPage.Organization1Facility0Title.Text;
             ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.Organization1FacilityPanel0Title;
             Assert.AreEqual(ExpectedFacilityPanelTitle, ActualFacilityPanlelTitle, "Organization2 facility1 title is not matching with the expected value.");
+            
+            //Organization1-Tile-1
+            Assert.AreEqual(true, landingPage.Organization1Facility1Title.GetElementVisibility(), "Facility " + LandingPage.ExpectedValues.Organization1FacilityPanel1Title + " name is not displayed.");
+            ActualFacilityPanlelTitle = landingPage.Organization1Facility1Title.Text;
+            ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.Organization1FacilityPanel1Title;
+            Assert.AreEqual(ExpectedFacilityPanelTitle, ActualFacilityPanlelTitle, "Organization2 facility2 title is not matching with the expected value.");
+
+            //Organization2-Tile-0
+            Assert.AreEqual(true, landingPage.Organization2Facility0Title.GetElementVisibility(), "Facility " + LandingPage.ExpectedValues.Organization2FacilityPanel0Title + " name is not displayed.");
+            ActualFacilityPanlelTitle = landingPage.Organization2Facility0Title.Text;
+            ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.Organization2FacilityPanel0Title;
+            Assert.AreEqual(ExpectedFacilityPanelTitle, ActualFacilityPanlelTitle, "Organization3 facility1 title is not matching with the expected value.");
         }
 
         [Then(@"Servers are displayed")]
@@ -81,11 +88,14 @@ namespace HillromAutomationFramework.Steps.Landing
             //organization0-facility0
             Assert.AreEqual(true, landingPage.Organization0Facility0Server.GetElementVisibility(), "Organization 1 facility 1 servers are not displayed");
 
-            //organization0-facility1
-            Assert.AreEqual(true, landingPage.Organization0Facility1Server.GetElementVisibility(), "Organization 1 facility 2 servers are not displayed");
-
             //organization1-facility0
             Assert.AreEqual(true, landingPage.Organization1Facility0Server.GetElementVisibility(), "Organization 2 facility 1 servers are not displayed");
+
+            //organization1-facility1
+            Assert.AreEqual(true, landingPage.Organization1Facility1Server.GetElementVisibility(), "Organization 2 facility 2 servers are not displayed");
+
+            //organization2-facility0
+            Assert.AreEqual(true, landingPage.Organization2Facility0Server.GetElementVisibility(), "Organization 3 facility 1 servers are not displayed");
         }
 
         [Then(@"Devices are displayed")]
@@ -94,11 +104,14 @@ namespace HillromAutomationFramework.Steps.Landing
             //organization0-facility0
             Assert.AreEqual(true, landingPage.Organization0Facility0Device.GetElementVisibility(), "Organization 1 facility 1 devices are not displayed");
 
-            //organization0-facility1
-            Assert.AreEqual(true, landingPage.Organization0Facility1Device.GetElementVisibility(), "Organization 1 facility 2 devices are not displayed");
-
             //organization1-facility0
             Assert.AreEqual(true, landingPage.Organization1Facility0Device.GetElementVisibility(), "Organization 2 facility 1 devices are not displayed");
+
+            //organization1-facility1
+            Assert.AreEqual(true, landingPage.Organization1Facility1Device.GetElementVisibility(), "Organization 2 facility 2 devices are not displayed");
+
+            //organization2-facility0
+            Assert.AreEqual(true, landingPage.Organization2Facility0Device.GetElementVisibility(), "Organization 3 facility 1 devices are not displayed");
         }
 
     }
