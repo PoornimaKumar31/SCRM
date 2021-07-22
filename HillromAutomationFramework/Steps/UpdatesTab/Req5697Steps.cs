@@ -61,7 +61,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             //string HighlightedText = cvsmUpdateConfig.HighlightedSectionHeading.Text;
             //Assert.AreNotEqual("Review action", HighlightedText, "Review action indicator is highlighted.\n");
         }
-        
+
+        [Then(@"Asset type label is displayed")]
+        public void ThenAssetTypeLabelIsDisplayed()
+        {
+            _scenarioContext.Pending();
+        }
+
+
         [Then(@"Update type label is displayed")]
         public void ThenUpdateTypeLabelIsDisplayed()
         {
@@ -147,24 +154,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, cvsmUpdateConfig.ConfigList.GetElementVisibility(), "CVSM configuration list is not displayed.\n");
         }
 
-        [Then(@"Name column heading is displayed")]
-        public void ThenNameColumnHeadingIsDisplayed()
-        {
-            Assert.AreEqual(true, cvsmUpdateConfig.NameColumnHeading.GetElementVisibility(), "Name heading is not displayed");
-            string ActualNameText = cvsmUpdateConfig.NameColumnHeading.Text;
-            string ExpecedNameText = CVSMUpdateConfig.ExpectedValues.NameHeadingText;
-            Assert.AreEqual(ExpecedNameText, ActualNameText, "Name column heading is not matching the expected value.\n");
-        }
-
-        [Then(@"Date created column heading is displayed")]
-        public void ThenDateCreatedColumnHeadingIsDisplayed()
-        {
-            Assert.AreEqual(true, cvsmUpdateConfig.DateColumnHeading.GetElementVisibility(), "Date created column heading is not displayed");
-            string ActualNameText = cvsmUpdateConfig.DateColumnHeading.Text;
-            string ExpecedNameText = CVSMUpdateConfig.ExpectedValues.DateColumnHeadingText;
-            Assert.AreEqual(ExpecedNameText, ActualNameText, "Date created column heading is not matching the expected value.\n");
-        }
-
         [Then(@"Delete button is displayed")]
         public void ThenDeleteButtonIsDisplayed()
         {
@@ -235,7 +224,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, cvsmUpdateConfig.SelectUpdateNextButton.Enabled, "Next button is not enabled");
         }
 
-        [Then(@"user clicks next button")]
+        [Then(@"user clicks Next button")]
         public void ThenClicksNextButton()
         {
             cvsmUpdateConfig.SelectUpdateNextButton.Click();
@@ -374,6 +363,16 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case "last files deployed":
                     Heading = cvsmUpdateConfig.LastFilesDeployedHeading;
                     ExpectedHeadingText = CVSMUpdateConfig.ExpectedValues.LastFilesDeployedHeadingText;
+                    break;
+
+                case "name":
+                    Assert.AreEqual(true, cvsmUpdateConfig.NameColumnHeading.GetElementVisibility(), "Name heading is not displayed");
+                    Assert.AreEqual(CVSMUpdateConfig.ExpectedValues.NameHeadingText, cvsmUpdateConfig.NameColumnHeading.Text, "Name column heading is not matching the expected value.\n");
+                    break;
+
+                case "date created":
+                    Assert.AreEqual(true, cvsmUpdateConfig.DateColumnHeading.GetElementVisibility(), "Date created column heading is not displayed");
+                    Assert.AreEqual(CVSMUpdateConfig.ExpectedValues.DateColumnHeadingText, cvsmUpdateConfig.DateColumnHeading.Text, "Date created column heading is not matching the expected value.\n");
                     break;
                 default: Assert.Fail(HeadingName+"is not present on the test data");
                     break;

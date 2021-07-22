@@ -29,25 +29,25 @@ Scenario: Select CVSM Configuration Update Type
 	When user selects Configuration Update type
 	Then Configuration displays as Update type
 	And CVSM configuration list is displayed
-	And Name column heading is displayed
-	And Date created column heading is displayed
+	And "Name" column heading is displayed
+	And "Date created" column heading is displayed
 	And Delete button is displayed
 	And Next button is disabled
 
 @TestCaseID_9078 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration less than 50
+Scenario: CVSM Configuration Less Than or Equal to 50
 	Given user is on CVSM Updates page with "<=50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
 
 @TestCaseID_9079 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration greater than 50
+Scenario: CVSM Configuration Greater Than 50
 	Given user is on CVSM Updates page with ">50" entries
 	Then Previous page icon is disabled
 	And Next page icon is enabled
 
 @TestCaseID_9080 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration greater than 50 and less than 100 Next
+Scenario: CVSM Configuration Greater Than 50 and Less Than or Equal to 100 
 	Given user is on CVSM Updates page with ">50 and <= 100" entries
 	And first 50 entries are displayed
 	When user clicks Next page button
@@ -62,7 +62,7 @@ Scenario: CVSM Configuration Selected
 	And Configuration Update type is selected
 	When user selects CVSM configuration from the list
 	Then Next button is enabled
-	And user clicks next button
+	And user clicks Next button
 	Then Select Assets page is displayed
 
 @TestCaseID_9036 @UISID_8697 @UISID_8669
