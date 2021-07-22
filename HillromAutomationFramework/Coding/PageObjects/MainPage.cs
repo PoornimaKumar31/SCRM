@@ -2,7 +2,9 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace HillromAutomationFramework.Coding.PageObjects
@@ -24,11 +26,18 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //Device filter elements
             public const string OrganizationLabelXpath= "//*[@id=\"leftNav\"]/div[2]/c8y-hillrom-devices/div[1]/div[1]/div/label";
             public const string OrganizationDropdownID = "orgFilter";
-            public const string AssetTypeLabelID = "";
+            public const string AssetTypeLabelXpath = "//*[@id=\"leftNav\"]/div[2]/c8y-hillrom-devices/div[1]/div[2]/div/label";
             public const string AssetTypeDropDownID = "assetFilter";
             public const string SearchFieldID = "search";
 
+            //organization filters
+            public const string SelectedOrganizationNameID = "orgFilterText3";
+            public const string SelectedFacilityNameID = "orgFilterText4";
+
+
             //device list
+            public const string DeviceListTableHeaderID = "table-header";
+            public const string DeviceListTableBodyID = "tbody_assets";
             public const string DeviceListTableID = "deviceTable";
             public const string DeviceListRowID = "555566667777";
             //table headings
@@ -63,6 +72,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string TermsConditonTitle = "Hillrom Terms and Conditions | Hillrom";
             public const string PrivacyPolicyTitle = "Global Privacy Notice | Hillrom";
 
+            //Asset type dropdowm elements
+            public const string AllAssetsText = "All assets";
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
@@ -97,11 +108,21 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.OrganizationDropdownID)]
         public IWebElement OrganizationDropdown { get; set; }
 
+        [FindsBy(How = How.XPath, Using = Locators.AssetTypeLabelXpath)]
+        public IWebElement AssetTypeLabel { get; set; }
+
         [FindsBy(How =How.Id, Using =Locators.AssetTypeDropDownID)]
         public IWebElement AssetTypeDropDown { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.SearchFieldID)]
         public IWebElement SearchField { get; set; }
+        //table
+        [FindsBy(How = How.Id, Using = Locators.DeviceListTableHeaderID)]
+        public IWebElement DeviceListTableHeader { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DeviceListTableBodyID)]
+        public IWebElement DeviceListTableBody { get; set; }
+
 
         //table headings
         [FindsBy(How = How.Id, Using = Locators.TypeHeadingID)]
@@ -131,6 +152,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.DeviceListRowID)]
         public IList<IWebElement> DeviceListRow { get; set; }
 
+
+        //organization filters
+        [FindsBy(How = How.Id, Using = Locators.SelectedOrganizationNameID)]
+        public IWebElement SelectedOrganizationName { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.SelectedFacilityNameID)]
+        public IWebElement SelectedFacilityName { get; set; }
+
         //Pagination 
         [FindsBy(How = How.Id, Using = Locators.PaginationXOfYLabelID)]
         public IWebElement PaginationXOfYLabel { get; set; }
@@ -146,6 +175,33 @@ namespace HillromAutomationFramework.Coding.PageObjects
             Thread.Sleep(1000);
             Assert.AreEqual(1, DeviceListRow.GetElementCount(), "Not selected the specified device.");
             DeviceListRow[0].Click();
+        }
+
+
+        //Function to check sorting
+        public bool CheckSort(string sortColumnName,string sortingOrder="a")
+        {
+            IList<IWebElement> DeviceTableHeadingElements = DeviceListTableHeader.FindElements(By.TagName("th"));
+            List<string> DeviceTableHeadingElementsText = new List<string>();
+            foreach (IWebElement columnHeading in DeviceTableHeadingElements)
+            {
+                DeviceTableHeadingElementsText.Add(columnHeading.Text.ToString().ToLower());
+            }
+            int columnNumber = DeviceTableHeadingElementsText.IndexOf(sortColumnName.ToLower().Trim())+1;
+            IList<IWebElement> ColumnData = DeviceListTableBody.FindElements(By.XPath("//td["+columnNumber+"]"));
+            List<string> ColumnDataText = new List<string>();
+            foreach (IWebElement rowdata in ColumnData)
+            {
+                ColumnDataText.Add(rowdata.Text);
+            }
+            List<string> UnsortedColumnData = new List<string>(ColumnDataText);
+            ColumnDataText.Sort((s1, s2) => s1.CompareTo(s2));
+            if (sortingOrder.ToLower().Contains("d"))
+            {
+                ColumnDataText.Reverse();
+            }
+            return (Enumerable.SequenceEqual(ColumnDataText, UnsortedColumnData));
+
         }
     }
 }
