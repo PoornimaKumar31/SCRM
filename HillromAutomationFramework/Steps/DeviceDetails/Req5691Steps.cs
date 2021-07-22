@@ -18,6 +18,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         MainPage mainPage = new MainPage();
         CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
         private ScenarioContext _scenarioContext;
+
         public Req5691Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
@@ -41,7 +42,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             cvsmDeviceDetailsPage.LogsTab.Click();
         }
 
-        [Given(@"user is on device details page")]
+        [Given(@"user is on Device details page")]
         public void GivenUserIsOnDeviceDetailsPage()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditButton.GetElementVisibility());
@@ -58,7 +59,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnCVSMLogFilesPageWithLogs(int noOfLogs)
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization0Facility0Title.Click();
+            landingPage.Organization1Facility0Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(2000);
@@ -131,6 +132,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             SetMethods.ScrollToBottomofWebpage();
             string PageNumberBeforeClick = cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
             cvsmDeviceDetailsPage.LogsNextButton.Click();
+            Thread.Sleep(1000);
             string PageNumberAfterClick = cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
             Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "User cannot navigate to the next page.");
         }
@@ -175,10 +177,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
         [Then(@"user will see next (.*) logs")]
-        public void ThenUserWillSeeNextLogs(int num)
+        public void ThenUserWillSeeNextLogs(String number)
         {
-            Assert.AreEqual(num,cvsmDeviceDetailsPage.LogFiles.GetElementCount(),"Number of Logs are not as expected");
+            if(number.Equals("4 older"))
+            {
+                Assert.AreEqual(4, cvsmDeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
+            }
+            else
+            {
+                Assert.AreEqual(int.Parse(number), cvsmDeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
+            }
         }
+
+
 
         [Then(@"user will see logs page (.*) indicator")]
         public void ThenUserWillSeeLogsPageIndicator(int p0)
@@ -226,7 +237,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenLogsSortByDecreasingDate()
         {
             Thread.Sleep(5000);
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogDateList.isDateSorted("d"));
+            Assert.AreEqual(true,cvsmDeviceDetailsPage.LogDateList.isDateSorted("d"),"log files are sorted by decreasing date.");
         }
 
         [Then(@"decreasing date sorting indicator is displayed")]
@@ -240,7 +251,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenLogsSortByIncreasingDate()
         {
             Thread.Sleep(5000);
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogDateList.isDateSorted("a"));
+            Assert.AreEqual(true,cvsmDeviceDetailsPage.LogDateList.isDateSorted("a"),"Logs are not sorted by increasing date.");
         }
 
         [Then(@"increasing date sorting indicator is displayed")]

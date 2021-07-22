@@ -12,6 +12,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     class Req5693Steps
     {
         LoginPage loginPage = new LoginPage();
+        LandingPage landingPage = new LandingPage();
         CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         readonly MainPage mainPage = new MainPage();
@@ -19,11 +20,12 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on CVSM Log Files page")]
         public void GivenUserIsOnCVSMLogFilesPage()
         {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.CVSMDeviceName);
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization1Facility0Title.Click();
+            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             //select the row according to the data
-            cvsmDeviceDetailsPage.CVSMDevices[0].Clicks();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.SearchSerialNumberAndClick("100020000004");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
             cvsmDeviceDetailsPage.LogsTab.Click();
         }
@@ -31,7 +33,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"Pending or Executing message is not displayed")]
         public void GivenPendingOrExecutingMessageIsNotDisplayed()
         {
-            Assert.IsFalse(cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility());
+            Assert.AreEqual(false,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is displayed.");
         }
 
         [When(@"user clicks Request Logs button")]
@@ -43,19 +45,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility());
+            Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
         }
 
         [Given(@"Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility());
+            Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed ");
         }
 
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            Assert.IsFalse(cvsmDeviceDetailsPage.LogsRequestButton.Enabled);
+            Assert.AreEqual(false,cvsmDeviceDetailsPage.LogsRequestButton.Enabled, "Request Logs button is not disabled");
         }
 
     }

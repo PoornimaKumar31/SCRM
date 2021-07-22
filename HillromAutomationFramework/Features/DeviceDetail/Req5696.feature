@@ -6,14 +6,14 @@ Feature: Software Requirement 5696
 Scenario: Edit CVSM Asset Details Static Elements
 	Given user is on CVSM Asset Details page
 	When user clicks Edit button
-	Then Edit Asset Details dialog will display
-	And user can see Edit Asset Details title
-	And user can see Facility label
-	And user can see Location label
-	And user can see Room entry field
-	And user can see Bed entry field
-	And user can see Save button
-	And user can see Cancel button
+	Then Edit Asset Details dialog is displayed
+	And Edit Asset Details title is displayed
+	And Facility label is displayed
+	And Location label is displayed
+	And Room entry field is displayed
+	And Bed entry field is displayed
+	And Save button is displayed
+	And Cancel button is displayed
 
 @TestCaseID_9002 @UISID_8673
 Scenario: Edit CVSM Asset Details Save

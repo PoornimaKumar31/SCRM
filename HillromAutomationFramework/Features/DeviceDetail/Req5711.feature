@@ -41,15 +41,15 @@ Scenario: RV700 Log Files 24 Files All Pages
 	Given user is on RV700 Log Files page with 24 logs
 	And Log files are sorted by decreasing date
 	Then newest 10 logs are displayed
-	And displaying 11 to 20 of 24 results label is displayed
+	And Displaying 11 to 20 of 24 results label is displayed
 	And page 1 of 3 label is displayed
 	When user clicks Next page button
 	Then user will see next 10 older logs
-	And displaying 11 to 20 of 24 results label is displayed
+	And Displaying 11 to 20 of 24 results label is displayed
 	And page 2 of 3 label displayed
 	When user clicks Next page button
 	Then next 4 older logs are displayed
-	And displaying 21 to 24 of 24 results label is displayed
+	And Displaying 21 to 24 of 24 results label is displayed
 	And page 3 of 3 label is displayed
 
 @TestCaseID_8985 @UISID_8678

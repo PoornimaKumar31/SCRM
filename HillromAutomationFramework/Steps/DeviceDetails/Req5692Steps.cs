@@ -1,7 +1,9 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,16 +16,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     {
         CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
         LoginPage loginPage = new LoginPage();
+        LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
+
+        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
        
         [Given(@"user is on CVSM Log Files page")]
         public void GivenUserIsOnCVSMLogFilesPage()
         {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.CVSMDeviceName);
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization1Facility0Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(2000);
-            cvsmDeviceDetailsPage.CVSMDevices[1].Click();
+            mainPage.SearchSerialNumberAndClick("100020000007");
             cvsmDeviceDetailsPage.LogsTab.Click();
         }
 
@@ -43,9 +49,11 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenLogIsDownloadedToComputer()
         {
             bool file_exist = false;
-            while (file_exist != true)
+            int count = 0;
+            while (file_exist != true && count <= 10)
             {
                 Task.Delay(1000).Wait();
+                count++;
                 if (File.Exists(PropertyClass.DownloadPath + "\\" + cvsmDeviceDetailsPage.LogFiles[0].Text))
                 {
                     file_exist = true;
@@ -56,7 +64,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"downloaded filename matches")]
         public void ThenDownloadedFilenameMatches()
         {
-            Assert.IsTrue(File.Exists(PropertyClass.DownloadPath + "\\" + cvsmDeviceDetailsPage.LogFiles[0].Text));
+            Assert.AreEqual(true,File.Exists(PropertyClass.DownloadPath + "\\" + cvsmDeviceDetailsPage.LogFiles[0].Text),"Log file name does not match with downloaded file.");
         }
 
     }

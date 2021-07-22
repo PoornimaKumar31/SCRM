@@ -15,6 +15,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     class Req5699Steps
     {
         LoginPage loginPage = new LoginPage();
+        LandingPage landingPage = new LandingPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         readonly MainPage mainPage = new MainPage();
@@ -30,18 +31,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user has selected CSM device")]
         public void GivenUserHasSelectedCSMDevice()
         {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.CSMDeviceName);
-            //select the row according to the data
-            csmDeviceDetailsPage.CSMDevices[14].Clicks();
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization1Facility1Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            Thread.Sleep(1000);
+            mainPage.SearchSerialNumberAndClick("110010000019");
+            
         }
 
         [Given(@"user is on Device Details page")]
         public void GivenUserIsOnDeviceDetailsPage()
         {
-            Assert.IsTrue(deviceDetailsPage.AssetLabel.GetElementVisibility());
-            Assert.IsTrue(deviceDetailsPage.AssetData.GetElementVisibility());
+            bool result = (deviceDetailsPage.AssetLabel.GetElementVisibility()) || (deviceDetailsPage.AssetData.GetElementVisibility());
+            Assert.AreEqual(true, result, "User is not on device details page.");
         }
 
 
@@ -57,37 +60,38 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenLogsForCSMDeviceAreDisplayed()
         {
             Thread.Sleep(2000);
-            Assert.IsTrue(csmDeviceDetailsPage.LogFiles.Count>0);
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogFiles.Count>0,"log files are not displayed.");
         }
 
         [Given(@"user is on CSM Log Files page with (.*) logs")]
         public void GivenUserIsOnCSMLogFilesPageWithLogs(int noOfLogs)
         {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.CSMDeviceName);
-            Thread.Sleep(2000);
-
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             switch (noOfLogs)
             {
                 case 0:
                     //Selecting CSM device with no log files
-                    csmDeviceDetailsPage.CSMDevices[0].Click();
+                    landingPage.Organization1Facility0Title.Click();
+                    mainPage.SearchSerialNumberAndClick("100010000005");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
                     //selecting CSM device with 10 log files
-                    csmDeviceDetailsPage.CSMDevices[14].Click();
+                    landingPage.Organization1Facility1Title.Click();
+                    mainPage.SearchSerialNumberAndClick("110010000019");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
                     break;
-                case 2:
+                case 24:
                     //selecting CSM device with 25 log files
-                    csmDeviceDetailsPage.CSMDevices[1].Click();
+                    landingPage.Organization1Facility1Title.Click();
+                    mainPage.SearchSerialNumberAndClick("110010000000");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
+                    break;
+                default: Assert.Fail("Invalid number of logs \""+ noOfLogs+"\"");
                     break;
             }
         }
@@ -103,7 +107,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             bool file_exist = false;
             int count = 0;
-            while (file_exist != true)
+            while (file_exist != true && count<=10)
             {
                 Task.Delay(1000).Wait();
                 count++;
@@ -117,14 +121,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"downloaded filename matches")]
         public void ThenDownloadedFilenameMatches()
         {
-            Assert.IsTrue(File.Exists(PropertyClass.DownloadPath +"\\"+ csmDeviceDetailsPage.LogFiles[0].Text));
+            Assert.AreEqual(true,File.Exists(PropertyClass.DownloadPath +"\\"+ csmDeviceDetailsPage.LogFiles[0].Text),"download file name does not match the log file name.");
         }
 
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
             csmDeviceDetailsPage.LogsNextButton.Click();
-            Assert.IsTrue(csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "1");
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "1","User can navigate to the next page");
         }
 
         [When(@"user clicks Request Logs button")]
@@ -136,14 +140,15 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(csmDeviceDetailsPage.LogsPendingMessage.Displayed);
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(),"Pending message is not displayed.");
         }
 
         [Then(@"user can navigate to next logs page")]
         public void ThenUserCanNavigateToNextLogsPage()
         {
             csmDeviceDetailsPage.LogsNextButton.Click();
-            Assert.IsTrue(csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "2");
+            Thread.Sleep(1000);
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "2","User cannot navigate to the next page");
         }
 
         [Given(@"Pending or Executing message is displayed")]
@@ -153,7 +158,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 //create a log file request if not there
                 csmDeviceDetailsPage.LogsRequestButton.Click();
-                Assert.IsTrue(csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility());
+                Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
             }
         }
 
@@ -161,14 +166,16 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void WhenUserNavigatesToNextLogsPage()
         {
             csmDeviceDetailsPage.LogsNextButton.Click();
-            Assert.IsTrue(csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "2");
+            Thread.Sleep(1000);
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "2","User navigates to the next page.");
         }
 
         [When(@"user navigates to previous logs page")]
         public void WhenUserNavigatesToPreviousLogsPage()
         {
             csmDeviceDetailsPage.LogsPreviousButton.Click();
-            Assert.IsTrue(csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "1");
+            Thread.Sleep(1000);
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "1","User cannot navigate to the previous page.");
         }
 
         [Given(@"Log files are sorted by decreasing date")]
@@ -184,37 +191,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     Assert.Fail();
                 }      
             }
-        }
-
-        [Given(@"CSM has (.*) logs")]
-        public void GivenCSMHasLogs(int noOfLogs)
-        {
-            switch(noOfLogs)
-            {
-                case 0:
-                        //Selecting CSM device with no log files
-                        csmDeviceDetailsPage.CSMDevices[1].Click();
-                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
-                        csmDeviceDetailsPage.LogsTab.Click();
-                        Assert.AreEqual(0,csmDeviceDetailsPage.LogFiles.GetElementCount());
-                        break;
-
-                case 10:
-                        //selecting CSM device with 10 log files
-                        csmDeviceDetailsPage.CSMDevices[7].Click();
-                        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
-                        csmDeviceDetailsPage.LogsTab.Click();
-                        Assert.AreEqual(10,csmDeviceDetailsPage.LogFiles.GetElementCount());
-                    break;
-                case 25:
-                    //selecting CSM device with 25 log files
-                    csmDeviceDetailsPage.CSMDevices[2].Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
-                    csmDeviceDetailsPage.LogsTab.Click();
-                    Assert.AreEqual(25,csmDeviceDetailsPage.LogFiles.GetElementCount());
-                    break;
-            }
-            
         }
 
         [Then(@"no logs for CSM device are displayed")]
@@ -244,20 +220,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 csmDeviceDetailsPage.DateSorting.Click();
             }
         }
-
-
-        [Given(@"user is on CSM Log File page")]
-            public void GivenUserIsOnCSMLogFilePage()
-        {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.CSMDeviceName);
-            //select the row according to the data
-            csmDeviceDetailsPage.CSMDevices[7].Clicks();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
-            csmDeviceDetailsPage.LogsTab.Click();
-        }
-
 
 
         [Given(@"logs are sorted by increasing date")]
@@ -301,9 +263,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
         [Then(@"(.*) logs for CSM device are displayed")]
-        public void ThenLogsForCSMDeviceAreDisplayed(int p0)
+        public void ThenLogsForCSMDeviceAreDisplayed(int logFilesCount)
         {
-            _scenarioContext.Pending();
+            int noOfLogFiles = csmDeviceDetailsPage.LogFiles.GetElementCount();
+            Assert.AreEqual(true,  noOfLogFiles== logFilesCount, noOfLogFiles+" are displayed.");
         }
 
         [Given(@"newest (.*) logs are displayed")]

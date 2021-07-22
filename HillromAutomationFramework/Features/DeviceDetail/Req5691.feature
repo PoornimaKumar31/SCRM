@@ -5,7 +5,7 @@ The Customer Portal shall have a feature for displaying a list of CVSM log files
 @TestCaseID_8952 @UISID_8672 @UISID_8678
 Scenario: CVSM Log Files
 	Given user has selected CVSM device
-	And user is on device details page
+	And user is on Device details page
 	When user clicks Logs tab
 	Then logs for CVSM device are displayed
 
@@ -45,7 +45,7 @@ Scenario: CVSM Log Files 24 Files Next1
 	And Displaying 11 to 20 of 24 results label is displayed
 	And page 2 of 3 label is displayed
 	When user clicks Next page button
-	Then user will see next 4 logs
+	Then user will see next 4 older logs 
 	And Displaying 21 to 24 of 24 results label is displayed
 	And page 3 of 3 label is displayed
 

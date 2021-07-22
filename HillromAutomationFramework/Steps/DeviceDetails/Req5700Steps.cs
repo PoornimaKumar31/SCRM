@@ -4,6 +4,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
@@ -12,6 +13,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     public class Req5700Steps
     {
         LoginPage loginPage = new LoginPage();
+        LandingPage landingPage = new LandingPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         readonly MainPage mainPage = new MainPage();
@@ -20,11 +22,13 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on CSM Log Files page")]
         public void GivenUserIsOnCSMLogFilesPage()
         {
-            loginPage.SignIn("AdminWithoutRollupPage");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.CSMDeviceName);
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization1Facility1Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            Thread.Sleep(1000);
             //select the row according to the data
-            csmDeviceDetailsPage.CSMDevices[0].Clicks();
+            mainPage.SearchSerialNumberAndClick("110010000025");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
             csmDeviceDetailsPage.LogsTab.Click();
         }
@@ -32,7 +36,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"Pending or Executing message is not displayed")]
         public void GivenPendingOrExecutingMessageIsNotDisplayed()
         {
-            Assert.IsFalse(csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility());
+            Assert.AreEqual(false,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is displayed");
         }
         
         [When(@"user clicks Request Logs button")]
@@ -44,19 +48,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility());
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
         }
         
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            Assert.IsFalse(csmDeviceDetailsPage.LogsRequestButton.Enabled);
+            Assert.AreEqual(false,csmDeviceDetailsPage.LogsRequestButton.Enabled, "Request Logs button is not disabled");
         }
 
         [Given(@"Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility());
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
         }
 
     }

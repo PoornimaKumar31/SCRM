@@ -14,6 +14,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     class Req5711Steps
     {
         LoginPage loginPage = new LoginPage();
+        LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
         RV700DeviceDetailsPage rv700DeviceDetailsPage = new RV700DeviceDetailsPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
@@ -25,18 +26,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user has selected RV700 device")]
         public void GivenUserHasSelectedRV700Device()
         {
-            loginPage.SignIn("rv700");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.RV700DeviceName);
-            rv700DeviceDetailsPage.RV700Devices[1].Click();
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization2Facility0Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
+            Thread.Sleep(1000);
         }
 
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
             Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "Assets tab is not displayed");
+            mainPage.SearchSerialNumberAndClick("700090000004");
         }
 
         [When(@"user clicks Logs tab")]
@@ -54,29 +56,30 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on RV700 Log Files page with (.*) logs")]
         public void GivenUserIsOnRVLogFilesPageWithLogs(int noOfLogs)
         {
-            loginPage.SignIn("rv700");
-            SelectElement selectAssetType = new SelectElement(mainPage.AssetTypeDropDown);
-            selectAssetType.SelectByText(MainPage.ExpectedValues.RV700DeviceName);         
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization2Facility0Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);         
             Thread.Sleep(2000);
 
             switch (noOfLogs)
             {
                 case 0:
                     //Selecting RV700 device with no log files
-                    rv700DeviceDetailsPage.RV700Devices[2].Click();
+                    mainPage.SearchSerialNumberAndClick("700090000009");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     rv700DeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
                     //selecting RV700 device with 10 log files
-                    rv700DeviceDetailsPage.RV700Devices[4].Click();
+                    mainPage.SearchSerialNumberAndClick("700090000004");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     rv700DeviceDetailsPage.LogsTab.Click();
                     break;
                 case 24:
                     //selecting RV700 device with 24 log files
-                    rv700DeviceDetailsPage.RV700Devices[1].Click();
+                    mainPage.SearchSerialNumberAndClick("700090000001");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     rv700DeviceDetailsPage.LogsTab.Click();
                     break;
@@ -123,7 +126,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(rv700DeviceDetailsPage.LogsPendingMessage.Displayed);
+            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
         }
 
         [Then(@"user can navigate to next logs page")]
@@ -224,7 +227,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             _scenarioContext.Pending();
         }
 
-        [Then(@"displaying (.*) to (.*) of (.*) results label is displayed")]
+        [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]
         public void ThenDisplayingToOfResultsLabelIsDisplayed(int p0, int p1, int p2)
         {
             _scenarioContext.Pending();
