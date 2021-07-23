@@ -9,13 +9,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
 {
     public class LoginPage
     {
-        public enum LogInType
-        {
-            AdminWithRollUpPage,
-            AdminWithOutRollUpPage,
-            StandardUserWithoutRollUp
-        }
-
         /// Locators of all the elements of login page are listed.
         public static class Locator
         {
@@ -230,22 +223,22 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             if (signinType.ToLower().Trim().Contains("adminwithrollup"))
             {
-                EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
-                PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
+                EmailField.EnterText(Config.EmailIDAdminWithRollUp);
+                PasswordField.EnterText(Config.PasswordAdminWithRollUp);
                 LoginButton.Clicks();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
             }
             else if(signinType.ToLower().Trim().Contains("adminwithoutrollup"))
             {
-                EmailField.EnterText(PropertyClass.readConfig.EmailAdminWithoutRollUp);
-                PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithoutRollUp);
+                EmailField.EnterText(Config.EmailAdminWithoutRollUp);
+                PasswordField.EnterText(Config.PasswordAdminWithoutRollUp);
                 LoginButton.Clicks();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             }
             else if(signinType.ToLower().Trim().Contains("standarduserwithoutrollup"))
             {
-                EmailField.EnterText(PropertyClass.readConfig.EmailStandardWithoutRollUp);
-                PasswordField.EnterText(PropertyClass.readConfig.PasswordStandardWithoutRollUp);
+                EmailField.EnterText(Config.EmailStandardWithoutRollUp);
+                PasswordField.EnterText(Config.PasswordStandardWithoutRollUp);
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
                 LoginButton.Clicks();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
@@ -253,8 +246,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             else if(signinType.ToLower().Trim().Contains("rv700"))
             {
                 LandingPage landingPage = new LandingPage();
-                EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
-                PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
+                EmailField.EnterText(Config.EmailIDAdminWithRollUp);
+                PasswordField.EnterText(Config.PasswordAdminWithRollUp);
                 LoginButton.Clicks();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
                 landingPage.Organization1Facility0Title.Click();
@@ -262,6 +255,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             }
             
+        }
+        public enum LogInType
+        {
+            AdminWithRollUpPage,
+            AdminWithOutRollUpPage,
+            StandardUserWithoutRollUp
         }
 
         public void LogIn(LogInType Type)
@@ -273,20 +272,20 @@ namespace HillromAutomationFramework.Coding.PageObjects
             switch(Type)
             {
                 case LogInType.AdminWithRollUpPage:
-                    EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
-                    PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
+                    EmailField.EnterText(Config.EmailIDAdminWithRollUp);
+                    PasswordField.EnterText(Config.PasswordAdminWithRollUp);
                     LoginButton.Clicks();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
                     break;
                 case LogInType.AdminWithOutRollUpPage:
-                    EmailField.EnterText(PropertyClass.readConfig.EmailAdminWithoutRollUp);
-                    PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithoutRollUp);
+                    EmailField.EnterText(Config.EmailAdminWithoutRollUp);
+                    PasswordField.EnterText(Config.PasswordAdminWithoutRollUp);
                     LoginButton.Clicks();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     break;
                 case LogInType.StandardUserWithoutRollUp:
-                    EmailField.EnterText(PropertyClass.readConfig.EmailStandardWithoutRollUp);
-                    PasswordField.EnterText(PropertyClass.readConfig.PasswordStandardWithoutRollUp);
+                    EmailField.EnterText(Config.EmailStandardWithoutRollUp);
+                    PasswordField.EnterText(Config.PasswordStandardWithoutRollUp);
                     LoginButton.Clicks();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
                     break;

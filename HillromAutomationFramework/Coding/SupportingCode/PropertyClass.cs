@@ -16,9 +16,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         //Browser Name
         public static string BrowserName = Environment.GetEnvironmentVariable("BrowserName");
 
-        //Configuration files
-        public static ReadConfig readConfig;
-
         //Current Working Directory i.e. //bin
         static readonly string workingDirectory = Environment.CurrentDirectory;
 

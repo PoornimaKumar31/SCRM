@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace HillromAutomationFramework.Steps.Login
 {
@@ -14,25 +15,29 @@ namespace HillromAutomationFramework.Steps.Login
     public class Req5682Steps
     {
         readonly LoginPage loginPage = new LoginPage();
+
+        // Explicit wait-> Wait till the organization list is displayed
+        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
         [Given(@"user is on Login page")]
         public void GivenTheUserIsInTheLoginPage()
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
             // Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
         }
         
         [When(@"user enters valid email ID")]
         public void WhenTheUserEntersAValidEmailId()
         {
-            loginPage.EmailField.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
+            loginPage.EmailField.EnterText(Config.EmailIDAdminWithRollUp);
         }
         
         [When(@"enters valid password")]
         public void WhenEntersAValidPassword()
         {
-            loginPage.PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
+            loginPage.PasswordField.EnterText(Config.PasswordAdminWithRollUp);
         }
         
         [When(@"clicks Login button")]
@@ -44,26 +49,24 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user enters invalid email ID")]
         public void WhenEnterInvalidEmailId()
         {
-            loginPage.EmailField.EnterText(PropertyClass.readConfig.InvalidEmailID);
+            loginPage.EmailField.EnterText(Config.InvalidEmailID);
         }
 
         [When("enters any password")]
         public void WhenEntersAnyPassword()
         {
-            loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);
+            loginPage.PasswordField.EnterText(Config.InvalidPassword);
         }
 
         [When(@"enters invalid password")]
         public void WhenEnterInvalidPassword()
         {
-            loginPage.PasswordField.EnterText(PropertyClass.readConfig.InvalidPassword);
+            loginPage.PasswordField.EnterText(Config.InvalidPassword);
         }
         
         [Then(@"user will login successfully")]
         public void ThenUserWillLoginSuccessfully()
         {
-            // Explicit wait-> Wait till the organization list is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
             string actualTitle = PropertyClass.Driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
@@ -73,7 +76,8 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"login invalid error message will display")]
         public void ThenUsernameOrPasswordIsInvalidErrorMessageWillDisplay()
         {
-            Assert.AreEqual(true, loginPage.ErrorMessage.GetElementVisibility(), "Login invalid error message is not diaplayed");
+            Assert.AreEqual(true, loginPage.ErrorMessage.GetElementVisibility(), "Login invalid error message is not displayed");
+            Thread.Sleep(1000);
             String ActualErrortext = loginPage.ErrorMessage.Text;
             String ExpectedErrorText = LoginPage.ExpectedValues.InvalidEntryErrorMessage;
             Assert.AreEqual(ExpectedErrorText, ActualErrortext,"Error message not matches with the expected value"); //Compare the error message displayed.

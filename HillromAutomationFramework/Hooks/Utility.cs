@@ -29,16 +29,6 @@ namespace HillromAutomationFramework.Hooks
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
-            //Initializing the readConfig object
-            PropertyClass.readConfig = new ReadConfig();
-            //Creating object of Configuration builder
-            ConfigurationBuilder builder = new ConfigurationBuilder();
-            builder.AddJsonFile(PropertyClass.configSettingPath);
-            //For Building the configuration
-            IConfigurationRoot configuration = builder.Build();
-            //Binding the configuration.json with ReadConfig.cs class
-            configuration.Bind(PropertyClass.readConfig);
-
             //Declatation of HTML Reporter for Extent Report
             var htmlReporter = new ExtentHtmlReporter(PropertyClass.extentReportPath);
             htmlReporter.Config.ReportName = "Automated testing of Smart Care Remote Management";

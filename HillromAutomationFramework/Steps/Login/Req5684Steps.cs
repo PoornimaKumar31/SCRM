@@ -63,7 +63,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user enters invalid email address")]
         public void WhenEnterInvalidEmailInForgotPasswordPage()
         {
-            forgotPasswordPage.EmailFeild.EnterText(PropertyClass.readConfig.InvalidEmailID);
+            forgotPasswordPage.EmailFeild.EnterText(Config.InvalidEmailID);
         }
 
         [When(@"user clicks Submit button")]
@@ -75,6 +75,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"forgot invalid error message is displayed")]
         public void ThenForgotInvalidErrorMessageIsDisplayed()
         {
+            //id is missing
             _scenarioContext.Pending();
         }
 
@@ -82,7 +83,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user enters valid email address")]
         public void WhenUserEntersValidEmailAddress()
         {
-            forgotPasswordPage.EmailFeild.EnterText(PropertyClass.readConfig.EmailIDAdminWithRollUp);
+            forgotPasswordPage.EmailFeild.EnterText(Config.EmailIDAdminWithRollUp);
         }
 
         [Then(@"Login page is displayed")]

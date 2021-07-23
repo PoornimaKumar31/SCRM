@@ -236,10 +236,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("CVSM configuration list is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 32
- testRunner.And("Name column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Name\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 33
- testRunner.And("Date created column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Date created\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 34
  testRunner.And("Delete button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -252,18 +252,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Configuration less than 50")]
+        [NUnit.Framework.DescriptionAttribute("CVSM Configuration Less Than or Equal to 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9078")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void CVSMConfigurationLessThan50()
+        public virtual void CVSMConfigurationLessThanOrEqualTo50()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9078",
                     "UISID_8696",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration less than 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration Less Than or Equal to 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -298,7 +298,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Configuration greater than 50")]
+        [NUnit.Framework.DescriptionAttribute("CVSM Configuration Greater Than 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9079")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
@@ -309,7 +309,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8696",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration greater than 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration Greater Than 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 44
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -344,18 +344,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Configuration greater than 50 and less than 100 Next")]
+        [NUnit.Framework.DescriptionAttribute("CVSM Configuration Greater Than 50 and Less Than or Equal to 100")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9080")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void CVSMConfigurationGreaterThan50AndLessThan100Next()
+        public virtual void CVSMConfigurationGreaterThan50AndLessThanOrEqualTo100()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9080",
                     "UISID_8696",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration greater than 50 and less than 100 Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Configuration Greater Than 50 and Less Than or Equal to 100", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 50
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -447,7 +447,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Next button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 65
- testRunner.And("user clicks next button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user clicks Next button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 66
  testRunner.Then("Select Assets page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -40,26 +40,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Select update indicator is highlighted")]
         public void ThenSelectUpdateIndicatorIsHighlighted()
         {
-            //Assert.AreEqual(cvsmUpdateConfig.SelectUpdateCircle.GetAttribute("class"), CVSMUpdateConfig.ExpectedValues.HighlightedSectionCircleClassName, "Select Update tab circle is not highlighted.\n");
-            //string HighlightedText = cvsmUpdateConfig.HighlightedSectionHeading.Text;
-            // Assert.AreEqual("Select update", HighlightedText, "Select update indicator is not highlighted.\n");
-            Assert.AreEqual("col-xs-3 filter-select selectUpdate", cvsmUpdateConfig.SelectUpdateTab.GetAttribute("class"), "Select update indicator is not highlighted.\n");
+            Assert.AreEqual("rgba(84, 104, 229, 1)", cvsmUpdateConfig.SelectUpdateTab.GetCssValue("color"), "Select update indicator is not highlighted.\n");
         }
         
         [Then(@"Select assets indicator is not highlighted")]
         public void ThenSelectAssetsIndicatorIsNotHighlighted()
         {
-            //Assert.AreNotEqual(cvsmUpdateConfig.SelectDeviceCircle.GetAttribute("class"), CVSMUpdateConfig.ExpectedValues.HighlightedSectionCircleClassName, "Select assets tab circle is highlighted.\n");
-            //string HighlightedText = cvsmUpdateConfig.HighlightedSectionHeading.Text;
-            //Assert.AreNotEqual("Select assets", HighlightedText, "Select assets indicator is highlighted.\n");
+            Assert.AreEqual("rgba(68, 68, 68, 1)", cvsmUpdateConfig.SelectDeviceTab.GetCssValue("color"), "Select assets indicator is highlighted.\n");
         }
-        
+
         [Then(@"Review action indicator is not highlighted")]
         public void ThenReviewActionIndicatorIsNotHighlighted()
         {
-            //Assert.AreNotEqual(cvsmUpdateConfig.ReviewActionTabCircle.GetAttribute("class"), CVSMUpdateConfig.ExpectedValues.HighlightedSectionCircleClassName, "Review action tab circle is highlighted.\n");
-            //string HighlightedText = cvsmUpdateConfig.HighlightedSectionHeading.Text;
-            //Assert.AreNotEqual("Review action", HighlightedText, "Review action indicator is highlighted.\n");
+            Assert.AreEqual("rgba(68, 68, 68, 1)", cvsmUpdateConfig.SelectDeviceTab.GetCssValue("color"), "Review action indicator is not highlighted.\n");
         }
 
         [Then(@"Asset type label is displayed")]
