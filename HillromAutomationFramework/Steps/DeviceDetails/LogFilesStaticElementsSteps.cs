@@ -1,4 +1,4 @@
-﻿/*using HillromAutomationFramework.Coding.PageObjects;
+﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -9,127 +9,97 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Main
 {
-    [Binding]
+    [Binding,Scope(Tag = "TestCaseID_8953")]
     public class LogFilesStaticElementsSteps
     {
-        readonly LoginPage loginPage = new LoginPage();
-        readonly LandingPage landingPage = new LandingPage();
-        readonly LogFilesStaticElements logFilesStaticElements = new LogFilesStaticElements();
+        private ScenarioContext _scenarioContext;
+
+        public LogFilesStaticElementsSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+        LoginPage loginPage = new LoginPage();
+        LogFilesStaticElements logFilesStaticElements = new LogFilesStaticElements();
+        MainPage mainPage = new MainPage();
+        CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-
-
-        [Given(@"user is on log page")]
-        public void GivenUserIsOnLogPage()
+        [Given(@"user has selected any device")]
+        public void GivenUserHasSelectedAnyDevice()
         {
+            
+            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.SearchSerialNumberAndClick("100020000001");
 
         }
 
-        [Given(@"user has selected CVSM device")]
-        public void GivenUserHasSelectedCVSMDevice()
+        [Given(@"user is on Device Details page")]
+        public void GivenUserIsOnMainPage()
         {
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
-
-            // Explicit wait-> Wait till logo is displayed
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
-
-            loginPage.EmailField.EnterText(PropertyClass.Config.EmailIDAdminWithRollUp);
-            loginPage.PasswordField.EnterText(PropertyClass.readConfig.PasswordAdminWithRollUp);
-            loginPage.LoginButton.Clicks();
-
-            // Explicit wait-> Wait till the organization list is displayed           
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.LandingPageTileID)));
-
-            string actualTitle = PropertyClass.Driver.Title;
-            string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
-            Assert.AreEqual(expectedTitle, actualTitle); //Compare the title
-
-            PropertyClass.Driver.FindElement(By.Id("facName00")).Clicks();
-
-
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LogFilesStaticElements.Locator.CVSMLogsTabId)));
-            Thread.Sleep(3000);
-            PropertyClass.Driver.FindElement(By.XPath(LogFilesStaticElements.Locator.CVSMDeviceXpath)).Click();
-        }
-
-        [Given(@"user in on Main page")]
-        public void GivenUserInOnMainPage()
-        {
-
+            Assert.IsTrue(cvsmDeviceDetailsPage.EditButton.GetElementVisibility());
         }
 
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
         {
-            Console.WriteLine("I am in user user clicks Logs tab");
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(logFilesStaticElements.CVSMLogsTabXPathWebElement.Text)));
-            //Thread.Sleep(3000);
-            //PropertyClass.Driver.FindElement(By.XPath(LogFilesStaticElements.Locator.CVSMLogsTabXpath)).Click();
-            logFilesStaticElements.CVSMLogsTabXPathWebElement.Click();
+            cvsmDeviceDetailsPage.LogsTab.Click();
         }
 
         [Then(@"Log Files label is displayed")]
-        public void ThenUserWillSeeLogFilesLabel()
+        public void ThenLogFilesLabelIsDisplayed()
         {
-            Thread.Sleep(2000);
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(logFilesStaticElements.LogFilesWebElement.Text)));
-            Assert.IsTrue(logFilesStaticElements.LogFilesWebElement.Displayed);
+            Assert.AreEqual(true, logFilesStaticElements.LogFilesLabel.GetElementVisibility(), "Logs label is not diplayed");
         }
+
         [Then(@"Request Logs button is displayed")]
-        public void ThenUserWillSeeRequestLogsButton()
+        public void ThenRequestLogsButtonIsDisplayed()
         {
-            //Thread.Sleep(2000);
-            // wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(logFilesStaticElements.RequestLogsButtonWebElement.Text)));
-            Assert.IsTrue(logFilesStaticElements.LogFilesWebElement.Displayed);
+            Assert.AreEqual(true, logFilesStaticElements.RequestLogsButton.GetElementVisibility(), "Request Logs button is not displayed");
         }
 
         [Then(@"Name column heading is displayed")]
-        public void ThenUserWillSeeNameColumnHeading()
+        public void ThenNameColumnHeadingIsDisplayed()
         {
-            //Thread.Sleep(2000);
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.ClassName(logFilesStaticElements.NameColumnWebElement.Text)));
-            Assert.IsTrue(logFilesStaticElements.NameColumnWebElement.Displayed);
+            Assert.AreEqual(true, logFilesStaticElements.NameColumn.GetElementVisibility(), "Name column is not displayed");
         }
 
         [Then(@"Date column heading is displayed")]
-        public void ThenUserWillSeeDateColumnHeading()
+        public void ThenDateColumnHeadingIsDisplayed()
         {
-            //Thread.Sleep(2000);
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(logFilesStaticElements.DateColumnWebElement.Text)));
-            Assert.IsTrue(logFilesStaticElements.DateColumnWebElement.Displayed);
+            Assert.AreEqual(true, logFilesStaticElements.DateColumn.GetElementVisibility(), "Date Column is not displayed");
         }
 
         [Then(@"date sorting indicator is displayed")]
-        public void ThenUserWillSeeDateSortingIndicator()
+        public void ThenDateSortingIndicatorIsDisplayed()
         {
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(logFilesStaticElements.DateColumnWebElement.Text)));
-            Assert.IsTrue(logFilesStaticElements.DateColumnWebElement.Displayed);
+            Assert.AreEqual(true, logFilesStaticElements.DateSortingIndicator.GetElementVisibility(), "Date sorting indicator is not displayed");
         }
 
         [Then(@"Previous page icon is displayed")]
-        public void ThenUserWillSeePreviousIcon()
+        public void ThenPreviousPageIconIsDisplayed()
         {
-            Assert.IsTrue(logFilesStaticElements.PreviousIconWebElement.Displayed);
+            Assert.AreEqual(true, logFilesStaticElements.PreviousIcon.GetElementVisibility(), "Previous page icon is not displayed");
         }
 
         [Then(@"Next page icon is displayed")]
-        public void ThenUserWillSeeNextIcon()
+        public void ThenNextPageIconIsDisplayed()
         {
-            Assert.IsTrue(logFilesStaticElements.NextIconWebElement.Displayed);
+            Assert.AreEqual(true, logFilesStaticElements.NextIcon.GetElementVisibility(), "Next page icon is not displayed");
         }
 
-        [Then(@"user will see current logs page indicator")]
-        public void ThenUserWillSeeCurrentLogsPageIndicator()
+        [Then(@"Displaying x to y of z results label is displayed (.*)")]
+        public void ThenDisplayingXToYOfZResultsLabelIsDisplayed(int p0)
         {
-            Assert.IsTrue(logFilesStaticElements.CurrentLogsPageWebElement.Displayed);
-            //Currently only 7 records are populating on this page but it should be 10 records per page.
+            //Result Label is not present in the Logs page
+            _scenarioContext.Pending();
+        }
+            
+
+        [Then(@"Page x of y label is displayed (.*)")]
+        public void ThenPageXOfYLabelIsDisplayed(int p0)
+        {
+            Assert.AreEqual(true, logFilesStaticElements.PaginationLabel.GetElementVisibility(), "pagination label is not displayed");
         }
 
-        [Then(@"user will see number of logs pages")]
-        public void ThenUserWillSeeNumberOfLogsPages()
-        {
-            //There is no Number of Logs Page
-            //There is bug in this page
-        }
     }
 }
-*/

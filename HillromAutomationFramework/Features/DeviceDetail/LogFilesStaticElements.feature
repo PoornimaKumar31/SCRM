@@ -3,7 +3,7 @@
 @TestCaseID_8953 @UISID_8678 @UISID_8669
 Scenario: Log Files Static Elements
 Given user has selected any device
-And user is on Main page
+And user is on Device Details page
 When user clicks Logs tab
 Then Log Files label is displayed
 Then Request Logs button is displayed
