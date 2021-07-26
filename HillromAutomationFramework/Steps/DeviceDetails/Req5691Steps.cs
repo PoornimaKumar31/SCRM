@@ -67,20 +67,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (noOfLogs)
             {
                 case 0:
-                    //Selecting CSM device with no log files
+                    //Selecting CVSM device with no log files
                     mainPage.SearchSerialNumberAndClick("100020000000");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     cvsmDeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
-                    //selecting CSM device with 10 log files
+                    //selecting CVSM device with 10 log files
                     mainPage.SearchSerialNumberAndClick("100020000007");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     cvsmDeviceDetailsPage.LogsTab.Click();
                     break;
                 case 24:
-                    //selecting CSM device with 25 log files
+                    //selecting CVSM device with 24 log files
                     mainPage.SearchSerialNumberAndClick("100020000001");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     cvsmDeviceDetailsPage.LogsTab.Click();
@@ -162,12 +162,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 cvsmDeviceDetailsPage.DateSorting.Click();
             }
+
+            Assert.AreEqual("col-md-4 descending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in Decreasing date");
         }
 
         [Given(@"newest (.*) logs are displayed")]
         public void GivenNewestLogsAreDisplayed(int num)
         {
-            _scenarioContext.Pending();
+            Assert.AreEqual(num,cvsmDeviceDetailsPage.LogFiles.Count,"Number of logs displayed are not as expected");
         }
 
         [When(@"user clicks Next page button")]
@@ -189,14 +191,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
         }
 
-
-
-        [Then(@"user will see logs page (.*) indicator")]
-        public void ThenUserWillSeeLogsPageIndicator(int p0)
-        {
-           _scenarioContext.Pending();
-        }
-
         [Given(@"logs are sorted by decreasing date")]
         public void GivenLogsAreSortedByDecreasingDate()
         {
@@ -206,17 +200,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
         }
 
-        [Given(@"second ten logs are displayed")]
-        public void GivenSecondTenLogsAreDisplayed()
-        {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 10);
-        }
-
-        [Then(@"user will see next five older logs")]
-        public void ThenUserWillSeeNextFiveOlderLogs()
-        {
-            Assert.IsTrue(cvsmDeviceDetailsPage.LogFiles.GetElementCount() == 5);
-        }
 
         [Given(@"logs are sorted by increasing date")]
         public void GivenLogsAreSortedByIncreasingDate()
@@ -225,6 +208,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 cvsmDeviceDetailsPage.DateSorting.Click();
             }
+
+            Assert.AreEqual("col-md-4 ascending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"),"Sorting indicator is not as expected.");
         }
 
         [When(@"user clicks Date column heading")]
@@ -233,7 +218,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             cvsmDeviceDetailsPage.DateSorting.Click();
         }
 
-        [Then(@"logs sort by decreasing date")]
+        [Then(@"logs are sorted by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
             Thread.Sleep(5000);
@@ -244,10 +229,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void DecreasingDateSortingIndicatorIsDisplayed()
         {
             
-            Assert.IsTrue(cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending");
+            Assert.AreEqual(true,cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending","Indicator is not as expected.");
         }
 
-        [Then(@"logs sort by increasing date")]
+        [Then(@"logs are sorted by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
             Thread.Sleep(5000);
@@ -257,18 +242,21 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"increasing date sorting indicator is displayed")]
         public void IncreasingDateSortingIndicatorIsDisplayed()
         {
-            Assert.IsTrue(cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending");
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending", "Indicator is not as expected.");
+            
         }
 
         [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]
         public void ThenDisplayingToOfResultsLabelIsDisplayed(int p0, int p1, int p2)
         {
+            //In Application Result label is not there.(Bugs needs to be fixed)
             _scenarioContext.Pending();
         }
 
         [Then(@"page (.*) of (.*) label is displayed")]
         public void ThenPageOfLabelIsDisplayed(int p0, int p1)
         {
+            //In Application Pagination label is not in proper format.(Bugs needs to be fixed)
             _scenarioContext.Pending();
         }
 

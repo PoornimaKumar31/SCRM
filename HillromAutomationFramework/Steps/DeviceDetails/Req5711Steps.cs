@@ -50,7 +50,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"logs for RV700 device are displayed")]
         public void ThenLogsForRVDeviceAreDisplayed()
         {
-            Assert.IsTrue(rv700DeviceDetailsPage.LogFiles.GetElementCount() != 0); 
+            Assert.AreEqual(true,rv700DeviceDetailsPage.LogFiles.GetElementCount() != 0,"number of logs are not as expected"); 
         }
   
         [Given(@"user is on RV700 Log Files page with (.*) logs")]
@@ -86,18 +86,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
         }
 
-        [Given(@"newest (.*) logs are displayed")]
-        public void GivenNewestLogsAreDisplayed(int p0)
-        {
-            _scenarioContext.Pending();
-        }
-
-        [Then(@"user will see next (.*) older logs")]
-        public void ThenUserWillSeeNextOlderLogs(int p0)
-        {
-            _scenarioContext.Pending();
-        }
-
         [Then(@"no logs for RV700 device are displayed")]
         public void ThenNoLogsForRV700DeviceAreDisplayed()
         {
@@ -114,9 +102,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            Assert.IsFalse(rv700DeviceDetailsPage.LogsNextButton.Enabled);
+            Assert.AreEqual(false,rv700DeviceDetailsPage.LogsNextButton.Enabled,"user can navigate to next page");
         }
-
+            
         [When(@"user clicks Request Logs button")]
         public void WhenUserClicksRequestLogsButton()
         {
@@ -132,13 +120,13 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user can navigate to next logs page")]
         public void ThenUserCanNavigateToNextLogsPage()
         {
-            Assert.IsTrue(rv700DeviceDetailsPage.LogsNextButton.Enabled);
+            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsNextButton.Enabled,"user is not able to navigate to next page");
         }
 
         [Given(@"Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.IsTrue(rv700DeviceDetailsPage.LogsPendingMessage.Displayed);
+            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.Displayed,"Pending or executing message is not displayed");
         }
 
         [When(@"user navigates to next logs page")]
@@ -160,6 +148,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 rv700DeviceDetailsPage.DateSorting.Click();
             }
+            Assert.AreEqual("col-md-4 descending", rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs date are not sorted in decreasing order");
         }
 
 
@@ -177,6 +166,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 rv700DeviceDetailsPage.DateSorting.Click();
             }
+            Assert.AreEqual("col-md-4 decending", rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in decreasing date");
         }
 
         [Given(@"logs are sorted by increasing date")]
@@ -186,6 +176,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 rv700DeviceDetailsPage.DateSorting.Click();
             }
+            Assert.AreEqual("col-md-4 acending", rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in increasing date");
         }
 
         [When(@"user clicks Date column heading")]
@@ -194,37 +185,40 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             rv700DeviceDetailsPage.DateSorting.Click();
         }
 
-        [Then(@"logs sort by decreasing date")]
+        [Then(@"logs are sorted by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            if (rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
-            {
-                rv700DeviceDetailsPage.DateSorting.Click();
-            }
+            Assert.AreEqual(true, rv700DeviceDetailsPage.LogDateList.isDateSorted("d"), "Date is not sorted in decreasing order");
         }
 
         [Then(@"decreasing date sorting indicator is displayed")]
         public void DecreasingDateSortingIndicatorIsDisplayed()
         {
-            Assert.IsTrue(rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending");
+            Assert.AreEqual(true,rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending","decreasing date sorting indicator is not displayed");
         }
 
-        [Then(@"logs sort by increasing date")]
+        [Then(@"logs are sorted by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-            Assert.IsTrue(rv700DeviceDetailsPage.LogDateList.isDateSorted("a"));
+            Assert.AreEqual(true,rv700DeviceDetailsPage.LogDateList.isDateSorted("a"),"Date is not sorted in increasing order");
         }
 
         [Then(@"increasing date sorting indicator is displayed")]
         public void IncreasingDateSortingIndicatorDisplayed()
         {
-            Assert.IsTrue(rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending");
+            Assert.AreEqual(true,rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending","Icreasing date sorting date indicator is not displayed");
         }
 
         [Then(@"newest (.*) logs are displayed")]
-        public void ThenNewestLogsAreDisplayed(int p0)
+        public void ThenNewestLogsAreDisplayed(int num)
         {
-            _scenarioContext.Pending();
+            Assert.AreEqual(num, rv700DeviceDetailsPage.LogFiles.Count, "Number of logs displayed are not as expected");
+        }
+
+        [Then(@"next (.*) older logs are displayed")]
+        public void ThenNextOlderLogsAreDisplayed(int num)
+        {
+            Assert.AreEqual(num, rv700DeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
         }
 
         [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]
@@ -238,18 +232,5 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             _scenarioContext.Pending();
         }
-
-        [Then(@"page (.*) of (.*) label displayed")]
-        public void ThenPageOfLabelDisplayed(int p0, int p1)
-        {
-            _scenarioContext.Pending();
-        }
-
-        [Then(@"next (.*) older logs are displayed")]
-        public void ThenNextOlderLogsAreDisplayed(int p0)
-        {
-            _scenarioContext.Pending();
-        }
-
     }
 }

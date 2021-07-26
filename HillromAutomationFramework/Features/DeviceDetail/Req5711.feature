@@ -1,6 +1,5 @@
 ﻿@SoftwareRequirementID_5711
 Feature: Software Requirement 5711 
-
 The customer portal shall have a mechanism for displaying RV700 log files.
 
 @TestCaseID_8978 @UISID_8678
@@ -44,9 +43,9 @@ Scenario: RV700 Log Files 24 Files All Pages
 	And Displaying 11 to 20 of 24 results label is displayed
 	And page 1 of 3 label is displayed
 	When user clicks Next page button
-	Then user will see next 10 older logs
+	Then next 10 older logs are displayed
 	And Displaying 11 to 20 of 24 results label is displayed
-	And page 2 of 3 label displayed
+	And page 2 of 3 label is displayed
 	When user clicks Next page button
 	Then next 4 older logs are displayed
 	And Displaying 21 to 24 of 24 results label is displayed
@@ -57,7 +56,7 @@ Scenario: RV700 Log Files Sort Decreasing Date
 	Given user is on RV700 Log Files page with 10 logs
 	And logs are sorted by increasing date
 	When user clicks Date column heading
-	Then logs sort by decreasing date
+	Then logs are sorted by decreasing date
 	And decreasing date sorting indicator is displayed
 
 @TestCaseID_8986 @UISID_8678
@@ -65,5 +64,5 @@ Scenario: RV700 Log Files Sort Increasing Date
 	Given user is on RV700 Log Files page with 10 logs
 	And logs are sorted by decreasing date
 	When user clicks Date column heading
-	Then logs sort by increasing date
+	Then logs are sorted by increasing date
 	And increasing date sorting indicator is displayed
