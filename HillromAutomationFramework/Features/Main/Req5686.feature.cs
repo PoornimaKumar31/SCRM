@@ -167,13 +167,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Assets List Elements Table Columns")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9210")]
         [NUnit.Framework.CategoryAttribute("UISID_8666")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void AssetsListElementsTableColumns()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9210",
                     "UISID_8666",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

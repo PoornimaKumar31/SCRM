@@ -29,6 +29,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string AssetTypeLabelXpath = "//*[@id=\"leftNav\"]/div[2]/c8y-hillrom-devices/div[1]/div[2]/div/label";
             public const string AssetTypeDropDownID = "assetFilter";
             public const string SearchFieldID = "search";
+            public const string SearchFieldCancelButtonXpath= "//*[@id=\"leftNav\"]/div[2]/c8y-hillrom-devices/div[1]/div[3]/div/div/div";
 
             //organization filters
             public const string SelectedOrganizationNameID = "orgFilterText3";
@@ -40,6 +41,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string DeviceListTableBodyID = "tbody_assets";
             public const string DeviceListTableID = "deviceTable";
             public const string DeviceListRowID = "555566667777";
+            public const string CompInfXPath = "//div[contains(text(),\"Component information\")]";
+            public const string RadioNewMarrID = "radioLamar";
+            public const string MACAddressID = "radio_mac_address";
             //table headings
             public const string TypeHeadingID = "type";
             public const string FirmwareHeadingID = "firmware";
@@ -62,6 +66,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //pagination
             public const string PaginationXOfYLabelID = "currentPage";
             public const string PaginationDisplayID = "displayMsg";
+            public const string PaginationNextIconID = "next";
+            public const string PaginationPreviousIconID = "previous";
         }
         public static class ExpectedValues
         {
@@ -77,6 +83,18 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
+
+            //search elements
+            public static int AllOrganizationsDevicesListWithRollUp = 15;
+            public const string SearchFieldHintText = "Search";
+            public const string PartialFirmwareVersionText = "1.52";
+            public const string ValidPartialString = "CV";
+            public static string PartialTypeText = "CV";
+            public static string PartialAssetTagText = "CV";
+            public const string PartialSerialNumberText = "10001";
+            public const string InvalidPartialString = "ICV";
+            public const string MACAddressText = "AP=B4:DE:31:0B:91:E4";
+            public const int MACTotalRecords = 6;
         }
 
         public MainPage()
@@ -116,6 +134,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.Id, Using = Locators.SearchFieldID)]
         public IWebElement SearchField { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.SearchFieldCancelButtonXpath)]
+        public IWebElement SearchFieldCancelButton { get; set; }
+
         //table
         [FindsBy(How = How.Id, Using = Locators.DeviceListTableHeaderID)]
         public IWebElement DeviceListTableHeader { get; set; }
@@ -152,6 +174,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.DeviceListRowID)]
         public IList<IWebElement> DeviceListRow { get; set; }
 
+        [FindsBy(How = How.XPath, Using = Locators.CompInfXPath)]
+        public IWebElement CompInfo { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.MACAddressID)]
+        public IWebElement MACAddress { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.RadioNewMarrID)]
+        public IWebElement RadioNewMarr { get; set; }
 
         //organization filters
         [FindsBy(How = How.Id, Using = Locators.SelectedOrganizationNameID)]
@@ -166,6 +196,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.Id, Using = Locators.PaginationDisplayID)]
         public IWebElement PaginationDisplay { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PaginationNextIconID)]
+        public IWebElement PaginationNextIcon { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PaginationPreviousIconID)]
+        public IWebElement PaginationPreviousIcon { get; set; }
 
 
         //Search the Serial number and click on the device.
@@ -203,5 +239,31 @@ namespace HillromAutomationFramework.Coding.PageObjects
             return (Enumerable.SequenceEqual(ColumnDataText, UnsortedColumnData));
 
         }
+
+        //function for checking display page result
+        public bool DisplayPageResults(string[] PageInfo, int p0, int p1, int p2)
+        {
+            string str0 = PageInfo[1];
+            char[] cha = str0.ToCharArray();
+            int[] Aint = Array.ConvertAll(cha, c => (int)Char.GetNumericValue(c));
+            int a1 = Aint[0];
+            int a11 = Aint[2];
+            string str2 = PageInfo[3];
+            int NoOfPages = int.Parse(str2);
+            bool boo = a1 == p0 && a11 == p1 && NoOfPages == p2;
+            return boo;
+        }
+
+        public bool APMACAddressesMatchSearchText(IWebElement CompInfo, IWebElement RadioNewMarr, IWebElement MACAddress)
+        {
+            IWebElement AnyOneRecord = PropertyClass.Driver.FindElement(By.XPath("//tr[" + 1 + "]/td[" + 1 + "]"));
+            AnyOneRecord.Click();
+            CompInfo.JavaSciptClick();
+            RadioNewMarr.Click();
+            bool IsMACAddressVisible = MACAddress.GetElementVisibility();
+            string str = MainPage.ExpectedValues.PartialSerialNumberText;
+            return IsMACAddressVisible;
+        }
+
     }
 }

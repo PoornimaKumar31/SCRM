@@ -22,7 +22,7 @@ Scenario: Assets List Elements
 	Then Page x of y label is displayed
 	Then Displaying x to y of z results label is displayed
 
-@TestCaseID_ @UISID_8666 @UISID_8669
+@TestCaseID_9210 @UISID_8666 @UISID_8669
 Scenario: Assets List Elements Table Columns
 	Given the user is on Landing page
 	When user clicks Facility panel for an organization

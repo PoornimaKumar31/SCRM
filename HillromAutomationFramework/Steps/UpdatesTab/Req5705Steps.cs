@@ -167,7 +167,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void GivenFirstEntriesAreDisplayed(int noOfEntries)
         {
             int Entries = updatesSelectUpdatePage.FileNameList.GetElementCount();
-            Assert.AreEqual(true, Entries == noOfEntries,"Only "+Entries+" entries are displayed.");
+            Assert.AreEqual(noOfEntries, Entries ,"Only "+Entries+" entries are displayed.");
         }
 
         [When(@"user clicks Next page button")]
@@ -208,8 +208,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, IsSelectDevicePage, "Select devices page is not displayed");
         }
 
-        [Given(@"user is on CSM Upgrade Select Assets page")]
-        public void GivenUserIsOnCSMUpgradeSelectAssetsPage()
+        [Given(@"user is on CSM Upgrade Select assets page")]
+        public void GivenUserIsOnCSMUpgradeSelectassetsPage()
         {
             GivenUserIsOnCSMUpdatesPage();
             GivenCSMAssetTypeIsSelected();
@@ -217,8 +217,8 @@ namespace HillromAutomationFramework.Steps.Updates
             GivenUserHasSelectedUpgradeFile();
             WhenUserClicksNextButton();
             ThenCSMSelectAssetsPageIsDisplayed();
-
         }
+
 
         [Then(@"Select update indicator is not highlighted")]
         public void ThenSelectUpdateIndicatorIsNotHighlighted()
@@ -329,6 +329,35 @@ namespace HillromAutomationFramework.Steps.Updates
             string ActualHeadingText = HeadingElement.Text.ToLower();
             Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText, HeadingName + " not matches with the expected value");
         }
+
+        [Then(@"Select all checkbox is in column (.*)")]
+        public void ThenSelectAllCheckboxIsInColumn(int columnNumber)
+        {
+            string firstcolumnId = updateSelectDevicesPage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
+            Assert.AreEqual(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
+        }
+
+        [Then(@"""(.*)"" label is in column (.*)")]
+        public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
+        {
+            IList<IWebElement> columns = updateSelectDevicesPage.TableHeading.FindElements(By.TagName("div"));
+            Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+        }
+
+
+
+
+        [Given(@"user is on CSM Upgrade Select Assets page")]
+        public void GivenUserIsOnCSMUpgradeSelectAssetsPage()
+        {
+            GivenUserIsOnCSMUpdatesPage();
+            GivenCSMAssetTypeIsSelected();
+            WhenUserSelectsUpgradeUpdateType();
+            GivenUserHasSelectedUpgradeFile();
+            WhenUserClicksNextButton();
+            ThenCSMSelectAssetsPageIsDisplayed();
+        }
+
 
         [When(@"user selects one device")]
         public void WhenUserSelectsOneDevice()
