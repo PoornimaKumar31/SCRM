@@ -95,6 +95,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string InvalidPartialString = "ICV";
             public const string MACAddressText = "AP=B4:DE:31:0B:91:E4";
             public const int MACTotalRecords = 6;
+
+            //device count
+            public const int AllOrgnaizationCSMDevicesCount = 6;
+            public const int AllOrgnaizationCVSMDevicesCount = 9;
+            public const int AllOrgnaizationRV700DevicesCout = 24;
         }
 
         public MainPage()
