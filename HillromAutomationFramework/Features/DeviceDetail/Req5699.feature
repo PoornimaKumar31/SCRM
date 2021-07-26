@@ -46,13 +46,13 @@ Scenario: CSM Log Files 10 Files Request Previous
 Scenario: CSM Log Files 24 Files All Pages
 	Given user is on CSM Log Files page with 24 logs
 	And Log files are sorted by decreasing date	
-	And newest 10 logs are displayed
+	And 10 newest logs are displayed
 	When user clicks Next page button
-	Then user will see next 10 older logs
+	Then next 10 older logs are displayed
 	And Displaying 11 to 20 of 24 results label is displayed
 	And page 2 of 3 label is displayed
 	When user clicks Next page button
-	Then user will see next 4 older logs
+	Then next 4 older logs are displayed
 	And Displaying 21 to 24 of 24 results label is displayed
 	And page 3 of 3 label is displayed
 

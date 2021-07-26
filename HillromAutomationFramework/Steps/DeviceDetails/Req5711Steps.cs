@@ -209,16 +209,16 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true,rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending","Icreasing date sorting date indicator is not displayed");
         }
 
-        [Then(@"newest (.*) logs are displayed")]
+        [Then(@"(.*) newest logs are displayed")]
         public void ThenNewestLogsAreDisplayed(int num)
         {
-            Assert.AreEqual(num, rv700DeviceDetailsPage.LogFiles.Count, "Number of logs displayed are not as expected");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.NNewestLogsPresence(num), "Number of logs displayed are not as expected");
         }
 
         [Then(@"next (.*) older logs are displayed")]
         public void ThenNextOlderLogsAreDisplayed(int num)
         {
-            Assert.AreEqual(num, rv700DeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.NOlderLogsPresence(num), "Number of Logs are not as expected");
         }
 
         [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]

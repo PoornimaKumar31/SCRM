@@ -272,16 +272,16 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true,  noOfLogFiles== logFilesCount, noOfLogFiles+" are displayed.");
         }
 
-        [Given(@"newest (.*) logs are displayed")]
+        [Given(@"(.*) newest logs are displayed")]
         public void GivenNewestLogsAreDisplayed(int num)
         {
-            Assert.AreEqual(num, csmDeviceDetailsPage.LogFiles.Count, "Number of logs displayed are not as expected");
+            Assert.AreEqual(true, csmDeviceDetailsPage.NNewestLogsPresence(num), "Number of logs displayed are not as expected");
         }
 
-        [Then(@"user will see next (.*) older logs")]
+        [Then(@"next (.*) older logs are displayed")]
         public void ThenUserWillSeeNextOlderLogs(int num)
         {
-            Assert.AreEqual(num, csmDeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
+            Assert.AreEqual(true, csmDeviceDetailsPage.NOlderLogsPresence(num), "Number of Logs are not as expected");
         }
 
         [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]

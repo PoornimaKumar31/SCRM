@@ -166,10 +166,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual("col-md-4 descending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in Decreasing date");
         }
 
-        [Given(@"newest (.*) logs are displayed")]
+        [Given(@"(.*) newest logs are displayed")]
         public void GivenNewestLogsAreDisplayed(int num)
         {
-            Assert.AreEqual(num,cvsmDeviceDetailsPage.LogFiles.Count,"Number of logs displayed are not as expected");
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.NNewestLogsPresence(num));
         }
 
         [When(@"user clicks Next page button")]
@@ -178,17 +178,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             cvsmDeviceDetailsPage.LogsNextButton.Click();
         }
 
-        [Then(@"user will see next (.*) logs")]
-        public void ThenUserWillSeeNextLogs(String number)
+        [Then(@"next (.*) older logs are displayed")]
+        public void ThenUserWillSeeNextLogs(int number)
         {
-            if(number.Equals("4 older"))
-            {
-                Assert.AreEqual(4, cvsmDeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
-            }
-            else
-            {
-                Assert.AreEqual(int.Parse(number), cvsmDeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs are not as expected");
-            }
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.NOlderLogsPresence(number));
         }
 
         [Given(@"logs are sorted by decreasing date")]

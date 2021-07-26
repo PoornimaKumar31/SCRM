@@ -39,7 +39,7 @@ Scenario: RV700 Log Files 10 Files Request Previous
 Scenario: RV700 Log Files 24 Files All Pages
 	Given user is on RV700 Log Files page with 24 logs
 	And Log files are sorted by decreasing date
-	Then newest 10 logs are displayed
+	Then 10 newest logs are displayed
 	And Displaying 11 to 20 of 24 results label is displayed
 	And page 1 of 3 label is displayed
 	When user clicks Next page button
