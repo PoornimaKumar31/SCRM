@@ -198,23 +198,29 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 cvsmDeviceDetailsPage.DateSorting.Click();
             }
+
+            Assert.AreEqual("col-md-4 descending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted as expected");
+          
         }
 
 
         [Given(@"logs are sorted by increasing date")]
         public void GivenLogsAreSortedByIncreasingDate()
         {
-            if (cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending")
+            Thread.Sleep(2000);
+            if (cvsmDeviceDetailsPage.DateSorting.GetAttribute("class").ToString() == "col-md-4 descending")
             {
                 cvsmDeviceDetailsPage.DateSorting.Click();
+                Thread.Sleep(2000);
             }
-
+            Thread.Sleep(2000);
             Assert.AreEqual("col-md-4 ascending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"),"Sorting indicator is not as expected.");
         }
 
         [When(@"user clicks Date column heading")]
         public void WhenUserClicksDateColumnHeading()
         {
+            Thread.Sleep(3000);
             cvsmDeviceDetailsPage.DateSorting.Click();
         }
 

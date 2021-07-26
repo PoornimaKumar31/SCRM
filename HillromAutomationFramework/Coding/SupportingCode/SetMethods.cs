@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
@@ -62,8 +63,14 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                 if (element.Text != "Date")
                 {
 
-                    FormatedDateList.Add(DateTime.Parse(element.Text)); ;
+                    FormatedDateList.Add(DateTime.Parse(element.Text));
+                    
                 }
+            }
+            Console.WriteLine("Now Normal List That displayed : \n\n");
+            foreach(DateTime a in FormatedDateList)
+            {
+                Console.WriteLine(a+"   ");
             }
 
             List<DateTime> SortedList = new List<DateTime>(FormatedDateList);
@@ -72,12 +79,14 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             {
                 SortedList.Reverse();
             }
-            if (SortedList.Equals(FormatedDateList))
+            Console.WriteLine("Now Sorted List\n\n");
+            foreach(DateTime a in SortedList)
             {
-                return true;
+                Console.WriteLine(a+"   ");
             }
-            else
-                return false;
+
+            return SortedList.SequenceEqual(FormatedDateList);
+            
         }
 
         public static List<DateTime> GetSortedLogs(List<DateTime> AllDateList,string typeOfSort = "a")
