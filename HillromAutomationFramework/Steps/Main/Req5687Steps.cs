@@ -19,7 +19,7 @@ namespace HillromAutomationFramework.Steps.Main
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
 
-        [Given(@"user is on Assets List page with more than one (.*)")]
+        [Given(@"user is on Assets List page with more than one ""(.*)""")]
         public void GivenUserIsOnAssetsListPageWithMoreThanOneDevice(string deviceName)
         {
             switch(deviceName.ToLower().Trim())
@@ -53,7 +53,7 @@ namespace HillromAutomationFramework.Steps.Main
         }
         
         
-        [When(@"user selects (.*) from Asset type dropdown")]
+        [When(@"user selects ""(.*)"" from Asset type dropdown")]
         public void WhenUserSelectsRVFromAssetTypeDropdown(string deviceName)
         {
             string Device = "";
@@ -82,7 +82,7 @@ namespace HillromAutomationFramework.Steps.Main
             Assert.AreEqual(true, MainPage.ExpectedValues.AllOrganizationsDevicesListWithRollUp == mainPage.DeviceListRow.GetElementCount(), "All Organization's devices are not displayed");
         }
         
-        [Then(@"all organization (.*) devices are displayed")]
+        [Then(@"all organization ""(.*)"" devices are displayed")]
         public void ThenAllOrgnaizationRVDevicesAreDisplayed(string deviceName)
         {  
             int ExpectedDeviceCount=0;
