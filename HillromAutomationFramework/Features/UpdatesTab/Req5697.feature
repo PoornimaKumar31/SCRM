@@ -34,6 +34,15 @@ Scenario: Select CVSM Configuration Update Type
 	And Delete button is displayed
 	And Next button is disabled
 
+@TestCaseID_9034 @UISID_8696
+Scenario: CVSM Configuration Update Default Sort Order
+	Given user is on CVSM Updates page
+	And CVSM Asset type is selected
+	And Configuration Update type is selected
+	And Configuration list is not empty
+	Then configuration files are sorted in ascending alphabetical order
+
+
 @TestCaseID_9078 @UISID_8696 @UISID_8669
 Scenario: CVSM Configuration Less Than or Equal to 50
 	Given user is on CVSM Updates page with "<=50" entries

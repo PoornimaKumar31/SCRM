@@ -1,6 +1,8 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
 
@@ -11,6 +13,7 @@ namespace HillromAutomationFramework.Steps.Landing
     {
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
+        MainPage mainPage = new MainPage();
 
         [Given(@"user login with rollup page")]
         public void GivenUserLoginWithRollupPage()
@@ -113,6 +116,27 @@ namespace HillromAutomationFramework.Steps.Landing
             //organization2-facility0
             Assert.AreEqual(true, landingPage.Organization2Facility0Device.GetElementVisibility(), "Organization 3 facility 1 devices are not displayed");
         }
+
+
+        [Given(@"user login without roll-up page")]
+        public void GivenUserLoginWithoutRoll_UpPage()
+        {
+            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+        }
+
+        [Then(@"Roll-up page is not displayed")]
+        public void ThenRoll_UpPageIsNotDisplayed()
+        {
+            Assert.AreEqual(false, landingPage.Organization0Facility0Title.GetElementVisibility(),"User is on landing page.");
+        }
+
+        [Then(@"Asset list page is displayed")]
+        public void ThenAssetListPageIsDisplayed()
+        {
+            Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(),"User is not on asset list page.");
+        }
+
+
 
     }
 }

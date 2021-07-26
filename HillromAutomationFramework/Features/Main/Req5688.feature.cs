@@ -20,26 +20,26 @@ namespace HillromAutomationFramework.Features.Main
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Software Requirement 5687")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5687")]
-    public partial class SoftwareRequirement5687Feature
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5688")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5688")]
+    public partial class SoftwareRequirement5688Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5687"};
+                "SoftwareRequirementID_5688"};
         
-#line 1 "Req5687.feature"
+#line 1 "Req5688.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Main", "Software Requirement 5687", "\tThe Customer Portal shall have a feature for filtering which devices are display" +
-                    "ed to the logged in user.", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5687"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Main", "Software Requirement 5688", "    The Customer Portal shall have a feature for displaying the devices within a " +
+                    "selected hierarchal grouping.", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5688"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,16 +78,16 @@ namespace HillromAutomationFramework.Features.Main
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Asset Type All Assets")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9100")]
+        [NUnit.Framework.DescriptionAttribute("Assets List Default View")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9143")]
         [NUnit.Framework.CategoryAttribute("UISID_8666")]
-        public virtual void AssetTypeAllAssets()
+        public virtual void AssetsListDefaultView()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9100",
+                    "TestCaseID_9143",
                     "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Asset Type All Assets", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assets List Default View", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,30 +109,27 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("user is on Assets List page with more than one \"device\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user without roll-up page for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("Asset type is All assets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 9
- testRunner.Then("all organization devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("all organizations is the default Organization filter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Asset Type CSM")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9101")]
+        [NUnit.Framework.DescriptionAttribute("Assets List Filter by Organization")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9144")]
         [NUnit.Framework.CategoryAttribute("UISID_8666")]
-        public virtual void AssetTypeCSM()
+        public virtual void AssetsListFilterByOrganization()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9101",
+                    "TestCaseID_9144",
                     "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Asset Type CSM", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 12
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assets List Filter by Organization", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -152,31 +149,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 12
+    testRunner.Given("user without roll-up page for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 13
- testRunner.Given("user is on Assets List page with more than one \"CSM\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.When("user selects organization from Organization dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 14
- testRunner.When("user selects \"CSM\" from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 15
- testRunner.Then("all organization \"CSM\" devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("only devices in selected organization are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Asset Type CVSM")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9102")]
+        [NUnit.Framework.DescriptionAttribute("Assets List Filter by Facility")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9145")]
         [NUnit.Framework.CategoryAttribute("UISID_8666")]
-        public virtual void AssetTypeCVSM()
+        public virtual void AssetsListFilterByFacility()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9102",
+                    "TestCaseID_9145",
                     "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Asset Type CVSM", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 18
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assets List Filter by Facility", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -196,31 +193,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 18
+    testRunner.Given("user without roll-up page for multiple facilities is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 19
- testRunner.Given("user is on Assets List page with more than one \"CVSM\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.When("user selects facility from Organization dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 20
- testRunner.When("user selects \"CVSM\" from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 21
- testRunner.Then("all organization \"CVSM\" devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("only devices in selected facility are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Asset Type RV700")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9103")]
+        [NUnit.Framework.DescriptionAttribute("Assets List Filter by Unit")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9146")]
         [NUnit.Framework.CategoryAttribute("UISID_8666")]
-        public virtual void AssetTypeRV700()
+        public virtual void AssetsListFilterByUnit()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9103",
+                    "TestCaseID_9146",
                     "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Asset Type RV700", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 24
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assets List Filter by Unit", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 23
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -240,14 +237,58 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 24
+    testRunner.Given("user without roll-up page for multiple units is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 25
- testRunner.Given("user is on Assets List page with more than one \"RV700\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.When("user selects unit from Organization dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 26
- testRunner.When("user selects \"RV700\" from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.Then("only devices in selected unit are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 27
- testRunner.Then("all organization \"RV700\" devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Assets List Filter by All Organizations")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9147")]
+        [NUnit.Framework.CategoryAttribute("UISID_8666")]
+        public virtual void AssetsListFilterByAllOrganizations()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_9147",
+                    "UISID_8666"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Assets List Filter by All Organizations", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 29
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 30
+    testRunner.Given("user without roll-up page for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 31
+    testRunner.When("user selects All locations from Organization dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 32
+    testRunner.Then("all devices belonging to all user organizations are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
