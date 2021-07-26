@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,10 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 
 
         /*for clicking web element*/
-        public static void Clicks(this IWebElement element)
+        public static void DoubleClick(this IWebElement element)
         {
-            element.Click();
+            Actions actions = new Actions(PropertyClass.Driver);
+            actions.DoubleClick(element).Perform();
         }
 
         //Clicking using javascipt

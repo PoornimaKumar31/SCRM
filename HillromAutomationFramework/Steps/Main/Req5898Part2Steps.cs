@@ -25,7 +25,7 @@ namespace HillromAutomationFramework.Steps.Main
         [When(@"user clicks Global Service Center")]
         public void WhenUserClicksGlobalServiceCenter()
         {
-            mainPage.GlobalServiceCenter.Clicks();
+            mainPage.GlobalServiceCenter.Click();
         }
 
         [Then(@"Global Service Center page is displayed")]
@@ -42,7 +42,7 @@ namespace HillromAutomationFramework.Steps.Main
         [When(@"user clicks Contact Us")]
         public void WhenUserClicksContactUs()
         {
-            mainPage.ContactUs.Clicks();
+            mainPage.ContactUs.Click();
         }
 
         [Then(@"Contact Us page is displayed")]

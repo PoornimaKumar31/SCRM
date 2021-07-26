@@ -43,7 +43,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"clicks Login button")]
         public void WhenClicksLoginButton()
         {
-            loginPage.LoginButton.Clicks();
+            loginPage.LoginButton.Click();
         }
 
         [When(@"user enters invalid email ID")]

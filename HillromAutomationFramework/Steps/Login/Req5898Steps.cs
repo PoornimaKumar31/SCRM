@@ -13,13 +13,13 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks Privacy Policy")]
         public void WhenUserClicksPrivacyPolicy()
         {
-            loginPage.PrivacyPolicylink.Clicks();
+            loginPage.PrivacyPolicylink.Click();
         }
 
         [When(@"user clicks Terms of Use")]
         public void WhenUserClicksTermsOfUse()
         {
-            loginPage.TermsOfUseLink.Clicks();
+            loginPage.TermsOfUseLink.Click();
         }
 
        

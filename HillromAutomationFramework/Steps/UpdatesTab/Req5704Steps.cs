@@ -203,6 +203,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             string PageNumberBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
             updatesSelectUpdatePage.PaginationNextIcon.JavaSciptClick();
+            Thread.Sleep(1000);
             string PageNumberAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
             Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page icon is not enabled.");
         }
@@ -210,6 +211,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [When(@"user clicks Next page icon")]
         public void WhenUserClicksNextPageIcon()
         {
+            SetMethods.ScrollToBottomofWebpage();
             updatesSelectUpdatePage.PaginationNextIcon.Click();
         }
 
@@ -235,7 +237,7 @@ namespace HillromAutomationFramework.Steps.Updates
             string PageNumberBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
             updatesSelectUpdatePage.PaginationPreviousIcon.JavaSciptClick();
             string PageNumberAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Previous page icon is not enabled.");
+            Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "Previous page icon is not enabled.");
         }
 
         [Given(@"configuration file is selected")]

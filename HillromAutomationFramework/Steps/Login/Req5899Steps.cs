@@ -17,7 +17,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks Supported Browsers")]
         public void WhenUserClicksSupportedBrowsers()
         {
-            loginPage.SupportedBrowsersLink.Clicks();
+            loginPage.SupportedBrowsersLink.Click();
         }
 
         [Then(@"Supported Browsers dialog is displayed")]
@@ -42,21 +42,20 @@ namespace HillromAutomationFramework.Steps.Login
             // Explicit wait-> Wait till logo is displayed
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
-            loginPage.SupportedBrowsersLink.Clicks();
+            loginPage.SupportedBrowsersLink.Click();
             Assert.AreEqual(loginPage.SupportedBrowserPopup.Displayed,true,"Supported browser dialog ox is not displayed");
         }
 
         [When(@"user clicks close button")]
         public void WhenUserClicksCloseButton()
         {
-            Thread.Sleep(5000);
-            loginPage.SupportedBrowserclosebutton.Clicks();
+            loginPage.SupportedBrowserclosebutton.Click();
         }
 
         [Then(@"Supported Browsers dialog is closed")]
         public void ThenSupportedBrowsersDialogIsClosed()
         {
-            Assert.AreEqual(PropertyClass.Driver.PageSource.Contains(LoginPage.ExpectedValues.SupportedBrowserAppleSafari), false,"Supported browser dialog box is not closed");
+            Assert.AreEqual(false,loginPage.SupportedBrowserPopup.GetElementVisibility(),"Supported browser dialog box is not closed");
         }
 
     }

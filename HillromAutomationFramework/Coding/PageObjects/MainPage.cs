@@ -266,7 +266,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
             CompInfo.JavaSciptClick();
             RadioNewMarr.Click();
             bool IsMACAddressVisible = MACAddress.GetElementVisibility();
-            string str = MainPage.ExpectedValues.PartialSerialNumberText;
             return IsMACAddressVisible;
         }
 

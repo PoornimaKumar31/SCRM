@@ -26,9 +26,9 @@ namespace HillromAutomationFramework.Steps.Login
         public void WhenUserClicksLogoutButton()
         {
             //Clicks on profile logo
-            landingPage.UserNameLogo.Clicks();
+            landingPage.UserNameLogo.Click();
             //Clicks on logout button
-            landingPage.LogOutButton.Clicks();
+            landingPage.LogOutButton.Click();
         }
     }
 }
