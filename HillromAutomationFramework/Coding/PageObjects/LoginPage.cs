@@ -231,19 +231,19 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 case LogInType.AdminWithRollUpPage:
                     EmailField.EnterText(Config.EmailIDAdminWithRollUp);
                     PasswordField.EnterText(Config.PasswordAdminWithRollUp);
-                    LoginButton.Clicks();
+                    LoginButton.Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
                     break;
                 case LogInType.AdminWithOutRollUpPage:
                     EmailField.EnterText(Config.EmailAdminWithoutRollUp);
                     PasswordField.EnterText(Config.PasswordAdminWithoutRollUp);
-                    LoginButton.Clicks();
+                    LoginButton.Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     break;
                 case LogInType.StandardUserWithoutRollUpPage:
                     EmailField.EnterText(Config.EmailStandardWithoutRollUp);
                     PasswordField.EnterText(Config.PasswordStandardWithoutRollUp);
-                    LoginButton.Clicks();
+                    LoginButton.Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
                     break;
                 default: Assert.Fail(Type + " is a invalid login type.");

@@ -157,8 +157,8 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Select all checkbox is in column (.*)")]
         public void ThenSelectAllCheckboxIsInColumn(int columnNumber)
         {
-            string firstcolumnId = updatesSelectUpdatePage.ManageUpgradesTableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
-            Assert.AreEqual(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
+            string firstcolumnId = updatesSelectUpdatePage.ManageUpgradesTableHeading.FindElements(By.TagName("div"))[columnNumber - 1].FindElement(By.TagName("input")).GetAttribute("id");
+            Assert.AreEqual("selectall", firstcolumnId, "Select all checkbox is not in column " + columnNumber);
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]

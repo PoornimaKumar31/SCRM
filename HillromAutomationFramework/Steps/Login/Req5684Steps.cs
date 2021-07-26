@@ -41,7 +41,7 @@ namespace HillromAutomationFramework.Steps.Login
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
-            loginPage.ForgotPasswordLink.Clicks();
+            loginPage.ForgotPasswordLink.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));
         }
 

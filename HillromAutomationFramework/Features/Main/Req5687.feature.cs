@@ -80,10 +80,12 @@ namespace HillromAutomationFramework.Features.Main
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Asset Type All Assets")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9100")]
+        [NUnit.Framework.CategoryAttribute("UISID_8666")]
         public virtual void AssetTypeAllAssets()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9100"};
+                    "TestCaseID_9100",
+                    "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Asset Type All Assets", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
@@ -107,7 +109,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than one \"device\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.And("Asset type is All assets", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -122,10 +124,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Asset Type CSM")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9101")]
+        [NUnit.Framework.CategoryAttribute("UISID_8666")]
         public virtual void AssetTypeCSM()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9101"};
+                    "TestCaseID_9101",
+                    "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Asset Type CSM", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 12
@@ -149,13 +153,12 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 13
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
- testRunner.When("user selects CSM from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user selects \"CSM\" from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.Then("all orgnaization CSM devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("all organization \"CSM\" devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -164,10 +167,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Asset Type CVSM")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9102")]
+        [NUnit.Framework.CategoryAttribute("UISID_8666")]
         public virtual void AssetTypeCVSM()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9102"};
+                    "TestCaseID_9102",
+                    "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Asset Type CVSM", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 18
@@ -191,13 +196,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 19
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than one \"CVSM\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 20
- testRunner.When("user selects CVSM from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user selects \"CVSM\" from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 21
- testRunner.Then("all orgnaization CVSM devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("all organization \"CVSM\" devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -206,10 +211,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Asset Type RV700")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9103")]
+        [NUnit.Framework.CategoryAttribute("UISID_8666")]
         public virtual void AssetTypeRV700()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9103"};
+                    "TestCaseID_9103",
+                    "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Asset Type RV700", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 24
@@ -233,13 +240,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 25
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than one \"RV700\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 26
- testRunner.When("user selects RV700 from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user selects \"RV700\" from Asset type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 27
- testRunner.Then("all orgnaization RV700 devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("all organization \"RV700\" devices are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

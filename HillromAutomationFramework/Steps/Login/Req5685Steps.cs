@@ -15,7 +15,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks PartnerConnect")]
         public void WhenUserClicksPartnerConnect()
         {
-            loginPage.PartnerConnectLink.Clicks();
+            loginPage.PartnerConnectLink.Click();
             // Checking if download starts.
             int count = 0;
             bool file_exist = false;
@@ -49,7 +49,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks Service Monitor")]
         public void WhenUserClicksServiceMonitor()
         {
-            loginPage.ServiceMoniterLink.Clicks();
+            loginPage.ServiceMoniterLink.Click();
             // Checking if download starts.
             bool file_exist = false;
             int count = 0;
@@ -83,7 +83,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks DCP")]
         public void WhenUserClicksDCP()
         {
-            loginPage.DCPLink.Clicks();
+            loginPage.DCPLink.Click();
             // Checking if download starts.
             bool file_exist = false;
             int count = 0;
@@ -117,7 +117,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks Administrator Guide")]
         public void WhenUserClicksAdministratorGuide()
         {
-            loginPage.AdministratorsGuidePDFLink.Clicks();
+            loginPage.AdministratorsGuidePDFLink.Click();
         }
 
         [Then(@"Administrator Guide PDF opens in browser")]
@@ -132,7 +132,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks Instructions for Use")]
         public void WhenUserClicksInstructionsForUse()
         {
-            loginPage.InstructionForUsePDFLink.Clicks();
+            loginPage.InstructionForUsePDFLink.Click();
         }
 
         [Then(@"Instructions for Use PDF opens in browser")]
