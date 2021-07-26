@@ -54,7 +54,7 @@ Scenario: CVSM Log Files Sort Decreasing Date
 	Given user is on CVSM Log Files page with 10 logs
 	And logs are sorted by increasing date
 	When user clicks Date column heading
-	Then logs sort by decreasing date
+	Then logs are sorted by decreasing date
 	And decreasing date sorting indicator is displayed
 
 @TestCaseID_8962 @UISID_8678
@@ -62,5 +62,5 @@ Scenario: CVSM Log Files Sort Increasing Date
 	Given user is on CVSM Log Files page with 10 logs
 	And logs are sorted by decreasing date
 	When user clicks Date column heading
-	Then logs sort by increasing date
+	Then logs are sorted by increasing date
 	And increasing date sorting indicator is displayed
