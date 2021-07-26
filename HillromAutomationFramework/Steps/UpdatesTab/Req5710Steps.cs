@@ -1,6 +1,8 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
 
@@ -13,12 +15,14 @@ namespace HillromAutomationFramework.Steps.Updates
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
         ServiceMoniterPage serviceMoniterPage = new ServiceMoniterPage();
+        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
         [Given(@"user is on Service Monitor Settings page")]
         public void GivenUserIsOnServiceMonitorSettingsPage()
         {
-            loginPage.SignIn("AdminWithoutRollup");
+            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
             Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "User is not on main page");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.UpdatesTab.JavaSciptClick();
             serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMoniterPage.Inputs.ServiceMoniterText);
             Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings page is not displayed");

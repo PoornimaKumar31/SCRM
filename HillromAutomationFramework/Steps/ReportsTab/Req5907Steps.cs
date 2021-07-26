@@ -23,8 +23,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on CSM Firmware Upgrade Status report page")]
         public void GivenUserIsOnCSMFirmwareUpgradeStatusReportPage()
         {
-            loginPage.SignIn("AdminWithRollUp");
-            landingPage.Organization0Facility0Title.Click();
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization1Facility0Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
             mainPage.ReportsTab.JavaSciptClick();
             firmwareStatusPage.AssetTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.CSMDeviceName);
@@ -138,8 +138,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on RV700 Firmware Upgrade Status report page")]
         public void GivenUserIsOnRVFirmwareUpgradeStatusReportPage()
         {
-            loginPage.SignIn("AdminWithRollUp");
-            landingPage.Organization1Facility0Title.Click();
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization2Facility0Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
             mainPage.ReportsTab.JavaSciptClick();
             firmwareStatusPage.AssetTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.RV700DeviceName);

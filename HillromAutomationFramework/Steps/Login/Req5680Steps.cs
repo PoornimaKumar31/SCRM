@@ -19,7 +19,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void GivenUserIsLoggedIn()
         {
             //Log in as Admin user with rollup
-            loginPage.SignIn("adminwithrollup");
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
         }
 
         [When(@"user clicks Logout button")]

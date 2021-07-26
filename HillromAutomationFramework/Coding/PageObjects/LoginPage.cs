@@ -212,62 +212,19 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement SupportedBrowserclosebutton { get; set; }
 
 
-
-        //Function for Login
-        public void SignIn(string signinType)
-        {
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
-            // Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
-
-            if (signinType.ToLower().Trim().Contains("adminwithrollup"))
-            {
-                EmailField.EnterText(Config.EmailIDAdminWithRollUp);
-                PasswordField.EnterText(Config.PasswordAdminWithRollUp);
-                LoginButton.Clicks();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
-            }
-            else if(signinType.ToLower().Trim().Contains("adminwithoutrollup"))
-            {
-                EmailField.EnterText(Config.EmailAdminWithoutRollUp);
-                PasswordField.EnterText(Config.PasswordAdminWithoutRollUp);
-                LoginButton.Clicks();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            }
-            else if(signinType.ToLower().Trim().Contains("standarduserwithoutrollup"))
-            {
-                EmailField.EnterText(Config.EmailStandardWithoutRollUp);
-                PasswordField.EnterText(Config.PasswordStandardWithoutRollUp);
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
-                LoginButton.Clicks();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
-            }
-            else if(signinType.ToLower().Trim().Contains("rv700"))
-            {
-                LandingPage landingPage = new LandingPage();
-                EmailField.EnterText(Config.EmailIDAdminWithRollUp);
-                PasswordField.EnterText(Config.PasswordAdminWithRollUp);
-                LoginButton.Clicks();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
-                landingPage.Organization1Facility0Title.Click();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-
-            }
-            
-        }
+        //to specify the login Type
         public enum LogInType
         {
             AdminWithRollUpPage,
             AdminWithOutRollUpPage,
-            StandardUserWithoutRollUp
+            StandardUserWithoutRollUpPage
         }
 
         public void LogIn(LogInType Type)
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
             // Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(15));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
             switch(Type)
             {
@@ -283,7 +240,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                     LoginButton.Clicks();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     break;
-                case LogInType.StandardUserWithoutRollUp:
+                case LogInType.StandardUserWithoutRollUpPage:
                     EmailField.EnterText(Config.EmailStandardWithoutRollUp);
                     PasswordField.EnterText(Config.PasswordStandardWithoutRollUp);
                     LoginButton.Clicks();

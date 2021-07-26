@@ -48,7 +48,7 @@ Scenario: CVSM Configuration Greater Than 50
 
 @TestCaseID_9080 @UISID_8696 @UISID_8669
 Scenario: CVSM Configuration Greater Than 50 and Less Than or Equal to 100 
-	Given user is on CVSM Updates page with ">50 and <= 100" entries
+	Given user is on CVSM Updates page with ">50 and <=100" entries
 	And first 50 entries are displayed
 	When user clicks Next page button
 	Then second page of entries is displayed
@@ -117,7 +117,7 @@ Scenario: CVSM Review Action page
 @TestCaseID_9042 @UISID_8698
 Scenario: CVSM Review Action Elements
 	Given user is on CVSM Review Action page
-	Then Item to push label is displayed
+	Then item to push label is displayed
 	And Item to push value is displayed
 	And Destinations label is displayed
 	And Destinations value is displayed

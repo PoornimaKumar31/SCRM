@@ -22,8 +22,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on CSM Configuration Update Status page")]
         public void GivenUserIsOnCSMConfigurationUpdateStatusPage()
         {
-            loginPage.SignIn("AdminWithRollUp");
-            landingPage.Organization0Facility0Title.Click();
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            landingPage.Organization1Facility0Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
             mainPage.ReportsTab.JavaSciptClick();
             csmConfigStatusPage.AssetTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMDeviceName);

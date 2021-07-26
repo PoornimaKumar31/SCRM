@@ -18,6 +18,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LocationHierarchySelectorsID = "caret0";
 
             //table elements
+            public const string TableHeadingXpath= "//*[@id=\"configure-items\"]/div[3]/div[2]";
             public const string SelectAllCheckBoxID = "selectall";
             public const string SerialNumHeadingID = "SNo";
             public const string CallHomePeriodHeadingID = "CallHome";
@@ -99,6 +100,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement LocationHierarchySelectors { get; set; }
 
         //table elements
+        [FindsBy(How = How.XPath, Using = Locators.TableHeadingXpath)]
+        public IWebElement TableHeading { get; set; }
+
         [FindsBy(How = How.Id, Using = Locators.SelectAllCheckBoxID)]
         public IWebElement SelectAllCheckBox { get; set; }
 

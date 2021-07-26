@@ -90,6 +90,18 @@ Scenario: CSM Select Assets Elements Table
 	And "Location" column heading is displayed
 	And "Last Files Deployed" column heading is displayed
 
+@TestCaseID_9209 @UISID_8697
+Scenario: CSM Select Assets Elements Table Columns
+	Given user is on CSM Configuration Select assets page
+	Then Select all checkbox is in column 1
+	And "Firmware" label is in column 2
+	And "Config" label is in column 3
+	And "Asset tag" label is in column 4
+	And "Serial" label is in column 5
+	And "Location" label is in column 6
+	And "Last files deployed" label is in column 7
+
+
 @TestCaseID_9092 @UISID_8697
 Scenario: CSM Select Assets
 	Given user is on CSM Configuration Select assets page

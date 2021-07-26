@@ -15,7 +15,7 @@ namespace HillromAutomationFramework.Steps.Landing
         [Given(@"user login with rollup page")]
         public void GivenUserLoginWithRollupPage()
         {
-            loginPage.SignIn("AdminWithRollUp");
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
         }
 
         [Then(@"Roll-up page is displayed")]
@@ -29,7 +29,7 @@ namespace HillromAutomationFramework.Steps.Landing
         [Given(@"user is on Landing page")]
         public void GivenUserIsOnLandingPage()
         {
-            loginPage.SignIn("AdminWithRollUp");
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
         }
 
         [Given(@"Roll-up page is displayed")]

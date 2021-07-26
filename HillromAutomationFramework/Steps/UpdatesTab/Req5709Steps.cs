@@ -16,6 +16,7 @@ namespace HillromAutomationFramework.Steps.Updates
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
         ServiceMoniterPage serviceMoniterPage = new ServiceMoniterPage();
+        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private ScenarioContext _scenarioContext;
 
         public Req5709Steps(ScenarioContext scenarioContext)
@@ -26,7 +27,8 @@ namespace HillromAutomationFramework.Steps.Updates
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            loginPage.SignIn("AdminWithoutRollup");
+            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "User is not on main page");
         }
         
@@ -248,6 +250,21 @@ namespace HillromAutomationFramework.Steps.Updates
 
         }
 
+        [Then(@"Select all checkbox is in column (.*)")]
+        public void ThenSelectAllCheckboxIsInColumn(int columnNumber)
+        {
+            string firstcolumnId = serviceMoniterPage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
+            Assert.AreEqual(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
+        }
+
+        [Then(@"""(.*)"" label is in column (.*)")]
+        public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
+        {
+            IList<IWebElement> columns = serviceMoniterPage.TableHeading.FindElements(By.TagName("div"));
+            Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+        }
+
+
 
         [Given(@"user is on Service Monitor Settings page with ""(.*)"" entries")]
         public void GivenUserIsOnServiceMonitorSettingsPageWithEntries(string noOfEntries)
@@ -329,18 +346,6 @@ namespace HillromAutomationFramework.Steps.Updates
         public void WhenUserClicksDeployButton()
         {
             serviceMoniterPage.DeployButton.Click();
-        }
-
-        [Then(@"Update process has been established message will display")]
-        public void ThenUpdateProcessHasBeenEstablishedMessageWillDisplay()
-        {
-            Assert.AreEqual(true, serviceMoniterPage.UpdateMessage.GetElementVisibility(), "Update process message is not displayed.\n");
-        }
-
-        [Then(@"software navigates to Select Update page")]
-        public void ThenSoftwareNavigatesToSelectUpdatePage()
-        {
-            Assert.AreEqual(true, serviceMoniterPage.AssetTypeDropDown.GetElementVisibility(), "Select Update page is not displayed");
         }
 
         [Given(@"first (.*) entries are displayed")]

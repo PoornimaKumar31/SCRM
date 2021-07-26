@@ -57,26 +57,37 @@ Scenario: Service Monitor Settings Elements Table
 	And "Location" column heading is displayed
 	And "Last files deployed" column heading is displayed
 
+@TestCaseID_9208 @UISID_8699
+Scenario: Service Monitor Settings Elements Table Columns
+	Given user is on Service Monitor Settings page
+	Then Select all checkbox is in column 1
+	And "Serial Number" label is in column 2
+	And "Call home period" label is in column 3
+	And "Deployment mode" label is in column 4
+	And "Location" label is in column 5
+	And "Last files deployed" label is in column 6
+
 @TestCaseID_9074 @UISID_8699 @UISID_8669
 Scenario: Service Monitor Settings is less than equal 50
 	Given user is on Service Monitor Settings page with "<=50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
 
-@TestCaseID_9075 @UISID_8699 @UISID_8669
-Scenario: Service Monitor Settings is greater than 50
-	Given user is on Service Monitor Settings page with ">50" entries
-	Then Previous page icon is disabled
-	And Next page icon is enabled
-
-@TestCaseID_9076 @UISID_8699 @UISID_8669
-Scenario: Service Monitor Settings is greater than 50 and smaller than equal 100
-	Given user is on Service Monitor Settings page with ">50 and <=100" entries
-	And first 50 entries are displayed
-	When user clicks Next page button
-	Then second page of entries is displayed
-	And Next page icon is disabled
-	And Previous page icon is disabled
+#confirm if test case is removed from the spreadsheet
+#@TestCaseID_9075 @UISID_8699 @UISID_8669
+#Scenario: Service Monitor Settings is greater than 50
+#	Given user is on Service Monitor Settings page with ">50" entries
+#	Then Previous page icon is disabled
+#	And Next page icon is enabled
+#
+#@TestCaseID_9076 @UISID_8699 @UISID_8669
+#Scenario: Service Monitor Settings is greater than 50 and smaller than equal 100
+#	Given user is on Service Monitor Settings page with ">50 and <=100" entries
+#	And first 50 entries are displayed
+#	When user clicks Next page button
+#	Then second page of entries is displayed
+#	And Next page icon is disabled
+#	And Previous page icon is disabled
 
 @TestCaseID_9077 @UISID_8699
 Scenario: Service Monitor Settings Select Device

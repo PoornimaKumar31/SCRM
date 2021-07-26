@@ -16,18 +16,19 @@ Scenario: CSM Upgrade Elements
 	And Next button is disabled
 	And Page x of y label is displayed
 	And Displaying x to y of z results label is displayed
-		
-@TestCaseID_9154 @UISID_8696 @UISID_8669
-Scenario: CSM Upgrade files less than equal 50 entries
-	Given user is on CSM Updates page with "<= 50" entries
-	Then Previous page icon is disabled
-	And Next page icon is disabled
 
-@TestCaseID_9155 @UISID_8696 @UISID_8669
-Scenario: CSM Upgrade files greater than 50 entries
-	Given user is on CSM Updates page with "> 50" entries
-	Then Previous page icon is disabled 
-	And Next page icon is enabled
+#confirm the test case deletion		
+#@TestCaseID_9154 @UISID_8696 @UISID_8669
+#Scenario: CSM Upgrade files less than equal 50 entries
+#	Given user is on CSM Updates page with "<= 50" entries
+#	Then Previous page icon is disabled
+#	And Next page icon is disabled
+#
+#@TestCaseID_9155 @UISID_8696 @UISID_8669
+#Scenario: CSM Upgrade files greater than 50 entries
+#	Given user is on CSM Updates page with "> 50" entries
+#	Then Previous page icon is disabled 
+#	And Next page icon is enabled
 
 @TestCaseID_9156 @UISID_8696 @UISID_8669
 Scenario: CSM Upgrade files greater than 50 and less than equal 100 Next

@@ -17,7 +17,7 @@ namespace HillromAutomationFramework.Steps.Main
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            loginPage.SignIn("adminwithoutrollup");
+            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
         }
