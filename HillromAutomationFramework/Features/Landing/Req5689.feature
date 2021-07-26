@@ -7,6 +7,13 @@ Scenario: System Roll-up View
 	Given user login with rollup page
 	Then Roll-up page is displayed
 
+@TestCaseID_9235 @UISID_8664 @UISID_8665
+Scenario: System No Roll-up View
+	Given user login without roll-up page
+	Then Roll-up page is not displayed
+	And Asset list page is displayed
+
+
 @TestCaseID_9099 @UISID_8664 @UISID_8665
 Scenario: System Rollup View Elements
 	Given user is on Landing page

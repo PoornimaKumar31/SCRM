@@ -3,7 +3,6 @@ using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
 using HillromAutomationFramework.Coding.SupportingCode;
 using Microsoft.Edge.SeleniumTools;
-using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -146,7 +145,7 @@ namespace HillromAutomationFramework.Hooks
         [AfterScenario]
         public void CleanUp()
         {
-          // PropertyClass.Driver.Quit();
+           PropertyClass.Driver.Quit();
         }
 
     }

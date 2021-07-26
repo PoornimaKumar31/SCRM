@@ -263,6 +263,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor,updateSelectDevicePage.Heading.GetCssValue("color"), "Select devices tab is not highlighted.");
         }
 
+        [Given(@"Configuration list is not empty")]
+        public void GivenConfigurationListIsNotEmpty()
+        {
+            Assert.AreEqual(true,updatesSelectUpdatePage.FileNameList.GetElementCount()>0,"Configuration list is empty");
+        }
+
+        [Then(@"configuration files are sorted in ascending alphabetical order")]
+        public void ThenConfigurationFilesAreSortedInAscendingAlphabeticalOrder()
+        {
+            Assert.AreEqual(true, updatesSelectUpdatePage.IsFileSorted(updatesSelectUpdatePage.FileNameList),"Config file is not sorted");
+        }
+
+
+
 
         //for select devices page
         [Then(@"Item to push label is displayed"),Scope(Scenario = "CVSM Select Assets Elements")]
