@@ -106,7 +106,7 @@ namespace HillromAutomationFramework.Steps.Main
         }
 
 
-        [When(@"""(.*)"" column (.*) heading is displayed")]
+        [When(@"""(.*)"" label is in column (.*)")]
         public void WhenColumnHeadingIsDisplayed(string columnName, int columnNumber)
         {
             //Entire row

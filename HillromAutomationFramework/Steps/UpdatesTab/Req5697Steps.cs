@@ -4,6 +4,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -387,6 +388,23 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             string ActualHeadingText = Heading.Text;
             Assert.AreEqual(ExpectedHeadingText, ActualHeadingText, HeadingName+" text is not matxhing with the expected value.");
         }
+
+        [Then(@"Select all checkbox is in column (.*)")]
+        public void ThenSelectAllCheckboxIsInColumn(int columnNumber)
+        {
+            string firstcolumnId = updateSelectDevicePage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
+            Assert.AreEqual(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
+        }
+
+        [Then(@"""(.*)"" label is in column (.*)")]
+        public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
+        {
+            IList<IWebElement> columns = updateSelectDevicePage.TableHeading.FindElements(By.TagName("div"));
+            Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+        }
+
+
+
 
         [When(@"user selects one device")]
         public void WhenUserSelectsOneDevice()

@@ -26,14 +26,14 @@ Scenario: Assets List Elements
 Scenario: Assets List Elements Table Columns
 	Given the user is on Landing page
 	When user clicks Facility panel for an organization
-	And "Type" column 1 heading is displayed
-	And "Firmware" column 2 heading is displayed
-	And "Config file" column 3 heading is displayed
-	And "Asset tag" column 4 heading is displayed
-	And "Serial number" column 5 heading is displayed
-	And "Location" column 6 heading is displayed
-	And "Last connected" column 7 heading is displayed
-	And "PM due" column 8 heading is displayed
+	And "Type" label is in column 1 
+	And "Firmware" label is in column 2
+	And "Config file" label is in column 3
+	And "Asset tag" label is in column 4
+	And "Serial number" label is in column 5
+	And "Location" label is in column 6
+	And "Last connected" label is in column 7
+	And "PM due" label is in column 8
 
 
 @TestCaseID_9149 @UISID_8666
