@@ -111,7 +111,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             rv700DeviceDetailsPage.LogsRequestButton.Click();
         }
 
-        [Then(@"Pending or Executing message is displayed")]
+        [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
@@ -123,7 +123,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true,rv700DeviceDetailsPage.LogsNextButton.Enabled,"user is not able to navigate to next page");
         }
 
-        [Given(@"Pending or Executing message is displayed")]
+        [Given(@"Received, Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.Displayed,"Pending or executing message is not displayed");
@@ -221,16 +221,17 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, rv700DeviceDetailsPage.NOlderLogsPresence(num), "Number of Logs are not as expected");
         }
 
-        [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]
-        public void ThenDisplayingToOfResultsLabelIsDisplayed(int p0, int p1, int p2)
+        [Then(@"""(.*)"" result label is displayed")]
+        public void ThenResultLabelIsDisplayed(string p0)
         {
             _scenarioContext.Pending();
         }
 
-        [Then(@"page (.*) of (.*) label is displayed")]
-        public void ThenPageOfLabelIsDisplayed(int p0, int p1)
+        [Then(@"""(.*)"" pagination label is displayed")]
+        public void ThenPaginationLabelIsDisplayed(string p0)
         {
             _scenarioContext.Pending();
         }
+
     }
 }

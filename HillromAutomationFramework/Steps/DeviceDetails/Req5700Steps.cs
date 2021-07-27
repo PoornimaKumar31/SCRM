@@ -33,7 +33,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             csmDeviceDetailsPage.LogsTab.Click();
         }
         
-        [Given(@"Pending or Executing message is not displayed")]
+        [Given(@"Received, Pending or Executing message is not displayed")]
         public void GivenPendingOrExecutingMessageIsNotDisplayed()
         {
             Assert.AreEqual(false,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is displayed");
@@ -45,7 +45,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             csmDeviceDetailsPage.LogsRequestButton.Click();
         }
         
-        [Then(@"Pending or Executing message is displayed")]
+        [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
@@ -57,7 +57,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(false,csmDeviceDetailsPage.LogsRequestButton.Enabled, "Request Logs button is not disabled");
         }
 
-        [Given(@"Pending or Executing message is displayed")]
+        [Given(@"Received, Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");

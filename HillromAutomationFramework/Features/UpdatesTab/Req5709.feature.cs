@@ -372,7 +372,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Service Monitor Settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 53
- testRunner.Then("Select all checkbox in column 1 is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Select all checkbox in column is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 54
  testRunner.And("\"Serial Number\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -450,18 +450,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings is less than equal 50")]
+        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings is Less Than or Equal to 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9074")]
         [NUnit.Framework.CategoryAttribute("UISID_8699")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void ServiceMonitorSettingsIsLessThanEqual50()
+        public virtual void ServiceMonitorSettingsIsLessThanOrEqualTo50()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9074",
                     "UISID_8699",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings is less than equal 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings is Less Than or Equal to 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 71
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -506,7 +506,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8699"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings Select Device", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 93
+#line 77
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -526,29 +526,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 94
+#line 78
  testRunner.Given("user is on Service Monitor Settings page with \"<=50\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 95
+#line 79
  testRunner.And("user selects Call home period as P1D (24 HOURS) and Deployment mode as FALSE", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 96
+#line 80
  testRunner.When("user selects checkbox for first data row in table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 97
+#line 81
  testRunner.Then("Upgrade count label updated with selection of row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 98
+#line 82
  testRunner.And("Deploy button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 99
- testRunner.When("user clicks Deploy button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 100
- testRunner.Then("Update process has been established message will display", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 101
- testRunner.And("software navigates to Select Update page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

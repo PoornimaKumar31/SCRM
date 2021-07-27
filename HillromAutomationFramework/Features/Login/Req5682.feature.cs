@@ -353,7 +353,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 45
-    testRunner.When("user enters valid email ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user enters valid email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 46
     testRunner.And("clicks Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

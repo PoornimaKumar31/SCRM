@@ -54,7 +54,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, IsReviewActionPage, "CSM Review action page is not displayed.");
         }
 
-        [When(@"user clicks schedule radio button")]
+        [When(@"user clicks Schedule radio button")]
         public void WhenUserClicksScheduleRadioButton()
         {
             updateReviewActionPage.ScheduleCheckbox.Click();

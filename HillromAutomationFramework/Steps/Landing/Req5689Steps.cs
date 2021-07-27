@@ -15,7 +15,7 @@ namespace HillromAutomationFramework.Steps.Landing
         LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
 
-        [Given(@"user login with rollup page")]
+        [Given(@"user login with roll-up page")]
         public void GivenUserLoginWithRollupPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);

@@ -108,12 +108,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const int MACTotalRecords = 6;
 
             //device count
+            public const int AllOrgnaizationDevicesCount = 219;
             public const int AllOrgnaizationCSMDevicesCount = 6;
             public const int AllOrgnaizationCVSMDevicesCount = 9;
             public const int AllOrgnaizationRV700DevicesCount = 24;
             public const int LNTAutomatedTestOrganizationDeviceCount = 194;
             public const int LNTAutomatedTestOrganizationFacilityOneDeviceCount = 16;
             public const int LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount = 12;
+
 
         }
 
@@ -306,6 +308,23 @@ namespace HillromAutomationFramework.Coding.PageObjects
             RadioNewMarr.Click();
             bool IsMACAddressVisible = MACAddress.GetElementVisibility();
             return IsMACAddressVisible;
+        }
+
+        //Method for Verifying whether expected number of devices are present or not for organization/facility/unit.
+        public bool VerifyRecordPresence(int ExpectedDeviceCount)
+        {
+            int count = 0;
+            for (int page = 1; page <= (ExpectedDeviceCount / 50)+1; page++)
+            {   
+                count = count + DeviceListRow.Count;
+                if (ExpectedDeviceCount > 50)
+                {
+                    PaginationNextIcon.Click();
+                }
+                Thread.Sleep(3000);
+            }
+            Console.WriteLine("Actual Count = "+count);
+            return (ExpectedDeviceCount == count);
         }
 
     }

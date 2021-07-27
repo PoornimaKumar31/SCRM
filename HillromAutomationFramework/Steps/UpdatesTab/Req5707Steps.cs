@@ -170,7 +170,7 @@ namespace HillromAutomationFramework.Steps.Updates
 
 
 
-        [Then(@"Select all checkbox in column 1 is unchecked")]
+        [Then(@"Select all checkbox in column is unchecked")]
         public void ThenSelectAllCheckboxInColumnIsUnchecked()
         {
             Assert.AreEqual(false, updatesSelectUpdatePage.ManageUpgradesSelectAllCheckBox.Selected, "Select all checkbox in column 1 is not displayed");

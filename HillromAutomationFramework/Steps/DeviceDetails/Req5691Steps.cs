@@ -42,7 +42,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             cvsmDeviceDetailsPage.LogsTab.Click();
         }
 
-        [Given(@"user is on Device details page")]
+        [Given(@"user is on Device Details page")]
         public void GivenUserIsOnDeviceDetailsPage()
         {
             Assert.IsTrue(cvsmDeviceDetailsPage.EditButton.GetElementVisibility());
@@ -120,7 +120,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             cvsmDeviceDetailsPage.LogsRequestButton.Click();
         }
 
-        [Then(@"Pending or Executing message is displayed")]
+        [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
@@ -137,7 +137,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "User cannot navigate to the next page.");
         }
 
-        [Given(@"Pending or Executing message is displayed")]
+        [Given(@"Received, Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
@@ -166,7 +166,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual("col-md-4 descending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in Decreasing date");
         }
 
-        [Given(@"(.*) newest logs are displayed")]
+        [Then(@"(.*) newest logs are displayed")]
         public void GivenNewestLogsAreDisplayed(int num)
         {
             Assert.AreEqual(true, cvsmDeviceDetailsPage.NNewestLogsPresence(num));
@@ -246,17 +246,15 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             
         }
 
-        [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]
-        public void ThenDisplayingToOfResultsLabelIsDisplayed(int p0, int p1, int p2)
+        [Then(@"""(.*)"" result label is displayed")]
+        public void ThenResultLabelIsDisplayed(string ExpextedString)
         {
-            //In Application Result label is not there.(Bugs needs to be fixed)
             _scenarioContext.Pending();
         }
 
-        [Then(@"page (.*) of (.*) label is displayed")]
-        public void ThenPageOfLabelIsDisplayed(int p0, int p1)
+        [Then(@"""(.*)"" pagination label is displayed")]
+        public void ThenPaginationLabelIsDisplayed(string ExpextedString)
         {
-            //In Application Pagination label is not in proper format.(Bugs needs to be fixed)
             _scenarioContext.Pending();
         }
 

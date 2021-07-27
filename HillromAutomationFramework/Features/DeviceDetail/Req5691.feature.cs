@@ -113,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user has selected CVSM device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("user is on Device details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user is on Device Details page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.When("user clicks Logs tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -250,7 +250,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks Request Logs button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 27
- testRunner.Then("Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Received, Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 28
  testRunner.And("user can navigate to next logs page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -296,7 +296,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CVSM Log Files page with 10 logs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 33
- testRunner.And("Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Received, Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 34
  testRunner.When("user navigates to next logs page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -305,25 +305,25 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("user navigates to previous logs page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
- testRunner.Then("Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Received, Pending or Executing message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Log Files 24 Files Next1")]
+        [NUnit.Framework.DescriptionAttribute("CVSM Log Files 24 Files Next")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8958")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void CVSMLogFiles24FilesNext1()
+        public virtual void CVSMLogFiles24FilesNext()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8958",
                     "UISID_8678",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files 24 Files Next1", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files 24 Files Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -351,31 +351,37 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Log files are sorted by decreasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 42
- testRunner.And("10 newest logs are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("10 newest logs are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 43
- testRunner.When("user clicks Next page button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("\"Displaying 1-10 of 24 results\" result label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 44
- testRunner.Then("next 10 older logs are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("\"Page 1 of 3\" pagination label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 45
- testRunner.And("Displaying 11 to 20 of 24 results label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 46
- testRunner.And("page 2 of 3 label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 47
  testRunner.When("user clicks Next page button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 46
+ testRunner.Then("next 10 older logs are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 47
+ testRunner.And("\"Displaying 11-20 of 24 results\" result label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 48
- testRunner.Then("next 4 older logs are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("\"Page 2 of 3\" pagination label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 49
- testRunner.And("Displaying 21 to 24 of 24 results label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user clicks Next page button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 50
- testRunner.And("page 3 of 3 label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("next 4 older logs are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 51
+ testRunner.And("\"Displaying 21-24 of 24 results\" result label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 52
+ testRunner.And("\"Page 3 of 3\" pagination label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -392,7 +398,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Sort Decreasing Date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 53
+#line 55
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -412,19 +418,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 54
+#line 56
  testRunner.Given("user is on CVSM Log Files page with 10 logs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 55
+#line 57
  testRunner.And("logs are sorted by increasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 56
+#line 58
  testRunner.When("user clicks Date column heading", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 57
+#line 59
  testRunner.Then("logs are sorted by decreasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 58
+#line 60
  testRunner.And("decreasing date sorting indicator is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -442,7 +448,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8678"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files Sort Increasing Date", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 61
+#line 63
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -462,19 +468,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 62
+#line 64
  testRunner.Given("user is on CVSM Log Files page with 10 logs", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 63
+#line 65
  testRunner.And("logs are sorted by decreasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 64
+#line 66
  testRunner.When("user clicks Date column heading", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 65
+#line 67
  testRunner.Then("logs are sorted by increasing date", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 66
+#line 68
  testRunner.And("increasing date sorting indicator is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

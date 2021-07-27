@@ -32,13 +32,13 @@ Scenario: Edit CVSM Asset Details Cancel
 @TestCaseID_9004 @UISID_8673 @UISID_8721
 Scenario: Edit CVSM Asset Details Bed Field Empty
 	Given user is on CVSM Edit Asset Details dialog
-	When Bed field is blank
+	When user clears Bed field
 	Then Bed field contains hint text
 
 @TestCaseID_9005 @UISID_8673 @UISID_8721
 Scenario: Edit CVSM Asset Details Room Field Empty
 	Given user is on CVSM Edit Asset Details dialog
-	When Room field is blank
+	When user clears Room field
 	Then Room field contains hint text
 
 @TestCaseID_9006 @UISID_8673

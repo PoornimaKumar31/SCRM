@@ -223,7 +223,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Manage Upgrades page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 27
- testRunner.Then("Select all checkbox in column 1 is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Select all checkbox in column is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 28
  testRunner.And("\"Firmware\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

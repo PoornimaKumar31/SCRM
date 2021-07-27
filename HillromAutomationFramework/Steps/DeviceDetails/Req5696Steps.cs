@@ -141,8 +141,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExistingRoomAndBed, ActualRoomAndBedDisplayed,"Original room and bed details are not displayed.");
         }
 
-        [When(@"Bed field is blank")]
-        public void WhenBedFieldIsBlank()
+        [When(@"user clears Bed field")]
+        public void WhenUserClearsBedField()
         {
             cvsmDeviceDetailsPage.BedField.Clear();
         }
@@ -156,7 +156,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedHintText, ActualHintText,"Bed Field hint text is matches the expected value.");
         }
 
-        [When(@"Room field is blank")]
+        [When(@"user clears Room field")]
         public void WhenRoomFieldIsBlank()
         {
             cvsmDeviceDetailsPage.RoomField.Clear();

@@ -6,7 +6,7 @@ Feature: LandingPageLinks
 Scenario: Landing Terms of Use
 	Given user is on Landing page
 	When user clicks Terms of Use
-	Then Terms of Use page is displayed
+	Then Terms of use page is displayed
 
 @TestCaseID_8946 @UISID_8664
 Scenario: Landing Privacy Policy

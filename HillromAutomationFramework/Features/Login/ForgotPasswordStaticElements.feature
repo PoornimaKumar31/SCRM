@@ -6,4 +6,4 @@ Scenario: Forgot Password Static Elements
 	Given user is on Forgot Password page
 	Then Hillrom logo is displayed
 	And SmartCare Remote Management title is displayed
-	And reset instructions is displayed
+	And Reset instructions is displayed

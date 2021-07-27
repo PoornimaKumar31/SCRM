@@ -24,32 +24,32 @@ Scenario: RV700 Log Files 10 Files
 Scenario: RV700 Log Files 10 Files Request Next
 	Given user is on RV700 Log Files page with 10 logs
 	When user clicks Request Logs button
-	Then Pending or Executing message is displayed
+	Then Received, Pending or Executing message is displayed
 	And user can navigate to next logs page
 
 @TestCaseID_8982 @UISID_8678
 Scenario: RV700 Log Files 10 Files Request Previous
 	Given user is on RV700 Log Files page with 10 logs
-	And Pending or Executing message is displayed
+	And Received, Pending or Executing message is displayed
 	When user navigates to next logs page
 	And user navigates to previous logs page
-	Then Pending or Executing message is displayed
+	Then Received, Pending or Executing message is displayed
 
 @TestCaseID_8983 @UISID_8678 @UISID_8669
 Scenario: RV700 Log Files 24 Files All Pages
 	Given user is on RV700 Log Files page with 24 logs
 	And Log files are sorted by decreasing date
 	Then 10 newest logs are displayed
-	And Displaying 11 to 20 of 24 results label is displayed
-	And page 1 of 3 label is displayed
+	And "Displaying 1-10 of 24 results" result label is displayed
+	And "Page 1 of 3" pagination label is displayed
 	When user clicks Next page button
 	Then next 10 older logs are displayed
-	And Displaying 11 to 20 of 24 results label is displayed
-	And page 2 of 3 label is displayed
+	And "Displaying 11-20 of 24 results" result label is displayed
+	And "Page 2 of 3" pagination label is displayed
 	When user clicks Next page button
 	Then next 4 older logs are displayed
-	And Displaying 21 to 24 of 24 results label is displayed
-	And page 3 of 3 label is displayed
+	And "Displaying 21-24 of 24 results" result label is displayed
+	And "Page 3 of 3" pagination label is displayed
 
 @TestCaseID_8985 @UISID_8678
 Scenario: RV700 Log Files Sort Decreasing Date

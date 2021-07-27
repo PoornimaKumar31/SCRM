@@ -84,10 +84,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility(), "Update type drop down is not displayed.");
         }
         
-        [Then(@"Next button is disabled")]
-        public void ThenNextButtonIsDisabled()
+        [Then(@"Next button is displayed")]
+        public void ThenNextButtonIsDisplayed()
         {
-            Assert.AreEqual(false, updatesSelectUpdatePage.NextButton.Enabled, "Next button is not disabled.");
+            Assert.AreEqual(true, updatesSelectUpdatePage.NextButton.GetElementVisibility(), "Next button is not displayed.");
         }
 
         [Given(@"user is on Updates page")]
@@ -310,7 +310,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, updateSelectDevicePage.FileName.GetElementVisibility(), "Config file name is not displayed.");
         }
 
-        [Then(@"Destinations label is displayed"),Scope(Scenario = "CVSM Select Assets Elements")]
+        [Then(@"Destinations label is displayed"),Scope(Tag = "TestCaseID_9036")]
         public void ThenDestinationsLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateSelectDevicePage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
@@ -331,10 +331,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, updateSelectDevicePage.DeviceCount.GetElementVisibility(), "Selected device count is not displayed");
         }
 
-        [Then(@"Previous button is enabled")]
-        public void ThenPreviousButtonIsEnabled()
+        [Then(@"Previous button is displayed")]
+        public void ThenPreviousButtonIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.PreviousButton.Enabled, "Previous button is not enabled.");
+            Assert.AreEqual(true, updateSelectDevicePage.PreviousButton.GetElementVisibility(), "Previous button is not displayed.");
         }
 
         [Then(@"Page x of y indicator is displayed")]
@@ -349,7 +349,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, updateSelectDevicePage.PaginationDisplayXY.GetElementVisibility(), "Displaying x to y of z results indicator is not displayed.");
         }
 
-        [Then(@"Select all checkbox in column 1 is unchecked")]
+        [Then(@"Select all checkbox in column is unchecked")]
         public void ThenSelectAllCheckboxInColumnIsUnchecked()
         {
             Assert.AreEqual(false, updateSelectDevicePage.SelectAllcheckBox.Selected,"Select all check box is not uncheked.");
@@ -562,5 +562,30 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.FileNameList.GetElementCount() > 0, "second page of entries are not displayed");
         }
+
+        [Then(@"Next button is disabled")]
+        public void ThenNextButtonIsDisabled()
+        {
+            Assert.AreEqual(false, updatesSelectUpdatePage.NextButton.Enabled, "Next button is not disabled");
+        }
+
+        [Then(@"Previous page icon is displayed")]
+        public void ThenPreviousPageIconIsDisplayed()
+        {
+            Assert.AreEqual(true, updateSelectDevicePage.PaginationPreviousIcon.GetElementVisibility(), "Previous icon is not displayed");
+        }
+
+        [Then(@"Next page icon is displayed")]
+        public void ThenNextPageIconIsDisplayed()
+        {
+            Assert.AreEqual(true, updateSelectDevicePage.PaginationNextIcon.GetElementVisibility(), "Next icon is not displayed");
+        }
+
+        [Then(@"Previous button is enabled")]
+        public void ThenPreviousButtonIsEnabled()
+        {
+            Assert.AreEqual(true, updateReviewActionPage.PreviousButton.Enabled, "previous button is not enabled");
+        }
+
     }
 }

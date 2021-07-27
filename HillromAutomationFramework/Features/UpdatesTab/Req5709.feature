@@ -50,7 +50,7 @@ Scenario: Service Monitor Settings Elements
 @TestCaseID_9073 @UISID_8699
 Scenario: Service Monitor Settings Elements Table
 	Given user is on Service Monitor Settings page
-	Then Select all checkbox in column 1 is unchecked
+	Then Select all checkbox in column is unchecked
 	And "Serial Number" column heading is displayed
 	And "Call home period" column heading is displayed
 	And "Deployment mode" column heading is displayed
@@ -68,26 +68,10 @@ Scenario: Service Monitor Settings Elements Table Columns
 	And "Last files deployed" label is in column 6
 
 @TestCaseID_9074 @UISID_8699 @UISID_8669
-Scenario: Service Monitor Settings is less than equal 50
+Scenario: Service Monitor Settings is Less Than or Equal to 50
 	Given user is on Service Monitor Settings page with "<=50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
-
-#confirm if test case is removed from the spreadsheet
-#@TestCaseID_9075 @UISID_8699 @UISID_8669
-#Scenario: Service Monitor Settings is greater than 50
-#	Given user is on Service Monitor Settings page with ">50" entries
-#	Then Previous page icon is disabled
-#	And Next page icon is enabled
-#
-#@TestCaseID_9076 @UISID_8699 @UISID_8669
-#Scenario: Service Monitor Settings is greater than 50 and smaller than equal 100
-#	Given user is on Service Monitor Settings page with ">50 and <=100" entries
-#	And first 50 entries are displayed
-#	When user clicks Next page button
-#	Then second page of entries is displayed
-#	And Next page icon is disabled
-#	And Previous page icon is disabled
 
 @TestCaseID_9077 @UISID_8699
 Scenario: Service Monitor Settings Select Device
@@ -96,6 +80,3 @@ Scenario: Service Monitor Settings Select Device
 	When user selects checkbox for first data row in table
 	Then Upgrade count label updated with selection of row
 	And Deploy button is enabled
-	When user clicks Deploy button
-	Then Update process has been established message will display
-	And software navigates to Select Update page

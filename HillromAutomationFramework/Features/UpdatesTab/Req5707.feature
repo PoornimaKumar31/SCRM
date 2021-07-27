@@ -24,7 +24,7 @@ Scenario: CSM Manage Active Updates Elements
 @TestCaseID_9172 @UISID_8700
 Scenario: CSM Manage Active Updates Elements Table
 	Given user is on Manage Upgrades page
-	Then Select all checkbox in column 1 is unchecked
+	Then Select all checkbox in column is unchecked
 	And "Firmware" column heading is displayed
 	And "Serial number" column heading is displayed
 	And "New firmware" column heading is displayed

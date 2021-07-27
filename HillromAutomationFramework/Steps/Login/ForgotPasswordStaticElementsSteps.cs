@@ -25,7 +25,7 @@ namespace HillromAutomationFramework.Steps.Login
             Assert.AreEqual(forgotPassword.ApplicationTitle.GetElementVisibility(),true,"Smartcare remote management title is not displayed");
         }
         
-        [Then(@"reset instructions is displayed")]
+        [Then(@"Reset instructions is displayed")]
         public void ThenResetInstructions()
         {
             Assert.AreEqual(forgotPassword.ResetPasswordInstructions.GetElementVisibility(),true,"Reset instructions are not displayed");

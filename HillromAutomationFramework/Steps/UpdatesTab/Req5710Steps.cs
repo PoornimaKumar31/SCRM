@@ -28,7 +28,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings page is not displayed");
         }
         
-        [When(@"user selects a Service Monitor in the list")]
+        [Given(@"user selects a Service Monitor in the list")]
         public void WhenUserSelectsAServiceMonitorInTheList()
         {
             serviceMoniterPage.FirstDeviceCheckBox.Click();

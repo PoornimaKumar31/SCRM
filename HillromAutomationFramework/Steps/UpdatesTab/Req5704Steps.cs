@@ -100,7 +100,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, updatesSelectUpdatePage.ConfigList.GetElementVisibility(), "Configuration list is not displayed");
         }
 
-        [Then(@"Name column 1 heading is displayed")]
+        [Then(@"Name column heading is displayed")]
         public void ThenNameColumnHeadingIsDisplayed()
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.NameColumnHeading.GetElementVisibility(), "Name column 1 heading is not displayed");
@@ -109,7 +109,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(ExpectedHeadingText, ActualHeadingText, "Configuration list table name heading text is not matching with the expected value.");
         }
 
-        [Then(@"Date created column 2 heading is displayed")]
+        [Then(@"Date created column heading is displayed")]
         public void ThenDateCreatedColumnHeadingIsDisplayed()
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.DateColumnHeading.GetElementVisibility(), "Date column 2 heading is not displayed");
@@ -160,15 +160,15 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             switch (noOfEntries)
             {
-                case "<= 50": 
+                case "<=50": 
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
                     landingPage.Organization1Facility1Title.Click();
                     break;
-                case "> 50":
+                case ">50":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
                     landingPage.Organization1Facility0Title.Click();
                     break;
-                case "> 50 and <= 100":
+                case ">50 and <=100":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
                     landingPage.Organization1Facility0Title.Click();
                     break;
@@ -335,7 +335,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, updateSelectDevicesPage.PreviousButton.Enabled, "Previous button is enabled");
         }
 
-        [Then(@"Select all checkbox in column 1 is displayed")]
+        [Then(@"Select all checkbox in column is displayed")]
         public void ThenSelectAllCheckboxInColumnIsDisplayed()
         {
             Assert.AreEqual(true, updateSelectDevicesPage.SelectAllcheckBox.GetElementVisibility(), "Select all checkbox in column 1 is not displayed");

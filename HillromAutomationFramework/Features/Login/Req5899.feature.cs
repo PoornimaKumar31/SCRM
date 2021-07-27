@@ -155,7 +155,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("user is on Supported Browsers dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
-    testRunner.When("user clicks close button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user clicks Close button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
     testRunner.Then("Supported Browsers dialog is closed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

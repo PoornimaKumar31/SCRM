@@ -28,7 +28,7 @@ namespace HillromAutomationFramework.Steps.Login
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
         }
         
-        [When(@"user enters valid email ID")]
+        [When(@"user enters valid email")]
         public void WhenTheUserEntersAValidEmailId()
         {
             loginPage.EmailField.EnterText(Config.EmailIDAdminWithRollUp);

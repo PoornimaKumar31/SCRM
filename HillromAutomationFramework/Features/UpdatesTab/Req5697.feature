@@ -56,7 +56,7 @@ Scenario: CVSM Configuration Greater Than 50
 	And Next page icon is enabled
 
 @TestCaseID_9080 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration Greater Than 50 and Less Than or Equal to 100 
+Scenario: CVSM Configuration Greater Than 50 and Less Than or Equal to 100
 	Given user is on CVSM Updates page with ">50 and <=100" entries
 	And first 50 entries are displayed
 	When user clicks Next page button
@@ -87,15 +87,17 @@ Scenario: CVSM Select Assets Elements
 	And Destinations label is displayed
 	And location hierarchy selectors are displayed
 	And count of selected devices is displayed
-	And Previous button is enabled
-	And Next button is disabled
+	And Previous button is displayed
+	And Next button is displayed
+	And Previous page icon is displayed
+	And Next page icon is displayed
 	And Page x of y indicator is displayed
 	And Displaying x to y of z results indicator is displayed
 
 @TestCaseID_9038 @UISID_8697
 Scenario: CVSM Select Assets Elements Table
 	Given user is on CVSM Configuration Select assets page
-	Then Select all checkbox in column 1 is unchecked
+	Then Select all checkbox in column is unchecked
 	And "Firmware" column heading is displayed
 	And "Config" column heading is displayed
 	And "Asset Tag" column heading is displayed

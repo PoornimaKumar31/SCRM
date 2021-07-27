@@ -205,7 +205,7 @@ namespace HillromAutomationFramework.Steps.Main
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
         }
 
-        [Given(@"downward arrow shows for ascending order beside Serial Number column header for default shorted column")]
+        [Given(@"downward arrow shows for ascending order beside Serial Number column header for default sorted column")]
         public void GivenDownwardArrowShowsForAscendingOrderBesideSerialNumberColumnHeaderForDefaultShortedColumn()
         {
             Assert.AreEqual("serial ascending", mainPage.SerialNumberHeading.GetAttribute("class"),"Downward arrow does not appear on selrial column header.");

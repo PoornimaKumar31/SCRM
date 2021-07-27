@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SuccessUpadteMessageXpath = "//div[@id=\"snackbar\"]";
 
             //Pagination
-            public const string PaginationPreviousIconID = "previousbtn";
+            public const string PaginationPreviousIconID = "previous";
             public const string PaginationNextIconID = "next";
             public const string PaginationXofYID = "pagination";
             public const string PaginationDisplayXYID = "pagination_text";

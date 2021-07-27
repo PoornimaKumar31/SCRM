@@ -137,7 +137,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             csmDeviceDetailsPage.LogsRequestButton.Click();
         }
 
-        [Then(@"Pending or Executing message is displayed")]
+        [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(),"Pending message is not displayed.");
@@ -151,7 +151,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "2","User cannot navigate to the next page");
         }
 
-        [Given(@"Pending or Executing message is displayed")]
+        [Given(@"Received, Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
             if(!(csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility()))
@@ -272,7 +272,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true,  noOfLogFiles== logFilesCount, noOfLogFiles+" are displayed.");
         }
 
-        [Given(@"(.*) newest logs are displayed")]
+        [Then(@"(.*) newest logs are displayed")]
         public void GivenNewestLogsAreDisplayed(int num)
         {
             Assert.AreEqual(true, csmDeviceDetailsPage.NNewestLogsPresence(num), "Number of logs displayed are not as expected");
@@ -284,17 +284,18 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, csmDeviceDetailsPage.NOlderLogsPresence(num), "Number of Logs are not as expected");
         }
 
-        [Then(@"Displaying (.*) to (.*) of (.*) results label is displayed")]
-        public void ThenDisplayingToOfResultsLabelIsDisplayed(int p0, int p1, int p2)
+        [Then(@"""(.*)"" result label is displayed")]
+        public void ThenResultLabelIsDisplayed(string p0)
         {
             _scenarioContext.Pending();
         }
 
-        [Then(@"page (.*) of (.*) label is displayed")]
-        public void ThenPageOfLabelIsDisplayed(int p0, int p1)
+        [Then(@"""(.*)"" pagination label is displayed")]
+        public void ThenPaginationLabelIsDisplayed(string p0)
         {
             _scenarioContext.Pending();
         }
+
 
     }
 

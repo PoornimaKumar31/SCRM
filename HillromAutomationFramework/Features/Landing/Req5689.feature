@@ -4,7 +4,7 @@ Feature: Software Requirement 5689
 
 @TestCaseID_9098 @UISID_8664 @UISID_8665
 Scenario: System Roll-up View
-	Given user login with rollup page
+	Given user login with roll-up page
 	Then Roll-up page is displayed
 
 @TestCaseID_9235 @UISID_8664 @UISID_8665

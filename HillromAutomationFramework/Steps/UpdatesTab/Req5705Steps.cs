@@ -163,7 +163,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page icon is not disabled.");
         }
 
-        [Given(@"first (.*) entries are displayed")]
+        [When(@"first (.*) entries are displayed")]
         public void GivenFirstEntriesAreDisplayed(int noOfEntries)
         {
             int Entries = updatesSelectUpdatePage.FileNameList.GetElementCount();
@@ -284,7 +284,14 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, updateSelectDevicesPage.PreviousButton.Enabled, "Previous button is enabled");
         }
 
-        [Then(@"Select all checkbox in column 1 is unchecked")]
+        [Then(@"Previous page icon is enabled")]
+        public void ThenPreviousPageIconIsEnabled()
+        {
+            Assert.AreEqual(true, updatesSelectUpdatePage.PaginationPreviousIcon.Enabled, "Previous page icon is not enabled");
+        }
+
+
+        [Then(@"Select all checkbox in column is unchecked")]
         public void ThenSelectAllCheckboxInColumnIsUnchecked()
         {
             Assert.AreEqual(true, updateSelectDevicesPage.SelectAllcheckBox.Displayed, "Select all checkbox in column 1 is not displayed");
@@ -347,7 +354,7 @@ namespace HillromAutomationFramework.Steps.Updates
 
 
 
-        [Given(@"user is on CSM Upgrade Select Assets page")]
+        [Given(@"user is on CSM Upgrade Select assets page")]
         public void GivenUserIsOnCSMUpgradeSelectAssetsPage()
         {
             GivenUserIsOnCSMUpdatesPage();
@@ -456,7 +463,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, updateReviewActionPage.ImmediateCheckbox.Selected, "CheckBox is not selected");
         }
 
-        [Then(@"Checkbox is displayed for immediately and it is selected")]
+        [Then(@"Checkbox is displayed for Immediately And it is selected")]
         public void ThenCheckboxIsDisplayedForImmediatelyAndItIsSelected()
         {
             Assert.AreEqual(true, updateReviewActionPage.ImmediateCheckbox.GetElementVisibility(), "Checkbox is not displayed");

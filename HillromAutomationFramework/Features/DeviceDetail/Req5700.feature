@@ -5,12 +5,12 @@ Feature: Software Requirement 5700
 @TestCaseID_8976 @UISID_8678
 Scenario: CSM Log Files Request
 	Given user is on CSM Log Files page
-	And Pending or Executing message is not displayed
+	And Received, Pending or Executing message is not displayed
 	When user clicks Request Logs button
-	Then Pending or Executing message is displayed
+	Then Received, Pending or Executing message is displayed
 
 @TestCaseID_8977 @UISID_8678
 Scenario: CSM Log Files Request Disabled
 	Given user is on CSM Log Files page
-	And Pending or Executing message is displayed
+	And Received, Pending or Executing message is displayed
 	Then Request Logs button is disabled

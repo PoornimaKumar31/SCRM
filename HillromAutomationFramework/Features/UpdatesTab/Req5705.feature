@@ -17,27 +17,16 @@ Scenario: CSM Upgrade Elements
 	And Page x of y label is displayed
 	And Displaying x to y of z results label is displayed
 
-#confirm the test case deletion		
-#@TestCaseID_9154 @UISID_8696 @UISID_8669
-#Scenario: CSM Upgrade files less than equal 50 entries
-#	Given user is on CSM Updates page with "<= 50" entries
-#	Then Previous page icon is disabled
-#	And Next page icon is disabled
-#
-#@TestCaseID_9155 @UISID_8696 @UISID_8669
-#Scenario: CSM Upgrade files greater than 50 entries
-#	Given user is on CSM Updates page with "> 50" entries
-#	Then Previous page icon is disabled 
-#	And Next page icon is enabled
-
 @TestCaseID_9156 @UISID_8696 @UISID_8669
-Scenario: CSM Upgrade files greater than 50 and less than equal 100 Next
+Scenario: CSM Upgrade files Greater Than 50 and Less Than Equal to 100 Next
 	Given user is on CSM Updates page with "> 50 and <= 100" entries
-	And first 50 entries are displayed
+	When first 50 entries are displayed
+	Then Next page icon is enabled
+	And Previous page icon is disabled
 	When user clicks Next page button
 	Then second page of entries is displayed
 	And Next page icon is disabled
-	And Previous page icon is disabled
+	And Previous page icon is enabled
 
 @TestCaseID_9157 @UISID_8697
 Scenario: CSM Upgrade Selected
@@ -55,9 +44,9 @@ Scenario: CSM Select Assets Elements
 	And Select assets indicator is highlighted
 	And Review action indicator is not highlighted
 	And "Item to push" label is displayed
-	And "device type" label is displayed
-	And "update type" label is displayed
-	And "upgrade file to push" label is displayed
+	And "Device type" label is displayed
+	And "Update type" label is displayed
+	And "Upgrade file to push" label is displayed
 	And "Destinations" label is displayed
 	And location hierarchy selectors are displayed
 	And count of selected devices is displayed
@@ -69,7 +58,7 @@ Scenario: CSM Select Assets Elements
 @TestCaseID_9159 @UISID_8697
 Scenario: CSM Select Assets Elements Table
 	Given user is on CSM Upgrade Select assets page
-	Then Select all checkbox in column 1 is unchecked
+	Then Select all checkbox in column is unchecked
 	And "Firmware" column heading is displayed
 	And "Config" column heading is displayed
 	And "Asset Tag" column heading is displayed
@@ -89,21 +78,21 @@ Scenario: CSM Select Assets Elements Table Columns
 	And "Last Files Deployed" label is in column 7
 
 @TestCaseID_9160 @UISID_8699
-Scenario: CSM Select assets
-	Given user is on CSM Upgrade Select Assets page
+Scenario: CSM Select Assets
+	Given user is on CSM Upgrade Select assets page
 	When user selects one device
 	Then count of selected devices changes from 0 to 1
 	And Next button is enabled
 
 @TestCaseID_9161 @UISID_8697
-Scenario: CSM Select assets Previous
-	Given user is on CSM Upgrade Select Assets page
+Scenario: CSM Select Assets Previous
+	Given user is on CSM Upgrade Select assets page
 	When user clicks Previous button
 	Then CSM Updates page is displayed
 
 @TestCaseID_9162 @UISID_8698
 Scenario: CSM Review Action Page
-	Given user is on CSM Upgrade Select Assets page
+	Given user is on CSM Upgrade Select assets page
 	When user selects one device
 	And Clicks Next button
 	Then CSM Review Action page is displayed
@@ -118,7 +107,7 @@ Scenario: CSM Review Action Elements
 	And Date or Time of push label is displayed
 	And Immediately label is displayed
 	And Immediately label is by default selected
-	And Checkbox is displayed for immediately and it is selected
+	And Checkbox is displayed for Immediately And it is selected
 	And Checkbox is displayed for schedule
 	And Schedule label is displayed
 	And Select update indicator is not highlighted

@@ -209,7 +209,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, serviceMoniterPage.PaginationDisplayXofY.GetElementVisibility(), "Displaying x to y of z results label is not displayed");
         }
 
-        [Then(@"Select all checkbox in column 1 is unchecked")]
+        [Then(@"Select all checkbox in column is unchecked")]
         public void ThenSelectAllCheckboxInColumnIsUnchecked()
         {
             Assert.AreEqual(false, serviceMoniterPage.SelectAllCheckBox.Selected, "Select all checkbox in column 1 is checked");
@@ -340,12 +340,6 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenDeployButtonIsEnabled()
         {
             Assert.AreEqual(true, serviceMoniterPage.DeployButton.Enabled, "Deploy button is not enabled");
-        }
-
-        [When(@"user clicks Deploy button")]
-        public void WhenUserClicksDeployButton()
-        {
-            serviceMoniterPage.DeployButton.Click();
         }
 
         [Given(@"first (.*) entries are displayed")]

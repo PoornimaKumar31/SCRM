@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("user login with rollup page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user login with roll-up page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
  testRunner.Then("Roll-up page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CSM Review Action page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("user clicks schedule radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Schedule radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.Then("Date label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -174,7 +174,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CSM Review Action page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 20
- testRunner.When("user clicks schedule radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Schedule radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 21
  testRunner.And("clicks Hour dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -221,7 +221,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CSM Review Action page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 27
- testRunner.When("user clicks schedule radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Schedule radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 28
  testRunner.And("clicks Minutes dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -268,7 +268,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CSM Review Action page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 34
- testRunner.When("user clicks schedule radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Schedule radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
  testRunner.When("user selects Date from Date selector icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

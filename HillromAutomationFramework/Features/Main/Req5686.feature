@@ -7,20 +7,20 @@ Scenario: Assets List Elements
 	Given the user is on Landing page
 	When user clicks Facility panel for an organization
 	Then Organization label is displayed
-	Then Organization dropdown is displayed
-	Then Asset type label is displayed
-	Then Asset type dropdown is displayed
-	Then Search field is displayed
-	Then "Type" column heading is displayed
-	Then "Firware" column heading is displayed
-	Then "Config file" column heading is displayed
-	Then "Asset tag" column heading is displayed
-	Then "Serial number" column heading is displayed
-	Then "Location" column heading is displayed
-	Then "Last conected" column heading is displayed
-	Then "PM due" column heading is displayed
-	Then Page x of y label is displayed
-	Then Displaying x to y of z results label is displayed
+	And Organization dropdown is displayed
+	And Asset type label is displayed
+	And Asset type dropdown is displayed
+	And Search field is displayed
+	And "Type" column heading is displayed
+	And "Firware" column heading is displayed
+	And "Config file" column heading is displayed
+	And "Asset tag" column heading is displayed
+	And "Serial number" column heading is displayed
+	And "Location" column heading is displayed
+	And "Last conected" column heading is displayed
+	And "PM due" column heading is displayed
+	And Page x of y label is displayed
+	And Displaying x to y of z results label is displayed
 
 @TestCaseID_9210 @UISID_8666 @UISID_8669
 Scenario: Assets List Elements Table Columns
@@ -37,9 +37,9 @@ Scenario: Assets List Elements Table Columns
 
 
 @TestCaseID_9149 @UISID_8666
-Scenario: Asset List sorting
+Scenario: Asset List Sorting
 	Given user is on Assets list page
-	And downward arrow shows for ascending order beside Serial Number column header for default shorted column
+	And downward arrow shows for ascending order beside Serial Number column header for default sorted column
 	When user clicks "Serial number" column header
 	Then downward arrow shows beside "Serial Number" column header for ascending order
 	And list is sorted in ascending order by "Serial number"
@@ -73,5 +73,3 @@ Scenario: Asset List sorting
 	When user clicks "PM due" column header
 	Then upward arrow shows beside "PM due" column header for descending order
 	And list is sorted in descending order by "PM due"
-
-

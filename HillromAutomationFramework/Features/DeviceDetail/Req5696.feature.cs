@@ -273,7 +273,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CVSM Edit Asset Details dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 35
- testRunner.When("Bed field is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clears Bed field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 36
  testRunner.Then("Bed field contains hint text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -319,7 +319,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CVSM Edit Asset Details dialog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 41
- testRunner.When("Room field is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clears Room field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 42
  testRunner.Then("Room field contains hint text", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
