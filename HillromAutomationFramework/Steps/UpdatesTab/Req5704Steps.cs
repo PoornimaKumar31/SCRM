@@ -504,8 +504,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Update process has been established message is displayed")]
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
-            //Message Id is not available
-            _scenarioContext.Pending();
+            Assert.AreEqual(true, updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility(), "Update message is not displayed");
         }
 
         [Then(@"Select devices page is displayed")]

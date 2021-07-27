@@ -163,8 +163,8 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Upgrade process has been established message is displayed")]
         public void ThenUpgradeProcessHasBeenEstablishedMessageIsDisplayed()
         {
-            //Assert.Pass("Implementation will be done once ID will be provided");
-            _scenarioContext.Pending();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName(UpdateSelectDevicesPage.Locators.SuccessUpadteMessageClassName)));
+            Assert.AreEqual(true, updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility(), "Update message is not displayed.");
         }
 
         [Then(@"Select Assets page is displayed")]

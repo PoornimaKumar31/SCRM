@@ -34,7 +34,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string PreviousButtonID = "previousbtn";
             public const string NextButtonID = "nextbtn";
 
-            public const string SuccessUpadteMessageXpath = "//div[@id=\"snackbar\"]";
+            public const string SuccessUpadteMessageClassName = "cdk-overlay-container";
 
             //Pagination
             public const string PaginationPreviousIconID = "previous";
@@ -130,7 +130,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.NextButtonID)]
         public IWebElement NextButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.SuccessUpadteMessageXpath)]
+        [FindsBy(How = How.ClassName, Using = Locators.SuccessUpadteMessageClassName)]
         public IWebElement SuccessUpadteMessage { get; set; }
 
         //pagination

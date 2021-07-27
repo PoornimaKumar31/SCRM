@@ -20,8 +20,6 @@ namespace HillromAutomationFramework.Steps.Updates
         UpdatesSelectUpdatePage updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
         UpdateSelectDevicesPage updateSelectDevicesPage = new UpdateSelectDevicesPage();
         UpdateReviewActionPage updateReviewActionPage = new UpdateReviewActionPage();
-        //CSMUpdatesPage csmUpdatesPage = new CSMUpdatesPage();
-        //CSMConfigDeliverPage csmConfigDeliverPage = new CSMConfigDeliverPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private ScenarioContext _scenarioContext;
         public Req5705Steps(ScenarioContext scenarioContext)
@@ -352,20 +350,6 @@ namespace HillromAutomationFramework.Steps.Updates
         }
 
 
-
-
-        [Given(@"user is on CSM Upgrade Select assets page")]
-        public void GivenUserIsOnCSMUpgradeSelectAssetsPage()
-        {
-            GivenUserIsOnCSMUpdatesPage();
-            GivenCSMAssetTypeIsSelected();
-            WhenUserSelectsUpgradeUpdateType();
-            GivenUserHasSelectedUpgradeFile();
-            WhenUserClicksNextButton();
-            ThenCSMSelectAssetsPageIsDisplayed();
-        }
-
-
         [When(@"user selects one device")]
         public void WhenUserSelectsOneDevice()
         {
@@ -415,7 +399,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Given(@"user is on CSM Review Action page")]
         public void GivenUserIsOnCSMReviewActionPage()
         {
-            GivenUserIsOnCSMUpgradeSelectAssetsPage();
+            GivenUserIsOnCSMUpgradeSelectassetsPage();
             WhenUserSelectsOneDevice();
             WhenClicksNextButton();
             ThenCSMReviewActionPageIsDisplayed();
@@ -509,8 +493,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Update process has been established message is displayed")]
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
-            //id not available
-            _scenarioContext.Pending();
+            Assert.AreEqual(true,updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility(),"Update message is not displayed.");
         }
 
         [Then(@"Select assets page is displayed")]
