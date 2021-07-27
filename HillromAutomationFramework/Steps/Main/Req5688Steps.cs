@@ -91,13 +91,15 @@ namespace HillromAutomationFramework.Steps.Main
         [When(@"user selects All locations from Organization dropdown")]
         public void WhenUserSelectsAllLocationsFromOrganizationDropdown()
         {
-            GivenUserWithoutRoll_UpPageForMultipleOrganizationsIsOnAssetsPage();
+            mainPage.OrganizationDropdown.Click();
+            mainPage.AllOrganizationsOption.Click();
         }
 
         [Then(@"all devices belonging to all user organizations are displayed")]
         public void ThenAllDevicesBelongingToAllUserOrganizationsAreDisplayed()
         {
-            
+            Thread.Sleep(3000);
+
         }
 
     }

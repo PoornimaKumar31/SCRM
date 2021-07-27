@@ -43,7 +43,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LNTAutmatedTestDDLFacility1ID = "facility10";
             public const string LNTAutmatedTestDDLFacility1ExpensionArrowID = "caret10";
             public const string LNTAutmatedTestDDLFacility1Unit1ID = "unit100";
-
+            public const string AllOrganizationsOptionID = "allEnterprises";
 
 
 
@@ -245,7 +245,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.LNTAutmatedTestDDLFacility1Unit1ID)]
         public IWebElement LNTAutmatedTestDDLFacility1Unit1 { get; set; }
 
-
+        [FindsBy(How = How.Id, Using = Locators.AllOrganizationsOptionID)]
+        public IWebElement AllOrganizationsOption { get; set; }
 
         //Search the Serial number and click on the device.
         public void SearchSerialNumberAndClick(string serialNumber)
