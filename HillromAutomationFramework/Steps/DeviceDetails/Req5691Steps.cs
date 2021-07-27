@@ -176,6 +176,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void WhenUserClicksNextPageButton()
         {
             cvsmDeviceDetailsPage.LogsNextButton.Click();
+            Thread.Sleep(2000);
         }
 
         [Then(@"next (.*) older logs are displayed")]

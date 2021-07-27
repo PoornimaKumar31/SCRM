@@ -95,7 +95,7 @@ namespace HillromAutomationFramework.Steps.Main
                     ExpectedDeviceCount = MainPage.ExpectedValues.AllOrgnaizationCVSMDevicesCount;
                     break;
                 case "rv700":
-                    ExpectedDeviceCount = MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCout;
+                    ExpectedDeviceCount = MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount;
                     break;
                 default:
                     Assert.Fail("Invalid device name " + deviceName);

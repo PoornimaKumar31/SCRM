@@ -34,6 +34,17 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //organization filters
             public const string SelectedOrganizationNameID = "orgFilterText3";
             public const string SelectedFacilityNameID = "orgFilterText4";
+            public const string AllOrganizationDefaultID = "orgFilterText2";
+
+            public const string AutomatedEyeTestDDLSelectionID = "org2";
+            public const string LNTAutmatedTestDDLSelectionID = "org1";
+
+            public const string LNTAutmatedTestDDLExpensionArrowID = "caret1";
+            public const string LNTAutmatedTestDDLFacility1ID = "facility10";
+            public const string LNTAutmatedTestDDLFacility1ExpensionArrowID = "caret10";
+            public const string LNTAutmatedTestDDLFacility1Unit1ID = "unit100";
+
+
 
 
             //device list
@@ -99,7 +110,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //device count
             public const int AllOrgnaizationCSMDevicesCount = 6;
             public const int AllOrgnaizationCVSMDevicesCount = 9;
-            public const int AllOrgnaizationRV700DevicesCout = 24;
+            public const int AllOrgnaizationRV700DevicesCount = 24;
+            public const int LNTAutomatedTestOrganizationDeviceCount = 194;
+            public const int LNTAutomatedTestOrganizationFacilityOneDeviceCount = 16;
+            public const int LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount = 12;
+
         }
 
         public MainPage()
@@ -207,6 +222,29 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.Id, Using = Locators.PaginationPreviousIconID)]
         public IWebElement PaginationPreviousIcon { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.AllOrganizationDefaultID)]
+        public IWebElement AllOrganizationDefault { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.AutomatedEyeTestDDLSelectionID)]
+        public IWebElement AutomatedEyeTestDDLSelection { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LNTAutmatedTestDDLSelectionID)]
+        public IWebElement LNTAutomatedTestDDLSelection { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LNTAutmatedTestDDLExpensionArrowID)]
+        public IWebElement LNTAutomatedTestDDLExpensionArrow { get; set; }
+
+
+        [FindsBy(How = How.Id, Using = Locators.LNTAutmatedTestDDLFacility1ID)]
+        public IWebElement LNTAutomatedTestDDLFacility1 { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LNTAutmatedTestDDLFacility1ExpensionArrowID)]
+        public IWebElement LNTAutmatedTestDDLFacility1ExpensionArrow { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LNTAutmatedTestDDLFacility1Unit1ID)]
+        public IWebElement LNTAutmatedTestDDLFacility1Unit1 { get; set; }
+
 
 
         //Search the Serial number and click on the device.
