@@ -181,7 +181,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 22
- testRunner.Given("user is on CSM Updates page with \"> 50 and <= 100\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on CSM Updates page with \">50 and <=100\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 23
  testRunner.When("first 50 entries are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -378,7 +378,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CSM Upgrade Select assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 61
- testRunner.Then("Select all checkbox in column is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Select all checkbox is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 62
  testRunner.And("\"Firmware\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

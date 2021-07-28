@@ -242,7 +242,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Configuration less than or Equal to 50")]
+        [NUnit.Framework.DescriptionAttribute("CSM Configuration Less Than or Equal to 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9086")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
@@ -253,7 +253,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8696",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration less than or Equal to 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Less Than or Equal to 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 34
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -288,7 +288,7 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Configuration Files Greater than 50")]
+        [NUnit.Framework.DescriptionAttribute("CSM Configuration Files Greater Than 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9087")]
         [NUnit.Framework.CategoryAttribute("UISID_8696")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
@@ -299,7 +299,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8696",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Files Greater than 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Files Greater Than 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 40
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -563,7 +563,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CSM Configuration Select assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 85
- testRunner.Then("Select all checkbox in column is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Select all checkbox is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 86
  testRunner.And("\"Firmware\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

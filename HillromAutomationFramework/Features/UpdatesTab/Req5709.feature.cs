@@ -372,7 +372,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Service Monitor Settings page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 53
- testRunner.Then("Select all checkbox in column is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Select all checkbox is unchecked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 54
  testRunner.And("\"Serial Number\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -450,18 +450,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings is Less Than or Equal to 50")]
+        [NUnit.Framework.DescriptionAttribute("Service Monitor Settings Less Than or Equal to 50")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9074")]
         [NUnit.Framework.CategoryAttribute("UISID_8699")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void ServiceMonitorSettingsIsLessThanOrEqualTo50()
+        public virtual void ServiceMonitorSettingsLessThanOrEqualTo50()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9074",
                     "UISID_8699",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings is Less Than or Equal to 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Service Monitor Settings Less Than or Equal to 50", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 71
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -530,15 +530,18 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Service Monitor Settings page with \"<=50\" entries", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 79
- testRunner.And("user selects Call home period as P1D (24 HOURS) and Deployment mode as FALSE", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user selects Call home period as P1D (24 HOURS)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 80
- testRunner.When("user selects checkbox for first data row in table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Deployment mode as FALSE", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 81
- testRunner.Then("Upgrade count label updated with selection of row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("user selects checkbox for first data row in table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 82
+ testRunner.Then("Upgrade count label updated with selection of row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 83
  testRunner.And("Deploy button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
