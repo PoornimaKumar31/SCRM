@@ -335,8 +335,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, updateSelectDevicesPage.PreviousButton.Enabled, "Previous button is enabled");
         }
 
-        [Then(@"Select all checkbox in column is displayed")]
-        public void ThenSelectAllCheckboxInColumnIsDisplayed()
+        [Then(@"Select all checkbox is displayed")]
+        public void ThenSelectAllCheckboxIsDisplayed()
         {
             Assert.AreEqual(true, updateSelectDevicesPage.SelectAllcheckBox.GetElementVisibility(), "Select all checkbox in column 1 is not displayed");
         }

@@ -209,8 +209,8 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, serviceMoniterPage.PaginationDisplayXofY.GetElementVisibility(), "Displaying x to y of z results label is not displayed");
         }
 
-        [Then(@"Select all checkbox in column is unchecked")]
-        public void ThenSelectAllCheckboxInColumnIsUnchecked()
+        [Then(@"Select all checkbox is unchecked")]
+        public void ThenSelectAllCheckboxIsUnchecked()
         {
             Assert.AreEqual(false, serviceMoniterPage.SelectAllCheckBox.Selected, "Select all checkbox in column 1 is checked");
         }
@@ -316,13 +316,20 @@ namespace HillromAutomationFramework.Steps.Updates
 
 
 
-        [Given(@"user selects Call home period as P1D \(24 HOURS\) and Deployment mode as FALSE")]
-        public void GivenUserSelectsCallHomePeriodAsPDHOURSAndDeploymentModeAsFALSE()
+        [Given(@"user selects Call home period as P1D \(24 HOURS\)")]
+        public void GivenUserSelectsCallHomePeriodAsPDHOURS()
         { 
             SelectElement select = new SelectElement(serviceMoniterPage.CallHomePeriodDropDown);
             select.SelectByText("P1D",true);
+            
+        }
+
+        [Given(@"Deployment mode as FALSE")]
+        public void GivenDeploymentModeAsFALSE()
+        {
             serviceMoniterPage.DeploymentModeDropDown.SelectDDL("False");
         }
+
 
         [When(@"user selects checkbox for first data row in table")]
         public void WhenUserSelectsCheckboxForFirstDataRowInTable()

@@ -24,7 +24,7 @@ namespace HillromAutomationFramework.Steps.Main
             landingPage.Organization1Facility0Title.Click();
         }
 
-        [Given(@"user is on Assets List page with more than one device")]
+        [Given(@"user is on Assets List page with more than 1 device")]
         public void GivenUserIsOnAssetsListPageWithMoreThanDevice()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);

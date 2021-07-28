@@ -114,7 +114,7 @@ namespace HillromAutomationFramework.Steps.Updates
                 case "> 50":
                     _scenarioContext.Pending();
                     break;
-                case "> 50 and <= 100":
+                case ">50 and <=100":
                     GivenUserIsOnCSMUpdatesPage();
                     updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
                     break;
@@ -289,8 +289,8 @@ namespace HillromAutomationFramework.Steps.Updates
         }
 
 
-        [Then(@"Select all checkbox in column is unchecked")]
-        public void ThenSelectAllCheckboxInColumnIsUnchecked()
+        [Then(@"Select all checkbox is unchecked")]
+        public void ThenSelectAllCheckboxIsUnchecked()
         {
             Assert.AreEqual(true, updateSelectDevicesPage.SelectAllcheckBox.Displayed, "Select all checkbox in column 1 is not displayed");
         }

@@ -31,13 +31,13 @@ Scenario: CSM Configuration Update Default Sort Order
 	Then configuration files are sorted in ascending alphabetical order
 
 @TestCaseID_9086 @UISID_8696 @UISID_8669
-Scenario: CSM Configuration less than or Equal to 50
+Scenario: CSM Configuration Less Than or Equal to 50
 	Given user is on CSM Updates page with "<=50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
 
 @TestCaseID_9087 @UISID_8696 @UISID_8669
-Scenario: CSM Configuration Files Greater than 50
+Scenario: CSM Configuration Files Greater Than 50
 	Given user is on CSM Updates page with ">50" entries
 	And user is on page 1
 	Then Previous page icon is disabled
@@ -82,7 +82,7 @@ Scenario: CSM Select Assets Elements
 @TestCaseID_9091 @UISID_8697
 Scenario: CSM Select Assets Elements Table
 	Given user is on CSM Configuration Select assets page
-	Then Select all checkbox in column is displayed
+	Then Select all checkbox is displayed
 	And "Firmware" column heading is displayed
 	And "Config" column heading is displayed
 	And "Asset tag" column heading is displayed

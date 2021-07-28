@@ -14,8 +14,8 @@ namespace HillromAutomationFramework.Steps.Main
         MainPage mainPage = new MainPage();
         LoginPage loginPage = new LoginPage();
         CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(); 
-        [Given(@"user without roll-up page for multiple organizations is on Assets page")]
-        public void GivenUserWithoutRoll_UpPageForMultipleOrganizationsIsOnAssetsPage()
+        [Given(@"user without roll-up for multiple organizations is on Assets page")]
+        public void GivenUserWithoutRoll_UpForMultipleOrganizationsIsOnAssetsPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
             Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "Main page is not displayed");
@@ -41,10 +41,10 @@ namespace HillromAutomationFramework.Steps.Main
             Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount), "All devices for selected organization is not displayed");
         }
 
-        [Given(@"user without roll-up page for multiple facilities is on Assets page")]
-        public void GivenUserWithoutRoll_UpPageForMultipleFacilitiesIsOnAssetsPage()
+        [Given(@"user without roll-up for multiple facilities is on Assets page")]
+        public void GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage()
         {
-            GivenUserWithoutRoll_UpPageForMultipleOrganizationsIsOnAssetsPage();
+            GivenUserWithoutRoll_UpForMultipleOrganizationsIsOnAssetsPage();
             mainPage.OrganizationDropdown.Click();
             mainPage.LNTAutomatedTestDDLSelection.Click();
         }
@@ -64,10 +64,10 @@ namespace HillromAutomationFramework.Steps.Main
             Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneDeviceCount), "Number of devices in organizaion facility is not as expected");
         }
 
-        [Given(@"user without roll-up page for multiple units is on Assets page")]
-        public void GivenUserWithoutRoll_UpPageForMultipleUnitsIsOnAssetsPage()
+        [Given(@"user without roll-up for multiple units is on Assets page")]
+        public void GivenUserWithoutRoll_UpForMultipleUnitsIsOnAssetsPage()
         {
-            GivenUserWithoutRoll_UpPageForMultipleFacilitiesIsOnAssetsPage();
+            GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage();
             mainPage.OrganizationDropdown.Click();
             mainPage.LNTAutomatedTestDDLExpensionArrow.Click();
             mainPage.LNTAutomatedTestDDLFacility1.Click();

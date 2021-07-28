@@ -78,7 +78,7 @@ namespace HillromAutomationFramework.Steps.Main
                 case "type": 
                     heading = mainPage.TypeHeading;
                     break;
-                case "firware":
+                case "firmware":
                     heading = mainPage.FirmwareHeading;
                     break;
                 case "config file":
@@ -93,7 +93,7 @@ namespace HillromAutomationFramework.Steps.Main
                 case "location":
                     heading = mainPage.LocationHeading;
                     break;
-                case "last conected":
+                case "last connected":
                     heading = mainPage.LastConnectedHeading;
                     break;
                 case "pm due":

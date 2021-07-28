@@ -349,8 +349,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, updateSelectDevicePage.PaginationDisplayXY.GetElementVisibility(), "Displaying x to y of z results indicator is not displayed.");
         }
 
-        [Then(@"Select all checkbox in column is unchecked")]
-        public void ThenSelectAllCheckboxInColumnIsUnchecked()
+        [Then(@"Select all checkbox is unchecked")]
+        public void ThenSelectAllCheckboxIsUnchecked()
         {
             Assert.AreEqual(false, updateSelectDevicePage.SelectAllcheckBox.Selected,"Select all check box is not uncheked.");
         }
@@ -469,7 +469,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
         //for Review action page
-        [Then(@"item to push label is displayed"), Scope(Scenario = "CVSM Review Action Elements")]
+        [Then(@"Item to push label is displayed"), Scope(Scenario = "CVSM Review Action Elements")]
         public void ThenItemToPushLabelIsDisplayeds()
         {
             Assert.AreEqual(true, updateReviewActionPage.ItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");

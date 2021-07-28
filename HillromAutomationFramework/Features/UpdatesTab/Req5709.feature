@@ -50,7 +50,7 @@ Scenario: Service Monitor Settings Elements
 @TestCaseID_9073 @UISID_8699
 Scenario: Service Monitor Settings Elements Table
 	Given user is on Service Monitor Settings page
-	Then Select all checkbox in column is unchecked
+	Then Select all checkbox is unchecked
 	And "Serial Number" column heading is displayed
 	And "Call home period" column heading is displayed
 	And "Deployment mode" column heading is displayed
@@ -68,7 +68,7 @@ Scenario: Service Monitor Settings Elements Table Columns
 	And "Last files deployed" label is in column 6
 
 @TestCaseID_9074 @UISID_8699 @UISID_8669
-Scenario: Service Monitor Settings is Less Than or Equal to 50
+Scenario: Service Monitor Settings Less Than or Equal to 50
 	Given user is on Service Monitor Settings page with "<=50" entries
 	Then Previous page icon is disabled
 	And Next page icon is disabled
@@ -76,7 +76,8 @@ Scenario: Service Monitor Settings is Less Than or Equal to 50
 @TestCaseID_9077 @UISID_8699
 Scenario: Service Monitor Settings Select Device
 	Given user is on Service Monitor Settings page with "<=50" entries
-	And user selects Call home period as P1D (24 HOURS) and Deployment mode as FALSE
+	And user selects Call home period as P1D (24 HOURS)
+	And Deployment mode as FALSE
 	When user selects checkbox for first data row in table
 	Then Upgrade count label updated with selection of row
 	And Deploy button is enabled

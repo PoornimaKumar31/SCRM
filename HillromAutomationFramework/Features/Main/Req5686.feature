@@ -12,12 +12,12 @@ Scenario: Assets List Elements
 	And Asset type dropdown is displayed
 	And Search field is displayed
 	And "Type" column heading is displayed
-	And "Firware" column heading is displayed
+	And "Firmware" column heading is displayed
 	And "Config file" column heading is displayed
 	And "Asset tag" column heading is displayed
 	And "Serial number" column heading is displayed
 	And "Location" column heading is displayed
-	And "Last conected" column heading is displayed
+	And "Last connected" column heading is displayed
 	And "PM due" column heading is displayed
 	And Page x of y label is displayed
 	And Displaying x to y of z results label is displayed

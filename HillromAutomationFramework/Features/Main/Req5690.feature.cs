@@ -152,7 +152,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 12
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than 1 device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 13
  testRunner.When("user enters partial Type text in Search field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -199,7 +199,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 19
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than 1 device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 20
  testRunner.When("user enters partial Asset tag text in Search field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -246,7 +246,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 26
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than 1 device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 27
  testRunner.When("user enters partial Serial number text in Search field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -294,7 +294,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 33
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than 1 device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 34
  testRunner.When("user enters partial Firmware version text in Search field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -344,7 +344,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 40
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than 1 device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 41
  testRunner.When("user enters text in Search field that does not match any asset in table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -394,7 +394,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 48
- testRunner.Given("user is on Assets List page with more than one device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Assets List page with more than 1 device", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 49
  testRunner.When("user enters valid MAC address in advanced AP search string", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

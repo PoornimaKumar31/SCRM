@@ -97,7 +97,7 @@ Scenario: CVSM Select Assets Elements
 @TestCaseID_9038 @UISID_8697
 Scenario: CVSM Select Assets Elements Table
 	Given user is on CVSM Configuration Select assets page
-	Then Select all checkbox in column is unchecked
+	Then Select all checkbox is unchecked
 	And "Firmware" column heading is displayed
 	And "Config" column heading is displayed
 	And "Asset Tag" column heading is displayed
@@ -139,7 +139,7 @@ Scenario: CVSM Review Action page
 @TestCaseID_9042 @UISID_8698
 Scenario: CVSM Review Action Elements
 	Given user is on CVSM Review Action page
-	Then item to push label is displayed
+	Then Item to push label is displayed
 	And Item to push value is displayed
 	And Destinations label is displayed
 	And Destinations value is displayed

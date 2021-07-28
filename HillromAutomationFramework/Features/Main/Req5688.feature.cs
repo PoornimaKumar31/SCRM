@@ -109,7 +109,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
-    testRunner.Given("user without roll-up page for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user without roll-up for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
     testRunner.Then("all organizations is the default Organization filter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -150,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 12
-    testRunner.Given("user without roll-up page for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user without roll-up for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 13
     testRunner.When("user selects organization from Organization dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -194,7 +194,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 18
-    testRunner.Given("user without roll-up page for multiple facilities is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user without roll-up for multiple facilities is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 19
     testRunner.When("user selects facility from Organization dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -238,7 +238,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 24
-    testRunner.Given("user without roll-up page for multiple units is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user without roll-up for multiple units is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 25
     testRunner.When("user selects unit from Organization dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -282,7 +282,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 30
-    testRunner.Given("user without roll-up page for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("user without roll-up for multiple organizations is on Assets page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 31
     testRunner.When("user selects All locations from Organization dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

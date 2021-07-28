@@ -19,7 +19,7 @@ Scenario: CSM Upgrade Elements
 
 @TestCaseID_9156 @UISID_8696 @UISID_8669
 Scenario: CSM Upgrade files Greater Than 50 and Less Than Equal to 100 Next
-	Given user is on CSM Updates page with "> 50 and <= 100" entries
+	Given user is on CSM Updates page with ">50 and <=100" entries
 	When first 50 entries are displayed
 	Then Next page icon is enabled
 	And Previous page icon is disabled
@@ -58,7 +58,7 @@ Scenario: CSM Select Assets Elements
 @TestCaseID_9159 @UISID_8697
 Scenario: CSM Select Assets Elements Table
 	Given user is on CSM Upgrade Select assets page
-	Then Select all checkbox in column is unchecked
+	Then Select all checkbox is unchecked
 	And "Firmware" column heading is displayed
 	And "Config" column heading is displayed
 	And "Asset Tag" column heading is displayed
