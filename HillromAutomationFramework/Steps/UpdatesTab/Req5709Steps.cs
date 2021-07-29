@@ -15,7 +15,7 @@ namespace HillromAutomationFramework.Steps.Updates
 
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
-        ServiceMoniterPage serviceMoniterPage = new ServiceMoniterPage();
+        ServiceMonitorPage serviceMoniterPage = new ServiceMonitorPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private ScenarioContext _scenarioContext;
 
@@ -41,7 +41,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [When(@"user selects Service Monitor")]
         public void WhenUserSelectsServiceMonitor()
         {
-            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMoniterPage.Inputs.ServiceMoniterText);
+            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
         }
         
         [Then(@"Service Monitor Settings page displays")]
@@ -55,7 +55,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             GivenUserIsOnMainPage();
             mainPage.UpdatesTab.JavaSciptClick();
-            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMoniterPage.Inputs.ServiceMoniterText);
+            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
             Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings page is displayed");
         }
 
@@ -75,10 +75,10 @@ namespace HillromAutomationFramework.Steps.Updates
             {
                 DropDownListString.Add(option.Text);
             }
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMoniterPage.ExpectedValues.CallHomePeriodDropdownOptionP1D), ServiceMoniterPage.ExpectedValues.CallHomePeriodDropdownOptionP1D+" Option is not available.\n");
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMoniterPage.ExpectedValues.CallHomePeriodDropdownOptionPT8H), ServiceMoniterPage.ExpectedValues.CallHomePeriodDropdownOptionPT8H+ " Option is not available.\n");
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMoniterPage.ExpectedValues.CallHomePeriodDropdownOptionPT4H), ServiceMoniterPage.ExpectedValues.CallHomePeriodDropdownOptionPT4H+ " Option is not available.\n");
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMoniterPage.ExpectedValues.CallHomePeriodDropdownOptionPT15M), ServiceMoniterPage.ExpectedValues.CallHomePeriodDropdownOptionPT15M + " Option is not available.\n");
+            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionP1D), ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionP1D+" Option is not available.\n");
+            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT8H), ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT8H+ " Option is not available.\n");
+            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT4H), ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT4H+ " Option is not available.\n");
+            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT15M), ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT15M + " Option is not available.\n");
         }
 
 
@@ -97,8 +97,8 @@ namespace HillromAutomationFramework.Steps.Updates
             {
                 DropDownListString.Add(option.Text);
             }
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMoniterPage.ExpectedValues.DeploymentModeDropdownOptionTrue), ServiceMoniterPage.ExpectedValues.DeploymentModeDropdownOptionTrue + " Option is not available.\n");
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMoniterPage.ExpectedValues.DeploymentModeDropdownOptionFalse), ServiceMoniterPage.ExpectedValues.DeploymentModeDropdownOptionFalse + " Option is not available.\n");
+            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionTrue), ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionTrue + " Option is not available.\n");
+            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionFalse), ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionFalse + " Option is not available.\n");
         }
 
         [When(@"user clicks Previous button")]
@@ -116,7 +116,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Given(@"no devices are selected")]
         public void GivenNoDevicesAreSelected()
         {
-            Assert.AreEqual(ServiceMoniterPage.ExpectedValues.DestinationNoDeviceCountText, serviceMoniterPage.DestinalitioDeviceCount.Text, "Devices are selected.\n");
+            Assert.AreEqual(ServiceMonitorPage.ExpectedValues.DestinationNoDeviceCountText, serviceMoniterPage.DestinalitioDeviceCount.Text, "Devices are selected.\n");
         }
 
         [Then(@"Service Monitor Settings label is displayed")]
@@ -124,7 +124,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings label is not displayed.\n");
             string ActualLabel = serviceMoniterPage.ServiceMoniterLabel.Text;
-            string ExpectedLabel = ServiceMoniterPage.ExpectedValues.ServiceMoniterLabel;
+            string ExpectedLabel = ServiceMonitorPage.ExpectedValues.ServiceMoniterLabel;
             Assert.AreEqual(ExpectedLabel, ActualLabel, "Service Monitor Settings label text does not match with the expected text.\n");
         }
 
@@ -133,7 +133,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             Assert.AreEqual(true, serviceMoniterPage.CallHomePeroidLabel.GetElementVisibility(), "Call home period label is not displayed.\n");
             string ActualLabel = serviceMoniterPage.CallHomePeroidLabel.Text;
-            string ExpectedLabel = ServiceMoniterPage.ExpectedValues.CallHomePeriodLabel;
+            string ExpectedLabel = ServiceMonitorPage.ExpectedValues.CallHomePeriodLabel;
             Assert.AreEqual(ExpectedLabel, ActualLabel, "Call home period label text does not match with the expected text.\n");
         }
 
@@ -148,7 +148,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             Assert.AreEqual(true, serviceMoniterPage.DeploymentModeLabel.GetElementVisibility(), "Deployment mode label is not displayed.\n");
             string ActualLabel = serviceMoniterPage.DeploymentModeLabel.Text;
-            string ExpectedLabel = ServiceMoniterPage.ExpectedValues.DeploymentModeLabel;
+            string ExpectedLabel = ServiceMonitorPage.ExpectedValues.DeploymentModeLabel;
             Assert.AreEqual(ExpectedLabel, ActualLabel, "Deployment mode label text does not match with the expected text.\n");
         }
 
@@ -163,7 +163,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             Assert.AreEqual(true, serviceMoniterPage.DestinationLabel.GetElementVisibility(), "Destinations label is not displayed.\n");
             string ActualLabel = serviceMoniterPage.DestinationLabel.Text;
-            string ExpectedLabel = ServiceMoniterPage.ExpectedValues.DestinationLabel;
+            string ExpectedLabel = ServiceMonitorPage.ExpectedValues.DestinationLabel;
             Assert.AreEqual(ExpectedLabel, ActualLabel, "Destinations label text does not match with the expected text.\n");
         }
 
@@ -223,23 +223,23 @@ namespace HillromAutomationFramework.Steps.Updates
             switch(headingName.ToLower().Trim())
             {
                 case "serial number": headingElement = serviceMoniterPage.SerialNumHeading;
-                    ExpectedHeadingText = ServiceMoniterPage.ExpectedValues.SerialNumHeadingText;
+                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.SerialNumHeadingText;
                     break;
                 case "call home period":
                     headingElement = serviceMoniterPage.CallHomePeriodHeading;
-                    ExpectedHeadingText = ServiceMoniterPage.ExpectedValues.CallHomePeriodHeadingText;
+                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.CallHomePeriodHeadingText;
                     break;
                 case "deployment mode":
                     headingElement = serviceMoniterPage.DeploymentModeHeading;
-                    ExpectedHeadingText = ServiceMoniterPage.ExpectedValues.DeploymentModeHeadingText;
+                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.DeploymentModeHeadingText;
                     break;
                 case "location":
                     headingElement = serviceMoniterPage.LocationHeading;
-                    ExpectedHeadingText = ServiceMoniterPage.ExpectedValues.LocationHeadingText;
+                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.LocationHeadingText;
                     break;
                 case "last files deployed":
                     headingElement = serviceMoniterPage.LastFilesDeployedHeading;
-                    ExpectedHeadingText = ServiceMoniterPage.ExpectedValues.LastFilesDeployedHeadingText;
+                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.LastFilesDeployedHeadingText;
                     break;
                 default: Assert.Fail(headingName+" does not exist in the test data.\n");
                     break;
@@ -253,8 +253,8 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Select all checkbox is in column (.*)")]
         public void ThenSelectAllCheckboxIsInColumn(int columnNumber)
         {
-            string firstcolumnId = serviceMoniterPage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
-            Assert.AreEqual(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
+            string firstcolumnId = serviceMoniterPage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].FindElement(By.TagName("input")).GetAttribute("id");
+            Assert.AreEqual(ServiceMonitorPage.Locators.SelectAllCheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]
@@ -285,6 +285,7 @@ namespace HillromAutomationFramework.Steps.Updates
 
 
             }
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(ServiceMonitorPage.Locators.FirstDeviceCheckBoxID)));
         }
 
         [Then(@"Previous page icon is disabled")]
@@ -340,7 +341,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Upgrade count label updated with selection of row")]
         public void ThenUpgradeCountLabelUpdatedWithSelectionOfRow()
         {
-            Assert.AreEqual(ServiceMoniterPage.ExpectedValues.Destination1DeviceCountText, serviceMoniterPage.DestinalitioDeviceCount.Text, "Upgrade count label is not updated.\n");
+            Assert.AreEqual(ServiceMonitorPage.ExpectedValues.Destination1DeviceCountText, serviceMoniterPage.DestinalitioDeviceCount.Text, "Upgrade count label is not updated.\n");
         }
 
         [Then(@"Deploy button is enabled")]

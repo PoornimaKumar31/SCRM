@@ -4,7 +4,7 @@ using SeleniumExtras.PageObjects;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
-    public class ServiceMoniterPage
+    public class ServiceMonitorPage
     {
         public static class Locators
         {
@@ -27,10 +27,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LastFilesDeployedHeadingID = "FileDeploy";
             public const string FirstDeviceCheckBoxID = "checkbox-0";
 
-            public const string PreviousButtonXpath = "/html/body/c8y-bootstrap/div/div[2]/div/c8y-hillrom-home-page/c8y-hillrom-landing-page/div/div/div[2]/c8y-hillrom-configure-service-monitor-deployment/div/div/div[5]/div/button[1]";
+            public const string PreviousButtonXpath = "//button[@id='previous']";
             public const string DeployButtonID = "deploy";
             public const string PaginationXofYID = "pagination";
-            public const string PaginationPreviousButtonXpath = "/html/body/c8y-bootstrap/div/div[2]/div/c8y-hillrom-home-page/c8y-hillrom-landing-page/div/div/div[2]/c8y-hillrom-configure-service-monitor-deployment/div/div/div[3]/div[3]/div[6]/div[2]/span[1]";
+            public const string PaginationPreviousButtonXpath = "//span[@id='previous']";
             public const string PaginationNextButtonID = "next";
             public const string PaginationDisplayXofYClassName = "dataTables_info";
             public const string DestinalitioDeviceCountClassName = "showCount";
@@ -70,7 +70,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LastFilesDeployedHeadingText = "Last Files Deployed";
         }
 
-        public ServiceMoniterPage()
+        public ServiceMonitorPage()
         {
             PageFactory.InitElements(PropertyClass.Driver, this);   
         }

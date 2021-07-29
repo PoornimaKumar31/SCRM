@@ -14,7 +14,7 @@ namespace HillromAutomationFramework.Steps.Updates
 
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
-        ServiceMoniterPage serviceMoniterPage = new ServiceMoniterPage();
+        ServiceMonitorPage serviceMoniterPage = new ServiceMonitorPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
         [Given(@"user is on Service Monitor Settings page")]
@@ -24,7 +24,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "User is not on main page");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.UpdatesTab.JavaSciptClick();
-            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMoniterPage.Inputs.ServiceMoniterText);
+            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
             Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings page is not displayed");
         }
         
