@@ -75,7 +75,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"forgot invalid error message is displayed")]
         public void ThenForgotInvalidErrorMessageIsDisplayed()
         {
-            //id is missing
+            //Forgot invalid error message web element is missing
             _scenarioContext.Pending();
         }
 

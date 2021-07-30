@@ -5,7 +5,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Updates
@@ -31,7 +30,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void GivenUserIsOnSelectUpdatesPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.Organization0Facility0Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.UpdatesTab.JavaSciptClick();
         }
@@ -77,11 +76,13 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenDestinationsLabelIsDisplayed()
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed");
+            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.ManageUpgradesDestinationLabel, updatesSelectUpdatePage.DestinationLabel.Text, "Destination label is not matching with the expected value.");
         }
 
         [Then(@"location hierarchy selectors are displayed")]
         public void ThenLocationHierarchySelectorsAreDisplayed()
         {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(UpdatesSelectUpdatePage.Locators.ManageUpgradesFirstDeviceID)));
             Assert.AreEqual(true, updatesSelectUpdatePage.LocationHeiearchySelector.GetElementVisibility(), "Location Heirarchy label is not displayed");
         }
 
@@ -178,35 +179,27 @@ namespace HillromAutomationFramework.Steps.Updates
         [When(@"user selects device")]
         public void WhenUserSelectsDevice()
         {
-            //No data available
-            _scenarioContext.Pending();
+            updatesSelectUpdatePage.ManageUpgradesFirstDevice.Click();
         }
 
         [When(@"clicks Cancel upgrade button")]
         public void WhenClicksCancelUpgradeButton()
         {
+            SetMethods.ScrollToBottomofWebpage();
             updatesSelectUpdatePage.CancelUpgradeButton.Click();
         }
 
         [Then(@"Selected Updates have been cancelled message is displayed")]
         public void ThenSelectedUpdatesHaveBeenCancelledMessageIsDisplayed()
         {
-            //No data available
-            _scenarioContext.Pending();
-        }
-
-        [Then(@"Upgrade is cancelled")]
-        public void ThenUpgradeIsCancelled()
-        {
-            //No data available
-            _scenarioContext.Pending();
+            Assert.AreEqual(true, updatesSelectUpdatePage.ManageUpgradesMessage.GetElementVisibility(), "Upgrade Cancelled message is not displayed.");
+            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.ManageUpgradeCancelMessage, updatesSelectUpdatePage.ManageUpgradesMessage.Text, "Upgrade Cancelled message is not matching the expected value.");
         }
 
         [Then(@"Manage Active Updates page is displayed")]
         public void ThenManageActiveUpdatesPageIsDisplayed()
         {
-            //No data available
-            _scenarioContext.Pending();
+            ThenManageUpgradesPageIsDisplayed();
         }
 
     }

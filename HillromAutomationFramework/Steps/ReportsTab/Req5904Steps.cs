@@ -55,7 +55,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"""(.*)"" status and definition is displayed")]
         public void ThenUserCanSeeStartedStatusAndDefinition(string statustitle)
         {
-            //defination
+            //status defination
             string statusTabledata = csmConfigStatusPage.InformationPopUpData.Text;
             statusDefinationPairs = csmConfigStatusPage.GetstatusTable(statusTabledata);
             string ActualDefination = statusDefinationPairs[statustitle];

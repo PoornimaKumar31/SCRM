@@ -344,9 +344,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Selected Updates have been cancelled message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 50
- testRunner.And("Upgrade is cancelled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 51
  testRunner.And("Manage Active Updates page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

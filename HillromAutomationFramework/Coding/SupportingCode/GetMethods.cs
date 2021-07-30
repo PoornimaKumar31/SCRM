@@ -5,7 +5,9 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
 {
@@ -69,6 +71,37 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             {
                 return (true);
             }
+        }
+
+        //Verify File is downloaded with in specified time
+        public static bool IsFileDownloaded(string fileName, int waitTime)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
+            //Delete all files in download folder
+            foreach (FileInfo file in directoryInfo.GetFiles())
+            {
+                file.Delete();
+            }
+
+            bool file_exist = false;
+            int count = 0;
+            while (file_exist != true && count <= waitTime)
+            {
+                Task.Delay(1000).Wait();
+                count++;
+                if (File.Exists(PropertyClass.DownloadPath + "\\" + fileName))
+                {
+                    file_exist = true;
+                }
+            }
+            return (file_exist);
+        }
+
+        public static bool CheckFileFormat(string fileExtension)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
+            FileInfo[] fileInfo = directoryInfo.GetFiles();
+            return (fileInfo[0].Extension == fileExtension);
         }
 
     }

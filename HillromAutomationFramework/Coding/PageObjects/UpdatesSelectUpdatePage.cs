@@ -48,7 +48,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //Manage Upgrade Page
             public const string ManageUpgradesLabelID = "lbl_manage_upgrade";
             public const string DestinationLabelID = "destination";
-            public const string LocationHeirarchySelectorID = "";
+            public const string LocationHeirarchySelectorID = "caret0";
             public const string CountOfSelectedDeviceID = "count";
             public const string CancelUpgradeButtonID = "cancelUpgrade";
             //tables
@@ -59,7 +59,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string ManageUpgradeNewFirmwareHeadingID = "NewFirmware";
             public const string ManageUpgradeLocationHeadingID = "Location";
             public const string ManageUpgradeScheduleHeadingID = "Schedule";
-            
+            public const string ManageUpgradesFirstDeviceID = "checkbox-0";
+            public const string ManageUpgradesMessageClassName = "cdk-overlay-container";
+
+
         }
         public static class ExpectedValues
         {
@@ -76,12 +79,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string TableDateHeadingText = "Date created";
 
             //manage upgrades tabel headings
+            public const string ManageUpgradesDestinationLabel = "DESTINATIONS";
             public const string FirmwareHeadingText = "Firmware";
             public const string SerialNumberHeadingText = "Serial Number";
             public const string NewFirmwareHeadingText = "New Firmware";
             public const string LocationHeadingText = "Location";
             public const string ScheduleHeadingText = "Schedule";
-           
+            public const string ManageUpgradeCancelMessage = "Selected Updates have been cancelled";
 
         }
 
@@ -202,7 +206,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.ManageUpgradeScheduleHeadingID)]
         public IWebElement ManageUpgradeScheduleHeading { get; set; }
 
-        
+        [FindsBy(How = How.Id, Using = Locators.ManageUpgradesFirstDeviceID)]
+        public IWebElement ManageUpgradesFirstDevice { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.ManageUpgradesMessageClassName)]
+        public IWebElement ManageUpgradesMessage { get; set; }
+
+
 
         //Fuction to check the deleted file is present or not in the list
         public bool IsFilePresent(string rowname)

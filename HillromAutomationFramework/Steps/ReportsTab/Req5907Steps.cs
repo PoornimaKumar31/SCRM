@@ -56,7 +56,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"""(.*)"" status and definition is displayed")]
         public void ThenStatusAndDefinitionIsDisplayed(string statustitle)
         {
-            //defination
+            //status defination
             string statusTabledata = firmwareStatusPage.InformationPopUpData.Text;
             statusDefinationPairs = firmwareStatusPage.GetstatusTable(statusTabledata);
             string ActualDefination = statusDefinationPairs[statustitle];
@@ -165,7 +165,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"""(.*)"" status and definition of RV700 is displayed")]
         public void ThenUserCanSeeStatusAndDefinitionOfRV(string statusTitle)
         {
-            //defination
+            //status and defination
             string statusTabledata = firmwareStatusPage.InformationPopUpData.Text;
             statusDefinationPairs = firmwareStatusPage.GetstatusTable(statusTabledata);
             string ActualDefination = statusDefinationPairs[statusTitle];

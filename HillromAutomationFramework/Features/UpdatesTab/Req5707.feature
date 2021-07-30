@@ -47,5 +47,4 @@ Scenario: CSM Schedule Upgrade Cancel
 	When user selects device
 	And clicks Cancel upgrade button
 	Then Selected Updates have been cancelled message is displayed
-	And Upgrade is cancelled
 	And Manage Active Updates page is displayed

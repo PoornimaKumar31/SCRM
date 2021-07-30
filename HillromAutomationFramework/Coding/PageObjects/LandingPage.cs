@@ -51,7 +51,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
         public static class ExpectedValues
         {
-            public const string RollupPageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/index.html#/rollup-page";
+            public static string RollupPageURL = PropertyClass.BaseURL + "/rollup-page";
 
             //Organizaion1 details
             public const string Organization0Title = "L&T Automated Test East";
