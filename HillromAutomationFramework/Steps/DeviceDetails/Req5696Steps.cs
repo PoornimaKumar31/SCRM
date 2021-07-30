@@ -23,7 +23,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnCVSMAssetDetailsPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(1000);
@@ -92,7 +92,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnCVSMEditAssetDetailsDialog()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(1000);

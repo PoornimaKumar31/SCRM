@@ -42,7 +42,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch(reportName.ToLower().Trim())
             {
                 case "csm configuration update status":
-                    landingPage.Organization1Facility0Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
                     mainPage.ReportsTab.JavaSciptClick();
                     csmConfigStatusPage.AssetTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMDeviceName);

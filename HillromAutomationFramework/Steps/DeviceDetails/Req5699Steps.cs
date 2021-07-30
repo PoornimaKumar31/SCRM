@@ -32,7 +32,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserHasSelectedCSMDevice()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility1Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             Thread.Sleep(1000);
@@ -71,7 +71,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 case 0:
                     //Selecting CSM device with no log files
-                    landingPage.Organization1Facility0Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     mainPage.SearchSerialNumberAndClick("100010000005");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
@@ -79,14 +79,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
                 case 10:
                     //selecting CSM device with 10 log files
-                    landingPage.Organization1Facility1Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
                     mainPage.SearchSerialNumberAndClick("110010000019");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
                     break;
                 case 24:
                     //selecting CSM device with 25 log files
-                    landingPage.Organization1Facility1Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
                     mainPage.SearchSerialNumberAndClick("110010000000");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();

@@ -24,7 +24,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnRVLogFilesPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization2Facility0Title.Click();
+            landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
             Thread.Sleep(1000);

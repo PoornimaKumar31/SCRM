@@ -31,7 +31,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void GivenUserIsOnUpdatesPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.UpdatesTab.JavaSciptClick();
         }
@@ -69,7 +69,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void GivenUserIsOnCSMUpdatesPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.UpdatesTab.JavaSciptClick();
         }
@@ -162,15 +162,15 @@ namespace HillromAutomationFramework.Steps.Updates
             {
                 case "<=50": 
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility1Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
                     break;
                 case ">50":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility0Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
                 case ">50 and <=100":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility0Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
                 default: Assert.Fail("Invalid no of entries:" + noOfEntries);
                     break;
@@ -263,7 +263,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void GivenUserIsOnCSMConfigurationSelectAssetsPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.UpdatesTab.JavaSciptClick();
             updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);

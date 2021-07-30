@@ -23,7 +23,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnCSMLogFilesPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility1Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             Thread.Sleep(1000);

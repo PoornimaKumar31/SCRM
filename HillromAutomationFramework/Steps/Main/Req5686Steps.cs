@@ -29,13 +29,13 @@ namespace HillromAutomationFramework.Steps.Main
         public void GivenTheUserIsOnLandingPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            Assert.AreEqual(true, landingPage.Organization0Facility0Title.GetElementVisibility(), "User is not on Landing page.");
+            Assert.AreEqual(true, landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.GetElementVisibility(), "User is not on Landing page.");
         }
         
         [When(@"user clicks Facility panel for an organization")]
         public void WhenUserClicksFacilityPanelForAnOrganization()
         {
-            landingPage.Organization0Facility0Title.Click();
+            landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.Click();
         }
         
         [Then(@"Organization label is displayed")]
@@ -130,7 +130,7 @@ namespace HillromAutomationFramework.Steps.Main
         [When(@"user clicks on the Facility panel for specific Organization")]
         public void WhenUserClicksOnTheFacilityPanelForSpecificOrganization()
         {
-            landingPage.Organization0Facility0Title.Click();
+            landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.Click();
         }
 
         [Then(@"assets page open with selected ASSETS tab")]
@@ -201,7 +201,7 @@ namespace HillromAutomationFramework.Steps.Main
         public void GivenUserIsOnAssetsListPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization0Facility0Title.Click();
+            landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
         }
 

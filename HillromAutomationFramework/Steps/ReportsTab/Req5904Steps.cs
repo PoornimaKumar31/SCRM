@@ -23,7 +23,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnCSMConfigurationUpdateStatusPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
             mainPage.ReportsTab.JavaSciptClick();
             csmConfigStatusPage.AssetTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMDeviceName);

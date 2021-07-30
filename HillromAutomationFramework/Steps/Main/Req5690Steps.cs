@@ -21,14 +21,14 @@ namespace HillromAutomationFramework.Steps.Main
         public void GivenUserIsOnAssetsListPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
         }
 
         [Given(@"user is on Assets List page with more than 1 device")]
         public void GivenUserIsOnAssetsListPageWithMoreThanDevice()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization1Facility0Title.Click();
+            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             int count = mainPage.DeviceListRow.GetElementCount();
             Assert.Greater(count ,1, "More than one device is not displayed");
         }

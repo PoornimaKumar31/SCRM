@@ -30,7 +30,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void GivenUserIsOnSelectUpdatesPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.Organization0Facility0Title.Click();
+            landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.UpdatesTab.JavaSciptClick();
         }

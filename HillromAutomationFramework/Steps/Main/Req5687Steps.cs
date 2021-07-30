@@ -26,19 +26,19 @@ namespace HillromAutomationFramework.Steps.Main
             {
                 case "device":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility0Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
                 case "csm":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility0Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
                 case "cvsm":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility0Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
                 case "rv700":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization2Facility0Title.Click();
+                    landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
                     break;
                 default: Assert.Fail("Invalid device name " + deviceName);
                     break;

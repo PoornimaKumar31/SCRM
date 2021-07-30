@@ -164,17 +164,17 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 case "<=50":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility0Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
 
                 case ">50":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility1Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
                     break;
 
                 case ">50 and <=100":
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.Organization1Facility1Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
                     break;
                 default: Assert.Fail(noOfEntries+" is a invalid number of configuration files.");
                     break;

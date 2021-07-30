@@ -232,7 +232,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                     EmailField.EnterText(Config.EmailIDAdminWithRollUp);
                     PasswordField.EnterText(Config.PasswordAdminWithRollUp);
                     LoginButton.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.Organization0FacilityPanel0ID)));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedEyeTestOrganizationTitleXPath)));
                     break;
                 case LogInType.AdminWithOutRollUpPage:
                     EmailField.EnterText(Config.EmailAdminWithoutRollUp);
