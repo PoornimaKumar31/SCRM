@@ -82,7 +82,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
         public static class ExpectedValues
         {
-            public static string MainpageURL = PropertyClass.BaseURL+"/landing-page/devices";
+            public static string MainpageURL = PropertyClass.BaseURL+ "/index.html#/landing-page/devices";
 
             public const string GlobalServiceCenterTitle = "Services | Hillrom";
             public const string ContactUsTitle = "Contact Us | Hillrom";

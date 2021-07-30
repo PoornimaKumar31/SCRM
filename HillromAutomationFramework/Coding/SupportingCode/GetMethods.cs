@@ -104,5 +104,17 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             return (fileInfo[0].Extension == fileExtension);
         }
 
+
+        public static bool ErrorMessageVerification(this IWebElement element)
+        {
+            if(element.Text == "Log file request - EXECUTING" || element.Text == "Log file request - PENDING" || element.Text == "Log file request - RECEIVED")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

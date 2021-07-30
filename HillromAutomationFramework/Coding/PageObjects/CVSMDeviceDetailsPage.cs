@@ -41,7 +41,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LogsPreviousButtonID = "previous";
             public const string LogsPageNumberID = "pageNumber";
             public const string LogsPageRequestButtonID = "request-logs";
-            public const string LogsPendingMessageXPath = "//*[@id=\"mat-tab-content-0-2\"]/div/div/c8y-hillrom-request-logs/div/div[3]/div[1]/div[1]";
+            public const string LogsPendingMessageXPath = "//div[@class = 'col-xs-8']";
             public const string LogsDescendingClassName = "col-md-4 descending";
             public const string LogsAscendingClassName = "col-md-4 ascending";
             public const string DateSortingID = "date";

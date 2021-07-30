@@ -48,7 +48,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
         public static class ExpectedValues
         {
-            public static string RollupPageURL = PropertyClass.BaseURL + "/rollup-page";
+            public static string RollupPageURL = PropertyClass.BaseURL + "/index.html#/rollup-page";
 
             //L&T Automated East Organization details
             public const string LNTAutomatedTestEastOrganizationTitle = "L&T Automated Test East";
