@@ -14,7 +14,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public static class Locator
         {
             //Organization1
-            public const string Organization0TitleID = "org0";
+            public const string LNTAutomatedTestEastOrganizationTitleXPath = "//span[text()="+ExpectedValues.LNTAutomatedTestEastOrganizationTitle+"]";
             public const string Organization0FacilityPanel0ID = "fac00";
             public const string Organization0Facility0TitleID = "facName00";
             public const string Organization0Facility0ServerID = "serv00";
@@ -22,9 +22,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             
             //Organization2
-            public const string Organization1TitleID = "org1";
-            public const string Organization1FacilityPanel0ID = "fac10";
-            public const string Organization1Facility0TitleID = "facName10";
+            public const string LNTAutomatedTestOrganizationTitleXPath = "//span[text()=" + ExpectedValues.LNTAutomatedTestOrganizationTitle + "]";
+            public const string LNTAutomatedTestOrganizationFacilityTest1XPath = LNTAutomatedTestEastOrganizationTitleXPath +"//parent::div//parent::div//span[text()="+ExpectedValues.LNTAutomatedTestOrganizationFacilityTest1+"]";
+            public const string LNTAutomatedTestOrganizationFacilityTest2 = LNTAutomatedTestEastOrganizationTitleXPath + "//parent::div//parent::div//span[text()=" + ExpectedValues.LNTAutomatedTestOrganizationFacilityTest2+"]";
             public const string Organization1Facility0ServerID = "serv10";
             public const string Organization1Facility0DeviceID = "dev10";
 
@@ -35,11 +35,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string Organization1Facility1DeviceID = "dev11";
 
             //Organization3
-            public const string Organization2TitleID = "org2";
+            public const string Organization2TitleID = "//span[text()=" + ExpectedValues.LNTAutomatedEyeTestOrganizationTitle + "]";
             public const string Organization2FacilityPanel0ID = "fac20";
             public const string Organization2Facility0TitleID = "facName20";
             public const string Organization2Facility0ServerID = "serv20";
             public const string Organization2Facility0DeviceID = "dev20";
+
+
+            //Organization and facility XPath;
+            
 
 
 
@@ -53,18 +57,18 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             public static string RollupPageURL = PropertyClass.BaseURL + "/rollup-page";
 
-            //Organizaion1 details
-            public const string Organization0Title = "L&T Automated Test East";
-            public const string Organization0FacilityPanel0Title = "Test4";
+            //L&T Automated East Organization details
+            public const string LNTAutomatedTestEastOrganizationTitle = "L&T Automated Test East";
+            public const string LNTAutomatedTestEastOrganizationFacilityTest4 = "Test4";
 
             //Organization2 details
-            public const string Organization1Title = "L&T Automated Test";
-            public const string Organization1FacilityPanel0Title = "Test1";
-            public const string Organization1FacilityPanel1Title = "Test2";
+            public const string LNTAutomatedTestOrganizationTitle = "L&T Automated Test";
+            public const string LNTAutomatedTestOrganizationFacilityTest1 = "Test1";
+            public const string LNTAutomatedTestOrganizationFacilityTest2 = "Test2";
 
             //Organizaion3 details
-            public const string Organization2Title = "LT Automated Eye Test";
-            public const string Organization2FacilityPanel0Title = "Test1";
+            public const string LNTAutomatedEyeTestOrganizationTitle = "LT Automated Eye Test";
+            public const string LNTAutomatedEyeTestOrganizationFacilityTest1 = "Test1";
         }
 
 
