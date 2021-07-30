@@ -124,7 +124,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Received, Pending or Executing message is not displayed");
-            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.ErrorMessageVerification(), "Displayed message is not correct");
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Displayed message is not matching with the expected");
         }
 
         [Then(@"user can navigate to next logs page")]
@@ -142,7 +142,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Received, Pending or Executing message is not displayed");
-            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.ErrorMessageVerification(), "Displayed message is not as expected");
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Displayed message is not as expected");
         }
 
         [When(@"user navigates to next logs page")]

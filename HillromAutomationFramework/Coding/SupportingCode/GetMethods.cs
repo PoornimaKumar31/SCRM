@@ -105,7 +105,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         }
 
 
-        public static bool ErrorMessageVerification(this IWebElement element)
+        public static bool LogFilesRequestStatusMessageVerification(this IWebElement element)
         {
             if(element.Text == "Log file request - EXECUTING" || element.Text == "Log file request - PENDING" || element.Text == "Log file request - RECEIVED")
             {

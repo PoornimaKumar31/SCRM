@@ -34,7 +34,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"Received, Pending or Executing message is not displayed")]
         public void GivenPendingOrExecutingMessageIsNotDisplayed()
         {
-            Assert.AreEqual(false,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is displayed");
+            Assert.AreEqual(false,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Reciving,Pending or Executing message is displayed");
         }
 
         [When(@"user clicks Request Logs button")]
@@ -46,13 +46,15 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
+            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Reciving, Pending or Executing message is not displayed");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files request status message is not matching the expected value.");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files request status message is not matching the expected value.");
         }
 
         [Then(@"Request Logs button is disabled")]

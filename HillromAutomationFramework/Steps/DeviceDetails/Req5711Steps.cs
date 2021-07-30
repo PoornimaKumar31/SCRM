@@ -89,7 +89,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"no logs for RV700 device are displayed")]
         public void ThenNoLogsForRV700DeviceAreDisplayed()
         {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.LogFiles.Count==0,"Number of Logs are not 0");
+            Assert.AreEqual(0,rv700DeviceDetailsPage.LogFiles.Count,"Number of Logs are not 0");
         }
 
         [Then(@"(.*) logs for RV700 device are displayed")]
@@ -114,7 +114,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
+            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Reciving, Pending or Executing message is not displayed");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files status message is not matching with the expected value.");
         }
 
         [Then(@"user can navigate to next logs page")]

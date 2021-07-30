@@ -140,7 +140,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(),"Pending message is not displayed.");
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Received, Pending or Executing message is not displayed.");
+            Assert.AreEqual(true, csmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files request message does not match the expected value.");
         }
 
         [Then(@"user can navigate to next logs page")]
@@ -159,6 +160,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 //create a log file request if not there
                 csmDeviceDetailsPage.LogsRequestButton.Click();
                 Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
+                Assert.AreEqual(true, csmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files request message does not match the expected value.");
             }
         }
 
@@ -287,12 +289,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"""(.*)"" result label is displayed")]
         public void ThenResultLabelIsDisplayed(string p0)
         {
+            //WebElement is not present in the application
             _scenarioContext.Pending();
         }
 
         [Then(@"""(.*)"" pagination label is displayed")]
         public void ThenPaginationLabelIsDisplayed(string p0)
         {
+            //WebElement is not present in the application
             _scenarioContext.Pending();
         }
 

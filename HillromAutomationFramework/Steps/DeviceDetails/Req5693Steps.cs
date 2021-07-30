@@ -46,14 +46,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Received, Pending or Executing message is not displayed");
-            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.ErrorMessageVerification(), "Displayed message is not as expected.");
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Displayed message is not as expected.");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
             Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Received, Pending or Executing message is not displayed ");
-            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.ErrorMessageVerification(), "Displayed message is not as expected.");
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Displayed message is not as expected.");
         }
 
         [Then(@"Request Logs button is disabled")]
