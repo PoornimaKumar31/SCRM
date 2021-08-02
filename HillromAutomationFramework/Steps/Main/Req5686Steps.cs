@@ -43,6 +43,7 @@ namespace HillromAutomationFramework.Steps.Main
         {
             //replace organization label xpath with id. 
             Assert.AreEqual(true, mainPage.OrganizationLabel.GetElementVisibility(), "Organization label is not displayed.");
+            Assert.AreEqual(MainPage.ExpectedValues.OrganizationLabelText.ToLower(), mainPage.OrganizationLabel.Text.ToLower(),"Organization label is not matching the expected value.");
         }
         
         [Then(@"Organization dropdown is displayed")]
@@ -55,6 +56,7 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenAssetTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, mainPage.AssetTypeLabel.GetElementVisibility(), "Asset type label is not displayed.");
+            Assert.AreEqual(MainPage.ExpectedValues.AssetTypeLabelText.ToLower(), mainPage.AssetTypeLabel.Text.ToLower(), "Asset type label is not matching with the expected value.");
         }
         
         [Then(@"Asset type dropdown is displayed")]
@@ -73,36 +75,46 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenColumnHeadingIsDisplayed(string columnHeading)
         {
             IWebElement heading=null;
+            string ExpectedText = "";
             switch(columnHeading.ToLower().Trim())
             {
                 case "type": 
                     heading = mainPage.TypeHeading;
+                    ExpectedText = MainPage.ExpectedValues.TypeHeadingText;
                     break;
                 case "firmware":
                     heading = mainPage.FirmwareHeading;
+                    ExpectedText = MainPage.ExpectedValues.FirmwareHeadingText;
                     break;
                 case "config file":
                     heading = mainPage.ConfigFileHeading;
+                    ExpectedText = MainPage.ExpectedValues.ConfigFileHeadingText;
                     break;
                 case "asset tag":
                     heading = mainPage.AssetTagHeading;
+                    ExpectedText = MainPage.ExpectedValues.AssetTagHeadingText;
                     break;
                 case "serial number":
                     heading = mainPage.SerialNumberHeading;
+                    ExpectedText = MainPage.ExpectedValues.SerialNumberHeadingText;
                     break;
                 case "location":
                     heading = mainPage.LocationHeading;
+                    ExpectedText = MainPage.ExpectedValues.LocationHeadingText;
                     break;
                 case "last connected":
                     heading = mainPage.LastConnectedHeading;
+                    ExpectedText = MainPage.ExpectedValues.LastConnectedHeadingText;
                     break;
                 case "pm due":
                     heading = mainPage.PMDueHeading;
+                    ExpectedText = MainPage.ExpectedValues.PmDueHeadingText;
                     break;
                 default: Assert.Fail(columnHeading+" is an invalid heading name.");
                     break;
             }
             Assert.AreEqual(true, heading.GetElementVisibility(),columnHeading+ " heading is not displayed.");
+            Assert.AreEqual(ExpectedText.ToLower(), heading.Text.ToLower(), columnHeading + " is not matching with the expected value.");
         }
 
 

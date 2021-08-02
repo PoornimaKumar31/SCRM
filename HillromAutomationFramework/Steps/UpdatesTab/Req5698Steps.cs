@@ -70,7 +70,7 @@ namespace HillromAutomationFramework.Steps.Updates
             updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
             updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
             updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
-            ConfigFileName = updatesSelectUpdatePage.FirstFileCVSMInTable.Text;
+            ConfigFileName = updatesSelectUpdatePage.FirstFileCVSMInTable.FindElement(By.Id("name")).Text;
             updatesSelectUpdatePage.DeleteButton.Click();
         }
 
@@ -79,13 +79,14 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.DeleteConfigFileName.GetElementVisibility(), "Configuration file name is not displayed on delete pop up.");
             string DeleteConfigFileName = updatesSelectUpdatePage.DeleteConfigFileName.Text;
-            Assert.AreEqual(true, ConfigFileName.Contains(DeleteConfigFileName), "Selected Configuration file name is not displayed.");
+            Assert.AreEqual(ConfigFileName.ToLower(),DeleteConfigFileName.ToLower(), "Selected Configuration file name is not matching the expected value.");
         }
 
         [Then(@"Are you sure message is displayed")]
         public void ThenAreYouSureMessageIsDisplayed()
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.DeleteAreYouSureMessage.GetElementVisibility(), "Are you sure message is not displayed");
+            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.DeleteConfigAreYouSureText.ToLower(), updatesSelectUpdatePage.DeleteAreYouSureMessage.Text.ToLower(), "Are you sure message is not matching the expected value.");
         }
 
         [Then(@"Yes button is displayed")]

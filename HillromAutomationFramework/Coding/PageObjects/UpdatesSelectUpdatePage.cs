@@ -72,11 +72,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
+            public const string AssetTypeLabelText = "Asset type";
+            public const string UpdateTypeLabelText = "Update type";
             public const string UpdateTypeDropdownDefault = "Select";
             public const string UpdateTypeConfiguration = "Configuration";
             public const string UpdateTypeUpgrade = "Upgrade";
             public const string TableNameHeadingText = "Name";
             public const string TableDateHeadingText = "Date created";
+            public const string DeleteConfigAreYouSureText = "Are you sure you want to delete this file?";
 
             //manage upgrades tabel headings
             public const string ManageUpgradesDestinationLabel = "DESTINATIONS";

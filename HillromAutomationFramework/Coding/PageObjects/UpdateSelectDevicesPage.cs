@@ -12,7 +12,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string DeployHeadID = "deployhead";
             public const string ItemtoPushID = "lbl_item_to_push";
             public const string DeviceTypeLabelID = "device_type";
-            public const string TypeofUpdateConfigLabelID = "config";
+            public const string TypeofUpdateConfigLabelXpath = "//span[@id='config']";
             public const string TypeOfUpdateUpgradeLabelID = "upgrade";
             public const string FileNameID = "file_name";
             public const string DestinationLabelID = "lbl_destination";
@@ -44,6 +44,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
         public static class ExpectedValues
         {
+            //csm device name
+            public const string CSMDeviceName = "Connex Spot Monitor";
+            public const string ConfigureLabelText = "Configure";
+            public const string FirstConfigFileName = "Vanilla-signed.waconfig";
+            public const string UpgradeLabelText = "Upgrade";
+
             //Color of selected tab
             public const string HighlightedHeadingColor = "rgba(84, 104, 229, 1)";
             public const string NonHighlightedHeadingColor = "rgba(68, 68, 68, 1)";
@@ -57,6 +63,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LocationHeadingText = "Location";
             public const string LastFilesDeployedHeadingText = "Last Files Deployed";
             public const string Desination1DeviceCountText = "1 assets selected in 1 locations";
+            public const string UpdateProcessMessageText = "Update process has been established";
         }
 
         public UpdateSelectDevicesPage()
@@ -76,7 +83,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.DeviceTypeLabelID)]
         public IWebElement DeviceTypeLabel { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.TypeofUpdateConfigLabelID)]
+        [FindsBy(How = How.XPath, Using = Locators.TypeofUpdateConfigLabelXpath)]
         public IWebElement TypeofUpdateConfigLabel { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.TypeOfUpdateUpgradeLabelID)]

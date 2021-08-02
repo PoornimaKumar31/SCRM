@@ -45,6 +45,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             public const string ItemToPushLabelText = "Item to push";
             public const string DestinationLabelText = "DESTINATIONS";
+            public const string DateOrTimeOfPushLabelText = "Date or Time of push";
+            public const string ImmediatelyLabel = "Immediately";
+            public const string ScheduleLabelText = "Schedule";
+            public const string DateLabelText = "Date:";
+            public const string TimeLabelText = "Time:";
         }
 
         public UpdateReviewActionPage()

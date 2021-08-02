@@ -62,7 +62,7 @@ Scenario: CVSM Configuration Greater Than 50 and Less Than or Equal to 100
 	When user clicks Next page button
 	Then second page of entries is displayed
 	And Next page icon is disabled
-	And Previous page icon is disabled
+	And Previous page icon is enabled
 
 @TestCaseID_9035 @UISID_8696 @UISID_8697
 Scenario: CVSM Configuration Selected

@@ -43,6 +43,7 @@ namespace HillromAutomationFramework.Steps.Updates
             updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
 
             updatesSelectUpdatePage.NextButton.Click();
+            //Select device page
             bool IsSelectDevicePage = (updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (updateSelectDevicesPage.DeviceTypeLabel.GetElementVisibility());
             Assert.AreEqual(true, IsSelectDevicePage, "Select devices page is not displayed");
 
@@ -65,6 +66,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenDateLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.DateLabel.GetElementVisibility(), "Date Label is not displayed");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DateLabelText, updateReviewActionPage.DateLabel.Text, "Date label is not matching with the expected value.");
         }
 
         [Then(@"Calendar icon is displayed")]
@@ -77,6 +79,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenTimeLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.TimeLabel.GetElementVisibility(), "Time Label is not displayed");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.TimeLabelText, updateReviewActionPage.TimeLabel.Text, "Time label is not matching the expected value.");
         }
 
         [Then(@"Hour dropdown is displayed")]
@@ -165,6 +168,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName(UpdateSelectDevicesPage.Locators.SuccessUpadteMessageClassName)));
             Assert.AreEqual(true, updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility(), "Update message is not displayed.");
+            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, updateSelectDevicesPage.SuccessUpadteMessage.Text, "Update message is matching the expected value.");
         }
 
         [Then(@"Select Assets page is displayed")]

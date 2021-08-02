@@ -50,6 +50,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenUpdateProcessHasBeenEstablishedMessageDisplays()
         {
             Assert.AreEqual(true, serviceMoniterPage.UpdateMessage.GetElementVisibility(), "Update message is not displayed.");
+            Assert.AreEqual(ServiceMonitorPage.ExpectedValues.UpdateMessageText, serviceMoniterPage.UpdateMessage.Text, "Update message is matching with the expected value.");
         }
     }
 }

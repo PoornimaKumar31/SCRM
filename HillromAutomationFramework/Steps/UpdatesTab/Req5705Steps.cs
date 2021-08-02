@@ -21,6 +21,8 @@ namespace HillromAutomationFramework.Steps.Updates
         UpdateReviewActionPage updateReviewActionPage = new UpdateReviewActionPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private ScenarioContext _scenarioContext;
+        string UpgardeFileName;
+
         public Req5705Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
@@ -74,12 +76,14 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenNameColumnHeadingIsDisplayed()
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.NameColumnHeading.GetElementVisibility(), "Name column heading is not displayed");
+            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.TableNameHeadingText, updatesSelectUpdatePage.NameColumnHeading.Text, "Name column heading is not matching with the expected value.");
         }
 
         [Then(@"Date created column heading is displayed")]
         public void ThenDateCreatedColumnHeadingIsDisplayed()
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.DateColumnHeading.GetElementVisibility(), "Date Column heading is not displayed");
+            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.TableDateHeadingText, updatesSelectUpdatePage.DateColumnHeading.Text, "Date column heading is not matching the expected value.");
         }
 
         [Then(@"Next button is disabled")]
@@ -110,9 +114,6 @@ namespace HillromAutomationFramework.Steps.Updates
                     GivenUserIsOnCSMUpdatesPage();
                     updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
                     break;
-                case "> 50":
-                    _scenarioContext.Pending();
-                    break;
                 case ">50 and <=100":
                     GivenUserIsOnCSMUpdatesPage();
                     updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
@@ -142,14 +143,14 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page icon is not disabled.");
         }
 
-        [Then(@"Previous page button is disabled")]
+       /* [Then(@"Previous page button is disabled")]
         public void ThenPreviousPageButtonIsDisabled()
         {
             string PageNumberBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
             updatesSelectUpdatePage.PaginationPreviousIcon.JavaSciptClick();
             string PageNumberAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
             Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "Previous page icon is not disabled.");
-        }
+        }*/
 
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
@@ -176,6 +177,9 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"second page of entries is displayed")]
         public void ThenSecondPageOfEntriesIsDisplayed()
         {
+            SetMethods.ScrollToBottomofWebpage();
+            string PageNumber = updatesSelectUpdatePage.PaginationXofY.Text;
+            Assert.AreEqual("Page 2 of 2", PageNumber, "User is not on second page");
             Assert.AreEqual(true, updatesSelectUpdatePage.FileNameList.GetElementCount() > 0, "Next page entries are not displayed.");
         }
 
@@ -190,6 +194,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void GivenUserHasSelectedUpgradeFile()
         {
             updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
+            UpgardeFileName = updatesSelectUpdatePage.FirstFileCVSMInTable.FindElement(By.Id("name")).Text;
         }
 
         [When(@"user clicks Next button")]
@@ -239,28 +244,35 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenLabelIsDisplayed(string labelName)
         {
             IWebElement labelElement = null;
+            string ExpectedText="";
             switch (labelName.ToLower().Trim())
             {
                 case "item to push":
                     labelElement = updateSelectDevicesPage.ItemtoPush;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
                     break;
                 case "device type":
                     labelElement = updateSelectDevicesPage.DeviceTypeLabel;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.CSMDeviceName;
                     break;
                 case "update type":
                     labelElement = updateSelectDevicesPage.TypeOfUpdateUpgradeLabel;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.UpgradeLabelText;
                     break;
                 case "upgrade file to push":
                     labelElement = updateSelectDevicesPage.FileName;
+                    ExpectedText = UpgardeFileName;
                     break;
                 case "destinations":
                     labelElement = updateSelectDevicesPage.DestinationLabel;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
                     break;
                 default:
                     Assert.Fail(labelName + " is an invalid label name");
                     break;
             }
             Assert.AreEqual(true, labelElement.GetElementVisibility(), labelName + " label is not dispalyed");
+            Assert.AreEqual(ExpectedText.ToLower(), labelElement.Text.ToLower(), labelName+" is not matching the expected value.");
         }
 
         [Then(@"location hierarchy selectors are displayed")]
@@ -291,7 +303,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Select all checkbox is unchecked")]
         public void ThenSelectAllCheckboxIsUnchecked()
         {
-            Assert.AreEqual(true, updateSelectDevicesPage.SelectAllcheckBox.Displayed, "Select all checkbox in column 1 is not displayed");
+            Assert.AreEqual(false, updateSelectDevicesPage.SelectAllcheckBox.Selected, "Select all checkbox in column 1 is not displayed");
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
@@ -408,18 +420,21 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenItemToPushLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.ItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText, updateReviewActionPage.ItemToPushLabel.Text, "Item to push label is not matching the expected value.");
         }
 
         [Then(@"Item to push value is displayed")]
         public void ThenItemToPushValueIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.ItemToPushValue.GetElementVisibility(), "Item to push value is not displayed.");
+            Assert.AreEqual(UpgardeFileName.ToLower(), updateReviewActionPage.ItemToPushValue.Text.ToLower(), "Item to push value is not matching the expected value.");
         }
 
         [Then(@"Destinations label is displayed")]
         public void ThenDestinationsLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.DestinationLabel.GetElementVisibility(), "Destinations label is not displayed.");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DestinationLabelText.ToLower(), updateReviewActionPage.DestinationLabel.Text.ToLower(),"Destination text is not matching the expected value.");
         }
 
         [Then(@"Destinations value is displayed")]
@@ -432,18 +447,20 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenDateOrTimeOfPushLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.DateOrTimePushLabel.GetElementVisibility(), "Date or Time Label is not displayed");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DateOrTimeOfPushLabelText.ToLower(), updateReviewActionPage.DateOrTimePushLabel.Text.ToLower(), "Date or time label is not matching with the expected value.");
         }
 
         [Then(@"Immediately label is displayed")]
         public void ThenImmediatelyLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.ImmediateLabel.GetElementVisibility(), "Immediate label is not displayed");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ImmediatelyLabel.ToLower(), updateReviewActionPage.ImmediateLabel.Text.ToLower(),"Immediate label is not matching with expected value.");
         }
 
         [Then(@"Immediately label is by default selected")]
         public void ThenImmediatelyLabelIsByDefaultSelected()
         {
-            Assert.AreEqual(true, updateReviewActionPage.ImmediateCheckbox.Selected, "CheckBox is not selected");
+            Assert.AreEqual(true, updateReviewActionPage.ImmediateCheckbox.Selected, "Immediately radio button is not selected");
         }
 
         [Then(@"Checkbox is displayed for Immediately And it is selected")]
@@ -463,6 +480,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenScheduleLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.ScheduleLabel.GetElementVisibility(), "Schedule Label is not displayed");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ScheduleLabelText.ToLower(), updateReviewActionPage.ScheduleLabel.Text.ToLower(),"Schedule label is not matchig with the expected value.");
         }
 
         [Then(@"Select assets indicator is not highlighted")]
@@ -493,6 +511,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
             Assert.AreEqual(true,updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility(),"Update message is not displayed.");
+            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText.ToLower(), updateSelectDevicesPage.SuccessUpadteMessage.Text.ToLower(),"Update message is not matching with expected value.");
         }
 
         [Then(@"Select assets page is displayed")]

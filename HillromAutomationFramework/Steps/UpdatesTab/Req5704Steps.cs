@@ -218,8 +218,9 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"second page of entries is displayed")]
         public void ThenSecondPageOfEntriesIsDisplayed()
         {
+            string PageNumber = updatesSelectUpdatePage.PaginationXofY.Text;
+            Assert.AreEqual("Page 2 of 2", PageNumber,"User is not on page 2");
             Assert.AreEqual(true, updatesSelectUpdatePage.FileNameList.GetElementCount()>0, "Second Page entries are not displayesd.");
-            Assert.AreEqual("Vanilla 9", updatesSelectUpdatePage.FileNameList[0].Text);
         }
 
         [Then(@"Next page icon is disabled")]
@@ -295,26 +296,33 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenLabelIsDisplayed(string labelName)
         {
             IWebElement labelElement = null;
+            string ExpectedText = "";
             switch (labelName.ToLower().Trim())
             {
                 case "item to push": labelElement = updateSelectDevicesPage.ItemtoPush;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
                     break;
                 case "device type":
                     labelElement = updateSelectDevicesPage.DeviceTypeLabel;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.CSMDeviceName;
                     break;
                 case "update type":
                     labelElement = updateSelectDevicesPage.TypeofUpdateConfigLabel;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText;
                     break;
                 case "config file to push":
                     labelElement = updateSelectDevicesPage.FileName;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.FirstConfigFileName;
                     break;
                 case "destinations":
                     labelElement = updateSelectDevicesPage.DestinationLabel;
+                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
                     break;
                 default: Assert.Fail(labelName + " is an invalid label name");
                     break;
             }
             Assert.AreEqual(true, labelElement.GetElementVisibility(), labelName + " label is not dispalyed");
+            Assert.AreEqual(ExpectedText.ToLower(), labelElement.Text.ToLower(), labelName+" is not matching with the expected value.");
         }
 
         [Then(@"location hierarchy selectors are displayed")]
@@ -457,6 +465,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenItemToPushLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.ItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText.ToLower(), updateReviewActionPage.ItemToPushLabel.Text.ToLower(),"Item to push label is not matching with the expected value.");
         }
 
         [Then(@"Item to push value is displayed")]
@@ -469,6 +478,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenDestinationsLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateReviewActionPage.DestinationLabel.GetElementVisibility(), "Destinations label is not displayed.");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DestinationLabelText.ToLower(),updateReviewActionPage.DestinationLabel.Text.ToLower(),"Destination label is not displayed.");
         }
 
         [Then(@"Destinations value is displayed")]
@@ -505,6 +515,7 @@ namespace HillromAutomationFramework.Steps.Updates
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
             Assert.AreEqual(true, updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility(), "Update message is not displayed");
+            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText.ToLower(), updateSelectDevicesPage.SuccessUpadteMessage.Text.ToLower(), "Update message is not matching with the expected value.");
         }
 
         [Then(@"Select devices page is displayed")]

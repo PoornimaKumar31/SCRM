@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
@@ -62,6 +63,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenAssetTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.AssetTypeLabel.GetElementVisibility(), "Asset type label is not displayed.");
+            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.AssetTypeLabelText.ToLower(), updatesSelectUpdatePage.AssetTypeLabel.Text.ToLower(),"Asset type label is not matching with the expected value.");
         }
 
 
@@ -69,6 +71,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenUpdateTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.UpgradeTypeLabel.GetElementVisibility(), "Update type label is not displayed.");
+            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeLabelText.ToLower(), updatesSelectUpdatePage.UpgradeTypeLabel.Text.ToLower(), "Update type label is not matching with the expected value.");
         }
         
         [Then(@"Asset type drop down is displayed")]
@@ -191,7 +194,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             SetMethods.ScrollToBottomofWebpage();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationTextBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationPreviousIcon.Click();
+            updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).JavaSciptClick();
             string PaginationTextAfterClick= updatesSelectUpdatePage.PaginationXofY.Text;
             Assert.AreEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Previous page button is not disabled");
         }
@@ -202,11 +205,21 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             SetMethods.ScrollToBottomofWebpage();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationTextBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationNextIcon.Click();
+            updatesSelectUpdatePage.PaginationNextIcon.JavaSciptClick();
             string PaginationTextAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
             Assert.AreEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Next page button is not disabled");
         }
 
+        [Then(@"Previous page icon is enabled")]
+        public void ThenPreviousPageIconIsEnabled()
+        {
+            SetMethods.ScrollToBottomofWebpage();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
+            string PaginationTextBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
+            updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).Click();
+            string PaginationTextAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
+            Assert.AreNotEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Previous page button is not enabled");
+        }
 
 
         [Given(@"Configuration Update type is selected")]
@@ -278,16 +291,25 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
 
         //for select devices page
-        [Then(@"Item to push label is displayed"),Scope(Scenario = "CVSM Select Assets Elements")]
+        [Then(@"Item to push label is displayed")]
         public void ThenItemToPushLabelIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.ItemtoPush.GetElementVisibility(), "Item to push label is not displayed.");
-            string ActualText = updateSelectDevicePage.ItemtoPush.Text;
-            string ExpectedText = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
-            Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.");
+            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
+            {
+                Assert.AreEqual(true, updateSelectDevicePage.ItemtoPush.GetElementVisibility(), "Item to push label is not displayed.");
+                string ActualText = updateSelectDevicePage.ItemtoPush.Text;
+                string ExpectedText = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
+                Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.");
+            }
+            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
+            {
+                Assert.AreEqual(true, updateReviewActionPage.ItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");
+                string ActualText = updateReviewActionPage.ItemToPushLabel.Text;
+                string ExpectedText = UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText;
+                Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.");
+            }
+            
         }
-
-       
 
 
 
@@ -301,6 +323,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenupdateTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateSelectDevicePage.TypeofUpdateConfigLabel.GetElementVisibility(), "Update type label is not displayed.");
+            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText.ToLower(), updateSelectDevicePage.TypeofUpdateConfigLabel.Text.ToLower(), "Update type lebal is not matching the expected value.");
         }
 
         [Then(@"config file to push label is displayed")]
@@ -312,10 +335,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Destinations label is displayed"),Scope(Tag = "TestCaseID_9036")]
         public void ThenDestinationsLabelIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
-            string ActualLabelText = updateSelectDevicePage.DestinationLabel.Text;
-            string ExpectedLabelText = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
-            Assert.AreEqual(ExpectedLabelText, ActualLabelText, "Destination label text is not matching with expected value.");
+            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
+            {
+                Assert.AreEqual(true, updateSelectDevicePage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
+                string ActualLabelText = updateSelectDevicePage.DestinationLabel.Text;
+                string ExpectedLabelText = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
+                Assert.AreEqual(ExpectedLabelText.ToLower(), ActualLabelText.ToLower(), "Destination label text is not matching with expected value.");
+            }
+            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
+            {
+                Assert.AreEqual(true, updateReviewActionPage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
+                string ActualLabelText = updateReviewActionPage.DestinationLabel.Text;
+                string ExpectedLabelText = UpdateReviewActionPage.ExpectedValues.DestinationLabelText;
+                Assert.AreEqual(ExpectedLabelText.ToLower(), ActualLabelText.ToLower(), "Destination label text is not matching with expected value.");
+            }  
         }
 
         [Then(@"location hierarchy selectors are displayed")]
@@ -468,14 +501,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
         //for Review action page
-        [Then(@"Item to push label is displayed"), Scope(Scenario = "CVSM Review Action Elements")]
-        public void ThenItemToPushLabelIsDisplayeds()
-        {
-            Assert.AreEqual(true, updateReviewActionPage.ItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");
-            string ActualText = updateReviewActionPage.ItemToPushLabel.Text;
-            string ExpectedText = UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText;
-            Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.");
-        }
+        
 
         [Then(@"Item to push value is displayed")]
         public void ThenItemToPushValueIsDisplayed()
@@ -489,14 +515,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, updateReviewActionPage.DestinationValue.GetElementVisibility(), "Destinations value is not displayed.");
         }
 
-        [Then(@"Destinations label is displayed"), Scope(Scenario = "CVSM Review Action Elements")]
-        public void ThenDestinationsLabelIsDisplayeds()
-        {
-            Assert.AreEqual(true, updateReviewActionPage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
-            string ActualLabelText = updateReviewActionPage.DestinationLabel.Text;
-            string ExpectedLabelText = UpdateReviewActionPage.ExpectedValues.DestinationLabelText;
-            Assert.AreEqual(ExpectedLabelText, ActualLabelText, "Destination label text is not matching with expected value.");
-        }
+        
 
 
         [Then(@"Review action indicator is highlighted")]
@@ -522,6 +541,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
            Assert.AreEqual(true, updateSelectDevicePage.SuccessUpadteMessage.GetElementVisibility(), "Update process has been established message is not displayed");
+            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText.ToLower(), updateSelectDevicePage.SuccessUpadteMessage.Text.ToLower(), "Update message is not matching with expected value.");
         }
 
         [Then(@"Select devices page is displayed")]

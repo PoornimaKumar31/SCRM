@@ -68,6 +68,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string DeploymentModeHeadingText = "Deployment Mode";
             public const string LocationHeadingText = "Location";
             public const string LastFilesDeployedHeadingText = "Last Files Deployed";
+
+            //Message
+            public const string UpdateMessageText = "Update process has been established";
         }
 
         public ServiceMonitorPage()

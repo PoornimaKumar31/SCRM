@@ -350,26 +350,11 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, serviceMoniterPage.DeployButton.Enabled, "Deploy button is not enabled");
         }
 
-        [Given(@"first (.*) entries are displayed")]
-        public void GivenFirstEntriesAreDisplayed(int p0)
-        {
-            //id's are not available
-            _scenarioContext.Pending();
-        }
-
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
         {
             SetMethods.ScrollToBottomofWebpage();
             serviceMoniterPage.PaginationNextButton.JavaSciptClick();
         }
-
-        [Then(@"second page of entries is displayed")]
-        public void ThenSecondPageOfEntriesIsDisplayed()
-        {
-            _scenarioContext.Pending();
-        }
-
-
     }
 }

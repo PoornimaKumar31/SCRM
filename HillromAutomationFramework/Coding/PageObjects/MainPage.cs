@@ -89,6 +89,19 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string TermsConditonTitle = "Hillrom Terms and Conditions | Hillrom";
             public const string PrivacyPolicyTitle = "Global Privacy Notice | Hillrom";
 
+            public const string OrganizationLabelText = "Organization";
+            public const string AssetTypeLabelText = "Asset type";
+
+            //table headings
+            public const string TypeHeadingText = "Type";
+            public const string FirmwareHeadingText = "Firmware";
+            public const string ConfigFileHeadingText = "Config file";
+            public const string AssetTagHeadingText = "Asset tag";
+            public const string SerialNumberHeadingText = "Serial number";
+            public const string LocationHeadingText = "Location";
+            public const string LastConnectedHeadingText = "Last connected";
+            public const string PmDueHeadingText = "PM due";
+
             //Asset type dropdowm elements
             public const string AllAssetsText = "All assets";
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
