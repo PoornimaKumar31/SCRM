@@ -142,16 +142,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             rv700DeviceDetailsPage.LogsPreviousButton.Click();
         }
 
-        [Given(@"Log files are sorted by decreasing date")]
-        public void GivenLogFilesAreSortedByDecreasingDate()
-        {
-            if (rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
-            {
-                rv700DeviceDetailsPage.DateSorting.Click();
-            }
-            Assert.AreEqual("col-md-4 descending", rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs date are not sorted in decreasing order");
-        }
-
 
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
@@ -168,6 +158,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 rv700DeviceDetailsPage.DateSorting.Click();
             }
             Assert.AreEqual("col-md-4 decending", rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in decreasing date");
+            Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image"), "Sorting icon is not as expected");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.LogDateList.isDateSorted("d"), "Logs are not sorted by decreasing date");
         }
 
         [Given(@"logs are sorted by increasing date")]
@@ -178,6 +170,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 rv700DeviceDetailsPage.DateSorting.Click();
             }
             Assert.AreEqual("col-md-4 acending", rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in increasing date");
+            Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image"),"Sorting icon is not as expected");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.LogDateList.isDateSorted("a"), "Logs are not sorted by increasing date");
         }
 
         [When(@"user clicks Date column heading")]
@@ -195,7 +189,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"decreasing date sorting indicator is displayed")]
         public void DecreasingDateSortingIndicatorIsDisplayed()
         {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending","decreasing date sorting indicator is not displayed");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending", "decreasing date sorting indicator is not displayed");
+            Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image"),"Sorting icon is not as expected");
         }
 
         [Then(@"logs are sorted by increasing date")]
@@ -207,7 +202,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"increasing date sorting indicator is displayed")]
         public void IncreasingDateSortingIndicatorDisplayed()
         {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending","Icreasing date sorting date indicator is not displayed");
+            Assert.AreEqual(true, rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending", "Icreasing date sorting date indicator is not displayed");
+            Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image"),"Sorting icon is not as expected");
         }
 
         [Then(@"(.*) newest logs are displayed")]

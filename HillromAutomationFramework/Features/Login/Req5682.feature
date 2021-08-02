@@ -5,7 +5,7 @@ Feature: Software Requirement 5682
 @TestCaseID_8901 @UISID_8660
 Scenario: Valid Login
     Given user is on Login page
-    When user enters valid email ID
+    When user enters valid email 
     And enters valid password
     And clicks Login button
     Then user will login successfully
@@ -21,7 +21,7 @@ Scenario: Invalid Login Email Error
 @TestCaseID_8903 @UISID_8660	
 Scenario: Invalid Login Password Error
     Given user is on Login page
-    When user enters valid email ID
+    When user enters valid email 
     And enters invalid password
     And clicks Login button
     Then login invalid error message will display

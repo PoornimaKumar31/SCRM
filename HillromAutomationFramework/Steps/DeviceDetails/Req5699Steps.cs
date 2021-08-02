@@ -177,22 +177,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             csmDeviceDetailsPage.LogsPreviousButton.Click();
             Thread.Sleep(1000);
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "1","User cannot navigate to the previous page.");
-        }
-
-        [Given(@"Log files are sorted by decreasing date")]
-        public void GivenLogFilesAreSortedByDecreasingDate()
-        {
-            Thread.Sleep(3000);
-            if (!(csmDeviceDetailsPage.DateSorting.GetAttribute("class") == CSMDeviceDetailsPage.Locators.LogsDescendingClassName))
-            {
-                csmDeviceDetailsPage.DateSorting.Click();
-                Thread.Sleep(3000);
-                if (!(csmDeviceDetailsPage.DateSorting.GetAttribute("class") == CSMDeviceDetailsPage.Locators.LogsDescendingClassName))
-                {
-                    Assert.Fail();
-                }      
-            }
+            Assert.AreEqual(true, csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "1", "User cannot navigate to the previous page.");
         }
 
         [Then(@"no logs for CSM device are displayed")]
@@ -223,6 +208,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
 
             Assert.AreEqual("col-md-4 descending", csmDeviceDetailsPage.DateSorting.GetAttribute("class"),"Sorting Indicator is not as expected.");
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, csmDeviceDetailsPage.DateSorting.GetCssValue("background-image"));
+            Assert.AreEqual(true, csmDeviceDetailsPage.LogDateList.isDateSorted("d"), "Log file are not sorted in decreasing date");
         }
 
 
@@ -234,6 +221,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 csmDeviceDetailsPage.DateSorting.Click();
             }
             Assert.AreEqual("col-md-4 ascending", csmDeviceDetailsPage.DateSorting.GetAttribute("class"), "Sorting Indicator is not as expected.");
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, csmDeviceDetailsPage.DateSorting.GetCssValue("background-image"));
+            Assert.AreEqual(true, csmDeviceDetailsPage.LogDateList.isDateSorted("a"), "Log files are not sorted in increasing date");
         }
 
         [When(@"user clicks Date column heading")]
@@ -252,7 +241,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void DecreasingDateSortingIndicatorIsDisplayed()
         {
             Thread.Sleep(3000);
-            Assert.AreEqual(true,csmDeviceDetailsPage.DateSorting.GetAttribute("class")==CSMDeviceDetailsPage.Locators.LogsDescendingClassName,"Decreasing date sorting indicator is not displayed");
+            Assert.AreEqual(true, csmDeviceDetailsPage.DateSorting.GetAttribute("class") == CSMDeviceDetailsPage.Locators.LogsDescendingClassName, "Decreasing date sorting indicator is not displayed");
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, csmDeviceDetailsPage.DateSorting.GetCssValue("background-image"));
         }
 
         [Then(@"logs are sorted by increasing date")]
@@ -265,6 +255,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void IncreasingDateSortingIndicatorIsDisplayed()
         {
             Assert.AreEqual(true,csmDeviceDetailsPage.DateSorting.GetAttribute("class") == CSMDeviceDetailsPage.Locators.LogsAscendingClassName,"Increasing date sorting indicator is not displayed");
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, csmDeviceDetailsPage.DateSorting.GetCssValue("background-image"));
         }
 
         [Then(@"(.*) logs for CSM device are displayed")]

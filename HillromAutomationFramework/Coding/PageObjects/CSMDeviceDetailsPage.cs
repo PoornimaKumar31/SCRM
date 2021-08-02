@@ -46,6 +46,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string UpdateRoomValue = "Update Room";
             public const string UpdateBedValue = "Update Bed";
             public const string RoomAndBedNotSet = "(not set)";
+            public const string SortDecreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_up.svg\")";
+            public const string SortIncreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_down.svg\")";
+
         }
 
         [FindsBy(How = How.Id, Using = Locators.CSMDeviceID)]

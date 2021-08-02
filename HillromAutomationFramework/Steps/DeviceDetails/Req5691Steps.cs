@@ -157,17 +157,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             cvsmDeviceDetailsPage.LogsPreviousButton.Click();
         }
 
-        [Given(@"Log files are sorted by decreasing date")]
-        public void GivenLogFilesAreSortedByDecreasingDate()
-        {
-            if (cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
-            {
-                cvsmDeviceDetailsPage.DateSorting.Click();
-            }
-
-            Assert.AreEqual("col-md-4 descending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in Decreasing date");
-        }
-
         [Then(@"(.*) newest logs are displayed")]
         public void GivenNewestLogsAreDisplayed(int num)
         {
@@ -190,13 +179,16 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"logs are sorted by decreasing date")]
         public void GivenLogsAreSortedByDecreasingDate()
         {
+            Thread.Sleep(2000);
             if (cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
             {
                 cvsmDeviceDetailsPage.DateSorting.Click();
+                Thread.Sleep(2000);
             }
-
+            Thread.Sleep(2000);
             Assert.AreEqual("col-md-4 descending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted as expected");
-          
+            Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image"), "Icon displayed for sorting is not as expected");
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogDateList.isDateSorted("d"), "Logs are not sorted by decreasing date");
         }
 
 
@@ -211,6 +203,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
             Thread.Sleep(2000);
             Assert.AreEqual("col-md-4 ascending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"),"Sorting indicator is not as expected.");
+            Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image"), "Icon displayed for sorting is not as expected");
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogDateList.isDateSorted("a"), "Logs are not sorted by increasing date");
         }
 
         [When(@"user clicks Date column heading")]
@@ -232,6 +226,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             
             Assert.AreEqual(true,cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending","Indicator is not as expected.");
+            Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image"),"Icon displayed for sorting is not as expected");
         }
 
         [Then(@"logs are sorted by increasing date")]
@@ -245,18 +240,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void IncreasingDateSortingIndicatorIsDisplayed()
         {
             Assert.AreEqual(true, cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending", "Indicator is not as expected.");
-            
+            Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image"), "Icon displayed for sorting is not as expected");
         }
 
         [Then(@"""(.*)"" result label is displayed")]
         public void ThenResultLabelIsDisplayed(string ExpextedString)
         {
+            //Element is not present in the application
             _scenarioContext.Pending();
         }
 
         [Then(@"""(.*)"" pagination label is displayed")]
         public void ThenPaginationLabelIsDisplayed(string ExpextedString)
         {
+            //Element is not present in the application
             _scenarioContext.Pending();
         }
 
