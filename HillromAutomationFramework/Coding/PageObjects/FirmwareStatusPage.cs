@@ -26,6 +26,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
             public const string Firmware = "Firmware Status";
+            public const string CSMFirmwareStatusReportName = "Firmware_Status_Report.csv";
+            public const string RV700FirmwareStatusReportName = "Firmware_Status_Report.csv";
+
+
+
             //CSM firmware status information
             public const string CSMInformationPopUPHeaderText = "CSM Firmware Report Statuses:";
             public const string CSMStratedDefinition = "Firmware update has been initiated.";

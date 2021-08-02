@@ -27,7 +27,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
             mainPage.ReportsTab.JavaSciptClick();
             csmConfigStatusPage.AssetTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMDeviceName);
-            csmConfigStatusPage.ReportTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMConfiguration);
+            csmConfigStatusPage.ReportTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMConfigurationReport);
             csmConfigStatusPage.GetReportButton.Click();
         }
         

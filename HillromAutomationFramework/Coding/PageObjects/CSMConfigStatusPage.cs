@@ -1,9 +1,7 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
@@ -27,7 +25,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMConfigurationStatusReportFileName = "Configuration_Update_Status_Report_(CSM).csv";
 
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
-            public const string CSMConfiguration = "CFG Update Status";
+            public const string CSMConfigurationReport = "CFG Update Status";
+            public const string CSMFirmwareStatusReport = "Firmware Status";
+            public const string CSMActivityReport = "Activity";
+            public const string CSMActivityReportName = "Activity_Status_Report_(CSM).csv";
+            //status heading
             public const string InformationPopUPHeaderText = "CSM Configuration Report Statuses:";
             public const string StratedDefinition = "Configuration update has been initiated.";
             public const string TransferredDefinitation = "Configuration update has been transferred.";
