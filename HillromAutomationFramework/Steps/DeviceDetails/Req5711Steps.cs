@@ -93,16 +93,16 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
         [Then(@"(.*) logs for RV700 device are displayed")]
-        public void ThenLogsForRVDeviceAreDisplayed(int p0)
+        public void ThenLogsForRVDeviceAreDisplayed(int ExpectedDeviceCount)
         {
-            Assert.AreEqual(p0, rv700DeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs is not same as expected");
+            Assert.AreEqual(ExpectedDeviceCount, rv700DeviceDetailsPage.LogFiles.GetElementCount(), "Number of Logs is not same as expected");
         }
 
 
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            Assert.AreEqual(false,rv700DeviceDetailsPage.LogsNextButton.Enabled,"user can navigate to next page");
+            Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.NextDisableImageURL, rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
         }
             
         [When(@"user clicks Request Logs button")]
@@ -121,7 +121,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user can navigate to next logs page")]
         public void ThenUserCanNavigateToNextLogsPage()
         {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsNextButton.Enabled,"user is not able to navigate to next page");
+            Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.NextEnableImageURL, rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]
@@ -157,7 +157,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 rv700DeviceDetailsPage.DateSorting.Click();
             }
-            Assert.AreEqual("col-md-4 decending", rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in decreasing date");
+            
             Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image"), "Sorting icon is not as expected");
             Assert.AreEqual(true, rv700DeviceDetailsPage.LogDateList.isDateSorted("d"), "Logs are not sorted by decreasing date");
         }
@@ -169,7 +169,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 rv700DeviceDetailsPage.DateSorting.Click();
             }
-            Assert.AreEqual("col-md-4 acending", rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted in increasing date");
+            
             Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image"),"Sorting icon is not as expected");
             Assert.AreEqual(true, rv700DeviceDetailsPage.LogDateList.isDateSorted("a"), "Logs are not sorted by increasing date");
         }
@@ -218,16 +218,11 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, rv700DeviceDetailsPage.NOlderLogsPresence(num), "Number of Logs are not as expected");
         }
 
-        [Then(@"""(.*)"" result label is displayed")]
-        public void ThenResultLabelIsDisplayed(string p0)
-        {
-            _scenarioContext.Pending();
-        }
-
         [Then(@"""(.*)"" pagination label is displayed")]
-        public void ThenPaginationLabelIsDisplayed(string p0)
+        public void ThenPaginationLabelIsDisplayed(string pageNumber)
         {
-            _scenarioContext.Pending();
+            Assert.AreEqual(true, rv700DeviceDetailsPage.LogsPageNumber.GetElementVisibility(), "Pagination label is not displayed");
+            Assert.AreEqual(pageNumber, rv700DeviceDetailsPage.LogsPageNumber.Text, "page number is not as expected");
         }
 
     }

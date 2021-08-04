@@ -17,7 +17,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SortingIndicatorID = "date";
             public const string PreviousIconID = "previous";
             public const string NextIconID = "next";
-            public const string PaginationLabelID = "pageNumber";
+            public const string PageNumberID = "pageNumber";
 
         }
 
@@ -36,8 +36,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How =How.Id,Using =Locator.SortingIndicatorID)]
         public IWebElement DateSortingIndicator { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.PaginationLabelID)]
-        public IWebElement PaginationLabel { get; set; }
+        [FindsBy(How = How.Id, Using = Locator.PageNumberID)]
+        public IWebElement PageNumber { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.LogFilesLabelID)]
         public IWebElement LogFilesLabel { get; set; }

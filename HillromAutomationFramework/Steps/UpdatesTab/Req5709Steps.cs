@@ -338,7 +338,7 @@ namespace HillromAutomationFramework.Steps.Updates
             serviceMoniterPage.FirstDeviceCheckBox.Click();
         }
 
-        [Then(@"Upgrade count label updated with selection of row")]
+        [Then(@"Upgrade count label updates with selection of row")]
         public void ThenUpgradeCountLabelUpdatedWithSelectionOfRow()
         {
             Assert.AreEqual(ServiceMonitorPage.ExpectedValues.Destination1DeviceCountText, serviceMoniterPage.DestinalitioDeviceCount.Text, "Upgrade count label is not updated.\n");

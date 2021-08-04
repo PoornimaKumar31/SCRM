@@ -313,20 +313,13 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
 
 
-        [Then(@"device type label is displayed")]
+        [Then(@"Device type label is displayed")]
         public void ThenDeviceTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateSelectDevicePage.DeviceTypeLabel.GetElementVisibility(), "Device type label is not displayed.");
         }
 
-        [Then(@"update type label is displayed")]
-        public void ThenupdateTypeLabelIsDisplayed()
-        {
-            Assert.AreEqual(true, updateSelectDevicePage.TypeofUpdateConfigLabel.GetElementVisibility(), "Update type label is not displayed.");
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText.ToLower(), updateSelectDevicePage.TypeofUpdateConfigLabel.Text.ToLower(), "Update type lebal is not matching the expected value.");
-        }
-
-        [Then(@"config file to push label is displayed")]
+        [Then(@"Config file to push label is displayed")]
         public void ThenConfigFileToPushLabelIsDisplayed()
         {
             Assert.AreEqual(true, updateSelectDevicePage.FileName.GetElementVisibility(), "Config file name is not displayed.");

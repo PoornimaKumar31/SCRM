@@ -30,7 +30,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LogFilesID = "logName";
             public const string LogsNextButtonID = "next";
             public const string LogsPreviousButtonID = "previous";
-            public const string LogsPageNumberClassName = "pageNumber";
+            public const string LogsPageNumberID = "pageNumber";
             public const string LogsPageRequestButtonID = "request-logs";
             public const string LogsPendingMessageXPath = "//*[@id=\"mat-tab-content-0-2\"]/div/div/c8y-hillrom-request-logs/div/div[3]/div[1]/div[1]";
             public const string LogsDescendingClassName = "col-md-4 descending";
@@ -86,8 +86,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.LogsPreviousButtonID)]
         public IWebElement LogsPreviousButton { get; set; }
 
-        [FindsBy(How =How.ClassName,Using =Locators.LogsPageNumberClassName)]
-        public IWebElement LogsCurrentPageNumber { get; set; }
+        [FindsBy(How =How.Id,Using =Locators.LogsPageNumberID)]
+        public IWebElement LogsPageNumber { get; set; }
 
         [FindsBy(How =How.Id,Using =Locators.LogsPageRequestButtonID)]
         public IWebElement LogsRequestButton { get; set; }

@@ -87,18 +87,10 @@ namespace HillromAutomationFramework.Steps.Main
             Assert.AreEqual(true, logFilesStaticElements.NextIcon.GetElementVisibility(), "Next page icon is not displayed");
         }
 
-        [Then(@"Displaying x to y of z results label is displayed (.*)")]
-        public void ThenDisplayingXToYOfZResultsLabelIsDisplayed(int p0)
+        [Then(@"Page number is displayed")]
+        public void ThenPageNumberIsDisplayed()
         {
-            //Result Label is not present in the Logs page
-            _scenarioContext.Pending();
-        }
-            
-
-        [Then(@"Page x of y label is displayed (.*)")]
-        public void ThenPageXOfYLabelIsDisplayed(int p0)
-        {
-            Assert.AreEqual(true, logFilesStaticElements.PaginationLabel.GetElementVisibility(), "pagination label is not displayed");
+            Assert.AreEqual(true, logFilesStaticElements.PageNumber.GetElementVisibility(), "Page Number is not displayed");
         }
 
     }

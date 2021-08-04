@@ -12,5 +12,4 @@ Scenario: Log Files Static Elements
 	And date sorting indicator is displayed
 	And Previous page icon is displayed
 	And Next page icon is displayed
-	And Displaying x to y of z results label is displayed 0
-	And Page x of y label is displayed 0
+	And Page number is displayed

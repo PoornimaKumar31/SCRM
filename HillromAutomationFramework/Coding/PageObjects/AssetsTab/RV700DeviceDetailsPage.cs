@@ -45,6 +45,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RoomAndBedNotSet = "(not set)";
             public const string SortDecreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_up.svg\")";
             public const string SortIncreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_down.svg\")";
+            public const string PreviousDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/left_disabled.png";
+            public const string PreviousEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_previous.svg";
+            public const string NextDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/right_disabled.png";
+            public const string NextEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_next.svg";
         }
 
         public RV700DeviceDetailsPage()
@@ -88,7 +92,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement LogsPreviousButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LogsPageNumberID)]
-        public IWebElement LogsCurrentPageNumber { get; set; }
+        public IWebElement LogsPageNumber { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LogsPageRequestButtonID)]
         public IWebElement LogsRequestButton { get; set; }
@@ -108,7 +112,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             for (int page=1; page<=(n/10)+1; page++)
             {
                 WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(LogsCurrentPageNumber, page.ToString()));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(LogsPageNumber, page.ToString()));
                 foreach (IWebElement element in LogDateList)
                 {
                     if (element.Text != "Date")
@@ -136,6 +140,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             IList<IWebElement> LogDateListNextPage = LogDateList;
             FirstElementLastPage = DateTime.Parse(LogDateListNextPage[1].Text);
             LogsPreviousButton.Click();
+            Thread.Sleep(3000);
             if (count.Equals(n))
             {
                 if (LastElementFirstPage >= FirstElementLastPage)
@@ -180,6 +185,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 }
             }
             LogsNextButton.Click();
+            Thread.Sleep(3000);
             Console.WriteLine("Value :: " + FirstElementCurrentPage + " " + LastElementPreviousPage);
             Console.WriteLine(count);
             if (count.Equals(n))

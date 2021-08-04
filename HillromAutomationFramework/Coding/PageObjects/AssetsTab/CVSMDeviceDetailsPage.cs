@@ -64,6 +64,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             public const string SortDecreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_up.svg\")";
             public const string SortIncreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_down.svg\")";
+            public const string PreviousDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/left_disabled.png";
+            public const string PreviousEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_previous.svg";
+            public const string NextDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/right_disabled.png";
+            public const string NextEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_next.svg";
         }
 
         public CVSMDeviceDetailsPage()
@@ -134,7 +138,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement LogsPreviousButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LogsPageNumberID)]
-        public IWebElement LogsCurrentPageNumber { get; set; }
+        public IWebElement LogsPageNumber { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LogsPageRequestButtonID)]
         public IWebElement LogsRequestButton { get; set; }
@@ -148,7 +152,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]
         public IList<IWebElement> LogDateList { get; set; }
 
-
+        /// <summary>
+        /// What this method does
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
         public bool NNewestLogsPresence(int n)
         {
             DateTime FirstElementLastPage;
@@ -164,6 +172,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             IList<IWebElement> LogDateListNextPage = LogDateList;
             FirstElementLastPage = DateTime.Parse(LogDateListNextPage[1].Text);           
             LogsPreviousButton.Click();
+            Thread.Sleep(3000);
             if (count.Equals(n))
             {
                 if (LastElementFirstPage >= FirstElementLastPage)
@@ -177,6 +186,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
         public bool NOlderLogsPresence(int n)
         {
             DateTime FirstElementCurrentPage;
@@ -208,6 +222,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 }
             }
             LogsNextButton.Click();
+            Thread.Sleep(3000);
             Console.WriteLine("Value :: "+FirstElementCurrentPage+" "+LastElementPreviousPage);
             Console.WriteLine(count);
             if (count.Equals(n))

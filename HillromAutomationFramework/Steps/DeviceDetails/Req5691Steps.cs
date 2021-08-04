@@ -48,7 +48,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.IsTrue(cvsmDeviceDetailsPage.EditButton.GetElementVisibility());
         }
 
-
         [Then(@"logs for CVSM device are displayed")]
         public void ThenLogsForCVSMDeviceAreDisplayed()
         {
@@ -107,11 +106,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            SetMethods.ScrollToBottomofWebpage();
-            string PageNumberBeforeClick = cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
-            cvsmDeviceDetailsPage.LogsNextButton.Click();
-            string PageNumberAfterClick= cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
-            Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "User can navigate to the next page.");
+            Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL,cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"),"Button is not disabled");
         }
 
         [When(@"user clicks Request Logs button")]
@@ -130,12 +125,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user can navigate to next logs page")]
         public void ThenUserCanNavigateToNextLogsPage()
         {
-            SetMethods.ScrollToBottomofWebpage();
-            string PageNumberBeforeClick = cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
-            cvsmDeviceDetailsPage.LogsNextButton.Click();
-            Thread.Sleep(1000);
-            string PageNumberAfterClick = cvsmDeviceDetailsPage.LogsCurrentPageNumber.Text;
-            Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "User cannot navigate to the next page.");
+            Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.NextEnableImageURL, cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]
@@ -186,7 +176,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 Thread.Sleep(2000);
             }
             Thread.Sleep(2000);
-            Assert.AreEqual("col-md-4 descending", cvsmDeviceDetailsPage.DateSorting.GetAttribute("class"), "Logs are not sorted as expected");
             Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image"), "Icon displayed for sorting is not as expected");
             Assert.AreEqual(true, cvsmDeviceDetailsPage.LogDateList.isDateSorted("d"), "Logs are not sorted by decreasing date");
         }
@@ -217,45 +206,34 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"logs are sorted by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             Assert.AreEqual(true,cvsmDeviceDetailsPage.LogDateList.isDateSorted("d"),"log files are sorted by decreasing date.");
         }
 
         [Then(@"decreasing date sorting indicator is displayed")]
         public void DecreasingDateSortingIndicatorIsDisplayed()
         {
-            
-            Assert.AreEqual(true,cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending","Indicator is not as expected.");
             Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image"),"Icon displayed for sorting is not as expected");
         }
 
         [Then(@"logs are sorted by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             Assert.AreEqual(true,cvsmDeviceDetailsPage.LogDateList.isDateSorted("a"),"Logs are not sorted by increasing date.");
         }
 
         [Then(@"increasing date sorting indicator is displayed")]
         public void IncreasingDateSortingIndicatorIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending", "Indicator is not as expected.");
             Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image"), "Icon displayed for sorting is not as expected");
         }
 
-        [Then(@"""(.*)"" result label is displayed")]
-        public void ThenResultLabelIsDisplayed(string ExpextedString)
-        {
-            //Element is not present in the application
-            _scenarioContext.Pending();
-        }
-
         [Then(@"""(.*)"" pagination label is displayed")]
-        public void ThenPaginationLabelIsDisplayed(string ExpextedString)
+        public void ThenPaginationLabelIsDisplayed(string pageNumber)
         {
-            //Element is not present in the application
-            _scenarioContext.Pending();
-        }
-
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPageNumber.GetElementVisibility(), "Pagination label is not displayed");
+            Assert.AreEqual(pageNumber, cvsmDeviceDetailsPage.LogsPageNumber.Text, "page number is not as expected");
+        }   
     }
 }

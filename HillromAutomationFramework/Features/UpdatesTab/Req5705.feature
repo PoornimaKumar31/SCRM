@@ -18,7 +18,7 @@ Scenario: CSM Upgrade Elements
 	And Displaying x to y of z results label is displayed
 
 @TestCaseID_9156 @UISID_8696 @UISID_8669
-Scenario: CSM Upgrade files Greater Than 50 and Less Than Equal to 100 Next
+Scenario: CSM Upgrade files Greater Than 50 and Less Than or Equal to 100 Next
 	Given user is on CSM Updates page with ">50 and <=100" entries
 	When first 50 entries are displayed
 	Then Next page icon is enabled

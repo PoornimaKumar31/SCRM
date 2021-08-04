@@ -44,7 +44,7 @@ Scenario: CSM Configuration Files Greater Than 50
 	And Next page icon is enabled
 
 @TestCaseID_9088 @UISID_8696 @UISID_8669
-Scenario: CSM Configuration Files Greater Than 50 and Less Than Equal to 100
+Scenario: CSM Configuration Files Greater Than 50 and Less Than or Equal to 100
 	Given user is on CSM Updates page with ">50 and <=100" entries
 	And user is on page 1
 	When user clicks Next page icon

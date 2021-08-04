@@ -36,20 +36,17 @@ Scenario: CVSM Log Files 10 Files Request Previous
 	Then Received, Pending or Executing message is displayed
 
 @TestCaseID_8958 @UISID_8678 @UISID_8669
-Scenario: CVSM Log Files 24 Files Next
+Scenario: CVSM Log Files 24 Files All Pages
 	Given user is on CVSM Log Files page with 24 logs
 	And logs are sorted by decreasing date
 	Then 10 newest logs are displayed
-	And "Displaying 1-10 of 24 results" result label is displayed
-	And "Page 1 of 3" pagination label is displayed
+	And "Page 1" pagination label is displayed
 	When user clicks Next page button
 	Then next 10 older logs are displayed
-	And "Displaying 11-20 of 24 results" result label is displayed
-	And "Page 2 of 3" pagination label is displayed
+	And "Page 2" pagination label is displayed
 	When user clicks Next page button
-	Then next 4 older logs are displayed 
-	And "Displaying 21-24 of 24 results" result label is displayed
-	And "Page 3 of 3" pagination label is displayed
+	Then next 4 older logs are displayed
+	And "Page 3" pagination label is displayed
 
 @TestCaseID_8961 @UISID_8678
 Scenario: CVSM Log Files Sort Decreasing Date

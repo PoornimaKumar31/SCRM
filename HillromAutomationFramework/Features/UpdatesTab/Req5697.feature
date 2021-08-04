@@ -81,9 +81,9 @@ Scenario: CVSM Select Assets Elements
 	And Select assets indicator is highlighted
 	And Review action indicator is not highlighted
 	And Item to push label is displayed
-	And device type label is displayed
-	And update type label is displayed
-	And config file to push label is displayed
+	And Device type label is displayed
+	And Update type label is displayed
+	And Config file to push label is displayed
 	And Destinations label is displayed
 	And location hierarchy selectors are displayed
 	And count of selected devices is displayed

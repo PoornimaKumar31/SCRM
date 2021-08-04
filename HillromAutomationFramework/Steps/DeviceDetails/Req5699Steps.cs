@@ -128,7 +128,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenUserCannotNavigateToNextLogsPage()
         {
             csmDeviceDetailsPage.LogsNextButton.Click();
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "1","User can navigate to the next page");
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "1","User can navigate to the next page");
         }
 
         [When(@"user clicks Request Logs button")]
@@ -149,7 +149,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             csmDeviceDetailsPage.LogsNextButton.Click();
             Thread.Sleep(1000);
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "2","User cannot navigate to the next page");
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "2","User cannot navigate to the next page");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]
@@ -169,7 +169,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             csmDeviceDetailsPage.LogsNextButton.Click();
             Thread.Sleep(1000);
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "2","User navigates to the next page.");
+            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "2","User navigates to the next page.");
         }
 
         [When(@"user navigates to previous logs page")]
@@ -177,7 +177,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             csmDeviceDetailsPage.LogsPreviousButton.Click();
             Thread.Sleep(1000);
-            Assert.AreEqual(true, csmDeviceDetailsPage.LogsCurrentPageNumber.Text == "1", "User cannot navigate to the previous page.");
+            Assert.AreEqual(true, csmDeviceDetailsPage.LogsPageNumber.Text == "1", "User cannot navigate to the previous page.");
         }
 
         [Then(@"no logs for CSM device are displayed")]
@@ -196,7 +196,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user will see logs page (.*) indicator")]
         public void ThenUserWillSeeLogsPageIndicator(int PageNumber)
         {
-            Assert.IsTrue(csmDeviceDetailsPage.LogsCurrentPageNumber.Text == PageNumber.ToString());
+            Assert.IsTrue(csmDeviceDetailsPage.LogsPageNumber.Text == PageNumber.ToString());
         }
 
         [Given(@"logs are sorted by decreasing date")]

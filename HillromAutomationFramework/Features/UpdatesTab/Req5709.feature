@@ -79,5 +79,5 @@ Scenario: Service Monitor Settings Select Device
 	And user selects Call home period as P1D (24 HOURS)
 	And Deployment mode as FALSE
 	When user selects checkbox for first data row in table
-	Then Upgrade count label updated with selection of row
+	Then Upgrade count label updates with selection of row
 	And Deploy button is enabled
