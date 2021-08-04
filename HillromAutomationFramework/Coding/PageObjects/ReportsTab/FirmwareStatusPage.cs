@@ -11,6 +11,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
     {
         public static class Locators
         {
+            //Firmware status
             public const string AssetTypeDropdownId = "modelFilter";
             public const string ReportTypeDropdownId = "typeFilter";
             public const string GetReportButtonId = "getReport";
@@ -20,9 +21,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string InformationPopUpCloseButtonclassName = "ok";
             public const string InformationPopUpDataClassName = "para";
             public const string StatusLabelClassName = "key";
+
+            
         }
         public static class ExpectedValues
         {
+            
+
+            //Firmware status
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
             public const string Firmware = "Firmware Status";
@@ -58,6 +64,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             PageFactory.InitElements(PropertyClass.Driver, this);
         }
 
+        //Firmware status
         [FindsBy(How = How.Id, Using = Locators.InformationPopUpId)]
         public IWebElement InformationPopUp { get; set; }
 
@@ -85,6 +92,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.ClassName, Using = Locators.StatusLabelClassName)]
         public IList<IWebElement> StatusLabel { get; set; }
 
+
+
+        /// <summary>
+        /// Split the data from the information table into status and defination.
+        /// </summary>
+        /// <param name="statusData">string with all status and its defination</param>
+        /// <returns>Dictionary of status and defination pair</returns>
+
         public IDictionary<string, string> GetstatusTable(string statusData)
         {
             string[] splitRowdata = statusData.Split("\r\n");
@@ -99,7 +114,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             }
             return (statusDefinationPairs);
         }
-
+        /// <summary>
+        /// Gets the the status label of spefied row.
+        /// </summary>
+        /// <param name="row">Row number</param>
+        /// <returns>Status</returns>
         public string GetStatusLabel(int row)
         {
             return (StatusLabel[row].Text);

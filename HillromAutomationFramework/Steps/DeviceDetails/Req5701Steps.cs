@@ -8,7 +8,7 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
-    [Binding]
+    [Binding,Scope(Tag = "SoftwareRequirementID_5701")]
     public class Req5701Steps
     {
         LoginPage loginPage = new LoginPage();
