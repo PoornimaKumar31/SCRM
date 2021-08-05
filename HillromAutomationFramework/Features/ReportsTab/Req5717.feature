@@ -61,5 +61,11 @@ Scenario: CSM Firmware Version Report Table Toggle
 	Given user is on CSM Firmware Version Report page
 	When user clicks Total row
 	Then rows below Total are hidden
-	#When user clicks unit row
-	#Then assets for unit are hidden
+	When user clicks unit row
+	Then assets for unit are hidden
+
+@TestCaseID_9378 @UISID_8684 @UISID_8687
+Scenario: CSM Firmware Version Report Print
+	Given user is on CSM Firmware Version Report page
+	When user clicks Print button
+	Then browser’s built-in print dialog is displayed

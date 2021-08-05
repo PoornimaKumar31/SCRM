@@ -17,6 +17,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string TotaldevicesHeadingID = "device_count";
             public const string TotalRowID = "location_header0";
             public const string TotalRowDetailsID = "unitMetrics0";
+            public const string Unit1RowID = "location_header1";
+            public const string Unit1RowDetailsID = "unitMetrics1";
+            public const string PrintButtonID = "fv-print";
+
         }
         public static class ExpectedValues
         {
@@ -48,5 +52,14 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 
         [FindsBy(How = How.Id, Using = Locators.TotalRowDetailsID)]
         public IWebElement TotalRowDetails { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.Unit1RowID)]
+        public IWebElement Unit1Row { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.Unit1RowDetailsID)]
+        public IWebElement Unit1RowDetails { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PrintButtonID)]
+        public IWebElement PrintButton { get; set; }
     }
 }

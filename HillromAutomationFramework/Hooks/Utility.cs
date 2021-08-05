@@ -7,6 +7,7 @@ using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using System;
 using TechTalk.SpecFlow;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace HillromAutomationFramework.Hooks
 {
@@ -67,8 +68,10 @@ namespace HillromAutomationFramework.Hooks
             string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
             if(BrowserName.Contains("chrome"))
             {
+                new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
                 // to set the chrome download directory
                 var chromeOptions = new ChromeOptions();
+                //chromeOptions.AddArgument("--");
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
                 chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
 
@@ -77,11 +80,12 @@ namespace HillromAutomationFramework.Hooks
             }
             else if(BrowserName.Contains("edge"))
             {
+                new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
                 EdgeOptions options = new EdgeOptions
                 {
                     UseChromium = true
                 };
-                PropertyClass.Driver = new EdgeDriver(PropertyClass.driverPath, options);
+                PropertyClass.Driver = new EdgeDriver(options);
             }
             else
             {

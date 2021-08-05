@@ -194,14 +194,38 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [When(@"user clicks unit row")]
         public void WhenUserClicksUnitRow()
         {
-            usageReportPage.Station1.Click();
+            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm usage report table toggle"))
+            {
+                usageReportPage.Station1.Click();
+            }
+            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware version report table toggle"))
+            {
+                firmwareVersionPage.Unit1Row.Click();
+            }
+            else
+            {
+                Assert.Fail("Cannot click on unit row.Missing Id");
+            }
+            
         }
 
         [Then(@"assets for unit are hidden")]
         public void ThenAssetsForUnitAreHidden()
         {
             //Checking the visibility of entire device table
-            Assert.AreEqual(false, usageReportPage.Station1Devices.GetElementVisibility(),"Assets for units are not hidden");
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm usage report table toggle"))
+            {
+                Assert.AreEqual(false, usageReportPage.Station1Devices.GetElementVisibility(), "Assets for units are not hidden");
+            }
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware version report table toggle"))
+            {
+                Assert.AreEqual(false, firmwareVersionPage.Unit1RowDetails.GetElementVisibility(),"Unit 1 rows are displayed");
+            }
+            else
+            {
+                //If this test step does not belong to any scenario
+                Assert.Fail("Invalid scenario Name.");
+            }
         }
 
         [Given(@"Firmware Version Report type is selected")]
@@ -257,6 +281,18 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenRowsBelowTotalAreHidden()
         {
             Assert.AreEqual(false, firmwareVersionPage.TotalRowDetails.GetElementVisibility(), message: "Rows below table are displayed.");
+        }
+
+        [When(@"user clicks Print button")]
+        public void WhenUserClicksPrintButton()
+        {
+            firmwareVersionPage.PrintButton.Click();
+        }
+
+        [Then(@"browser’s built-in print dialog is displayed")]
+        public void ThenBrowserSBuilt_InPrintDialogIsDisplayed()
+        {
+            ScenarioContext.Current.Pending();
         }
 
 
