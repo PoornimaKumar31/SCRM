@@ -2,28 +2,34 @@
 Feature: Software Requirement 5716
 	Simple calculator for adding two numbers
 
-Scenario: Reports Page CVSM Usage
+@TestCaseID_9364 @UISID_8684 @UISID_8686
+Scenario: CVSM Report Type Dropdown Content
 	Given user is on Reports page
-	And Asset type is CVSM
-	When user selects Usage from Report type dropdown menu
-	And clicks Get report button
-	Then CVSM Asset Usage Report page is displayed
+	And CVSM Asset type is selected in Asset type dropdown
+	When When user clicks report type dropdown
+	Then Report type dropdown displays "Usage, Firmware V	ersion, Access Point Locations"
 
-Scenario: Reports Page CVSM Usage Elements
-	Given user is on CVSM Asset Usage Report page
-	Then Number of devices on each floor title is displayed
+@TestCaseID_9365 @UISID_8684 @UISID_8685 @UISID_8686
+Scenario: CVSM Usage Report Elements
+	Given user is on Reports page
+	And CVSM Asset type is selected in Asset type dropdown
+	And Usage Report type is selected
+	When user clicks Get report button
+	Then CVSM Asset Usage Report label is displayed
+	And Print button is displayed
+	And Number of Devices on Each Floor label is displayed
+	#We can't verify if Location ID is displayed or not
 	And pie chart with Location ID is displayed
-	And Total usage details - Components table is displayed
-	And Model column header is displayed
-	And Asset tag column header is displayed
-	And Serial number column header is displayed
-	And Battery cycle count column header is displayed
-	And SureTemp thermometer cycle count column header is displayed
-	And NIBP sensor cycle count column header is displayed
-	And SpHb cycle count column header is displayed
-	When user clicks Location ID row in the table
-	Then user is able to toggle between the expanded and collapsed state
-	When table is expanded
-	Then all assets within that location ID are displayed
-	When user hovers over the pie chart
-	Then Location ID is displayed
+	And Total Usage Details - Components label is displayed
+
+@TestCaseID_9367 @UISID_8684 @UISID_8685 @UISID_8686
+Scenario: CVSM Usage Report Table Toggle
+	Given user is on CVSM Usage Report page
+	When user clicks unit toggle arrow
+	Then assets for the unit are hidden
+
+@TestCaseID_9368 @UISID_8684 @UISID_8686
+Scenario: CVSM Usage Report Print
+	Given user is on CVSM Usage Report page
+	When user clicks Print button
+	Then browser’s built-in print dialog is displayed

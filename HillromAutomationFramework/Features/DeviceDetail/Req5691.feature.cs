@@ -312,18 +312,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Log Files 24 Files Next")]
+        [NUnit.Framework.DescriptionAttribute("CVSM Log Files 24 Files All Pages")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8958")]
         [NUnit.Framework.CategoryAttribute("UISID_8678")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void CVSMLogFiles24FilesNext()
+        public virtual void CVSMLogFiles24FilesAllPages()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8958",
                     "UISID_8678",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files 24 Files Next", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Log Files 24 Files All Pages", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 39
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

@@ -539,7 +539,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user selects checkbox for first data row in table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 82
- testRunner.Then("Upgrade count label updated with selection of row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Upgrade count label updates with selection of row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 83
  testRunner.And("Deploy button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
