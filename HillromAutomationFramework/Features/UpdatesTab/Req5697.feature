@@ -56,7 +56,7 @@ Scenario: CVSM Configuration Greater Than 50
 	And Next page icon is enabled
 
 @TestCaseID_9080 @UISID_8696 @UISID_8669
-Scenario: CVSM Configuration Greater Than 50 and Less Than or Equal to 100
+Scenario: CVSM Configuration Greater Than 50 and Less Than or Equal to 100 Next
 	Given user is on CVSM Updates page with ">50 and <=100" entries
 	And first 50 entries are displayed
 	When user clicks Next page button

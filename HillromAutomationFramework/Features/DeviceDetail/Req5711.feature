@@ -41,12 +41,18 @@ Scenario: RV700 Log Files 24 Files All Pages
 	And logs are sorted by decreasing date
 	Then 10 newest logs are displayed
 	And "Page 1" pagination label is displayed
+	And Next page icon is enabled
+	And Previous page icon is disabled
 	When user clicks Next page button
 	Then next 10 older logs are displayed
 	And "Page 2" pagination label is displayed
+	And Next page icon is enabled
+	And Previous page icon is enabled
 	When user clicks Next page button
 	Then next 4 older logs are displayed
 	And "Page 3" pagination label is displayed
+	And Next page icon is disabled
+	And Previous page icon is enabled
 
 @TestCaseID_8985 @UISID_8678
 Scenario: RV700 Log Files Sort Decreasing Date

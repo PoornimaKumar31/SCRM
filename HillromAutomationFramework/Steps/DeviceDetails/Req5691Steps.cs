@@ -234,6 +234,30 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPageNumber.GetElementVisibility(), "Pagination label is not displayed");
             Assert.AreEqual(pageNumber, cvsmDeviceDetailsPage.LogsPageNumber.Text, "page number is not as expected");
-        }   
+        }
+
+        [Then(@"Next page icon is enabled")]
+        public void ThenNextPageIconIsEnabled()
+        {
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.NextEnableImageURL, csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
+        }
+
+        [Then(@"Previous page icon is disabled")]
+        public void ThenPreviousPageIconIsDisabled()
+        {
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.PreviousDisableImageURL, csmDeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
+        }
+
+        [Then(@"Previous page icon is enabled")]
+        public void ThenPreviousPageIconIsEnabled()
+        {
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.PreviousEnableImageURL, csmDeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
+        }
+
+        [Then(@"Next page icon is disabled")]
+        public void ThenNextPageIconIsDisabled()
+        {
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL, csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
+        }
     }
 }

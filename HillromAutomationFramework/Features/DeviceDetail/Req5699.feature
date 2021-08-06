@@ -47,16 +47,19 @@ Scenario: CSM Log Files 24 Files All Pages
 	Given user is on CSM Log Files page with 24 logs
 	And logs are sorted by decreasing date	
 	Then 10 newest logs are displayed
-	And "Displaying 1-10 of 24 results" result label is displayed
-	And "Page 1 of 3" pagination label is displayed
+	And "Page 1" pagination label is displayed
+	And Next page icon is enabled
+	And Previous page icon is disabled
 	When user clicks Next page button
 	Then next 10 older logs are displayed
-	And "Displaying 11-20 of 24 results" result label is displayed
-	And "Page 2 of 3" pagination label is displayed
+	And "Page 2" pagination label is displayed
+	And Next page icon is enabled
+	And Previous page icon is enabled
 	When user clicks Next page button
 	Then next 4 older logs are displayed
-	And "Displaying 21-24 of 24 results" result label is displayed
-	And "Page 3 of 3" pagination label is displayed
+	And "Page 3" pagination label is displayed
+	And Next page icon is disabled
+	And Previous page icon is enabled
 
 @TestCaseID_8974 @UISID_8678
 Scenario: CSM Log Files Sort Decreasing Date

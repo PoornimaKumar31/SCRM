@@ -277,18 +277,35 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, csmDeviceDetailsPage.NOlderLogsPresence(num), "Number of Logs are not as expected");
         }
 
-        [Then(@"""(.*)"" result label is displayed")]
-        public void ThenResultLabelIsDisplayed(string p0)
+        [Then(@"""(.*)"" pagination label is displayed")]
+        public void ThenPaginationLabelIsDisplayed(string pageNumber)
         {
-            //WebElement is not present in the application
-            _scenarioContext.Pending();
+            Assert.AreEqual(true, csmDeviceDetailsPage.LogsPageNumber.GetElementVisibility(), "Pagination label is not displayed");
+            Assert.AreEqual(pageNumber, csmDeviceDetailsPage.LogsPageNumber.Text, "page number is not as expected");
         }
 
-        [Then(@"""(.*)"" pagination label is displayed")]
-        public void ThenPaginationLabelIsDisplayed(string p0)
+        [Then(@"Next page icon is enabled")]
+        public void ThenNextPageIconIsEnabled()
         {
-            //WebElement is not present in the application
-            _scenarioContext.Pending();
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.NextEnableImageURL, csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
+        }
+
+        [Then(@"Previous page icon is disabled")]
+        public void ThenPreviousPageIconIsDisabled()
+        {
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.PreviousDisableImageURL, csmDeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
+        }
+
+        [Then(@"Previous page icon is enabled")]
+        public void ThenPreviousPageIconIsEnabled()
+        {
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.PreviousEnableImageURL, csmDeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
+        }
+
+        [Then(@"Next page icon is disabled")]
+        public void ThenNextPageIconIsDisabled()
+        {
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL, csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
         }
 
 

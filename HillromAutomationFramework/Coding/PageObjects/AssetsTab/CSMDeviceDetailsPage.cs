@@ -48,6 +48,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RoomAndBedNotSet = "(not set)";
             public const string SortDecreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_up.svg\")";
             public const string SortIncreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_down.svg\")";
+            public const string PreviousDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/left_disabled.png";
+            public const string PreviousEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_previous.svg";
+            public const string NextDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/right_disabled.png";
+            public const string NextEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_next.svg";
 
         }
 
@@ -116,6 +120,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             IList<IWebElement> LogDateListNextPage = LogDateList;
             FirstElementLastPage = DateTime.Parse(LogDateListNextPage[1].Text);
             LogsPreviousButton.Click();
+            Thread.Sleep(3000);
             if (count.Equals(n))
             {
                 if (LastElementFirstPage >= FirstElementLastPage)
@@ -138,30 +143,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             IList<IWebElement> LogDateListCurrentPage = LogDateList;
             FirstElementCurrentPage = DateTime.Parse(LogDateListCurrentPage[1].Text);
             int count = LogDateListCurrentPage.Count - 1;
-            Console.WriteLine("Current Page Logs : ");
-            foreach (IWebElement a in LogDateListCurrentPage)
-            {
-                if (a.Text != "Date")
-                {
-                    Console.WriteLine(DateTime.Parse(a.Text));
-                }
-            }
             Thread.Sleep(3000);
             LogsPreviousButton.Click();
             Thread.Sleep(3000);
             IList<IWebElement> LogDateListPreviousPage = LogDateList;
             LastElementPreviousPage = DateTime.Parse(LogDateListPreviousPage[n].Text);
-            Console.WriteLine("Previous Page Logs : ");
-            foreach (IWebElement a in LogDateListPreviousPage)
-            {
-                if (a.Text != "Date")
-                {
-                    Console.WriteLine(DateTime.Parse(a.Text));
-                }
-            }
             LogsNextButton.Click();
-            Console.WriteLine("Value :: " + FirstElementCurrentPage + " " + LastElementPreviousPage);
-            Console.WriteLine(count);
+            Thread.Sleep(3000);
+            
             if (count.Equals(n))
             {
                 if (FirstElementCurrentPage <= LastElementPreviousPage)

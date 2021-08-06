@@ -57,17 +57,25 @@ namespace HillromAutomationFramework.Steps.Main
             Assert.AreEqual(true, logFilesStaticElements.RequestLogsButton.GetElementVisibility(), "Request Logs button is not displayed");
         }
 
-        [Then(@"Name column heading is displayed")]
-        public void ThenNameColumnHeadingIsDisplayed()
+        [Then(@"""(.*)"" column heading is displayed")]
+        public void ThenNameColumnHeadingIsDisplayed(string ExpectedColumnName)
         {
-            Assert.AreEqual(true, logFilesStaticElements.NameColumn.GetElementVisibility(), "Name column is not displayed");
+            switch(ExpectedColumnName.ToLower().Trim())
+            {
+                case "name":
+                    Assert.AreEqual(true, logFilesStaticElements.NameColumn.GetElementVisibility(), "Name column is not displayed");
+                    break;
+
+                case "date":
+                    Assert.AreEqual(true, logFilesStaticElements.DateColumn.GetElementVisibility(), "Date Column is not displayed");
+                    break;
+                default:
+                    Assert.Fail(ExpectedColumnName+" is invalid heading name");
+                    break;
+            }
         }
 
-        [Then(@"Date column heading is displayed")]
-        public void ThenDateColumnHeadingIsDisplayed()
-        {
-            Assert.AreEqual(true, logFilesStaticElements.DateColumn.GetElementVisibility(), "Date Column is not displayed");
-        }
+    
 
         [Then(@"date sorting indicator is displayed")]
         public void ThenDateSortingIndicatorIsDisplayed()

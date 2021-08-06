@@ -41,8 +41,8 @@ Scenario: Asset List Sorting
 	Given user is on Assets list page
 	And downward arrow shows for ascending order beside Serial Number column header for default sorted column
 	When user clicks "Serial number" column header
-	Then downward arrow shows beside "Serial Number" column header for ascending order
-	And list is sorted in ascending order by "Serial number"
+	Then upward arrow shows beside "Serial Number" column header for descending order
+	And list is sorted in descending order by "Serial number"
 	When user clicks "Firmware" column header
 	Then downward arrow shows beside "Firmware" column header for ascending order
 	And list is sorted in ascending order by "Firmware"

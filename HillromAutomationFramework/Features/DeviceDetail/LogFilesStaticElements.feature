@@ -7,8 +7,8 @@ Scenario: Log Files Static Elements
 	When user clicks Logs tab
 	Then Log Files label is displayed
 	And Request Logs button is displayed
-	And Name column heading is displayed
-	And Date column heading is displayed
+	And "Name" column heading is displayed
+	And "Date" column heading is displayed
 	And date sorting indicator is displayed
 	And Previous page icon is displayed
 	And Next page icon is displayed
