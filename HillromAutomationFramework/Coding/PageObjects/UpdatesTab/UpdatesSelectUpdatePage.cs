@@ -21,21 +21,24 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
 
             //Heading
-            public const string ConfigListClassName = "config-list";
+            public const string FileTableListClassName = "config-list";
             public const string NameColumnHeadingID = "config-heading-name";
             public const string DateColumnHeadingID = "config-heading-date";
+            public const string RV700NameColumnHeadingID = "name";
+            public const string RV700DateColumnHeadingID = "lastup";
             public const string FirstFileCVSMInTableID = "cvsm_config0";
             public const string FirstFileCSMInTableID = "config0";
             public const string NextButtonID = "nextbtn";
             public const string DeleteButtonID = "delete";
             public const string FileNameListID = "name";
+            public const string RV700FileNameListID = "name_value";
 
 
 
             //Pagination
             public const string PaginationPreviousIconID = "previous";
             public const string PaginationNextIconID = "next";
-            public const string PaginationXofYID = "pagination";
+            public const string PaginationXofYXpath = "//span[contains(text(),'Page')]";
             public const string PaginationDisplayXYClassName = "dataTables_info";
 
             //DeleteButton Elements
@@ -70,8 +73,16 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string HighlightedHeadingColor = "rgba(84, 104, 229, 1)";
             public const string NonHighlightedHeadingColor = "rgba(68, 68, 68, 1)";
 
+            //Pagination
+            public const string PaginationNextIconEnabledSource = "/icon_page_next.svg";
+            public const string PaginationNextIconDiabledSource = "/right_disabled.png";
+            public const string PaginationPreviousIconEnabledSource = "/icon_page_previous.svg";
+            public const string PaginationPreviousIconDiabledSource = "/left_disabled.png";
+            public const string SecondPageNumber = "Page 2 of 2";
+
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
+            public const string RV700DeviceName = "RetinaVue 700 (RV700)";
             public const string AssetTypeLabelText = "Asset type";
             public const string UpdateTypeLabelText = "Update type";
             public const string UpdateTypeDropdownDefault = "Select";
@@ -116,14 +127,20 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement ManageActiveUpgradesButton { get; set; }
 
         //Heading
-        [FindsBy(How = How.ClassName, Using = Locators.ConfigListClassName)]
-        public IWebElement ConfigList { get; set; }
+        [FindsBy(How = How.ClassName, Using = Locators.FileTableListClassName)]
+        public IWebElement FileTableList { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.NameColumnHeadingID)]
         public IWebElement NameColumnHeading { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.DateColumnHeadingID)]
         public IWebElement DateColumnHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.RV700NameColumnHeadingID)]
+        public IWebElement RV700NameColumnHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.RV700DateColumnHeadingID)]
+        public IWebElement RV700DateColumnHeading { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.FirstFileCVSMInTableID)]
         public IWebElement FirstFileCVSMInTable { get; set; }
@@ -140,6 +157,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.FileNameListID)]
         public IList<IWebElement> FileNameList { get; set; }
 
+        [FindsBy(How = How.Id, Using = Locators.RV700FileNameListID)]
+        public IList<IWebElement> RV700FileNameList { get; set; }
+
         //Pagination
         [FindsBy(How = How.Id, Using = Locators.PaginationPreviousIconID)]
         public IWebElement PaginationPreviousIcon { get; set; }
@@ -147,7 +167,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.PaginationNextIconID)]
         public IWebElement PaginationNextIcon { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.PaginationXofYID)]
+        [FindsBy(How = How.XPath, Using = Locators.PaginationXofYXpath)]
         public IWebElement PaginationXofY { get; set; }
 
         [FindsBy(How = How.ClassName, Using = Locators.PaginationDisplayXYClassName)]

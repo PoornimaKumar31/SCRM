@@ -150,7 +150,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"CVSM configuration list is displayed")]
         public void ThenCVSMConfigurationListIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.ConfigList.GetElementVisibility(), "CVSM configuration list is not displayed.");
+            Assert.AreEqual(true, updatesSelectUpdatePage.FileTableList.GetElementVisibility(), "CVSM configuration list is not displayed.");
         }
 
         [Then(@"Delete button is displayed")]

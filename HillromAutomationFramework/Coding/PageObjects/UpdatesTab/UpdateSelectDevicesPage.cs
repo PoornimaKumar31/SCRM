@@ -49,6 +49,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string ConfigureLabelText = "Configure";
             public const string FirstConfigFileName = "Vanilla-signed.waconfig";
             public const string UpgradeLabelText = "Upgrade";
+            public const string RV700DeviceName = "RV700";
 
             //Color of selected tab
             public const string HighlightedHeadingColor = "rgba(84, 104, 229, 1)";
@@ -59,7 +60,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string FirwareHeadingText = "Firmware";
             public const string ConfigHeadingText = "Config";
             public const string AssetTagHeadingText = "Asset Tag";
-            public const string SerialHeadingText = "Serial";
+            public const string SerialHeadingText = "Serial number";
             public const string LocationHeadingText = "Location";
             public const string LastFilesDeployedHeadingText = "Last Files Deployed";
             public const string Desination1DeviceCountText = "1 assets selected in 1 locations";

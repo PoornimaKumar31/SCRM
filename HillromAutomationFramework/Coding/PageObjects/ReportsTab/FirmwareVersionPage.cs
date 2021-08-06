@@ -20,6 +20,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string Unit1RowID = "location_header1";
             public const string Unit1RowDetailsID = "unitMetrics1";
             public const string PrintButtonID = "fv-print";
+            public const string FirmwareVesrionReportHeaderLabelID = "reportTitleHeader";
 
         }
         public static class ExpectedValues

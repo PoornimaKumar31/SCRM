@@ -97,7 +97,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"CSM configuration list is displayed")]
         public void ThenCSMConfigurationListIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.ConfigList.GetElementVisibility(), "Configuration list is not displayed");
+            Assert.AreEqual(true, updatesSelectUpdatePage.FileTableList.GetElementVisibility(), "Configuration list is not displayed");
         }
 
         [Then(@"Name column heading is displayed")]

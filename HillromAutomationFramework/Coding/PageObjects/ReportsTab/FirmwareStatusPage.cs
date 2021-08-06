@@ -21,12 +21,29 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string InformationPopUpCloseButtonclassName = "ok";
             public const string InformationPopUpDataClassName = "para";
             public const string StatusLabelClassName = "key";
+            public const string FirmwareReportTitleID = "reportTitleHeader";
 
-            
+            //Firmware Upgrade status(CSM) table elements
+            public const string SerialNumberHeadingID = "serialNo";
+            public const string FirmwareVerionHeadingID = "firmVer";
+            public const string LocationHeadingID = "loc";
+            public const string StatusHeadingID = "status";
+            public const string LastDeployedHeadingID = "lastDeploy";
+            public const string LastConnectedHeadingID = "lastConnect";
+            public const string TableHeaderClassName = "device-info-list";
+
         }
         public static class ExpectedValues
         {
-            
+            public const string FirmwareUpgradeStatusCSMLabel = "FIRMWARE UPGRADE STATUS (CSM)";
+
+            //Firmware Upgrade status(CSM) table elements
+            public const string SerialNumberHeadingText = "Serial number";
+            public const string FirmwareVesrionHeadingText = "Firmware version";
+            public const string LocationHeadingText = "Location";
+            public const string StatusHeadingText = "Status";
+            public const string LastDeployedHeadingText = "Last deployed";
+            public const string LastConnectedHeadingText = "Last connected";
 
             //Firmware status
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
@@ -63,6 +80,31 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             PageFactory.InitElements(PropertyClass.Driver, this);
         }
+
+        [FindsBy(How = How.Id, Using = Locators.FirmwareReportTitleID)]
+        public IWebElement FirmwareReportTitle { get; set; }
+
+        //Firmware Upgrade status(CSM) table elements
+        [FindsBy(How = How.Id, Using = Locators.SerialNumberHeadingID)]
+        public IWebElement SerialNumberHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.FirmwareVerionHeadingID)]
+        public IWebElement FirmwareVerionHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LocationHeadingID)]
+        public IWebElement LocationHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.StatusHeadingID)]
+        public IWebElement StatusHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LastDeployedHeadingID)]
+        public IWebElement LastDeployedHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LastConnectedHeadingID)]
+        public IWebElement LastConnectedHeading { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.TableHeaderClassName)]
+        public IWebElement TableHeader { get; set; }
 
         //Firmware status
         [FindsBy(How = How.Id, Using = Locators.InformationPopUpId)]

@@ -13,7 +13,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         public static class Locator
         {
             public const string ReportTitleHeaderID = "reportTitleHeader";
-            public const string PrintButtonID = "print";
+            public const string PrintButtonXpath = "//button[text()='Print']";
             public const string NumberOfdevicesOneachFloorLabelID = "number_of_devices";
             public const string PieChartID = "myCanva";
             public const string TotalUsageComponentsLabelClassName = "total-usage";
@@ -30,6 +30,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string SPHBCycleCountHeadingID = "sphb_cycle_count";
             public const string Station1ID = "location0";
             public const string Station1DevicesId = "devices0";
+            public const string TableHeaderXpath = "//div[@class='report-information-container']/div";
 
         }
 
@@ -53,7 +54,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         [FindsBy(How =How.Id,Using =Locator.ReportTitleHeaderID)]
         public IWebElement ReportsTitleHeader { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.PrintButtonID)]
+        [FindsBy(How = How.XPath, Using = Locator.PrintButtonXpath)]
         public IWebElement PrintButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.NumberOfdevicesOneachFloorLabelID)]
@@ -92,6 +93,9 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 
         [FindsBy(How = How.Id, Using = Locator.Station1DevicesId)]
         public IWebElement Station1Devices { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.TableHeaderXpath)]
+        public IWebElement TableHeader { get; set; }
 
     }
 }
