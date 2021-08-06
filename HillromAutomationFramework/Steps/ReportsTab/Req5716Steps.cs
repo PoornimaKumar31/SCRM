@@ -15,6 +15,11 @@ namespace HillromAutomationFramework.Steps.ReportsTab
     [Binding, Scope(Tag = "SoftwareRequirementID_5716")]
     class Req5716Steps
     {
+        private ScenarioContext _scenarioContext;
+        public Req5716Steps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
         LoginPage loginPage = new LoginPage();
         MainPage mainPage = new MainPage();
         LandingPage landingPage = new LandingPage();
@@ -139,7 +144,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"browser’s built-in print dialog is displayed")]
         public void ThenBrowserSBuilt_InPrintDialogIsDisplayed()
         {
-            ScenarioContext.Current.Pending();
+            _scenarioContext.Pending();
         }
 
     }

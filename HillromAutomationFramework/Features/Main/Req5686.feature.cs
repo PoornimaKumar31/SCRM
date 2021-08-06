@@ -274,10 +274,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks \"Serial number\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 44
- testRunner.Then("downward arrow shows beside \"Serial Number\" column header for ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("upward arrow shows beside \"Serial Number\" column header for descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 45
- testRunner.And("list is sorted in ascending order by \"Serial number\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("list is sorted in descending order by \"Serial number\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 46
  testRunner.When("user clicks \"Firmware\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

@@ -112,7 +112,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
-    testRunner.When("user enters valid email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user enters valid email ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
     testRunner.And("enters valid password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -212,7 +212,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 24
-    testRunner.When("user enters valid email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user enters valid email ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
     testRunner.And("enters invalid password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -353,7 +353,7 @@ this.ScenarioInitialize(scenarioInfo);
     testRunner.Given("user is on Login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 45
-    testRunner.When("user enters valid email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("user enters valid email ID", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 46
     testRunner.And("clicks Login button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
