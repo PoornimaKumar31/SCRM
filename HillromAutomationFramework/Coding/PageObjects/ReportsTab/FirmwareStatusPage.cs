@@ -22,6 +22,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string InformationPopUpDataClassName = "para";
             public const string StatusLabelClassName = "key";
             public const string FirmwareReportTitleID = "reportTitleHeader";
+            public const string PrintButtonID = "fs-print";
+            public const string DownloadButtonID = "fs-download";
+            public const string SearchBoxID = "search";
 
             //Firmware Upgrade status(CSM) table elements
             public const string SerialNumberHeadingID = "serialNo";
@@ -32,11 +35,17 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LastConnectedHeadingID = "lastConnect";
             public const string TableHeaderClassName = "device-info-list";
 
+            //pagination
+            public const string PaginationNextIconID = "next";
+            public const string PaginationPreviousIconID = "previous";
+            public const string PaginationXofYClassName = "paginationMessage";
+            public const string PaginationDisplayXYClassName = "dataTables_info";
+
         }
         public static class ExpectedValues
         {
             public const string FirmwareUpgradeStatusCSMLabel = "FIRMWARE UPGRADE STATUS (CSM)";
-
+            public const string FirmwareUpgradeStatusRV700Label = "FIRMWARE UPGRADE STATUS (RV700)";
             //Firmware Upgrade status(CSM) table elements
             public const string SerialNumberHeadingText = "Serial number";
             public const string FirmwareVesrionHeadingText = "Firmware version";
@@ -84,7 +93,29 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.FirmwareReportTitleID)]
         public IWebElement FirmwareReportTitle { get; set; }
 
-        //Firmware Upgrade status(CSM) table elements
+        [FindsBy(How = How.Id, Using = Locators.PrintButtonID)]
+        public IWebElement PrintButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DownloadButtonID)]
+        public IWebElement DownloadButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.SearchBoxID)]
+        public IWebElement SearchBox { get; set; }
+
+        //Pagination
+        [FindsBy(How = How.Id, Using = Locators.PaginationPreviousIconID)]
+        public IWebElement PaginationPreviousIcon { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PaginationNextIconID)]
+        public IWebElement PaginationNextIcon { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.PaginationXofYClassName)]
+        public IWebElement PaginationXofY { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.PaginationDisplayXYClassName)]
+        public IWebElement PaginationDisplayXY { get; set; }
+
+        //Firmware Upgrade status table elements
         [FindsBy(How = How.Id, Using = Locators.SerialNumberHeadingID)]
         public IWebElement SerialNumberHeading { get; set; }
 
