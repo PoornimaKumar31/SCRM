@@ -96,24 +96,18 @@ Scenario: RV700 Review Action Page
 	And Clicks Next button
 	Then RV700 Review Action page is displayed
 
-#@TestCaseID_9414 @UISID_8698
-#Scenario: RV700 Review Action Elements
-#	Given user is on RV700 Review Action page
-#	Then Item to push label is displayed
-#	And Item to push value is displayed
-#	And Destinations label is displayed
-#	And Destinations value is displayed
-#	And Date or Time of push label is displayed
-#	And Immediately label is displayed
-#	And Immediately label is by default selected
-#	And Checkbox is displayed for Immediately And it is selected
-#	And Checkbox is displayed for schedule
-#	And Schedule label is displayed
-#	And Select update indicator is not highlighted
-#	And Select assets indicator is not highlighted
-#	And Review action indicator is highlighted
-#	And Previous button is enabled
-#	And Confirm button is enabled
+@TestCaseID_9414 @UISID_8698
+Scenario: RV700 Review Action Elements
+	Given user is on RV700 Review Action page
+	Then Item to push label is displayed
+	And Item to push value is displayed
+	And Destinations label is displayed
+	And Destinations value is displayed
+	And Select update indicator is not highlighted
+	And Select assets indicator is not highlighted
+	And Review action indicator is highlighted
+	And Previous button is enabled
+	And Confirm button is enabled
 
 @TestCaseID_9415 @UISID_8698
 Scenario: RV700 Review Action Confirm

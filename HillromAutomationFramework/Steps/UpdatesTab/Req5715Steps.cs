@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -421,6 +422,52 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             updateSelectDevicesPage.FirstDeviceCheckBox.Click();
             updateSelectDevicesPage.NextButton.Click();
             ThenRVReviewActionPageIsDisplayed();
+        }
+
+        [Then(@"Item to push label is displayed")]
+        public void ThenItemToPushLabelIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.ItemToPushLabel.GetElementVisibility(),"Item to push label is not displayed.");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText.ToLower(), updateReviewActionPage.ItemToPushLabel.Text.ToLower(),"Item to push label is not matching with the expected text.");
+        }
+
+        [Then(@"Item to push value is displayed")]
+        public void ThenItemToPushValueIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.ItemToPushValue.GetElementVisibility(), "Item to push value is not displayed.");
+        }
+
+        [Then(@"Destinations label is displayed")]
+        public void ThenDestinationsLabelIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.DestinationLabel.GetElementVisibility(),"Destination label is not displayed.");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DestinationLabelText.ToLower(), updateReviewActionPage.DestinationLabel.Text.ToLower(),"Destination label is not matching the expected value.");
+        }
+
+        [Then(@"Destinations value is displayed")]
+        public void ThenDestinationsValueIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.DestinationValue.GetElementVisibility(), "Destination value is not displayed.");
+        }
+
+        [Then(@"Select assets indicator is not highlighted")]
+        public void ThenSelectAssetsIndicatorIsNotHighlighted()
+        {
+            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor,updateSelectDevicesPage.Heading.GetCssValue("color"),"Select devices tab is highlighted.");
+        }
+
+        [Then(@"Review action indicator is highlighted")]
+        public void ThenReviewActionIndicatorIsHighlighted()
+        {
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, updateReviewActionPage.Heading.GetCssValue("color"),"Review action indicator is not highlighted.");
+        }
+
+        [Then(@"Confirm button is enabled")]
+        public void ThenConfirmButtonIsEnabled()
+        {
+            //Assert.IsTrue(updateReviewActionPage.ConfirmButton.Enabled, "Confirm buton is disabled.");
+            bool IsConfirmButtonEnabled = updateReviewActionPage.ConfirmButton.Enabled;
+            (IsConfirmButtonEnabled).Should().Be(true,"Confirm button should be enabled in the review action page.");
         }
 
         [When(@"user clicks Confirm button")]

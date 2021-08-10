@@ -36,6 +36,16 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LastDeployedHeadingID = "lastDeployed";
             public const string LastConnectedHeadingID = "lastConnected";
             public const string TableHeadingClassName = "device-info-list";
+
+            //Search elements
+            public const string SerialNumberColumnXpath = "//div[@class='measurements']//div//div[1]";
+            public const string ConfigurationColumnXpath = "//div[@class='measurements']//div//div[2]";
+            public const string LocationColumnXpath = "//div[@class='measurements']//div//div[3]";
+            public const string StatusColumnXpath = "//div[@class='measurements']//div//div[4]";
+            public const string LastDeployedColumnXpath = "//div[@class='measurements']//div//div[5]";
+            public const string LastConnectedColumnXpath = "//div[@class='measurements']//div//div[6]";
+            
+
         }
         public static class ExpectedValues
         {
@@ -48,7 +58,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMConfigurationReport = "CFG Update Status";
             public const string CSMFirmwareStatusReport = "Firmware Status";
             public const string CSMActivityReport = "Activity";
-            public const string CSMActivityReportName = "Activity_Status_Report_(CSM).csv";
+            
             //status heading
             public const string InformationPopUPHeaderText = "CSM Configuration Report Statuses:";
             public const string StratedDefinition = "Configuration update has been initiated.";
@@ -64,6 +74,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string StatusHeadingText = "Status";
             public const string LastDeployedHeadingText = "Last deployed";
             public const string LastConnectedHeadingText = "Last connected";
+
+            //Search Elements
+            public const string SerialNumberSearchText = "100010000000";
+            public const string ConfigurationSearchText = "NewDashboardBaseXXX";
+            public const string LocationSearchText = "Station1";
+            public const string StatusSearchText = "Available";
+            public const string LastDeployedSearchText = "Vanilla-signed.waconfig";
+            public const string LastConnectedSearchText = "20 Sep 2018, 07:11 PM";
         }
 
         public CSMConfigStatusPage()
@@ -113,6 +131,26 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.ClassName, Using = Locators.TableHeadingClassName)]
         public IWebElement TableHeading { get; set; }
+
+        //Search elements
+        [FindsBy(How = How.XPath, Using = Locators.SerialNumberColumnXpath)]
+        public IList<IWebElement> SerialNumberColumn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.ConfigurationColumnXpath)]
+        public IList<IWebElement> ConfigurationColumn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.LocationColumnXpath)]
+        public IList<IWebElement> LocationColumn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.StatusColumnXpath)]
+        public IList<IWebElement> StatusColumn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.LastDeployedColumnXpath)]
+        public IList<IWebElement> LastDeployedColumn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.LastConnectedColumnXpath)]
+        public IList<IWebElement> LastConnectedColumn { get; set; }
+
 
         //information and status
 

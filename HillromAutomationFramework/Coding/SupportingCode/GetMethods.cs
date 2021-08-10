@@ -73,7 +73,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
         }
 
-        //Verify File is downloaded with in specified time
+        /// <summary>
+        /// Verify File is downloaded with in specified time
+        /// </summary>
+        /// <param name="fileName">Name of the downloaded file</param>
+        /// <param name="waitTime">Time to wait untill file is downloaded</param>
+        /// <returns>true if file is downloaded, else return false</returns>
         public static bool IsFileDownloaded(string fileName, int waitTime)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
@@ -96,7 +101,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
             return (file_exist);
         }
-
+        /// <summary>
+        /// Check the file format in the download folder.
+        /// Pre-Condition: Only if the one file exists in the download folder. 
+        /// </summary>
+        /// <param name="fileExtension">extention of the file.</param>
+        /// <returns>true if file extention matches the given extension</returns>
         public static bool CheckFileFormat(string fileExtension)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
@@ -104,7 +114,11 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             return (fileInfo[0].Extension == fileExtension);
         }
 
-
+        /// <summary>
+        /// Checks the log file request.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns>true if the request message is matching the expected value, else return false.</returns>
         public static bool LogFilesRequestStatusMessageVerification(this IWebElement element)
         {
             if(element.Text == "Log file request - EXECUTING" || element.Text == "Log file request - PENDING" || element.Text == "Log file request - RECEIVED")

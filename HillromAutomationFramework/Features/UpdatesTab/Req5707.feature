@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5707
-Feature: Software Requiremet 5707
+Feature: Software Requirement 5707
 	The Customer Portal shall have a mechanism for canceling scheduled firmware upgrade to one or more CSM devices.
 
 @TestCaseID_9170 @UISID_8700

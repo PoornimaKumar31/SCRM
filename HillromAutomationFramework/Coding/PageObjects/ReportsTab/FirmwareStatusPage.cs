@@ -60,7 +60,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string Firmware = "Firmware Status";
             public const string CSMFirmwareStatusReportName = "Firmware_Status_Report.csv";
             public const string RV700FirmwareStatusReportName = "Firmware_Status_Report.csv";
-
+        
 
 
             //CSM firmware status information

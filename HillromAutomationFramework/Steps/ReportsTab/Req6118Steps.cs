@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -13,12 +14,12 @@ namespace HillromAutomationFramework.Steps.ReportsTab
     [Binding,Scope(Tag = "SoftwareRequirementID_6118")]
     public class Req6118Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        ReportsPage reportsPage = new ReportsPage();
-        FirmwareVersionPage firmwareVersionPage = new FirmwareVersionPage();
-        FirmwareStatusPage firmwareStatusPage = new FirmwareStatusPage();
+        private readonly LoginPage loginPage = new LoginPage();
+        private readonly LandingPage landingPage = new LandingPage();
+        private readonly MainPage mainPage = new MainPage();
+        private readonly ReportsPage reportsPage = new ReportsPage();
+        private readonly FirmwareVersionPage firmwareVersionPage = new FirmwareVersionPage();
+        private readonly FirmwareStatusPage firmwareStatusPage = new FirmwareStatusPage();
 
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private ScenarioContext _scenarioContext;
@@ -125,14 +126,27 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [When(@"user clicks Print button")]
         public void WhenUserClicksPrintButton()
         {
-            firmwareVersionPage.PrintButton.Click();
+            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 firmware version report print"))
+            {
+                firmwareVersionPage.PrintButton.Click();
+            }
+            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 firmware upgrade status report print"))
+            {
+                firmwareStatusPage.PrintButton.Click();
+            }
+            else
+            {
+                //If this test step does not belong to any scenario
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
+            
         }
 
         [Then(@"browser’s built-in print dialog is displayed")]
         public void ThenBrowserSBuilt_InPrintDialogIsDisplayed()
         {
             //Need to find some way to habdle print page
-            _scenarioContext.Pending();
+            throw new PendingStepException("Need to find some way to habdle print page");
         }
 
         [Given(@"Firmware Status Report type is selected")]
@@ -163,7 +177,14 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"Download button is displayed")]
         public void ThenDownloadButtonIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.DownloadButton.GetElementVisibility(),"Download button is not displayed.");
+            bool isDownloadButtonVisible = firmwareStatusPage.DownloadButton.GetElementVisibility();
+            Assert.IsTrue(isDownloadButtonVisible,"Download button is not displayed.");
+            //DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(PropertyClass.Driver)
+            //{
+            //    Timeout = TimeSpan.FromSeconds(10),
+            //    PollingInterval = TimeSpan.FromMilliseconds(100),
+            //    Message = "Web Element not found"
+            //};
         }
 
         [Then(@"Search box is displayed")]
@@ -262,8 +283,5 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             //Asserting if column heading is present in specified location.
             Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
         }
-
-
-
     }
 }
