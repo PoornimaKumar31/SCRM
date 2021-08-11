@@ -4,6 +4,7 @@ using AventStack.ExtentReports.Reporter;
 using HillromAutomationFramework.Coding.SupportingCode;
 using Microsoft.Edge.SeleniumTools;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using TechTalk.SpecFlow;
@@ -135,7 +136,13 @@ namespace HillromAutomationFramework.Hooks
                     break;
 
                 case ScenarioExecutionStatus.TestError:
-                    var mediaEntity = GetMethods.CaptureScreenshot("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
+                    // Taking a screenshot for attaching in Azure DevOps
+                    var filePath = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName+ DateTime.Now.ToString("HH.mm.ss") + screenShotNameCounter}.jpg";
+                    ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot().SaveAsFile(filePath);
+                    TestContext.AddTestAttachment(filePath);
+
+                    //taking screenshot for extent report
+                    var mediaEntity = GetMethods.CaptureScreenshotBase64("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
                     _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message + "\n" + _scenarioContext.TestError.InnerException,mediaEntity);
                     screenShotNameCounter++;
                     break;
@@ -148,6 +155,7 @@ namespace HillromAutomationFramework.Hooks
                     break;
             }
         }
+
         //Closing the driver and setting the driver reference to null
         [AfterScenario]
         public void CleanUp()

@@ -31,8 +31,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             return new SelectElement(element).Options;
         }
 
-        // Takes screenshot of current screen.
-        public static MediaEntityModelProvider CaptureScreenshot(this string name)
+        /// <summary>
+        /// Takes screenshot of current screen in base 64 format
+        /// </summary>
+        /// <param name="name">Screenshot name</param>
+        /// <returns>Screenshot in media entity builder format.</returns>
+        public static MediaEntityModelProvider CaptureScreenshotBase64(this string name)
         {
             var screenshot = ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot().AsBase64EncodedString;
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, name).Build();
