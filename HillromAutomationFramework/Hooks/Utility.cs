@@ -47,20 +47,21 @@ namespace HillromAutomationFramework.Hooks
             _extentReports.AddSystemInfo("Browser", PropertyClass.BrowserName);
         }
 
-        // After the test generate the extent report 
-        [AfterTestRun]
-        public static void AfterTestRun()
-        {
-            _extentReports.Flush();
-        }
 
-        // Before feature runs create a node in extent report.
+        /// <summary>
+        /// Before feature runs create a feature in extent report.
+        /// </summary>
+        /// <param name="featureContext">Current feature file</param>
         [BeforeFeature]
         public static void BeforeFeature(FeatureContext featureContext)
         {
             _feature = _extentReports.CreateTest<Feature>(featureContext.FeatureInfo.Title,featureContext.FeatureInfo.Description);
+            _feature.AssignCategory(featureContext.FeatureInfo.Tags);
         }
 
+        /// <summary>
+        /// Setups the browser before each test case.
+        /// </summary>
         [BeforeScenario]
         public void BeforeScenario()
         {
@@ -122,7 +123,10 @@ namespace HillromAutomationFramework.Hooks
             PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20); // Implicit wait for 15 seconds
         }
 
-        // After step log the test results in extent report
+
+        /// <summary>
+        /// After step log the test results in extent report
+        /// </summary>
         [AfterStep]
         public void ReportSteps()
         {
@@ -145,6 +149,10 @@ namespace HillromAutomationFramework.Hooks
             }
         }
 
+        /// <summary>
+        /// Create a step on extent report based on the step type
+        /// </summary>
+        /// <typeparam name="T">Step type: Given,When,Then</typeparam>
         public void CreateNode<T>() where T : IGherkinFormatterModel
         {
             ScenarioExecutionStatus scenarioExecutionStatus = _scenarioContext.ScenarioExecutionStatus;
@@ -156,7 +164,7 @@ namespace HillromAutomationFramework.Hooks
                     break;
 
                 case ScenarioExecutionStatus.TestError:
-                    // Taking a screenshot for attaching in Azure DevOps
+                    // Taking a screenshot for attaching in Test Context
                     var filePath = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName+ DateTime.Now.ToString("HH.mm.ss") + screenShotNameCounter}.jpg";
                     ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot().SaveAsFile(filePath);
                     TestContext.AddTestAttachment(filePath);
@@ -176,11 +184,24 @@ namespace HillromAutomationFramework.Hooks
             }
         }
 
-        //Closing the driver and setting the driver reference to null
+
+        /// <summary>
+        /// Closing the browser after test case end.
+        /// </summary>
         [AfterScenario]
         public void CleanUp()
         {
            PropertyClass.Driver.Quit();
+        }
+
+        /// <summary>
+        /// After the test generate the extent report.
+        /// </summary>
+        [AfterTestRun]
+        public static void AfterTestRun()
+        {
+            _extentReports.Flush();
+            TestContext.AddTestAttachment(PropertyClass.extentReportPath);
         }
 
     }

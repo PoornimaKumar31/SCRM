@@ -108,7 +108,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"rows below Total are hidden")]
         public void ThenRowsBelowTotalAreHidden()
         {
-            Assert.IsFalse(firmwareVersionPage.TotalRowDetails.GetElementVisibility(),"Rows below total are hidden.");
+            Assert.IsFalse(firmwareVersionPage.TotalRowDetails.GetElementVisibility(),"Rows below total are not hidden.");
         }
 
         [When(@"user clicks unit row")]

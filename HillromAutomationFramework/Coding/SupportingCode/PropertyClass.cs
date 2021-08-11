@@ -20,7 +20,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         static readonly string workingDirectory = Environment.CurrentDirectory;
 
         //Extent Report Path
-        readonly public static string extentReportPath = workingDirectory + "\\TestResults\\ExtentReport.html";
+        readonly public static string extentReportPath = workingDirectory + "\\TestResults\\index.html";
 
        
         // Configuration file path
