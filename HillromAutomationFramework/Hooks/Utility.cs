@@ -7,6 +7,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using System.IO;
 using TechTalk.SpecFlow;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
@@ -65,17 +66,28 @@ namespace HillromAutomationFramework.Hooks
         {
             //log scenario in extent report
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
-            
+
             //Browser setup
+            //create downloads folder if not exists
+            if (!Directory.Exists(PropertyClass.DownloadPath))
+            {
+                Directory.CreateDirectory(PropertyClass.DownloadPath);
+            }
+
             string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
             if(BrowserName.Contains("chrome"))
             {
                 new DriverManager().SetUpDriver(new ChromeConfig());
-                // to set the chrome download directory
-                var chromeOptions = new ChromeOptions();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                //for incognito mode
                 chromeOptions.AddArgument("--incognito");
+                
+                // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
                 chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
+               
+                //Headless chrome (without opening chrome browser run test cases internally)
+                chromeOptions.AddArgument("--headless");
 
                 // Setting up the chrome driver
                 PropertyClass.Driver = new ChromeDriver(chromeOptions);
@@ -83,21 +95,29 @@ namespace HillromAutomationFramework.Hooks
             else if(BrowserName.Contains("edge"))
             {
                 new DriverManager().SetUpDriver(new EdgeConfig());
-                EdgeOptions options = new EdgeOptions
+                EdgeOptions edgeoptions = new EdgeOptions
                 {
-                    UseChromium = true
+                    UseChromium = true,
                 };
-                options.AddArgument("inprivate");
-                //options.AddArgument("--headless");
-                PropertyClass.Driver = new EdgeDriver(options);
+
+                //for incognito mode
+                edgeoptions.AddArgument("inprivate");
+                //for setting download directory
+                edgeoptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
+                edgeoptions.AddUserProfilePreference("download.prompt_for_download", false);
+               
+                //Headless(without opening edge browser,run the test internally)
+                //edgeoptions.AddArgument("--headless");
+
+                //Setting up Edge driver
+                PropertyClass.Driver = new EdgeDriver(edgeoptions);
             }
             else
             {
                 Assert.Fail("Invalid Browser Name");
                 Environment.Exit(1);
             }
-
-           
+            
             PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
             PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20); // Implicit wait for 15 seconds
         }

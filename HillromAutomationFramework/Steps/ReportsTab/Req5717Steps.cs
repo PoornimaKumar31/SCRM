@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -59,11 +60,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenReportTypeDropdownDisplays(string dropdownOptions)
         {
             //Spliting Based on comma for getting parameter
-            List<string> ExpectedOptionList = new List<string>(dropdownOptions.ToLower().Split(", "));
+            List<string> ExpecteddropdownOptionsList = new List<string>(dropdownOptions.Split(",").Select(option => option.Trim().ToLower()).ToArray());
+            //List<string> ExpectedOptionList = new List<string>(dropdownOptions.ToLower().Split(", "));
             List<string> ActualOptionList = new List<string>(reportsPage.ReportTypeDDL.GetAllOptionsFromDDL().Select(x => x.Text.ToLower()));
             //Getting the actual option from the dropdown list.
-            ActualOptionList.Remove("select");
-            Assert.AreEqual(true, Enumerable.SequenceEqual(ActualOptionList, ExpectedOptionList), "Expected Options are not same as Actual");
+            ActualOptionList.Remove("select"); //Removing the select item
+            //Asserting
+            ActualOptionList.Should().BeEquivalentTo(ExpecteddropdownOptionsList,"it should contain only that report which supported by CSM device");
         }
 
 
@@ -129,11 +132,20 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _scenarioContext.Pending();
         }
 
-        [Then(@"all the devices within that location ID is displayed")]
-        public void ThenAllTheDevicesWithinThatLocationIDIsDisplayed()
+        [Then(@"all the devices within that unit is displayed")]
+        public void ThenAllTheDevicesWithinThatUnitIsDisplayed()
         {
-            //need to clarify
-            _scenarioContext.Pending();
+            int unit1DeviceCount = usageReportPage.SerailnumberUnit1Column.GetElementCount();
+            unit1DeviceCount.Should().BeGreaterThan(0, "Atleast one device should be present under units.");
+
+            List<string> DisplayedSerailNumberInTable = new List<string>();
+            //Station1
+            foreach(IWebElement serialNumber in usageReportPage.SerailnumberUnit1Column)
+            {
+                DisplayedSerailNumberInTable.Add(serialNumber.Text);
+            }
+            DisplayedSerailNumberInTable.Should().BeEquivalentTo(UsageReportPage.ExpectedValues.Station1CSMDeviceSerialNumbers);
+
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
@@ -142,7 +154,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             IWebElement column=null;
             string ExpectedColumnHeading = "";
 
-            //for usage report
+            //For usage report
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm usage report table elements"))
             {
                 switch (columnHeading.ToLower().Trim())
@@ -226,6 +238,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         break;
                 }
             }
+            //For CSM Firmware upgrade report
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware upgrade status report page table elements"))
             {
                 switch (columnHeading.ToLower().Trim())
@@ -264,6 +277,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         break;
                 }
             }
+            //For CSM Acitivity report
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm activity report page table elements"))
             {
                 switch (columnHeading.ToLower().Trim())
@@ -329,11 +343,6 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                
         }
 
-
-
-
-
-
         [When(@"user clicks unit row")]
         public void WhenUserClicksUnitRow()
         {
@@ -347,6 +356,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
             else
             {
+                //If this test step does not belong to any scenario
                 Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
             }
             
@@ -429,7 +439,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [When(@"user clicks Print button")]
         public void WhenUserClicksPrintButton()
         {
-            firmwareVersionPage.PrintButton.Click();
+            reportsPage.PrintButton.Click();
         }
 
         [Then(@"browser’s built-in print dialog is displayed")]

@@ -1,6 +1,8 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 {
@@ -32,6 +34,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string Station1DevicesId = "devices0";
             public const string TableHeaderXpath = "//div[@class='report-information-container']/div";
 
+            public const string SerailnumberUnit1ColumnXpath= "//div[@id=\"devices0\"]//div//div[3]";
         }
 
         public static class ExpectedValues
@@ -48,7 +51,13 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string SureTempThermometerCycleCountHeadingText = "Suretemp thermometer cycle count";
             public const string NIBPSensorCycleCountHeadingText = "NIBP Sensor cycle count";
             public const string SPHBCycleCountHeadingText = "SPHB cycle count";
-
+            
+            public static List<string> Station1CSMDeviceSerialNumbers = new List<string>()
+            {
+                "100010000000",
+                "100010000001",
+                "200010000001"
+            };
         }
 
         [FindsBy(How =How.Id,Using =Locator.ReportTitleHeaderID)]
@@ -65,6 +74,9 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 
         [FindsBy(How = How.ClassName, Using = Locator.TotalUsageComponentsLabelClassName)]
         public IWebElement TotalUsageComponentsLabel { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.SerailnumberUnit1ColumnXpath)]
+        public IList<IWebElement> SerailnumberUnit1Column { get; set; }
 
         //Tables
         [FindsBy(How = How.Id, Using = Locator.ModelHeadingID)]
