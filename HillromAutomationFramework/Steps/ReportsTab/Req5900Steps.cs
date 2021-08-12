@@ -72,7 +72,6 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 case "last vital sent":
                     searchText = ActivityReportPage.ExpectedValues.LastVitalSentSearchText;
                     throw new PendingStepException("No data for the last vital sent.");
-                    break;
 
                 default: Assert.Fail(searchType + " is a invalid search type");
                     break;

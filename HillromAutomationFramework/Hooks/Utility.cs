@@ -49,7 +49,7 @@ namespace HillromAutomationFramework.Hooks
             var htmlReporter = new ExtentHtmlReporter(PropertyClass.extentReportPath);
             htmlReporter.Config.ReportName = "Automated testing of Smart Care Remote Management";
             htmlReporter.Config.DocumentTitle = "Test Cases Report";
-
+            htmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
             //Attach report to reporter
             _extentReports = new ExtentReports();
             _extentReports.AttachReporter(htmlReporter);
@@ -182,10 +182,10 @@ namespace HillromAutomationFramework.Hooks
                     var filePath = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName+ DateTime.Now.ToString("HH.mm.ss") + screenShotNameCounter}.jpg";
                     ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot().SaveAsFile(filePath);
                     TestContext.AddTestAttachment(filePath);
-
+                    
                     //taking screenshot for extent report
                     var mediaEntity = GetMethods.CaptureScreenshotBase64("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
-                    _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message + "\n" + _scenarioContext.TestError.InnerException,mediaEntity);
+                    _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message + "\n" + _scenarioContext.TestError.InnerException, mediaEntity);
                     screenShotNameCounter++;
                     break;
 
@@ -215,7 +215,6 @@ namespace HillromAutomationFramework.Hooks
         public static void AfterTestRun()
         {
             _extentReports.Flush();
-            //TestContext.AddTestAttachment(PropertyClass.extentReportPath);
         }
 
     }
