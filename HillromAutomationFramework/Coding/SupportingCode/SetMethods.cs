@@ -10,28 +10,39 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 {
     public static class SetMethods
     {
-        /*for entering text in text field*/
+        /// <summary>
+        /// For entering text in text field.
+        /// </summary>
+        /// <param name="element">WebElement to enter text.</param>
+        /// <param name="value">Text to enter.</param>
         public static void EnterText(this IWebElement element, string value)
         {
             element.SendKeys(value);
         }
 
-
-        /*for clicking web element*/
+        /// <summary>
+        /// Double clicks on the webelement.
+        /// </summary>
+        /// <param name="element">Webelement to double click.</param>
         public static void DoubleClick(this IWebElement element)
         {
             Actions actions = new Actions(PropertyClass.Driver);
             actions.DoubleClick(element).Perform();
         }
 
-        //Clicking using javascipt
+        /// <summary>
+        /// Clicking on a element using javascipt
+        /// </summary>
+        /// <param name="webElement">WebElement to click.</param>
         public static void JavaSciptClick(this IWebElement webElement)
         {
             IJavaScriptExecutor executor = (IJavaScriptExecutor)PropertyClass.Driver;
             executor.ExecuteScript("arguments[0].click()", webElement);
         }
 
-        //scroll till bottom of page
+        /// <summary>
+        /// Scroll to the bottom of webpage.
+        /// </summary>
         public static void ScrollToBottomofWebpage()
         {
             long scrollHeight = 0;
@@ -51,12 +62,22 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             } while (true);
         }
 
-        /*for selecting value from drop down list*/
+        /// <summary>
+        /// For selecting option from the dropdown list.
+        /// </summary>
+        /// <param name="element">Dropdown WebElement</param>
+        /// <param name="value">Option text to select.</param>
         public static void SelectDDL(this IWebElement element, string value)
         {
             new SelectElement(element).SelectByText(value);
         }
 
+        /// <summary>
+        /// Check if date is sorted.
+        /// </summary>
+        /// <param name="dateList">List of dates</param>
+        /// <param name="typeOfSort">acensing or descending</param>
+        /// <returns></returns>
         public static bool isDateSorted(this IList<IWebElement> dateList, string typeOfSort = "a")
         {
             List<DateTime> FormatedDateList = new List<DateTime>();
@@ -90,7 +111,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             return SortedList.SequenceEqual(FormatedDateList);
             
         }
-
+        /// <summary>
+        /// Sorting the logs.
+        /// </summary>
+        /// <param name="AllDateList">List of dates of log files.</param>
+        /// <param name="typeOfSort">Type of sorting ascending or desecnding.</param>
+        /// <returns></returns>
         public static List<DateTime> GetSortedLogs(List<DateTime> AllDateList,string typeOfSort = "a")
         {
             if (typeOfSort.ToLower() == "d")

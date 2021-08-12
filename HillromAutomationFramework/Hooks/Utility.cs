@@ -9,6 +9,7 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.IO;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Infrastructure;
 using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 
@@ -22,13 +23,25 @@ namespace HillromAutomationFramework.Hooks
         private static ExtentTest _scenario;
         private static ExtentReports _extentReports;
         private static int screenShotNameCounter = 0;
+
+        //Sprcflow variables
         private readonly ScenarioContext _scenarioContext;
-        public Utility(ScenarioContext scenarioContext)
+        private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
+
+        /// <summary>
+        /// Constructor to intialize scenario Context
+        /// </summary>
+        /// <param name="scenarioContext">Scenario context from the existing scenario</param>
+        public Utility(ScenarioContext scenarioContext,ISpecFlowOutputHelper specFlowOutputHelper)
         {
             _scenarioContext = scenarioContext;
+            _specFlowOutputHelper = specFlowOutputHelper;
         }
 
-        // Before the whole test setup the extent report
+
+        /// <summary>
+        /// Before the whole test setup the extent report
+        /// </summary>
         [BeforeTestRun]
         public static void BeforeTestRun()
         {
@@ -74,6 +87,7 @@ namespace HillromAutomationFramework.Hooks
             {
                 Directory.CreateDirectory(PropertyClass.DownloadPath);
             }
+
 
             string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
             if(BrowserName.Contains("chrome"))

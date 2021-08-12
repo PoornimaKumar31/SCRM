@@ -13,19 +13,31 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 {
     public static class GetMethods
     {
-        /*for getting the value from text field*/
+        /// <summary>
+        ///  Gets the value from text field
+        /// </summary>
+        /// <param name="element">Element from which text needs to be extracted.</param>
+        /// <returns>Text from the webelement</returns>
         public static string GetTextFromField(this IWebElement element)
         {
             return element.Text;
         }
 
-        /*for getting the value from Drop Down List*/
+        /// <summary>
+        /// For getting the selected option from Drop Down.
+        /// </summary>
+        /// <param name="element">Dropdown Element</param>
+        /// <returns>selected option from the dropdown.</returns>
         public static string GetSelectedOptionFromDDL(this IWebElement element)
         {
             return new SelectElement(element).SelectedOption.Text;
         }
 
-        //Geting the dropdownoptions
+        /// <summary>
+        /// Geting the dropdownoptions
+        /// </summary>
+        /// <param name="element">Dropdown Element</param>
+        /// <returns>Dropdown options as list of webelements.</returns>
         public static IList<IWebElement> GetAllOptionsFromDDL(this IWebElement element)
         {
             return new SelectElement(element).Options;
@@ -42,7 +54,11 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, name).Build();
         }
 
-        //Get element visibilty
+        /// <summary>
+        /// Check if element is displayed or not.
+        /// </summary>
+        /// <param name="element">Web element to check visibility.</param>
+        /// <returns>true if element is displayed.</returns>
         public static bool GetElementVisibility(this IWebElement element)
         {
             try
@@ -54,24 +70,36 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
         }
 
-        public static int GetElementCount(this IList<IWebElement> webElement)
+        /// <summary>
+        /// Getting total element 
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <returns>Count of element matching the locator</returns>
+        public static int GetElementCount(this IList<IWebElement> webElementList)
         {
             try
             {
-                return (webElement.Count);
+                return (webElementList.Count);
             }catch(Exception)
             {
                 return (0);
             }
         }
 
+        /// <summary>
+        /// Check if the element is readonly.
+        /// </summary>
+        /// <param name="webElement"></param>
+        /// <returns>true if element is readonly, else false</returns>
         public static bool IsReadOnly(this IWebElement webElement)
         {
             try
             {
                 webElement.SendKeys("Text");
-                return (false);
-            }catch(Exception)
+                return (webElement.GetAttribute("readonly")=="true");
+
+            }
+            catch(Exception)
             {
                 return (true);
             }
@@ -93,11 +121,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
 
             bool file_exist = false;
-            int count = 0;
-            while (file_exist != true && count <= waitTime)
+            int time = 0;
+            //Wait till file is downloaded
+            while (file_exist != true && time <= waitTime)
             {
                 Task.Delay(1000).Wait();
-                count++;
+                time++;
                 if (File.Exists(PropertyClass.DownloadPath + "\\" + fileName))
                 {
                     file_exist = true;
@@ -105,6 +134,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
             return (file_exist);
         }
+
         /// <summary>
         /// Check the file format in the download folder.
         /// Pre-Condition: Only if the one file exists in the download folder. 
