@@ -69,7 +69,6 @@ namespace HillromAutomationFramework.Hooks
         public static void BeforeFeature(FeatureContext featureContext)
         {
             _feature = _extentReports.CreateTest<Feature>(featureContext.FeatureInfo.Title,featureContext.FeatureInfo.Description);
-            _feature.AssignCategory(featureContext.FeatureInfo.Tags);
         }
 
         /// <summary>
