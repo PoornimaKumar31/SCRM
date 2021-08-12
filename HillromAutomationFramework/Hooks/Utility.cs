@@ -215,7 +215,7 @@ namespace HillromAutomationFramework.Hooks
         public static void AfterTestRun()
         {
             _extentReports.Flush();
-            TestContext.AddTestAttachment(PropertyClass.extentReportPath);
+            //TestContext.AddTestAttachment(PropertyClass.extentReportPath);
         }
 
     }
