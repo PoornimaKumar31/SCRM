@@ -37,6 +37,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LogsAscendingClassName = "col-md-4 ascending";
             public const string DateSortingID = "date";
             public const string LogDateClassName = "col-md-4";
+
+            //Preventive maintenance
+            public const string PMNameHeadngID = "lbl_name";
+            public const string PMLastCalibrationHeadingId = "lbl_lastCalDate";
+            public const string LastCalibrationDateID = "lastCalDate";
+            public const string CalibrationOverDueArrowID = "icon_overdue";
+            public const string CalibrationOverDueTextID = "cal_overdue";
         }
 
         public static class ExpectedValues
@@ -53,6 +60,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string NextDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/right_disabled.png";
             public const string NextEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_next.svg";
 
+            //Preventive maintainenece
+            public const string PMNameHeadingText = "Name";
+            public const string PMLastCalibrationText = "Last calibration";
+            
         }
 
         [FindsBy(How = How.Id, Using = Locators.CSMDeviceID)]
@@ -104,6 +115,24 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]
         public IList<IWebElement> LogDateList { get; set; }
+
+
+
+        //Preventive maintenance
+        [FindsBy(How =How.Id,Using =Locators.PMNameHeadngID)]
+        public IWebElement PMNameHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PMLastCalibrationHeadingId)]
+        public IWebElement PMLastCalibrationHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LastCalibrationDateID)]
+        public IWebElement LastCalibrationDate { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.CalibrationOverDueArrowID)]
+        public IWebElement CalibrationOverDueArrowe { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.CalibrationOverDueTextID)]
+        public IWebElement CalibrationOverDueText { get; set; }
 
         public bool NNewestLogsPresence(int n)
         {

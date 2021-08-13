@@ -11,6 +11,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
     {
         public static class Locators
         {
+            //Firmware status
             public const string AssetTypeDropdownId = "modelFilter";
             public const string ReportTypeDropdownId = "typeFilter";
             public const string GetReportButtonId = "getReport";
@@ -20,15 +21,46 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string InformationPopUpCloseButtonclassName = "ok";
             public const string InformationPopUpDataClassName = "para";
             public const string StatusLabelClassName = "key";
+            public const string FirmwareReportTitleID = "reportTitleHeader";
+            public const string PrintButtonID = "fs-print";
+            public const string DownloadButtonID = "fs-download";
+            public const string SearchBoxID = "search";
+
+            //Firmware Upgrade status(CSM) table elements
+            public const string SerialNumberHeadingID = "serialNo";
+            public const string FirmwareVerionHeadingID = "firmVer";
+            public const string LocationHeadingID = "loc";
+            public const string StatusHeadingID = "status";
+            public const string LastDeployedHeadingID = "lastDeploy";
+            public const string LastConnectedHeadingID = "lastConnect";
+            public const string TableHeaderClassName = "device-info-list";
+
+            //pagination
+            public const string PaginationNextIconID = "next";
+            public const string PaginationPreviousIconID = "previous";
+            public const string PaginationXofYClassName = "paginationMessage";
+            public const string PaginationDisplayXYClassName = "dataTables_info";
+
         }
         public static class ExpectedValues
         {
+            public const string FirmwareUpgradeStatusCSMLabel = "FIRMWARE UPGRADE STATUS (CSM)";
+            public const string FirmwareUpgradeStatusRV700Label = "FIRMWARE UPGRADE STATUS (RV700)";
+            //Firmware Upgrade status(CSM) table elements
+            public const string SerialNumberHeadingText = "Serial number";
+            public const string FirmwareVesrionHeadingText = "Firmware version";
+            public const string LocationHeadingText = "Location";
+            public const string StatusHeadingText = "Status";
+            public const string LastDeployedHeadingText = "Last deployed";
+            public const string LastConnectedHeadingText = "Last connected";
+
+            //Firmware status
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
             public const string Firmware = "Firmware Status";
             public const string CSMFirmwareStatusReportName = "Firmware_Status_Report.csv";
             public const string RV700FirmwareStatusReportName = "Firmware_Status_Report.csv";
-
+        
 
 
             //CSM firmware status information
@@ -58,6 +90,54 @@ namespace HillromAutomationFramework.Coding.PageObjects
             PageFactory.InitElements(PropertyClass.Driver, this);
         }
 
+        [FindsBy(How = How.Id, Using = Locators.FirmwareReportTitleID)]
+        public IWebElement FirmwareReportTitle { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PrintButtonID)]
+        public IWebElement PrintButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DownloadButtonID)]
+        public IWebElement DownloadButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.SearchBoxID)]
+        public IWebElement SearchBox { get; set; }
+
+        //Pagination
+        [FindsBy(How = How.Id, Using = Locators.PaginationPreviousIconID)]
+        public IWebElement PaginationPreviousIcon { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PaginationNextIconID)]
+        public IWebElement PaginationNextIcon { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.PaginationXofYClassName)]
+        public IWebElement PaginationXofY { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.PaginationDisplayXYClassName)]
+        public IWebElement PaginationDisplayXY { get; set; }
+
+        //Firmware Upgrade status table elements
+        [FindsBy(How = How.Id, Using = Locators.SerialNumberHeadingID)]
+        public IWebElement SerialNumberHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.FirmwareVerionHeadingID)]
+        public IWebElement FirmwareVerionHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LocationHeadingID)]
+        public IWebElement LocationHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.StatusHeadingID)]
+        public IWebElement StatusHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LastDeployedHeadingID)]
+        public IWebElement LastDeployedHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LastConnectedHeadingID)]
+        public IWebElement LastConnectedHeading { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.TableHeaderClassName)]
+        public IWebElement TableHeader { get; set; }
+
+        //Firmware status
         [FindsBy(How = How.Id, Using = Locators.InformationPopUpId)]
         public IWebElement InformationPopUp { get; set; }
 
@@ -85,6 +165,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.ClassName, Using = Locators.StatusLabelClassName)]
         public IList<IWebElement> StatusLabel { get; set; }
 
+
+
+        /// <summary>
+        /// Split the data from the information table into status and defination.
+        /// </summary>
+        /// <param name="statusData">string with all status and its defination</param>
+        /// <returns>Dictionary of status and defination pair</returns>
+
         public IDictionary<string, string> GetstatusTable(string statusData)
         {
             string[] splitRowdata = statusData.Split("\r\n");
@@ -99,7 +187,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             }
             return (statusDefinationPairs);
         }
-
+        /// <summary>
+        /// Gets the the status label of spefied row.
+        /// </summary>
+        /// <param name="row">Row number</param>
+        /// <returns>Status</returns>
         public string GetStatusLabel(int row)
         {
             return (StatusLabel[row].Text);

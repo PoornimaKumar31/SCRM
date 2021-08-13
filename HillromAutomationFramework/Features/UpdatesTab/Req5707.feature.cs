@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Features.UpdatesTab
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Software Requiremet 5707")]
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5707")]
     [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5707")]
-    public partial class SoftwareRequiremet5707Feature
+    public partial class SoftwareRequirement5707Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.UpdatesTab
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/UpdatesTab", "Software Requiremet 5707", "\tThe Customer Portal shall have a mechanism for canceling scheduled firmware upgr" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/UpdatesTab", "Software Requirement 5707", "\tThe Customer Portal shall have a mechanism for canceling scheduled firmware upgr" +
                     "ade to one or more CSM devices.", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5707"});
             testRunner.OnFeatureStart(featureInfo);

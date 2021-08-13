@@ -1,11 +1,10 @@
 ﻿using HillromAutomationFramework.Coding.PageObjects;
+using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.IO;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
@@ -16,8 +15,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly LoginPage loginPage = new LoginPage();
         private readonly LandingPage landingPage = new LandingPage();
         private readonly MainPage mainPage = new MainPage();
-        private readonly CSMConfigStatusPage csmConfigStatusPage = new CSMConfigStatusPage();
-        private readonly FirmwareStatusPage firmwareStatusPage = new FirmwareStatusPage();
+        private readonly ReportsPage reportsPage = new ReportsPage();
         private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private ScenarioContext _scenarioContext;
 
@@ -30,49 +28,52 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [When(@"user clicks on Download button")]
         public void WhenUserClicksOnDownloadButton()
         {
-            csmConfigStatusPage.DownloadButton.Click();
+            reportsPage.DownloadButton.Click();
         }
   
         [Given(@"user is on ""(.*)"" page")]
         public void GivenUserIsOnPage(string reportName)
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            /**
+             * Selecting the organization based on the report type. 
+             */
             switch(reportName.ToLower().Trim())
             {
                 case "csm configuration update status":
                     landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.ReportsTab.JavaSciptClick();
-                    csmConfigStatusPage.AssetTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMDeviceName);
-                    csmConfigStatusPage.ReportTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMConfigurationReport);
+                    reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+                    reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
                     break;
                 case "csm firmware upgrade status":
                     landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.ReportsTab.JavaSciptClick();
-                    csmConfigStatusPage.AssetTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.CSMDeviceName);
-                    csmConfigStatusPage.ReportTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.Firmware);
+                    reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+                    reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
                     break;
                 case "csm activity report":
                     landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.ReportsTab.JavaSciptClick();
-                    csmConfigStatusPage.AssetTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMDeviceName);
-                    csmConfigStatusPage.ReportTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMActivityReport);
+                    reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+                    reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
                     break;
                 case "rv700 firmware upgrade status":
                     landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.ReportsTab.JavaSciptClick();
-                    csmConfigStatusPage.AssetTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.RV700DeviceName);
-                    csmConfigStatusPage.ReportTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.Firmware);
+                    reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
+                    reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
                     break;
                 default:
                     Assert.Fail(reportName + " is a Invalid report type");
                     break;
             }
             
-            csmConfigStatusPage.GetReportButton.Click();
+            reportsPage.GetReportButton.Click();
         }
 
         [Then(@"""(.*)"" Report is downloaded as csv file")]
@@ -84,6 +85,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 case "configuration update status":
                     filename= CSMConfigStatusPage.ExpectedValues.CSMConfigurationStatusReportFileName;
                     break;
+
                 case "firmware status":
                     if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware status report"))
                     {
@@ -93,9 +95,14 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     {
                         filename = FirmwareStatusPage.ExpectedValues.RV700FirmwareStatusReportName;
                     }
+                    else
+                    {
+                        Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+                    }
                     break;
+
                 case "activity":
-                    filename = CSMConfigStatusPage.ExpectedValues.CSMActivityReportName;
+                    filename = ActivityReportPage.ExpectedValues.CSMActivityReportName;
                     break;
                 default: Assert.Fail(reportName + " is a invalid report name.");
                     break;
@@ -103,11 +110,5 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             Assert.AreEqual(true, GetMethods.IsFileDownloaded(filename,10),reportName + " file is not downloaded.");
             Assert.AreEqual(true, GetMethods.CheckFileFormat(".csv"), reportName+" file is not in .csv format.");
         }
-
-
-
-
-
-
     }
 }

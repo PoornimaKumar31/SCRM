@@ -1,5 +1,5 @@
 ﻿@SoftwareRequirementID_5706
-Feature: Software Requiremet 5706
+Feature: Software Requirement 5706
 	The Customer Portal shall have a mechanism for delivering scheduled firmware upgrade to one or more CSM devices.
 
 @TestCaseID_9166 @UISID_8698

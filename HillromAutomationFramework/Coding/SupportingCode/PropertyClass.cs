@@ -7,28 +7,35 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 {
     class PropertyClass
     {
-        //Initializing Driver
+        /// <summary>
+        /// WebDriver for operating the browser.
+        /// </summary>
         public static IWebDriver Driver { get; set; }
 
-        //Base URL
+        /// <summary>
+        /// Base URL of the application under test.
+        /// </summary>
         public static string BaseURL = Environment.GetEnvironmentVariable("BaseURL");
 
-        //Browser Name
+        /// <summary>
+        /// Name of the browser to run tests.
+        /// </summary>
         public static string BrowserName = Environment.GetEnvironmentVariable("BrowserName");
 
-        //Current Working Directory i.e. //bin
+        /// <summary>
+        /// Current Working Directory i.e. //bin
+        /// </summary>
         static readonly string workingDirectory = Environment.CurrentDirectory;
 
-        //Extent Report Path
-        readonly public static string extentReportPath = workingDirectory + "\\TestResults\\ExtentReport.html";
+        /// <summary>
+        /// Extent Report Path
+        /// </summary>
+        readonly public static string extentReportPath = workingDirectory + "\\TestResults\\index.html";
 
-       
-        // Configuration file path
-        public static readonly string configSettingPath = workingDirectory + "\\Configuration.json";
 
-        // Driver path
-        public static string driverPath = workingDirectory + "\\Drivers";
-
+        /// <summary>
+        /// Download folder path of the browser.
+        /// </summary>
         public static string DownloadPath = workingDirectory + "\\Downloads";
 
         // path in which Software Zip files are downloaded

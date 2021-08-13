@@ -20,6 +20,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string FacilityLabelID = "orgFilterLabel";
             public const string AssetTypeLabelID = "asset_type";
             public const string ReportTypeLabelID = "report_type";
+            public const string DownloadButtonXpath = "//button[text()='Download']";
+            public const string InformationButtonXpath = "//button[text()='Information']";
+            public const string PrintButtonXpath = "//button[text()='Print']";
         }
 
         public static class ExpectedValues
@@ -62,7 +65,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locator.GetReportButtonID)]
         public IWebElement GetReportButton { get; set; }
 
+        [FindsBy(How = How.XPath, Using = Locator.InformationButtonXpath)]
+        public IWebElement InformationButton { get; set; }
 
+        [FindsBy(How = How.XPath, Using = Locator.DownloadButtonXpath)]
+        public IWebElement DownloadButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.PrintButtonXpath)]
+        public IWebElement PrintButton { get; set; }
     }
 }
 
