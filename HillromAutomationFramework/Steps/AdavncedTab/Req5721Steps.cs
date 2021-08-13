@@ -60,6 +60,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             advancePage.AdvancedTab.JavaSciptClick();
             int TotalUser = advancePage.DetailsButton.Count;
             Assert.Greater(TotalUser, NoOfMinimumEntries, "Manager user is on User Management page is not more than two entries");
@@ -138,6 +139,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             advancePage.AdvancedTab.JavaSciptClick();
             DetailsButtonCount = advancePage.UserClicksDetailsButtonForOtherUserRecord(DetailsButtonCount);
         }
