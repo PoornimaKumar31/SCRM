@@ -224,9 +224,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
             // Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(15));
-            wait.Message = "Login page is not loaded. Selenium could not find the hillrom logo.";
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(15))
+            {
+                Message = "Login page is not loaded. Selenium could not find the hillrom logo."
+            };
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            wait.Message = "Landing page organization is not loaded.";
             switch(Type)
             {
                 case LogInType.AdminWithRollUpPage:

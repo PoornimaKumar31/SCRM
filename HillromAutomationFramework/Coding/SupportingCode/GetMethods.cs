@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
@@ -164,5 +165,71 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                 return false;
             }
         }
+
+        /// <summary>
+        /// Generaye Random string of specified length.
+        /// </summary>
+        /// <param name="stringSize">String size</param>
+        /// <returns>Random string of size stringSize</returns>
+        public static string GenerateRandomString(int stringSize)
+        {
+            int length = stringSize;
+            StringBuilder str_build = new StringBuilder();
+            Random random = new Random();
+            string str = "";
+            char letter;
+
+            for (int i = 0; i < length; i++)
+            {
+                double flt = random.NextDouble();
+                int shift = Convert.ToInt32(Math.Floor(25 * flt));
+                letter = Convert.ToChar(shift + 65);
+                str = str + letter.ToString();
+            }
+            return str;
+        }
+
+        /// <summary>
+        /// Generate random username.
+        /// </summary>
+        /// <param name="stringSize">String size</param>
+        /// <returns>Random string of size stringSize</returns>
+        public static string GenerateRandomUsername(int stringSize)
+        {
+            int length = stringSize;
+            StringBuilder str_build = new StringBuilder();
+            Random random = new Random();
+            string str = "";
+            char letter;
+
+            for (int i = 0; i < length; i++)
+            {
+                double flt = random.NextDouble();
+                int shift = Convert.ToInt32(Math.Floor(25 * flt));
+                letter = Convert.ToChar(shift + 65);
+                str = str + letter.ToString();
+            }
+
+            string str2 = "@hillrom.com";
+            str2 = str.ToLower() + str2;
+            return str2;
+        }
+
+        /// <summary>
+        /// Generate random mobile number.
+        /// </summary>
+        /// <param name="size">mobile number size.</param>
+        /// <returns>Random mobile number of size</returns>
+        public static string GenerateRandomMobileNumber(int size)
+        {
+            Random ran = new Random();
+            int RandomNumber = ran.Next(size);
+            string Prefix = "+919";
+            string str = RandomNumber.ToString();
+            string MobileNumber = Prefix + str;
+            return MobileNumber;
+        }
+
+
     }
 }
