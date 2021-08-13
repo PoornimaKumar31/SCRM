@@ -66,10 +66,6 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     SearchText = CSMConfigStatusPage.ExpectedValues.LastDeployedSearchText;
                     break;
 
-                case "last connected":
-                    SearchText = CSMConfigStatusPage.ExpectedValues.LastConnectedSearchText;
-                    break;
-
                 default: Assert.Fail(searchType + " is a invalid search type.");
                     break;
             }
@@ -116,11 +112,6 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 case "last deployed":
                     column = csmConfigStatusPage.LastDeployedColumn;
                     ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.LastDeployedSearchText;
-                    break;
-
-                case "last connected":
-                    column = csmConfigStatusPage.LastConnectedColumn;
-                    ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.LastConnectedSearchText ;
                     break;
 
                 default: Assert.Fail(searchType + " is a invalid search type.");

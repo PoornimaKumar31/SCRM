@@ -12,7 +12,7 @@ Scenario: CSM Report Type Dropdown Content
 	Given user is on Reports page
 	And CSM Asset type is selected
 	When user clicks report type dropdown
-	Then Report type dropdown displays "Usage, Firmware version, CFG Update Status, Firmware status, Activity"
+	Then Report type dropdown displays "Usage, Firmware version, CFG Update Status, Firmware status, Activity, Access Point Locations"
 
 @TestCaseID_9373 @UISID_8684 @UISID_8686
 Scenario: CSM Usage Report Elements
@@ -71,9 +71,9 @@ Scenario: CSM Firmware Version Report Elements
 Scenario: CSM Firmware Version Report Table Toggle
 	Given user is on CSM Firmware Version Report page
 	When user clicks Total row
-	Then rows below Total are hidden
+	Then rows below Total are displayed
 	When user clicks unit row
-	Then assets for unit are hidden
+	Then assets for unit are displayed
 
 @TestCaseID_9378 @UISID_8684 @UISID_8687
 Scenario: CSM Firmware Version Report Print

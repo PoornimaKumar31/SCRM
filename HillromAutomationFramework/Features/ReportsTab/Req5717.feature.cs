@@ -122,7 +122,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 15
  testRunner.Then("Report type dropdown displays \"Usage, Firmware version, CFG Update Status, Firmwa" +
-                        "re status, Activity\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                        "re status, Activity, Access Point Locations\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -477,13 +477,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks Total row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 74
- testRunner.Then("rows below Total are hidden", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("rows below Total are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 75
  testRunner.When("user clicks unit row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 76
- testRunner.Then("assets for unit are hidden", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("assets for unit are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -79,16 +79,16 @@ namespace HillromAutomationFramework.Features.ReportsTab
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Configuration Status report")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.DescriptionAttribute("CSM Configuration Status Report Download")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9401")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void CSMConfigurationStatusReport()
+        public virtual void CSMConfigurationStatusReportDownload()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9401",
                     "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Status report", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Status Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -123,16 +123,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Firmware Status report")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.DescriptionAttribute("CSM Firmware Status Report Download")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9402")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void CSMFirmwareStatusReport()
+        public virtual void CSMFirmwareStatusReportDownload()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9402",
                     "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Firmware Status report", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Firmware Status Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 16
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -167,16 +167,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Activity report")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.DescriptionAttribute("CSM Activity Report Download")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9403")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void CSMActivityReport()
+        public virtual void CSMActivityReportDownload()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9403",
                     "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Activity report", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Activity Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 22
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -211,16 +211,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV700 Firmware Status report")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.DescriptionAttribute("RV700 Firmware Status Report Download")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9404")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void RV700FirmwareStatusReport()
+        public virtual void RV700FirmwareStatusReportDownload()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9404",
                     "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Firmware Status report", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Firmware Status Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 28
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

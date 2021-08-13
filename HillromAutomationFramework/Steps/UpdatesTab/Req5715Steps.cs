@@ -66,12 +66,6 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             Assert.AreEqual(true, updatesSelectUpdatePage.FileTableList.GetElementVisibility(),"Rv700 upgrade list is not displayed.");
         }
         
-        [Then(@"Manage Active Updates button is displayed")]
-        public void ThenManageActiveUpdatesButtonIsDisplayed()
-        {
-            Assert.AreEqual(true, updatesSelectUpdatePage.ManageActiveUpgradesButton.GetElementVisibility(),"Manage active upgrades button is not displayed.");
-        }
-        
         [Then(@"Name column heading is displayed")]
         public void ThenNameColumnHeadingIsDisplayed()
         {
@@ -139,26 +133,17 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
         }
 
         [Given(@"user is on RV700 Updates page with ""(.*)"" entries")]
-        public void GivenUserIsOnRVUpdatesPageWithEntries(string p1)
+        public void GivenUserIsOnRVUpdatesPageWithEntries(string entries)
         {
+            int ExpectedNoOfEntires=0;
             GivenUserIsOnRVUpdatesPage();
             updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
-        }
-
-        [When(@"first (.*) entries are displayed")]
-        public void WhenFirstEntriesAreDisplayed(int noOfEntries)
-        {
+            if(entries.Trim().Equals("<=50"))
+            {
+                ExpectedNoOfEntires = 50;
+            }
             int ActualNumberOfEntries = updatesSelectUpdatePage.RV700FileNameList.GetElementCount();
-            Assert.AreEqual(noOfEntries, ActualNumberOfEntries, "Only " + ActualNumberOfEntries + " entries are displayed");
-        }
-
-        [Then(@"Next page icon is enabled")]
-        public void ThenNextPageIconIsEnabled()
-        {
-            //Checking the image source
-            string ActualNextPageIconState = updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            string ExpectedNextPageIconState = PropertyClass.BaseURL+UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconEnabledSource;
-            Assert.AreEqual(ExpectedNextPageIconState, ActualNextPageIconState, "Next page icon is not enabled.");
+            Assert.LessOrEqual(ActualNumberOfEntries,ExpectedNoOfEntires, ActualNumberOfEntries + " entries are displayed");
         }
 
         [Then(@"Previous page icon is disabled")]
@@ -167,20 +152,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             //Checking the image source
             string ActualPreviousPageIconState = updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
             string ExpectedPreviousPageIconState = PropertyClass.BaseURL + UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource;
-            Assert.AreNotEqual(ExpectedPreviousPageIconState, ActualPreviousPageIconState, "Previous page icon is not disabled.");
-        }
-
-        [When(@"user clicks Next page button")]
-        public void WhenUserClicksNextPageButton()
-        {
-            updatesSelectUpdatePage.PaginationNextIcon.Click();
-        }
-
-        [Then(@"second page of entries is displayed")]
-        public void ThenSecondPageOfEntriesIsDisplayed()
-        {
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.SecondPageNumber, updatesSelectUpdatePage.PaginationXofY.Text,"user is not on the second page");
-            Assert.Greater(updatesSelectUpdatePage.RV700FileNameList.GetElementCount(), 0, "Second page entries are not displayed.");
+            Assert.AreEqual(ExpectedPreviousPageIconState, ActualPreviousPageIconState, "Previous page icon is not disabled.");
         }
 
         [Then(@"Next page icon is disabled")]
@@ -189,15 +161,6 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             string ActualNextPageIconState = updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
             string ExpectedNextPageIconState = PropertyClass.BaseURL + UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource;
             Assert.AreEqual(ExpectedNextPageIconState, ActualNextPageIconState, "Next page icon is not disabled.");
-        }
-
-        [Then(@"Previous page icon is enabled")]
-        public void ThenPreviousPageIconIsEnabled()
-        {
-            //Checking the image source
-            string ActualPreviousPageIconState = updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            string ExpectedPreviousPageIconState = PropertyClass.BaseURL + UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconEnabledSource;
-            Assert.AreNotEqual(ExpectedPreviousPageIconState, ActualPreviousPageIconState, "Previous page icon is not enabled.");
         }
 
         [Given(@"Upgrade Update type is selected")]
@@ -274,8 +237,8 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
                     ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.RV700DeviceName;
                     break;
                 case "update type":
-                    label = updateSelectDevicesPage.TypeOfUpdateUpgradeLabel;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.UpgradeLabelText;
+                    label = updateSelectDevicesPage.TypeofUpdateConfigLabel;
+                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText;
                     break;
                 case "upgrade file to push":
                     label = updateSelectDevicesPage.FileName;

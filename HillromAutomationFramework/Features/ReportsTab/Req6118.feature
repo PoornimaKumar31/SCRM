@@ -19,9 +19,9 @@ Scenario: RV700 Firmware Version Report Elements
 Scenario: RV700 Firmware Version Report Table Toggle
 	Given user is on RV700 Firmware Version Report page
 	When user clicks Total row
-	Then rows below Total are hidden
+	Then rows below Total are displayed
 	When user clicks unit row
-	Then assets for unit are hidden
+	Then assets for unit are displayed
 
 @TestCaseID_9419 @UISID_8684 @UISID_8687
 Scenario: RV700 Firmware Version Report Print

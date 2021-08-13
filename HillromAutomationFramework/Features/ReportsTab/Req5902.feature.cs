@@ -79,12 +79,12 @@ namespace HillromAutomationFramework.Features.ReportsTab
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM CFG Update Serial Number Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9657")]
         [NUnit.Framework.CategoryAttribute("UISID_8688")]
         public virtual void CSMCFGUpdateSerialNumberSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9657",
                     "UISID_8688"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM CFG Update Serial Number Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -126,12 +126,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM CFG Update Configuration Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9658")]
         [NUnit.Framework.CategoryAttribute("UISID_8688")]
         public virtual void CSMCFGUpdateConfigurationSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9658",
                     "UISID_8688"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM CFG Update Configuration Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -173,12 +173,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM CFG Update Location Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9659")]
         [NUnit.Framework.CategoryAttribute("UISID_8688")]
         public virtual void CSMCFGUpdateLocationSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9659",
                     "UISID_8688"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM CFG Update Location Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -220,12 +220,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM CFG Update Status Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9660")]
         [NUnit.Framework.CategoryAttribute("UISID_8688")]
         public virtual void CSMCFGUpdateStatusSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9660",
                     "UISID_8688"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM CFG Update Status Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -307,53 +307,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 38
  testRunner.Then("device with the matching \"Last deployed\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM CFG Update Status Last connected Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
-        [NUnit.Framework.CategoryAttribute("UISID_8688")]
-        public virtual void CSMCFGUpdateStatusLastConnectedSearch()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
-                    "UISID_8688"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM CFG Update Status Last connected Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 41
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 42
- testRunner.Given("user is on CSM CONFIGURATION UPDATE STATUS page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 43
- testRunner.When("user type \"Last connected\" in search textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 44
- testRunner.And("press enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 45
- testRunner.Then("device with the matching \"Last connected\" is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

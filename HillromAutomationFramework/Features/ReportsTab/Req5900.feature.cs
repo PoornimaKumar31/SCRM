@@ -78,16 +78,16 @@ namespace HillromAutomationFramework.Features.ReportsTab
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Search box content")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.DescriptionAttribute("CSM Activity Search")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9653")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
-        public virtual void SearchBoxContent()
+        public virtual void CSMActivitySearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9653",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search box content", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Activity Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -120,12 +120,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Activity Serial Number Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9654")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
         public virtual void CSMActivitySerialNumberSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9654",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Activity Serial Number Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -167,12 +167,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Activity Location Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9655")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
         public virtual void CSMActivityLocationSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9655",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Activity Location Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -214,12 +214,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Activity Last Vital Sent Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9656")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
         public virtual void CSMActivityLastVitalSentSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9656",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Activity Last Vital Sent Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

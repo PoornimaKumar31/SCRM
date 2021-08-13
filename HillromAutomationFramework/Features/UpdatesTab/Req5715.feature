@@ -9,7 +9,6 @@ Scenario: RV700 Upgrade Elements
 	When user selects Upgrade Update type
 	Then Upgrade displays as Update type
 	And RV700 upgrade list is displayed
-	And Manage Active Updates button is displayed
 	And Name column heading is displayed
 	And Date created column heading is displayed
 	And Next button is disabled
@@ -17,15 +16,11 @@ Scenario: RV700 Upgrade Elements
 	And Displaying x to y of z results label is displayed
 
 @TestCaseID_9406 @UISID_8696 @UISID_8669
-Scenario: RV700 Upgrade files Greater Than 50 and Less Than or Equal to 100 Next
-	Given user is on RV700 Updates page with ">50 and <=100" entries
-	When first 50 entries are displayed
-	Then Next page icon is enabled
+Scenario: RV700 Upgrade Less Than or Equal to 50
+	Given user is on RV700 Updates page with "<=50" entries
+	Then Next page icon is disabled
 	And Previous page icon is disabled
-	When user clicks Next page button
-	Then second page of entries is displayed
-	And Next page icon is disabled
-	And Previous page icon is enabled
+	
 
 @TestCaseID_9407 @UISID_8697
 Scenario: RV700 Upgrade Selected

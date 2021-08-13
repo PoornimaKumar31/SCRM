@@ -105,10 +105,10 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             firmwareVersionPage.TotalRow.Click();
         }
 
-        [Then(@"rows below Total are hidden")]
-        public void ThenRowsBelowTotalAreHidden()
+        [Then(@"rows below Total are displayed")]
+        public void ThenRowsBelowTotalAreDisplayed()
         {
-            Assert.IsFalse(firmwareVersionPage.TotalRowDetails.GetElementVisibility(),"Rows below total are not hidden.");
+            Assert.True(firmwareVersionPage.TotalRowDetails.GetElementVisibility(),"Rows below total are hidden.");
         }
 
         [When(@"user clicks unit row")]
@@ -117,10 +117,10 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             firmwareVersionPage.Unit1Row.Click();
         }
 
-        [Then(@"assets for unit are hidden")]
-        public void ThenAssetsForUnitAreHidden()
+        [Then(@"assets for unit are displayed")]
+        public void ThenAssetsForUnitAreDisplayed()
         {
-            Assert.IsFalse(firmwareVersionPage.Unit1RowDetails.GetElementVisibility(),"Assets for unit are displayed.");
+            Assert.True(firmwareVersionPage.Unit1RowDetails.GetElementVisibility(),"Assets for unit are hidden.");
         }
 
         [When(@"user clicks Print button")]

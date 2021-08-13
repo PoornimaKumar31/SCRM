@@ -366,20 +366,16 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenAssetsForUnitAreHidden()
         {
             //Checking the visibility of entire device table
-            if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm usage report table toggle"))
-            {
                 Assert.AreEqual(false, usageReportPage.Station1Devices.GetElementVisibility(), "Assets for units are not hidden");
-            }
-            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware version report table toggle"))
-            {
-                Assert.AreEqual(false, firmwareVersionPage.Unit1RowDetails.GetElementVisibility(),"Unit 1 rows are displayed");
-            }
-            else
-            {
-                //If this test step does not belong to any scenario
-                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
-            }
         }
+
+        [Then(@"assets for unit are displayed")]
+        public void ThenAssetsForUnitAreDisplayed()
+        {
+            Assert.AreEqual(true, firmwareVersionPage.Unit1RowDetails.GetElementVisibility(), "Unit 1 rows are displayed");
+        }
+
+
 
         [Given(@"Firmware Version Report type is selected")]
         public void GivenFirmwareVersionReportTypeIsSelected()
@@ -430,10 +426,10 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             firmwareVersionPage.TotalRow.Click();
         }
 
-        [Then(@"rows below Total are hidden")]
-        public void ThenRowsBelowTotalAreHidden()
+        [Then(@"rows below Total are displayed")]
+        public void ThenRowsBelowTotalAreDisplayed()
         {
-            Assert.AreEqual(false, firmwareVersionPage.TotalRowDetails.GetElementVisibility(), message: "Rows below table are displayed.");
+            Assert.AreEqual(true, firmwareVersionPage.TotalRowDetails.GetElementVisibility(), message: "Rows below table are displayed.");
         }
 
         [When(@"user clicks Print button")]
