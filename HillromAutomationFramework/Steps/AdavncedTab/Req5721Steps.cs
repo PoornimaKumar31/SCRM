@@ -21,27 +21,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         AdvancedPage advancePage = new AdvancedPage();
         string RandomFullNameLessThan50_49char = "";
         string UserNameGreaterThan50_51char = "";
-        //string RandomPhoneNumberGreaterThan10_10Digits = "";
         string RandomPhoneNumber10_10Digits = "";
         string ActualFullName = "";
-        //string ActualRole = "";
-        //string ActualUserName = "";
         string BlankFullName = "";
         int TenDigitRandomMobileNumber = 1000000000;
-        //string TenDigit = "";
-        //int count = 0;
-        //bool IsSelected;
         int DetailsButtonCount;
 
-        //TableRow details
-        //string ExpectedFullName = "";
-        //string ExpectedUsername = "";
-        //string ExpectedRole = "";
-        //string ExpectedPhoneNumber = "";
-
         string UpdatedFullName = "";
-        //string UpdatedUsername = "";
-        //string UpdatedRole = "";
         string UpdatedPhoneNumber = "";
         string RoleXpath = "";
         bool IsCheckBoxSelected;
@@ -176,18 +162,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         }
 
         [Then(@"phone number error message is not displayed")]
-        public void ThenErrorMessageIsNotDisplayed()
+        public void ThenPhoneNumberErrorMessageIsNotDisplayed()
         {
-            if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("edit user full name"))
-            {
-                bool visibility = advancePage.NameFieldErrorMessage.GetElementVisibility();
-                Assert.AreEqual(false, visibility, "Please enter a valid name error message is displayed");
-            }
-            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("edit user phone number"))
-            {
-                bool Visibility = advancePage.PhoneErrorMessage.GetElementVisibility();
-                Assert.IsFalse(Visibility, "Element is not displayed");
-            }
+           
+            bool Visibility = advancePage.PhoneErrorMessage.GetElementVisibility();
+            Assert.IsFalse(Visibility, "Element is not displayed");
         }
 
         [Then(@"Save button enabled")]
