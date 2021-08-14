@@ -138,7 +138,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [When(@"user clicks Print button")]
         public void WhenUserClicksPrintButton()
         {
-            cvsmUsageReportPage.PrintButton.Click();
+            cvsmUsageReportPage.PrintButton.JavaSciptClick();
         }
 
         [Then(@"browser’s built-in print dialog is displayed")]

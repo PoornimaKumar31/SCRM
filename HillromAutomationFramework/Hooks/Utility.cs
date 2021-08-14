@@ -99,9 +99,15 @@ namespace HillromAutomationFramework.Hooks
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
                 chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
-               
+
                 //Headless chrome (without opening chrome browser run test cases internally)
-                chromeOptions.AddArgument("--headless");
+                //chromeOptions.AddArgument("--headless");
+
+                //for print plugin
+                chromeOptions.AddUserProfilePreference("plugins.plugins_disabled", new[] {
+                "Adobe Flash Player",
+                "Chrome PDF Viewer"
+                });
 
                 // Setting up the chrome driver
                 PropertyClass.Driver = new ChromeDriver(chromeOptions);

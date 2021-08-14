@@ -69,6 +69,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LocationHeadingText = "Location";
             public const string LastFilesDeployedHeadingText = "Last Files Deployed";
 
+            //Pagination
+            public static string PaginationPreviousIconDisabledSrc = PropertyClass.BaseURL + "/left_disabled.png";
+            public static string PaginationNextIconDisabledSrc = PropertyClass.BaseURL + "/right_disabled.png";
+
             //Message
             public const string UpdateMessageText = "Update process has been established";
         }

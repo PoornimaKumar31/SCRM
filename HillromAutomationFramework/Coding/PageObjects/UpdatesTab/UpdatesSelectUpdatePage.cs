@@ -74,10 +74,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string NonHighlightedHeadingColor = "rgba(68, 68, 68, 1)";
 
             //Pagination
-            public const string PaginationNextIconEnabledSource = "/icon_page_next.svg";
-            public const string PaginationNextIconDiabledSource = "/right_disabled.png";
-            public const string PaginationPreviousIconEnabledSource = "/icon_page_previous.svg";
-            public const string PaginationPreviousIconDiabledSource = "/left_disabled.png";
+            public static string PaginationNextIconEnabledSource = PropertyClass.BaseURL+"/icon_page_next.svg";
+            public static string PaginationNextIconDiabledSource = PropertyClass.BaseURL + "/right_disabled.png";
+            public static string PaginationPreviousIconEnabledSource = PropertyClass.BaseURL + "/icon_page_previous.svg";
+            public static string PaginationPreviousIconDiabledSource = PropertyClass.BaseURL + "/left_disabled.png";
             public const string SecondPageNumber = "Page 2 of 2";
 
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";

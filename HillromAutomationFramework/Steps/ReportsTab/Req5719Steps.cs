@@ -87,11 +87,11 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     break;
 
                 case "firmware status":
-                    if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware status report"))
+                    if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware status report download"))
                     {
                         filename = FirmwareStatusPage.ExpectedValues.CSMFirmwareStatusReportName;
                     }
-                    else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 firmware status report"))
+                    else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 firmware status report download"))
                     {
                         filename = FirmwareStatusPage.ExpectedValues.RV700FirmwareStatusReportName;
                     }

@@ -435,7 +435,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             }
             Assert.AreEqual(true, Heading.GetElementVisibility(), Heading+" is not displayed.");
             string ActualHeadingText = Heading.Text;
-            Assert.AreEqual(ExpectedHeadingText, ActualHeadingText, HeadingName+" text is not matxhing with the expected value.");
+            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText.ToLower(), HeadingName+" text is not matxhing with the expected value.");
         }
 
         [Then(@"Select all checkbox is in column (.*)")]

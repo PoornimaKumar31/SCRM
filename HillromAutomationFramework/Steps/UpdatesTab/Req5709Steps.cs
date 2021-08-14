@@ -134,7 +134,7 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, serviceMoniterPage.CallHomePeroidLabel.GetElementVisibility(), "Call home period label is not displayed.\n");
             string ActualLabel = serviceMoniterPage.CallHomePeroidLabel.Text;
             string ExpectedLabel = ServiceMonitorPage.ExpectedValues.CallHomePeriodLabel;
-            Assert.AreEqual(ExpectedLabel, ActualLabel, "Call home period label text does not match with the expected text.\n");
+            Assert.AreEqual(ExpectedLabel.ToLower(), ActualLabel.ToLower(), "Call home period label text does not match with the expected text.\n");
         }
 
         [Then(@"Call home period dropdown is displayed")]
@@ -246,7 +246,7 @@ namespace HillromAutomationFramework.Steps.Updates
             }
             Assert.AreEqual(true, headingElement.GetElementVisibility(), headingName+" is not displayed");
             string ActualHeadingText = headingElement.Text;
-            Assert.AreEqual(ExpectedHeadingText, ActualHeadingText, headingName+"is not matching with the expected value");
+            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText.ToLower(), headingName+"is not matching with the expected value");
 
         }
 
@@ -291,19 +291,17 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Previous page icon is disabled")]
         public void ThenPreviousPageIconIsDisabled()
         {
-            String PageNumberBeforeClick = serviceMoniterPage.PaginationXofY.Text;
-            serviceMoniterPage.PaginationPreviousButton.JavaSciptClick();
-            string PageNumberAfterClick = serviceMoniterPage.PaginationXofY.Text;
-            Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Previous page button is enabled");
+            String ActualPreviousIconPageNumberImage = serviceMoniterPage.PaginationPreviousButton.FindElement(By.TagName("img")).GetAttribute("src");
+            String ExpectedIconImage = ServiceMonitorPage.ExpectedValues.PaginationPreviousIconDisabledSrc;
+            Assert.AreEqual(ExpectedIconImage, ActualPreviousIconPageNumberImage, "Previous page button is enabled");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
-            String PageNumberBeforeClick = serviceMoniterPage.PaginationXofY.Text;
-            serviceMoniterPage.PaginationNextButton.JavaSciptClick();
-            string PageNumberAfterClick = serviceMoniterPage.PaginationXofY.Text;
-            Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page button is enabled");
+            String ActualPreviousIconPageNumberImage = serviceMoniterPage.PaginationNextButton.FindElement(By.TagName("img")).GetAttribute("src");
+            String ExpectedIconImage = ServiceMonitorPage.ExpectedValues.PaginationNextIconDisabledSrc;
+            Assert.AreEqual(ExpectedIconImage, ActualPreviousIconPageNumberImage, "Previous page button is enabled");
         }
 
         [Then(@"Next page icon is enabled")]

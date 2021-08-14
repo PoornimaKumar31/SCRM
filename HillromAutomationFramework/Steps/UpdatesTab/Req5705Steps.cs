@@ -128,28 +128,25 @@ namespace HillromAutomationFramework.Steps.Updates
         [Then(@"Previous page icon is disabled")]
         public void ThenPreviousPageIconIsDisabled()
         {
-            string PageNumberBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationPreviousIcon.JavaSciptClick();
-            string PageNumberAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Previous page icon is not disabled.");
+            string PreviousPageIconImageSrc = updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src"); 
+            string ExpectedImageSrc = UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource;
+            Assert.AreEqual(ExpectedImageSrc,PreviousPageIconImageSrc, "Previous page icon is not disabled.");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
-            string PageNumberBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationNextIcon.JavaSciptClick();
-            string PageNumberAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page icon is not disabled.");
+            string NextPageIconImageSrc = updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
+            string ExpectedImageSrc = UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource;
+            Assert.AreEqual(ExpectedImageSrc, NextPageIconImageSrc, "Next page icon is not disabled.");
         }
 
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
         {
-            string PageNumberBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationNextIcon.JavaSciptClick();
-            string PageNumberAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page icon is not disabled.");
+            string NextPageIconImageSrc = updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
+            string ExpectedImageSrc = UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconEnabledSource;
+            Assert.AreEqual(ExpectedImageSrc, NextPageIconImageSrc, "Next page icon is disabled.");
         }
 
         [When(@"first (.*) entries are displayed")]
@@ -162,7 +159,8 @@ namespace HillromAutomationFramework.Steps.Updates
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
         {
-            updatesSelectUpdatePage.PaginationNextIcon.Click();
+            Thread.Sleep(1000);
+            updatesSelectUpdatePage.PaginationNextIcon.JavaSciptClick();
         }
 
         [Then(@"second page of entries is displayed")]
@@ -170,7 +168,7 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             SetMethods.ScrollToBottomofWebpage();
             string PageNumber = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreEqual("Page 2 of 2", PageNumber, "User is not on second page");
+            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.SecondPageNumber, PageNumber, "User is not on second page");
             Assert.AreEqual(true, updatesSelectUpdatePage.FileNameList.GetElementCount() > 0, "Next page entries are not displayed.");
         }
 

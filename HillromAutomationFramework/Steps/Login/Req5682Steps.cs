@@ -67,7 +67,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"user will login successfully")]
         public void ThenUserWillLoginSuccessfully()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LandingPage.Locator.LNTAutomatedEyeTestOrganizationTitleXPath)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedTestEastOrganizationTitleXPath)));
             string actualTitle = PropertyClass.Driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
             Assert.AreEqual(expectedTitle, actualTitle,"User is not on the landing page"); //Compare the title
