@@ -95,19 +95,19 @@ namespace HillromAutomationFramework.Hooks
                 ChromeOptions chromeOptions = new ChromeOptions();
                 //for incognito mode
                 chromeOptions.AddArgument("--incognito");
-                
+
+                // Maximize the window
+                chromeOptions.AddArgument("start-maximized");
+
+                //for full screen
+                //chromeOptions.AddArgument("start-fulscreen");
+
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
                 chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
 
                 //Headless chrome (without opening chrome browser run test cases internally)
                 //chromeOptions.AddArgument("--headless");
-
-                //for print plugin
-                chromeOptions.AddUserProfilePreference("plugins.plugins_disabled", new[] {
-                "Adobe Flash Player",
-                "Chrome PDF Viewer"
-                });
 
                 // Setting up the chrome driver
                 PropertyClass.Driver = new ChromeDriver(chromeOptions);
@@ -125,7 +125,13 @@ namespace HillromAutomationFramework.Hooks
                 //for setting download directory
                 edgeoptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
                 edgeoptions.AddUserProfilePreference("download.prompt_for_download", false);
-               
+
+                // Maximize the window
+                edgeoptions.AddArgument("start-maximized");
+
+                //for full screen
+                //edgeoptions.AddArgument("start-fulscreen");
+
                 //Headless(without opening edge browser,run the test internally)
                 //edgeoptions.AddArgument("--headless");
 
@@ -138,7 +144,7 @@ namespace HillromAutomationFramework.Hooks
                 Environment.Exit(1);
             }
             
-            PropertyClass.Driver.Manage().Window.Maximize(); // Maximize the window
+            
             PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20); // Implicit wait for 15 seconds
         }
 
