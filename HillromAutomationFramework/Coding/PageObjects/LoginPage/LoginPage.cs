@@ -212,14 +212,23 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement SupportedBrowserclosebutton { get; set; }
 
 
-        //to specify the login Type
+        /// <summary>
+        /// To specify the login Type
+        /// </summary>
         public enum LogInType
         {
+            //Adminstrator user with roll-up page
             AdminWithRollUpPage,
+            //Administrator user without roll-up page
             AdminWithOutRollUpPage,
+            //Standard User without rill-up page
             StandardUserWithoutRollUpPage
         }
 
+        /// <summary>
+        /// Login to the application based on login type.
+        /// </summary>
+        /// <param name="Type">Login type(Manager user or standard user)</param>
         public void LogIn(LogInType Type)
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
@@ -228,8 +237,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             {
                 Message = "Login page is not loaded. Selenium could not find the hillrom logo."
             };
+            //Wait till Login page is loaded.
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            //Wait message for the Landing page.               
             wait.Message = "Landing page organization is not loaded.";
+            ///Login based on user type.
             switch(Type)
             {
                 case LogInType.AdminWithRollUpPage:

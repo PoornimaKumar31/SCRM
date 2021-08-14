@@ -54,12 +54,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LNTAutomatedTestEastOrganizationTitle = "L&T Automated Test East";
             public const string LNTAutomatedTestEastOrganizationFacilityTest4 = "Test4";
 
-            //Organization2 details
+            ///L&T Automated Test Organization details
             public const string LNTAutomatedTestOrganizationTitle = "L&T Automated Test";
             public const string LNTAutomatedTestOrganizationFacilityTest1 = "Test1";
             public const string LNTAutomatedTestOrganizationFacilityTest2 = "Test2";
 
-            //Organizaion3 details
+            //L&T Automated Eye Test Organization
             public const string LNTAutomatedEyeTestOrganizationTitle = "LT Automated Eye Test";
             public const string LNTAutomatedEyeTestOrganizationFacilityTest1 = "Test1";
         }
@@ -89,11 +89,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
 
 
-        // //L&T Automated Test Organization
+        ///L&T Automated Test Organization
         [FindsBy(How = How.XPath, Using = Locator.LNTAutomatedTestOrganizationTitleXPath)]
         public IWebElement LNTAutomatedTestOrganizationTitle { get; set; }
 
-        //L&T Automated Test Organization facility test1
+        ///L&T Automated Test Organization facility test1
         [FindsBy(How = How.XPath, Using = Locator.LNTAutomatedTestOrganizationFacilityTest1TitleXPath)]
         public IWebElement LNTAutomatedTestOrganizationFacilityTest1Title { get; set; }
 
@@ -103,7 +103,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locator.Organization1Facility0DeviceID)]
         public IWebElement Organization1Facility0Device { get; set; }
 
-        ////L&T Automated Test Organization facility test2
+        ///L&T Automated Test Organization facility test2
         [FindsBy(How = How.XPath, Using = Locator.LNTAutomatedTestOrganizationFacilityTest2TitleXPath)]
         public IWebElement LNTAutomatedTestOrganizationFacilityTest2Title { get; set; }
 

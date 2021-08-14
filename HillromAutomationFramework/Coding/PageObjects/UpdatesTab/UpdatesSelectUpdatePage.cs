@@ -236,8 +236,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement ManageUpgradesMessage { get; set; }
 
 
-
-        //Fuction to check the deleted file is present or not in the list
+        /// <summary>
+        /// Fuction to check the deleted file is present or not in the list.
+        /// </summary>
+        /// <param name="rowname">Name of the file deleted</param>
+        /// <returns></returns>
         public bool IsFilePresent(string rowname)
         {
             foreach (IWebElement file in FileNameList)
@@ -252,7 +255,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             return (false);
         }
 
-        //Function to check the sorting of files
+        /// <summary>
+        /// Function to check the sorting of files
+        /// </summary>
+        /// <param name="elements">List of Iwebelements</param>
+        /// <returns></returns>
         public bool IsFileSorted(IList<IWebElement> elements)
         {
             List<string> fileListName = new List<string>();

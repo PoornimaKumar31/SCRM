@@ -428,7 +428,6 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
         [Then(@"Confirm button is enabled")]
         public void ThenConfirmButtonIsEnabled()
         {
-            //Assert.IsTrue(updateReviewActionPage.ConfirmButton.Enabled, "Confirm buton is disabled.");
             bool IsConfirmButtonEnabled = updateReviewActionPage.ConfirmButton.Enabled;
             (IsConfirmButtonEnabled).Should().Be(true,"Confirm button should be enabled in the review action page.");
         }

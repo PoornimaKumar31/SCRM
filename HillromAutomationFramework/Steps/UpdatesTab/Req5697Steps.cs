@@ -288,30 +288,33 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
 
-
-
         //for select devices page
         [Then(@"Item to push label is displayed")]
         public void ThenItemToPushLabelIsDisplayed()
         {
-            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
+            //For CVSM Select assets page
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
             {
                 Assert.AreEqual(true, updateSelectDevicePage.ItemtoPush.GetElementVisibility(), "Item to push label is not displayed.");
                 string ActualText = updateSelectDevicePage.ItemtoPush.Text;
                 string ExpectedText = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
                 Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.");
             }
-            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
+            //For CVSM Review action page
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
             {
                 Assert.AreEqual(true, updateReviewActionPage.ItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");
                 string ActualText = updateReviewActionPage.ItemToPushLabel.Text;
                 string ExpectedText = UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText;
                 Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.");
             }
+            //If this does not belong to any scenario
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have a step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
             
         }
-
-
 
         [Then(@"Device type label is displayed")]
         public void ThenDeviceTypeLabelIsDisplayed()
@@ -325,9 +328,10 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, updateSelectDevicePage.FileName.GetElementVisibility(), "Config file name is not displayed.");
         }
 
-        [Then(@"Destinations label is displayed"),Scope(Tag = "TestCaseID_9036")]
+        [Then(@"Destinations label is displayed")]
         public void ThenDestinationsLabelIsDisplayed()
         {
+            //For CVSM Select assets page
             if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
             {
                 Assert.AreEqual(true, updateSelectDevicePage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
@@ -335,13 +339,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 string ExpectedLabelText = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
                 Assert.AreEqual(ExpectedLabelText.ToLower(), ActualLabelText.ToLower(), "Destination label text is not matching with expected value.");
             }
+            //For CVSM Review action page
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
             {
                 Assert.AreEqual(true, updateReviewActionPage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
                 string ActualLabelText = updateReviewActionPage.DestinationLabel.Text;
                 string ExpectedLabelText = UpdateReviewActionPage.ExpectedValues.DestinationLabelText;
                 Assert.AreEqual(ExpectedLabelText.ToLower(), ActualLabelText.ToLower(), "Destination label text is not matching with expected value.");
-            }  
+            }
+            //If this does not belong to any scenario
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have a step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
         }
 
         [Then(@"location hierarchy selectors are displayed")]
@@ -442,9 +452,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
         }
 
-
-
-
         [When(@"user selects one device")]
         public void WhenUserSelectsOneDevice()
         {
@@ -492,8 +499,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             updateSelectDevicePage.NextButton.Click();
             Assert.AreEqual(true, updateReviewActionPage.PushItems.GetElementVisibility(), "CVSM review action page is not displayed.");
         }
-
-        //for Review action page
         
 
         [Then(@"Item to push value is displayed")]

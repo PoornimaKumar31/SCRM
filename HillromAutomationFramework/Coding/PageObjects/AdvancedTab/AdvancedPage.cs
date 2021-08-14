@@ -81,6 +81,23 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
 
         }
 
+        /// <summary>
+        /// Expected values of the Advance Page
+        /// </summary>
+        public static class ExpectedValues
+        {
+            public const string EditUserPageLabelText = "EDIT USER";
+            public const string UserListPageLabelText = "USER LIST";
+            public const string UserManagementLabelTextOnEditUserPage = "User Management";
+            public const string UserRoleAdministratorOnUserListPage = "Administrator";
+            public const string UserRoleRegularOnUserListPage = "Regular";
+            public const string PhoneNumberErrorMessage = "Please enter a valid phone number";
+            public const string FullNameErrorMessage = "Please enter a valid name";
+            public const string UpdatedFullName = "Alex Hasi";
+            public const string PhoneNumberInvalid = "123";
+            public const string LoggedUser = "ltts_testing@hillrom.com";
+        }
+
         [FindsBy(How = How.Id, Using = Locators.DeleteButtonID)]
         public IList<IWebElement> DeleteButtons { get; set; }
 
@@ -228,23 +245,16 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
 
         [FindsBy(How = How.Id, Using = Locators.DetailsButtonID)]
         public IList<IWebElement> DetailsButton { get; set; }
+
         public string RandomFullNameLessThan50_49char { get; private set; }
         public string RandomPhoneNumber10_10Digits { get; private set; }
 
-        public static class ExpectedValues
-        {
-            public const string EditUserPageLabelText = "EDIT USER";
-            public const string UserListPageLabelText = "USER LIST";
-            public const string UserManagementLabelTextOnEditUserPage = "User Management";
-            public const string UserRoleAdministratorOnUserListPage = "Administrator";
-            public const string UserRoleRegularOnUserListPage = "Regular";
-            public const string PhoneNumberErrorMessage = "Please enter a valid phone number";
-            public const string FullNameErrorMessage = "Please enter a valid name";
-            public const string UpdatedFullName = "Alex Hasi";
-            public const string PhoneNumberInvalid = "123";
-            public const string LoggedUser = "ltts_testing@hillrom.com";
-        }
-
+        
+        /// <summary>
+        /// Clicking on the details button other than the logged-user.
+        /// </summary>
+        /// <param name="DetailsButtonCount"></param>
+        /// <returns></returns>
         public int UserClicksDetailsButtonForOtherUserRecord(int DetailsButtonCount)
         {
             int NoOfDetailsButton = DetailsButton.Count;

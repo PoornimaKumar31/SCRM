@@ -143,15 +143,6 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page icon is not disabled.");
         }
 
-       /* [Then(@"Previous page button is disabled")]
-        public void ThenPreviousPageButtonIsDisabled()
-        {
-            string PageNumberBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationPreviousIcon.JavaSciptClick();
-            string PageNumberAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "Previous page icon is not disabled.");
-        }*/
-
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
         {
