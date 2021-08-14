@@ -152,11 +152,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]
         public IList<IWebElement> LogDateList { get; set; }
 
+
         /// <summary>
-        /// What this method does
+        /// Function to verify N newest Logs presence by comparing Last Log Date of Current page 
+        /// with First Log Date of Next Page
         /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
+        /// <param name="n">Expected Number of Logs</param>
+        /// <returns>Boolean</returns>
         public bool NNewestLogsPresence(int n)
         {
             DateTime FirstElementLastPage;
@@ -187,10 +189,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
 
         /// <summary>
-        /// 
+        /// Function to verify N older Logs presence by comparing First Log Date of Current page 
+        /// with Last Log Date of Next Page
         /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
+        /// <param name="n">Expected Number of Logs</param>
+        /// <returns>Boolean</returns>
         public bool NOlderLogsPresence(int n)
         {
             DateTime FirstElementCurrentPage;
@@ -200,31 +203,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
             IList<IWebElement> LogDateListCurrentPage = LogDateList;
             FirstElementCurrentPage = DateTime.Parse(LogDateListCurrentPage[1].Text);
             int count = LogDateListCurrentPage.Count - 1;
-            Console.WriteLine("Current Page Logs : ");
-            foreach(IWebElement a in LogDateListCurrentPage)
-            {
-                if (a.Text != "Date")
-                {
-                    Console.WriteLine(DateTime.Parse(a.Text));
-                }
-            }
             Thread.Sleep(3000);
             LogsPreviousButton.Click();
             Thread.Sleep(3000);
             IList<IWebElement> LogDateListPreviousPage = LogDateList;
             LastElementPreviousPage = DateTime.Parse(LogDateListPreviousPage[n].Text);
-            Console.WriteLine("Previous Page Logs : ");
-            foreach (IWebElement a in LogDateListPreviousPage)
-            {
-                if (a.Text != "Date")
-                {
-                    Console.WriteLine(DateTime.Parse(a.Text));
-                }
-            }
             LogsNextButton.Click();
             Thread.Sleep(3000);
-            Console.WriteLine("Value :: "+FirstElementCurrentPage+" "+LastElementPreviousPage);
-            Console.WriteLine(count);
             if (count.Equals(n))
             {
                 if (FirstElementCurrentPage <= LastElementPreviousPage)
