@@ -134,6 +134,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.CalibrationOverDueTextID)]
         public IWebElement CalibrationOverDueText { get; set; }
 
+
+        /// <summary>
+        /// Function to verify N newest Logs presence by comparing Last Log Date of Current page 
+        /// with First Log Date of Next Page
+        /// </summary>
+        /// <param name="n">Expected Number of Logs</param>
+        /// <returns>Boolean</returns>
         public bool NNewestLogsPresence(int n)
         {
             DateTime FirstElementLastPage;
@@ -163,6 +170,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 return false;
         }
 
+
+        /// <summary>
+        /// Function to verify N older Logs presence by comparing First Log Date of Current page 
+        /// with Last Log Date of Next Page
+        /// </summary>
+        /// <param name="n">Expected Number of Logs</param>
+        /// <returns>Boolean</returns>
         public bool NOlderLogsPresence(int n)
         {
             DateTime FirstElementCurrentPage;

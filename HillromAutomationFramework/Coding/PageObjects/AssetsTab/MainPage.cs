@@ -323,7 +323,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
             return IsMACAddressVisible;
         }
 
-        //Method for Verifying whether expected number of devices are present or not for organization/facility/unit.
+        /// <summary>
+        /// Method for Verifying whether expected number of devices are present or not 
+        /// for organization/facility/unit.
+        /// </summary>
+        /// <param name="ExpectedDeviceCount">Expected Device Count</param>
+        /// <returns>Boolean</returns>
         public bool VerifyRecordPresence(int ExpectedDeviceCount)
         {
             int count = 0;

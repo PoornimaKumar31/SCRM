@@ -137,7 +137,7 @@ namespace HillromAutomationFramework.Steps.Landing
         }
 
         [Then(@"Asset list page is displayed")]
-        public void ThenAssetListPageIsDisplayed()
+        public void ThenCVSMassetListPageIsDisplayed()
         {
             Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(),"User is not on asset list page.");
         }
