@@ -249,12 +249,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         public string RandomFullNameLessThan50_49char { get; private set; }
         public string RandomPhoneNumber10_10Digits { get; private set; }
 
-        
-        /// <summary>
-        /// Clicking on the details button other than the logged-user.
-        /// </summary>
-        /// <param name="DetailsButtonCount"></param>
-        /// <returns></returns>
+
         public int UserClicksDetailsButtonForOtherUserRecord(int DetailsButtonCount)
         {
             int NoOfDetailsButton = DetailsButton.Count;
@@ -445,13 +440,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         public Dictionary<string, string> FullnamePhoneNumberAndRoleAreNotChangedOnUserListPage(int DetailsButtonCount)
         {
             var Elements = new Dictionary<string, string>();
-            string UpdatedFullName = "";
-            string UpdatedPhoneNumber = "";
-            string UpdatedUserName = "";
             DetailsButton[DetailsButtonCount].Click();
-            UpdatedFullName = FullName.GetAttribute("value");
-            UpdatedPhoneNumber = PhoneTextField.GetAttribute("value");
-            UpdatedUserName = UserNameOREmailField.GetAttribute("value");
+            string UpdatedFullName = FullName.GetAttribute("value");
+            string UpdatedPhoneNumber = PhoneTextField.GetAttribute("value");
+            string UpdatedUserName = UserNameOREmailField.GetAttribute("value");
             bool UpdatedRole = RoleInput.Selected;
 
             Elements.Add("1", UpdatedFullName);
