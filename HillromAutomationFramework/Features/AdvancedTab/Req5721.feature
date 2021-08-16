@@ -69,13 +69,13 @@ Scenario: Edit User Blank Phone Number
 
 @TestCaseID_9336 @UISID_8704
 Scenario: Cancel Edit User Invalid Phone Number
-	Given manager user is on Edit User page
+	Given manager user is on User List page
 	When user clicks Details button for user with a phone number
 	And user enters invalid phone number "123"
 	And clicks Cancel button
 	Then user list page is displayed
 	When user clicks Details button for same user
-	And Phone number is unchanged
+	Then Phone number is unchanged
 
 @TestCaseID_9337 @UISID_8704
 Scenario: Edit User Manager 

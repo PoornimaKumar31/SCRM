@@ -19,9 +19,9 @@ Scenario: Add User Elements
 @TestCaseID_9346 @UISID_8703
 Scenario: Add User Maximum Length Username
 	Given manager user is on Add User page
-	When user enters Full name Test
+	When user enters Full name "Test"
 	And clicks Username textbox
-	And enters valid Username 12345678901234567890123456789012345678901@test.com
+	And enters valid Username "12345678901234567890123456789012345678901@test.com"
 	And presses Tab key
 	Then no username error message is displayed
 	And enabled Save button is displayed
@@ -31,14 +31,14 @@ Scenario: Add User Maximum Length Username
 @TestCaseID_9347 @UISID_8703
 Scenario: Add User Invalid Username Length
 	Given manager user is on Add User page
-	When user enters Full name Test
+	When user enters Full name "Test"
 	And clicks Username textbox
 	And presses Tab key
 	Then username error message is displayed
-	When user enters invalid Username abc
+	When user enters invalid Username "abc"
 	And presses Tab key
 	Then username error message is displayed
-	When user enters invalid Username 123456789012345678901234567890123456789012@test.com
+	When user enters invalid Username "123456789012345678901234567890123456789012@test.com"
 	And presses Tab key
 	Then username error message is displayed
 	And disabled Save button is displayed
@@ -51,13 +51,13 @@ Scenario: Add User Invalid Username Length
 @TestCaseID_9348 @UISID_8703
 Scenario: Add User Invalid Username Format
 	Given manager user is on Add User page
-	When user enters Full name Test
+	When user enters Full name "Test"
 	And clicks Username textbox
 	And presses Tab key
 	Then username error message is displayed
 	And disabled Save button is displayed
 	And enabled Cancel button is displayed
-	When user enters invalid Username abc
+	When user enters invalid Username "abc"
 	And presses Tab key
 	Then username error message is displayed
 	And disabled Save button is displayed
@@ -70,7 +70,7 @@ Scenario: Add User Invalid Username Format
 @TestCaseID_9350 @UISID_8703
 Scenario: Add User Maximum Name
 	Given manager user is on Add User page
-	When user enters Username Test@test.com
+	When user enters Username "Test@test.com"
 	And clicks Full name textbox
 	And enters 50-character Full name
 	And presses Tab key
@@ -81,7 +81,7 @@ Scenario: Add User Maximum Name
 @TestCaseID_9351 @UISID_8703
 Scenario: Add User Invalid Name Length
 	Given manager user is on Add User page
-	When user enters Username test9352@testing.com
+	When user enters Username "test9352@testing.com"
 	And clicks Full name textbox
 	And enters 51-character Full name
 	And presses Tab key
@@ -117,3 +117,24 @@ Scenario: Add User Role Regular User
 	And new user role is Regular
 	And Username and Name match
 	And Phone number is blank
+
+
+@TestCaseID_9354 @UISID_8703
+Scenario: Add User Invalid Phone Number
+	Given manager user is on Add User page
+	When user enters Phone number "123"
+	Then phone number error message is displayed
+	And disabled Save button is displayed
+	And enabled Cancel button is displayed
+
+@TestCaseID_9355 @UISID_8703
+Scenario: Add User Cancel Data
+	Given manager user is on Add User page
+	When enters valid email address, Name, Phone
+	And user clicks Cancel button
+	Then User List page is displayed
+	And no user is created
+	When user clicks Create button
+	And user clicks Cancel button
+	Then User List page is displayed
+	And no user is created

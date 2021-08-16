@@ -17,7 +17,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
     {
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
         AdvancedPage advancePage = new AdvancedPage();
         string RandomFullNameLessThan50_49char = "";
         string UserNameGreaterThan50_51char = "";
@@ -55,7 +54,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user clicks Details button for other User record")]
         public void WhenUserClicksDetailsButtonForOtherUserRecord()
         {
-            DetailsButtonCount = advancePage.UserClicksDetailsButtonForOtherUserRecord(DetailsButtonCount);
+            DetailsButtonCount = advancePage.UserClicksDetailsButtonForOtherUserRecord();
         }
 
         [Then(@"Edit Users page is displayed")]
@@ -71,7 +70,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             bool IsUserManagementVisible = advancePage.UserManagement.GetElementVisibility();
             Assert.IsTrue(IsUserManagementVisible, "User Information label is not displayed");
         }
-
 
         [Then(@"Username textbox is displayed")]
         public void ThenUsernameEmailaddressFieldIsDisplayed()
@@ -127,7 +125,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             advancePage.AdvancedTab.JavaSciptClick();
-            DetailsButtonCount = advancePage.UserClicksDetailsButtonForOtherUserRecord(DetailsButtonCount);
+            DetailsButtonCount = advancePage.UserClicksDetailsButtonForOtherUserRecord();
         }
 
         [When(@"user enters full name with more than fifty characters")]
@@ -157,6 +155,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenUserEntersFullNameWithLessThanOrEqualToCharacters()
         {
             advancePage.FullName.Clear();
+            //Generating random string for Full name just by passing string size to the method and entering into the Full name text box. 
             RandomFullNameLessThan50_49char = GetMethods.GenerateRandomString(49);
             advancePage.FullName.EnterText(RandomFullNameLessThan50_49char);
         }
@@ -186,6 +185,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenUpdatedFullNameIsDisplayedOnTheUserList()
         {
             Thread.Sleep(2000);
+            //Searching user created data in the table just by passing Randomly generated Full name in the table content.
             ActualFullName = advancePage.UpdatedFullNameIsDisplayedOnTheUserList(RandomFullNameLessThan50_49char);
             Assert.AreEqual(true, RandomFullNameLessThan50_49char == ActualFullName, "Updated full name is not displayed on the user list");
         }
@@ -229,6 +229,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenUserEntersPhoneNumberStartingWithFollowedByTenDigitsMobileNumber()
         {
             advancePage.PhoneTextField.Clear();
+            //Generating mobile number through method just by passing size of phone number.
             RandomPhoneNumber10_10Digits = GetMethods.GenerateRandomMobileNumber(TenDigitRandomMobileNumber);
             advancePage.PhoneTextField.EnterText(RandomPhoneNumber10_10Digits);
         }
@@ -300,17 +301,15 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user clicks Details button for user with a phone number")]
         public void WhenUserClicksDetailsButtonForUserWithAPhoneNumber()
         {
-            DetailsButtonCount = advancePage.UserClicksDetailsButtonForUserWithAPhoneNumber(DetailsButtonCount);
+            DetailsButtonCount = advancePage.UserClicksDetailsButtonForUserWithAPhoneNumber();
+            _scenarioContext.Add("phonenumber", advancePage.PhoneTextField.GetAttribute("value"));
         }
 
         [Then(@"Phone number is unchanged")]
         public void ThenUserPhoneNumberIsNotChanged()
         {
-            Thread.Sleep(2000);
-            advancePage.DetailsButton[DetailsButtonCount].Click();
-            Thread.Sleep(2000);
             string PhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreNotEqual(AdvancedPage.ExpectedValues.PhoneNumberInvalid, PhoneNumber, "User phone number is changed");
+            Assert.AreEqual(_scenarioContext.Get<string>("phonenumber"), PhoneNumber, "User phone number is changed");
         }
 
         [Then(@"presses Tab")]
@@ -355,14 +354,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             advancePage.DetailsButton[DetailsButtonCount].Click();
-        }
-
-        [When(@"Phone number is unchanged")]
-        public void WhenPhoneNumberIsUnchanged()
-        {
-            Thread.Sleep(2000);
-            string PhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreNotEqual(AdvancedPage.ExpectedValues.PhoneNumberInvalid, PhoneNumber, "User phone number is changed");
         }
 
         [When(@"user clicks Details button for user with Administrator role")]

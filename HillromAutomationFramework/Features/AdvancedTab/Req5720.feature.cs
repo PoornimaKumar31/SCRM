@@ -176,13 +176,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 22
- testRunner.When("user enters Full name Test", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Full name \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
  testRunner.And("clicks Username textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 24
- testRunner.And("enters valid Username 12345678901234567890123456789012345678901@test.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("enters valid Username \"12345678901234567890123456789012345678901@test.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 25
  testRunner.And("presses Tab key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -235,7 +235,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 34
- testRunner.When("user enters Full name Test", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Full name \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
  testRunner.And("clicks Username textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -247,7 +247,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("username error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 38
- testRunner.When("user enters invalid Username abc", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters invalid Username \"abc\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 39
  testRunner.And("presses Tab key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -256,7 +256,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("username error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 41
- testRunner.When("user enters invalid Username 123456789012345678901234567890123456789012@test.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters invalid Username \"123456789012345678901234567890123456789012@test.com" +
+                        "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 42
  testRunner.And("presses Tab key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -318,7 +319,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 54
- testRunner.When("user enters Full name Test", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Full name \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 55
  testRunner.And("clicks Username textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -336,7 +337,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("enabled Cancel button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 60
- testRunner.When("user enters invalid Username abc", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters invalid Username \"abc\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 61
  testRunner.And("presses Tab key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -398,7 +399,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 73
- testRunner.When("user enters Username Test@test.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Username \"Test@test.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 74
  testRunner.And("clicks Full name textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -457,7 +458,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 84
- testRunner.When("user enters Username test9352@testing.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Username \"test9352@testing.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 85
  testRunner.And("clicks Full name textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -615,6 +616,118 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 119
  testRunner.And("Phone number is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add User Invalid Phone Number")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9354")]
+        [NUnit.Framework.CategoryAttribute("UISID_8703")]
+        public virtual void AddUserInvalidPhoneNumber()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_9354",
+                    "UISID_8703"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add User Invalid Phone Number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 123
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 124
+ testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 125
+ testRunner.When("user enters Phone number \"123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 126
+ testRunner.Then("phone number error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 127
+ testRunner.And("disabled Save button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 128
+ testRunner.And("enabled Cancel button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add User Cancel Data")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9355")]
+        [NUnit.Framework.CategoryAttribute("UISID_8703")]
+        public virtual void AddUserCancelData()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_9355",
+                    "UISID_8703"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add User Cancel Data", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 131
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 132
+ testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 133
+ testRunner.When("enters valid email address, Name, Phone", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 134
+ testRunner.And("user clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 135
+ testRunner.Then("User List page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 136
+ testRunner.And("no user is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 137
+ testRunner.When("user clicks Create button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 138
+ testRunner.And("user clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 139
+ testRunner.Then("User List page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 140
+ testRunner.And("no user is created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
