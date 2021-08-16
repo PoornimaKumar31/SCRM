@@ -29,7 +29,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             public const string PreviousButtonXpath = "//button[@id='previous']";
             public const string DeployButtonID = "deploy";
-            public const string PaginationXofYID = "pagination";
+            public const string PaginationXofYXpath = "//div[@class='config-pagecount']//span[2]";
             public const string PaginationPreviousButtonXpath = "//span[@id='previous']";
             public const string PaginationNextButtonID = "next";
             public const string PaginationDisplayXofYClassName = "dataTables_info";
@@ -137,7 +137,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.DeployButtonID)]
         public IWebElement DeployButton { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.PaginationXofYID)]
+        [FindsBy(How = How.XPath, Using = Locators.PaginationXofYXpath)]
         public IWebElement PaginationXofY { get; set; }
 
         [FindsBy(How = How.ClassName, Using = Locators.PaginationDisplayXofYClassName)]

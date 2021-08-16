@@ -151,7 +151,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
         {
             //Checking the image source
             string ActualPreviousPageIconState = updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            string ExpectedPreviousPageIconState = PropertyClass.BaseURL + UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource;
+            string ExpectedPreviousPageIconState = UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource;
             Assert.AreEqual(ExpectedPreviousPageIconState, ActualPreviousPageIconState, "Previous page icon is not disabled.");
         }
 
@@ -159,7 +159,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
         public void ThenNextPageIconIsDisabled()
         {
             string ActualNextPageIconState = updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            string ExpectedNextPageIconState = PropertyClass.BaseURL + UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource;
+            string ExpectedNextPageIconState = UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource;
             Assert.AreEqual(ExpectedNextPageIconState, ActualNextPageIconState, "Next page icon is not disabled.");
         }
 
@@ -300,7 +300,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
                     break;
                 case "serial number":
                     HeadingElement = updateSelectDevicesPage.SerialNoHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.SerialHeadingText;
+                    ExpectedHeadingText = "serial number";
                     break;
                 case "location":
                     HeadingElement = updateSelectDevicesPage.LocationHeading;
