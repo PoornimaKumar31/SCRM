@@ -88,7 +88,8 @@ namespace HillromAutomationFramework.Hooks
             }
 
 
-            string BrowserName = "chrome";// PropertyClass.BrowserName.ToLower().Trim();
+            string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
+
             if(BrowserName.Contains("chrome"))
             {
                 new DriverManager().SetUpDriver(new ChromeConfig());
