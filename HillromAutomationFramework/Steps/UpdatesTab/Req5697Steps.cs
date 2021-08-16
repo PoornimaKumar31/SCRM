@@ -70,8 +70,21 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Update type label is displayed")]
         public void ThenUpdateTypeLabelIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.UpgradeTypeLabel.GetElementVisibility(), "Update type label is not displayed.");
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeLabelText.ToLower(), updatesSelectUpdatePage.UpgradeTypeLabel.Text.ToLower(), "Update type label is not matching with the expected value.");
+            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("select updates elements"))
+            {
+                Assert.AreEqual(true, updatesSelectUpdatePage.UpgradeTypeLabel.GetElementVisibility(), "Update type label is not displayed.");
+                Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeLabelText.ToLower(), updatesSelectUpdatePage.UpgradeTypeLabel.Text.ToLower(), "Update type label is not matching with the expected value.");
+            }
+            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
+            {
+                Assert.AreEqual(true, updateSelectDevicePage.TypeofUpdateConfigLabel.GetElementVisibility(), "Update type label is not displayed.");
+                Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText.ToLower(), updateSelectDevicePage.TypeofUpdateConfigLabel.Text.ToLower(), "Update type label is not matching with the expected value.");
+            }
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + "sceanrio has no step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
+            
         }
         
         [Then(@"Asset type drop down is displayed")]
