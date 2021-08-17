@@ -73,7 +73,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"User List page is displayed")]
         public void ThenUserListPageIsDisplayed()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
+            SetMethods.ScrollUpWebPage();
+            Thread.Sleep(4000);
             string UserListLabelText = advancePage.UserListPage.Text;
             Assert.AreEqual(AdvancedPage.ExpectedValues.UserListPageLabelText, UserListLabelText, "User list page is not displayed");
         }

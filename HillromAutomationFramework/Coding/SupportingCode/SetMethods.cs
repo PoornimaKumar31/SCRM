@@ -63,6 +63,15 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         }
 
         /// <summary>
+        /// Scroll up web page
+        /// </summary>
+        public static void ScrollUpWebPage()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
+            js.ExecuteScript("window.scrollTo(0, 0)");
+        }
+
+        /// <summary>
         /// For selecting option from the dropdown list.
         /// </summary>
         /// <param name="element">Dropdown WebElement</param>

@@ -47,6 +47,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user clicks Create button")]
         public void WhenUserClicksCreateButton()
         {
+            Thread.Sleep(1000);
+            IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
+            js.ExecuteScript("window.scrollTo(0, 0)");
+
             advancePage.CreateUserOnCreatePage.Click();
         }
 
@@ -158,6 +162,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"username error message is displayed")]
         public void ThenUsernameErrorMessageIsDisplayed()
         {
+            Thread.Sleep(1000);
             bool IsDisplayed = advancePage.UserNameErrorMessageOnCreatePage.GetElementVisibility();
             Assert.IsTrue(IsDisplayed, "Username error message is not displayed");
         }
@@ -186,9 +191,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"no user is created")]
         public void ThenNoUserIsCreated()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             bool IsUserCreated = advancePage.NoUserIsCreated(UserInputFullname, UserInputInvalidUserName);
-            Assert.IsTrue(IsUserCreated, "New user is created");
+            Assert.IsFalse(IsUserCreated, "New user is created");
         }
 
         [Given(@"manager user is on User Management page")]
@@ -202,6 +207,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters Username (.*)")]
         public void WhenUserEntersUsername(string UserName)
         {
+            UserInputInvalidUserName = UserName;
             advancePage.UserNameTextBoxOnCreatePage.EnterText(UserName);
         }
 
@@ -215,6 +221,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenEnters_CharacterFullName(int stringSize)
         {
             string FullName = GetMethods.GenerateRandomString(stringSize);
+            UserInputFullname = FullName;
             advancePage.FullNameOnCreatePage.EnterText(FullName);
         }
 
@@ -382,10 +389,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             //Entering valid user name
             RandomUsername = GetMethods.GenerateRandomUsername(15);
             advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
+            UserInputInvalidUserName = RandomUsername;
 
             //Entering valid Full name
             FullnameRandom = GetMethods.GenerateRandomString(15);
             advancePage.FullNameOnCreatePage.EnterText(FullnameRandom);
+            UserInputFullname = FullnameRandom;
 
             //Entering valid phone number
             RandomMobileNumber = GetMethods.GenerateRandomMobileNumber(1000000000);

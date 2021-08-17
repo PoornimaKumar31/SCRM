@@ -176,13 +176,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 22
- testRunner.When("user enters Full name \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Full name Test", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
  testRunner.And("clicks Username textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 24
- testRunner.And("enters valid Username \"12345678901234567890123456789012345678901@test.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("enters valid Username 12345678901234567890123456789012345678901@test.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 25
  testRunner.And("presses Tab key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -235,7 +235,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 34
- testRunner.When("user enters Full name \"Test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Full name Test", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
  testRunner.And("clicks Username textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -247,7 +247,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("username error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 38
- testRunner.When("user enters invalid Username \"abc\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters invalid Username abc", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 39
  testRunner.And("presses Tab key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -256,8 +256,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("username error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 41
- testRunner.When("user enters invalid Username \"123456789012345678901234567890123456789012@test.com" +
-                        "\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters invalid Username 123456789012345678901234567890123456789012@test.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 42
  testRunner.And("presses Tab key", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -399,7 +398,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 73
- testRunner.When("user enters Username \"Test@test.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Username Test@test.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 74
  testRunner.And("clicks Full name textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -458,7 +457,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("manager user is on Add User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 84
- testRunner.When("user enters Username \"test9352@testing.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Username test9352@testing.com", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 85
  testRunner.And("clicks Full name textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

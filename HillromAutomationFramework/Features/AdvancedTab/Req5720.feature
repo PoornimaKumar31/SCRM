@@ -15,30 +15,30 @@ Scenario: Add User Elements
 	And disabled Save button is displayed
 	And enabled Cancel button is displayed
 
-	#failing
+	#failing, now working
 @TestCaseID_9346 @UISID_8703
 Scenario: Add User Maximum Length Username
 	Given manager user is on Add User page
-	When user enters Full name "Test"
+	When user enters Full name Test
 	And clicks Username textbox
-	And enters valid Username "12345678901234567890123456789012345678901@test.com"
+	And enters valid Username 12345678901234567890123456789012345678901@test.com
 	And presses Tab key
 	Then no username error message is displayed
 	And enabled Save button is displayed
 	And enabled Cancel button is displayed
 
-	#failing
+	#failing, now working
 @TestCaseID_9347 @UISID_8703
 Scenario: Add User Invalid Username Length
 	Given manager user is on Add User page
-	When user enters Full name "Test"
+	When user enters Full name Test
 	And clicks Username textbox
 	And presses Tab key
 	Then username error message is displayed
-	When user enters invalid Username "abc"
+	When user enters invalid Username abc
 	And presses Tab key
 	Then username error message is displayed
-	When user enters invalid Username "123456789012345678901234567890123456789012@test.com"
+	When user enters invalid Username 123456789012345678901234567890123456789012@test.com
 	And presses Tab key
 	Then username error message is displayed
 	And disabled Save button is displayed
@@ -47,7 +47,7 @@ Scenario: Add User Invalid Username Length
 	Then User List page is displayed
 	And no user is created
 
-	#failing
+	#failing, now working
 @TestCaseID_9348 @UISID_8703
 Scenario: Add User Invalid Username Format
 	Given manager user is on Add User page
@@ -66,11 +66,11 @@ Scenario: Add User Invalid Username Format
 	Then User List page is displayed
 	And no user is created
 
-	#failing
+	#failing, just removed double quotes from input username. Now it is working fine
 @TestCaseID_9350 @UISID_8703
 Scenario: Add User Maximum Name
 	Given manager user is on Add User page
-	When user enters Username "Test@test.com"
+	When user enters Username Test@test.com
 	And clicks Full name textbox
 	And enters 50-character Full name
 	And presses Tab key
@@ -81,7 +81,7 @@ Scenario: Add User Maximum Name
 @TestCaseID_9351 @UISID_8703
 Scenario: Add User Invalid Name Length
 	Given manager user is on Add User page
-	When user enters Username "test9352@testing.com"
+	When user enters Username test9352@testing.com
 	And clicks Full name textbox
 	And enters 51-character Full name
 	And presses Tab key
