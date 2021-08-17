@@ -26,6 +26,7 @@ Scenario: Add User Maximum Length Username
 	And enabled Save button is displayed
 	And enabled Cancel button is displayed
 
+	
 @TestCaseID_9347 @UISID_8703
 Scenario: Add User Invalid Username Length
 	Given manager user is on Add User page
