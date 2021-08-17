@@ -35,6 +35,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string TableHeaderXpath = "//div[@class='report-information-container']/div";
 
             public const string SerailnumberUnit1ColumnXpath= "//div[@id=\"devices0\"]//div//div[3]";
+            public const string UnitsRowListXpath = "//*[starts-with(@id,'location')]";
         }
 
         public static class ExpectedValues
@@ -109,5 +110,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         [FindsBy(How = How.XPath, Using = Locator.TableHeaderXpath)]
         public IWebElement TableHeader { get; set; }
 
+        [FindsBy(How = How.XPath, Using = Locator.UnitsRowListXpath)]
+        public IList<IWebElement> UnitsRowList { get; set; }
     }
 }

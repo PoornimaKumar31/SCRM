@@ -128,8 +128,17 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"Assets are grouped by unit")]
         public void ThenAssetsAreGroupedByUnit()
         {
-            //need to clarify
-            _scenarioContext.Pending();
+            SetMethods.ScrollToBottomofWebpage();
+            int unitCount = usageReportPage.UnitsRowList.GetElementCount();
+            for(int row=0;row<unitCount;row++)
+            {
+                IWebElement deviceParent = PropertyClass.Driver.FindElement(By.Id("devices" + row)).FindElement(By.XPath(".."));
+                IWebElement unitParent = PropertyClass.Driver.FindElement(By.Id("location" + row)).FindElement(By.XPath(".."));
+                if(!(deviceParent.Equals(unitParent)))
+                {
+                    Assert.Fail("Assets are not grouped by unit.");
+                }
+            }
         }
 
         [Then(@"all the devices within that unit is displayed")]
@@ -144,8 +153,10 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             {
                 DisplayedSerailNumberInTable.Add(serialNumber.Text);
             }
+            //Asserting
             DisplayedSerailNumberInTable.Should().BeEquivalentTo(UsageReportPage.ExpectedValues.Station1CSMDeviceSerialNumbers);
 
+            
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
