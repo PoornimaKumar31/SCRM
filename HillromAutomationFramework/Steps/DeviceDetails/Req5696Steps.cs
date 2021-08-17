@@ -174,7 +174,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Asset Tag value is displayed")]
         public void ThenTheAssetTagValueIsDisplayed()
         {
-            Assert.AreEqual(true,cvsmDeviceDetailsPage.EditAssetDetailsPopUPAssetTagValue.GetElementVisibility(), "Asset Tag value is not displayed");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMDeviceDetailsPage.Locators.EditAssetDetailsPopUPAssetTagLabelID)));
+            Assert.AreEqual(true, cvsmDeviceDetailsPage.EditAssetDetailsPopUPAssetTagValue.GetElementVisibility(), "Asset Tag value is not displayed");
         }
 
         [Then(@"Asset Tag value is read only")]
