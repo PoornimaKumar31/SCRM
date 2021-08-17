@@ -270,21 +270,22 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             }
             return DetailsButtonCount;
         }
-        public bool UserChangesFullNameNumberAndRole(bool IsCheckBoxSelected)
+
+        /// <summary>
+        ///  Updating Full name, Phone number and Role
+        /// </summary>
+        public void UserChangesFullNameNumberAndRole()
         {
             Thread.Sleep(2000);
             RandomFullNameLessThan50_49char = GetMethods.GenerateRandomString(49);
             RandomPhoneNumber10_10Digits = GetMethods.GenerateRandomMobileNumber(1000000000);
 
-            //Updating Full name, Phone number and Role
             FullName.Clear();
             FullName.EnterText(RandomFullNameLessThan50_49char);
             PhoneTextField.Clear();
             PhoneTextField.EnterText(RandomPhoneNumber10_10Digits);
             Thread.Sleep(3000);
-
             UserManagerCheckBox.JavaSciptClick();
-            return IsCheckBoxSelected;
         }
         public int ManagerUserIsOnEditUserPageWithLogEntriesGreaterThanTwo(int DetailsButtonCount)
         {
@@ -340,7 +341,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         {
             bool IsEmailIdDescending = false;
             var list = new List<string>();
-            var Elements = new Dictionary<string, string>();
+            //var Elements = new Dictionary<string, string>();
             int NoOfDetailsButton = DetailsButton.Count;
             for (int i = 0; i < NoOfDetailsButton; i++)
             {

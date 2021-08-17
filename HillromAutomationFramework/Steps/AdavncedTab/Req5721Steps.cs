@@ -265,20 +265,43 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user changes Full name, Phone number and Role")]
         public void WhenUserUpdatesFullNameAndPhoneNumber()
         {
-            IsCheckBoxSelected = advancePage.UserChangesFullNameNumberAndRole(IsCheckBoxSelected);
+            _scenarioContext.Add("fullname", advancePage.FullName.GetAttribute("value"));
+            _scenarioContext.Add("phonenumber", advancePage.PhoneTextField.GetAttribute("value"));
+            _scenarioContext.Add("role", advancePage.UserManagerCheckBox.Selected);
+            advancePage.UserChangesFullNameNumberAndRole();
+
+
+            //Dictionary<string, string> DictionaryElements = advancePage.UserClicksDetailsButtonForUserWithAdministratorRole(DetailsButtonCount, RoleXpath);
+            //RoleXpath = DictionaryElements.ElementAt(0).Key;
+           // var DetailsButtonAt = DictionaryElements.ElementAt(0).Value;
+           // DetailsButtonCount = int.Parse(DetailsButtonAt);
         }
 
         [Then(@"Full name, Phone number, and Role are not changed on User List page")]
         public void ThenUpdatedFullNameIsNotDisplayedOnUSERLISTPage()
         {
             advancePage.DetailsButton[DetailsButtonCount].Click();
+            /*
             UpdatedFullName = advancePage.FullName.GetAttribute("value");
             UpdatedPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
             bool UpdatedRole = advancePage.RoleInput.Selected;
 
             Assert.AreEqual(false, RandomFullNameLessThan50_49char == UpdatedFullName, "Full name is not changed");
             Assert.AreEqual(true, IsCheckBoxSelected == UpdatedRole, "Role is not updated");
-            Assert.AreEqual(false, RandomPhoneNumber10_10Digits == UpdatedPhoneNumber, "Phone number is not updated");
+            Assert.AreEqual(false, RandomPhoneNumber10_10Digits != UpdatedPhoneNumber, "Phone number is not updated");
+            */
+            //Adding
+            string ActualFullname = advancePage.FullName.GetAttribute("value");
+            Assert.AreEqual(_scenarioContext.Get<string>("fullname"), ActualFullname, "Full name is changed");
+
+            string ActualPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
+            Assert.AreEqual(_scenarioContext.Get<string>("phonenumber"), ActualPhoneNumber, "Phone number is changed");
+
+            bool ActualRole = advancePage.UserManagerCheckBox.Selected;
+            bool ExpectedRole = _scenarioContext.Get<Boolean>("role");
+            //bool ExpectedRole = Boolean.Parse(str);
+            Assert.AreEqual(ExpectedRole, ActualRole, "User role is changed");
+
         }
 
         [Given(@"manager user is on Edit User page with log entries > (.*)")]

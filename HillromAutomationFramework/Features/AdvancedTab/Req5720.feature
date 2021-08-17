@@ -15,7 +15,7 @@ Scenario: Add User Elements
 	And disabled Save button is displayed
 	And enabled Cancel button is displayed
 
-
+	#failing
 @TestCaseID_9346 @UISID_8703
 Scenario: Add User Maximum Length Username
 	Given manager user is on Add User page
@@ -27,7 +27,7 @@ Scenario: Add User Maximum Length Username
 	And enabled Save button is displayed
 	And enabled Cancel button is displayed
 
-
+	#failing
 @TestCaseID_9347 @UISID_8703
 Scenario: Add User Invalid Username Length
 	Given manager user is on Add User page
@@ -47,7 +47,7 @@ Scenario: Add User Invalid Username Length
 	Then User List page is displayed
 	And no user is created
 
-
+	#failing
 @TestCaseID_9348 @UISID_8703
 Scenario: Add User Invalid Username Format
 	Given manager user is on Add User page
@@ -66,7 +66,7 @@ Scenario: Add User Invalid Username Format
 	Then User List page is displayed
 	And no user is created
 
-
+	#failing
 @TestCaseID_9350 @UISID_8703
 Scenario: Add User Maximum Name
 	Given manager user is on Add User page
