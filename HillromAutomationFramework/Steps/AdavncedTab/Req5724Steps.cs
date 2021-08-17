@@ -31,7 +31,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-
         }
 
         [Given(@"user login as Regular role")]

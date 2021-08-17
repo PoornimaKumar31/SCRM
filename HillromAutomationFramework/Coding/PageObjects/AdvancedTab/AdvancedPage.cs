@@ -57,6 +57,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string CancelButtonOnCreatePageID = "create-Cancel";
             public const string AddUserOnCreatePageID = "lbl_add_user";
             public const string UserInformationLabelID = "usrmgt_create_edit_title";
+            public const string PhoneErrorMessageOnAddUserPageXPath = "//*[contains(text(),' Please enter a valid phone number')]";
 
             public const string UserNameTextBoxOnCreatePageID = "create-username";
             public const string FullNameOnCreatePageID = "create-name";
@@ -77,8 +78,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string LogHistoryTableDataXPath = "//*[@id=\"lbl_history_detail\"]/div[2]/div[2]";
             public const string LogHistoryContentXPath = "//*[@id=\"lbl_history_detail\"]//div[2]//div[1]";
             public const string EmailFieldOnUserListPageXPath = "//*[@id=\"email\"]";
-
-
         }
 
         /// <summary>
@@ -88,6 +87,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         {
             public const string EditUserPageLabelText = "EDIT USER";
             public const string UserListPageLabelText = "USER LIST";
+            public const string AddUserListPageText = "ADD USER";
             public const string UserManagementLabelTextOnEditUserPage = "User Management";
             public const string UserRoleAdministratorOnUserListPage = "Administrator";
             public const string UserRoleRegularOnUserListPage = "Regular";
@@ -97,6 +97,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string PhoneNumberInvalid = "123";
             public const string LoggedUser = "ltts_testing@hillrom.com";
         }
+
+        [FindsBy(How = How.XPath, Using = Locators.PhoneErrorMessageOnAddUserPageXPath)]
+        public IWebElement PhoneErrorMessageOnAddUserPage { get; set; }
+
 
         [FindsBy(How = How.Id, Using = Locators.DeleteButtonID)]
         public IList<IWebElement> DeleteButtons { get; set; }
@@ -250,8 +254,9 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         public string RandomPhoneNumber10_10Digits { get; private set; }
 
 
-        public int UserClicksDetailsButtonForOtherUserRecord(int DetailsButtonCount)
+        public int UserClicksDetailsButtonForOtherUserRecord()
         {
+            int DetailsButtonCount;
             int NoOfDetailsButton = DetailsButton.Count;
             for (DetailsButtonCount = 0; DetailsButtonCount < NoOfDetailsButton; DetailsButtonCount++)
             {
@@ -265,24 +270,26 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             }
             return DetailsButtonCount;
         }
-        public bool UserChangesFullNameNumberAndRole(bool IsCheckBoxSelected)
+
+        /// <summary>
+        ///  Updating Full name, Phone number and Role
+        /// </summary>
+        public void UserChangesFullNameNumberAndRole()
         {
             Thread.Sleep(2000);
             RandomFullNameLessThan50_49char = GetMethods.GenerateRandomString(49);
             RandomPhoneNumber10_10Digits = GetMethods.GenerateRandomMobileNumber(1000000000);
 
-            //Updating Full name, Phone number and Role
             FullName.Clear();
             FullName.EnterText(RandomFullNameLessThan50_49char);
             PhoneTextField.Clear();
             PhoneTextField.EnterText(RandomPhoneNumber10_10Digits);
             Thread.Sleep(3000);
-
             UserManagerCheckBox.JavaSciptClick();
-            return IsCheckBoxSelected;
         }
         public int ManagerUserIsOnEditUserPageWithLogEntriesGreaterThanTwo(int DetailsButtonCount)
         {
+            //Finding number of enteries in the table.
             int NoOfDetailsButton = DetailsButton.Count;
             string[] LogHistory = { };
             for (DetailsButtonCount = 0; DetailsButtonCount < NoOfDetailsButton; DetailsButtonCount++)
@@ -308,6 +315,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             return DetailsButtonCount;
         }
 
+        
         public List<DateTime> LogHistoryTableIsSortedByDescendingDateSortOrder()
         {
             var list = new List<string>();
@@ -315,11 +323,13 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             string[] LogHistory = LogHistoryTableData.Text.Split();
             Thread.Sleep(2000);
             int LogHistoryCount = LogHistoryContent.Count;
-
+            //Getting all the dated from the Logs and putting in a list in first loop as a string
             for (int i = 3; i < LogHistoryCount; i++)
             {
                 list.Add(LogHistoryContent[i].Text);
             }
+
+            //Converting list text into DateTime format
             for (int i = 0; i < list.Count; i++)
             {
                 DateTimeList.Add(DateTime.Parse(list[i]));
@@ -331,7 +341,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         {
             bool IsEmailIdDescending = false;
             var list = new List<string>();
-            var Elements = new Dictionary<string, string>();
+            //var Elements = new Dictionary<string, string>();
             int NoOfDetailsButton = DetailsButton.Count;
             for (int i = 0; i < NoOfDetailsButton; i++)
             {
@@ -340,12 +350,14 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
                 list.Add(userName);
             }
 
+            //Checking eailId is in ascending order
             var orderedByAsc = list.OrderBy(d => d);
             if (list.SequenceEqual(orderedByAsc))
             {
                 IsEmailIdDescending = true;
             }
 
+            //Checking eailId is in descending order
             var orderedByDsc = list.OrderByDescending(d => d);
             if (list.SequenceEqual(orderedByDsc))
             {
@@ -353,33 +365,24 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             }
             return IsEmailIdDescending;
         }
-        public int UserClicksDetailsButtonForUserWithAPhoneNumber(int DetailsButtonCount)
+        public int UserClicksDetailsButtonForUserWithAPhoneNumber()
         {
+            int DetailsButtonCount;
             int NoOfDetailsButton = DetailsButton.Count;
             for (DetailsButtonCount = 0; DetailsButtonCount < NoOfDetailsButton; DetailsButtonCount++)
             {
-                string userNameXPath = "//*[@id=\"email" + DetailsButtonCount + "\"]";
-                string userName = PropertyClass.Driver.FindElement(By.XPath(userNameXPath)).Text;
-                if (userName != AdvancedPage.ExpectedValues.LoggedUser)
+                DetailsButton[DetailsButtonCount].Click();
+                string phone = PhoneTextField.GetAttribute("value");
+                if (phone == "")
                 {
-                    Thread.Sleep(3000);
-                    string phone = PhoneTextField.GetAttribute("value");
-                    if (phone == "")
-                    {
-                        CancelButton.Click();
-                        break;
-                    }
-                    else
-                    {
-                        if (DetailsButtonCount > 0)
-                        {
-                            DetailsButton[DetailsButtonCount].Click();
-                        }
-                        break;
-                    }
+                    CancelButton.Click();
+                }
+                else
+                {
+                    return DetailsButtonCount;
                 }
             }
-            return DetailsButtonCount;
+            return -1;
         }
 
         public Dictionary<string, string> UserClicksDetailsButtonForUserWithAdministratorRole(int DetailsButtonCount, string RoleXpath)

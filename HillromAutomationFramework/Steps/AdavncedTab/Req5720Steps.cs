@@ -12,15 +12,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 {
     [Binding, Scope(Tag = "SoftwareRequirementID_5720")]
     public class Req5720Steps
-    {
-        
+    {      
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
         AdvancedPage advancePage = new AdvancedPage();
-        string InvalidUserNameInput = "";
-        string validUserName = "";
-        string RandomString = "";
+        string RandomString;
         string RandomUsername = "";
         string RandomMobileNumber;
         string FullnameRandom = "";
@@ -42,6 +38,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void GivenManagerUserIsOnUserListPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            //Clicking on facility
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             advancePage.AdvancedTab.JavaSciptClick();
@@ -50,6 +47,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user clicks Create button")]
         public void WhenUserClicksCreateButton()
         {
+            Thread.Sleep(1000);
+            IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
+            js.ExecuteScript("window.scrollTo(0, 0)");
+
             advancePage.CreateUserOnCreatePage.Click();
         }
 
@@ -57,7 +58,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenAddUserPageIsDisplayed()
         {
             string AddUserTitle = advancePage.AddUserOnCreatePage.Text;
-            Assert.AreEqual("ADD USER", AddUserTitle, "Add User page is not displayed");
+            Assert.AreEqual(AdvancedPage.ExpectedValues.AddUserListPageText, AddUserTitle, "Add User page is not displayed");
         }
 
         [Then(@"User information label is displayed")]
@@ -100,9 +101,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenDisabledSaveButtonIsDisplayed()
         {
             bool IsDisabled = advancePage.SaveButtonOnCreatePage.Enabled;
-            bool IsSaveButtonDisabled = advancePage.SaveButtonOnCreatePage.GetElementVisibility();
+            bool IsSaveButtonVisibility = advancePage.SaveButtonOnCreatePage.GetElementVisibility();
             Assert.IsFalse(IsDisabled, "Save button is not disabled");
-            Assert.IsTrue(IsSaveButtonDisabled, "Save button is not displayed");
+            Assert.IsTrue(IsSaveButtonVisibility, "Save button is not displayed");
         }
 
         [Then(@"enabled Cancel button is displayed")]
@@ -161,6 +162,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"username error message is displayed")]
         public void ThenUsernameErrorMessageIsDisplayed()
         {
+            Thread.Sleep(1000);
             bool IsDisplayed = advancePage.UserNameErrorMessageOnCreatePage.GetElementVisibility();
             Assert.IsTrue(IsDisplayed, "Username error message is not displayed");
         }
@@ -169,8 +171,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenUserEntersInvalidUsername(string InvalidUserName)
         {
             UserInputInvalidUserName = InvalidUserName;
-            InvalidUserNameInput = InvalidUserName;
-            advancePage.UserNameTextBoxOnCreatePage.EnterText(InvalidUserNameInput);
+            advancePage.UserNameTextBoxOnCreatePage.EnterText(UserInputInvalidUserName);
         }
 
         [When(@"user clicks Cancel button")]
@@ -190,17 +191,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"no user is created")]
         public void ThenNoUserIsCreated()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             bool IsUserCreated = advancePage.NoUserIsCreated(UserInputFullname, UserInputInvalidUserName);
-
-            if (IsUserCreated == true)
-            {
-                Assert.IsFalse(false, "New user is created");
-            }
-            else
-            {
-                Assert.IsFalse(false, "New user is not created");
-            }
+            Assert.IsFalse(IsUserCreated, "New user is created");
         }
 
         [Given(@"manager user is on User Management page")]
@@ -214,6 +207,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters Username (.*)")]
         public void WhenUserEntersUsername(string UserName)
         {
+            UserInputInvalidUserName = UserName;
             advancePage.UserNameTextBoxOnCreatePage.EnterText(UserName);
         }
 
@@ -226,8 +220,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"enters (.*)-character Full name")]
         public void WhenEnters_CharacterFullName(int stringSize)
         {
-            string str = GetMethods.GenerateRandomString(stringSize);
-            advancePage.FullNameOnCreatePage.EnterText(str);
+            string FullName = GetMethods.GenerateRandomString(stringSize);
+            UserInputFullname = FullName;
+            advancePage.FullNameOnCreatePage.EnterText(FullName);
         }
 
         [Then(@"no name error message is displayed")]
@@ -248,6 +243,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"enters (.*)-character valid Full name")]
         public void WhenEnters_CharacterValidFullName(int stringSize)
         {
+            //Passing the length of string to the method and generating random string and that string is used as a Full name.
             RandomString = GetMethods.GenerateRandomString(stringSize);
             advancePage.FullNameOnCreatePage.EnterText(RandomString);
         }
@@ -255,6 +251,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"enters Phone number")]
         public void WhenEntersPhoneNumber()
         {
+            //Passing the length of phone number to the method and generating random phone number as a string and that string is used as a phone number.
             RandomMobileNumber = GetMethods.GenerateRandomMobileNumber(1000000000);
             advancePage.PhoneNumberOnCreatePage.EnterText(RandomMobileNumber);
         }
@@ -268,16 +265,15 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"clicks Save")]
         public void WhenClicksSave()
         {
-            //IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
-            //js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
             SetMethods.ScrollToBottomofWebpage();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             advancePage.SaveButtonOnCreatePage.Click();
         }
 
         [Then(@"new user is created")]
         public void ThenNewUserIsCreated()
         {
+            //Fetching all table data and then splits to put all data on index so that I can fetch required data form the index. Once data will be matched in search criteria.
             string[] tableContent = advancePage.TableContent.Text.Split();
             Thread.Sleep(2000);
             for (int i = 0; i < tableContent.Length; i++)
@@ -302,8 +298,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Username, Name, and Phone number match")]
         public void ThenUsernameNameAndPhoneNumberMatch()
         {
-            Assert.AreEqual(true, RandomUsername == ActualUserName, "Username is not miss match");
-            Assert.AreEqual(true, FullnameRandom == ActualFullName, "Name is not miss match");
+            Assert.AreEqual(true, RandomUsername == ActualUserName, "Username does not match");
+            Assert.AreEqual(true, FullnameRandom == ActualFullName, "Name does not match");
             advancePage.UsernameNameAndPhoneNumberMatch(ActualUserName);
             string ActualPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
             Assert.AreEqual(true, ActualPhoneNumber == RandomMobileNumber, "Phone does not match");
@@ -319,13 +315,16 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"new user role is Regular")]
         public void ThenNewUserRoleIsRegular()
         {
+            //Fetching all table data and then splits to put all data on index so that I can fetch required data form the index. Once data will be matched in search criteria.
             string[] tableContent = advancePage.TableContent.Text.Split();
+            Thread.Sleep(2000);
             for (int i = 0; i < tableContent.Length; i++)
             {
                 if (tableContent[i] == FullnameRandom)
                 {
+                    ActualFullName = tableContent[i];
                     ActualRole = tableContent[i + 2];
-                    Thread.Sleep(2000);
+                    ActualUserName = tableContent[i + 4];                   
                     break;
                 }
             }
@@ -335,17 +334,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Username and Name match")]
         public void ThenUsernameAndNameMatch()
         {
-            string[] tableContent = advancePage.TableContent.Text.Split();
-            for (int i = 0; i < tableContent.Length; i++)
-            {
-                if (tableContent[i] == FullnameRandom)
-                {
-                    ActualFullName = tableContent[i];
-                    Thread.Sleep(3000);
-                    ActualUserName = tableContent[i + 4];
-                    break;
-                }
-            }
             Assert.AreEqual(true, FullnameRandom == ActualFullName, "Name is not miss match");
             Assert.AreEqual(true, RandomUsername == ActualUserName, "Username is not miss match");
         }
@@ -382,6 +370,35 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             }
         }
 
+        [When(@"user enters Phone number (.*)")]
+        public void WhenUserEntersPhoneNumber(string PhoneNumber)
+        {
+            advancePage.PhoneNumberOnCreatePage.EnterText(PhoneNumber);
+        }
 
+        [Then(@"phone number error message is displayed")]
+        public void ThenPhoneNumberErrorMessageIsDisplayed()
+        {
+            bool IsPhoneNumberErrorMessageDisplayed = advancePage.PhoneErrorMessageOnAddUserPage.GetElementVisibility();
+            Assert.IsTrue(IsPhoneNumberErrorMessageDisplayed, "Phone number error message is not displayed");
+        }
+
+        [When(@"enters valid email address, Name, Phone")]
+        public void WhenEntersValidEmailAddressNamePhone()
+        {
+            //Entering valid user name
+            RandomUsername = GetMethods.GenerateRandomUsername(15);
+            advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
+            UserInputInvalidUserName = RandomUsername;
+
+            //Entering valid Full name
+            FullnameRandom = GetMethods.GenerateRandomString(15);
+            advancePage.FullNameOnCreatePage.EnterText(FullnameRandom);
+            UserInputFullname = FullnameRandom;
+
+            //Entering valid phone number
+            RandomMobileNumber = GetMethods.GenerateRandomMobileNumber(1000000000);
+            advancePage.PhoneNumberOnCreatePage.EnterText(RandomMobileNumber);
+        }
     }
 }

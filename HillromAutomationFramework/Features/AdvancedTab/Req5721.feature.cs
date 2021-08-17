@@ -434,7 +434,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 72
- testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("manager user is on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 73
  testRunner.When("user clicks Details button for user with a phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -452,7 +452,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 78
- testRunner.And("Phone number is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Phone number is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

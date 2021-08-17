@@ -13,13 +13,11 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.AdavncedTab
 {
-    [Binding]
+    [Binding, Scope(Tag = "SoftwareRequirementID_5725")]
     public sealed class Req5725Steps
     {
-
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
         AdvancedPage advancePage = new AdvancedPage();
         string RandomUsername = "";
         string FullnameRandom = "";
@@ -67,8 +65,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"clicks Save button")]
         public void WhenClicksSaveButton()
         {
-          //  IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
-            //js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
             SetMethods.ScrollToBottomofWebpage();
             Thread.Sleep(2000);
             advancePage.SaveButtonOnCreatePage.Click();
@@ -77,7 +73,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"User List page is displayed")]
         public void ThenUserListPageIsDisplayed()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
+            SetMethods.ScrollUpWebPage();
+            Thread.Sleep(4000);
             string UserListLabelText = advancePage.UserListPage.Text;
             Assert.AreEqual(AdvancedPage.ExpectedValues.UserListPageLabelText, UserListLabelText, "User list page is not displayed");
         }

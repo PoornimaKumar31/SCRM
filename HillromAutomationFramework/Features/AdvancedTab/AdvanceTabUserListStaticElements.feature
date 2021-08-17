@@ -1,4 +1,5 @@
-﻿Feature: AdvanceTabUserListStaticElements
+﻿@SoftwareRequirementID_
+Feature: AdvanceTabUserListStaticElements
 	Advanced tab user list static elements test
 
 @TestCaseID_9662 @UISID_8702
