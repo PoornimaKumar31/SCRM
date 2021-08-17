@@ -22,8 +22,7 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         AdvancedTabUserListPage advancedTabUserListPage = new AdvancedTabUserListPage();
 
         private ScenarioContext _scenarioContext;
-        public Req5722Steps(ScenarioContext scenarioContext
-            )
+        public Req5722Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
