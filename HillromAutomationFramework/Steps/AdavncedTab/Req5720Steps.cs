@@ -193,8 +193,24 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenNoUserIsCreated()
         {
             Thread.Sleep(3000);
-            bool IsUserCreated = advancePage.NoUserIsCreated(UserInputFullname, UserInputInvalidUserName);
-            Assert.IsFalse(IsUserCreated, "New user is created");
+            //bool IsUserCreated = advancePage.NoUserIsCreated(UserInputFullname, UserInputInvalidUserName);
+            //Assert.IsFalse(IsUserCreated, "New user is created");
+
+
+            bool matches = false;
+            string[] tableContent = advancePage.TableContent.Text.Split();
+            for (int i = 0; i < tableContent.Length; i++)
+            {
+                if (tableContent[i] == UserInputFullname)
+                {
+                    string ActualUserName = tableContent[i + 4];
+                    if (ActualUserName == UserInputInvalidUserName)
+                    {
+                        matches = true;
+                    }
+                }
+            }
+            Assert.IsFalse(matches, "New user is created");
         }
 
         [Given(@"manager user is on User Management page")]
@@ -300,6 +316,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Assert.AreEqual(true, RandomUsername == ActualUserName, "Username does not match");
             Assert.AreEqual(true, FullnameRandom == ActualFullName, "Name does not match");
+
             advancePage.UsernameNameAndPhoneNumberMatch(ActualUserName);
             string ActualPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
             Assert.AreEqual(true, ActualPhoneNumber == RandomMobileNumber, "Phone does not match");

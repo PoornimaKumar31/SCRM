@@ -25,8 +25,6 @@ Scenario: Edit User Elements
 @TestCaseID_9332 @UISID_8704
 Scenario: Edit User Full Name Validity Check
 	Given manager user is on Edit User page
-	#When user enters full name with more than fifty characters
-	#We can't read with full meaning in step definitation if i follow Andy's below step
 	When user enters Full name with ">50" characters
 	And presses Tab
 	Then full name error message is displayed
@@ -35,7 +33,6 @@ Scenario: Edit User Full Name Validity Check
 	And presses Tab
 	Then full name error message is displayed
 	And Save button is disabled
-	#When user enters full name with less than or equal to fifty characters	
 	When user enters Full name with "<=50" characters
 	And presses Tab
 	Then full name error message is not displayed 
@@ -57,7 +54,7 @@ Scenario: Edit User Phone Number
 	When user enters phone number "1234567890"
 	Then phone number error message is displayed
 	And Save button is disabled
-	When user enters a plus sign and a random 10-digit Phone number
+	When user enters a plus sign and a random 11-digit Phone number
 	Then phone number error message is not displayed
 	And Save button is enabled
 	When user clicks Save button
@@ -74,10 +71,6 @@ Scenario: Edit User Blank Phone Number
     When user clicks Save button
     And clicks Details button for same user
     Then Phone number is blank
-
-
-
-
 
 @TestCaseID_9336 @UISID_8704
 Scenario: Cancel Edit User Invalid Phone Number

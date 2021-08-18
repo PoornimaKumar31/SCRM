@@ -532,7 +532,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("enters valid Full name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 97
- testRunner.And("enters Phone number \"+19234567890\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("enters Phone number \"+12345678901\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 98
  testRunner.And("clicks User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

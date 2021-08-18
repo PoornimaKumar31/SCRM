@@ -5,6 +5,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -18,6 +19,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
         AdvancedPage advancePage = new AdvancedPage();
+        AdvancedTabUserListPage advancedTabUserListPage = new AdvancedTabUserListPage();
         string[] TableHeaderOnUserListPage = { };
 
         private readonly ScenarioContext _scenarioContext;
@@ -28,9 +30,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         }
         int HeaderCount;
 
-
-
-        //Updated
         [Given(@"manager user is on User List page having user entries > (.*)")]
         public void GivenManagerUserIsOnUserListPageHavingUserEntries(int NoOfMinimumEntries)
         {
@@ -38,15 +37,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             advancePage.AdvancedTab.JavaSciptClick();
-            int TotalUser = advancePage.DetailsButton.Count;
+            int TotalUser = advancePage.DetailsButtonList.Count;
             Assert.Greater(TotalUser, NoOfMinimumEntries, "Manager user is on User Management page is not more than two entries");
         }
-
-
-
-
-
-
 
         [Then(@"User List label is displayed")]
         public void ThenUSERLISTLabelIsDisplayed()
@@ -93,29 +86,50 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             HeaderCount++;
         }
 
-        [Then(@"User List Table is sorted by Email")]
-        public void ThenUserListTableIsSortedByEmail()
+        [Then(@"User List Table is sorted by Email in Ascending order")]
+        public void ThenUserListTableIsSortedByEmailAscendingOrder()
         {
-            bool IsEmailAscending = advancePage.IsEmailSorted();
-            Assert.IsTrue(IsEmailAscending, "User List Table is not sorted by Email");
+            bool IsEmailSortedOrder = advancePage.IsEmailSorted();
+            Assert.IsTrue(IsEmailSortedOrder, "User List Table is not sorted by Email");
         }
+
 
         [Then(@"Details button is displayed and enabled for all User rows")]
         public void ThenDetailsButtonIsDisplayedAndEnabledForAllUserRows()
         {
-            int NoOfDetailsButton = advancePage.DetailsButton.Count;
-            for (int i = 0; i < NoOfDetailsButton; i++)
+            bool IsDisplayed = false;
+            bool IsEnabled = false;
+            int count = 0;
+            IList<IWebElement> list = advancedTabUserListPage.UserList;
+            for (int i = 0; i < list.Count; i++)
             {
-                bool IsDetailsButtonForAllIsEnabled = advancePage.DetailsButton[i].GetElementVisibility();
-                Assert.IsTrue(IsDetailsButtonForAllIsEnabled, "Details Button is not displayed and not enabled for all User rows");
+                IsDisplayed = advancePage.DetailsButtonList[i].GetElementVisibility();
+                IsEnabled = advancePage.DetailsButtonList[i].Enabled;
+                if (IsDisplayed && IsEnabled == true)
+                {
+                    count++;
+                }
             }
+            Assert.AreEqual(true, count == list.Count, "Details Button is not displayed and enabled for other than logged in user for all rows");
         }
 
         [Then(@"Delete button is displayed and enabled for all rows other than logged in user")]
         public void ThenDeleteButtonIsDisplayedAndEnabledForOtherThanLoggedInUserForAllRows()
         {
-            int count = advancePage.DeleteButtonIsDisplayedAndEnabledForOtherThanLoggedInUserForAllRows();
-            Assert.AreEqual(0, count, "Delete Button is not displayed and enabled for other than logged in user for all rows");
+            bool IsDisplayed = false;
+            bool IsEnabled = false;
+            int count = 0;
+            IList<IWebElement> list = advancedTabUserListPage.UserListExceptLoggedInUser();
+            for (int i = 0; i < list.Count; i++)
+            {
+                IsDisplayed = advancePage.DeleteButtonsList[i].GetElementVisibility();
+                IsEnabled = advancePage.DeleteButtonsList[i].Enabled;
+                if (IsDisplayed && IsEnabled == true)
+                {
+                    count++;
+                }
+            }
+            Assert.AreEqual(true, count == list.Count, "Delete Button is not displayed and enabled for other than logged in user for all rows");
         }
     }
 }

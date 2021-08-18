@@ -11,6 +11,6 @@ Scenario: User List Elements
 	And "Full name" column heading is displayed
 	And "Role" column heading is displayed
 	And "Email" column heading is displayed
-	And User List Table is sorted by Email
+	And User List Table is sorted by Email in Ascending order
 	And Details button is displayed and enabled for all User rows
 	And Delete button is displayed and enabled for all rows other than logged in user

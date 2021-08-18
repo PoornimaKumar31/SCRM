@@ -129,7 +129,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Email\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.And("User List Table is sorted by Email", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User List Table is sorted by Email in Ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
  testRunner.And("Details button is displayed and enabled for all User rows", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

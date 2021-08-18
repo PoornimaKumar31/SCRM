@@ -94,7 +94,7 @@ Scenario: Add User Role Manager User
 	Given manager user is on Add User page
 	When user enters valid Username
 	And enters valid Full name
-	And enters Phone number "+19234567890"
+	And enters Phone number "+12345678901"
 	And clicks User Manager checkbox
 	And clicks Save
 	Then User List page is displayed
