@@ -285,19 +285,25 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"rows below Total are displayed")]
         public void ThenRowsBelowTotalAreDisplayed()
         {
-            //Need clarification for implementation
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.TotalUnitAllDevice.GetElementVisibility(), "Rows are not displayed");
         }
 
         [When(@"user clicks unit row")]
         public void WhenUserClicksUnitRow()
         {
-            //Need clarification for implementation
+            cvsmFirmwareVersionReportPage.AndyDeskUnit.Click();
+            cvsmFirmwareVersionReportPage.ConnexCS1Unit.Click();
+            cvsmFirmwareVersionReportPage.LuWenUnit.Click();
+            cvsmFirmwareVersionReportPage.Station1Unit.Click();
         }
 
         [Then(@"assets for unit are displayed")]
         public void ThenAssetsForUnitAreDisplayed()
         {
-            //Need clarification for implementation
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.AndyDeskUnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.ConnexCS1UnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.LuWenUnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.Station1UnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
         }
 
 

@@ -84,7 +84,5 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 
         [FindsBy(How = How.Id, Using = Locator.SpHbCycleCountColumnHeaderID)]
         public IWebElement SpHbCycleCountColumnHeader { get; set; }
-
-
     }
 }
