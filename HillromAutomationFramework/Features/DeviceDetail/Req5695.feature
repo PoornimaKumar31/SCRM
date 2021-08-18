@@ -98,7 +98,7 @@ Scenario: CVSM Asset Details NIBP
 	And NIBP "Hardware version" is "Rev A"
 	And NIBP "Serial number" is "05571213TJ"
 	And NIBP "Cycle Count" label is displayed
-	#And NIBP "Cycle count" is displayed in "Usage" column
+	And NIBP "Cycle count" is displayed in "Usage" column
 	And NIBP "Cycle Count" is "Cycle count:24"
 	When user clicks NIBP sensor toggle arrow
 	Then NIBP "Bootloader version" label is displayed

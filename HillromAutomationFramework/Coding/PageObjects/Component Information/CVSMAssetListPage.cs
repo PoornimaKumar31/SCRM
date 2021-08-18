@@ -273,7 +273,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string BatteryRelativeChildElementsXPath = "//div[@id = '"+ BatteryCycleCountID +"']//parent::div/div";
             public const string BraunRelativeChildElementsXPath = "//div[@id = '" + BraunCycleCountValueID + "']//parent::div/div";
             public const string CO2RelativeChiledElementXPath = "//div[@id = '"+CO2RunTimeID+ "']//parent::div//parent::div/div";
-            public const string NIBPRelativeChildElementXPath = "//div[@id = '" + NIBPCycleCountID + "']//parent::div//parent::div/div";
+            public const string NIBPRelativeChildElementXPath = "//div[@id = '"+NIBPCycleCountID+"']/parent::div/div";
             public const string ConnexRelativeChildElementXpath = "//div[@id = '"+ConnexUsageID+"']//parent::div/div";
 
         }

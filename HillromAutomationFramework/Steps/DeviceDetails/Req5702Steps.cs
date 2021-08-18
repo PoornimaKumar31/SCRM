@@ -640,9 +640,31 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
         [Then(@"Temperature probe row ""(.*)"" is displayed in ""(.*)"" column")]
-        public void ThenTemperatureProbeRowIsDisplayedInColumn(string p0, string p1)
+        public void ThenTemperatureProbeRowIsDisplayedInColumn(string LabelName, string ColumnName)
         {
-            _scenarioContext.Pending();
+            int ActualColumnIndex = -1;
+            int ExpectedColumnIndex = -2;
+            switch (ColumnName.ToLower().Trim())
+            {
+                case "usage":
+                    ExpectedColumnIndex = CSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    break;
+                default:
+                    Assert.Fail(ColumnName + " is invalid");
+                    break;
+            }
+
+            switch (LabelName.ToLower().Trim())
+            {
+                case "cycle count":
+                    ActualColumnIndex = csmAssetListPage.TempProbeElementList.IndexOf(csmAssetListPage.TempProbeRowCycleCount);
+                    break;
+                default:
+                    Assert.Fail(LabelName + " is invalid");
+                    break;
+            }
+
+            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
         }
 
         [When(@"user clicks Temperature probe row toggle arrow")]
@@ -770,9 +792,31 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
 
         [Then(@"SureTemp ""(.*)"" is displayed in ""(.*)"" column")]
-        public void ThenSureTempIsDisplayedInColumn(string p0, string p1)
+        public void ThenSureTempIsDisplayedInColumn(string LabelName, string ColumnName)
         {
-            _scenarioContext.Pending();
+            int ActualColumnIndex = -1;
+            int ExpectedColumnIndex = -2;
+            switch (ColumnName.ToLower().Trim())
+            {
+                case "usage":
+                    ExpectedColumnIndex = CSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    break;
+                default:
+                    Assert.Fail(ColumnName + " is invalid");
+                    break;
+            }
+
+            switch (LabelName.ToLower().Trim())
+            {
+                case "cycle count":
+                    ActualColumnIndex = csmAssetListPage.SureTempElementList.IndexOf(csmAssetListPage.SureTempCycleCount);
+                    break;
+                default:
+                    Assert.Fail(LabelName + " is invalid");
+                    break;
+            }
+
+            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
         }
 
 
