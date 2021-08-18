@@ -113,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on \"CSM CONFIGURATION UPDATE STATUS\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
- testRunner.When("user clicks on Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
  testRunner.Then("\"Configuration Update Status\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -157,7 +157,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on \"CSM FIRMWARE UPGRADE STATUS\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 18
- testRunner.When("user clicks on Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 19
  testRunner.Then("\"Firmware Status\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -201,7 +201,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on \"CSM ACTIVITY REPORT\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 24
- testRunner.When("user clicks on Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
  testRunner.Then("\"Activity\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -245,7 +245,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on \"RV700 FIRMWARE UPGRADE STATUS\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 30
- testRunner.When("user clicks on Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 31
  testRunner.Then("\"Firmware Status\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

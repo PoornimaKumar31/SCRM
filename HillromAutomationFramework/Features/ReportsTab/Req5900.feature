@@ -10,20 +10,13 @@ Scenario: CSM Activity Search
 @TestCaseID_9654 @UISID_8693
 Scenario: CSM Activity Serial Number Search
 	Given user is on CSM ACTIVITY REPORT page
-	When user type "Serial number" in search textbox
-	And press enter
-	Then device with the matching "serial number" is displayed
+	When user enters "serial number" in Search textbox
+	And presses Enter
+	Then device with matching "serial number" is displayed
 
 @TestCaseID_9655 @UISID_8693
 Scenario: CSM Activity Location Search
 	Given user is on CSM ACTIVITY REPORT page
-	When user type "location" in search textbox
-	And press enter
-	Then device with the matching "location" is displayed
-
-@TestCaseID_9656 @UISID_8693
-Scenario: CSM Activity Last Vital Sent Search
-	Given user is on CSM ACTIVITY REPORT page
-	When user type "Last Vital Sent" in search textbox
-	And press enter
-	Then device with the matching "last vital sent" is displayed
+	When user enters "location" in Search textbox
+	And presses Enter
+	Then device with matching "location" is displayed

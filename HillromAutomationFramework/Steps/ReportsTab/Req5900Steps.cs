@@ -49,13 +49,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         }
 
 
-        [When(@"press enter")]
-        public void WhenPressEnter()
+        [When(@"presses Enter")]
+        public void WhenPressesEnter()
         {
             activityReportPage.SearchBox.EnterText(Keys.Enter);
         }
 
-        [When(@"user type ""(.*)"" in search textbox")]
+        [When(@"user enters ""(.*)"" in Search textbox")]
         public void WhenUserTypeInSearchTextbox(string searchType)
         {
             string searchText = "";
@@ -69,10 +69,6 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     searchText = ActivityReportPage.ExpectedValues.LocationSearchText;
                     break;
 
-                case "last vital sent":
-                    searchText = ActivityReportPage.ExpectedValues.LastVitalSentSearchText;
-                    throw new PendingStepException("No data for the last vital sent.");
-
                 default: Assert.Fail(searchType + " is a invalid search type");
                     break;
             }
@@ -80,7 +76,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             activityReportPage.SearchBox.EnterText(searchText);
         }
 
-        [Then(@"device with the matching ""(.*)"" is displayed")]
+        [Then(@"device with matching ""(.*)"" is displayed")]
         public void ThenDeviceWithTheMatchingIsDisplayed(string searchType)
         {
             //wait till data is loaded
@@ -97,11 +93,6 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 case "location":
                     column = activityReportPage.LocationColumn;
                     ExpectedSearchText = ActivityReportPage.ExpectedValues.LocationSearchText;
-                    break;
-
-                case "last vital sent":
-                    column = activityReportPage.LastVitalSentColumn;
-                    ExpectedSearchText = ActivityReportPage.ExpectedValues.LastVitalSentSearchText;
                     break;
 
                 default: Assert.Fail(searchType + " is invalid search type.");

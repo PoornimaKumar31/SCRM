@@ -65,19 +65,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
         {
             Assert.AreEqual(true, updatesSelectUpdatePage.FileTableList.GetElementVisibility(),"Rv700 upgrade list is not displayed.");
         }
-        
-        [Then(@"Name column heading is displayed")]
-        public void ThenNameColumnHeadingIsDisplayed()
-        {
-            Assert.AreEqual(true, updatesSelectUpdatePage.RV700NameColumnHeading.GetElementVisibility(),"Name column heading is not displayed.");
-        }
-        
-        [Then(@"Date created column heading is displayed")]
-        public void ThenDateCreatedColumnHeadingIsDisplayed()
-        {
-            Assert.AreEqual(true, updatesSelectUpdatePage.RV700DateColumnHeading.GetElementVisibility(), "Date column heading is not displayed.");
-        }
-        
+           
         [Then(@"Next button is disabled")]
         public void ThenNextButtonIsDisabled()
         {
@@ -232,7 +220,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
                     label = updateSelectDevicesPage.ItemtoPush;
                     ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
                     break;
-                case "device type":
+                case "asset type":
                     label = updateSelectDevicesPage.DeviceTypeLabel;
                     ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.RV700DeviceName;
                     break;
@@ -286,6 +274,18 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             string ExpectedHeadingText = null;
             switch (columnHeading.ToLower().Trim())
             {
+                //For select update page
+                case "name":
+                    HeadingElement = updatesSelectUpdatePage.RV700NameColumnHeading;
+                    ExpectedHeadingText = UpdatesSelectUpdatePage.ExpectedValues.TableNameHeadingText;
+                    break;
+
+                case "date created":
+                    HeadingElement = updatesSelectUpdatePage.RV700DateColumnHeading;
+                    ExpectedHeadingText = UpdatesSelectUpdatePage.ExpectedValues.TableDateHeadingText;
+                    break;
+
+                //For select device page.
                 case "firmware":
                     HeadingElement = updateSelectDevicesPage.FirmwareHeading;
                     ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.FirwareHeadingText;

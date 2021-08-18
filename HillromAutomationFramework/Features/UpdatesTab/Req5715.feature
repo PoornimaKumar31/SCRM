@@ -9,8 +9,8 @@ Scenario: RV700 Upgrade Elements
 	When user selects Upgrade Update type
 	Then Upgrade displays as Update type
 	And RV700 upgrade list is displayed
-	And Name column heading is displayed
-	And Date created column heading is displayed
+	And "Name" column heading is displayed
+	And "Date created" column heading is displayed
 	And Next button is disabled
 	And Page x of y label is displayed
 	And Displaying x to y of z results label is displayed
@@ -38,7 +38,7 @@ Scenario: RV700 Select Assets Elements
 	And Select assets indicator is highlighted
 	And Review action indicator is not highlighted
 	And "Item to push" label is displayed
-	And "Device type" label is displayed
+	And "Asset type" label is displayed
 	And "Update type" label is displayed
 	And "Upgrade file to push" label is displayed
 	And "Destinations" label is displayed

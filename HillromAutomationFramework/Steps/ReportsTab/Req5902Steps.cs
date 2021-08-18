@@ -40,7 +40,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             reportsPage.GetReportButton.Click();
         }
         
-        [When(@"user type ""(.*)"" in search textbox")]
+        [When(@"user enters ""(.*)"" in Search textbox")]
         public void WhenUserTypeInSearchTextbox(string searchType)
         {
             string SearchText = "";
@@ -72,13 +72,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             csmConfigStatusPage.SearchBox.EnterText(SearchText);
         }
         
-        [When(@"press enter")]
+        [When(@"presses Enter")]
         public void WhenPressEnter()
         {
             csmConfigStatusPage.SearchBox.EnterText(Keys.Enter);
         }
         
-        [Then(@"device with the matching ""(.*)"" is displayed")]
+        [Then(@"device with matching ""(.*)"" is displayed")]
         public void ThenDeviceWithTheMatchingIsDisplayed(string searchType)
         {
             //wait till data is loaded

@@ -102,8 +102,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             Assert.AreEqual(UsageReportPage.ExpectedValues.NumberofDevicesOnEachFlorrLabelText.ToLower(), usageReportPage.NumberOfdevicesOneachFloorLabel.Text.ToLower(), "Number of Devices on Each Floor label is not matching the expected text.");
         }
 
-        [Then(@"pie chart with Location ID is displayed")]
-        public void ThenPieChartWithLocationIDIsDisplayed()
+        [Then(@"pie chart is displayed")]
+        public void ThenPieChartIsDisplayed()
         {
             Assert.AreEqual(true, usageReportPage.PieChart.GetElementVisibility(),"Pie chart is not displayed.");
         }
@@ -141,7 +141,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
         }
 
-        [Then(@"all the devices within that unit is displayed")]
+        [Then(@"all the devices within each unit is displayed")]
         public void ThenAllTheDevicesWithinThatUnitIsDisplayed()
         {
             int unit1DeviceCount = usageReportPage.SerailnumberUnit1Column.GetElementCount();

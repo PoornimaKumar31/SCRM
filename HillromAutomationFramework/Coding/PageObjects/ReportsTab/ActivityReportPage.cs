@@ -27,7 +27,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             //Search text
             public const string SerialNumberSearchText = "100010000000";
             public const string LocationSearchText = "Station1";
-            public const string LastVitalSentSearchText = ""; //not provided
 
             public const string CSMActivityReportName = "Activity_Status_Report_(CSM).csv";
             public const string ActivityReportCSMHeader = "ACTIVITY REPORT (CSM)";

@@ -23,14 +23,14 @@ Scenario: CSM Usage Report Elements
 	Then Asset Usage Report (CSM) label is displayed
 	And Print button is displayed
 	And Number of Devices on Each Floor label is displayed
-	And pie chart with Location ID is displayed
+	And pie chart is displayed
 	And Total Usage Details - Components label is displayed
 
 @TestCaseID_9374 @UISID_8684 @UISID_8685 @UISID_8686
 Scenario: CSM Usage Report Table Elements
 	Given user is on CSM Usage Report page
 	Then Assets are grouped by unit
-	And all the devices within that unit is displayed
+	And all the devices within each unit is displayed
 	And "Model" column heading is displayed
 	And "Asset tag" column heading is displayed
 	And "Serial number" column heading is displayed
@@ -123,7 +123,7 @@ Scenario: CSM Configuration Update Status Report Print
 	When user clicks Print button
 	Then browser’s built-in print dialog is displayed
 
-@TestCaseID_9383 @UISID_8684 @UISID_8692
+@TestCaseID_9384 @UISID_8684 @UISID_8692
 Scenario: CSM Firmware Upgrade Status Report Page Elements
 	Given user is on Reports page
 	And CSM Asset type is selected

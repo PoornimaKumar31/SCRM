@@ -9,23 +9,23 @@ Feature: Software Requirement 5719
 @TestCaseID_9401 @UISID_8685
 Scenario: CSM Configuration Status Report Download
 	Given user is on "CSM CONFIGURATION UPDATE STATUS" page
-	When user clicks on Download button
+	When user clicks Download button
 	Then "Configuration Update Status" Report is downloaded as csv file
 
 @TestCaseID_9402 @UISID_8685
 Scenario: CSM Firmware Status Report Download
 	Given user is on "CSM FIRMWARE UPGRADE STATUS" page
-	When user clicks on Download button
+	When user clicks Download button
 	Then "Firmware Status" Report is downloaded as csv file
 
 @TestCaseID_9403 @UISID_8685
 Scenario: CSM Activity Report Download
 	Given user is on "CSM ACTIVITY REPORT" page
-	When user clicks on Download button
+	When user clicks Download button
 	Then "Activity" Report is downloaded as csv file
 
 @TestCaseID_9404 @UISID_8685
 Scenario: RV700 Firmware Status Report Download
 	Given user is on "RV700 FIRMWARE UPGRADE STATUS" page
-	When user clicks on Download button
+	When user clicks Download button
 	Then "Firmware Status" Report is downloaded as csv file

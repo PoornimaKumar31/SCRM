@@ -25,7 +25,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         }
 
         
-        [When(@"user clicks on Download button")]
+        [When(@"user clicks Download button")]
         public void WhenUserClicksOnDownloadButton()
         {
             reportsPage.DownloadButton.Click();

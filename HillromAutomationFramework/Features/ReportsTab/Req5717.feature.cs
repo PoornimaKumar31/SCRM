@@ -183,7 +183,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Number of Devices on Each Floor label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
- testRunner.And("pie chart with Location ID is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("pie chart is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 27
  testRunner.And("Total Usage Details - Components label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -234,7 +234,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Assets are grouped by unit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 33
- testRunner.And("all the devices within that unit is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("all the devices within each unit is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 34
  testRunner.And("\"Model\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -779,13 +779,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Firmware Upgrade Status Report Page Elements")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9383")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9384")]
         [NUnit.Framework.CategoryAttribute("UISID_8684")]
         [NUnit.Framework.CategoryAttribute("UISID_8692")]
         public virtual void CSMFirmwareUpgradeStatusReportPageElements()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9383",
+                    "TestCaseID_9384",
                     "UISID_8684",
                     "UISID_8692"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
