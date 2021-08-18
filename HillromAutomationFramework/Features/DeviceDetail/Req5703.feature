@@ -1,5 +1,6 @@
 ﻿@SoftwareRequirementID_5703
 Feature: Software Requirement 5703
+	The Customer Portal shall have a mechanism for editing the following device details for CSM devices: Room, Bed.
 
 @TestCaseID_9322 @UISID_8673
 Scenario: Edit CSM Asset Details Save

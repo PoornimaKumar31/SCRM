@@ -1,6 +1,6 @@
 ﻿@SoftwareRequirementID_5695
 Feature: Software Requirement 5695
-\The Customer Portal shall have a feature for displaying CVSM/CIWS device details.
+ The Customer Portal shall have a feature for displaying CVSM/CIWS device details.
 
 @TestCaseID_9474 @UISID_8672 @UISID_8679
 Scenario: CVSM General Layout
