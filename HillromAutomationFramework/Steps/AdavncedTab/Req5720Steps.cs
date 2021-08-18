@@ -120,8 +120,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             advancePage.CreateUserOnCreatePage.Click();
         }
 
-        [When(@"user enters Full name (.*)")]
-        public void WhenUserEntersFullName(string FullName)
+        [When(@"user enters Full name ""(.*)""")]
+        public void WhenUserEntersFullNam(string FullName)
         {
             UserInputFullname = FullName;
             advancePage.FullNameOnCreatePage.EnterText(FullName);
@@ -133,11 +133,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             advancePage.UserNameTextBoxOnCreatePage.Click();
         }
 
-        [When(@"enters valid Username (.*)")]
+        [When(@"enters valid Username ""(.*)""")]
         public void WhenEntersValidUsername(string ValidUserName)
         {
             advancePage.UserNameTextBoxOnCreatePage.EnterText(ValidUserName);
         }
+
 
         [When(@"presses Tab key")]
         public void WhenPressesTabKey()
@@ -167,7 +168,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsTrue(IsDisplayed, "Username error message is not displayed");
         }
 
-        [When(@"user enters invalid Username (.*)")]
+        [When(@"user enters invalid Username ""(.*)""")]
         public void WhenUserEntersInvalidUsername(string InvalidUserName)
         {
             UserInputInvalidUserName = InvalidUserName;
@@ -204,7 +205,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsTrue(IsUserManagementVisible, "Manager user is not on User Management page");
         }
 
-        [When(@"user enters Username (.*)")]
+        [When(@"user enters Username ""(.*)""")]
         public void WhenUserEntersUsername(string UserName)
         {
             UserInputInvalidUserName = UserName;
@@ -248,13 +249,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             advancePage.FullNameOnCreatePage.EnterText(RandomString);
         }
 
-        [When(@"enters Phone number")]
-        public void WhenEntersPhoneNumber()
+        [When(@"enters Phone number ""(.*)""")]
+        public void WhenEntersPhoneNumber(string phoneNumber)
         {
-            //Passing the length of phone number to the method and generating random phone number as a string and that string is used as a phone number.
-            RandomMobileNumber = GetMethods.GenerateRandomMobileNumber(1000000000);
-            advancePage.PhoneNumberOnCreatePage.EnterText(RandomMobileNumber);
+            advancePage.PhoneNumberOnCreatePage.EnterText(phoneNumber);
         }
+
 
         [When(@"clicks User Manager checkbox")]
         public void WhenClicksUserManagerCheckbox()
@@ -359,9 +359,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             FullnameRandom = GetMethods.GenerateRandomString(15);
             advancePage.FullNameOnCreatePage.EnterText(FullnameRandom);
         }
-
-        [When(@"unchecked User Manager checkbox")]
-        public void WhenUncheckedUserManagerCheckbox()
+      
+        [When(@"unchecks User Manager checkbox")]
+        public void WhenUnchecksUserManagerCheckbox()
         {
             bool IsCheckboxSelected = advancePage.UserManagerOnCreatePage.Selected;
             if (IsCheckboxSelected == true)
@@ -370,7 +370,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             }
         }
 
-        [When(@"user enters Phone number (.*)")]
+        [When(@"user enters Phone number ""(.*)""")]
         public void WhenUserEntersPhoneNumber(string PhoneNumber)
         {
             advancePage.PhoneNumberOnCreatePage.EnterText(PhoneNumber);
@@ -383,8 +383,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsTrue(IsPhoneNumberErrorMessageDisplayed, "Phone number error message is not displayed");
         }
 
-        [When(@"enters valid email address, Name, Phone")]
-        public void WhenEntersValidEmailAddressNamePhone()
+        [When(@"user enters valid email address, Name, Phone")]
+        public void WhenUserEntersValidEmailAddressNamePhone()
         {
             //Entering valid user name
             RandomUsername = GetMethods.GenerateRandomUsername(15);

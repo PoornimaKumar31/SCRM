@@ -18,24 +18,28 @@ Scenario: Edit User Elements
 	And Date column heading is displayed
 	And Details column heading is displayed
 	And Save and Cancel buttons are displayed
-	And Save button enabled
-	And Cancel button enabled
+	And Save button is enabled
+	And Cancel button is enabled
+	
 
 @TestCaseID_9332 @UISID_8704
 Scenario: Edit User Full Name Validity Check
 	Given manager user is on Edit User page
-	When user enters full name with more than fifty characters 
+	#When user enters full name with more than fifty characters
+	#We can't read with full meaning in step definitation if i follow Andy's below step
+	When user enters Full name with ">50" characters
 	And presses Tab
 	Then full name error message is displayed
-	And Save button disabled
+	And Save button is disabled
 	When user clears Full name field
 	And presses Tab
 	Then full name error message is displayed
-	And Save button disabled
-	When user enters full name with less than or equal to fifty characters
+	And Save button is disabled
+	#When user enters full name with less than or equal to fifty characters	
+	When user enters Full name with "<=50" characters
 	And presses Tab
 	Then full name error message is not displayed 
-	And Save button enabled
+	And Save button is enabled
 	When user clicks Save button
 	Then updated Full name is displayed on User List
 
@@ -52,20 +56,28 @@ Scenario: Edit User Phone Number
 	Given manager user is on Edit User page
 	When user enters phone number "1234567890"
 	Then phone number error message is displayed
-	And Save button disabled
+	And Save button is disabled
 	When user enters a plus sign and a random 10-digit Phone number
 	Then phone number error message is not displayed
-	And Save button enabled
+	And Save button is enabled
 	When user clicks Save button
-	And user clicks Details button for same user
+	And clicks Details button for same user
 	Then Phone number is entered number
 
 @TestCaseID_9335 @UISID_8704
 Scenario: Edit User Blank Phone Number
-	Given manager user is on Edit User page
-	When user enters blank Phone number
-	And user clicks Save button
-	Then user list page is displayed
+    Given manager user is on User List page
+    When user clicks Details button for user with a phone number
+    And user enters blank Phone number
+    Then phone number error message is not displayed
+    And Save button is enabled
+    When user clicks Save button
+    And clicks Details button for same user
+    Then Phone number is blank
+
+
+
+
 
 @TestCaseID_9336 @UISID_8704
 Scenario: Cancel Edit User Invalid Phone Number
@@ -74,7 +86,7 @@ Scenario: Cancel Edit User Invalid Phone Number
 	And user enters invalid phone number "123"
 	And clicks Cancel button
 	Then user list page is displayed
-	When user clicks Details button for same user
+	When clicks Details button for same user
 	Then Phone number is unchanged
 
 @TestCaseID_9337 @UISID_8704
@@ -84,7 +96,7 @@ Scenario: Edit User Manager
 	And user deselects the User Manager checkbox
 	And user clicks Save button
 	Then Regular is displayed in Role column in user list
-	When user clicks Details button for same user
+	When clicks Details button for same user
 	And user selects the User Manager checkbox
 	And user clicks Save button
 	Then Administrator is displayed in Role column in User List

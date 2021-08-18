@@ -151,10 +151,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Save and Cancel buttons are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
- testRunner.And("Save button enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Save button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
- testRunner.And("Cancel button enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Cancel button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -171,7 +171,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Full Name Validity Check", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 25
+#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -191,49 +191,49 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 26
+#line 27
  testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 27
- testRunner.When("user enters full name with more than fifty characters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 28
- testRunner.And("presses Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 29
- testRunner.Then("full name error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
 #line 30
- testRunner.And("Save button disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user enters Full name with \">50\" characters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 31
- testRunner.When("user clears Full name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("presses Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 32
- testRunner.And("presses Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 33
  testRunner.Then("full name error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 33
+ testRunner.And("Save button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 34
- testRunner.And("Save button disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user clears Full name field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
- testRunner.When("user enters full name with less than or equal to fifty characters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 36
  testRunner.And("presses Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 37
- testRunner.Then("full name error message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
+ testRunner.Then("full name error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 38
- testRunner.And("Save button enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+ testRunner.And("Save button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 39
- testRunner.When("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters Full name with \"<=50\" characters", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 40
+ testRunner.And("presses Tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 41
+ testRunner.Then("full name error message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 42
+ testRunner.And("Save button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 43
+ testRunner.When("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 44
  testRunner.Then("updated Full name is displayed on User List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -251,7 +251,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Cancel Blank Full Name", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 43
+#line 47
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -271,19 +271,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 44
+#line 48
  testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 45
+#line 49
  testRunner.When("user enters blank Full name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 46
+#line 50
  testRunner.And("clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 47
+#line 51
  testRunner.Then("user list page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 48
+#line 52
  testRunner.And("user is not edited", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -301,7 +301,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Phone Number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 51
+#line 55
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -321,34 +321,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 52
+#line 56
  testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 53
+#line 57
  testRunner.When("user enters phone number \"1234567890\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 54
+#line 58
  testRunner.Then("phone number error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 55
- testRunner.And("Save button disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 56
- testRunner.When("user enters a plus sign and a random 10-digit Phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 57
- testRunner.Then("phone number error message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 58
- testRunner.And("Save button enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 59
- testRunner.When("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Save button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 60
- testRunner.And("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user enters a plus sign and a random 10-digit Phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 61
+ testRunner.Then("phone number error message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 62
+ testRunner.And("Save button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 63
+ testRunner.When("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 64
+ testRunner.And("clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 65
  testRunner.Then("Phone number is entered number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -366,7 +366,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Blank Phone Number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 64
+#line 68
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -386,17 +386,29 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 65
- testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 69
+    testRunner.Given("manager user is on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 66
- testRunner.When("user enters blank Phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 70
+    testRunner.When("user clicks Details button for user with a phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 67
- testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
+    testRunner.And("user enters blank Phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 68
- testRunner.Then("user list page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 72
+    testRunner.Then("phone number error message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 73
+    testRunner.And("Save button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 74
+    testRunner.When("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 75
+    testRunner.And("clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 76
+    testRunner.Then("Phone number is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -413,7 +425,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel Edit User Invalid Phone Number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 71
+#line 83
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -433,25 +445,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 72
+#line 84
  testRunner.Given("manager user is on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 73
+#line 85
  testRunner.When("user clicks Details button for user with a phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 74
+#line 86
  testRunner.And("user enters invalid phone number \"123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 75
+#line 87
  testRunner.And("clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 76
+#line 88
  testRunner.Then("user list page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 77
- testRunner.When("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 89
+ testRunner.When("clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 78
+#line 90
  testRunner.Then("Phone number is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -469,68 +481,6 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Manager", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 81
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 82
- testRunner.Given("manager user is on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 83
- testRunner.When("user clicks Details button for user with Administrator role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 84
- testRunner.And("user deselects the User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 85
- testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 86
- testRunner.Then("Regular is displayed in Role column in user list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 87
- testRunner.When("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 88
- testRunner.And("user selects the User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 89
- testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 90
- testRunner.Then("Administrator is displayed in Role column in User List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Cancel Edit User")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9339")]
-        [NUnit.Framework.CategoryAttribute("UISID_8704")]
-        public virtual void CancelEditUser()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9339",
-                    "UISID_8704"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel Edit User", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 93
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -552,33 +502,48 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 94
- testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("manager user is on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 95
- testRunner.When("user changes Full name, Phone number and Role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Details button for user with Administrator role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 96
- testRunner.And("clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user deselects the User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 97
- testRunner.Then("Full name, Phone number, and Role are not changed on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 98
+ testRunner.Then("Regular is displayed in Role column in user list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 99
+ testRunner.When("clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 100
+ testRunner.And("user selects the User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 101
+ testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 102
+ testRunner.Then("Administrator is displayed in Role column in User List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Edit User Log History")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9344")]
+        [NUnit.Framework.DescriptionAttribute("Cancel Edit User")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9339")]
         [NUnit.Framework.CategoryAttribute("UISID_8704")]
-        public virtual void EditUserLogHistory()
+        public virtual void CancelEditUser()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9344",
+                    "TestCaseID_9339",
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Log History", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 100
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel Edit User", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 105
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -598,10 +563,57 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 101
+#line 106
+ testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 107
+ testRunner.When("user changes Full name, Phone number and Role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 108
+ testRunner.And("clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 109
+ testRunner.Then("Full name, Phone number, and Role are not changed on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Edit User Log History")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9344")]
+        [NUnit.Framework.CategoryAttribute("UISID_8704")]
+        public virtual void EditUserLogHistory()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_9344",
+                    "UISID_8704"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Log History", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 112
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 113
  testRunner.Given("manager user is on Edit User page with log entries > 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 102
+#line 114
  testRunner.Then("Log History table is sorted by descending date sort order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

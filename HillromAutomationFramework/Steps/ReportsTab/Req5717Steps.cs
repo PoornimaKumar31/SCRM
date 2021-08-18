@@ -144,19 +144,17 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"all the devices within each unit is displayed")]
         public void ThenAllTheDevicesWithinThatUnitIsDisplayed()
         {
-            int unit1DeviceCount = usageReportPage.SerailnumberUnit1Column.GetElementCount();
-            unit1DeviceCount.Should().BeGreaterThan(0, "Atleast one device should be present under units.");
+            //Unit1
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit1Column, UsageReportPage.ExpectedValues.Unit1CSMDeviceSerialNumbers);
 
-            List<string> DisplayedSerailNumberInTable = new List<string>();
-            //Station1
-            foreach(IWebElement serialNumber in usageReportPage.SerailnumberUnit1Column)
-            {
-                DisplayedSerailNumberInTable.Add(serialNumber.Text);
-            }
-            //Asserting
-            DisplayedSerailNumberInTable.Should().BeEquivalentTo(UsageReportPage.ExpectedValues.Station1CSMDeviceSerialNumbers);
+            //Unit2
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit2Column,UsageReportPage.ExpectedValues.Unit2CSMDevicesSerialNumber);
 
-            
+            //Unit3
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit3Column, UsageReportPage.ExpectedValues.Unit3CSMDevicesSerialNumber);
+
+            //Unit4
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit4Column, UsageReportPage.ExpectedValues.Unit4CSMDevicesSerialNumber);
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
