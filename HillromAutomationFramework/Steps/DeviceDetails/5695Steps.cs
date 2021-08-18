@@ -847,6 +847,27 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
 
+        [Then(@"SPO2 Nellcor ""(.*)"" is ""(.*)""")]
+        public void ThenSPONellcorIs(string LabelName, string ExpectedValue)
+        {
+            string ActualValue = null;
+            switch (LabelName.ToLower().Trim())
+            {
+                case "name":
+                    ActualValue = CVSMassetListPage.Spo2Name.Text;
+                    break;
+                case "firmware version":
+                    ActualValue = CVSMassetListPage.Spo2FirmwareVersion.Text;
+                    break;
+                default:
+                    Assert.Fail(LabelName + " is Invalid.");
+                    break;
+            }
+
+            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " is not as expected.");
+        }
+
+
         [Then(@"Nellcor ""(.*)"" is ""(.*)""")]
         public void ThenNellcorIs(string LabelName, string ExpectedValue)
         {
@@ -1324,14 +1345,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
 
             }
-        }
-
-        [Given(@"asset Access point MAC address not blank")]
-        public void GivenAssetAccessPointMACAddressNotBlank()
-        {
-            CVSMassetListPage.RadioNewmarToggleArrow.Click();
-            Thread.Sleep(2000);
-            Assert.IsNotEmpty(CVSMassetListPage.RadioLamarrAPMACAddressValue.Text, "AP Mac address is blank");
         }
 
         [Then(@"Locate Asset button is displayed")]

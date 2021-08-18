@@ -18,7 +18,7 @@ Scenario: CVSM Asset Details Battery
 	Given user is on Component details page for CVSM Serial number "103001220212"
 	Then Battery "Name" is "Battery-SANYO"
 	And Battery "Manufacture Date" is "2010/01/--"
-	Then Battery "Serial number" is "21"
+	And Battery "Serial number" is "21"
 	And Battery "Cycle count" is displayed in "Usage" column
 	And Battery "Cycle Count" is "Cycle count: 2"
 	When user clicks battery toggle arrow
@@ -180,13 +180,11 @@ Scenario: CVSM Asset Details SpO2 Masimo License No
 	Then Masimo "SpHb license" label is displayed
 	And Masimo "SpHb License value" is "No"
 
-
-#Redundant Test Case we can remove this as we are verifying same thing in 9487
 @TestCaseID_9486 @UISID_8672 @UISID_8679
 Scenario: CVSM Asset Details SpO2 Nellcor1
 	Given user is on Component details page for CVSM Serial number "100085374016"
-	Then Nellcor "Name" is "Nellcor"
-	And Nellcor "Firmware version" is "1.00.14"
+	Then SPO2 Nellcor "Name" is "SPO2 Sensor"
+	And SPO2 Nellcor "Firmware version" is "1.2.1.0"
 
 @TestCaseID_9487 @UISID_8672 @UISID_8679
 Scenario: CVSM Asset Details SpO2 Nellcor2
@@ -306,5 +304,4 @@ Scenario: CVSM Asset Data Summary2
 @TestCaseID_9652 @UISID_8672 
 Scenario: Locate Asset Button
 	Given user is on Component details page for CVSM Serial number "100042631718"
-	#And asset Access point MAC address not blank
 	Then Locate Asset button is displayed

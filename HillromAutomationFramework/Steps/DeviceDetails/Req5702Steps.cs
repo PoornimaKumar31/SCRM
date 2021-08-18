@@ -380,7 +380,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
         }
 
-        [When(@"user clicks APM battery row  toggle arrow")]
+        [When(@"user clicks APM battery row toggle arrow")]
         public void WhenUserClicksAPMBatteryRowToggleArrow()
         {
             csmAssetListPage.APMBatteryRowToggleArrow.Click();
@@ -1242,6 +1242,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
                 case "last vital sent":
                     ActualValue = csmAssetListPage.SummaryLastVitalSentValue.Text;
+                    break;
+                case "room/bed":
+                    ActualValue = csmAssetListPage.SummaryRoomBedValue.Text;
                     break;
 
                 default:

@@ -57,7 +57,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             reportsPage.GetReportButton.Click();
         }
 
-        [When(@"When user clicks report type dropdown")]
+        [When(@"user clicks report type dropdown")]
         public void WhenWhenUserClicksReportTypeDropdown()
         {
             reportsPage.ReportTypeDDL.Click();
@@ -91,10 +91,9 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             Assert.AreEqual(true, cvsmUsageReportPage.NumberOfDevicesOnEachFloorLabel.GetElementVisibility(), "Number of Devices on Each Floor label is not displayed");
         }
 
-        [Then(@"pie chart with Location ID is displayed")]
-        public void ThenPieChartWithLocationIDIsDisplayed()
+        [Then(@"pie chart is displayed")]
+        public void ThenPieChartIsDisplayed()
         {
-            //Can't verify Location ID is displayed or not
             Assert.AreEqual(true, cvsmUsageReportPage.PieChart.GetElementVisibility(), "Pie Chart is not displayed");
         }
 
@@ -250,12 +249,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             Assert.AreEqual(ReportsPage.ExpectedValues.FirmwareVersionReportType, reportsPage.ReportTypeDDL.GetSelectedOptionFromDDL(), "Selected option is not correct");
         }
 
-        [Then(@"CVSM Firmware Version Report label is displayed")]
+        [Then(@"Firmware Version Report \(CVSM\) label is displayed")]
         public void ThenFirmwareVersionReportCVSMLabelIsDisplayed()
         {
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMFirmwareVersionReportPage.Locator.FirmwareVersionReportTitleLabelID)));
             Assert.AreEqual(true, cvsmFirmwareVersionReportPage.FirmwareVersionReportTitleLabel.GetElementVisibility(), "User is not on the firmware version report page");
         }
+
 
         [Given(@"user is on CVSM Firmware Version Report page")]
         public void GivenUserIsOnCVSMFirmwareVersionReportPage()
@@ -282,8 +282,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             cvsmFirmwareVersionReportPage.TotalRow.Click();
         }
 
-        [Then(@"rows below Total are hidden")]
-        public void ThenRowsBelowTotalAreHidden()
+        [Then(@"rows below Total are displayed")]
+        public void ThenRowsBelowTotalAreDisplayed()
         {
             //Need clarification for implementation
         }
@@ -294,8 +294,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             //Need clarification for implementation
         }
 
-        [Then(@"assets for unit are hidden")]
-        public void ThenAssetsForUnitAreHidden()
+        [Then(@"assets for unit are displayed")]
+        public void ThenAssetsForUnitAreDisplayed()
         {
             //Need clarification for implementation
         }

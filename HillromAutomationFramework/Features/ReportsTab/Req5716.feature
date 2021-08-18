@@ -6,7 +6,7 @@ Feature: Software Requirement 5716
 Scenario: CVSM Report Type Dropdown Content
 	Given user is on Reports page
 	And CVSM Asset type is selected in Asset type dropdown
-	When When user clicks report type dropdown
+	When user clicks report type dropdown
 	Then Report type dropdown displays "Usage, Firmware Version, Access Point Locations"
 
 @TestCaseID_9365 @UISID_8684 @UISID_8685 @UISID_8686
@@ -18,8 +18,7 @@ Scenario: CVSM Usage Report Elements
 	Then CVSM Asset Usage Report label is displayed
 	And Print button is displayed
 	And Number of Devices on Each Floor label is displayed
-	#We can't verify if Location ID is displayed or not
-	And pie chart with Location ID is displayed
+	And pie chart is displayed
 	And Total Usage Details - Components label is displayed
 	
 @TestCaseID_9366 @UISID_8684 @UISID_8685 @UISID_8686	
@@ -32,7 +31,7 @@ Scenario: CVSM Usage Report Table Elements
 	And "Serial number" column heading is displayed
 	And "Battery cycle count" column heading is displayed
 	And "SureTemp thermometer cycle count" column heading is displayed
-	And  "NIBP sensor cycle count" column heading is displayed
+	And "NIBP sensor cycle count" column heading is displayed
 	And "SpHb cycle count" column heading is displayed
 
 @TestCaseID_9446 @UISID_8684 @UISID_8685 @UISID_8686	
@@ -64,7 +63,7 @@ Scenario: CVSM Firmware Version Report Elements
 	And CVSM Asset type is selected in Asset type dropdown
 	And Firmware Version Report type is selected
 	When user clicks Get report button
-	Then CVSM Firmware Version Report label is displayed
+	Then Firmware Version Report (CVSM) label is displayed
 	And "Components" column heading is displayed
 	And "Firmware version" column heading is displayed
 	And "Total devices" column heading is displayed
@@ -73,9 +72,9 @@ Scenario: CVSM Firmware Version Report Elements
 Scenario: CVSM Firmware Version Report Table Toggle
 	Given user is on CVSM Firmware Version Report page
 	When user clicks Total row
-	Then rows below Total are hidden
+	Then rows below Total are displayed
 	When user clicks unit row
-	Then assets for unit are hidden
+	Then assets for unit are displayed
 
 @TestCaseID_9371 @UISID_8684 @UISID_8687
 Scenario: CVSM Firmware Version Report Print

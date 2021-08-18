@@ -371,7 +371,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("APM battery row \"Cycle Count\" is \"Cycle Count: 16\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 65
- testRunner.When("user clicks APM battery row  toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks APM battery row toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 66
  testRunner.Then("APM battery \"Temperature\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -950,13 +950,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Component details page for CSM Serial number \"100027113318\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 189
- testRunner.Then("Radio Newmar row \"Name\" is \"Radio-Newmarr Kernel Ver.\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Radio Newmar row \"Name\" is \"Radio-Newmar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 190
  testRunner.And("Radio Newmar row \"Firmware version\" is \"2.00.02 A0001\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 191
- testRunner.And("Radio Newmar row \"Serial number\" is \"00:17:23:E9:2F:C2\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Radio Newmar row \"Serial number\" is \"RADIO_SN\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 192
  testRunner.When("user clicks Radio-Newmar toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -1074,6 +1074,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 220
  testRunner.And("Summary \"Room/Bed\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 221
+ testRunner.And("Summary \"Room/Bed\" is \"/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 222
  testRunner.And("Summary \"Asset tag\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

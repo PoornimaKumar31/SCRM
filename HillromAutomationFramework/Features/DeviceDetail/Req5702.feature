@@ -62,7 +62,7 @@ Scenario: CSM Asset Details APM
 	And APM battery row "Serial number" is "310"
 	And APM battery row "Cycle count" is displayed in "Usage" column
 	And APM battery row "Cycle Count" is "Cycle Count: 16"
-	When user clicks APM battery row  toggle arrow
+	When user clicks APM battery row toggle arrow
 	Then APM battery "Temperature" label is displayed
 	And APM battery "Temperature" is "03066 K"
 	And APM battery "Voltage" label is displayed
@@ -186,9 +186,9 @@ Scenario: CSM Asset Details SpO2 Nonin
 @TestCaseID_9683 @UISID_8672 @UISID_8677 @UISID_8680
 Scenario: CSM Asset Details Radio Newmar
 	Given user is on Component details page for CSM Serial number "100027113318"
-	Then Radio Newmar row "Name" is "Radio-Newmarr Kernel Ver."
+	Then Radio Newmar row "Name" is "Radio-Newmar"
 	And Radio Newmar row "Firmware version" is "2.00.02 A0001"
-	And Radio Newmar row "Serial number" is "00:17:23:E9:2F:C2"
+	And Radio Newmar row "Serial number" is "RADIO_SN"
 	When user clicks Radio-Newmar toggle arrow
 	Then Radio Newmar "Access point MAC address" label is displayed
 	And Radio Newmar "Access point MAC address" is "02:FA:E4:33:00:21"
@@ -218,7 +218,7 @@ Scenario: CSM Asset Data Summary1
 	And Summary "Location" label is displayed
 	And Summary "Location" is "Mobile HotspotId"
 	And Summary "Room/Bed" label is displayed
-	#And Summary "Room/Bed" is blank
+	And Summary "Room/Bed" is "/"
 	And Summary "Asset tag" label is displayed
 	And Summary "Asset tag" is "Hotspot"
 	And Summary "IP address" label is displayed
