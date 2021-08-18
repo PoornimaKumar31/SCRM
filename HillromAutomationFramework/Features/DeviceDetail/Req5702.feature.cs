@@ -580,6 +580,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 114
  testRunner.And("Temperature probe row \"serial number\" is \"582010\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 115
+ testRunner.And("Temperature probe row \"Cycle count\" is displayed in \"Usage\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 117
  testRunner.When("user clicks Temperature probe row toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -690,6 +693,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 143
  testRunner.And("SureTemp \"Serial number\" is \"100029580720\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 144
+ testRunner.And("SureTemp \"Cycle count\" is displayed in \"Usage\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 145
  testRunner.And("SureTemp \"Cycle count\" is \"Cycle Count: 0\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

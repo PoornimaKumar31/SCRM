@@ -112,7 +112,7 @@ Scenario: CSM Asset Details SureTemp Probe
 	Given user is on Component details page for CSM Serial number "100055940720"
 	Then Temperature probe row "Name" is "Temperature Probe"
 	And Temperature probe row "serial number" is "582010"
-	#And Temperature probe row "Cycle count" is displayed in "Usage" column
+	And Temperature probe row "Cycle count" is displayed in "Usage" column
 	#And Temperature probe row "Cycle Count" is "23"
 	When user clicks Temperature probe row toggle arrow
 	Then Temperature probe "Probe type" label is displayed
@@ -141,7 +141,7 @@ Scenario: CSM Asset Details SureTemp
 	And SureTemp "Firmware version" is "1.00.00.00006"
 	And SureTemp "Hardware version" is "F"
 	And SureTemp "Serial number" is "100029580720"
-	#And SureTemp "Cycle count" is displayed in "Usage" column
+	And SureTemp "Cycle count" is displayed in "Usage" column
 	And SureTemp "Cycle count" is "Cycle Count: 0"
 
 @TestCaseID_9680 @UISID_8672 @UISID_8677 @UISID_8680

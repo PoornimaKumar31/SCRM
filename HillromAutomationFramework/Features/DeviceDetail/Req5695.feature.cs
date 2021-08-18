@@ -526,6 +526,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 100
  testRunner.And("NIBP \"Cycle Count\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 101
+ testRunner.And("NIBP \"Cycle count\" is displayed in \"Usage\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 102
  testRunner.And("NIBP \"Cycle Count\" is \"Cycle count:24\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

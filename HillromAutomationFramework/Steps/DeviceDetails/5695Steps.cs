@@ -546,9 +546,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
             switch (LabelName.ToLower().Trim())
             {
-                //We are decreamenting the Actual column index by one as one extra div element in present in DOM
+           
                 case "cycle count":
-                    ActualColumnIndex = CVSMassetListPage.NIBPElementList.IndexOf(CVSMassetListPage.NIBPCycleCount) - 1;
+                    ActualColumnIndex = CVSMassetListPage.NIBPElementList.IndexOf(CVSMassetListPage.NIBPCycleCount);
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");

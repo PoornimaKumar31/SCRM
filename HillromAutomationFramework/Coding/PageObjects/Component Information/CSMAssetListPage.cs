@@ -144,6 +144,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string TempProbeLastDeviceSerialNumberValueID = "temp_probe_last_serial";
             public const string TempProbeNumberOfTimesProbeChangedLabelID = "lbl_temp_probe_change";
             public const string TempProbeNumberOfTimesProbeChangedValueID = "temp_probe_change";
+            public const string TempProbeRelativeElementXPath = "//div[@id = \"temp_probe_usage\"]/parent::div/div";
 
 
             //SureTemp
@@ -152,6 +153,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string SureTempHardwareVersionID = "sure_temp_hardware_version";
             public const string SureTempSerialNumberID = "temp_probe_serial_no";
             public const string SureTempCycleCountID = "sure_temp_usage";
+            public const string SureTempRelativeElementXPath = "//div[@id = \"sure_temp_usage\"]/parent::div/div";
 
 
             //Spo2 Masimo
@@ -233,6 +235,12 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
 
 
         }
+
+        [FindsBy(How = How.XPath, Using = Locator.SureTempRelativeElementXPath)]
+        public IList<IWebElement> SureTempElementList { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.TempProbeRelativeElementXPath)]
+        public IList<IWebElement> TempProbeElementList { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locator.NIBPRelativeElementXPath)]
         public IList<IWebElement> NIBPElementList { get; set; }
