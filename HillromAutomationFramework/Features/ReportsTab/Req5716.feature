@@ -1,6 +1,8 @@
 ﻿@SoftwareRequirementID_5716
 Feature: Software Requirement 5716
-	Simple calculator for adding two numbers
+	 The Customer Portal shall have a feature for generating following CVSM reports:
+	Usage report
+	Firmware version report
 
 @TestCaseID_9364 @UISID_8684 @UISID_8686
 Scenario: CVSM Report Type Dropdown Content

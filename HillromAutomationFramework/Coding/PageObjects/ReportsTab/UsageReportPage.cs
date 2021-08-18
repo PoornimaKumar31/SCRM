@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.SupportingCode;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System.Collections.Generic;
@@ -34,7 +35,11 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string Station1DevicesId = "devices0";
             public const string TableHeaderXpath = "//div[@class='report-information-container']/div";
 
-            public const string SerailnumberUnit1ColumnXpath= "//div[@id=\"devices0\"]//div//div[3]";
+            public const string SerailNumberUnit1ColumnXpath= "//div[@id='devices0']//div//div[3]";
+            public const string SerialNumberUnit2ColumnXpath = "//div[@id='devices1']//div//div[3]";
+            public const string SerialNumberUnit3ColumnXpath = "//div[@id='devices2']//div//div[3]";
+            public const string SerialNumberUnit4ColumnXpath = "//div[@id='devices3']//div//div[3]";
+
             public const string UnitsRowListXpath = "//*[starts-with(@id,'location')]";
         }
 
@@ -53,12 +58,39 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string NIBPSensorCycleCountHeadingText = "NIBP Sensor cycle count";
             public const string SPHBCycleCountHeadingText = "SPHB cycle count";
             
-            public static List<string> Station1CSMDeviceSerialNumbers = new List<string>()
+            //unit1
+            public static List<string> Unit1CSMDeviceSerialNumbers = new List<string>()
             {
                 "100010000000",
                 "100010000001",
                 "200010000001"
             };
+
+            //unit2
+            public static List<string> Unit2CSMDevicesSerialNumber = new List<string>()
+            {
+                "100010000005",
+                "100010000004",
+                "100010000006",
+                "100010000007"
+            };
+
+            //unit3
+            public static List<string> Unit3CSMDevicesSerialNumber = new List<string>()
+            {
+                "100001232114",
+                "100027113318",
+                "100055940720",
+                "100001954714"
+            };
+
+            //unit4
+            public static List<string> Unit4CSMDevicesSerialNumber = new List<string>()
+            {
+                "100015671718"
+            };
+
+
         }
 
         [FindsBy(How =How.Id,Using =Locator.ReportTitleHeaderID)]
@@ -76,8 +108,17 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         [FindsBy(How = How.ClassName, Using = Locator.TotalUsageComponentsLabelClassName)]
         public IWebElement TotalUsageComponentsLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locator.SerailnumberUnit1ColumnXpath)]
-        public IList<IWebElement> SerailnumberUnit1Column { get; set; }
+        [FindsBy(How = How.XPath, Using = Locator.SerailNumberUnit1ColumnXpath)]
+        public IList<IWebElement> SerialNumberUnit1Column { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit2ColumnXpath)]
+        public IList<IWebElement> SerialNumberUnit2Column { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit3ColumnXpath)]
+        public IList<IWebElement> SerialNumberUnit3Column { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit4ColumnXpath)]
+        public IList<IWebElement> SerialNumberUnit4Column { get; set; }
 
         //Tables
         [FindsBy(How = How.Id, Using = Locator.ModelHeadingID)]
@@ -112,5 +153,25 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 
         [FindsBy(How = How.XPath, Using = Locator.UnitsRowListXpath)]
         public IList<IWebElement> UnitsRowList { get; set; }
+        
+        /// <summary>
+        /// Checks if all the devices under the unit is displayed
+        /// </summary>
+        /// <param name="serialNumberList">List of web elements of serial numbers under the unit</param>
+        /// <param name="expectedSerialNumberList">Expected list of serial number of devices comes under the list</param>
+        public void CheckAllDevicesUnderUnitsIsDisplayed(IList<IWebElement> serialNumberList,List<string> expectedSerialNumberList)
+        {
+            int DeviceCountUnderUnit = serialNumberList.GetElementCount();
+            DeviceCountUnderUnit.Should().BeGreaterThan(0, "Atleast one device should be present under units.");
+            List<string> ActualSerialNumberListUnderUnits = new List<string>();
+            //Station1
+            foreach (IWebElement serialNumber in serialNumberList)
+            {
+               ActualSerialNumberListUnderUnits.Add(serialNumber.Text);
+            }
+            //Asserting
+            ActualSerialNumberListUnderUnits.Should().BeEquivalentTo(expectedSerialNumberList);
+
+        }
     }
 }

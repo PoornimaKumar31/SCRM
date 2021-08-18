@@ -151,13 +151,36 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"assets are grouped by unit")]
         public void ThenAssetsAreGroupedByUnit()
         {
-            //Need clarification about what is grouped by unit
+            SetMethods.ScrollToBottomofWebpage();
+            int unitCount = cvsmUsageReportPage.UnitsRowList.GetElementCount();
+            for (int row = 0; row < unitCount; row++)
+            {
+                IWebElement deviceParent = PropertyClass.Driver.FindElement(By.Id("devices" + row)).FindElement(By.XPath(".."));
+                IWebElement unitParent = PropertyClass.Driver.FindElement(By.Id("location" + row)).FindElement(By.XPath(".."));
+                if (!(deviceParent.Equals(unitParent)))
+                {
+                    Assert.Fail("Assets are not grouped by unit.");
+                }
+            }
         }
 
         [Then(@"all the devices within unit are displayed")]
         public void ThenAllTheDevicesWithinUnitAreDisplayed()
         {
-            //What would be the expected condition for all the devices for perticular unit
+            //Unit1
+            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit1Column, CVSMUsageReportPage.ExpectedValue.Station1UnitCVSMDeviceSerialNumbers);
+
+            //Unit2
+            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit2Column, CVSMUsageReportPage.ExpectedValue.NotSetUnitCVSMDevicesSerialNumber);
+
+            //Unit3
+            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit3Column, CVSMUsageReportPage.ExpectedValue.LuWenUnitCVSMDevicesSerialNumber);
+
+            //Unit4
+            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit4Column, CVSMUsageReportPage.ExpectedValue.ConnexCS1UnitCVSMDevicesSerialNumber);
+
+            //Unit5
+            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit5Column, CVSMUsageReportPage.ExpectedValue.AndyDeskUnitCVSMDevicesSerialNumber);
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
@@ -285,19 +308,25 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"rows below Total are displayed")]
         public void ThenRowsBelowTotalAreDisplayed()
         {
-            //Need clarification for implementation
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.TotalUnitAllDevice.GetElementVisibility(), "Rows are not displayed");
         }
 
         [When(@"user clicks unit row")]
         public void WhenUserClicksUnitRow()
         {
-            //Need clarification for implementation
+            cvsmFirmwareVersionReportPage.AndyDeskUnit.Click();
+            cvsmFirmwareVersionReportPage.ConnexCS1Unit.Click();
+            cvsmFirmwareVersionReportPage.LuWenUnit.Click();
+            cvsmFirmwareVersionReportPage.Station1Unit.Click();
         }
 
         [Then(@"assets for unit are displayed")]
         public void ThenAssetsForUnitAreDisplayed()
         {
-            //Need clarification for implementation
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.AndyDeskUnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.ConnexCS1UnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.LuWenUnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.Station1UnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
         }
 
 
