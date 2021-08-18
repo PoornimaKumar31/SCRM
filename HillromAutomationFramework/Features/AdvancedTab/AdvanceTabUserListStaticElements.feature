@@ -4,13 +4,13 @@ Feature: AdvanceTabUserListStaticElements
 
 @TestCaseID_9662 @UISID_8702
 Scenario: User List Elements
-	Given manager user is on USER LIST page having user entries > 2
-	Then USER LIST label is displayed
-	And CREATE button is displayed
-	And CREATE button is enabled
-	And Full name Column1 is displayed
-	And Role Column2 is displayed
-	And Email Column3 is displayed
+	Given manager user is on User List page having user entries > 2
+	Then User List label is displayed
+	And Create button is displayed
+	And Create button is enabled
+	And "Full name" column heading is displayed
+	And "Role" column heading is displayed
+	And "Email" column heading is displayed
 	And User List Table is sorted by Email
-	And Details Button is displayed and enabled for all User rows
-	And Delete Button is displayed and enabled for other than logged in user for all rows
+	And Details button is displayed and enabled for all User rows
+	And Delete button is displayed and enabled for all rows other than logged in user

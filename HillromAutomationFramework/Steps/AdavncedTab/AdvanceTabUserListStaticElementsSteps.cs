@@ -26,9 +26,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             _scenarioContext = scenarioContext;
         }
+        int HeaderCount;
 
-        [Given(@"manager user is on USER LIST page having user entries > (.*)")]
-        public void GivenManagerUserIsOnUSERLISTPageHavingUserEntries(int NoOfMinimumEntries)
+
+
+        //Updated
+        [Given(@"manager user is on User List page having user entries > (.*)")]
+        public void GivenManagerUserIsOnUserListPageHavingUserEntries(int NoOfMinimumEntries)
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
@@ -38,7 +42,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.Greater(TotalUser, NoOfMinimumEntries, "Manager user is on User Management page is not more than two entries");
         }
 
-        [Then(@"USER LIST label is displayed")]
+
+
+
+
+
+
+        [Then(@"User List label is displayed")]
         public void ThenUSERLISTLabelIsDisplayed()
         {
             Thread.Sleep(2000);
@@ -46,49 +56,41 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsTrue(IsUserListLabelTextDisplayed, "User list page is not displayed");
         }
 
-        [Then(@"CREATE button is displayed")]
+        [Then(@"Create button is displayed")]
         public void ThenCREATEButtonIsDisplayed()
         {
             bool IsCreateButtonDisplayed = advancePage.CreateUserOnCreatePage.GetElementVisibility();
             Assert.IsTrue(IsCreateButtonDisplayed, "CREATE button is not displayed.");
         }
 
-        [Then(@"CREATE button is enabled")]
+        [Then(@"Create button is enabled")]
         public void ThenCREATEButtonIsEnabled()
         {
             bool IsCreateButtonEnabled = advancePage.CreateUserOnCreatePage.Enabled;
             Assert.IsTrue(IsCreateButtonEnabled, "CREATE button is not enabled.");
         }
 
-        [Then(@"Full name Column(.*) is displayed")]
-        public void ThenFullNameColumnIsDisplayed(int p0)
+        [Then(@"""(.*)"" column heading is displayed")]
+        public void ThenColumnHeadingIsDisplayed(string HeadingParameter)
         {
-            bool IsFullNameColumn1Displayed = advancePage.FullnameLabelOnUserList.GetElementVisibility();
+            bool IsHeaderDisplayed = advancePage.FullnameLabelOnUserList.GetElementVisibility();
             TableHeaderOnUserListPage = advancePage.UserListTableHeader.Text.Split();
-            if (TableHeaderOnUserListPage[0] != "Full name")
+            if (TableHeaderOnUserListPage[HeaderCount] != HeadingParameter)
             {
-                Assert.IsTrue(IsFullNameColumn1Displayed, "Full name Column1 is not displayed.");
+                if (HeadingParameter== "Full name")
+                {
+                    Assert.IsTrue(IsHeaderDisplayed, "Full name is not displayed.");                   
+                }
+                if (HeadingParameter == "Role")
+                {
+                    Assert.IsTrue(IsHeaderDisplayed, "Role is not displayed.");
+                }
+                if (HeadingParameter == "Email")
+                {
+                    Assert.IsTrue(IsHeaderDisplayed, "Email is not displayed.");
+                }               
             }
-        }
-
-        [Then(@"Role Column(.*) is displayed")]
-        public void ThenRoleColumnIsDisplayed(int p0)
-        {
-            bool IsRoleColumn2Displayed = advancePage.RoleLabelOnUserList.GetElementVisibility();
-            if (TableHeaderOnUserListPage[1] != "Role")
-            {
-                Assert.IsTrue(IsRoleColumn2Displayed, "Role Column2 is not displayed");
-            }
-        }
-
-        [Then(@"Email Column(.*) is displayed")]
-        public void ThenEmailColumnIsDisplayed(int p0)
-        {
-            bool IsEmailColumn3Displayed = advancePage.EmailLabelOnUserList.GetElementVisibility();
-            if (TableHeaderOnUserListPage[2] != "Email")
-            {
-                Assert.IsTrue(IsEmailColumn3Displayed, "Email Column3 is not displayed");
-            }
+            HeaderCount++;
         }
 
         [Then(@"User List Table is sorted by Email")]
@@ -98,7 +100,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsTrue(IsEmailAscending, "User List Table is not sorted by Email");
         }
 
-        [Then(@"Details Button is displayed and enabled for all User rows")]
+        [Then(@"Details button is displayed and enabled for all User rows")]
         public void ThenDetailsButtonIsDisplayedAndEnabledForAllUserRows()
         {
             int NoOfDetailsButton = advancePage.DetailsButton.Count;
@@ -109,12 +111,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             }
         }
 
-        [Then(@"Delete Button is displayed and enabled for other than logged in user for all rows")]
+        [Then(@"Delete button is displayed and enabled for all rows other than logged in user")]
         public void ThenDeleteButtonIsDisplayedAndEnabledForOtherThanLoggedInUserForAllRows()
         {
             int count = advancePage.DeleteButtonIsDisplayedAndEnabledForOtherThanLoggedInUserForAllRows();
             Assert.AreEqual(0, count, "Delete Button is not displayed and enabled for other than logged in user for all rows");
         }
-
     }
 }

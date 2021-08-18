@@ -131,8 +131,19 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters full name with more than fifty characters")]
         public void WhenUserEntersFullNameWithMoreThanCharacters()
         {
+            
+        }
+
+        [When(@"user enters Full name with ""(.*)"" characters")]
+        public void WhenUserEntersFullNameWithCharacters(string FullNameCharacterSize)
+        {
+            if (true)
+            {
+
+            }
+            int FullNameSize = int.Parse(FullNameCharacterSize);
             advancePage.FullName.Clear();
-            UserNameGreaterThan50_51char = GetMethods.GenerateRandomString(51);
+            UserNameGreaterThan50_51char = GetMethods.GenerateRandomString(FullNameSize);
             advancePage.FullName.EnterText(UserNameGreaterThan50_51char);
         }
 
@@ -144,13 +155,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsTrue(IsErrorMessageDisplayed, "Please enter a valid name error message is not displayed");
         }
 
-        [Then(@"Save button disabled")]
-        public void ThenSaveButtonDisabled()
+        [Then(@"Save button is disabled")]
+        public void ThenSaveButtonIsDisabled()
         {
             bool IsSaveButtonDisabled = advancePage.SaveButton.Enabled;
             Assert.IsFalse(IsSaveButtonDisabled, "Save button is enabled");
         }
-
+        /*
         [When(@"user enters full name with less than or equal to fifty characters")]
         public void WhenUserEntersFullNameWithLessThanOrEqualToCharacters()
         {
@@ -159,7 +170,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             RandomFullNameLessThan50_49char = GetMethods.GenerateRandomString(49);
             advancePage.FullName.EnterText(RandomFullNameLessThan50_49char);
         }
-
+        */
         [Then(@"phone number error message is not displayed")]
         public void ThenPhoneNumberErrorMessageIsNotDisplayed()
         {
@@ -168,8 +179,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsFalse(Visibility, "Element is not displayed");
         }
 
-        [Then(@"Save button enabled")]
-        public void ThenSaveButtonEnabled()
+        [Then(@"Save button is enabled")]
+        public void ThenSaveButtonIsEnabled()
         {
             bool IsSaveButtonEnabled = advancePage.SaveButton.Enabled;
             Assert.IsTrue(IsSaveButtonEnabled, "Save button is disabled");
@@ -237,7 +248,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters blank Phone number")]
         public void WhenUserEntersBlankPhoneNumber()
         {
-            advancePage.PhoneTextField.EnterText("");
+            advancePage.PhoneTextField.Clear();
+            //advancePage.PhoneTextField.EnterText("");
         }
 
         [When(@"user enters invalid phone number (.*)")]
@@ -354,12 +366,22 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsFalse(FullNameErrorMessageisplayed, "Full name error message is displayed");
         }
 
-        [When(@"user clicks Details button for same user")]
-        public void WhenUserClicksDetailsButtonForSameUser()
+        [When(@"clicks Details button for same user")]
+        public void WhenClicksDetailsButtonForSameUser()
         {
             Thread.Sleep(2000);
             advancePage.DetailsButton[DetailsButtonCount].Click();
         }
+
+        [Then(@"Phone number is blank")]
+        public void ThenPhoneNumberIsBlank()
+        {
+            Thread.Sleep(5000);
+            string EnteredPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
+
+            Assert.AreEqual(true, EnteredPhoneNumber == "", "Phone number is not entered number");
+        }
+
 
         [When(@"user clicks Details button for user with Administrator role")]
         public void WhenUserClicksDetailsButtonForUserWithAdministratorRole()
@@ -407,7 +429,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             advancePage.UserManagerCheckBox.JavaSciptClick();
         }
 
-        [Then(@"Cancel button enabled")]
+        [Then(@"Cancel button is enabled")]
         public void ThenCancelButtonEnabled()
         {
             bool IsCancelButtonEnabled = advancePage.CancelButton.Enabled;

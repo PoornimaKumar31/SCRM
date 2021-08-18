@@ -229,7 +229,5 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             string MobileNumber = Prefix + str;
             return MobileNumber;
         }
-
-
     }
 }
