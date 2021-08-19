@@ -26,7 +26,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string ActualRole = null;
         string UserInputInvalidUserName = null;
         string UserInputFullname = null;
-        string[] NewUserDetails = { };
 
         private readonly ScenarioContext _scenarioContext;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
