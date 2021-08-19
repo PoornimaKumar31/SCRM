@@ -113,12 +113,12 @@ Scenario: CSM Asset Details SureTemp Probe
 	Then Temperature probe row "Name" is "Temperature Probe"
 	And Temperature probe row "serial number" is "582010"
 	And Temperature probe row "Cycle count" is displayed in "Usage" column
-	#And Temperature probe row "Cycle Count" is "23"
+	And Temperature probe row "Cycle Count" is "23"
 	When user clicks Temperature probe row toggle arrow
 	Then Temperature probe "Probe type" label is displayed
 	And Temperature probe "Probe type" is "ORAL"
 	And Temperature probe "Probe Cycle Count" label is displayed
-	And Temperature probe "Probe Cycle Count" is "23"
+	#And Temperature probe "Probe Cycle Count" is "23"
 	And Temperature probe "Part number" label is displayed
 	And Temperature probe "Part number" is "02692100"
 	And Temperature probe "Lot Code" label is displayed

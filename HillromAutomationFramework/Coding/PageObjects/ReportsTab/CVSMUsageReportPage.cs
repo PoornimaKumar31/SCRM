@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.Coding.SupportingCode;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System;
@@ -177,5 +178,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             ActualSerialNumberListUnderUnits.Should().BeEquivalentTo(expectedSerialNumberList);
 
         }
+
+   
     }
 }
