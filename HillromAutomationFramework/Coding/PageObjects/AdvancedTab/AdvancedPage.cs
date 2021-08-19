@@ -63,6 +63,9 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             //Log History table data
             public const string LogHistoryTableDataXPath = "//*[@id=\"lbl_history_detail\"]/div[2]/div[2]";
             public const string LogHistoryContentXPath = "//*[@id=\"lbl_history_detail\"]//div[2]//div[1]";
+            public const string UserListRowXPath = "//div[contains(@id,\"user_row\")]";
+            public const string LoggedInUserNameID = "logged-in_username";
+            public const string RoleColumnXPath = "//div[starts-with(@id,'role')]";
         }
 
         /// <summary>
@@ -80,6 +83,19 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string FullNameErrorMessage = "Please enter a valid name";
             public const string LoggedUser = "ltts_testing@hillrom.com";
         }
+
+        [FindsBy(How = How.XPath, Using = Locators.RoleColumnXPath)]
+        public IList<IWebElement> RoleColumn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.UserListRowXPath)]
+        public IList<IWebElement> UserList { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.LoggedInUserNameID)]
+        public IWebElement LoggedInUserName { get; set; }
+
+
+        [FindsBy(How = How.XPath, Using = Locators.UserListRowXPath)]
+        public IList<IWebElement> UserListRow { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.PhoneErrorMessageOnAddUserPageXPath)]
         public IWebElement PhoneErrorMessageOnAddUserPage { get; set; }
@@ -192,80 +208,44 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         public string RandomFullNameLessThan50_49char { get; private set; }
         public string RandomPhoneNumber10_10Digits { get; private set; }
 
-
         /// <summary>
-        /// User clicks any Details button except Logged User Details button
+        /// Getting User List rows of Username except Logged User
         /// </summary>
-        /// <returns>DetailsButtonPosition</returns>
-        public int FindDetailsButtonForOtherUserAndClick()
+        /// <returns>Returns list of IWebElement of User list rows except Logged user</returns>
+        public IList<IWebElement> UserListExceptLoggedInUser()
         {
-            int DetailsButtonPosition;
-            int NoOfDetailsButton = DetailsButtonList.Count;
-            for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
+            List<IWebElement> list = new List<IWebElement>(UserList);
+            try
             {
-                string userNameXPath = "//*[@id=\"email" + DetailsButtonPosition + "\"]";
-                string userName = PropertyClass.Driver.FindElement(By.XPath(userNameXPath)).Text;
-                if (userName != AdvancedPage.ExpectedValues.LoggedUser)
-                {
-                    DetailsButtonList[DetailsButtonPosition].Click();
-                    break;
-                }
+                list.RemoveAt(GetIndexOfLoggedInUser(LoggedInUserName.Text));
+
             }
-            return DetailsButtonPosition;
+            catch (Exception e)
+            {
+                Assert.Fail("Logged in User could not be found" + e.ToString());
+            }
+
+            return list;
+        }
+        /// <summary>
+        /// Getting row index of Logged user
+        /// </summary>
+        /// <param name="LoggedInUserName"></param>
+        /// <returns>Returns index of Logged User</returns>
+        public int GetIndexOfLoggedInUser(string LoggedInUserName)
+        {
+            IList<IWebElement> list = UserList;
+            foreach (IWebElement element in list)
+            {
+
+                if (element.Text.StartsWith(LoggedInUserName))
+                    return list.IndexOf(element);
+            }
+            return -1;
         }
 
         /// <summary>
-        ///  Updating Full name, Phone number and Role
-        /// </summary>
-        public void UpdateNamePhoneRole()
-        {
-            Thread.Sleep(2000);
-            RandomFullNameLessThan50_49char = GetMethods.GenerateRandomString(49);
-            RandomPhoneNumber10_10Digits = GetMethods.GenerateRandomPhoneNumber(1000000000);
-
-            FullName.Clear();
-            FullName.EnterText(RandomFullNameLessThan50_49char);
-            PhoneTextField.Clear();
-            PhoneTextField.EnterText(RandomPhoneNumber10_10Digits);
-            Thread.Sleep(3000);
-            UserManagerCheckBox.JavaSciptClick();
-        }
-
-        /// <summary>
-        /// Manager wants to be on Edit User page where Log enteries are greater than 2
-        /// </summary>
-        /// <returns>DetailsButtonPosition</returns>
-        public int FindEditUserPageWithLogEntriesGreaterThanTwo()
-        {
-            //Finding number of enteries in the table.
-            int DetailsButtonPosition;
-            int NoOfDetailsButton = DetailsButtonList.Count;
-            string[] LogHistory = { };
-            for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
-            {
-                PropertyClass.Driver.FindElement(By.XPath("(//*[@id=\"btn_edit\"])[" + (DetailsButtonPosition + 1) + "]")).Click();
-                Thread.Sleep(2000);
-                LogHistory = LogHistoryTableData.Text.Split();
-                int count = LogHistory.Length;
-                if (count > 20)
-                {
-                    break;
-                }
-                else
-                {
-                    CancelButton.Click();
-                }
-            }
-            if (LogHistory.Length == 0)
-            {
-                Assert.IsTrue(LogHistory.Length == 0, "No any user is present which has History Logs.");
-            }
-
-            return DetailsButtonPosition;
-        }
-
-        /// <summary>
-        /// Collecting all Dates from the Log History column firstly and putting it in a simple list as a string. Later in the second loop string is converted into DateTime list
+        /// Collecting all Dates from the Log History column and putting it in a simple list as a string. Later in the second loop string is converted into DateTime list
         /// </summary>
         /// <returns>List of DateTime</returns>
         public List<DateTime> FindLogHistoryDateOrder()
@@ -313,42 +293,11 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             return IsEmailIdAscendingOrder;
         }
 
-       
-        /// <summary>
-        /// Clicking that Details Button where user Role is Administrator
-        /// </summary>
-        /// <returns>Returning RoleXPath and DetailsButtonPosition to verify after updating data</returns>
-        public Dictionary<string, string> ClickDetailsButtonWhereRoleIsAdministrator()
-        {
-            int DetailsButtonPosition;
-            string RoleXpath = null;
-            var Elements = new Dictionary<string, string>();
-            int NoOfDetailsButton = DetailsButtonList.Count;
-            for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
-            {
-                string userNameXPath = "//*[@id=\"email" + DetailsButtonPosition + "\"]";
-                string userName = PropertyClass.Driver.FindElement(By.XPath(userNameXPath)).Text;
-                if (userName != AdvancedPage.ExpectedValues.LoggedUser)
-                {
-                    RoleXpath = "//*[@id=\"role" + DetailsButtonPosition + "\"]";
-                    string Role = PropertyClass.Driver.FindElement(By.XPath(RoleXpath)).Text;
-                    if (Role == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage)
-                    {
-                        DetailsButtonList[DetailsButtonPosition].Click();
-                        break;
-                    }
-                }
-            }
-
-            Elements.Add(RoleXpath, DetailsButtonPosition.ToString());
-            return Elements;
-        }
-
         /// <summary>
         /// //To match Phone number I need to click on Details button then I will get Phone number. So providing ActualUserName through method to find in table content and then just Clicks only on corresponding Details button.
         /// </summary>
         /// <param name="ActualUserName"></param>
-        public void ClicksOnDetailsButton(string ActualUserName)
+        public void ClickOnDetailsButtonOfSpecifiedUser(string ActualUserName)
         {
             int DetailsButtonCount;
             int NoOfDetailsButton = DetailsButtonList.Count;
