@@ -263,6 +263,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"enters Phone number ""(.*)""")]
         public void WhenEntersPhoneNumber(string phoneNumber)
         {
+            RandomMobileNumber = phoneNumber;
             advancePage.PhoneNumberOnCreatePage.EnterText(phoneNumber);
         }
 
@@ -313,7 +314,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.AreEqual(true, FullnameRandom == ActualFullName, "Name does not match");
 
             //To match Phone number, need to click on Details button then I will get Phone number. So passing ActualUserName through method to find in table content and then Click on corresponding Details button.
-            advancePage.ClicksOnDetailsButton(ActualUserName);
+            advancePage.ClickOnDetailsButtonOfSpecifiedUser(RandomUsername);
             
             //Getting Phone number after clicking on Details button
             string ActualPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
@@ -356,7 +357,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Phone number is blank")]
         public void ThenPhoneNumberIsBlank()
         {
-            advancePage.ClicksOnDetailsButton(ActualUserName);
+            advancePage.ClickOnDetailsButtonOfSpecifiedUser(ActualUserName);
             string phoneNumber = advancePage.PhoneTextField.GetAttribute("value");
             Assert.IsEmpty(phoneNumber, "Phone number is not blank");
         }
@@ -388,6 +389,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters Phone number ""(.*)""")]
         public void WhenUserEntersPhoneNumber(string PhoneNumber)
         {
+
             advancePage.PhoneNumberOnCreatePage.EnterText(PhoneNumber);
         }
 
