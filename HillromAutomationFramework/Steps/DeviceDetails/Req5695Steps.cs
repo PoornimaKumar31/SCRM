@@ -12,7 +12,7 @@ using TechTalk.SpecFlow;
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5695")]
-    class _5695Steps
+    class Req5695Steps
     {
 
         LoginPage loginPage = new LoginPage();
@@ -21,7 +21,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         CVSMAssetListPage CVSMassetListPage = new CVSMAssetListPage();
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private ScenarioContext _scenarioContext;
-        public _5695Steps(ScenarioContext scenarioContext)
+        public Req5695Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
