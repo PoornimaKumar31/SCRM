@@ -168,6 +168,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             GivenUserHasSelectedCSMDeviceWithRoomAndBed();
             Thread.Sleep(2000);
             csmDeviceDetailsPage.CSMDeviceEditButton.Click();
+            wait.Message = "CSM edit asset details dialog is not displayed within specifies time.";
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CSMDeviceDetailsPage.Locators.EditLabelPopupID)));
             bool IsEditAssetDetails = csmDeviceDetailsPage.EditLabelPopup.GetElementVisibility();
             Assert.IsTrue(IsEditAssetDetails, "User is not on CSM Edit Asset Details dialog.");
         }
