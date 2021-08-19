@@ -598,9 +598,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 120
  testRunner.And("Temperature probe \"Probe Cycle Count\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 121
- testRunner.And("Temperature probe \"Probe Cycle Count\" is \"23\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 122
  testRunner.And("Temperature probe \"Part number\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

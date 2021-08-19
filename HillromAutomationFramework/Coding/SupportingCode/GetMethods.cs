@@ -245,30 +245,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                 return false;
             }
         }
-
-        /// <summary>
-        /// For removing \r,\t or\n from the string
-        /// </summary>
-        /// <param name="inputString"></param>
-        /// <returns></returns>
-        public static string CleanString(string inputString)
-        {
-            if (inputString.Contains("\n"))
-
-            {
-
-                inputString.Replace("\n", "");///Replace with Empty String
-            }
-
-            else if (inputString.Contains("\n"))
-
-            {
-
-                inputString.Replace("\r", " ");///Replace with Empty String
-            }
-            
-                
-        }
     }
 
 }

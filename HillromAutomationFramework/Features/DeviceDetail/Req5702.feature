@@ -118,7 +118,7 @@ Scenario: CSM Asset Details SureTemp Probe
 	Then Temperature probe "Probe type" label is displayed
 	And Temperature probe "Probe type" is "ORAL"
 	And Temperature probe "Probe Cycle Count" label is displayed
-	And Temperature probe "Probe Cycle Count" is "23"
+	#And Temperature probe "Probe Cycle Count" is "23"
 	And Temperature probe "Part number" label is displayed
 	And Temperature probe "Part number" is "02692100"
 	And Temperature probe "Lot Code" label is displayed

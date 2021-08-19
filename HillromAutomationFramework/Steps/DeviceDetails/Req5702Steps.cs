@@ -627,7 +627,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
                 case "cycle count":
                     ActualValue = csmAssetListPage.TempProbeRowCycleCount.Text;
-                    ActualValue = GetMethods.RegExReplace(ActualValue);
                     break;
                 case "serial number":
                     ActualValue = csmAssetListPage.TempProbeRowSerialNumber.Text;
