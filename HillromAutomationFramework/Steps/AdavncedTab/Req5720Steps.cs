@@ -5,6 +5,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -19,12 +20,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string RandomString;
         string RandomUsername = null;
         string RandomMobileNumber;
-        string FullnameRandom = null;
+        string RandomFullName = null;
         string ActualUserName = null;
         string ActualFullName = null;
         string ActualRole = null;
         string UserInputInvalidUserName = null;
         string UserInputFullname = null;
+        string[] NewUserDetails = { };
 
         private readonly ScenarioContext _scenarioContext;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
@@ -283,13 +285,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
         [Then(@"new user is created")]
         public void ThenNewUserIsCreated()
-        {
+        {          
             //Fetching all table data and then splits to put all data on index so that I can fetch required data form the index. Once data will be matched in search criteria.
             string[] tableContent = advancePage.TableContent.Text.Split();
             Thread.Sleep(2000);
             for (int i = 0; i < tableContent.Length; i++)
             {
-                if (tableContent[i] == FullnameRandom)
+                if (tableContent[i] == RandomFullName)
                 {
                     ActualFullName = tableContent[i];
                     ActualRole = tableContent[i + 2];
@@ -298,12 +300,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                 }
             }
             Assert.AreEqual(true, RandomUsername == ActualUserName, "New user is not created");
+            
         }
 
         [Then(@"new user role is Administrator")]
         public void ThenNewUserRoleIsAdministrator()
         {
-            Assert.AreEqual(true, "Administrator" == ActualRole, "Username is not displayed");
+            Assert.IsTrue(ActualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage, "New user role is not Administrator");
         }
 
         [Then(@"Username, Name, and Phone number match")]
@@ -311,7 +314,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             //Username and Full name matching from the User List Page
             Assert.AreEqual(true, RandomUsername == ActualUserName, "Username does not match");
-            Assert.AreEqual(true, FullnameRandom == ActualFullName, "Name does not match");
+            Assert.AreEqual(true, RandomFullName == ActualFullName, "Name does not match");
 
             //To match Phone number, need to click on Details button then I will get Phone number. So passing ActualUserName through method to find in table content and then Click on corresponding Details button.
             advancePage.ClickOnDetailsButtonOfSpecifiedUser(RandomUsername);
@@ -336,11 +339,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             for (int i = 0; i < tableContent.Length; i++)
             {
-                if (tableContent[i] == FullnameRandom)
+                if (tableContent[i] == RandomFullName)
                 {
                     ActualFullName = tableContent[i];
                     ActualRole = tableContent[i + 2];
-                    ActualUserName = tableContent[i + 4];                   
+                    ActualUserName = tableContent[i + 4];                  
                     break;
                 }
             }
@@ -350,7 +353,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Username and Name match")]
         public void ThenUsernameAndNameMatch()
         {
-            Assert.AreEqual(true, FullnameRandom == ActualFullName, "Name is not miss match");
+            Assert.AreEqual(true, RandomFullName == ActualFullName, "Name is not miss match");
             Assert.AreEqual(true, RandomUsername == ActualUserName, "Username is not miss match");
         }
 
@@ -372,8 +375,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"enters valid Full name")]
         public void WhenEntersValidFullName()
         {
-            FullnameRandom = GetMethods.GenerateRandomString(15);
-            advancePage.FullNameOnCreatePage.EnterText(FullnameRandom);
+            RandomFullName = GetMethods.GenerateRandomString(15);
+            advancePage.FullNameOnCreatePage.EnterText(RandomFullName);
         }
       
         [When(@"unchecks User Manager checkbox")]
@@ -409,9 +412,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             UserInputInvalidUserName = RandomUsername;
 
             //Entering valid Full name
-            FullnameRandom = GetMethods.GenerateRandomString(15);
-            advancePage.FullNameOnCreatePage.EnterText(FullnameRandom);
-            UserInputFullname = FullnameRandom;
+            RandomFullName = GetMethods.GenerateRandomString(15);
+            advancePage.FullNameOnCreatePage.EnterText(RandomFullName);
+            UserInputFullname = RandomFullName;
 
             //Entering valid phone number
             RandomMobileNumber = GetMethods.GenerateRandomPhoneNumber(1000000000);

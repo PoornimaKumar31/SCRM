@@ -21,7 +21,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string RandomFullNameLessThan50Char = null;
         string RandomFullNameGreaterThan50Char = null;
         string RandomPhoneNumber10_10Digits = null;
-        string BlankFullName = null;
+        string BlankFullName = "";
         int PhoneNumberLength = 1000000000;
         int DetailsButtonPosition;
         string RoleXpath = null;
@@ -51,6 +51,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             DetailsButtonPosition = 0;
             IList<IWebElement> list = advancePage.UserListExceptLoggedInUser();
             Assert.Greater(list.Count, 0, "No user is present except logged User.");
+
             //Selecting first user details button and clicking
             list[DetailsButtonPosition].FindElement(By.Id(AdvancedPage.Locators.DetailsButtonID)).Click();
         }
