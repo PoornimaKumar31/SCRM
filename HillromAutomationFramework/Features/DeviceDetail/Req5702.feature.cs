@@ -583,6 +583,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 115
  testRunner.And("Temperature probe row \"Cycle count\" is displayed in \"Usage\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 116
+ testRunner.And("Temperature probe row \"Cycle Count\" is \"23\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 117
  testRunner.When("user clicks Temperature probe row toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden

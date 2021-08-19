@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
@@ -229,5 +230,45 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             string MobileNumber = Prefix + str;
             return MobileNumber;
         }
+
+        public static bool isClicked(this IWebElement element)
+        {
+            try
+            {
+                WebDriverWait wait = new WebDriverWait(PropertyClass.Driver,TimeSpan.FromSeconds(5));
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
+                element.Click();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// For removing \r,\t or\n from the string
+        /// </summary>
+        /// <param name="inputString"></param>
+        /// <returns></returns>
+        public static string CleanString(string inputString)
+        {
+            if (inputString.Contains("\n"))
+
+            {
+
+                inputString.Replace("\n", "");///Replace with Empty String
+            }
+
+            else if (inputString.Contains("\n"))
+
+            {
+
+                inputString.Replace("\r", " ");///Replace with Empty String
+            }
+            
+                
+        }
     }
+
 }
