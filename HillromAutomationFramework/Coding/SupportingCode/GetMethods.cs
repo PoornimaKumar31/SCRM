@@ -218,16 +218,16 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// <summary>
         /// Generate random mobile number.
         /// </summary>
-        /// <param name="size">mobile number size.</param>
+        /// <param name="length">mobile number size.</param>
         /// <returns>Random mobile number of size</returns>
-        public static string GenerateRandomMobileNumber(int size)
+        public static string GenerateRandomPhoneNumber(int length)
         {
             Random ran = new Random();
-            int RandomNumber = ran.Next(size);
-            string Prefix = "+919";
+            int RandomNumber = ran.Next(length);
+            string Prefix = "+13";
             string str = RandomNumber.ToString();
-            string MobileNumber = Prefix + str;
-            return MobileNumber;
+            string PhoneNumber = Prefix + str;
+            return PhoneNumber;
         }
     }
 }

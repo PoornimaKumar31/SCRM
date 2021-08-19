@@ -28,7 +28,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string FullNameID = "name";
             public const string PhoneID = "phone";
             public const string UserManagerCheckBoxID = "role-input";
-            public const string RoleInputID = "role";
             public const string UserManagementID = "tab_users";
             public const string UserListClass = "col-xs-12 manage-users-list ng-star-inserted";
             public const string EditUserLabelID = "lbl_edit";
@@ -79,8 +78,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string UserRoleRegularOnUserListPage = "Regular";
             public const string PhoneNumberErrorMessage = "Please enter a valid phone number";
             public const string FullNameErrorMessage = "Please enter a valid name";
-            public const string UpdatedFullName = "Alex Hasi";
-            public const string PhoneNumberInvalid = "123";
             public const string LoggedUser = "ltts_testing@hillrom.com";
         }
 
@@ -141,9 +138,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         [FindsBy(How = How.Id, Using = Locators.AddUserOnCreatePageID)]
         public IWebElement AddUserOnCreatePage { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.RoleInputID)]
-        public IWebElement RoleInput { get; set; }
-
         [FindsBy(How = How.Id, Using = Locators.PhoneErrorID)]
         public IWebElement PhoneErrorMessage { get; set; }
 
@@ -203,7 +197,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         /// User clicks any Details button except Logged User Details button
         /// </summary>
         /// <returns>DetailsButtonPosition</returns>
-        public int UserClicksDetailsButtonForOtherUserRecord()
+        public int FindDetailsButtonForOtherUserAndClick()
         {
             int DetailsButtonPosition;
             int NoOfDetailsButton = DetailsButtonList.Count;
@@ -223,11 +217,11 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         /// <summary>
         ///  Updating Full name, Phone number and Role
         /// </summary>
-        public void UserChangesFullNameNumberAndRole()
+        public void UpdateNamePhoneRole()
         {
             Thread.Sleep(2000);
             RandomFullNameLessThan50_49char = GetMethods.GenerateRandomString(49);
-            RandomPhoneNumber10_10Digits = GetMethods.GenerateRandomMobileNumber(1000000000);
+            RandomPhoneNumber10_10Digits = GetMethods.GenerateRandomPhoneNumber(1000000000);
 
             FullName.Clear();
             FullName.EnterText(RandomFullNameLessThan50_49char);
@@ -241,7 +235,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         /// Manager wants to be on Edit User page where Log enteries are greater than 2
         /// </summary>
         /// <returns>DetailsButtonPosition</returns>
-        public int ManagerUserIsOnEditUserPageWithLogEntriesGreaterThanTwo()
+        public int FindEditUserPageWithLogEntriesGreaterThanTwo()
         {
             //Finding number of enteries in the table.
             int DetailsButtonPosition;
@@ -274,7 +268,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         /// Collecting all Dates from the Log History column firstly and putting it in a simple list as a string. Later in the second loop string is converted into DateTime list
         /// </summary>
         /// <returns>List of DateTime</returns>
-        public List<DateTime> LogHistoryTableIsSortedByDescendingDateSortOrder()
+        public List<DateTime> FindLogHistoryDateOrder()
         {
             var list = new List<string>();
             var DateTimeList = new List<DateTime>();
@@ -294,10 +288,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         }
 
         /// <summary>
-        /// Checking Email is in Ascending order
+        /// Finding Email oredr in Ascending
         /// </summary>
         /// <returns>Returns true if Email is sorted in Ascending order else false.</returns>
-        public bool IsEmailSorted()
+        public bool FindEmailSortingOrder()
         {           
             bool IsEmailIdAscendingOrder = false; 
             var list = new List<string>();
@@ -319,35 +313,12 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             return IsEmailIdAscendingOrder;
         }
 
-        /// <summary>
-        /// User is cllicking Details button and checks whether Phone number is present, If phone number is not present then clicks cancel button and then clicks on another Details buttons. If phone number is present then stops.
-        /// </summary>
-        /// <returns>Returns position of Details button were phone number was present</returns>
-        public int UserClicksDetailsButtonForUserWithAPhoneNumber()
-        {
-            int DetailsButtonPosition;
-            int NoOfDetailsButton = DetailsButtonList.Count;
-            for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
-            {
-                DetailsButtonList[DetailsButtonPosition].Click();
-                string phone = PhoneTextField.GetAttribute("value");
-                if (phone == "")
-                {
-                    CancelButton.Click();
-                }
-                else
-                {
-                    return DetailsButtonPosition;
-                }
-            }
-            return -1;
-        }
-
+       
         /// <summary>
         /// Clicking that Details Button where user Role is Administrator
         /// </summary>
-        /// <returns>Returning Dictionary</returns>
-        public Dictionary<string, string> UserClicksDetailsButtonForUserWithAdministratorRole()
+        /// <returns>Returning RoleXPath and DetailsButtonPosition to verify after updating data</returns>
+        public Dictionary<string, string> ClickDetailsButtonWhereRoleIsAdministrator()
         {
             int DetailsButtonPosition;
             string RoleXpath = null;
@@ -374,27 +345,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         }
 
         /// <summary>
-        /// After updating record, now finding the Fullname in the table content by comparing initially entered Fullname. If matches in the table content then that value is taken and returned back to the method.
+        /// //To match Phone number I need to click on Details button then I will get Phone number. So providing ActualUserName through method to find in table content and then just Clicks only on corresponding Details button.
         /// </summary>
-        /// <param name="RandomFullNameLessThan50_49char"></param>
-        /// <returns>Returning matched name</returns>
-        public string UpdatedFullNameIsDisplayedOnTheUserList(string RandomFullNameLessThan50_49char)
-        {
-            Thread.Sleep(2000);
-            string ActualFullName = null;
-            string[] tableContent = TableContent.Text.Split();
-            for (int i = 0; i < tableContent.Length; i++)
-            {
-                if (tableContent[i] == RandomFullNameLessThan50_49char)
-                {
-                    ActualFullName = tableContent[i];
-                    break;
-                }
-            }
-            return ActualFullName;
-        }
-
-        public void UsernameNameAndPhoneNumberMatch(string ActualUserName)
+        /// <param name="ActualUserName"></param>
+        public void ClicksOnDetailsButton(string ActualUserName)
         {
             int DetailsButtonCount;
             int NoOfDetailsButton = DetailsButtonList.Count;

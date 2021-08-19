@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.Features.DeviceDetail
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5695", "\\The Customer Portal shall have a feature for displaying CVSM/CIWS device details" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5695", " The Customer Portal shall have a feature for displaying CVSM/CIWS device details" +
                     ".", ProgrammingLanguage.CSharp, new string[] {
                         "SoftwareRequirementID_5695"});
             testRunner.OnFeatureStart(featureInfo);

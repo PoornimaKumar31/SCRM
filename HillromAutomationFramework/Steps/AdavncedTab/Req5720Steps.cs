@@ -17,14 +17,14 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         LandingPage landingPage = new LandingPage();
         AdvancedPage advancePage = new AdvancedPage();
         string RandomString;
-        string RandomUsername = "";
+        string RandomUsername = null;
         string RandomMobileNumber;
-        string FullnameRandom = "";
-        string ActualUserName = "";
-        string ActualFullName = "";
-        string ActualRole = "";
-        string UserInputInvalidUserName = "";
-        string UserInputFullname = "";
+        string FullnameRandom = null;
+        string ActualUserName = null;
+        string ActualFullName = null;
+        string ActualRole = null;
+        string UserInputInvalidUserName = null;
+        string UserInputFullname = null;
 
         private readonly ScenarioContext _scenarioContext;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
@@ -50,7 +50,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(1000);
             IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
             js.ExecuteScript("window.scrollTo(0, 0)");
-
             advancePage.CreateUserOnCreatePage.Click();
         }
 
@@ -193,10 +192,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenNoUserIsCreated()
         {
             Thread.Sleep(3000);
-            //bool IsUserCreated = advancePage.NoUserIsCreated(UserInputFullname, UserInputInvalidUserName);
-            //Assert.IsFalse(IsUserCreated, "New user is created");
-
-
             bool matches = false;
             string[] tableContent = advancePage.TableContent.Text.Split();
             for (int i = 0; i < tableContent.Length; i++)
@@ -271,7 +266,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             advancePage.PhoneNumberOnCreatePage.EnterText(phoneNumber);
         }
 
-
         [When(@"clicks User Manager checkbox")]
         public void WhenClicksUserManagerCheckbox()
         {
@@ -314,10 +308,14 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Username, Name, and Phone number match")]
         public void ThenUsernameNameAndPhoneNumberMatch()
         {
+            //Username and Full name matching from the User List Page
             Assert.AreEqual(true, RandomUsername == ActualUserName, "Username does not match");
             Assert.AreEqual(true, FullnameRandom == ActualFullName, "Name does not match");
 
-            advancePage.UsernameNameAndPhoneNumberMatch(ActualUserName);
+            //To match Phone number, need to click on Details button then I will get Phone number. So passing ActualUserName through method to find in table content and then Click on corresponding Details button.
+            advancePage.ClicksOnDetailsButton(ActualUserName);
+            
+            //Getting Phone number after clicking on Details button
             string ActualPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
             Assert.AreEqual(true, ActualPhoneNumber == RandomMobileNumber, "Phone does not match");
         }
@@ -358,7 +356,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Phone number is blank")]
         public void ThenPhoneNumberIsBlank()
         {
-            advancePage.UsernameNameAndPhoneNumberMatch(ActualUserName);
+            advancePage.ClicksOnDetailsButton(ActualUserName);
             string phoneNumber = advancePage.PhoneTextField.GetAttribute("value");
             Assert.IsEmpty(phoneNumber, "Phone number is not blank");
         }
@@ -414,7 +412,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             UserInputFullname = FullnameRandom;
 
             //Entering valid phone number
-            RandomMobileNumber = GetMethods.GenerateRandomMobileNumber(1000000000);
+            RandomMobileNumber = GetMethods.GenerateRandomPhoneNumber(1000000000);
             advancePage.PhoneNumberOnCreatePage.EnterText(RandomMobileNumber);
         }
     }

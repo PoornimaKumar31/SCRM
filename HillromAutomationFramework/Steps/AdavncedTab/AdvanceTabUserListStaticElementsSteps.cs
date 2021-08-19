@@ -89,8 +89,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"User List Table is sorted by Email in Ascending order")]
         public void ThenUserListTableIsSortedByEmailAscendingOrder()
         {
-            bool IsEmailSortedOrder = advancePage.IsEmailSorted();
-            Assert.IsTrue(IsEmailSortedOrder, "User List Table is not sorted by Email");
+            bool IsEmailSortedOrder = advancePage.FindEmailSortingOrder();
+            Assert.IsTrue(IsEmailSortedOrder, "User List Table is not sorted by Email in Ascending order");
         }
 
 

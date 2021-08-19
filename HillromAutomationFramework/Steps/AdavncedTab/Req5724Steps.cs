@@ -18,7 +18,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         MainPage mainPage = new MainPage();
         AdvancedPage advancePage = new AdvancedPage();
         
-
         private readonly ScenarioContext _scenarioContext;
 
         public Req5724Steps(ScenarioContext scenarioContext)
