@@ -10,7 +10,7 @@ Scenario: RV700 General Layout
 	And Asset Detail summary subsection with Edit button is displayed
 	And Component Information tab is displayed
 	And Logs tab is displayed
-	#And Asset Detail subsection is displayed
+	And Asset Detail subsection is displayed
 
 @TestCaseID_9704 @UISID_8672 @UISID_8681
 Scenario: RV700 Asset Data Summary

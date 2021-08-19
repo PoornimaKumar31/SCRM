@@ -130,6 +130,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.And("Logs tab is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 13
+ testRunner.And("Asset Detail subsection is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

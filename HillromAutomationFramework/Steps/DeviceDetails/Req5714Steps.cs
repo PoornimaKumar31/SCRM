@@ -77,25 +77,28 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Asset Detail subsection is displayed")]
         public void ThenAssetDetailSubsectionIsDisplayed()
         {
-            //Pending step
-            throw new PendingStepException("Need to know, what is Asset details subsection");
+            Assert.IsTrue(rv700DeviceDetailsPage.AssetDetailsSubSection.GetElementVisibility(),"Asset details subsection is not displayed.");
         }
 
 
         [Given(@"user is on Component details page for RV700 Serial number ""(.*)""")]
         public void GivenUserIsOnComponentDetailsPageForRVSerialNumber(string serailNumber)
         {
+            //Loging-in
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             SetMethods.ScrollToBottomofWebpage();
             landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             wait.Message = "Main page asset list is not displayed";
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.SearchSerialNumberAndClick(serailNumber);
+
+            //Wait till data is loaded in device details page.
+            Thread.Sleep(3000);
+
             //Checking if assert page is displayed
             bool IsAssetDetailsPageDispalyed = (rv700DeviceDetailsPage.ComponentInformationTab.GetElementVisibility()) || (rv700DeviceDetailsPage.LogsTab.GetElementVisibility());
             Assert.IsTrue(IsAssetDetailsPageDispalyed, "Asset Details page is not displayed.");
-            //Wait till data is loaded in device details page.
-            Thread.Sleep(3000);
+            
         }
 
         [Then(@"""(.*)"" is ""(.*)""")]
