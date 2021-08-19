@@ -18,6 +18,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         readonly CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         string ExistingRoomAndBed;
+        string NewRoomAndBed="";
 
         [Given(@"user is on CVSM Asset Details page")]
         public void GivenUserIsOnCVSMAssetDetailsPage()
@@ -26,7 +27,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             mainPage.SearchSerialNumberAndClick("100020000000");
         }
         
@@ -107,9 +108,12 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void WhenUserChangesRoomAndBedFields()
         {
             cvsmDeviceDetailsPage.RoomField.Clear();
-            cvsmDeviceDetailsPage.RoomField.EnterText(CVSMDeviceDetailsPage.ExpectedValues.UpdateRoomValue);
+            string NewRoom = GetMethods.GenerateRandomString(5);
+            string NewBed = GetMethods.GenerateRandomString(5);
+            NewRoomAndBed = NewRoom + "/" + NewBed;
+            cvsmDeviceDetailsPage.RoomField.EnterText(NewRoom);
             cvsmDeviceDetailsPage.BedField.Clear();
-            cvsmDeviceDetailsPage.BedField.EnterText(CVSMDeviceDetailsPage.ExpectedValues.UpdateBedValue);
+            cvsmDeviceDetailsPage.BedField.EnterText(NewBed);
         }
 
         [When(@"user clicks Save button")]
@@ -124,8 +128,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             //To get the updated data thread.sleep
             Thread.Sleep(1000);
             string ActualRoomAndBed = cvsmDeviceDetailsPage.RoomAndBedDetails.Text;
-            string ExpectedRoomAndBed = CVSMDeviceDetailsPage.ExpectedValues.UpdateRoomValue + "/" + CVSMDeviceDetailsPage.ExpectedValues.UpdateBedValue;
-            Assert.AreEqual(ExpectedRoomAndBed, ActualRoomAndBed,"Room and bed details are not changed.");
+            Assert.AreEqual(NewRoomAndBed.ToLower(), ActualRoomAndBed.ToLower(),"Room and bed details are not changed.");
         }
 
         [When(@"user clicks Cancel button")]

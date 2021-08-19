@@ -266,9 +266,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
         //Search the Serial number and click on the device.
         public void SearchSerialNumberAndClick(string serialNumber)
         {
-            SearchField.EnterText(serialNumber + Keys.Enter);
-            Thread.Sleep(1000);
-            Assert.AreEqual(1, DeviceListRow.GetElementCount(), "Not selected the specified device.");
+            SearchField.EnterText(serialNumber);
+            SearchField.EnterText(Keys.Enter);
+            //Waiting for data to load
+            Thread.Sleep(2000);
+            Assert.AreEqual(1, DeviceListRow.GetElementCount(), "more than devices are present matching serial number "+serialNumber);
             DeviceListRow[0].Click();
         }
 
