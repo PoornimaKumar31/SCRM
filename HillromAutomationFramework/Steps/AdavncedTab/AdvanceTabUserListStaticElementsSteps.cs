@@ -20,15 +20,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         MainPage mainPage = new MainPage();
         AdvancedPage advancePage = new AdvancedPage();
         AdvancedTabUserListPage advancedTabUserListPage = new AdvancedTabUserListPage();
-        string[] TableHeaderOnUserListPage = { };
-
-        private readonly ScenarioContext _scenarioContext;
-
-        public AdvanceTabUserListStaticElementsSteps(ScenarioContext scenarioContext)
-        {
-            _scenarioContext = scenarioContext;
-        }
-        int HeaderCount;
 
         [Given(@"manager user is on User List page having user entries > (.*)")]
         public void GivenManagerUserIsOnUserListPageHavingUserEntries(int NoOfMinimumEntries)
@@ -66,24 +57,21 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string HeadingParameter)
         {
-            bool IsHeaderDisplayed = advancePage.FullnameLabelOnUserList.GetElementVisibility();
-            TableHeaderOnUserListPage = advancePage.UserListTableHeader.Text.Split();
-            if (TableHeaderOnUserListPage[HeaderCount] != HeadingParameter)
+            switch (HeadingParameter.ToLower().Trim())
             {
-                if (HeadingParameter== "Full name")
-                {
-                    Assert.IsTrue(IsHeaderDisplayed, "Full name is not displayed.");                   
-                }
-                if (HeadingParameter == "Role")
-                {
-                    Assert.IsTrue(IsHeaderDisplayed, "Role is not displayed.");
-                }
-                if (HeadingParameter == "Email")
-                {
-                    Assert.IsTrue(IsHeaderDisplayed, "Email is not displayed.");
-                }               
+                case "full name":
+                    Assert.IsTrue(advancePage.FullnameLabelOnUserList.GetElementVisibility(), "Full name column header is not displayed.");
+                    break;
+                case "role":
+                    Assert.IsTrue(advancePage.RoleColumnHeader.GetElementVisibility(), "Role column header is not displayed.");
+                    break;
+                case "email":
+                    Assert.IsTrue(advancePage.EmailColumnHeader.GetElementVisibility(), "Email column header is not displayed.");
+                    break;
+                default:
+                    Assert.Fail(HeadingParameter + " is an invalid label name.");
+                    break;
             }
-            HeaderCount++;
         }
 
         [Then(@"User List Table is sorted by Email in Ascending order")]
@@ -92,7 +80,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             bool IsEmailSortedOrder = advancePage.FindEmailSortingOrder();
             Assert.IsTrue(IsEmailSortedOrder, "User List Table is not sorted by Email in Ascending order");
         }
-
 
         [Then(@"Details button is displayed and enabled for all User rows")]
         public void ThenDetailsButtonIsDisplayedAndEnabledForAllUserRows()

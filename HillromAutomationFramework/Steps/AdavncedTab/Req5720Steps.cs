@@ -21,7 +21,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string RandomUsername = null;
         string RandomMobileNumber;
         string RandomFullName = null;
-        string ActualUserName = null;
+        //string ActualUserName = null;
         string ActualEmail = null;
         string ActualFullName = null;
         string ActualRole = null;
@@ -195,20 +195,20 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"no user is created")]
         public void ThenNoUserIsCreated()
         {
-            bool IsCreated = false;
+            bool IsUserCreated = false;
             IList<IWebElement> list = advancePage.UserList;
             Assert.Greater(list.Count, 0, "No user is present except logged User.");
 
             for (int i = 0; i < list.Count; i++)
             {
-                string ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
+                ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
                 if (ActualEmail == RandomUsername)
                 {
-                    IsCreated = true;
+                    IsUserCreated = true;
                     break;
                 }
             }
-            Assert.IsFalse(IsCreated, "New user is not created");
+            Assert.IsFalse(IsUserCreated, "New user is created");
         }
 
         [Given(@"manager user is on User Management page")]
@@ -336,33 +336,31 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"new user role is Regular")]
         public void ThenNewUserRoleIsRegular()
         {
-            //Fetching all table data and then splits to put all data on index so that I can fetch required data form the index. Once data will be matched in search criteria.
-            string[] tableContent = advancePage.TableContent.Text.Split();
-            Thread.Sleep(2000);
-            for (int i = 0; i < tableContent.Length; i++)
+            IList<IWebElement> list = advancePage.UserList;
+            for (int i = 0; i < list.Count; i++)
             {
-                if (tableContent[i] == RandomFullName)
+                ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
+                ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
+                ActualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
+                if (RandomUsername == ActualEmail)
                 {
-                    ActualFullName = tableContent[i];
-                    ActualRole = tableContent[i + 2];
-                    ActualUserName = tableContent[i + 4];                  
                     break;
                 }
             }
-            Assert.AreEqual(true, AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage == ActualRole, "New user role is not Regula");
+            Assert.AreEqual(AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage, ActualRole, "New user role is not Regular");
         }
 
         [Then(@"Username and Name match")]
         public void ThenUsernameAndNameMatch()
         {
-            Assert.AreEqual(true, RandomFullName == ActualFullName, "Name is not miss match");
-            Assert.AreEqual(true, RandomUsername == ActualUserName, "Username is not miss match");
+            Assert.AreEqual(true, RandomFullName == ActualFullName, "Name not matched");
+            Assert.AreEqual(true, RandomUsername == ActualEmail, "Username not matched");
         }
 
         [Then(@"Phone number is blank")]
         public void ThenPhoneNumberIsBlank()
         {
-            advancePage.ClickOnDetailsButtonOfSpecifiedUser(ActualUserName);
+            advancePage.ClickOnDetailsButtonOfSpecifiedUser(RandomUsername);
             string phoneNumber = advancePage.PhoneTextField.GetAttribute("value");
             Assert.IsEmpty(phoneNumber, "Phone number is not blank");
         }
@@ -396,7 +394,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters Phone number ""(.*)""")]
         public void WhenUserEntersPhoneNumber(string PhoneNumber)
         {
-
             advancePage.PhoneNumberOnCreatePage.EnterText(PhoneNumber);
         }
 

@@ -83,24 +83,21 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"newly added manager user is displayed")]
         public void ThenNewlyAddedManagerUserIsDisplayed()
         {
-            bool IsUserCreated = false;
-            string[] tableContent = advancePage.TableContent.Text.Split();
-            for (int i = 0; i < tableContent.Length; i++)
+            bool IsUserManagerDisplayed = false;
+            IList<IWebElement> list = advancePage.UserList;
+            Assert.Greater(list.Count, 0, "No user is present except logged User.");
+
+            for (int i = 0; i < list.Count; i++)
             {
-                if (tableContent[i] == FullnameRandom)
+                string ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
+                string ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
+                if (ActualEmail == RandomUsername && ActualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage)
                 {
-                    string ActualUserName = tableContent[i + 4];
-                    if (ActualUserName == RandomUsername)
-                    {
-                        IsUserCreated = true;
-                    }
-                    else
-                    {
-                        IsUserCreated = false;
-                    }
+                    IsUserManagerDisplayed = true;
+                    break;
                 }
             }
-            Assert.IsTrue(IsUserCreated, "Newly added manager user is not displayed.");
+            Assert.IsTrue(IsUserManagerDisplayed, "Newy added manager user is not displayed");
         }
     }
 }

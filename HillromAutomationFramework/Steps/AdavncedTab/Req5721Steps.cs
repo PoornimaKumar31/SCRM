@@ -22,6 +22,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string RandomPhoneNumber10_10Digits = null;
         string BlankFullName = "";
         int PhoneNumberLength = 1000000000;
+        int RandomInvalidUsernameLength = 51;
+        int RandomValidUsernameLength = 49;
         int DetailsButtonPosition;
         string RoleXpath = null;
 
@@ -137,13 +139,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             if (FullNameCharacterSize == ">50")
             {
                 advancePage.FullName.Clear();
-                RandomFullName = GetMethods.GenerateRandomString(51);
+                RandomFullName = GetMethods.GenerateRandomString(RandomInvalidUsernameLength);
                 advancePage.FullName.EnterText(RandomFullName);
             }
             else
             {
                 advancePage.FullName.Clear();
-                RandomFullName = GetMethods.GenerateRandomString(49);
+                RandomFullName = GetMethods.GenerateRandomString(RandomValidUsernameLength);
                 advancePage.FullName.EnterText(RandomFullName);
             }           
         }
@@ -188,8 +190,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenUpdatedFullNameIsDisplayedOnTheUserList()
         {
             bool IsCreated = false;
-            IList<IWebElement> list = advancePage.UserListExceptLoggedInUser();
-            Assert.Greater(list.Count, 0, "No user is present except logged User.");
+            IList<IWebElement> list = advancePage.UserList;
+            Assert.Greater(list.Count, 0, "No user is present.");
 
             for (int i = 0; i < list.Count; i++)
             {

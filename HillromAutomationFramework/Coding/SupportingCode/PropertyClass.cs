@@ -15,12 +15,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// <summary>
         /// Base URL of the application under test.
         /// </summary>
-        public static string BaseURL = Environment.GetEnvironmentVariable("BaseURL");
+        public static string BaseURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/";//Environment.GetEnvironmentVariable("BaseURL");
 
         /// <summary>
         /// Name of the browser to run tests.
         /// </summary>
-        public static string BrowserName = Environment.GetEnvironmentVariable("BrowserName");
+        public static string BrowserName = "chrome";// Environment.GetEnvironmentVariable("BrowserName");
 
         /// <summary>
         /// Current Working Directory i.e. //bin

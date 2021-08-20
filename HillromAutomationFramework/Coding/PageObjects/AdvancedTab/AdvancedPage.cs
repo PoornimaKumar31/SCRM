@@ -58,6 +58,8 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
 
             //Table Elements
             public const string FullnameLabelOnUserListID = "full_name";
+            public const string RoleColumnHeaderID = "role";
+            public const string EmailColumnHeaderID = "email";
             public const string UserListTableHeaderXPath = "//*[@id=\"usrmgt_list\"]/div/div[2]/div/div[1]";
 
             //Log History table data
@@ -66,6 +68,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string UserListRowXPath = "//div[contains(@id,\"user_row\")]";
             public const string LoggedInUserNameID = "logged-in_username";
             public const string RoleColumnXPath = "//div[starts-with(@id,'role')]";
+            
         }
 
         /// <summary>
@@ -83,6 +86,12 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string FullNameErrorMessage = "Please enter a valid name";
             public const string LoggedUser = "ltts_testing@hillrom.com";
         }
+
+        [FindsBy(How = How.Id, Using = Locators.EmailColumnHeaderID)]
+        public IWebElement EmailColumnHeader { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.RoleColumnHeaderID)]
+        public IWebElement RoleColumnHeader { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.RoleColumnXPath)]
         public IList<IWebElement> RoleColumn { get; set; }
