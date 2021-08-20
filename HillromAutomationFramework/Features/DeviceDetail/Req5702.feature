@@ -113,12 +113,12 @@ Scenario: CSM Asset Details SureTemp Probe
 	Then Temperature probe row "Name" is "Temperature Probe"
 	And Temperature probe row "serial number" is "582010"
 	And Temperature probe row "Cycle count" is displayed in "Usage" column
-	And Temperature probe row "Cycle Count" is "23"
+	And Temperature probe row "Cycle Count" is "Cycle Count:23"
 	When user clicks Temperature probe row toggle arrow
 	Then Temperature probe "Probe type" label is displayed
 	And Temperature probe "Probe type" is "ORAL"
 	And Temperature probe "Probe Cycle Count" label is displayed
-	#And Temperature probe "Probe Cycle Count" is "23"
+	And Temperature probe "Probe Cycle Count" is "23"
 	And Temperature probe "Part number" label is displayed
 	And Temperature probe "Part number" is "02692100"
 	And Temperature probe "Lot Code" label is displayed
@@ -214,7 +214,7 @@ Scenario: CSM Asset Data Summary1
 	And Summary "Facility" label is displayed
 	And Summary "Facility" is "Test1"
 	And Summary "Last vital sent" label is displayed
-	And Summary "Last vital sent" is "28 Jul 2021, 10:43 AM"
+	And Summary "Last vital sent" is "28 Jul 2021, 01:13 AM"
 	And Summary "Location" label is displayed
 	And Summary "Location" is "Mobile HotspotId"
 	And Summary "Room/Bed" label is displayed
@@ -228,5 +228,4 @@ Scenario: CSM Asset Data Summary1
 	And Summary "Radio IP address" label is displayed
 	And Summary "Radio IP address" is "10.0.0.5"
 	And Summary "Connection status" label is displayed
-	#And Summary "Connection status" is "Last connected on: 15 Aug 2021, 10:49 PM"
 

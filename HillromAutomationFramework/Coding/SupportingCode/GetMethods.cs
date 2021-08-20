@@ -231,19 +231,10 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             return PhoneNumber;
         }
 
-        public static bool isClicked(this IWebElement element)
+        public static string CleanString(string str)
         {
-            try
-            {
-                WebDriverWait wait = new WebDriverWait(PropertyClass.Driver,TimeSpan.FromSeconds(5));
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
-                element.Click();
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            str = string.Join("", str.Split('\n', '\r', '\t'));
+            return str;
         }
     }
 

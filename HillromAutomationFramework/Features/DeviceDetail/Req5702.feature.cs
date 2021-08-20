@@ -584,7 +584,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Temperature probe row \"Cycle count\" is displayed in \"Usage\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 116
- testRunner.And("Temperature probe row \"Cycle Count\" is \"23\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Temperature probe row \"Cycle Count\" is \"Cycle Count:23\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 117
  testRunner.When("user clicks Temperature probe row toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -597,6 +597,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 120
  testRunner.And("Temperature probe \"Probe Cycle Count\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 121
+ testRunner.And("Temperature probe \"Probe Cycle Count\" is \"23\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 122
  testRunner.And("Temperature probe \"Part number\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1064,7 +1067,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Summary \"Last vital sent\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 217
- testRunner.And("Summary \"Last vital sent\" is \"28 Jul 2021, 10:43 AM\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Summary \"Last vital sent\" is \"28 Jul 2021, 01:13 AM\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 218
  testRunner.And("Summary \"Location\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

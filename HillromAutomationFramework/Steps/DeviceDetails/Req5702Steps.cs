@@ -627,6 +627,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
                 case "cycle count":
                     ActualValue = csmAssetListPage.TempProbeRowCycleCount.Text;
+                    Console.WriteLine("Dekh Dekh Dekh :"+ActualValue);
+                    ActualValue = GetMethods.CleanString(ActualValue);
+                    Console.WriteLine("Dekh Dekh Dekh :" + ActualValue);
                     break;
                 case "serial number":
                     ActualValue = csmAssetListPage.TempProbeRowSerialNumber.Text;
@@ -1236,9 +1239,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 
                 case "asset tag":
                     ActualValue = csmAssetListPage.SummaryAssetTagValue.Text;
-                    break;
-                case "connection status":
-                    ActualValue = csmAssetListPage.SummaryConnectionStatusValue.Text;
                     break;
                 case "last vital sent":
                     ActualValue = csmAssetListPage.SummaryLastVitalSentValue.Text;
