@@ -18,8 +18,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
         AdvancedPage advancePage = new AdvancedPage();
-        string RandomFullNameLessThan50Char = null;
-        string RandomFullNameGreaterThan50Char = null;
+        string RandomFullName = null;
         string RandomPhoneNumber10_10Digits = null;
         string BlankFullName = "";
         int PhoneNumberLength = 1000000000;
@@ -138,14 +137,14 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             if (FullNameCharacterSize == ">50")
             {
                 advancePage.FullName.Clear();
-                RandomFullNameGreaterThan50Char = GetMethods.GenerateRandomString(51);
-                advancePage.FullName.EnterText(RandomFullNameGreaterThan50Char);
+                RandomFullName = GetMethods.GenerateRandomString(51);
+                advancePage.FullName.EnterText(RandomFullName);
             }
             else
             {
                 advancePage.FullName.Clear();
-                RandomFullNameLessThan50Char = GetMethods.GenerateRandomString(49);
-                advancePage.FullName.EnterText(RandomFullNameLessThan50Char);
+                RandomFullName = GetMethods.GenerateRandomString(49);
+                advancePage.FullName.EnterText(RandomFullName);
             }           
         }
 
@@ -188,18 +187,21 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"updated Full name is displayed on User List")]
         public void ThenUpdatedFullNameIsDisplayedOnTheUserList()
         {
-            Thread.Sleep(2000);
-            string ActualFullName = null;
-            string[] tableContent = advancePage.TableContent.Text.Split();
-            for (int i = 0; i < tableContent.Length; i++)
+            bool IsCreated = false;
+            IList<IWebElement> list = advancePage.UserListExceptLoggedInUser();
+            Assert.Greater(list.Count, 0, "No user is present except logged User.");
+
+            for (int i = 0; i < list.Count; i++)
             {
-                if (tableContent[i] == RandomFullNameLessThan50Char)
+                string ActualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
+
+                if (ActualFullName == RandomFullName)
                 {
-                    ActualFullName = tableContent[i];
+                    IsCreated = true;
                     break;
                 }
             }
-            Assert.AreEqual(true, RandomFullNameLessThan50Char == ActualFullName, "Updated full name is not displayed on the user list");
+            Assert.IsTrue(IsCreated, "New user is not created");
         }
 
         [When(@"user enters blank Full name")]
@@ -349,6 +351,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user clicks Details button for user with a phone number")]
         public void WhenUserClicksDetailsButtonForUserWithAPhoneNumber()
         {
+            int IsAllUserRowPhoneNull = -1;
             string phone = null;
             int NoOfDetailsButton = advancePage.DetailsButtonList.Count;
             for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
@@ -359,11 +362,17 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                 {
                     advancePage.CancelButton.Click();
                 }
-                if (phone != "")
+                else if (phone != "")
                 {
+                    IsAllUserRowPhoneNull = 1;
                     break;
                 }
             }
+            if (IsAllUserRowPhoneNull==-1)
+            {
+                Assert.Fail("Phone number does not exist in any user records.");
+            }
+
             _scenarioContext.Add("phonenumber", phone);
         }
 

@@ -22,10 +22,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string RandomMobileNumber;
         string RandomFullName = null;
         string ActualUserName = null;
+        string ActualEmail = null;
         string ActualFullName = null;
         string ActualRole = null;
         string UserInputInvalidUserName = null;
         string UserInputFullname = null;
+        string Role = null;
 
         private readonly ScenarioContext _scenarioContext;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
@@ -183,29 +185,30 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"User List page is displayed")]
         public void ThenUserListPageIsDisplayed()
         {
-            Thread.Sleep(3000);
-            string UserListLabelText = advancePage.UserListPage.Text;
-            Assert.AreEqual(AdvancedPage.ExpectedValues.UserListPageLabelText, UserListLabelText, "User list page is not displayed");
+            Thread.Sleep(2000);
+            SetMethods.ScrollUpWebPage();
+            Thread.Sleep(1000);
+            bool IsUserListDisplayed = advancePage.UserListPage.GetElementVisibility();
+            Assert.IsTrue(IsUserListDisplayed, "User list page is not displayed");
         }
 
         [Then(@"no user is created")]
         public void ThenNoUserIsCreated()
         {
-            Thread.Sleep(3000);
-            bool matches = false;
-            string[] tableContent = advancePage.TableContent.Text.Split();
-            for (int i = 0; i < tableContent.Length; i++)
+            bool IsCreated = false;
+            IList<IWebElement> list = advancePage.UserList;
+            Assert.Greater(list.Count, 0, "No user is present except logged User.");
+
+            for (int i = 0; i < list.Count; i++)
             {
-                if (tableContent[i] == UserInputFullname)
+                string ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
+                if (ActualEmail == RandomUsername)
                 {
-                    string ActualUserName = tableContent[i + 4];
-                    if (ActualUserName == UserInputInvalidUserName)
-                    {
-                        matches = true;
-                    }
+                    IsCreated = true;
+                    break;
                 }
             }
-            Assert.IsFalse(matches, "New user is created");
+            Assert.IsFalse(IsCreated, "New user is not created");
         }
 
         [Given(@"manager user is on User Management page")]
@@ -283,22 +286,23 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
         [Then(@"new user is created")]
         public void ThenNewUserIsCreated()
-        {          
-            //Fetching all table data and then splits to put all data on index so that I can fetch required data form the index. Once data will be matched in search criteria.
-            string[] tableContent = advancePage.TableContent.Text.Split();
-            Thread.Sleep(2000);
-            for (int i = 0; i < tableContent.Length; i++)
+        {
+            bool IsCreated = false;
+            IList<IWebElement> list = advancePage.UserList;
+            Assert.Greater(list.Count, 0, "No user is present except logged User.");
+
+            for (int i = 0; i < list.Count; i++)
             {
-                if (tableContent[i] == RandomFullName)
+                ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
+                ActualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
+                ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
+                if (ActualEmail == RandomUsername)
                 {
-                    ActualFullName = tableContent[i];
-                    ActualRole = tableContent[i + 2];
-                    ActualUserName = tableContent[i + 4];
+                    IsCreated = true;
                     break;
                 }
             }
-            Assert.AreEqual(true, RandomUsername == ActualUserName, "New user is not created");
-            
+            Assert.IsTrue(IsCreated, "New user is not created");
         }
 
         [Then(@"new user role is Administrator")]
@@ -311,7 +315,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenUsernameNameAndPhoneNumberMatch()
         {
             //Username and Full name matching from the User List Page
-            Assert.AreEqual(true, RandomUsername == ActualUserName, "Username does not match");
+            Assert.AreEqual(true, RandomUsername == ActualEmail, "Username does not match");
             Assert.AreEqual(true, RandomFullName == ActualFullName, "Name does not match");
 
             //To match Phone number, need to click on Details button then I will get Phone number. So passing ActualUserName through method to find in table content and then Click on corresponding Details button.
@@ -381,9 +385,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenUnchecksUserManagerCheckbox()
         {
             bool IsCheckboxSelected = advancePage.UserManagerOnCreatePage.Selected;
+
             if (IsCheckboxSelected == true)
-            {
+            {                
                 advancePage.UserManagerOnCreatePage.JavaSciptClick();
+                Role = AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage;
             }
         }
 
