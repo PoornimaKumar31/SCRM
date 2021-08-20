@@ -37,7 +37,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string DetailsColumnHeaderID = "lbl_details";
             public const string SaveButtonID = "edit-selected";
             public const string NameFieldErrorMessageID = "name_error";
-            public const string TableContentXPath = "//*[@id=\"usrmgt_list\"]/div/div[2]/div/div[2]";
             public const string UserListClassName = "hrtitle";
             public const string PhoneErrorID = "phone_error";
             public const string FullNameLabelOnEditUserPageXPath = "(//*[contains(text(),'Full name')])[2]";
@@ -60,15 +59,12 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string FullnameLabelOnUserListID = "full_name";
             public const string RoleColumnHeaderID = "role";
             public const string EmailColumnHeaderID = "email";
-            public const string UserListTableHeaderXPath = "//*[@id=\"usrmgt_list\"]/div/div[2]/div/div[1]";
 
             //Log History table data
             public const string LogHistoryTableDataXPath = "//*[@id=\"lbl_history_detail\"]/div[2]/div[2]";
             public const string LogHistoryContentXPath = "//*[@id=\"lbl_history_detail\"]//div[2]//div[1]";
             public const string UserListRowXPath = "//div[contains(@id,\"user_row\")]";
-            public const string LoggedInUserNameID = "logged-in_username";
-            public const string RoleColumnXPath = "//div[starts-with(@id,'role')]";
-            
+            public const string LoggedInUserNameID = "logged-in_username";            
         }
 
         /// <summary>
@@ -93,15 +89,11 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         [FindsBy(How = How.Id, Using = Locators.RoleColumnHeaderID)]
         public IWebElement RoleColumnHeader { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.RoleColumnXPath)]
-        public IList<IWebElement> RoleColumn { get; set; }
-
         [FindsBy(How = How.XPath, Using = Locators.UserListRowXPath)]
         public IList<IWebElement> UserList { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LoggedInUserNameID)]
         public IWebElement LoggedInUserName { get; set; }
-
 
         [FindsBy(How = How.XPath, Using = Locators.UserListRowXPath)]
         public IList<IWebElement> UserListRow { get; set; }
@@ -112,9 +104,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         [FindsBy(How = How.Id, Using = Locators.DeleteButtonID)]
         public IList<IWebElement> DeleteButtonsList { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.UserListTableHeaderXPath)]
-        public IWebElement UserListTableHeader { get; set; }
-
         [FindsBy(How = How.Id, Using = Locators.FullnameLabelOnUserListID)]
         public IWebElement FullnameLabelOnUserList { get; set; }
 
@@ -123,9 +112,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
 
         [FindsBy(How = How.XPath, Using = Locators.LogHistoryTableDataXPath)]
         public IWebElement LogHistoryTableData { get; set; }
-
-        [FindsBy(How = How.XPath, Using = Locators.TableContentXPath)]
-        public IWebElement TableContent { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.UserNameErrorMessageOnCreatePageID)]
         public IWebElement UserNameErrorMessageOnCreatePage { get; set; }
@@ -214,8 +200,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         [FindsBy(How = How.Id, Using = Locators.DetailsButtonID)]
         public IList<IWebElement> DetailsButtonList { get; set; }
 
-        public string RandomFullNameLessThan50_49char { get; private set; }
-        public string RandomPhoneNumber10_10Digits { get; private set; }
 
         /// <summary>
         /// Getting User List rows of Username except Logged User
