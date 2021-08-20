@@ -1,0 +1,887 @@
+<Playlist Version="2.0">
+  <Rule Name="Includes" Match="Any">
+    <Rule Match="All">
+      <Property Name="Solution" />
+      <Rule Match="Any">
+        <Rule Match="All">
+          <Property Name="Project" Value="HillromAutomationFramework" />
+          <Rule Match="Any">
+            <Rule Match="All">
+              <Property Name="Namespace" Value="HillromAutomationFramework.Features.AdvancedTab" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="AdvanceTabUserListStaticElementsFeature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.AdvanceTabUserListStaticElementsFeature.UserListElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="UserListElements" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5720Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserCancelData" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserCancelData" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserInvalidNameLength" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserInvalidNameLength" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserInvalidPhoneNumber" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserInvalidPhoneNumber" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserInvalidUsernameFormat" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserInvalidUsernameFormat" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserInvalidUsernameLength" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserInvalidUsernameLength" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserMaximumLengthUsername" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserMaximumLengthUsername" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserMaximumName" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserMaximumName" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserRoleManagerUser" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserRoleManagerUser" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5720Feature.AddUserRoleRegularUser" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="AddUserRoleRegularUser" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5721Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.CancelEditUser" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CancelEditUser" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.CancelEditUserInvalidPhoneNumber" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CancelEditUserInvalidPhoneNumber" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.EditUserBlankPhoneNumber" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditUserBlankPhoneNumber" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.EditUserCancelBlankFullName" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditUserCancelBlankFullName" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.EditUserElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditUserElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.EditUserFullNameValidityCheck" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditUserFullNameValidityCheck" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.EditUserLogHistory" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditUserLogHistory" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.EditUserManager" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditUserManager" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5721Feature.EditUserPhoneNumber" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditUserPhoneNumber" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5722Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5722Feature.DeleteUserDialogElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeleteUserDialogElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5722Feature.DeleteUserNo" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeleteUserNo" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5722Feature.DeleteUserYes" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="DeleteUserYes" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5724Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5724Feature.ManagerUserRole" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="ManagerUserRole" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5724Feature.RegularUserRole" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RegularUserRole" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5725Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.AdvancedTab.SoftwareRequirement5725Feature.UserListCreateManageUser" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="UserListCreateManageUser" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="HillromAutomationFramework.Features.DeviceDetail" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5695Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDataSummary1" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDataSummary1" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDataSummary2" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDataSummary2" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsBattery" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsBattery" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsBraun4000" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsBraun4000" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsCO2" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsCO2" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsConnexDevice" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsConnexDevice" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsDeluxeComms" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsDeluxeComms" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsHostController" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsHostController" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsNIBP" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsNIBP" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsPrinter" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsPrinter" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsRadioLamarr" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsRadioLamarr" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsRadioNewmar" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsRadioNewmar" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsScale" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsScale" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsSpO2Masimo" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsSpO2Masimo" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsSpO2MasimoLicenseNo" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsSpO2MasimoLicenseNo" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsSpO2MasimoLicenseYes" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsSpO2MasimoLicenseYes" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsSpO2Nellcor1" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsSpO2Nellcor1" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsSpO2Nellcor2" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsSpO2Nellcor2" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsSureTemp" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsSureTemp" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMAssetDetailsTempProbe" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMAssetDetailsTempProbe" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.CVSMGeneralLayout" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMGeneralLayout" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5695Feature.LocateAssetButton" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="LocateAssetButton" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5702Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDataSummary1" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDataSummary1" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsAPM" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsAPM" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsBattery" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsBattery" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsConnexDevice" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsConnexDevice" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsNIBP" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsNIBP" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsRadioNewmar" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsRadioNewmar" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsSpO2Masimo" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsSpO2Masimo" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsSpO2Nellcor" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsSpO2Nellcor" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsSpO2Nonin" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsSpO2Nonin" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsSureTemp" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsSureTemp" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMAssetDetailsSureTempProbe" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsSureTempProbe" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5702Feature.CSMGeneralLayout" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMGeneralLayout" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5703Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5703Feature.CSMAssetDetailsReadOnly" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMAssetDetailsReadOnly" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5703Feature.EditCSMAssetDetailsBedFieldEmpty" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditCSMAssetDetailsBedFieldEmpty" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5703Feature.EditCSMAssetDetailsCancel" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditCSMAssetDetailsCancel" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5703Feature.EditCSMAssetDetailsRoomFieldEmpty" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditCSMAssetDetailsRoomFieldEmpty" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5703Feature.EditCSMAssetDetailsSave" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="EditCSMAssetDetailsSave" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5714Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5714Feature.RV700AssetDataSummary" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700AssetDataSummary" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5714Feature.RV700AssetDetailsConnexDevice" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700AssetDetailsConnexDevice" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5714Feature.RV700AssetDetailsRadioNewmar" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700AssetDetailsRadioNewmar" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.DeviceDetail.SoftwareRequirement5714Feature.RV700GeneralLayout" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700GeneralLayout" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="HillromAutomationFramework.Features.ReportsTab" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5716Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMFirmwareVersionReportElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMFirmwareVersionReportElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMFirmwareVersionReportPrint" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMFirmwareVersionReportPrint" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMFirmwareVersionReportTableToggle" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMFirmwareVersionReportTableToggle" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMReportTypeDropdownContent" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMReportTypeDropdownContent" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMUsageReportElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMUsageReportElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMUsageReportPrint" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMUsageReportPrint" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMUsageReportTableElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMUsageReportTableElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMUsageReportTableElementsColumns" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMUsageReportTableElementsColumns" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5716Feature.CVSMUsageReportTableToggle" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CVSMUsageReportTableToggle" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5717Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMActivityReportPageElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMActivityReportPageElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMActivityReportPageTableElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMActivityReportPageTableElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMActivityReportPageTableElementsColumns" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMActivityReportPageTableElementsColumns" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMConfigurationUpdateStatusReportPageElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMConfigurationUpdateStatusReportPageElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMConfigurationUpdateStatusReportPrint" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMConfigurationUpdateStatusReportPrint" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMConfigurationUpdateStatusReportTableElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMConfigurationUpdateStatusReportTableElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMConfigurationUpdateStatusReportTableElementsColumns" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMConfigurationUpdateStatusReportTableElementsColumns" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMFirmwareUpgradeStatusReportPageElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMFirmwareUpgradeStatusReportPageElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMFirmwareUpgradeStatusReportPageTableElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMFirmwareUpgradeStatusReportPageTableElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMFirmwareUpgradeStatusReportPageTableElementsColumns" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMFirmwareUpgradeStatusReportPageTableElementsColumns" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMFirmwareUpgradeStatusReportPrint" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMFirmwareUpgradeStatusReportPrint" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMFirmwareVersionReportElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMFirmwareVersionReportElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMFirmwareVersionReportPrint" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMFirmwareVersionReportPrint" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMFirmwareVersionReportTableToggle" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMFirmwareVersionReportTableToggle" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMReportTypeDropdownContent" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMReportTypeDropdownContent" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMUsageReportElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMUsageReportElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMUsageReportTableElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMUsageReportTableElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMUsageReportTableElementsColumns" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMUsageReportTableElementsColumns" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5717Feature.CSMUsageReportTableToggle" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMUsageReportTableToggle" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5719Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5719Feature.CSMActivityReportDownload" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMActivityReportDownload" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5719Feature.CSMConfigurationStatusReportDownload" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMConfigurationStatusReportDownload" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5719Feature.CSMFirmwareStatusReportDownload" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMFirmwareStatusReportDownload" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5719Feature.RV700FirmwareStatusReportDownload" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700FirmwareStatusReportDownload" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5900Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5900Feature.CSMActivityLocationSearch" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMActivityLocationSearch" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5900Feature.CSMActivitySearch" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMActivitySearch" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5900Feature.CSMActivitySerialNumberSearch" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMActivitySerialNumberSearch" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5902Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5902Feature.CSMCFGUpdateConfigurationSearch" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMCFGUpdateConfigurationSearch" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5902Feature.CSMCFGUpdateLocationSearch" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMCFGUpdateLocationSearch" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5902Feature.CSMCFGUpdateSerialNumberSearch" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMCFGUpdateSerialNumberSearch" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5902Feature.CSMCFGUpdateStatusLastDeployedSearch" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMCFGUpdateStatusLastDeployedSearch" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement5902Feature.CSMCFGUpdateStatusSearch" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="CSMCFGUpdateStatusSearch" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement6118Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement6118Feature.RV700FirmwareUpgradeStatusReportPageElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700FirmwareUpgradeStatusReportPageElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement6118Feature.RV700FirmwareUpgradeStatusReportPageTableElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700FirmwareUpgradeStatusReportPageTableElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement6118Feature.RV700FirmwareUpgradeStatusReportPageTableElementsColumns" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700FirmwareUpgradeStatusReportPageTableElementsColumns" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement6118Feature.RV700FirmwareUpgradeStatusReportPrint" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700FirmwareUpgradeStatusReportPrint" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement6118Feature.RV700FirmwareVersionReportElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700FirmwareVersionReportElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement6118Feature.RV700FirmwareVersionReportPrint" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700FirmwareVersionReportPrint" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.ReportsTab.SoftwareRequirement6118Feature.RV700FirmwareVersionReportTableToggle" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700FirmwareVersionReportTableToggle" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+            <Rule Match="All">
+              <Property Name="Namespace" Value="HillromAutomationFramework.Features.UpdatesTab" />
+              <Rule Match="Any">
+                <Rule Match="All">
+                  <Property Name="Class" Value="SoftwareRequirement5715Feature" />
+                  <Rule Match="Any">
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700ReviewActionConfirm" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700ReviewActionConfirm" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700ReviewActionElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700ReviewActionElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700ReviewActionPage" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700ReviewActionPage" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700ReviewActionPrevious" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700ReviewActionPrevious" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700SelectAssets" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700SelectAssets" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700SelectAssetsElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700SelectAssetsElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700SelectAssetsElementsTable" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700SelectAssetsElementsTable" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700SelectAssetsElementsTableColumns" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700SelectAssetsElementsTableColumns" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700SelectAssetsPrevious" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700SelectAssetsPrevious" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700UpgradeElements" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700UpgradeElements" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700UpgradeLessThanOrEqualTo50" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700UpgradeLessThanOrEqualTo50" />
+                      </Rule>
+                    </Rule>
+                    <Rule Match="All">
+                      <Property Name="TestWithNormalizedFullyQualifiedName" Value="HillromAutomationFramework.Features.UpdatesTab.SoftwareRequirement5715Feature.RV700UpgradeSelected" />
+                      <Rule Match="Any">
+                        <Property Name="DisplayName" Value="RV700UpgradeSelected" />
+                      </Rule>
+                    </Rule>
+                  </Rule>
+                </Rule>
+              </Rule>
+            </Rule>
+          </Rule>
+        </Rule>
+      </Rule>
+    </Rule>
+  </Rule>
+</Playlist>
