@@ -139,7 +139,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             advancePage.UserNameTextBoxOnCreatePage.EnterText(ValidUserName);
         }
 
-
         [When(@"presses Tab key")]
         public void WhenPressesTabKey()
         {

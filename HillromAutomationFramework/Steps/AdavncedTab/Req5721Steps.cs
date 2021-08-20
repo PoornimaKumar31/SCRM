@@ -249,8 +249,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters blank Phone number")]
         public void WhenUserEntersBlankPhoneNumber()
         {
-            advancePage.PhoneTextField.Clear();
-            advancePage.PhoneTextField.EnterText("");
+            advancePage.PhoneTextField.EnterText(Keys.Control + "a");
+            advancePage.PhoneTextField.EnterText(Keys.Delete);
+            advancePage.PhoneTextField.EnterText(""); 
         }
 
         [When(@"user enters invalid phone number (.*)")]
@@ -348,11 +349,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user clicks Details button for user with a phone number")]
         public void WhenUserClicksDetailsButtonForUserWithAPhoneNumber()
         {
+            string phone = null;
             int NoOfDetailsButton = advancePage.DetailsButtonList.Count;
             for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
             {
                 advancePage.DetailsButtonList[DetailsButtonPosition].Click();
-                string phone = advancePage.PhoneTextField.GetAttribute("value");
+                phone = advancePage.PhoneTextField.GetAttribute("value");
                 if (phone == "")
                 {
                     advancePage.CancelButton.Click();
@@ -362,7 +364,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                     break;
                 }
             }
-            _scenarioContext.Add("phonenumber", advancePage.PhoneTextField.GetAttribute("value"));
+            _scenarioContext.Add("phonenumber", phone);
         }
 
         [Then(@"Phone number is unchanged")]
