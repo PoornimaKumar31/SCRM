@@ -246,6 +246,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 42
  testRunner.And("Battery \"Chemistry\" is \"LION\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 43
+ testRunner.And("Battery \"DeviceName\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 44
+ testRunner.And("Battery \"DeviceName\" is \"WELCH\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 45
  testRunner.And("Battery \"Model name\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -544,6 +550,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 106
  testRunner.And("NIBP \"Model number\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 107
+ testRunner.And("NIBP \"Model number\" is \"405672\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 108
  testRunner.And("NIBP \"Safety version\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -840,6 +849,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 163
  testRunner.And("Masimo \"Hardware version\" is \"0x0301\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 164
+ testRunner.And("Masimo \"Serial number\" is \"MASIMO_SERIAL\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 165
  testRunner.And("Masimo \"Usage value\" is \"50\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -1116,13 +1128,25 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Radio Lamarr \"Name\" is \"Radio-Lamarr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 213
- testRunner.And("Radio Lamarr \"Serial number\" is \"987654321\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Radio Lamarr \"Serial number\" is \"987654321\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 214
  testRunner.And("Radio Lamarr \"Usage value\" is \"N/A\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 215
  testRunner.When("user clicks Radio-Lamarr toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 216
+ testRunner.Then("Radio Lamarr \"Access point MAC address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 217
+ testRunner.And("Radio Lamarr \"Access point MAC address\" is \"78:BC:1A:B4:2A:24\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 218
+ testRunner.And("Radio Lamarr \"Radio IP Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 219
+ testRunner.And("Radio Lamarr \"Radio IP Address\" is \"172.21.33.52\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 220
  testRunner.Then("Radio Lamarr \"MAC Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1205,6 +1229,18 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 237
  testRunner.When("user clicks Radio-Newmar toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 238
+ testRunner.Then("Radio Newmar \"Access point MAC address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 239
+ testRunner.And("Radio Newmar \"Access point MAC address\" is \"78:BC:1A:9F:FD:C1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 240
+ testRunner.And("Radio Newmar \"Radio IP Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 241
+ testRunner.And("Radio Newmar \"Radio IP Address\" is \"172.21.34.53\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 242
  testRunner.Then("Radio Newmar \"MAC Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -1446,9 +1482,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 293
  testRunner.And("Details Summary \"Connection status\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 294
- testRunner.And("Details Summary \"Connection status\" is \"Last connected on:10 Aug 2021, 08:19 AM\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
             }
             this.ScenarioCleanup();
         }
@@ -1466,7 +1499,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8679"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Asset Data Summary2", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 297
+#line 296
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1486,20 +1519,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 298
+#line 297
  testRunner.Given("user is on Component details page for CVSM Serial number \"100020000000\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 299
+#line 298
  testRunner.Then("Details Summary \"Last configuration deployed\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 300
+#line 299
  testRunner.And("Details Summary \"Last configuration deployed\" is \"PMP-100020000002-20210707-16303" +
                         "0_CONFIG.PMP.settings\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 301
+#line 300
  testRunner.And("Details Summary \"Last customization deployed\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 302
+#line 301
  testRunner.And("Details Summary \"Last customization deployed\" is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -1517,7 +1550,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8672"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Locate Asset Button", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 305
+#line 304
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1537,10 +1570,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 306
+#line 305
  testRunner.Given("user is on Component details page for CVSM Serial number \"100042631718\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 307
+#line 306
  testRunner.Then("Locate Asset button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

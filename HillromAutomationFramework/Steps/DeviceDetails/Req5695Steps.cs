@@ -114,6 +114,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case "temperature":
                     ActualValue = CVSMassetListPage.BatteryTemparatureValue.Text;
                     break;
+                case "devicename":
+                    ActualValue = CVSMassetListPage.BatteryDeviceNameValue.Text;
+                    break;
                 case "remaining capacity":
                     ActualValue = CVSMassetListPage.BatteryRemainingCapacityValue.Text;
                     break;
@@ -220,6 +223,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
                 case "model name":
                     ActualValue = CVSMassetListPage.BatteryModelNameLabel.GetElementVisibility();
+                    break;
+                case "devicename":
+                    ActualValue = CVSMassetListPage.BatteryDeviceNameLabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
@@ -963,7 +969,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case "access point mac address":
                     ActualValue = CVSMassetListPage.RadioLamarrAPMACAddressValue.Text;
                     break;
-                case "radio ip Address":
+                case "radio ip address":
                     ActualValue = CVSMassetListPage.RadioLamarrRadioIPAddressValue.Text;
                     break;
                 case "serial number":
@@ -1053,7 +1059,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case "access point mac address":
                     ActualValue = CVSMassetListPage.RadioNewmarApMacAddressValue.Text;
                     break;
-                case "radio ip Address":
+                case "radio ip address":
                     ActualValue = CVSMassetListPage.RadioNewmarRadioIpAddressValue.Text;
                     break;
                 case "serial number":
@@ -1305,14 +1311,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
                 case "asset tag":
                     ActualValue = CVSMassetListPage.DetailsSummaryAssetTagValue.Text;
-                    break;
-                case "connection status":
-                    IList<IWebElement> TextList = CVSMassetListPage.DetailsSummaryConnectionStatusValue.FindElements(By.TagName("b"));
-                    ActualValue = "";
-                    foreach (IWebElement element in TextList)
-                    {
-                        ActualValue = ActualValue + element.Text;
-                    }
                     break;
                 case "last configuration deployed":
                     ActualValue = CVSMassetListPage.DetailsSummaryLastConfigurationDeployedValue.Text;

@@ -57,8 +57,8 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string BatteryAvgTimeFullChargeLabelID = "lbl_avg_time_to_full_charge";
             public const string BatteryChemistryValueID = "chemistry";
             public const string BatteryChemistryLabelID = "lbl_chemistry";
-            public const string BatteryDeviceNameValueID = "";
-            public const string BatteryDeviceNameLabelID = "";
+            public const string BatteryDeviceNameValueID = "device_name";
+            public const string BatteryDeviceNameLabelID = "lbl_device_name";
             public const string BatteryModelNameValueID = "model_number";
             public const string BatteryModelNameLabelID = "lbl_model_number";
 
@@ -190,10 +190,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string RadioLamarrSerialNumberID = "hc_radio_serialNo";
             public const string RadioLamarrUsageValueXPath = "//div[@id =\"hc_radio_serialNo\"]//parent::div/div[6]";
             public const string RadioLamarrToggleArrowID = "radio";
-            public const string RadioLamarrAPMACAddressLabelID = "";
-            public const string RadioLamarrAPMACAddressValueID = "";
-            public const string RadioLamarrRadioIPAddressLabelID = "";
-            public const string RadioLamarrRadioIPAddressValueID = "";
+            public const string RadioLamarrAPMACAddressLabelID = "lbl_radio_ap_mac";
+            public const string RadioLamarrAPMACAddressValueID = "radio_ap_mac";
+            public const string RadioLamarrRadioIPAddressLabelID = "lbl_radio_ip";
+            public const string RadioLamarrRadioIPAddressValueID = "radio_ip";
             public const string RadioLamarrMacAddressLabelID = "lbl_hc_radio_mac";
             public const string RadioLamarrMacAddressValueID = "hc_radio_mac";
             public const string RadioLamarrModelNumberLabelID = "lbl_hc_radio_model";
@@ -206,14 +206,14 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string RadioLamarrSSIDValueID = "hc_radio_ssid";
 
             //Radio Newmar
-            public const string RadioNewmarNameXPath = "//span[@id = \"radio\"]//parent::div";
+            public const string RadioNewmarNameID = "lbl_radio_name";
             public const string RadioNewmarToggleArrowID = "radio";
             public const string RadioNewmarFirmwareVersionID = "hc_radio_firm_version";
             public const string RadioNewmarSerialNUmberID = "hc_radio_serialNo";
-            public const string RadioNewmarApMacAddressLabelID = "";
-            public const string RadioNewmarApMacAddressValueID = "";
-            public const string RadioNewmarRadioIpAddressLabelID = "";
-            public const string RadioNewmarRadioIpAddressValueID = "";
+            public const string RadioNewmarApMacAddressLabelID = "lbl_radio_ap_mac";
+            public const string RadioNewmarApMacAddressValueID = "radio_ap_mac";
+            public const string RadioNewmarRadioIpAddressLabelID = "lbl_radio_ip";
+            public const string RadioNewmarRadioIpAddressValueID = "radio_ip";
             public const string RadioNewmarMacAddressLabelID = "lbl_hc_radio_mac";
             public const string RadioNewmarMacAddressValueID = "hc_radio_mac";
             public const string RadioNewmarModelNumberLabelID = "lbl_hc_radio_model";
@@ -277,6 +277,13 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string ConnexRelativeChildElementXpath = "//div[@id = '"+ConnexUsageID+"']//parent::div/div";
 
         }
+
+
+        [FindsBy(How = How.Id, Using = Locator.BatteryDeviceNameLabelID)]
+        public IWebElement BatteryDeviceNameLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.BatteryDeviceNameValueID)]
+        public IWebElement BatteryDeviceNameValue { get; set; }
 
 
         [FindsBy(How = How.Id, Using = Locator.DetailsSummaryLocateAssetButtonID)]
@@ -449,7 +456,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
         [FindsBy(How = How.Id, Using = Locator.RadioNewmarSsidValueID)]
         public IWebElement RadioNewmarSsidValue { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locator.RadioNewmarNameXPath)]
+        [FindsBy(How = How.Id, Using = Locator.RadioNewmarNameID)]
         public IWebElement RadioNewmarName { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.RadioLamarrSerialNumberID)]

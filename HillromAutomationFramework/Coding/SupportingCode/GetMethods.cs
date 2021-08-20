@@ -66,7 +66,8 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             try
             {
                 return (element.Displayed);
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 return (false);
             }
@@ -82,7 +83,8 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             try
             {
                 return (webElementList.Count);
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 return (0);
             }
@@ -98,10 +100,10 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             try
             {
                 webElement.SendKeys("Text");
-                return (webElement.GetAttribute("readonly")=="true");
+                return (webElement.GetAttribute("readonly") == "true");
 
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return (true);
             }
@@ -157,7 +159,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// <returns>true if the request message is matching the expected value, else return false.</returns>
         public static bool LogFilesRequestStatusMessageVerification(this IWebElement element)
         {
-            if(element.Text == "Log file request - EXECUTING" || element.Text == "Log file request - PENDING" || element.Text == "Log file request - RECEIVED")
+            if (element.Text == "Log file request - EXECUTING" || element.Text == "Log file request - PENDING" || element.Text == "Log file request - RECEIVED")
             {
                 return true;
             }
@@ -236,6 +238,35 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             str = string.Join("", str.Split('\n', '\r', '\t'));
             return str;
         }
-    }
 
+        /// <summary>
+        /// Coverts Local Time to UTC Time
+        /// </summary>
+        /// <param name="dateTime">Local Time</param>
+        /// <returns>UTC Time</returns>
+        public static string ConvertDateTimeLocalToUTC(string dateTime)
+        {
+            //Formating time of the appliaction
+            DateTime FormatedDate = DateTime.Parse(dateTime);
+
+            //converting into UTC(GMT)
+            DateTime ConvertedUTCTime = TimeZoneInfo.ConvertTime(FormatedDate, TimeZoneInfo.Local, TimeZoneInfo.Utc);
+
+            return ConvertedUTCTime.ToString("f");
+        }
+
+
+        /// <summary>
+        /// Converts NewYork Time to UTC Time
+        /// </summary>
+        /// <param name="NYTime">NY Time</param>
+        /// <returns>UTC Time</returns>
+        public static string ConvertNewYorkTimetoUTC(string NYTime)
+        {
+            DateTime FormatedDate = DateTime.Parse(NYTime);
+
+            return FormatedDate.AddHours(4).ToString("f");
+        }
+        
+    }
 }

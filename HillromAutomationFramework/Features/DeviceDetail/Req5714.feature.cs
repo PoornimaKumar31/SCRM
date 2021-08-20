@@ -233,9 +233,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 37
  testRunner.And("summary \"Connection status\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 38
- testRunner.And("summary \"Connection status\" is \"Last connected on: 11 Jul 2021, 10:04 PM\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 39
  testRunner.And("summary \"Room/Bed\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

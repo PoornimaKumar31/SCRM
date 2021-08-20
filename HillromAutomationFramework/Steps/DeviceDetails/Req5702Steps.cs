@@ -627,9 +627,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
                 case "cycle count":
                     ActualValue = csmAssetListPage.TempProbeRowCycleCount.Text;
-                    Console.WriteLine("Dekh Dekh Dekh :"+ActualValue);
                     ActualValue = GetMethods.CleanString(ActualValue);
-                    Console.WriteLine("Dekh Dekh Dekh :" + ActualValue);
                     break;
                 case "serial number":
                     ActualValue = csmAssetListPage.TempProbeRowSerialNumber.Text;
@@ -842,7 +840,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         }
 
         [When(@"user clicks Masimo MX-7 toggle arrow")]
-        public void WhenUserClicksToggleArrow(string p0)
+        public void WhenUserClicksToggleArrow()
         {
             csmAssetListPage.MasimoToggleArrow.Click();
             Thread.Sleep(2000);
@@ -1241,12 +1239,12 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     ActualValue = csmAssetListPage.SummaryAssetTagValue.Text;
                     break;
                 case "last vital sent":
-                    ActualValue = csmAssetListPage.SummaryLastVitalSentValue.Text;
+                    ActualValue = GetMethods.ConvertDateTimeLocalToUTC(csmAssetListPage.SummaryLastVitalSentValue.Text);
+                    ExpectedValue = GetMethods.ConvertNewYorkTimetoUTC(ExpectedValue);
                     break;
                 case "room/bed":
                     ActualValue = csmAssetListPage.SummaryRoomBedValue.Text;
                     break;
-
                 default:
                     Assert.Fail(LabelName + " is Invalid");
                     break;

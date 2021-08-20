@@ -35,7 +35,7 @@ Scenario: RV700 Asset Data Summary
 	And summary "Location" label is displayed
 	And summary "Location" is "(not set)"
 	And summary "Connection status" label is displayed
-	And summary "Connection status" is "Last connected on: 11 Jul 2021, 10:04 PM"
+	#And summary "Connection status" is "Last connected on: 11 Jul 2021, 10:04 PM"
 	And summary "Room/Bed" label is displayed
 	And summary "Room/Bed" is "/"
 	And summary "Last firmware deployed" label is displayed

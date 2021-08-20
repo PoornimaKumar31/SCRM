@@ -40,8 +40,8 @@ Scenario: CVSM Asset Details Battery
 	And Battery "Avg. time to full charge" is "79 min"
 	And Battery "Chemistry" label is displayed
 	And Battery "Chemistry" is "LION"
-	#And Battery "DeviceName" label is displayed
-	#And Battery "DeviceName" is "WELCH"
+	And Battery "DeviceName" label is displayed
+	And Battery "DeviceName" is "WELCH"
 	And Battery "Model name" label is displayed
 	And Battery "Model name" is "Battery_REF"
 
@@ -104,7 +104,7 @@ Scenario: CVSM Asset Details NIBP
 	Then NIBP "Bootloader version" label is displayed
 	And NIBP "Bootloader version" is "1.02"
 	And NIBP "Model number" label is displayed
-	#And NIBP "Model number" is "405672"
+	And NIBP "Model number" is "405672"
 	And NIBP "Safety version" label is displayed
 	And NIBP "Safety version" is "1.03"
 
@@ -161,7 +161,7 @@ Scenario: CVSM Asset Details SpO2 Masimo License Yes
 	Then Masimo "Name" is "Masimo"
 	And Masimo "Firmware version" is "2.1.0"
 	And Masimo "Hardware version" is "0x0301"
-	#And Masimo "Serial number" is "0000011"
+	And Masimo "Serial number" is "MASIMO_SERIAL"
 	And Masimo "Usage value" is "50"
 	When user clicks Masimo toggle arrow
 	Then Masimo "Model number" label is displayed
@@ -210,13 +210,13 @@ Given user is on Component details page for CVSM Serial number "100042631718"
 Scenario: CVSM Asset Details Radio Lamarr
 	Given user is on Component details page for CVSM Serial number "100073764115"
 	Then Radio Lamarr "Name" is "Radio-Lamarr"
-	And Radio Lamarr "Serial number" is "987654321"
+	Then Radio Lamarr "Serial number" is "987654321"
 	And Radio Lamarr "Usage value" is "N/A"
 	When user clicks Radio-Lamarr toggle arrow
-	#Then Radio Lamarr "Access point MAC address" label is displayed
-	#And Radio Lamarr "Access point MAC address" is "78:BC:1A:B4:2A:24"
-	#And Radio Lamarr "Radio IP Address" label is displayed
-	#And Radio Lamarr "Radio IP Address" is "172.21.33.52"
+	Then Radio Lamarr "Access point MAC address" label is displayed
+	And Radio Lamarr "Access point MAC address" is "78:BC:1A:B4:2A:24"
+	And Radio Lamarr "Radio IP Address" label is displayed
+	And Radio Lamarr "Radio IP Address" is "172.21.33.52"
 	Then Radio Lamarr "MAC Address" label is displayed
 	And Radio Lamarr "MAC Address" is "00:1A:FA:02:78:6A"
 	And Radio Lamarr "Model Number" label is displayed
@@ -235,10 +235,10 @@ Scenario: CVSM Asset Details Radio Newmar
 	And Radio Newmar "Firmware version" is "2.00.00"
 	And Radio Newmar "Serial number" is "ABN_SERIALNUMBER"
 	When user clicks Radio-Newmar toggle arrow
-	#Then Radio Newmar "Access point MAC address" label is displayed
-	#And Radio Newmar "Access point MAC address" is "78:BC:1A:9F:FD:C1"
-	#And Radio Newmar "Radio IP Address" label is displayed
-	#And Radio Newmar "Radio IP Address" is "172.21.34.53"
+	Then Radio Newmar "Access point MAC address" label is displayed
+	And Radio Newmar "Access point MAC address" is "78:BC:1A:9F:FD:C1"
+	And Radio Newmar "Radio IP Address" label is displayed
+	And Radio Newmar "Radio IP Address" is "172.21.34.53"
 	Then Radio Newmar "MAC Address" label is displayed
 	And Radio Newmar "MAC Address" is "00:17:23:E1:20:56"
 	And Radio Newmar "Model Number" label is displayed
@@ -291,7 +291,6 @@ Scenario: CVSM Asset Data Summary1
 	And Details Summary "Radio IP address" label is displayed
 	And Details Summary "Radio IP address" is "172.21.34.53"
 	And Details Summary "Connection status" label is displayed
-	And Details Summary "Connection status" is "Last connected on:10 Aug 2021, 08:19 AM"
 
 @TestCaseID_9494 @UISID_8672 @UISID_8679
 Scenario: CVSM Asset Data Summary2
