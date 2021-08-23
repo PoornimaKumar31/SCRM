@@ -139,12 +139,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void WhenUserClicksPrintButton()
         {
             cvsmUsageReportPage.PrintButton.JavaSciptClick();
+
         }
 
         [Then(@"browser’s built-in print dialog is displayed")]
         public void ThenBrowserSBuilt_InPrintDialogIsDisplayed()
         {
-            //Need to discuss it with Pradeep
+            //Need to discuss with Hillrom
             _scenarioContext.Pending();
         }
 
