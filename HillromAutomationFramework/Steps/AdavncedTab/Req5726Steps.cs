@@ -3,6 +3,7 @@ using HillromAutomationFramework.Coding.PageObjects.AdvancedTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -16,6 +17,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
         AdvancedPage advancePage = new AdvancedPage();
+        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         string RandomUsername = null;
         string RandomFullName = null;
         string Role = null;
@@ -27,10 +29,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             //Clicking on facility
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             advancePage.AdvancedTab.JavaSciptClick();
 
-            //GivenManagerUserIsOnUserListPage();
+            //User is on add user page
             advancePage.CreateUserOnCreatePage.Click();
         }
         
@@ -56,7 +58,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             if (IsCheckboxSelected == true)
             {
                 advancePage.UserManagerOnCreatePage.JavaSciptClick();
-                Role = AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage;
             }
         }
         
