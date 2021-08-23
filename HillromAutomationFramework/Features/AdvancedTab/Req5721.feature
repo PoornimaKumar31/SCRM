@@ -79,7 +79,7 @@ Scenario: Cancel Edit User Invalid Phone Number
 	And user enters invalid phone number "123"
 	And clicks Cancel button
 	Then user list page is displayed
-	When clicks Details button for same user
+	When user clicks Details button for same user
 	Then Phone number is unchanged
 
 @TestCaseID_9337 @UISID_8704
@@ -89,7 +89,7 @@ Scenario: Edit User Manager
 	And user deselects the User Manager checkbox
 	And user clicks Save button
 	Then Regular is displayed in Role column in user list
-	When clicks Details button for same user
+	When user clicks Details button for same user
 	And user selects the User Manager checkbox
 	And user clicks Save button
 	Then Administrator is displayed in Role column in User List

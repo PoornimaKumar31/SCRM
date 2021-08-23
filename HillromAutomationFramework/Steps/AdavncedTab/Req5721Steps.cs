@@ -422,8 +422,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsFalse(FullNameErrorMessageisplayed, "Full name error message is displayed");
         }
 
-        [When(@"clicks Details button for same user")]
-        public void WhenClicksDetailsButtonForSameUser()
+        [When(@"(.*)clicks Details button for same user")]
+        public void WhenClicksDetailsButtonForSameUser(string p0)
         {
             Thread.Sleep(2000);
             advancePage.DetailsButtonList[DetailsButtonPosition].Click();

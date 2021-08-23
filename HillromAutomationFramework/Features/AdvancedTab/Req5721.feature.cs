@@ -461,7 +461,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("user list page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 82
- testRunner.When("clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 83
  testRunner.Then("Phone number is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -517,7 +517,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Regular is displayed in Role column in user list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 92
- testRunner.When("clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 93
  testRunner.And("user selects the User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

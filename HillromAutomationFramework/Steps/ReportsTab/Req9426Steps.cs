@@ -32,7 +32,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
 
             if (reportType.ToLower().Trim().Equals("centrella firmware upgrade status"))
             {
-                SetMethods.ScrollTillElementIsVisible(landingPage.EdenHospitalMedicalCenterOrganizationTitle,"Centrella Orgaization");
+                SetMethods.MoveTotheElement(landingPage.EdenHospitalMedicalCenterOrganizationTitle,"Centrella Orgaization");
                 landingPage.EdenHospitalMedicalCenterOrganizationFacilityMedicalCenter.Click();
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                 mainPage.ReportsTab.JavaSciptClick();

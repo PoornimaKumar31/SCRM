@@ -149,7 +149,7 @@ Scenario: CVSM Asset Details Scale
 	Then Scale "Model number" label is displayed
 	And Scale "Model number" is "Health o meter Adapter"
 
-@TestCaseID_9483 @UISID_8672 @UISID_8679
+@TestCaseID_9483 @UISID_8672 @UISID_8677 @UISID_8679
 Scenario: CVSM Asset Details SpO2 Masimo
 	Given user is on Component details page for CVSM Serial number "103001220215"
 	Then spo2 "Name" is "SPO2 Sensor"
@@ -250,7 +250,7 @@ Scenario: CVSM Asset Details Radio Newmar
 	And Radio Newmar "SSID" label is displayed
 	And Radio Newmar "SSID" is "c2-swtest.psk"
 
-@TestCaseID_9491 @UISID_8672 @UISID_8679
+@TestCaseID_9491 @UISID_8672 @UISID_8677 @UISID_8679
 Scenario: CVSM Asset Details Connex Device
 	Given user is on Component details page for CVSM Serial number "103001220215"
 	Then Connex Device "Name" is "Welch Allyn Connex Device"
@@ -258,7 +258,7 @@ Scenario: CVSM Asset Details Connex Device
 	And Connex Device "Device hours on" label is displayed in "Usage" column
 	And Connex Device "Device hours on" is "148 hrs 37 mins 0 secs"
 
-@TestCaseID_9492 @UISID_8672 @UISID_8679
+@TestCaseID_9492 @UISID_8672 @UISID_8677 @UISID_8679
 Scenario: CVSM Asset Details Host Controller
 	Given user is on Component details page for CVSM Serial number "103001220215"
 	Then Host Controller "Name" is "Host Controller"

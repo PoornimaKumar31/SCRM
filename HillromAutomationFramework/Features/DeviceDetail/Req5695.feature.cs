@@ -762,12 +762,14 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("CVSM Asset Details SpO2 Masimo")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9483")]
         [NUnit.Framework.CategoryAttribute("UISID_8672")]
+        [NUnit.Framework.CategoryAttribute("UISID_8677")]
         [NUnit.Framework.CategoryAttribute("UISID_8679")]
         public virtual void CVSMAssetDetailsSpO2Masimo()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9483",
                     "UISID_8672",
+                    "UISID_8677",
                     "UISID_8679"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Asset Details SpO2 Masimo", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -1280,12 +1282,14 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("CVSM Asset Details Connex Device")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9491")]
         [NUnit.Framework.CategoryAttribute("UISID_8672")]
+        [NUnit.Framework.CategoryAttribute("UISID_8677")]
         [NUnit.Framework.CategoryAttribute("UISID_8679")]
         public virtual void CVSMAssetDetailsConnexDevice()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9491",
                     "UISID_8672",
+                    "UISID_8677",
                     "UISID_8679"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Asset Details Connex Device", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -1332,12 +1336,14 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("CVSM Asset Details Host Controller")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9492")]
         [NUnit.Framework.CategoryAttribute("UISID_8672")]
+        [NUnit.Framework.CategoryAttribute("UISID_8677")]
         [NUnit.Framework.CategoryAttribute("UISID_8679")]
         public virtual void CVSMAssetDetailsHostController()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9492",
                     "UISID_8672",
+                    "UISID_8677",
                     "UISID_8679"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Asset Details Host Controller", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
