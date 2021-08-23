@@ -48,8 +48,8 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             long scrollHeight = 0;
             do
             {
-                IJavaScriptExecutor js = (IJavaScriptExecutor)(PropertyClass.Driver);
-                var newScrollHeight = (long)js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;");
+                IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)(PropertyClass.Driver);
+                var newScrollHeight = (long)javaScriptExecutor.ExecuteScript("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;");
                 if (newScrollHeight == scrollHeight)
                 {
                     break;
@@ -60,6 +60,21 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                     Thread.Sleep(400);
                 }
             } while (true);
+        }
+        /// <summary>
+        /// Scroll till the element is visible and clickable
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="elementName"></param>
+        public static void ScrollTillElementIsVisible(IWebElement element,string elementName)
+        {
+            IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)(PropertyClass.Driver);
+            javaScriptExecutor.ExecuteScript("arguments[0].scrollIntoView();", element);
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
+            {
+                Message = "The" + elementName + " is not visible and unable to click on it"
+            };
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
         }
 
         /// <summary>

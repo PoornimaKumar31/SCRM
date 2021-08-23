@@ -28,12 +28,17 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string SerialNumberSearchText = "100010000000";
             public const string LocationSearchText = "Station1";
 
+            //CSM
             public const string CSMActivityReportName = "Activity_Status_Report_(CSM).csv";
             public const string ActivityReportCSMHeader = "ACTIVITY REPORT (CSM)";
             public const string SerialNumberHeadingText = "Serial number";
             public const string LocationHeadingText = "Location";
             public const string LastVitalSentHeadingText = "Last vital sent";
-            
+
+            //Centrella
+            public const string CentrellaActivityReportName = "Activity_Status_Report_(Centrella).csv";
+
+
         }
 
         public ActivityReportPage()

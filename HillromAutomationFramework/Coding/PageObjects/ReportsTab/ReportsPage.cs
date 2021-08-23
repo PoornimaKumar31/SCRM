@@ -30,6 +30,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
+            public const string CentrellaDeviceName = "Centrella";
             public const string GetReportButtonID = "getReport";
             public const string FacilityLabelID = "orgFilterLabel";
             public const string AssetTypeLabelID = "asset_type";

@@ -31,7 +31,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnAssetListPageWithMoreThanOneRV()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollTillElementIsVisible(landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title, "LNT Automated Eye Test Organization Facility Test1 Title");
             landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             wait.Message = "Main page asset list is not displayed";
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
@@ -86,7 +86,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             //Loging-in
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollTillElementIsVisible(landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title, "LNT Automated Eye Test Organization Facility Test1 Title");
             landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             wait.Message = "Main page asset list is not displayed";
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));

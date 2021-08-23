@@ -40,6 +40,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string Organization2Facility0ServerID = "serv20";
             public const string Organization2Facility0DeviceID = "dev20";
 
+            //EDEN HOSPITAL MEDICAL CENTER 602412
+            public const string EdenHospitalMedicalCenterOrganizationTitleXpath = "//span[text()='" + ExpectedValues.EdenHospitalMedicalCenterOrganizationTitle + "']";
+            public const string EdenHospitalMedicalCenterOrganizationFacilityMedicalCenterXpath= EdenHospitalMedicalCenterOrganizationTitleXpath + "//parent::div//parent::div//span[text()='" + ExpectedValues.EdenHospitalMedicalCenterOrganizationFacilityMedicalCenter + "']";
+
             //Header elements
             public const string UserNameLogoID = "userprofile_logo";
             public const string LogOutButtonID = "logout";
@@ -62,6 +66,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //L&T Automated Eye Test Organization
             public const string LNTAutomatedEyeTestOrganizationTitle = "LT Automated Eye Test";
             public const string LNTAutomatedEyeTestOrganizationFacilityTest1 = "Test1";
+
+            //EDEN HOSPITAL MEDICAL CENTER 602412
+            public const string EdenHospitalMedicalCenterOrganizationTitle = "EDEN HOSPITAL MEDICAL CENTER 602412";
+            public const string EdenHospitalMedicalCenterOrganizationFacilityMedicalCenter = "EDEN HOSPITAL MEDICAL CENTER";
         }
 
 
@@ -126,6 +134,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         [FindsBy(How = How.Id, Using = Locator.Organization2Facility0DeviceID)]
         public IWebElement Organization2Facility0Device { get; set; }
-        
+
+        //EDEN HOSPITAL MEDICAL CENTER 602412
+        [FindsBy(How = How.XPath, Using = Locator.EdenHospitalMedicalCenterOrganizationTitleXpath)]
+        public IWebElement EdenHospitalMedicalCenterOrganizationTitle { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.EdenHospitalMedicalCenterOrganizationFacilityMedicalCenterXpath)]
+        public IWebElement EdenHospitalMedicalCenterOrganizationFacilityMedicalCenter { get; set; }
+
     }
 }
