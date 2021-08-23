@@ -11,7 +11,7 @@ using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.AdavncedTab
 {
-    [Binding]
+    [Binding, Scope(Tag = "SoftwareRequirementID_5726")]
     public class Req5726Steps
     {
         LoginPage loginPage = new LoginPage();
