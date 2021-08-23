@@ -220,7 +220,8 @@ namespace HillromAutomationFramework.Steps.Main
         [Given(@"downward arrow shows for ascending order beside Serial Number column header for default sorted column")]
         public void GivenDownwardArrowShowsForAscendingOrderBesideSerialNumberColumnHeaderForDefaultShortedColumn()
         {
-            Assert.AreEqual("serial ascending", mainPage.SerialNumberHeading.GetAttribute("class"),"Downward arrow does not appear on selrial column header.");
+            string attributeValue = mainPage.SerialNumberHeading.GetAttribute("class");
+            Assert.AreEqual(true, "serial ascending", attributeValue, "Downward arrow does not appear on selrial column header.");
         }
 
         [Then(@"downward arrow shows beside ""(.*)"" column header for ascending order")]

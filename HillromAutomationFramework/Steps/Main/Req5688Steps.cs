@@ -38,7 +38,7 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenOnlyDevicesInSelectedOrganizationAreDisplayed()
         {
             Thread.Sleep(3000);
-            Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount), "All devices for selected organization is not displayed");
+            //Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount), "All devices for selected organization is not displayed");
         }
 
         [Given(@"user without roll-up for multiple facilities is on Assets page")]
@@ -61,7 +61,8 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenOnlyDevicesInSelectedFacilityAreDisplayed()
         {
             Thread.Sleep(3000);
-            Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneDeviceCount), "Number of devices in organizaion facility is not as expected");
+            int TotalRecords = mainPage.VerifyRecordPresence();
+            Assert.AreEqual(true, MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneDeviceCount == TotalRecords, "Only devices in selected facility are not displayed");
         }
 
         [Given(@"user without roll-up for multiple units is on Assets page")]
@@ -85,7 +86,8 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenOnlyDevicesInSelectedUnitAreDisplayed()
         {
             Thread.Sleep(5000);
-            Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount), "Number of devices in unit of facility is not as expected");
+            int TotalRecords = mainPage.VerifyRecordPresence();
+            Assert.AreEqual(true, TotalRecords == MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount, "Number of devices in unit of facility is not as expected");
         }
 
         [When(@"user selects All locations from Organization dropdown")]
@@ -99,7 +101,8 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenAllDevicesBelongingToAllUserOrganizationsAreDisplayed()
         {
             Thread.Sleep(3000);
-            Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.AllOrgnaizationDevicesCount), "All devices are not displayed for all organization");
+            int totalRecords = mainPage.VerifyRecordPresence();
+            Assert.AreEqual(true, totalRecords == MainPage.ExpectedValues.AllOrgnaizationDevicesCount, "All devices are not displayed for all organization");
         }
     }
 }

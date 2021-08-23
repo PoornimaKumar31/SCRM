@@ -48,8 +48,7 @@ namespace HillromAutomationFramework.Steps.Main
         {
             for (int i = 1; i <= mainPage.DeviceListRow.Count; i++)
             {
-                string ActualAssetTypeText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 2 + "]")).Text;
-                bool boo = ActualAssetTypeText.Contains(MainPage.ExpectedValues.PartialFirmwareVersionText);
+                string ActualAssetTypeText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 3 + "]")).Text;
                 Assert.AreEqual(true, ActualAssetTypeText.Contains(MainPage.ExpectedValues.PartialFirmwareVersionText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
@@ -120,7 +119,6 @@ namespace HillromAutomationFramework.Steps.Main
             for (int i = 1; i <= mainPage.DeviceListRow.Count; i++)
             {
                 string ActualAssetTypeText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 1 + "]")).Text;
-                bool boo = ActualAssetTypeText.Contains(MainPage.ExpectedValues.PartialTypeText);
                 Assert.AreEqual(true, ActualAssetTypeText.Contains(MainPage.ExpectedValues.PartialTypeText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
@@ -130,8 +128,7 @@ namespace HillromAutomationFramework.Steps.Main
         {
             for (int i = 1; i <= mainPage.DeviceListRow.Count; i++)
             {
-                string ActualAssetTagText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 4 + "]")).Text;
-                bool boo = ActualAssetTagText.Contains(MainPage.ExpectedValues.PartialAssetTagText);
+                string ActualAssetTagText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[1]")).Text;
                 Assert.AreEqual(true, ActualAssetTagText.Contains(MainPage.ExpectedValues.PartialAssetTagText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
@@ -141,8 +138,7 @@ namespace HillromAutomationFramework.Steps.Main
         {
             for (int i = 1; i <= mainPage.DeviceListRow.Count; i++)
             {
-                string ActualSerialNumberText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 5 + "]")).Text;
-                bool boo = ActualSerialNumberText.Contains(MainPage.ExpectedValues.PartialSerialNumberText);
+                string ActualSerialNumberText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 6 + "]")).Text;
                 Assert.AreEqual(true, ActualSerialNumberText.Contains(MainPage.ExpectedValues.PartialSerialNumberText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
@@ -152,8 +148,7 @@ namespace HillromAutomationFramework.Steps.Main
         {
             for (int i = 1; i <= mainPage.DeviceListRow.Count; i++)
             {
-                string ActualFirmwareText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 2 + "]")).Text;
-                bool boo = ActualFirmwareText.Contains(MainPage.ExpectedValues.PartialFirmwareVersionText);
+                string ActualFirmwareText = PropertyClass.Driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 3 + "]")).Text;
                 Assert.AreEqual(true, ActualFirmwareText.Contains(MainPage.ExpectedValues.PartialFirmwareVersionText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
@@ -171,8 +166,8 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenDisplayingToOfResultsIsDisplayed(int p0, int p1, int p2)
         {
             string[] PageInformation = mainPage.PaginationDisplay.Text.Split();
-            bool boo = mainPage.DisplayPageResults(PageInformation, p0, p1, p2);
-            Assert.AreEqual(true, boo, "Displaying 0 to 0 of 0 results is not displayed.");
+            bool IsPageResultDisplayed = mainPage.DisplayPageResults(PageInformation, p0, p1, p2);
+            Assert.AreEqual(true, IsPageResultDisplayed, "Displaying 0 to 0 of 0 results is not displayed.");
         }
 
         [Then(@"results in table contain only assets with AP MAC addresses that match Search text")]

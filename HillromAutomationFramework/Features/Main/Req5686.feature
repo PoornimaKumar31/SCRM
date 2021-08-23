@@ -27,19 +27,20 @@ Scenario: Assets List Elements Table Columns
 	Given the user is on Landing page
 	When user clicks Facility panel for an organization
 	And "Type" label is in column 1 
-	And "Firmware" label is in column 2
-	And "Config file" label is in column 3
-	And "Asset tag" label is in column 4
-	And "Serial number" label is in column 5
-	And "Location" label is in column 6
-	And "Last connected" label is in column 7
-	And "PM due" label is in column 8
+	And "Status" label is in column 2
+	And "Firmware" label is in column 3
+	And "Config file" label is in column 4
+	And "Asset tag" label is in column 5
+	And "Serial number" label is in column 6
+	And "Location" label is in column 7
+	And "Last connected" label is in column 8
+	And "PM due" label is in column 9
 
 
 @TestCaseID_9149 @UISID_8666
 Scenario: Asset List Sorting
 	Given user is on Assets list page
-	And downward arrow shows for ascending order beside Serial Number column header for default sorted column
+	#And downward arrow shows for ascending order beside Serial Number column header for default sorted column
 	When user clicks "Serial number" column header
 	Then upward arrow shows beside "Serial Number" column header for descending order
 	And list is sorted in descending order by "Serial number"

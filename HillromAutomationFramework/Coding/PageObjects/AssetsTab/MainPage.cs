@@ -118,15 +118,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string PartialSerialNumberText = "10001";
             public const string InvalidPartialString = "ICV";
             public const string MACAddressText = "AP=B4:DE:31:0B:91:E4";
-            public const int MACTotalRecords = 6;
+            public const int MACTotalRecords = 7;
 
             //device count
-            public const int AllOrgnaizationDevicesCount = 219;
+            public const int AllOrgnaizationDevicesCount = 1235;
             public const int AllOrgnaizationCSMDevicesCount = 12;
             public const int AllOrgnaizationCVSMDevicesCount = 19;
             public const int AllOrgnaizationRV700DevicesCount = 24;
             public const int LNTAutomatedTestOrganizationDeviceCount = 194;
-            public const int LNTAutomatedTestOrganizationFacilityOneDeviceCount = 16;
+            public const int LNTAutomatedTestOrganizationFacilityOneDeviceCount = 31;
             public const int LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount = 12;
 
 
@@ -250,7 +250,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.LNTAutmatedTestDDLExpensionArrowID)]
         public IWebElement LNTAutomatedTestDDLExpensionArrow { get; set; }
 
-
         [FindsBy(How = How.Id, Using = Locators.LNTAutmatedTestDDLFacility1ID)]
         public IWebElement LNTAutomatedTestDDLFacility1 { get; set; }
 
@@ -331,24 +330,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
         /// </summary>
         /// <param name="ExpectedDeviceCount">Expected Device Count</param>
         /// <returns>Boolean</returns>
-        public bool VerifyRecordPresence(int ExpectedDeviceCount)
+        public int VerifyRecordPresence()
         {
+            string[] PaginationDetails = PaginationDisplay.Text.Split();
+            Thread.Sleep(2000);
+            int TotalRecords = int.Parse(PaginationDetails[3]);           
 
-            return true;
-            /*
-            int count = 0;
-            for (int page = 1; page <= (ExpectedDeviceCount / 50)+1; page++)
-            {   
-                count = count + DeviceListRow.Count;
-                if (ExpectedDeviceCount > 50)
-                {
-                    PaginationNextIcon.Click();
-                }
-                Thread.Sleep(3000);
-            }
-
-            return (ExpectedDeviceCount == count);
-            */
+            return TotalRecords;           
         }
     }
 }
