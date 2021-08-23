@@ -66,10 +66,11 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// </summary>
         /// <param name="element"></param>
         /// <param name="elementName"></param>
-        public static void ScrollTillElementIsVisible(IWebElement element,string elementName)
+        public static void MoveTotheElement(IWebElement element,string elementName)
         {
-            IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)(PropertyClass.Driver);
-            javaScriptExecutor.ExecuteScript("arguments[0].scrollIntoView();", element);
+            Actions actions = new Actions(PropertyClass.Driver);
+            actions.MoveToElement(element);
+            actions.Perform();
             WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
             {
                 Message = "The" + elementName + " is not visible and unable to click on it"

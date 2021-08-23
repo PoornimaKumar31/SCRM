@@ -101,7 +101,7 @@ namespace HillromAutomationFramework.Hooks
                 chromeOptions.AddArgument("start-maximized");
 
                 //for full screen
-                //chromeOptions.AddArgument("start-fulscreen");
+                //chromeOptions.AddArgument("--start-fullscreen");
 
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
@@ -131,7 +131,7 @@ namespace HillromAutomationFramework.Hooks
                 edgeoptions.AddArgument("start-maximized");
 
                 //for full screen
-                //edgeoptions.AddArgument("start-fulscreen");
+                //edgeoptions.AddArgument("--start-fullscreen");
 
                 //Headless(without opening edge browser,run the test internally)
                 //edgeoptions.AddArgument("--headless");

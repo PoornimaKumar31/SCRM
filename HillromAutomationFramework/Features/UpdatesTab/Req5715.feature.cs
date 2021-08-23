@@ -247,11 +247,13 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("RV700 Select Assets Elements")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9408")]
         [NUnit.Framework.CategoryAttribute("UISID_8697")]
+        [NUnit.Framework.CategoryAttribute("UISID_8669")]
         public virtual void RV700SelectAssetsElements()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9408",
-                    "UISID_8697"};
+                    "UISID_8697",
+                    "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Select Assets Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 35

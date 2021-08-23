@@ -31,7 +31,7 @@ Scenario: RV700 Upgrade Selected
 	When user clicks Next button
 	Then RV700 Select assets page is displayed
 
-@TestCaseID_9408 @UISID_8697
+@TestCaseID_9408 @UISID_8697 @UISID_8669
 Scenario: RV700 Select Assets Elements
 	Given user is on RV700 Upgrade Select assets page
 	Then Select update indicator is not highlighted

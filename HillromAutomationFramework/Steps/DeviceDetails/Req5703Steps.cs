@@ -20,6 +20,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
+        string ExistingRoomAndBed = "";
         string RandomRoomNo = "";
         string RandomBedNo = "";
 
@@ -30,29 +31,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             _scenarioContext = scenarioContext;
         }
 
-        [Given(@"user is on Device Details page")]
-        public void GivenUserIsOnDeviceDetailsPage()
-        {
-            Thread.Sleep(2000);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.CSMID)));
-            Assert.IsTrue(csmDeviceDetailsPage.CSM.GetElementVisibility(), "User is not on Device Details page");
-        }
-
-        [When(@"user clicks Edit button")]
-        public void WhenUserClicksOnEditButton()
-        {
-            Thread.Sleep(2000);
-            csmDeviceDetailsPage.CSMDeviceEditButton.Click();
-        }
-
-        [When(@"clicks save button")]
-        public void WhenClicksOnSaveButton()
-        {
-            SetMethods.JavaSciptClick(csmDeviceDetailsPage.SaveButton);
-        }
-
-        [Given(@"user has selected CSM device with Room and Bed")]
-        public void GivenUserHasSelectedCSMDeviceWithRoomAndBed()
+        [Given(@"user is on CSM Edit Asset Details dialog")]
+        public void GivenUserIsOnCSMEditAssetDetailsDialog()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
@@ -63,10 +43,18 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListRowID)));
             Thread.Sleep(2000);
             mainPage.DeviceListRow[0].Click();
+
+            Thread.Sleep(2000);
+            ExistingRoomAndBed = csmDeviceDetailsPage.RoomAndBedDetails.Text;
+            csmDeviceDetailsPage.CSMDeviceEditButton.Click();
+            wait.Message = "CSM edit asset details dialog is not displayed within specifies time.";
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CSMDeviceDetailsPage.Locators.EditLabelPopupID)));
+            bool IsEditAssetDetails = csmDeviceDetailsPage.EditLabelPopup.GetElementVisibility();
+            Assert.IsTrue(IsEditAssetDetails, "User is not on CSM Edit Asset Details dialog.");
         }
 
-        [When(@"updates Room and Bed details")]
-        public void WhenUpdatesRoomAndBedDetails()
+        [When(@"user changes Room and Bed fields")]
+        public void WhenUserChangesRoomAndBedFields()
         {
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.RoomFieldID)));
             csmDeviceDetailsPage.RoomField.Clear();
@@ -77,8 +65,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             csmDeviceDetailsPage.BedField.EnterText(RandomBedNo);
         }
 
-        [Then(@"Updated Room and Bed is displayed on Device details page")]
-        public void ThenUpdatedRoomAndBedIsDisplayedOnDeviceDetailsPage()
+        [When(@"user clicks Save button")]
+        public void WhenUserClicksSaveButton()
+        {
+            SetMethods.JavaSciptClick(csmDeviceDetailsPage.SaveButton);
+        }
+
+        [Then(@"changed Room and Bed are displayed on the CSM Asset Details page")]
+        public void ThenChangedRoomAndBedAreDisplayedOnTheCSMAssetDetailsPage()
         {
             Thread.Sleep(2000);
             bool IsEqual = csmDeviceDetailsPage.RoomAndBedDetails.Text.Equals(RandomRoomNo + "/" + RandomBedNo);
@@ -112,18 +106,17 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual("Bed", BedHintText, "Bed field does not contains hint text.");
         }
 
-        [When(@"clicks cancel button")]
-        public void WhenClicksOnCancelButton()
+        [When(@"user clicks Cancel button")]
+        public void WhenUserClicksCancelButton()
         {
             csmDeviceDetailsPage.CancelButton.Click();
         }
 
-        [Then(@"Updated Room and Bed is not displayed on Device details page")]
-        public void ThenUpdatedRoomAndBedIsNotDisplayedOnDeviceDetailsPage()
+        [Then(@"original Room and Bed are displayed on the CSM Asset Details page")]
+        public void ThenOriginalRoomAndBedAreDisplayedOnTheCSMAssetDetailsPage()
         {
             Thread.Sleep(2000);
-            bool IsMaTCHING = csmDeviceDetailsPage.RoomAndBedDetails.Text.Equals(RandomRoomNo + "/" + RandomBedNo);
-            Assert.AreEqual(false, IsMaTCHING, "Entered Room and Bed is displayed on Device details page.");
+            Assert.AreEqual(ExistingRoomAndBed, csmDeviceDetailsPage.RoomAndBedDetails.Text, "Original Room and Bed is displayed on Device details page.");
         }
 
         [Then(@"Asset Tag value is displayed")]
@@ -162,16 +155,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true, csmDeviceDetailsPage.LocationPopup.IsReadOnly(), "Location ID value is not read only.");
         }
 
-        [Given(@"user is on CSM Edit Asset Details dialog")]
-        public void GivenUserIsOnCSMEditAssetDetailsDialog()
-        {
-            GivenUserHasSelectedCSMDeviceWithRoomAndBed();
-            Thread.Sleep(2000);
-            csmDeviceDetailsPage.CSMDeviceEditButton.Click();
-            wait.Message = "CSM edit asset details dialog is not displayed within specifies time.";
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CSMDeviceDetailsPage.Locators.EditLabelPopupID)));
-            bool IsEditAssetDetails = csmDeviceDetailsPage.EditLabelPopup.GetElementVisibility();
-            Assert.IsTrue(IsEditAssetDetails, "User is not on CSM Edit Asset Details dialog.");
-        }
+       
     }
 }
