@@ -179,6 +179,7 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenResultsInTableContainOnlyAssetsWithAPMACAddressesThatMatchSearchText()
         {
             int TotalRecords = mainPage.DeviceListRow.Count;
+
             Assert.AreEqual(true, TotalRecords == MainPage.ExpectedValues.MACTotalRecords, "Record is not displaying as per expected.");
             bool IsMACAddressVisible = mainPage.APMACAddressesMatchSearchText(mainPage.CompInfo, mainPage.RadioNewMarr, mainPage.MACAddress);
             Assert.AreEqual(true, IsMACAddressVisible, "MAC Address is not visible");

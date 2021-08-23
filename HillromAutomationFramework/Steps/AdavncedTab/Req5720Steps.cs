@@ -17,11 +17,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
         AdvancedPage advancePage = new AdvancedPage();
-        string RandomString;
+        string RandomString = null;
         string RandomUsername = null;
         string RandomMobileNumber;
         string RandomFullName = null;
-        //string ActualUserName = null;
         string ActualEmail = null;
         string ActualFullName = null;
         string ActualRole = null;
@@ -60,21 +59,21 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenAddUserPageIsDisplayed()
         {
             string AddUserTitle = advancePage.AddUserOnCreatePage.Text;
-            Assert.AreEqual(AdvancedPage.ExpectedValues.AddUserListPageText, AddUserTitle, "Add User page is not displayed");
+            Assert.AreEqual(AdvancedPage.ExpectedValues.AddUserListPageText, AddUserTitle, "Add User page is not displayed.");
         }
 
         [Then(@"User information label is displayed")]
         public void ThenUserInformationLabelIsDisplayed()
         {
             string UserInformationLabel = advancePage.UserInformationLabel.Text;
-            Assert.AreEqual("User Information:", UserInformationLabel, "User information label is not displayed");
+            Assert.AreEqual("User Information:", UserInformationLabel, "User information label is not displayed.");
         }
 
         [Then(@"Username textbox is displayed")]
         public void ThenUsernameTextboxIsDisplayed()
         {
             bool IsDisplayed = advancePage.UserNameTextBoxOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Username textbox is not displayed");
+            Assert.IsTrue(IsDisplayed, "Username textbox is not displayed.");
         }
 
         [Then(@"unchecked checkbox with User manager label is displayed")]
@@ -82,21 +81,21 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             bool IsUnchecked = advancePage.UserManagerOnCreatePage.Selected;
-            Assert.IsFalse(IsUnchecked, "Unchecked checkbox with User manager label is not displayed");
+            Assert.IsFalse(IsUnchecked, "Unchecked checkbox with User manager label is not displayed.");
         }
 
         [Then(@"Full name textbox is displayed")]
         public void ThenFullNameTextboxIsDisplayed()
         {
             bool IsDisplayed = advancePage.FullNameOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Full Name textbox is not displayed");
+            Assert.IsTrue(IsDisplayed, "Full Name textbox is not displayed.");
         }
 
         [Then(@"Phone number textbox is displayed")]
         public void ThenPhoneNumberTextboxIsDisplayed()
         {
             bool IsDisplayed = advancePage.PhoneNumberOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Phone number textbox is not displayed");
+            Assert.IsTrue(IsDisplayed, "Phone number textbox is not displayed.");
         }
 
         [Then(@"disabled Save button is displayed")]

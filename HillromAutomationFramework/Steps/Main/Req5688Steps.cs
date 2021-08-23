@@ -101,6 +101,5 @@ namespace HillromAutomationFramework.Steps.Main
             Thread.Sleep(3000);
             Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.AllOrgnaizationDevicesCount), "All devices are not displayed for all organization");
         }
-
     }
 }

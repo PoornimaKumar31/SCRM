@@ -155,21 +155,21 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             bool IsErrorMessageDisplayed = advancePage.FullNameErrorMessageOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsErrorMessageDisplayed, "Please enter a valid name error message is not displayed");
+            Assert.IsTrue(IsErrorMessageDisplayed, "Please enter a valid name error message is not displayed.");
         }
 
         [Then(@"Save button is disabled")]
         public void ThenSaveButtonIsDisabled()
         {
             bool IsSaveButtonDisabled = advancePage.SaveButton.Enabled;
-            Assert.IsFalse(IsSaveButtonDisabled, "Save button is enabled");
+            Assert.IsFalse(IsSaveButtonDisabled, "Save button is enabled.");
         }
 
         [Then(@"phone number error message is not displayed")]
         public void ThenPhoneNumberErrorMessageIsNotDisplayed()
         {          
             bool Visibility = advancePage.PhoneErrorMessage.GetElementVisibility();
-            Assert.IsFalse(Visibility, "Element is not displayed");
+            Assert.IsFalse(Visibility, "Phone number error message is displayed.");
         }
 
         [Then(@"Save button is enabled")]
@@ -227,10 +227,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         }
 
         [When(@"user enters phone number (.*)")]
-        public void WhenUserEntersPhoneNumberStartingWith91FollowedByElevenDigitsMobileNumber(string mobileNumber)
+        public void WhenUserEntersPhoneNumberStartingWith91FollowedByElevenDigitsMobileNumber(string PhoneNumber)
         {
             advancePage.PhoneTextField.Clear();
-            advancePage.PhoneTextField.EnterText(mobileNumber);
+            advancePage.PhoneTextField.EnterText(PhoneNumber);
         }
 
         [Then(@"phone number error message is displayed")]
@@ -411,7 +411,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             string EnteredPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreEqual(true, RandomPhoneNumber10_10Digits == EnteredPhoneNumber, "Phone number is not entered number");
+            Assert.AreEqual(true, RandomPhoneNumber10_10Digits == EnteredPhoneNumber, "Phone number is not entered number.");
         }
 
         [Then(@"full name error message is not displayed")]

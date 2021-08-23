@@ -56,7 +56,7 @@ namespace HillromAutomationFramework.Steps.Main
         [When(@"user selects ""(.*)"" from Asset type dropdown")]
         public void WhenUserSelectsRVFromAssetTypeDropdown(string deviceName)
         {
-            string Device = "";
+           string Device = "";
            switch(deviceName.ToLower().Trim())
             {
                 case "csm":
@@ -79,7 +79,8 @@ namespace HillromAutomationFramework.Steps.Main
         [Then(@"all organization devices are displayed")]
         public void ThenAllOrganizationDevicesAreDisplayed()
         {
-            Assert.AreEqual(true, MainPage.ExpectedValues.AllOrganizationsDevicesListWithRollUp == mainPage.DeviceListRow.GetElementCount(), "All Organization's devices are not displayed");
+            int TotalRecords = mainPage.DeviceListRow.GetElementCount();
+            Assert.AreEqual(true, MainPage.ExpectedValues.AllOrganizationsDevicesListWithRollUp == TotalRecords, "All Organization's devices are not displayed");
         }
         
         [Then(@"all organization ""(.*)"" devices are displayed")]
