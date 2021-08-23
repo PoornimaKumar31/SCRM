@@ -141,7 +141,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
         }
 
-        [Then(@"all the devices within each unit is displayed")]
+        [Then(@"all the devices within each unit are displayed")]
         public void ThenAllTheDevicesWithinThatUnitIsDisplayed()
         {
             //Unit1

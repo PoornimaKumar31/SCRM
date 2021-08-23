@@ -464,12 +464,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Select Assets")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9160")]
-        [NUnit.Framework.CategoryAttribute("UISID_8699")]
+        [NUnit.Framework.CategoryAttribute("UISID_8697")]
         public virtual void CSMSelectAssets()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9160",
-                    "UISID_8699"};
+                    "UISID_8697"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 81

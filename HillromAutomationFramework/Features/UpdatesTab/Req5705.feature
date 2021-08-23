@@ -77,7 +77,7 @@ Scenario: CSM Select Assets Elements Table Columns
 	And "Location" label is in column 6
 	And "Last Files Deployed" label is in column 7
 
-@TestCaseID_9160 @UISID_8699
+@TestCaseID_9160 @UISID_8697
 Scenario: CSM Select Assets
 	Given user is on CSM Upgrade Select assets page
 	When user selects one device
