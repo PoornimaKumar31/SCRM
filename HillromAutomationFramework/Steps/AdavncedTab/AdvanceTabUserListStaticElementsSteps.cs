@@ -19,7 +19,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
         AdvancedPage advancePage = new AdvancedPage();
-        AdvancedTabUserListPage advancedTabUserListPage = new AdvancedTabUserListPage();
 
         [Given(@"manager user is on User List page having user entries > (.*)")]
         public void GivenManagerUserIsOnUserListPageHavingUserEntries(int NoOfMinimumEntries)
@@ -36,7 +35,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenUSERLISTLabelIsDisplayed()
         {
             Thread.Sleep(2000);
-            bool IsUserListLabelTextDisplayed = advancePage.UserListPage.GetElementVisibility();
+            bool IsUserListLabelTextDisplayed = advancePage.UserListLabel.GetElementVisibility();
             Assert.IsTrue(IsUserListLabelTextDisplayed, "User list page is not displayed");
         }
 
@@ -87,7 +86,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             bool IsDisplayed = false;
             bool IsEnabled = false;
             int count = 0;
-            IList<IWebElement> list = advancedTabUserListPage.UserList;
+            IList<IWebElement> list = advancePage.UserList;
             for (int i = 0; i < list.Count; i++)
             {
                 IsDisplayed = advancePage.DetailsButtonList[i].GetElementVisibility();
@@ -106,7 +105,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             bool IsDisplayed = false;
             bool IsEnabled = false;
             int count = 0;
-            IList<IWebElement> list = advancedTabUserListPage.UserListExceptLoggedInUser();
+            IList<IWebElement> list = advancePage.UserListExceptLoggedInUser();
             for (int i = 0; i < list.Count; i++)
             {
                 IsDisplayed = advancePage.DeleteButtonsList[i].GetElementVisibility();
