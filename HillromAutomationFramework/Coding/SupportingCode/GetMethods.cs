@@ -226,11 +226,9 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static string GenerateRandomPhoneNumber(int length)
         {
             Random ran = new Random();
-            int RandomNumber = ran.Next(length);
-            string Prefix = "+13";
-            string str = RandomNumber.ToString();
-            string PhoneNumber = Prefix + str;
-            return PhoneNumber;
+            int RandomNumber = ran.Next(length);           
+            string Random4Digits = RandomNumber.ToString();
+            return Random4Digits;
         }
 
         public static string CleanString(string str)

@@ -19,9 +19,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         LandingPage landingPage = new LandingPage();
         AdvancedPage advancePage = new AdvancedPage();
         string RandomFullName = null;
-        string RandomPhoneNumber10_10Digits = null;
+        string RandomPhoneNumber_11Digits = null;
         string BlankFullName = "";
-        int PhoneNumberLength = 1000000000;
+        int PhoneNumberLength = 10000;
         int RandomInvalidUsernameLength = 51;
         int RandomValidUsernameLength = 49;
         int DetailsButtonPosition;
@@ -246,8 +246,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             advancePage.PhoneTextField.Clear();
             //Generating phone number just by passing length of phone number to the method.
-            RandomPhoneNumber10_10Digits = GetMethods.GenerateRandomPhoneNumber(PhoneNumberLength);
-            advancePage.PhoneTextField.EnterText(RandomPhoneNumber10_10Digits);
+            RandomPhoneNumber_11Digits = GetMethods.GenerateRandomPhoneNumber(PhoneNumberLength);
+            string Prefix = "+1315685";
+            string PhoneNumber = Prefix + RandomPhoneNumber_11Digits;
+
+            //string PhoneNumber = Prefix + Random4Digits;
+            advancePage.PhoneTextField.EnterText(PhoneNumber);
         }
 
         [When(@"user enters blank Phone number")]
@@ -411,7 +415,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             string EnteredPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreEqual(true, RandomPhoneNumber10_10Digits == EnteredPhoneNumber, "Phone number is not entered number.");
+
+            Assert.AreEqual(true, RandomPhoneNumber_11Digits == EnteredPhoneNumber, "Phone number is not entered number.");
         }
 
         [Then(@"full name error message is not displayed")]
