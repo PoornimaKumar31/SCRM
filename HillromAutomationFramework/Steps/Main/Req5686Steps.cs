@@ -314,8 +314,30 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenListIsSortedInAscendingOrderBy(string columnHeader)
         {
             Thread.Sleep(1000);
-            bool IsSorted = mainPage.CheckSort(columnHeader, "a");
-            Assert.AreEqual(true, mainPage.CheckSort(columnHeader, "a"), "Device list is not sorted by \"" + columnHeader + "\" in ascending order.");
+            if(columnHeader.ToLower().Trim().Equals(""))
+            {
+                IList<IWebElement> DeviceTableHeadingElements = mainPage.DeviceListTableHeader.FindElements(By.TagName("th"));
+                List<string> DeviceTableHeadingElementsText = new List<string>();
+                foreach (IWebElement columnHeading in DeviceTableHeadingElements)
+                {
+                    DeviceTableHeadingElementsText.Add(columnHeading.Text.ToString().ToLower());
+                }
+                int columnNumber = DeviceTableHeadingElementsText.IndexOf(columnHeader.ToLower().Trim()) + 1;
+                IList<IWebElement> ColumnData = mainPage.DeviceListTableBody.FindElements(By.XPath("//td[" + columnNumber + "]"));
+                List<string> ColumnDataText = new List<string>();
+                foreach (IWebElement rowdata in ColumnData)
+                {
+                    string ColumnText = rowdata.Text;
+                    ColumnDataText.Add(ColumnText);
+                }
+            }
+            else
+            {
+                bool IsSorted = mainPage.CheckSort(columnHeader, "a");
+                Assert.AreEqual(true, mainPage.CheckSort(columnHeader, "a"), "Device list is not sorted by \"" + columnHeader + "\" in ascending order.");
+            }
+            
+            
         }
     }
 }

@@ -70,7 +70,7 @@ Scenario: Asset List Sorting
 	And list is sorted in descending order by "Last connected"
 	When user clicks "PM due" column header
 	Then downward arrow shows beside "PM due" column header for ascending order
-	#And list is sorted in ascending order by "PM due"
+	And list is sorted in ascending order by "PM due"
 	When user clicks "PM due" column header
 	Then upward arrow shows beside "PM due" column header for descending order
 	And list is sorted in descending order by "PM due"
