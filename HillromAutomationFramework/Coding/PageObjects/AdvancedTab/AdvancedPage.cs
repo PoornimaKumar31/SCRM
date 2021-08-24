@@ -11,7 +11,6 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
 {
     class AdvancedPage
     {
-        AdvancedTabUserListPage advancedTabUserListPage = new AdvancedTabUserListPage();
         public AdvancedPage()
         {
             PageFactory.InitElements(PropertyClass.Driver, this);
@@ -37,7 +36,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string DetailsColumnHeaderID = "lbl_details";
             public const string SaveButtonID = "edit-selected";
             public const string NameFieldErrorMessageID = "name_error";
-            public const string UserListClassName = "hrtitle";
+            public const string UserListLabelClassName = "hrtitle";
             public const string PhoneErrorID = "phone_error";
             public const string FullNameLabelOnEditUserPageXPath = "(//*[contains(text(),'Full name')])[2]";
 
@@ -64,7 +63,14 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string LogHistoryTableDataXPath = "//*[@id=\"lbl_history_detail\"]/div[2]/div[2]";
             public const string LogHistoryContentXPath = "//*[@id=\"lbl_history_detail\"]//div[2]//div[1]";
             public const string UserListRowXPath = "//div[contains(@id,\"user_row\")]";
-            public const string LoggedInUserNameID = "logged-in_username";            
+            public const string LoggedInUserNameID = "logged-in_username";
+
+            //Delete Button Popup
+            public const string DeltePopupID = "usrmgt_confirmation_win";
+            public const string DeletePopupUserNameEmailID = "usrmgt_confirmation_user";
+            public const string DeletePopupConfirmationMessageXPath = "//div[@id = \"confirm_delete_message\"]//p[2]//span";
+            public const string DeletePopupYesButtonID = "delete-yes";
+            public const string DeletePopupNoButtonID = "delete-no";
         }
 
         /// <summary>
@@ -81,7 +87,25 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string PhoneNumberErrorMessage = "Please enter a valid phone number";
             public const string FullNameErrorMessage = "Please enter a valid name";
             public const string LoggedUser = "ltts_testing@hillrom.com";
+            public const string UpdatedFullName = "Alex Hasi";
+            public const string PhoneNumberInvalid = "123";
+            public const string SuperAdminUsername = "ltts_testing@hillrom.com";
         }
+
+        [FindsBy(How = How.Id, Using = Locators.DeletePopupYesButtonID)]
+        public IWebElement DeletePopupYesButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DeletePopupNoButtonID)]
+        public IWebElement DeletePopupNoButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.DeletePopupConfirmationMessageXPath)]
+        public IWebElement DeletePopupConfirmationMessage { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DeletePopupUserNameEmailID)]
+        public IWebElement DeletePopupUserNameEmailID { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DeltePopupID)]
+        public IWebElement DeletePopup { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.EmailColumnHeaderID)]
         public IWebElement EmailColumnHeader { get; set; }
@@ -152,8 +176,8 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         [FindsBy(How = How.Id, Using = Locators.PhoneErrorID)]
         public IWebElement PhoneErrorMessage { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = Locators.UserListClassName)]
-        public IWebElement UserListPage { get; set; }
+        [FindsBy(How = How.ClassName, Using = Locators.UserListLabelClassName)]
+        public IWebElement UserListLabel { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.NameFieldErrorMessageID)]
         public IWebElement NameFieldErrorMessage { get; set; }

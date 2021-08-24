@@ -222,7 +222,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenUserListPageIsDisplays()
         {
             Thread.Sleep(2000);
-            bool IsUserListLabelTextDisplayed = advancePage.UserListPage.GetElementVisibility();
+            bool IsUserListLabelTextDisplayed = advancePage.UserListLabel.GetElementVisibility();
             Assert.IsTrue(IsUserListLabelTextDisplayed, "User list page is not displayed");
         }
 

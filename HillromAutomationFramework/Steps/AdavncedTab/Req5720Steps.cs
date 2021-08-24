@@ -187,8 +187,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             SetMethods.ScrollUpWebPage();
             Thread.Sleep(1000);
-            bool IsUserListDisplayed = advancePage.UserListPage.GetElementVisibility();
-            Assert.IsTrue(IsUserListDisplayed, "User list page is not displayed");
+            bool IsUserListDisplayed = advancePage.UserListLabel.GetElementVisibility();
+            Assert.IsTrue(IsUserListDisplayed, "User list Page is not displayed");
         }
 
         [Then(@"no user is created")]

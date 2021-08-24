@@ -1,4 +1,4 @@
-﻿using HillromAutomationFramework.Coding.SupportingCode;
+﻿/*using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -34,11 +34,11 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
             public const string UserListRowXPath = "//div[contains(@id,\"user_row\")]";
             public const string LoggedInUserNameID = "logged-in_username";
             public const string DeleteButonID = "btn_delete";
-            public const string DeltePopupID = "usrmgt_confirmation_win";
-            public const string DeletePopupUserNameEmailID = "usrmgt_confirmation_user";
-            public const string DeletePopupConfirmationMessageXPath = "//div[@id = \"confirm_delete_message\"]//p[2]//span";
-            public const string DeletePopupYesButtonID = "delete-yes";
-            public const string DeletePopupNoButtonID = "delete-no";
+                public const string DeltePopupID = "usrmgt_confirmation_win";
+                public const string DeletePopupUserNameEmailID = "usrmgt_confirmation_user";
+                public const string DeletePopupConfirmationMessageXPath = "//div[@id = \"confirm_delete_message\"]//p[2]//span";
+                public const string DeletePopupYesButtonID = "delete-yes";
+                public const string DeletePopupNoButtonID = "delete-no";
 
         }
 
@@ -98,3 +98,4 @@ namespace HillromAutomationFramework.Coding.PageObjects.AdvancedTab
         }
     }
 }
+*/

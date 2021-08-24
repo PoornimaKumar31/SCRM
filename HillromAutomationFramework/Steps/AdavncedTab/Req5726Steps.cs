@@ -75,7 +75,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             SetMethods.ScrollUpWebPage();
             Thread.Sleep(1000);
-            bool IsUserListDisplayed = advancePage.UserListPage.GetElementVisibility();
+            bool IsUserListDisplayed = advancePage.UserListLabel.GetElementVisibility();
             Assert.IsTrue(IsUserListDisplayed, "User list page is not displayed");
         }
         

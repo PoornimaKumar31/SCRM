@@ -76,7 +76,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             SetMethods.ScrollUpWebPage();
             Thread.Sleep(4000);
-            string UserListLabelText = advancePage.UserListPage.Text;
+            string UserListLabelText = advancePage.UserListLabel.Text;
             Assert.AreEqual(AdvancedPage.ExpectedValues.UserListPageLabelText, UserListLabelText, "User list page is not displayed");
         }
 
