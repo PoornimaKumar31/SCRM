@@ -20,8 +20,8 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string NumberOfdevicesOneachFloorLabelID = "number_of_devices";
             public const string PieChartID = "myCanva";
             public const string TotalUsageComponentsLabelClassName = "total-usage";
-
-
+            public const string UnitToggleArrowXPath = "//div[@id=\"modelName\"]//span[@id=\"report0\"]";
+            public const string Station1DeviceContainerID = "devices0";
             //Tables
 
             public const string ModelHeadingID = "model";
@@ -45,9 +45,13 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 
         public static class ExpectedValues
         {
+            public const string ReportTitleHeaderCVSM = "ASSET USAGE REPORT (CVSM)";
             public const string ReportTiltleHeaderCSM= "ASSET USAGE REPORT (CSM)";
             public const string NumberofDevicesOnEachFlorrLabelText = "NUMBER OF DEVICES ON EACH FLOOR";
             public const string TotalUsageDetailsComponentLabelText = "TOTAL USAGE DETAILS - COMPONENTS";
+
+            public const string Station1HiddenDeviceStyleAttribute = "display: none;";
+            public const string Station1VisibleDeviceStyleAttribute = "display: block;";
 
             //Tables
             public const string ModelHeadingText = "Model";
@@ -108,11 +112,17 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         [FindsBy(How = How.ClassName, Using = Locator.TotalUsageComponentsLabelClassName)]
         public IWebElement TotalUsageComponentsLabel { get; set; }
 
+        [FindsBy(How = How.Id, Using = Locator.Station1DeviceContainerID)]
+        public IWebElement Station1DeviceContainer { get; set; }
+
         [FindsBy(How = How.XPath, Using = Locator.SerailNumberUnit1ColumnXpath)]
         public IList<IWebElement> SerialNumberUnit1Column { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit2ColumnXpath)]
         public IList<IWebElement> SerialNumberUnit2Column { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.UnitToggleArrowXPath)]
+        public IWebElement UnitToggleArrow { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit3ColumnXpath)]
         public IList<IWebElement> SerialNumberUnit3Column { get; set; }

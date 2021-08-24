@@ -22,8 +22,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         }
         public static class ExpectedValues
         {
+            public const string ReportCVSMLabelText = "";
             public const string ReportCSMLabelText = "FIRMWARE VERSION REPORT (CSM)";
             public const string ReportRV700LabelText = "FIRMWARE VERSION REPORT (RV700)";
+            public const string ReportCentrellaLabelText = "FIRMWARE VERSION REPORT (CENTRELLA)";
             public const string ComponentsHeadingText = "Components";
             public const string FirmwareVersionHeadingText = "Firmware version";
             public const string TotalDevicesHeadingText = "Total devices";

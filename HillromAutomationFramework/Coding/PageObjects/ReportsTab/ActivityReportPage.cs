@@ -11,12 +11,19 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         {
             public const string ActivityReportHeaderID = "reportTitleHeader";
             public const string SearchBoxID = "search";
+            public const string PrintButtonID = "ac-print";
+            public const string DownloadButtonID = "ac-download";
             //ACTIVITY REPORT (CSM) table elements
             public const string SerialNumberHeadingID = "serialNo";
             public const string LocationHeadingID = "loc";
             public const string LastVitalSentHeadingID = "lastVital";
             public const string TableHeadingClassName = "device-info-list";
             //Table elements
+            public const string PaginationPreviousPageIconId = "previous";
+            public const string PaginationNextPageIconId = "next";
+            public const string PaginationPageXofYXpath = "//div[@id='next']/parent::div/div[2]";
+            public const string PaginationDisplayXYClassName = "dataTables_info";
+
             public const string SerialNumberColumnXpath = "//div[@class='measurements']//div//div[1]";
             public const string LocationColumnXpath = "//div[@class='measurements']//div//div[2]";
             public const string LastVitalSentColumnXpath = "//div[@class='measurements']//div//div[3]";
@@ -37,7 +44,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 
             //Centrella
             public const string CentrellaActivityReportName = "Activity_Status_Report_(Centrella).csv";
-
+            public const string ActivityReportCentreallaHeader = "ACTIVITY REPORT (CENTRELLA)";
 
         }
 
@@ -52,6 +59,12 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         [FindsBy(How = How.Id, Using = Locators.SearchBoxID)]
         public IWebElement SearchBox { get; set; }
 
+        [FindsBy(How = How.Id, Using = Locators.PrintButtonID)]
+        public IWebElement PrintButton { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.DownloadButtonID)]
+        public IWebElement DownloadButton { get; set; }
+
         [FindsBy(How = How.Id, Using = Locators.SerialNumberHeadingID)]
         public IWebElement SerialNumberHeading { get; set; }
 
@@ -64,7 +77,18 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         [FindsBy(How = How.ClassName, Using = Locators.TableHeadingClassName)]
         public IWebElement TableHeading { get; set; }
 
-        //Table columns
+        //Table elements
+        [FindsBy(How = How.Id, Using = Locators.PaginationNextPageIconId)]
+        public IWebElement PaginationNextPageIcon { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PaginationPreviousPageIconId)]
+        public IWebElement PaginationPreviousPageIcon { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.PaginationPageXofYXpath)]
+        public IWebElement PaginationPageXofY { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.PaginationDisplayXYClassName)]
+        public IWebElement PaginationDisplayXY { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.SerialNumberColumnXpath)]
         public IList<IWebElement> SerialNumberColumn { get; set; }

@@ -46,3 +46,30 @@ Scenario: RV700 Firmware Status Information Close
 	When user clicks Close button
 	Then RV700 Firmware Report Statuses dialog closes
 	And RV700 Firmware Upgrade Status page is displayed
+
+@TestCaseID_9905 @UISID_8685
+Scenario: Centrella Firmware Status Information
+	Given user is on Centrella Firmware Upgrade Status report page
+	When user clicks Information button
+	Then Centrella Firmware Report Statuses dialog is displayed
+	And Centrella Firmware Report Statuses header is displayed
+	And "Started" status and definition of Centrella is displayed
+	And "Downloading" status and definition of Centrella is displayed
+	And "Staging" status and definition of Centrella is displayed
+	And "Staging complete" status and definition of Centrella is displayed
+	And "Toggling" status and definition of Centrella is displayed
+	And "Toggle complete" status and definition of Centrella is displayed
+	And "Upgrade Success" status and definition of Centrella is displayed
+	And "Download Failure" status and definition of Centrella is displayed
+	And "Staging Failure" status and definition of Centrella is displayed
+	And "Staging Inconsistent" status and definition of Centrella is displayed
+	And "Toggle Failure" status and definition of Centrella is displayed
+	And Close button is displayed
+
+@TestCaseID_9906 @UISID_8685
+Scenario: Centrella Firmware Status Information Close
+	Given user is on Centrella Firmware Upgrade Status report page
+	And Centrella Firmware Report Statuses dialog is displayed
+	When user clicks Close button
+	Then Centrella Firmware Report Statuses dialog closes
+	And Centrella Firmware Upgrade Status page is displayed
