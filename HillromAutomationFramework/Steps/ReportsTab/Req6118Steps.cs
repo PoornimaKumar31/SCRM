@@ -123,31 +123,18 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             Assert.True(firmwareVersionPage.Unit1RowDetails.GetElementVisibility(),"Assets for unit are hidden.");
         }
 
-        [When(@"user clicks Print button")]
-        public void WhenUserClicksPrintButton()
+        [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9422", Scenario = "RV700 Firmware Upgrade Status Report Print")]
+        public void ThenThePrintButtonIsEnabledUpgradeStatus()
         {
-            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 firmware version report print"))
-            {
-                firmwareVersionPage.PrintButton.Click();
-            }
-            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 firmware upgrade status report print"))
-            {
-                firmwareStatusPage.PrintButton.Click();
-            }
-            else
-            {
-                //If this test step does not belong to any scenario
-                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
-            }
-            
+            Assert.IsTrue(firmwareStatusPage.PrintButton.Enabled, "Print button is not enabled");
         }
 
-        [Then(@"browser’s built-in print dialog is displayed")]
-        public void ThenBrowserSBuilt_InPrintDialogIsDisplayed()
+        [Then(@"the Print button is enabled"), Scope(Tag = "TestCaseID_9419", Scenario = "RV700 Firmware Version Report Print")]
+        public void ThenThePrintButtonIsEnabledFirmwareVersion()
         {
-            //Need to find some way to habdle print page
-            throw new PendingStepException("Need to find some way to habdle print page");
+            Assert.IsTrue(firmwareVersionPage.PrintButton.Enabled, "Print button is not enabled");
         }
+
 
         [Given(@"Firmware Status Report type is selected")]
         public void GivenFirmwareStatusReportTypeIsSelected()

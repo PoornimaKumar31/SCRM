@@ -732,32 +732,91 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
 
         [Then(@"Scale ""(.*)"" is ""(.*)""")]
-        public void ThenScaleIs(string p0, string p1)
+        public void ThenScaleIs(string LabelName, string ExpectedValue)
         {
-            //waiting for automation IDs
-            _scenarioContext.Pending();
+            string ActualValue = null;
+            switch (LabelName.ToLower().Trim())
+            {
+                case "name":
+                    ActualValue = CVSMassetListPage.ScaleName.Text;
+                    break;
+                case "firmware version":
+                    ActualValue = CVSMassetListPage.ScaleFirmwareVersion.Text;
+                    break;
+                case "hardware version":
+                    ActualValue = CVSMassetListPage.ScaleHardwareVersion.Text;
+                    break;
+                case "serial number":
+                    ActualValue = CVSMassetListPage.ScaleSerialNumber.Text;
+                    break;
+                case "cycle count":
+                    ActualValue = CVSMassetListPage.ScaleCycleCount.Text;
+                    break;
+                case "model number":
+                    ActualValue = CVSMassetListPage.ScaleModelNumberValue.Text;
+                    break;
+                default:
+                    Assert.Fail(LabelName + " is Invalid");
+                    break;
+
+            }
+            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " is not as expected.");
         }
 
 
         [Then(@"Scale ""(.*)"" is displayed in ""(.*)"" column")]
-        public void ThenScaleIsDisplayedInColumn(string p0, string p1)
+        public void ThenScaleIsDisplayedInColumn(string LabelName, string ColumnName)
         {
-            //waiting for automation IDs
-            _scenarioContext.Pending();
+            int ActualColumnIndex = -1;
+            int ExpectedColumnIndex = -2;
+            switch (ColumnName.ToLower().Trim())
+            {
+                case "usage":
+                    ExpectedColumnIndex = CVSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    break;
+                default:
+                    Assert.Fail(ColumnName + " is invalid");
+                    break;
+            }
+
+            switch (LabelName.ToLower().Trim())
+            {
+
+                case "cycle count":
+                    ActualColumnIndex = CVSMassetListPage.ScaleElementList.IndexOf(CVSMassetListPage.ScaleCycleCount);
+                    break;
+                default:
+                    Assert.Fail(LabelName + " is invalid");
+                    break;
+            }
+
+            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
         }
 
         [When(@"user clicks Scale toggle arrow")]
         public void WhenUserClicksScaleToggleArrow()
         {
-            //waiting for automation IDs
-            _scenarioContext.Pending();
+            CVSMassetListPage.ScaleToggleArrow.Click();
+            Thread.Sleep(2000);
         }
 
         [Then(@"Scale ""(.*)"" label is displayed")]
-        public void ThenScaleLabelIsDisplayed(string p0)
+        public void ThenScaleLabelIsDisplayed(string LabelName)
         {
-            //waiting for automation IDs
-            _scenarioContext.Pending();
+            bool ActualValue = false;
+            bool ExpectedValue = true;
+            switch (LabelName.ToLower().Trim())
+            {
+                case "model number":
+                    ActualValue = CVSMassetListPage.ScaleModelNumberLabel.GetElementVisibility();
+                    break;
+
+                default:
+                    Assert.Fail(LabelName + " is Invalid");
+                    break;
+            }
+
+            Assert.AreEqual(ActualValue, ExpectedValue, LabelName + " is not displayed");
         }
 
         [Then(@"spo2 ""(.*)"" is ""(.*)""")]

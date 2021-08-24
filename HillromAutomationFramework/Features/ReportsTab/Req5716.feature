@@ -56,8 +56,7 @@ Scenario: CVSM Usage Report Table Toggle
 @TestCaseID_9368 @UISID_8684 @UISID_8686
 Scenario: CVSM Usage Report Print
 	Given user is on CVSM Usage Report page
-	When user clicks Print button
-	Then browser’s built-in print dialog is displayed
+	Then the Print button is enabled
 
 @TestCaseID_9369 @UISID_8684 @UISID_8685 @UISID_8687
 Scenario: CVSM Firmware Version Report Elements
@@ -81,5 +80,4 @@ Scenario: CVSM Firmware Version Report Table Toggle
 @TestCaseID_9371 @UISID_8684 @UISID_8687
 Scenario: CVSM Firmware Version Report Print
 	Given user is on CVSM Firmware Version Report page
-	When user clicks Print button
-	Then browser’s built-in print dialog is displayed
+	Then the Print button is enabled

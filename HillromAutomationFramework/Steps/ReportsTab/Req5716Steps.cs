@@ -135,18 +135,16 @@ namespace HillromAutomationFramework.Steps.ReportsTab
            Assert.AreEqual(CVSMUsageReportPage.ExpectedValue.Station1HiddenDeviceStyleAttribute,cvsmUsageReportPage.Station1DeviceContainer.GetAttribute("style"),"Asset for Unit is not hidden"); 
         }
 
-        [When(@"user clicks Print button")]
-        public void WhenUserClicksPrintButton()
+        [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9368",Scenario = "CVSM Usage Report Print")]
+        public void ThenThePrintButtonIsEnabled()
         {
-            cvsmUsageReportPage.PrintButton.JavaSciptClick();
-
+            Assert.IsTrue(cvsmUsageReportPage.PrintButton.Enabled,"Print Button is not enabled");
         }
 
-        [Then(@"browser’s built-in print dialog is displayed")]
-        public void ThenBrowserSBuilt_InPrintDialogIsDisplayed()
+        [Then(@"the Print button is enabled"), Scope(Tag = "TestCaseID_9371",Scenario = "CVSM Firmware Version Report Print")]
+        public void ThenThePrintButtonIsEnabledFirmware()
         {
-            //Need to discuss with Hillrom
-            _scenarioContext.Pending();
+            Assert.IsTrue(cvsmFirmwareVersionReportPage.PrintButton.Enabled, "Print Button is not enabled");
         }
 
         [Then(@"assets are grouped by unit")]
