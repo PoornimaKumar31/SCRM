@@ -58,12 +58,10 @@ Scenario: RV700 Asset Details Radio Newmar
 	And Radio "Serial number" is "NA"
 	When user clicks Newmar toggle arrow
 	Then Radio "GUID" label is displayed
-	And Radio "GUID" is "NA"
+	And Radio "GUID" is "NEWMAR_GUID"
 	And Radio "MAC Address" label is displayed
 	And Radio "MAC Address" is "00:17:23:ef:9e:0b"
 	And Radio "IP Address" label is displayed
 	And Radio "IP Address" is "172.18.26.110"
-	#And Radio "Model Number" label is displayed
-	#And Radio "Model Number" is "ABN_REF"
 	And Radio "RSSI" label is displayed
 	And Radio "RSSI" is "-49"

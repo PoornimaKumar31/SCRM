@@ -225,8 +225,8 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
                     ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.RV700DeviceName;
                     break;
                 case "update type":
-                    label = updateSelectDevicesPage.TypeofUpdateConfigLabel;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText;
+                    label = updateSelectDevicesPage.TypeOfUpdateUpgradeLabel;
+                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.UpgradeLabelText;
                     break;
                 case "upgrade file to push":
                     label = updateSelectDevicesPage.FileName;

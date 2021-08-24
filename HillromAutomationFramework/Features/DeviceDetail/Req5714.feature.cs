@@ -360,7 +360,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Radio \"GUID\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 61
- testRunner.And("Radio \"GUID\" is \"NA\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Radio \"GUID\" is \"NEWMAR_GUID\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 62
  testRunner.And("Radio \"MAC Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -374,10 +374,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 65
  testRunner.And("Radio \"IP Address\" is \"172.18.26.110\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 68
+#line 66
  testRunner.And("Radio \"RSSI\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 69
+#line 67
  testRunner.And("Radio \"RSSI\" is \"-49\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

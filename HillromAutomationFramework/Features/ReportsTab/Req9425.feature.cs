@@ -78,12 +78,12 @@ namespace HillromAutomationFramework.Features.ReportsTab
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Centrella Activity Report Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9893")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
         public virtual void CentrellaActivityReportDownload()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_",
+                    "TestCaseID_9893",
                     "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Activity Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);

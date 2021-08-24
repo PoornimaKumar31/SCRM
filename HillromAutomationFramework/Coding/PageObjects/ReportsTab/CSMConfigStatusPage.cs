@@ -9,10 +9,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
     {
         public static class Locators
         {
-            public const string AssetTypeDropdownId = "modelFilter";
-            public const string ReportTypeDropdownId = "typeFilter";
-            public const string GetReportButtonId = "getReport";
-            public const string DownloadButtonXpath = "//button[contains(text(),'Download')]";
+            public const string DownloadButtonId = "cu-download";
             public const string InformationButtonId = "cu-info";
             public const string InformationPopUpId = "myHelp";
             public const string InformationPopUpHeaderClassName = "heading";
@@ -157,16 +154,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.InformationPopUpId)]
         public IWebElement InformationPopUp { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.AssetTypeDropdownId)]
-        public IWebElement AssetTypeDropdown { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.ReportTypeDropdownId)]
-        public IWebElement ReportTypeDropdown { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.GetReportButtonId)]
-        public IWebElement GetReportButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = Locators.DownloadButtonXpath)]
+        [FindsBy(How = How.Id, Using = Locators.DownloadButtonId)]
         public IWebElement DownloadButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.InformationButtonId)]

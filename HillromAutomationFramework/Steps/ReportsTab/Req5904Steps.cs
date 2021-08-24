@@ -15,6 +15,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
+        ReportsPage reportsPage = new ReportsPage();
         CSMConfigStatusPage csmConfigStatusPage = new CSMConfigStatusPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         IDictionary<string, string> statusDefinationPairs;
@@ -26,9 +27,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
             mainPage.ReportsTab.JavaSciptClick();
-            csmConfigStatusPage.AssetTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMDeviceName);
-            csmConfigStatusPage.ReportTypeDropdown.SelectDDL(CSMConfigStatusPage.ExpectedValues.CSMConfigurationReport);
-            csmConfigStatusPage.GetReportButton.Click();
+            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+            reportsPage.GetReportButton.Click();
         }
         
         [When(@"user clicks Information button")]

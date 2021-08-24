@@ -153,10 +153,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     labelElement = rv700DeviceDetailsPage.NewMarIPAdressValue;
                     break;
 
-                case "model number":
-                    //model number element is not present
-                    _scenarioContext.Pending();
-                    break;
                 case "rssi":
                     labelElement = rv700DeviceDetailsPage.NewMarRSSIValue;
                     break;
@@ -189,10 +185,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
                 case "ip address":
                     labelElement = rv700DeviceDetailsPage.NewMarIPAdressLabel;
-                    break;
-                case "model number":
-                    //model number element is not present
-                    _scenarioContext.Pending();
                     break;
 
                 case "rssi":
