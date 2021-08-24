@@ -117,8 +117,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks report type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("Report type dropdown displays \"Usage, Firmware version, Firmware status, Activity" +
-                        ", Access Point Locations\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Report type dropdown displays \"Firmware version, Firmware status, Activity, Acces" +
+                        "s Point Locations\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -7,7 +7,7 @@ Scenario: Centrella Report Type Dropdown Content
 	Given user is on Reports page
 	And Centrella Asset type is selected
 	When user clicks report type dropdown
-	Then Report type dropdown displays "Usage, Firmware version, Firmware status, Activity, Access Point Locations"
+	Then Report type dropdown displays "Firmware version, Firmware status, Activity, Access Point Locations"
 
 @TestCaseID_9895 @UISID_8684 @UISID_8693
 Scenario: Centrella Activity Report Page Elements
