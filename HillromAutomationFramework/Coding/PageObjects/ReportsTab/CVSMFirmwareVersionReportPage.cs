@@ -30,9 +30,13 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string LuWenUnitAllDevicesID = "unitMetrics4";
             public const string Station1UnitID = "location_header7";
             public const string Station1UnitAllDevicesID = "unitMetrics7";
+            public const string PrintButtonID = "fv-print";
 
 
         }
+
+        [FindsBy(How = How.Id, Using = Locator.PrintButtonID)]
+        public IWebElement PrintButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.AndyDeskUnitAllDevicesID)]
         public IWebElement AndyDeskUnitAllDevices { get; set; }

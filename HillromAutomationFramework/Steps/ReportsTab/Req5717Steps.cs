@@ -441,17 +441,22 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             Assert.AreEqual(true, firmwareVersionPage.TotalRowDetails.GetElementVisibility(), message: "Rows below table are displayed.");
         }
 
-        [When(@"user clicks Print button")]
-        public void WhenUserClicksPrintButton()
+        [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9378", Scenario = "CSM Firmware Version Report Print")]
+        public void ThenThePrintButtonIsEnabledFirmwareVersionReport()
         {
-            reportsPage.PrintButton.Click();
+            Assert.IsTrue(firmwareVersionPage.PrintButton.Enabled, "print button is not enabled");
         }
 
-        [Then(@"browser’s built-in print dialog is displayed")]
-        public void ThenBrowserSBuilt_InPrintDialogIsDisplayed()
+        [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9383", Scenario = "CSM Configuration Update Status Report Print")]
+        public void ThenThePrintButtonIsEnabledConfigurationUpdateStatus()
         {
-            //find solution to handle print dialog
-            _scenarioContext.Pending();
+            Assert.IsTrue(csmConfigStatusPage.PrintButton.Enabled, "print button is not enabled");
+        }
+
+        [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9388",Scenario = "CSM Firmware Upgrade Status Report Print")]
+        public void ThenThePrintButtonIsEnabledFirmwareUpgrade()
+        {
+            Assert.IsTrue(firmwareStatusPage.PrintButton.Enabled, "print button is not enabled");
         }
 
 

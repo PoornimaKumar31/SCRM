@@ -78,8 +78,7 @@ Scenario: CSM Firmware Version Report Table Toggle
 @TestCaseID_9378 @UISID_8684 @UISID_8687
 Scenario: CSM Firmware Version Report Print
 	Given user is on CSM Firmware Version Report page
-	When user clicks Print button
-	Then browser’s built-in print dialog is displayed
+	Then the Print button is enabled
 
 @TestCaseID_9379 @UISID_8684 @UISID_8688
 Scenario: CSM Configuration Update Status Report Page Elements
@@ -120,8 +119,7 @@ Scenario: CSM Configuration Update Status Report Table Elements Columns
 @TestCaseID_9383 @UISID_8684 @UISID_8688
 Scenario: CSM Configuration Update Status Report Print
 	Given user is on CSM Configuration Update Status Report page
-	When user clicks Print button
-	Then browser’s built-in print dialog is displayed
+	Then the Print button is enabled
 
 @TestCaseID_9384 @UISID_8684 @UISID_8692
 Scenario: CSM Firmware Upgrade Status Report Page Elements
@@ -162,8 +160,7 @@ Scenario: CSM Firmware Upgrade Status Report Page Table Elements Columns
 @TestCaseID_9388 @UISID_8684 @UISID_8692
 Scenario: CSM Firmware Upgrade Status Report Print
 	Given user is on CSM Firmware Upgrade Status Report page
-	When user clicks Print button
-	Then browser’s built-in print dialog is displayed
+	Then the Print button is enabled
 
 @TestCaseID_9389 @UISID_8684 @UISID_8693
 Scenario: CSM Activity Report Page Elements

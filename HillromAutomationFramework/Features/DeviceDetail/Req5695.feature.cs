@@ -743,7 +743,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Scale \"Cycle count\" is displayed in \"Usage\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 147
- testRunner.And("Scale \"Cycle count\" is \"1674\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Scale \"Cycle count\" is \"Cycle count: 1674\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 148
  testRunner.When("user clicks Scale toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

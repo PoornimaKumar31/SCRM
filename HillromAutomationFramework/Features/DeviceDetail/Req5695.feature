@@ -144,7 +144,7 @@ Scenario: CVSM Asset Details Scale
 	And Scale "Hardware version" is "1.0.1"
 	And Scale "Serial number" is "0000011"
 	And Scale "Cycle count" is displayed in "Usage" column
-	And Scale "Cycle count" is "1674"
+	And Scale "Cycle count" is "Cycle count: 1674"
 	When user clicks Scale toggle arrow
 	Then Scale "Model number" label is displayed
 	And Scale "Model number" is "Health o meter Adapter"

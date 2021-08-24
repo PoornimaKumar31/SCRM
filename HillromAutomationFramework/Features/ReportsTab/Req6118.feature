@@ -26,8 +26,7 @@ Scenario: RV700 Firmware Version Report Table Toggle
 @TestCaseID_9419 @UISID_8684 @UISID_8687
 Scenario: RV700 Firmware Version Report Print
 	Given user is on RV700 Firmware Version Report page
-	When user clicks Print button
-	Then browser’s built-in print dialog is displayed
+	Then the Print button is enabled
 
 @TestCaseID_9420 @UISID_8684 @UISID_8687
 Scenario: RV700 Firmware Upgrade Status Report Page Elements
@@ -68,5 +67,4 @@ Scenario: RV700 Firmware Upgrade Status Report Page Table Elements Columns
 @TestCaseID_9422 @UISID_8684 @UISID_8692
 Scenario: RV700 Firmware Upgrade Status Report Print
 	Given user is on RV700 Firmware Upgrade Status Report page
-	When user clicks Print button
-	Then browser’s built-in print dialog is displayed
+	Then the Print button is enabled

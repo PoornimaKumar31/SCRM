@@ -65,7 +65,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
 
 
             //Braun Pro 4000 
-            public const string BraunNameXPath = "//span[@id=\"braun\"]//parent::div";
+            public const string BraunNameID = "lbl_braun_pro";
             public const string BraunFirmwareVersionValueID = "braun_firm_version";
             public const string BraunHardwareVersionValueID = "braun_hardware_version";
             public const string BraunSerialNumberValueID = "braun_serialNo";
@@ -98,7 +98,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
 
             //Deluxe Comms
             public const string DeluxeFirmwareVersionID = "deluxe_firmware_version";
-            public const string DeluxeSerialNumberXPath = "//div[@id=\"deluxe_firmware_version\"]//parent::div/div[5]";
+            public const string DeluxeSerialNumberID = "deluxe_serial_number";
             public const string DeluxeModuleToggleArrowID = "deluxe";
             public const string DeluxeModelNumberLabelID = "lbl_deluxe_model_no";
             public const string DeluxeModelNumberValueID = "deluxe_model_no";
@@ -144,12 +144,13 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
 
             //Scale
             public const string ScaleNameXPath = "//span[@id = \"scale\"]//parent::div";
-            public const string ScaleFirmwareVersionID = "";
-            public const string ScaleHardwareVersionID = "";
-            public const string ScaleSerialNumberID = "";
-            public const string ScaleCycleCountID = "";
-            public const string ScaleModelNumberLabelID = "";
-            public const string ScaleModelNumberValueID = "";
+            public const string ScaleFirmwareVersionID = "scale_firm_version";
+            public const string ScaleHardwareVersionID = "scale_hardware_version";
+            public const string ScaleSerialNumberID = "scale_serial_number";
+            public const string ScaleCycleCountID = "scale_cycle_count";
+            public const string ScaleModelNumberLabelID = "lbl_scale_model";
+            public const string ScaleModelNumberValueID = "scale_model";
+            public const string ScaleToggleArrowID = "scale";
 
             //SPO2
             public const string Spo2NameXPath = "//div[@id = \"spo2_firm_version\"]//parent::div//div";
@@ -186,9 +187,9 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string SureTempUsageValueID = "sure_temp_usage";
 
             //Radio Lamarr
-            public const string RadioLamarrNameXPath = "//span[@id = \"radio\"]//parent::div";
+            public const string RadioLamarrNameID = "lbl_radio_name";
             public const string RadioLamarrSerialNumberID = "hc_radio_serialNo";
-            public const string RadioLamarrUsageValueXPath = "//div[@id =\"hc_radio_serialNo\"]//parent::div/div[6]";
+            public const string RadioLamarrUsageValueID = "radio_usage";
             public const string RadioLamarrToggleArrowID = "radio";
             public const string RadioLamarrAPMACAddressLabelID = "lbl_radio_ap_mac";
             public const string RadioLamarrAPMACAddressValueID = "radio_ap_mac";
@@ -227,17 +228,17 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
 
 
             //Connex Device
-            public const string ConnexNameXPath = "//div[@id = \"welch_usage\"]//parent::div//div";
-            public const string ConnexSerialNumberXPath = "//div[@id = \"welch_usage\"]//parent::div//div[5]";
+            public const string ConnexNameID = "connex_device_name";
+            public const string ConnexSerialNumberID = "connex_serial_number";
             public const string ConnexDeviceHoursLabelID = "lbl_total_run_time";
             public const string ConnexDeviceHoursValueID = "total_run_time";
             public const string ConnexUsageID = "welch_usage";
 
             //Host Controller
-            public const string HostControllerNameXPath = "//div[@id = \"host_firm_version\"]//parent::div//div[1]";
+            public const string HostControllerNameID = "host_name";
             public const string HostControllerFirmwareVersionID = "host_firm_version";
             public const string HostControllerHardwareVersionID = "host_hardware_version";
-            public const string HostControllerSerialNumberXPath = "//div[@id = \"host_firm_version\"]//parent::div//div[5]";
+            public const string HostControllerSerialNumberID = "host_srial_number";
 
             //CVSM Details Summary
             public const string DetailsSummaryCVSMImageID = "cvsm_img";
@@ -273,10 +274,38 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string BatteryRelativeChildElementsXPath = "//div[@id = '"+ BatteryCycleCountID +"']//parent::div/div";
             public const string BraunRelativeChildElementsXPath = "//div[@id = '" + BraunCycleCountValueID + "']//parent::div/div";
             public const string CO2RelativeChiledElementXPath = "//div[@id = '"+CO2RunTimeID+ "']//parent::div//parent::div/div";
-            public const string NIBPRelativeChildElementXPath = "//div[@id = '"+NIBPCycleCountID+"']/parent::div/div";
-            public const string ConnexRelativeChildElementXpath = "//div[@id = '"+ConnexUsageID+"']//parent::div/div";
+            public const string NIBPRelativeChildElementXPath = "//div[@id = '"+NIBPCycleCountID+ "']/parent::div/div";
+            public const string ConnexRelativeChildElementXpath = "//div[@id = '" + ConnexUsageID + "']//parent::div/div";
+            public const string ScaleRelativeChildElementXPath = "//div[@id = '" + ScaleCycleCountID + "']//parent::div/div";
 
         }
+
+        [FindsBy(How = How.XPath, Using = Locator.ScaleRelativeChildElementXPath)]
+        public IList<IWebElement> ScaleElementList { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.ScaleNameXPath)]
+        public IWebElement ScaleName { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.ScaleFirmwareVersionID)]
+        public IWebElement ScaleFirmwareVersion { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.ScaleCycleCountID)]
+        public IWebElement ScaleCycleCount { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.ScaleToggleArrowID)]
+        public IWebElement ScaleToggleArrow { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.ScaleModelNumberLabelID)]
+        public IWebElement ScaleModelNumberLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.ScaleModelNumberValueID)]
+        public IWebElement ScaleModelNumberValue { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.ScaleHardwareVersionID)]
+        public IWebElement ScaleHardwareVersion { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locator.ScaleSerialNumberID)]
+        public IWebElement ScaleSerialNumber { get; set; }
 
 
         [FindsBy(How = How.Id, Using = Locator.BatteryDeviceNameLabelID)]
@@ -376,14 +405,14 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
         public IWebElement HostControllerFirmwareVersion { get; set; }
 
 
-        [FindsBy(How = How.XPath, Using = Locator.HostControllerNameXPath)]
+        [FindsBy(How = How.Id, Using = Locator.HostControllerNameID)]
         public IWebElement HostControllerName { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.HostControllerHardwareVersionID)]
         public IWebElement HostControllerHardwareVersion { get; set; }
 
 
-        [FindsBy(How = How.XPath, Using = Locator.HostControllerSerialNumberXPath)]
+        [FindsBy(How = How.Id, Using = Locator.HostControllerSerialNumberID)]
         public IWebElement HostControllerSerialNumber { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.ConnexUsageID)]
@@ -393,10 +422,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
         [FindsBy(How = How.XPath, Using = Locator.ConnexRelativeChildElementXpath)]
         public IList<IWebElement> ConnexElementList { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locator.ConnexNameXPath)]
+        [FindsBy(How = How.Id, Using = Locator.ConnexNameID)]
         public IWebElement ConnexName { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locator.ConnexSerialNumberXPath)]
+        [FindsBy(How = How.Id, Using = Locator.ConnexSerialNumberID)]
         public IWebElement ConnexSerialNumber { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.ConnexDeviceHoursLabelID)]
@@ -508,10 +537,10 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
         public IWebElement RadioLamarrSSIDValue { get; set; }
 
 
-        [FindsBy(How = How.XPath, Using = Locator.RadioLamarrNameXPath)]
+        [FindsBy(How = How.Id, Using = Locator.RadioLamarrNameID)]
         public IWebElement RadioLamarrName { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locator.RadioLamarrUsageValueXPath)]
+        [FindsBy(How = How.Id, Using = Locator.RadioLamarrUsageValueID)]
         public IWebElement RadioLamarrUsageValue { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locator.SureTempNameXPath)]
@@ -697,7 +726,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
         [FindsBy(How = How.XPath, Using = Locator.NIBPNameXPath)]
         public IWebElement NIBPName { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locator.DeluxeSerialNumberXPath)]
+        [FindsBy(How = How.Id, Using = Locator.DeluxeSerialNumberID)]
         public IWebElement DeluxeSerialNumber { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.DeluxeFirmwareVersionID)]
@@ -796,7 +825,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
         [FindsBy(How = How.Id, Using = Locator.BraunFirmwareVersionValueID)]
         public IWebElement BraunFirmwareVersionValue { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locator.BraunNameXPath)]
+        [FindsBy(How = How.Id, Using = Locator.BraunNameID)]
         public IWebElement BraunNameValue { get; set; }
 
         [FindsBy(How = How.Id, Using = Locator.BatteryTemparatureLabelID)]
