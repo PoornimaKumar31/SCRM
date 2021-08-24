@@ -39,6 +39,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string SerialNumberUnit2ColumnXpath = "//div[@id='devices1']//div//div[3]";
             public const string SerialNumberUnit3ColumnXpath = "//div[@id='devices2']//div//div[3]";
             public const string SerialNumberUnit4ColumnXpath = "//div[@id='devices3']//div//div[3]";
+            public const string SerialNumberUnit5ColumnXpath = "//div[@id='devices4']//div//div[3]";
 
             public const string UnitsRowListXpath = "//*[starts-with(@id,'location')]";
         }
@@ -62,6 +63,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string NIBPSensorCycleCountHeadingText = "NIBP Sensor cycle count";
             public const string SPHBCycleCountHeadingText = "SPHB cycle count";
             
+            //CSM Devices
             //unit1
             public static List<string> Unit1CSMDeviceSerialNumbers = new List<string>()
             {
@@ -92,6 +94,53 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public static List<string> Unit4CSMDevicesSerialNumber = new List<string>()
             {
                 "100015671718"
+            };
+
+
+            //CVSM
+            //Station 1 unit
+            public static List<string> Station1UnitCVSMDeviceSerialNumbers = new List<string>()
+            {
+                "100020000000",
+                "100020000001",
+                "100020000008",
+                "100020000005",
+                "100020000003",
+                "100020000004",
+                "100020000006",
+                "100020000007",
+                "100020000002"
+            };
+
+
+            //notset unit
+            public static List<string> NotSetUnitCVSMDevicesSerialNumber = new List<string>()
+            {
+                "103001220212",
+                "100085374016",
+                "100073764115",
+                "103001220213",
+                "103001220216",
+                "103001220214",
+                "100009382218"
+            };
+
+            //LuWen Unit
+            public static List<string> LuWenUnitCVSMDevicesSerialNumber = new List<string>()
+            {
+                "100042631718"
+            };
+
+            //Connex CS1 Unit
+            public static List<string> ConnexCS1UnitCVSMDevicesSerialNumber = new List<string>()
+            {
+                "103002311813"
+            };
+
+            //Andy's Desk Unit
+            public static List<string> AndyDeskUnitCVSMDevicesSerialNumber = new List<string>()
+            {
+                "103001220215"
             };
 
 
@@ -129,6 +178,9 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
 
         [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit4ColumnXpath)]
         public IList<IWebElement> SerialNumberUnit4Column { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit5ColumnXpath)]
+        public IList<IWebElement> SerialNumberUnit5Column { get; set; }
 
         //Tables
         [FindsBy(How = How.Id, Using = Locator.ModelHeadingID)]
