@@ -46,7 +46,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             public const string FirmwareUpgradeStatusCSMLabel = "FIRMWARE UPGRADE STATUS (CSM)";
             public const string FirmwareUpgradeStatusRV700Label = "FIRMWARE UPGRADE STATUS (RV700)";
-            
+            public const string FirmwareUpgradeStatusCentrellaLabel = "FIRMWARE UPGRADE STATUS (CENTRELLA)";
+
             //Firmware Upgrade status(CSM) table elements
             public const string SerialNumberHeadingText = "Serial number";
             public const string FirmwareVesrionHeadingText = "Firmware version";
