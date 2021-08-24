@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -27,6 +28,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         CVSMUsageReportPage cvsmUsageReportPage = new CVSMUsageReportPage();
         CVSMFirmwareVersionReportPage cvsmFirmwareVersionReportPage = new CVSMFirmwareVersionReportPage();
+        FirmwareVersionPage firmwareVersionPage = new FirmwareVersionPage();
+        UsageReportPage usageReportPage = new UsageReportPage();
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportsPage()
@@ -69,38 +72,39 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             List<string> ExpectedOptionList = new List<string>(ExpectedOptions.ToLower().Split(", "));
             List<string> ActualOptionList = new List<string>(reportsPage.ReportTypeDDL.GetAllOptionsFromDDL().Select(x => x.Text.ToLower()));
             ActualOptionList.Remove("select");
-            Assert.AreEqual(true,Enumerable.SequenceEqual(ActualOptionList,ExpectedOptionList),"Expected Options are not same as Actual");
+            ActualOptionList.Should().BeEquivalentTo(ExpectedOptionList, "Expected Options are not same as Actual");
         }
 
         [Then(@"CVSM Asset Usage Report label is displayed")]
         public void ThenCVSMAssetUsageReportLabelIsDisplayed()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMUsageReportPage.Locator.ReportTitleHeaderID)));
-            Assert.AreEqual(true, cvsmUsageReportPage.ReportTitleHeading.GetElementVisibility(), "User is not on the usage report page");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UsageReportPage.Locator.ReportTitleHeaderID)));
+            Assert.AreEqual(true, usageReportPage.ReportsTitleHeader.GetElementVisibility(), "User is not on the usage report page");
+            Assert.AreEqual(UsageReportPage.ExpectedValues.ReportTitleHeaderCVSM.ToLower(), usageReportPage.ReportsTitleHeader.Text.ToLower(),"CVSM usage report header is not matching the expected value.");
         }
 
         [Then(@"Print button is displayed")]
         public void ThenPrintButtonIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmUsageReportPage.PrintButton.GetElementVisibility(), "Print Button is not displayed");
+            Assert.AreEqual(true,usageReportPage.PrintButton.GetElementVisibility(), "Print Button is not displayed");
         }
 
         [Then(@"Number of Devices on Each Floor label is displayed")]
         public void ThenNumberOfDevicesOnEachFloorLabelIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmUsageReportPage.NumberOfDevicesOnEachFloorLabel.GetElementVisibility(), "Number of Devices on Each Floor label is not displayed");
+            Assert.AreEqual(true, usageReportPage.NumberOfdevicesOneachFloorLabel.GetElementVisibility(), "Number of Devices on Each Floor label is not displayed");
         }
 
         [Then(@"pie chart is displayed")]
         public void ThenPieChartIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmUsageReportPage.PieChart.GetElementVisibility(), "Pie Chart is not displayed");
+            Assert.AreEqual(true, usageReportPage.PieChart.GetElementVisibility(), "Pie Chart is not displayed");
         }
 
         [Then(@"Total Usage Details - Components label is displayed")]
         public void ThenTotalUsageDetails_ComponentsLabelIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmUsageReportPage.TotalUsageDetailsLabel.GetElementVisibility(), "Total usage details label is not displayed");
+            Assert.AreEqual(true, usageReportPage.TotalUsageComponentsLabel.GetElementVisibility(), "Total usage details label is not displayed");
         }
 
         [Given(@"user is on CVSM Usage Report page")]
@@ -126,13 +130,14 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void WhenUserClicksUnitRowToggleArrow()
         {
             //clicking on the toggle button
-            cvsmUsageReportPage.UnitToggleArrow.Click();
+            usageReportPage.UnitToggleArrow.Click();
         }
 
         [Then(@"assets for the unit are hidden")]
         public void ThenAssetsForTheUnitAreHidden()
         {
-           Assert.AreEqual(CVSMUsageReportPage.ExpectedValue.Station1HiddenDeviceStyleAttribute,cvsmUsageReportPage.Station1DeviceContainer.GetAttribute("style"),"Asset for Unit is not hidden"); 
+            //till here merged
+           Assert.AreEqual(UsageReportPage.ExpectedValues.Station1HiddenDeviceStyleAttribute,usageReportPage.Station1DeviceContainer.GetAttribute("style"),"Asset for Unit is not hidden"); 
         }
 
         [When(@"user clicks Print button")]

@@ -12,9 +12,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public static class Locators
         {
             //Firmware status
-            public const string AssetTypeDropdownId = "modelFilter";
-            public const string ReportTypeDropdownId = "typeFilter";
-            public const string GetReportButtonId = "getReport";
             public const string InformationButtonId = "fs-info";
             public const string InformationPopUpId = "myHelp";
             public const string InformationPopUpHeaderClassName = "heading";
@@ -87,6 +84,20 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RV700AvailableDefination = "Firmware update has been deployed and is waiting for device to call home.";
             public const string RV700CompleteDefination = "Device firmware upgrade is complete.";
             public const string RV700FailureDefination = "Device firmware upgrade has failed.";
+
+            //Centrella Status information
+            public const string CentrellaInformationPopUpHeaderText = "Centrella Firmware Report Statuses:";
+            public const string CentrellaStartedDefination = "A request has been sent to update the firmware on the bed.";
+            public const string CentrellaDownloadingDefination = "The firmware is downloading on the bed.";
+            public const string CentrellaStagingDefination = "The firmware is distributing to the boards.";
+            public const string CentrellaStagingCompleteDefination = "The boards have received the firmware.";
+            public const string CentrellaTogglingDefination = "The bed is updating to the new firmware.";
+            public const string CentrellaTogglingCompleteDefination = "The firmware update is complete. A bed restart is required to apply the new firmware.";
+            public const string CentrellaUpgradeSuccessDefination = "The bed successfully updated to the new firmware.";
+            public const string CentrellaDownloadFailureDefination = "A failure occurred when downloading the firmware.";
+            public const string CentrellaStagingFailureDefination = "A failure occurred when distributing the firmware to the boards.";
+            public const string CentrellaStagingInconsistentDefination = "The downloaded firmware and boards are inconsistent. Bed features may not work as expected.";
+            public const string CentrellaToggeleFailureDefination = "A failure occurred during the new firmware application to boards.";
         }
 
         public FirmwareStatusPage()
@@ -145,15 +156,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.InformationPopUpId)]
         public IWebElement InformationPopUp { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.AssetTypeDropdownId)]
-        public IWebElement AssetTypeDropdown { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.ReportTypeDropdownId)]
-        public IWebElement ReportTypeDropdown { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.GetReportButtonId)]
-        public IWebElement GetReportButton { get; set; }
-
         [FindsBy(How = How.Id, Using = Locators.InformationButtonId)]
         public IWebElement InformationButton { get; set; }
 
@@ -186,7 +188,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
                 string ele = splitRowdata[row];
                 string label = GetStatusLabel(row);
                 string stat = ele.Substring(0, label.Length);
-                string defination = ele.Substring(label.Length);
+                string defination = ele[label.Length..];
                 statusDefinationPairs.Add(stat, defination.Trim());
             }
             return (statusDefinationPairs);
