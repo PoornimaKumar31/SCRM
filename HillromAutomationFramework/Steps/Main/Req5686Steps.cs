@@ -41,7 +41,6 @@ namespace HillromAutomationFramework.Steps.Main
         [Then(@"Organization label is displayed")]
         public void ThenOrganizationLabelIsDisplayed()
         {
-            //replace organization label xpath with id. 
             Assert.AreEqual(true, mainPage.OrganizationLabel.GetElementVisibility(), "Organization label is not displayed.");
             Assert.AreEqual(MainPage.ExpectedValues.OrganizationLabelText.ToLower(), mainPage.OrganizationLabel.Text.ToLower(),"Organization label is not matching the expected value.");
         }
@@ -220,8 +219,10 @@ namespace HillromAutomationFramework.Steps.Main
         [Given(@"downward arrow shows for ascending order beside Serial Number column header for default sorted column")]
         public void GivenDownwardArrowShowsForAscendingOrderBesideSerialNumberColumnHeaderForDefaultShortedColumn()
         {
+            mainPage.SerialNumberHeading.Click();
+            Thread.Sleep(1000);
             string attributeValue = mainPage.SerialNumberHeading.GetAttribute("class");
-            Assert.AreEqual(true, "serial ascending", attributeValue, "Downward arrow does not appear on selrial column header.");
+            Assert.AreEqual(true, "serial ascending" == attributeValue, "Downward arrow does not show for ascending order beside Serial Number column header for default sorted column.");
         }
 
         [Then(@"downward arrow shows beside ""(.*)"" column header for ascending order")]
@@ -313,9 +314,8 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenListIsSortedInAscendingOrderBy(string columnHeader)
         {
             Thread.Sleep(1000);
+            bool IsSorted = mainPage.CheckSort(columnHeader, "a");
             Assert.AreEqual(true, mainPage.CheckSort(columnHeader, "a"), "Device list is not sorted by \"" + columnHeader + "\" in ascending order.");
         }
-
-
     }
 }

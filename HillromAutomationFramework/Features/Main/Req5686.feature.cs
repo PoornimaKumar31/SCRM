@@ -269,6 +269,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 42
  testRunner.Given("user is on Assets list page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 43
+ testRunner.And("downward arrow shows for ascending order beside Serial Number column header for d" +
+                        "efault sorted column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 44
  testRunner.When("user clicks \"Serial number\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -355,9 +359,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 72
  testRunner.Then("downward arrow shows beside \"PM due\" column header for ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 73
- testRunner.And("list is sorted in ascending order by \"PM due\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 74
  testRunner.When("user clicks \"PM due\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

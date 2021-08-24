@@ -35,17 +35,13 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string SelectedOrganizationNameID = "orgFilterText3";
             public const string SelectedFacilityNameID = "orgFilterText4";
             public const string AllOrganizationDefaultID = "orgFilterText2";
-
             public const string AutomatedEyeTestDDLSelectionID = "org2";
             public const string LNTAutmatedTestDDLSelectionID = "org1";
-
             public const string LNTAutmatedTestDDLExpensionArrowID = "caret1";
             public const string LNTAutmatedTestDDLFacility1ID = "facility10";
             public const string LNTAutmatedTestDDLFacility1ExpensionArrowID = "caret10";
             public const string LNTAutmatedTestDDLFacility1Unit1ID = "unit100";
             public const string AllOrganizationsOptionID = "allEnterprises";
-
-
 
             //device list
             public const string DeviceListTableHeaderID = "table-header";
@@ -128,8 +124,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const int LNTAutomatedTestOrganizationDeviceCount = 194;
             public const int LNTAutomatedTestOrganizationFacilityOneDeviceCount = 31;
             public const int LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount = 12;
-
-
         }
 
         public MainPage()
@@ -173,15 +167,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.XPath, Using = Locators.SearchFieldCancelButtonXpath)]
         public IWebElement SearchFieldCancelButton { get; set; }
 
-        //table
         [FindsBy(How = How.Id, Using = Locators.DeviceListTableHeaderID)]
         public IWebElement DeviceListTableHeader { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.DeviceListTableBodyID)]
         public IWebElement DeviceListTableBody { get; set; }
 
-
-        //table headings
         [FindsBy(How = How.Id, Using = Locators.TypeHeadingID)]
         public IWebElement TypeHeading { get; set; }
 
@@ -218,14 +209,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.RadioNewMarrID)]
         public IWebElement RadioNewMarr { get; set; }
 
-        //organization filters
         [FindsBy(How = How.Id, Using = Locators.SelectedOrganizationNameID)]
         public IWebElement SelectedOrganizationName { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.SelectedFacilityNameID)]
         public IWebElement SelectedFacilityName { get; set; }
 
-        //Pagination 
         [FindsBy(How = How.Id, Using = Locators.PaginationXOfYLabelID)]
         public IWebElement PaginationXOfYLabel { get; set; }
 
@@ -288,7 +277,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             List<string> ColumnDataText = new List<string>();
             foreach (IWebElement rowdata in ColumnData)
             {
-                ColumnDataText.Add(rowdata.Text);
+                string ColumnText = rowdata.Text;
+                ColumnDataText.Add(ColumnText);
             }
             List<string> UnsortedColumnData = new List<string>(ColumnDataText);
             ColumnDataText.Sort((s1, s2) => s1.CompareTo(s2));

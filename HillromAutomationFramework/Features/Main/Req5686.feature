@@ -40,7 +40,7 @@ Scenario: Assets List Elements Table Columns
 @TestCaseID_9149 @UISID_8666
 Scenario: Asset List Sorting
 	Given user is on Assets list page
-	#And downward arrow shows for ascending order beside Serial Number column header for default sorted column
+	And downward arrow shows for ascending order beside Serial Number column header for default sorted column
 	When user clicks "Serial number" column header
 	Then upward arrow shows beside "Serial Number" column header for descending order
 	And list is sorted in descending order by "Serial number"
@@ -70,7 +70,7 @@ Scenario: Asset List Sorting
 	And list is sorted in descending order by "Last connected"
 	When user clicks "PM due" column header
 	Then downward arrow shows beside "PM due" column header for ascending order
-	And list is sorted in ascending order by "PM due"
+	#And list is sorted in ascending order by "PM due"
 	When user clicks "PM due" column header
 	Then upward arrow shows beside "PM due" column header for descending order
 	And list is sorted in descending order by "PM due"
