@@ -421,7 +421,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     Heading = updateSelectDevicePage.AssetTagHeading;
                     ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.AssetTagHeadingText;
                     break;
-                case "serial":
+                case "serial number":
                     Heading = updateSelectDevicePage.SerialNoHeading;
                     ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.SerialHeadingText;
                     break;

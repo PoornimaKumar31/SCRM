@@ -367,7 +367,7 @@ namespace HillromAutomationFramework.Steps.Updates
                     HeadingElement = updateSelectDevicesPage.AssetTagHeading;
                     ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.AssetTagHeadingText;
                     break;
-                case "serial":
+                case "serial number":
                     HeadingElement = updateSelectDevicesPage.SerialNoHeading;
                     ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.SerialHeadingText;
                     break;
