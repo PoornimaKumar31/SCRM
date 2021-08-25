@@ -259,7 +259,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             SearchField.EnterText(serialNumber);
             SearchField.EnterText(Keys.Enter);
             //Waiting for data to load
-            Thread.Sleep(2000);
+            Thread.Sleep(3000);
             Assert.AreEqual(1, DeviceListRow.GetElementCount(), "more than devices are present matching serial number "+serialNumber);
             DeviceListRow[0].Click();
         }

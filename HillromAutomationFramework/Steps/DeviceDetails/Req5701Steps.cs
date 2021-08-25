@@ -5,6 +5,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -135,7 +137,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.AreEqual("#444444", actualColour, "Upward pointing black arrow is displayed on Host controller row");
         }
 
-        //3rd
         [Given(@"user is on the Preventive maintenance tab")]
         public void GivenUserIsOnThePreventiveMaintenanceTab()
         {
@@ -175,11 +176,19 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"current month is displayed followed by the other months")]
         public void ThenCurrentMonthIsDisplayedFollowedByTheOtherMonths()
         {
+            //Actual
             bool IsCalenderDisplayed = csmDeviceDetailsPage.CalenderXP.GetElementVisibility();
-            string[] text = csmDeviceDetailsPage.CalenderXP.Text.Split();
-            DateTime dt = DateTime.Now;
-            string[] calArray = { };
+            string[] monthsArray = csmDeviceDetailsPage.CalenderXP.Text.Split();           
+            List<string> listOfMonths = monthsArray.ToList<string>();
+            listOfMonths.RemoveAll(p => string.IsNullOrEmpty(p));
+            monthsArray = listOfMonths.ToArray();
 
+            //Expected 
+            var monthsName = GetMethods.GetMonthsName();
+            string[] Expectedmonths = monthsName.ToArray();
+            bool isSequenceSame = false;
+            isSequenceSame = monthsArray.SequenceEqual(monthsName);
+            Assert.IsTrue(isSequenceSame, "Current month is not displayed followed by the other months");
         }
     }
 }

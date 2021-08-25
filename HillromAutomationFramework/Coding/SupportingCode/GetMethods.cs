@@ -350,5 +350,48 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             // hexadecimal color code
             return hexCode;
         }
+
+        /// <summary>
+        /// It returns Lists of months name starting from current months
+        /// </summary>
+        /// <returns>Aug,Sep,Oct,Nov,Dec,Jan,Feb,Mar,Apr,May,Jun,Jul</returns>
+        public static List<string> GetMonthsName()
+        {
+            DateTime dt = DateTime.Now;
+            var monthsList = new List<string>();
+            for (int i = 1; i < 13; i++)
+            {
+                monthsList.Add(dt.ToString("MMM"));
+                dt = dt.AddMonths(1);
+            }
+            return monthsList;
+        }
+
+
+        // Returns true if arr1[0..n-1] and
+        // arr2[0..m-1] contain same elements.
+        //Ref: https://www.geeksforgeeks.org/check-if-two-arrays-are-equal-or-not/
+        public static bool AreEqual(string[] arr1, string[] arr2)
+        {
+            int n = arr1.Length;
+            int m = arr2.Length;
+
+            // If lengths of array are not
+            // equal means array are not equal
+            if (n != m)
+                return false;
+
+            // Sort both arrays
+            Array.Sort(arr1);
+            Array.Sort(arr2);
+
+            // Linearly compare elements
+            for (int i = 0; i < n; i++)
+                if (arr1[i] != arr2[i])
+                    return false;
+
+            // If all elements were same.
+            return true;
+        }
     }
 }
