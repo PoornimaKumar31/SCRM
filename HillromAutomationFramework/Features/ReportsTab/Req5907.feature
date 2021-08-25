@@ -2,7 +2,7 @@
 Feature: Software Requirement 5907
 	The customer portal shall provide information display explaining Firmware Status.
 
-@TestCaseID_8997 @UISID_8692
+@TestCaseID_8997 @UISID_8685
 Scenario: CSM Firmware Status Information
 	Given user is on CSM Firmware Upgrade Status report page
 	When user clicks Information button
@@ -20,7 +20,7 @@ Scenario: CSM Firmware Status Information
 	And "Failed" status and definition is displayed
 	And Close button is displayed
 
-@TestCaseID_8998 @UISID_8692
+@TestCaseID_8998 @UISID_8685
 Scenario: CSM Firmware Status Information Close
 	Given user is on CSM Firmware Upgrade Status report page
 	And CSM Firmware Report Statuses dialog is displayed
@@ -28,7 +28,7 @@ Scenario: CSM Firmware Status Information Close
 	Then CSM Firmware Report Statuses dialog closes
 	And CSM Firmware Upgrade Status page is displayed
 
-@TestCaseID_8999 @UISID_8692
+@TestCaseID_8999 @UISID_8685
 Scenario: RV700 Firmware Status information
 	Given user is on RV700 Firmware Upgrade Status report page
 	When user clicks Information button
@@ -39,7 +39,7 @@ Scenario: RV700 Firmware Status information
 	And "Failure" status and definition of RV700 is displayed
 	And Close button is displayed
 
-@TestCaseID_9000 @UISID_8692
+@TestCaseID_9000 @UISID_8685
 Scenario: RV700 Firmware Status Information Close
 	Given user is on RV700 Firmware Upgrade Status report page
 	And RV700 Firmware Report Statuses dialog is displayed
