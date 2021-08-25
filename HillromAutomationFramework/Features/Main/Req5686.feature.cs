@@ -360,6 +360,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 72
  testRunner.Then("downward arrow shows beside \"PM due\" column header for ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 73
+ testRunner.And("list is sorted in ascending order by \"PM due\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 74
  testRunner.When("user clicks \"PM due\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden

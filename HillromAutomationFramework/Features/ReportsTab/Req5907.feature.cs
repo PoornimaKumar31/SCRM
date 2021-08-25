@@ -80,12 +80,12 @@ namespace HillromAutomationFramework.Features.ReportsTab
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Firmware Status Information")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8997")]
-        [NUnit.Framework.CategoryAttribute("UISID_8692")]
+        [NUnit.Framework.CategoryAttribute("UISID_8685")]
         public virtual void CSMFirmwareStatusInformation()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8997",
-                    "UISID_8692"};
+                    "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Firmware Status Information", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
@@ -160,12 +160,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("CSM Firmware Status Information Close")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8998")]
-        [NUnit.Framework.CategoryAttribute("UISID_8692")]
+        [NUnit.Framework.CategoryAttribute("UISID_8685")]
         public virtual void CSMFirmwareStatusInformationClose()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8998",
-                    "UISID_8692"};
+                    "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Firmware Status Information Close", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 24
@@ -210,12 +210,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Firmware Status information")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_8999")]
-        [NUnit.Framework.CategoryAttribute("UISID_8692")]
+        [NUnit.Framework.CategoryAttribute("UISID_8685")]
         public virtual void RV700FirmwareStatusInformation()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_8999",
-                    "UISID_8692"};
+                    "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Firmware Status information", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 32
@@ -269,12 +269,12 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("RV700 Firmware Status Information Close")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9000")]
-        [NUnit.Framework.CategoryAttribute("UISID_8692")]
+        [NUnit.Framework.CategoryAttribute("UISID_8685")]
         public virtual void RV700FirmwareStatusInformationClose()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9000",
-                    "UISID_8692"};
+                    "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Firmware Status Information Close", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 43

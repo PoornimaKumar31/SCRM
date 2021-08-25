@@ -56,6 +56,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LastCalibrationDateID = "lastCalDate";
             public const string CalibrationOverDueArrowID = "icon_overdue";
             public const string CalibrationOverDueTextID = "cal_overdue";
+            //Newly Added
+            public const string PMTabID = "mat-tab-label-0-0";
+            public const string HostControllerGraphicXPath = "//*[@class=\"col-xs-7\"]/span/img";
+            public const string HostControllerID = "name";
+            public const string PreventiveMaintenanceLabelID = "prev-maintenance";
+            public const string PMSHeaderXPath = "//div[@id=\"lbl_name\"]/parent::div/div";
+            public const string PMSRowXPath = "//div[@id='lastCalDate']/parent::div//div";
+            public const string HostContollerColumnXPath = "//span[@id='name']/parent::div";
+
         }
 
         public static class ExpectedValues
@@ -79,6 +88,27 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string PMLastCalibrationText = "Last calibration";
             
         }
+
+        [FindsBy(How = How.XPath, Using = Locators.HostContollerColumnXPath)]
+        public IWebElement HostContollerColumn { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.PMSRowXPath)]
+        public IList<IWebElement> PMSRow { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.PMSHeaderXPath)]
+        public IList<IWebElement> PMSHeader { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.HostControllerGraphicXPath)]
+        public IWebElement HostControllerGraphic { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PreventiveMaintenanceLabelID)]
+        public IWebElement PreventiveMaintenanceLabel { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.HostControllerID)]
+        public IWebElement HostController { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PMTabID)]
+        public IWebElement PMTab { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.CSMDeviceID)]
         public IList<IWebElement> CSMDevices { get; set; }
