@@ -27,8 +27,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string UserInputInvalidUserName = null;
         string UserInputFullname = null;
         string Role = null;
-        int MinLength = 1000;
-        int MaxLength = 9999;
 
         private readonly ScenarioContext _scenarioContext;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
@@ -419,7 +417,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             UserInputFullname = RandomFullName;
 
             //Entering valid phone number
-            string RandomNumber4Digits = GetMethods.GenerateRandomPhoneNumber(MinLength, MaxLength);
+            string RandomNumber4Digits = GetMethods.GenerateNDigitRandomNumber(4);
             string Prefix = "+1315685";
             RandomPhoneNumber = Prefix + RandomNumber4Digits;
             advancePage.PhoneNumberOnCreatePage.EnterText(RandomPhoneNumber);

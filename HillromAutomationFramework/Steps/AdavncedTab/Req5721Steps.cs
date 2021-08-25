@@ -247,7 +247,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             advancePage.PhoneTextField.Clear();
             //Generating phone number just by passing length of phone number to the method.
-            string Random4Digits = GetMethods.GenerateRandomPhoneNumber(MinLength, MaxLength);
+            string Random4Digits = GetMethods.GenerateNDigitRandomNumber(4);
             string Prefix = "+1315685";
             RandomPhoneNumber = Prefix + Random4Digits;
             advancePage.PhoneTextField.EnterText(RandomPhoneNumber);
@@ -297,7 +297,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             advancePage.PhoneTextField.Clear();
             
             //Generating Random 4 digits int number
-            string Random4Digits = GetMethods.GenerateRandomPhoneNumber(MinLength, MaxLength);
+            string Random4Digits = GetMethods.GenerateNDigitRandomNumber(4);
             string Prefix = "+1315685";
             RandomPhoneNumber = Prefix + Random4Digits;
 

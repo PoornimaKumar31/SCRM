@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.AdvancedTab
+namespace HillromAutomationFramework.Features.Main
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,25 +20,25 @@ namespace HillromAutomationFramework.Features.AdvancedTab
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Software Requirement 7733")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_7733")]
-    public partial class SoftwareRequirement7733Feature
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 7734")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_7734")]
+    public partial class SoftwareRequirement7734Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_7733"};
+                "SoftwareRequirementID_7734"};
         
-#line 1 "Req7733.feature"
+#line 1 "Req7734.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/AdvancedTab", "Software Requirement 7733", "\tThe Customer Portal shall display errors reported from Centrella bed.", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_7733"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/Main", "Software Requirement 7734", "\tThe Customer Portal shall display errors reported from Centrella bed.", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_7734"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,16 +77,16 @@ namespace HillromAutomationFramework.Features.AdvancedTab
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Centrella Asset List Status Column")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9921")]
-        [NUnit.Framework.CategoryAttribute("UISID_8666")]
-        public virtual void CentrellaAssetListStatusColumn()
+        [NUnit.Framework.DescriptionAttribute("Centrella Error Pop-up Dialog")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9925")]
+        [NUnit.Framework.CategoryAttribute("UISID_9817")]
+        public virtual void CentrellaErrorPop_UpDialog()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9921",
-                    "UISID_8666"};
+                    "TestCaseID_9925",
+                    "UISID_9817"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Asset List Status Column", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Error Pop-up Dialog", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -108,15 +108,46 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("user is on Asset List for an organization with Centrella devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on device details page for Centrella Serial number \"PY673002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.Then("an error icon is displayed in the Status column for bed with serial number \"PY673" +
-                        "002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("user clicks Error codes tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("an error icon is not displayed in the Status column for bed with serial number \"P" +
-                        "Y673001\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("clicks expension arrow on a row in Error codes table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.Then("Centrella error code pop-up dialog is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.And("\"Error code:\" title label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And("error code title value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.And("\"Error code:\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.And("error code value is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("\"Description:\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.And("description is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 17
+ testRunner.And("\"Solution:\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
+ testRunner.And("solution is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 19
+ testRunner.And("Reference link is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 20
+ testRunner.And("Close button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

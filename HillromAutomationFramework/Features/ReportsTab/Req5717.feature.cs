@@ -234,7 +234,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Assets are grouped by unit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 33
- testRunner.And("all the devices within each unit are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("all devices within each unit are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 34
  testRunner.And("\"Model\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

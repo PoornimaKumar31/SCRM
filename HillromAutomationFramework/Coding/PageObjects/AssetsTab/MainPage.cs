@@ -62,13 +62,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string PMDueHeadingID = "calibration";
 
             //rows
-            public const string DeviceTypeClassName = "ng-star-inserted";
-            public const string FirmwareVersionClassName = "firmware";
-            public const string ConfigFileClassName = "configFile";
-            public const string AssetTagClassName = "asset";
-            public const string SerialNumberClassName = "serial";
-            public const string LocationClassName = "location";
-            public const string LastConnectionClassName = "connection";
+            public const string DeviceTypeXPath = "//tbody[@id='tbody_assets']/tr[1]/td[1]";
+            public const string DeviceFirmwareVersionClassName = "firmware sorting";
+            public const string DeviceConfigFileClassName = "configfile";
+            public const string DeviceAssetTagClassName = "asset";
+            public const string DeviceSerialNumberClassName = "serial";
+            public const string DeviceLocationClassName = "location";
+            public const string DeviceLastConnectionClassName = "connection";
+            public const string DevicePMDueClassName = "pmdue";
+            public const string DeviceStatusXPath = "//tbody[@id='tbody_assets']/tr[1]/td[2]";
 
             //pagination
             public const string PaginationXOfYLabelID = "currentPage";
@@ -124,12 +126,40 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const int LNTAutomatedTestOrganizationDeviceCount = 194;
             public const int LNTAutomatedTestOrganizationFacilityOneDeviceCount = 31;
             public const int LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount = 12;
+
         }
 
         public MainPage()
         {
             PageFactory.InitElements(PropertyClass.Driver, this);
         }
+
+        [FindsBy(How = How.ClassName, Using = Locators.DeviceFirmwareVersionClassName)]
+        public IWebElement DeviceFirmwareVersion { get; set; }
+        
+        [FindsBy(How = How.ClassName, Using = Locators.DeviceConfigFileClassName)]
+        public IWebElement DeviceConfigFile { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.DeviceAssetTagClassName)]
+        public IWebElement DeviceAssetTag { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.DeviceSerialNumberClassName)]
+        public IWebElement DeviceSerialNumber { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.DeviceLocationClassName)]
+        public IWebElement DeviceLocation { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.DeviceLastConnectionClassName)]
+        public IWebElement DeviceLastConnection { get; set; }
+
+        [FindsBy(How = How.ClassName, Using = Locators.DevicePMDueClassName)]
+        public IWebElement DevicePMDue { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.DeviceStatusXPath)]
+        public IWebElement DeviceStatus { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.DeviceTypeXPath)]
+        public IWebElement DeviceType { get; set; }
 
         [FindsBy(How =How.Id,Using =Locators.GlobalSeviceCenterID)]
         public IWebElement GlobalServiceCenter { get; set; }
@@ -270,14 +300,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         /// <summary>
         /// Getting column data from the Asset list Page
         /// </summary>
-        /// <param name="sortColumnName">Name of column from which data needs to be retrived</param>
+        /// <param name="ColumnName">Name of column from which data needs to be retrived</param>
         /// <returns>List of Column Data</returns>
-        public List<string> GetColumnData(string sortColumnName)
+        public List<string> GetColumnData(string ColumnName)
         {
             //Finding the index of sorted column
             IList<IWebElement> DeviceTableHeadingElements = DeviceListTableHeader.FindElements(By.TagName("th"));
             List<string> DeviceTableHeadingElementsText = (DeviceTableHeadingElements.Select(columnHeading => columnHeading.Text.ToString().ToLower())).ToList();
-            int columnNumber = DeviceTableHeadingElementsText.IndexOf(sortColumnName.ToLower().Trim()) + 1;
+            int columnNumber = DeviceTableHeadingElementsText.IndexOf(ColumnName.ToLower().Trim()) + 1;
             
             //Taking the column data from the application
             IList<IWebElement> ColumnDataWebElementList = DeviceListTableBody.FindElements(By.XPath("//td[" + columnNumber + "]"));
@@ -329,6 +359,51 @@ namespace HillromAutomationFramework.Coding.PageObjects
             int TotalRecords = int.Parse(PaginationDetails[3]);           
 
             return TotalRecords;           
+        }
+
+
+        public IWebElement GetDeviceColumnData(string columnnName, string serialNumber)
+        {
+            SearchField.Clear();
+            SearchField.EnterText(serialNumber);
+            SearchField.EnterText(Keys.Enter);
+            //Waiting for data to load
+            Thread.Sleep(2000);
+
+            if (DeviceListRow.GetElementCount() == 1)
+            {
+                if (columnnName.Trim().ToLower() == "type")
+                    return DeviceType;
+
+                else if (columnnName.Trim().ToLower() == "status")
+                    return DeviceStatus;
+
+                else if (columnnName.Trim().ToLower() == "firmware")
+                    return DeviceFirmwareVersion;
+
+                else if (columnnName.Trim().ToLower() == "config file")
+                    return DeviceConfigFile;
+
+                else if (columnnName.Trim().ToLower() == "asset tag")
+                    return DeviceAssetTag;
+
+                else if (columnnName.Trim().ToLower() == "serial number")
+                    return DeviceSerialNumber;
+
+                else if (columnnName.Trim().ToLower() == "location")
+                    return DeviceLocation;
+
+                else if (columnnName.Trim().ToLower() == "last connected")
+                    return DeviceLastConnection;
+
+                else if (columnnName.Trim().ToLower() == "pm due")
+                    return DevicePMDue;
+
+                else
+                    throw new ArgumentException("Column Name is not valid");
+            }
+            else
+                throw new ArgumentException("Serial Number is not valid");
         }
     }
 }

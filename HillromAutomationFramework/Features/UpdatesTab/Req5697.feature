@@ -101,7 +101,7 @@ Scenario: CVSM Select Assets Elements Table
 	And "Firmware" column heading is displayed
 	And "Config" column heading is displayed
 	And "Asset Tag" column heading is displayed
-	And "Serial" column heading is displayed
+	And "Serial Number" column heading is displayed
 	And "Location" column heading is displayed
 	And "Last Files Deployed" column heading is displayed
 
@@ -112,7 +112,7 @@ Scenario: CVSM Select Assets Elements Table Columns
 	And "Firmware" label is in column 2
 	And "Config" label is in column 3
 	And "Asset Tag" label is in column 4
-	And "Serial" label is in column 5
+	And "Serial Number" label is in column 5
 	And "Location" label is in column 6
 	And "Last Files Deployed" label is in column 7
 
