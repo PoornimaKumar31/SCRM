@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.ReportsTab
+namespace HillromAutomationFramework.Features.DeviceDetail
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,26 +20,25 @@ namespace HillromAutomationFramework.Features.ReportsTab
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Software Requirement 9426")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_9426")]
-    public partial class SoftwareRequirement9426Feature
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 5701")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5701")]
+    public partial class SoftwareRequirement5701Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_9426"};
+                "SoftwareRequirementID_5701"};
         
-#line 1 "Req9426.feature"
+#line 1 "Req5701.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ReportsTab", "Software Requirement 9426", "   The Customer Portal shall download Centrella bed firmware upgrade status repor" +
-                    "t in csv format.", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_9426"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/DeviceDetail", "Software Requirement 5701", "\tCSM Preventive Maintenance Overdue", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_5701"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -78,16 +77,16 @@ namespace HillromAutomationFramework.Features.ReportsTab
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Centrella Firmware Status Report Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9892")]
-        [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void CentrellaFirmwareStatusReportDownload()
+        [NUnit.Framework.DescriptionAttribute("CSM Preventive Maintenance Overdue")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_9887")]
+        [NUnit.Framework.CategoryAttribute("UISID_8675")]
+        public virtual void CSMPreventiveMaintenanceOverdue()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9892",
-                    "UISID_8685"};
+                    "TestCaseID_9887",
+                    "UISID_8675"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Firmware Status Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Preventive Maintenance Overdue", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,13 +108,35 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("user is on \"Centrella Firmware Upgrade Status\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Asset List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user selects CSM device with serial number \"100001954714\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.Then("\"Firmware Status\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("clicks Preventive maintenance tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
+ testRunner.Then("Preventive maintenance schedule subsection is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 11
+ testRunner.And("Host controller graphic is displayed in \"Name\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 12
+ testRunner.And("\"Host controller\" is displayed in \"Name\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 13
+ testRunner.And("\"Last calibration\" is \"30 Sep 2015\" on \"Host controller\" row in \"Last calibration" +
+                        "\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+ testRunner.And("\"Calibration overdue\" message is displayed on \"Host controller\" row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 15
+ testRunner.And("\"30 SEP 2016\" message is displayed on \"Host controller\" row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.And("left pointing red arrow is displayed on \"Host controller\" row", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

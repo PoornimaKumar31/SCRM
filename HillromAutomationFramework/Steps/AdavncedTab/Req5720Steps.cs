@@ -19,7 +19,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         AdvancedPage advancePage = new AdvancedPage();
         string RandomString = null;
         string RandomUsername = null;
-        string RandomMobileNumber;
+        string RandomPhoneNumber =null;
         string RandomFullName = null;
         string ActualEmail = null;
         string ActualFullName = null;
@@ -27,6 +27,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string UserInputInvalidUserName = null;
         string UserInputFullname = null;
         string Role = null;
+        int PhoneNumberLength = 10000;
 
         private readonly ScenarioContext _scenarioContext;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
@@ -265,7 +266,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"enters Phone number ""(.*)""")]
         public void WhenEntersPhoneNumber(string phoneNumber)
         {
-            RandomMobileNumber = phoneNumber;
+            RandomPhoneNumber = phoneNumber;
             advancePage.PhoneNumberOnCreatePage.EnterText(phoneNumber);
         }
 
@@ -322,7 +323,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             
             //Getting Phone number after clicking on Details button
             string ActualPhoneNumber = advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreEqual(true, ActualPhoneNumber == RandomMobileNumber, "Phone does not match");
+            Assert.AreEqual(true, ActualPhoneNumber == RandomPhoneNumber, "Phone does not match");
         }
 
         [When(@"does not click User Manager checkbox")]
@@ -417,8 +418,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             UserInputFullname = RandomFullName;
 
             //Entering valid phone number
-            RandomMobileNumber = GetMethods.GenerateRandomPhoneNumber(1000000000);
-            advancePage.PhoneNumberOnCreatePage.EnterText(RandomMobileNumber);
+            string RandomNumber4Digits = GetMethods.GenerateRandomPhoneNumber(PhoneNumberLength);
+            string Prefix = "+1315685";
+            RandomPhoneNumber = Prefix + RandomNumber4Digits;
+            advancePage.PhoneNumberOnCreatePage.EnterText(RandomPhoneNumber);
         }
     }
 }

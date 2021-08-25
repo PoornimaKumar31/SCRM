@@ -20,8 +20,8 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string NumberOfdevicesOneachFloorLabelID = "number_of_devices";
             public const string PieChartID = "myCanva";
             public const string TotalUsageComponentsLabelClassName = "total-usage";
-
-
+            public const string UnitToggleArrowXPath = "//div[@id=\"modelName\"]//span[@id=\"report0\"]";
+            public const string Station1DeviceContainerID = "devices0";
             //Tables
 
             public const string ModelHeadingID = "model";
@@ -39,15 +39,20 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string SerialNumberUnit2ColumnXpath = "//div[@id='devices1']//div//div[3]";
             public const string SerialNumberUnit3ColumnXpath = "//div[@id='devices2']//div//div[3]";
             public const string SerialNumberUnit4ColumnXpath = "//div[@id='devices3']//div//div[3]";
+            public const string SerialNumberUnit5ColumnXpath = "//div[@id='devices4']//div//div[3]";
 
             public const string UnitsRowListXpath = "//*[starts-with(@id,'location')]";
         }
 
         public static class ExpectedValues
         {
+            public const string ReportTitleHeaderCVSM = "ASSET USAGE REPORT (CVSM)";
             public const string ReportTiltleHeaderCSM= "ASSET USAGE REPORT (CSM)";
             public const string NumberofDevicesOnEachFlorrLabelText = "NUMBER OF DEVICES ON EACH FLOOR";
             public const string TotalUsageDetailsComponentLabelText = "TOTAL USAGE DETAILS - COMPONENTS";
+
+            public const string Station1HiddenDeviceStyleAttribute = "display: none;";
+            public const string Station1VisibleDeviceStyleAttribute = "display: block;";
 
             //Tables
             public const string ModelHeadingText = "Model";
@@ -58,6 +63,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             public const string NIBPSensorCycleCountHeadingText = "NIBP Sensor cycle count";
             public const string SPHBCycleCountHeadingText = "SPHB cycle count";
             
+            //CSM Devices
             //unit1
             public static List<string> Unit1CSMDeviceSerialNumbers = new List<string>()
             {
@@ -91,6 +97,53 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
             };
 
 
+            //CVSM
+            //Station 1 unit
+            public static List<string> Station1UnitCVSMDeviceSerialNumbers = new List<string>()
+            {
+                "100020000000",
+                "100020000001",
+                "100020000008",
+                "100020000005",
+                "100020000003",
+                "100020000004",
+                "100020000006",
+                "100020000007",
+                "100020000002"
+            };
+
+
+            //notset unit
+            public static List<string> NotSetUnitCVSMDevicesSerialNumber = new List<string>()
+            {
+                "103001220212",
+                "100085374016",
+                "100073764115",
+                "103001220213",
+                "103001220216",
+                "103001220214",
+                "100009382218"
+            };
+
+            //LuWen Unit
+            public static List<string> LuWenUnitCVSMDevicesSerialNumber = new List<string>()
+            {
+                "100042631718"
+            };
+
+            //Connex CS1 Unit
+            public static List<string> ConnexCS1UnitCVSMDevicesSerialNumber = new List<string>()
+            {
+                "103002311813"
+            };
+
+            //Andy's Desk Unit
+            public static List<string> AndyDeskUnitCVSMDevicesSerialNumber = new List<string>()
+            {
+                "103001220215"
+            };
+
+
         }
 
         [FindsBy(How =How.Id,Using =Locator.ReportTitleHeaderID)]
@@ -108,17 +161,26 @@ namespace HillromAutomationFramework.Coding.PageObjects.ReportsTab
         [FindsBy(How = How.ClassName, Using = Locator.TotalUsageComponentsLabelClassName)]
         public IWebElement TotalUsageComponentsLabel { get; set; }
 
+        [FindsBy(How = How.Id, Using = Locator.Station1DeviceContainerID)]
+        public IWebElement Station1DeviceContainer { get; set; }
+
         [FindsBy(How = How.XPath, Using = Locator.SerailNumberUnit1ColumnXpath)]
         public IList<IWebElement> SerialNumberUnit1Column { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit2ColumnXpath)]
         public IList<IWebElement> SerialNumberUnit2Column { get; set; }
 
+        [FindsBy(How = How.XPath, Using = Locator.UnitToggleArrowXPath)]
+        public IWebElement UnitToggleArrow { get; set; }
+
         [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit3ColumnXpath)]
         public IList<IWebElement> SerialNumberUnit3Column { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit4ColumnXpath)]
         public IList<IWebElement> SerialNumberUnit4Column { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locator.SerialNumberUnit5ColumnXpath)]
+        public IList<IWebElement> SerialNumberUnit5Column { get; set; }
 
         //Tables
         [FindsBy(How = How.Id, Using = Locator.ModelHeadingID)]

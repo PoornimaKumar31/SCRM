@@ -301,7 +301,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Phone Number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 52
+#line 53
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -321,34 +321,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 53
+#line 54
  testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 54
+#line 55
  testRunner.When("user enters phone number \"1234567890\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 55
+#line 56
  testRunner.Then("phone number error message is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 56
+#line 57
  testRunner.And("Save button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 57
+#line 58
  testRunner.When("user enters a plus sign and a random 11-digit Phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 58
+#line 59
  testRunner.Then("phone number error message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 59
+#line 60
  testRunner.And("Save button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 60
+#line 61
  testRunner.When("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 61
+#line 62
  testRunner.And("clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 62
+#line 63
  testRunner.Then("Phone number is entered number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -366,7 +366,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Blank Phone Number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 65
+#line 66
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -386,28 +386,28 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 66
+#line 67
     testRunner.Given("manager user is on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 67
+#line 68
     testRunner.When("user clicks Details button for user with a phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 68
+#line 69
     testRunner.And("user enters blank Phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 69
+#line 70
     testRunner.Then("phone number error message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 70
+#line 71
     testRunner.And("Save button is enabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 71
+#line 72
     testRunner.When("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 72
+#line 73
     testRunner.And("clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 73
+#line 74
     testRunner.Then("Phone number is blank", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -425,7 +425,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel Edit User Invalid Phone Number", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 76
+#line 77
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -445,25 +445,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 77
+#line 78
  testRunner.Given("manager user is on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 78
+#line 79
  testRunner.When("user clicks Details button for user with a phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 79
+#line 80
  testRunner.And("user enters invalid phone number \"123\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 80
+#line 81
  testRunner.And("clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 81
+#line 82
  testRunner.Then("user list page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 82
+#line 83
  testRunner.When("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 83
+#line 84
  testRunner.Then("Phone number is unchanged", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -481,7 +481,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Manager", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 86
+#line 87
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -501,31 +501,31 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 87
+#line 88
  testRunner.Given("manager user is on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 88
+#line 89
  testRunner.When("user clicks Details button for user with Administrator role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 89
+#line 90
  testRunner.And("user deselects the User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 90
- testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 91
- testRunner.Then("Regular is displayed in Role column in user list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 92
- testRunner.When("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("Regular is displayed in Role column in user list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 93
- testRunner.And("user selects the User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user clicks Details button for same user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 94
- testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user selects the User Manager checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 95
+ testRunner.And("user clicks Save button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 96
  testRunner.Then("Administrator is displayed in Role column in User List", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -543,7 +543,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel Edit User", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 98
+#line 99
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -563,16 +563,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 99
+#line 100
  testRunner.Given("manager user is on Edit User page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 100
+#line 101
  testRunner.When("user changes Full name, Phone number and Role", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 101
+#line 102
  testRunner.And("clicks Cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 102
+#line 103
  testRunner.Then("Full name, Phone number, and Role are not changed on User List page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -590,7 +590,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8704"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Edit User Log History", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 105
+#line 106
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -610,10 +610,10 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 106
+#line 107
  testRunner.Given("manager user is on Edit User page with log entries > 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 107
+#line 108
  testRunner.Then("Log History table is sorted by descending date sort order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -1,10 +1,12 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -307,15 +309,74 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenListIsSortedInDescendingOrderBy(string columnHeader)
         {
             Thread.Sleep(1000);
-            Assert.AreEqual(true, mainPage.CheckSort(columnHeader, "d"),"Device list is not sorted by \""+columnHeader+"\" in descending order." );
+            List<string> UnsortedColumnData = mainPage.GetColumnData(columnHeader);
+            List<string> SortedColumnData;
+
+            List<DateTime> UnsortedDateList = new List<DateTime>();
+            List<DateTime> SortedDateList;
+
+            //Sorting for date list
+            if (columnHeader.ToLower().Equals("pm due") || columnHeader.ToLower().Equals("last connected"))
+            {
+                //Converting into date list
+                UnsortedDateList.AddRange(UnsortedColumnData.Select(dateTime => DateTime.Parse(dateTime)));
+
+                SortedDateList = new List<DateTime>(UnsortedDateList);
+                SortedDateList.Sort();
+                //Reersing for descending order
+                SortedDateList.Reverse();
+
+                //Assertion
+                SortedDateList.Should().Equal(UnsortedDateList, "Asset list should be sorted by " + columnHeader + " in ascending order.");
+
+            }
+            else
+            {
+                SortedColumnData = new List<string>(UnsortedColumnData);
+                SortedColumnData.Sort((s1, s2) => s1.CompareTo(s2));
+
+                //Reversing for descending order
+                SortedColumnData.Reverse();
+
+                //Asserting
+                SortedColumnData.Should().Equal(UnsortedColumnData, "Asset list should be sorted by " + columnHeader + " in ascending order.");
+            }
+
+
+            //Assert.AreEqual(true, mainPage.CheckSort(columnHeader, "d"),"Device list is not sorted by \""+columnHeader+"\" in descending order." );
         }
 
         [Then(@"list is sorted in ascending order by ""(.*)""")]
         public void ThenListIsSortedInAscendingOrderBy(string columnHeader)
         {
             Thread.Sleep(1000);
-            bool IsSorted = mainPage.CheckSort(columnHeader, "a");
-            Assert.AreEqual(true, mainPage.CheckSort(columnHeader, "a"), "Device list is not sorted by \"" + columnHeader + "\" in ascending order.");
+            List<string> UnsortedColumnData = mainPage.GetColumnData(columnHeader);
+            List<string> SortedColumnData;
+
+            List<DateTime> UnsortedDateList = new List<DateTime>();
+            List<DateTime> SortedDateList;
+
+            //Sorting for date list
+            if(columnHeader.ToLower().Equals("pm due") || columnHeader.ToLower().Equals("last connected"))
+            {
+                //Converting into date list
+                UnsortedDateList.AddRange(UnsortedColumnData.Select(dateTime => DateTime.Parse(dateTime)));
+
+                SortedDateList = new List<DateTime>(UnsortedDateList);
+                SortedDateList.Sort();
+
+                //Asserting
+                SortedDateList.Should().Equal(UnsortedDateList, "Asset list should be sorted by " + columnHeader + " in ascending order.");
+
+            }
+            else
+            {
+                SortedColumnData = new List<string>(UnsortedColumnData);
+                SortedColumnData.Sort((s1, s2) => s1.CompareTo(s2));
+
+                //Asserting
+                SortedColumnData.Should().Equal(UnsortedColumnData, "Asset list should be sorted by " + columnHeader + " in ascending order.");
+            }  
         }
     }
 }

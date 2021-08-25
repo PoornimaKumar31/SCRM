@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -24,15 +25,15 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         LandingPage landingPage = new LandingPage();
         ReportsPage reportsPage = new ReportsPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        CVSMUsageReportPage cvsmUsageReportPage = new CVSMUsageReportPage();
-        CVSMFirmwareVersionReportPage cvsmFirmwareVersionReportPage = new CVSMFirmwareVersionReportPage();
+        FirmwareVersionPage firmwareVersionPage = new FirmwareVersionPage();
+        UsageReportPage usageReportPage = new UsageReportPage();
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportsPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.ReportsTab.JavaSciptClick();
         }
 
@@ -68,38 +69,39 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             List<string> ExpectedOptionList = new List<string>(ExpectedOptions.ToLower().Split(", "));
             List<string> ActualOptionList = new List<string>(reportsPage.ReportTypeDDL.GetAllOptionsFromDDL().Select(x => x.Text.ToLower()));
             ActualOptionList.Remove("select");
-            Assert.AreEqual(true,Enumerable.SequenceEqual(ActualOptionList,ExpectedOptionList),"Expected Options are not same as Actual");
+            ActualOptionList.Should().BeEquivalentTo(ExpectedOptionList, "Expected Options are not same as Actual");
         }
 
         [Then(@"CVSM Asset Usage Report label is displayed")]
         public void ThenCVSMAssetUsageReportLabelIsDisplayed()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMUsageReportPage.Locator.ReportTitleHeaderID)));
-            Assert.AreEqual(true, cvsmUsageReportPage.ReportTitleHeading.GetElementVisibility(), "User is not on the usage report page");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UsageReportPage.Locator.ReportTitleHeaderID)));
+            Assert.AreEqual(true, usageReportPage.ReportsTitleHeader.GetElementVisibility(), "User is not on the usage report page");
+            Assert.AreEqual(UsageReportPage.ExpectedValues.ReportTitleHeaderCVSM.ToLower(), usageReportPage.ReportsTitleHeader.Text.ToLower(),"CVSM usage report header is not matching the expected value.");
         }
 
         [Then(@"Print button is displayed")]
         public void ThenPrintButtonIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmUsageReportPage.PrintButton.GetElementVisibility(), "Print Button is not displayed");
+            Assert.AreEqual(true,usageReportPage.PrintButton.GetElementVisibility(), "Print Button is not displayed");
         }
 
         [Then(@"Number of Devices on Each Floor label is displayed")]
         public void ThenNumberOfDevicesOnEachFloorLabelIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmUsageReportPage.NumberOfDevicesOnEachFloorLabel.GetElementVisibility(), "Number of Devices on Each Floor label is not displayed");
+            Assert.AreEqual(true, usageReportPage.NumberOfdevicesOneachFloorLabel.GetElementVisibility(), "Number of Devices on Each Floor label is not displayed");
         }
 
         [Then(@"pie chart is displayed")]
         public void ThenPieChartIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmUsageReportPage.PieChart.GetElementVisibility(), "Pie Chart is not displayed");
+            Assert.AreEqual(true, usageReportPage.PieChart.GetElementVisibility(), "Pie Chart is not displayed");
         }
 
         [Then(@"Total Usage Details - Components label is displayed")]
         public void ThenTotalUsageDetails_ComponentsLabelIsDisplayed()
         {
-            Assert.AreEqual(true, cvsmUsageReportPage.TotalUsageDetailsLabel.GetElementVisibility(), "Total usage details label is not displayed");
+            Assert.AreEqual(true, usageReportPage.TotalUsageComponentsLabel.GetElementVisibility(), "Total usage details label is not displayed");
         }
 
         [Given(@"user is on CVSM Usage Report page")]
@@ -125,32 +127,32 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void WhenUserClicksUnitRowToggleArrow()
         {
             //clicking on the toggle button
-            cvsmUsageReportPage.UnitToggleArrow.Click();
+            usageReportPage.UnitToggleArrow.Click();
         }
 
         [Then(@"assets for the unit are hidden")]
         public void ThenAssetsForTheUnitAreHidden()
         {
-           Assert.AreEqual(CVSMUsageReportPage.ExpectedValue.Station1HiddenDeviceStyleAttribute,cvsmUsageReportPage.Station1DeviceContainer.GetAttribute("style"),"Asset for Unit is not hidden"); 
+           Assert.AreEqual(UsageReportPage.ExpectedValues.Station1HiddenDeviceStyleAttribute,usageReportPage.Station1DeviceContainer.GetAttribute("style"),"Asset for Unit is not hidden"); 
         }
 
         [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9368",Scenario = "CVSM Usage Report Print")]
         public void ThenThePrintButtonIsEnabled()
         {
-            Assert.IsTrue(cvsmUsageReportPage.PrintButton.Enabled,"Print Button is not enabled");
+            Assert.IsTrue(usageReportPage.PrintButton.Enabled,"Print Button is not enabled");
         }
 
         [Then(@"the Print button is enabled"), Scope(Tag = "TestCaseID_9371",Scenario = "CVSM Firmware Version Report Print")]
         public void ThenThePrintButtonIsEnabledFirmware()
         {
-            Assert.IsTrue(cvsmFirmwareVersionReportPage.PrintButton.Enabled, "Print Button is not enabled");
+            Assert.IsTrue(firmwareVersionPage.PrintButton.Enabled, "Print Button is not enabled");
         }
 
         [Then(@"assets are grouped by unit")]
         public void ThenAssetsAreGroupedByUnit()
         {
             SetMethods.ScrollToBottomofWebpage();
-            int unitCount = cvsmUsageReportPage.UnitsRowList.GetElementCount();
+            int unitCount = usageReportPage.UnitsRowList.GetElementCount();
             for (int row = 0; row < unitCount; row++)
             {
                 IWebElement deviceParent = PropertyClass.Driver.FindElement(By.Id("devices" + row)).FindElement(By.XPath(".."));
@@ -166,100 +168,91 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenAllTheDevicesWithinUnitAreDisplayed()
         {
             //Unit1
-            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit1Column, CVSMUsageReportPage.ExpectedValue.Station1UnitCVSMDeviceSerialNumbers);
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit1Column, UsageReportPage.ExpectedValues.Station1UnitCVSMDeviceSerialNumbers);
 
             //Unit2
-            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit2Column, CVSMUsageReportPage.ExpectedValue.NotSetUnitCVSMDevicesSerialNumber);
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit2Column, UsageReportPage.ExpectedValues.NotSetUnitCVSMDevicesSerialNumber);
 
             //Unit3
-            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit3Column, CVSMUsageReportPage.ExpectedValue.LuWenUnitCVSMDevicesSerialNumber);
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit3Column, UsageReportPage.ExpectedValues.LuWenUnitCVSMDevicesSerialNumber);
 
             //Unit4
-            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit4Column, CVSMUsageReportPage.ExpectedValue.ConnexCS1UnitCVSMDevicesSerialNumber);
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit4Column, UsageReportPage.ExpectedValues.ConnexCS1UnitCVSMDevicesSerialNumber);
 
             //Unit5
-            cvsmUsageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(cvsmUsageReportPage.SerialNumberUnit5Column, CVSMUsageReportPage.ExpectedValue.AndyDeskUnitCVSMDevicesSerialNumber);
+            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit5Column, UsageReportPage.ExpectedValues.AndyDeskUnitCVSMDevicesSerialNumber);
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string tableHeader)
         {
-            string ActualText, ExpectedText;
-            switch(tableHeader.ToLower().Trim())
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Trim().Equals("cvsm usage report table elements"))
             {
-                case "model":
-                    ActualText = cvsmUsageReportPage.ModelColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmUsageReportPage.ModelColumnHeader.GetElementVisibility(), "Model Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText,ActualText,"Column header is not as expected");
-                    break;
-                case "asset tag":
-                    ActualText = cvsmUsageReportPage.AssetTagColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmUsageReportPage.AssetTagColumnHeader.GetElementVisibility(), "Asset Tag Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
-                case "serial number":
-                    ActualText = cvsmUsageReportPage.SerialNumberColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmUsageReportPage.SerialNumberColumnHeader.GetElementVisibility(),"Serial Number Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
-                case "battery cycle count":
-                    ActualText = cvsmUsageReportPage.BatteryCycleCountColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmUsageReportPage.BatteryCycleCountColumnHeader.GetElementVisibility(), "Battry Cycle count Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
-                case "suretemp thermometer cycle count":
-                    ActualText = cvsmUsageReportPage.SureTempThermometerCycleCountColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmUsageReportPage.SureTempThermometerCycleCountColumnHeader.GetElementVisibility(), "SureTemp Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
-                case "nibp sensor cycle count":
-                    ActualText = cvsmUsageReportPage.NIBPSensorCycleCountCoulumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmUsageReportPage.NIBPSensorCycleCountCoulumnHeader.GetElementVisibility(), "NIBP Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
-                case "sphb cycle count":
-                    ActualText = cvsmUsageReportPage.SpHbCycleCountColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmUsageReportPage.SpHbCycleCountColumnHeader.GetElementVisibility(), "SPHB Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
-                case "components":
-                    ActualText = cvsmFirmwareVersionReportPage.ComponentColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmFirmwareVersionReportPage.ComponentColumnHeader.GetElementVisibility(), "Component header Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
+                IWebElement column = null;
+                switch (tableHeader.ToLower().Trim())
+                {
+                    case "model":
+                        column = usageReportPage.ModelHeading;
+                        break;
+                    case "asset tag":
+                        column = usageReportPage.AssetTagHeading;
+                        break;
+                    case "serial number":
+                        column = usageReportPage.SerialNumberHeading;
+                        break;
+                    case "battery cycle count":
+                        column = usageReportPage.BatteryCycleCountHeading;
+                        break;
+                    case "suretemp thermometer cycle count":
+                        column = usageReportPage.SureTempThermometerCycyleCountHeading;
+                        break;
+                    case "nibp sensor cycle count":
+                        column = usageReportPage.NIBPSensorCycleHeading;
+                        break;
+                    case "sphb cycle count":
+                        column = usageReportPage.SPHBCycleCountHeading;
+                        break;
+                    default:
+                        Assert.Fail(tableHeader + "is a invalid Column heading");
+                        break;
+                }
+                Assert.IsTrue(column.GetElementVisibility(), tableHeader + " Column Heading is not displayed");
+                Assert.AreEqual(tableHeader.ToLower().Trim(), column.Text.ToLower(), tableHeader + " Column header is not as expected");
+            }
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Trim().Equals("cvsm firmware version report elements"))
+            {
+                IWebElement column = null;
+                switch (tableHeader.ToLower().Trim())
+                {
+                    case "components":
+                        column = firmwareVersionPage.ComponentsHeading;
+                     break;
 
-                case "firmware version":
-                    ActualText = cvsmFirmwareVersionReportPage.FirmwareVersionColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmFirmwareVersionReportPage.FirmwareVersionColumnHeader.GetElementVisibility(), "firmware version Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
+                 case "firmware version":
+                        column = firmwareVersionPage.FirmwareVersionHeading;
+                     break;
 
-                case "total devices":
-                    ActualText = cvsmFirmwareVersionReportPage.TotalDevicesColumnHeader.Text.ToLower();
-                    ExpectedText = tableHeader.ToLower().Trim();
-                    Assert.IsTrue(cvsmFirmwareVersionReportPage.TotalDevicesColumnHeader.GetElementVisibility(), "Total Devices Column Heading is not displayed");
-                    Assert.AreEqual(ExpectedText, ActualText, "Column header is not as expected");
-                    break;
-
-                default:
-                    Assert.Fail("Expected Column heading is not valid");
-                    break;       
+                 case "total devices":
+                        column = firmwareVersionPage.TotaldevicesHeading;
+                     break;
+                 default:
+                        Assert.Fail(tableHeader + "is a invalid Column heading");
+                        break;
+                }
+                Assert.IsTrue(column.GetElementVisibility(), tableHeader + " Column Heading is not displayed");
+                Assert.AreEqual(tableHeader.ToLower().Trim(), column.Text.ToLower(), tableHeader + " Column header is not as expected");
+            }
+            //if test defination does not belong to any scenario
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
             }
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
         {
-            IList<IWebElement> columns = cvsmUsageReportPage.ReportHeadRow.FindElements(By.TagName("div"));
+            IList<IWebElement> columns = usageReportPage.TableHeader.FindElements(By.TagName("div"));
             Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
         }
 
@@ -273,8 +266,9 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"Firmware Version Report \(CVSM\) label is displayed")]
         public void ThenFirmwareVersionReportCVSMLabelIsDisplayed()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMFirmwareVersionReportPage.Locator.FirmwareVersionReportTitleLabelID)));
-            Assert.AreEqual(true, cvsmFirmwareVersionReportPage.FirmwareVersionReportTitleLabel.GetElementVisibility(), "User is not on the firmware version report page");
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(FirmwareVersionPage.Locators.FirmwareReportTitleID)));
+            Assert.IsTrue(firmwareVersionPage.FirmwareReportTitle.GetElementVisibility(), "User is not on the firmware version report page");
+            Assert.AreEqual(FirmwareVersionPage.ExpectedValues.ReportCVSMLabelText.ToLower(), firmwareVersionPage.FirmwareReportTitle.Text.ToLower(),"Firmware version label text is not matching with the expected value.");
         }
 
 
@@ -300,31 +294,36 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [When(@"user clicks Total row")]
         public void WhenUserClicksTotalRow()
         {
-            cvsmFirmwareVersionReportPage.TotalRow.Click();
+            //cvsmFirmwareVersionReportPage.TotalRow.Click();
+            firmwareVersionPage.TotalRow.Click();
         }
 
         [Then(@"rows below Total are displayed")]
         public void ThenRowsBelowTotalAreDisplayed()
         {
-            Assert.IsTrue(cvsmFirmwareVersionReportPage.TotalUnitAllDevice.GetElementVisibility(), "Rows are not displayed");
+            Assert.IsTrue(firmwareVersionPage.TotalRowDetails.GetElementVisibility(), "Rows are not displayed");
         }
 
         [When(@"user clicks unit row")]
         public void WhenUserClicksUnitRow()
         {
-            cvsmFirmwareVersionReportPage.AndyDeskUnit.Click();
-            cvsmFirmwareVersionReportPage.ConnexCS1Unit.Click();
-            cvsmFirmwareVersionReportPage.LuWenUnit.Click();
-            cvsmFirmwareVersionReportPage.Station1Unit.Click();
+            //cvsmFirmwareVersionReportPage.AndyDeskUnit.Click();
+            firmwareVersionPage.AndyDeskUnit.Click();
+            //cvsmFirmwareVersionReportPage.ConnexCS1Unit.Click();
+            firmwareVersionPage.ConnexCS1Unit.Click();
+            //cvsmFirmwareVersionReportPage.LuWenUnit.Click();
+            firmwareVersionPage.LuWenUnit.Click();
+            //cvsmFirmwareVersionReportPage.Station1Unit.Click();
+            firmwareVersionPage.Station1Unit.Click();
         }
 
         [Then(@"assets for unit are displayed")]
         public void ThenAssetsForUnitAreDisplayed()
         {
-            Assert.IsTrue(cvsmFirmwareVersionReportPage.AndyDeskUnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
-            Assert.IsTrue(cvsmFirmwareVersionReportPage.ConnexCS1UnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
-            Assert.IsTrue(cvsmFirmwareVersionReportPage.LuWenUnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
-            Assert.IsTrue(cvsmFirmwareVersionReportPage.Station1UnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(firmwareVersionPage.AndyDeskUnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(firmwareVersionPage.ConnexCS1UnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(firmwareVersionPage.LuWenUnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
+            Assert.IsTrue(firmwareVersionPage.Station1UnitAllDevices.GetElementVisibility(), "asset for unit are not displayed");
         }
 
 

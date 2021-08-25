@@ -41,6 +41,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Edit Asset Details dialog is displayed")]
         public void ThenEditAssetDetailsDialogWillDisplay()
         {
+            wait.Message = "Edit Asset Details dialog is not displayed within 10 seconds";
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(CVSMDeviceDetailsPage.Locators.EditAssetDetailsPopUpTitleID)));
             Assert.AreEqual(true,cvsmDeviceDetailsPage.EditAssetDetailsPopUpTitle.GetElementVisibility(), "Edit Asset Details dialog is not displayed.");
         }
         

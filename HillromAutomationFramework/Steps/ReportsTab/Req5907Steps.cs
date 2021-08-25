@@ -16,6 +16,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
         MainPage mainPage = new MainPage();
+        ReportsPage reportsPage = new ReportsPage();
         FirmwareStatusPage firmwareStatusPage = new FirmwareStatusPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         IDictionary<string, string> statusDefinationPairs;
@@ -27,9 +28,9 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
             mainPage.ReportsTab.JavaSciptClick();
-            firmwareStatusPage.AssetTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.CSMDeviceName);
-            firmwareStatusPage.ReportTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.Firmware);
-            firmwareStatusPage.GetReportButton.Click();
+            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            reportsPage.GetReportButton.Click();
         }
         
         [When(@"user clicks Information button")]
@@ -139,12 +140,13 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnRVFirmwareUpgradeStatusReportPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title,"L&T Automated Eye Test.");
             landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.ReportsTab.JavaSciptClick();
-            firmwareStatusPage.AssetTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.RV700DeviceName);
-            firmwareStatusPage.ReportTypeDropdown.SelectDDL(FirmwareStatusPage.ExpectedValues.Firmware);
-            firmwareStatusPage.GetReportButton.Click();
+            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
+            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            reportsPage.GetReportButton.Click();
         }
 
         [Then(@"RV700 Firmware Report Statuses dialog is displayed")]
@@ -208,10 +210,105 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"RV700 Firmware Upgrade Status page is displayed")]
         public void ThenRVFirmwareUpgradeStatusPageIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareStatusPage.InformationButton.GetElementVisibility(), "User is not on rv700 firmware upgrade status page");
+            Assert.AreEqual(true, firmwareStatusPage.InformationButton.GetElementVisibility(), "User is not on RV700 firmware upgrade status page");
         }
 
+        [Given(@"user is on Centrella Firmware Upgrade Status report page")]
+        public void GivenUserIsOnCentrellaFirmwareUpgradeStatusReportPage()
+        {
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.ReportsTab.JavaSciptClick();
+            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            reportsPage.GetReportButton.Click();
+        }
 
+        [Then(@"Centrella Firmware Report Statuses dialog is displayed")]
+        public void ThenCentrellaFirmwareReportStatusesDialogIsDisplayed()
+        {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(FirmwareStatusPage.Locators.InformationPopUpId)));
+            Assert.IsTrue(firmwareStatusPage.InformationPopUp.GetElementVisibility(),"Centrella firmware report status dialog is not displayed.");
+        }
+
+        [Then(@"Centrella Firmware Report Statuses header is displayed")]
+        public void ThenCentrellaFirmwareReportStatusesHeaderIsDisplayed()
+        {
+            Assert.IsTrue(firmwareStatusPage.InformationPopUpHeader.GetElementVisibility(),"Centrella firmware report header is not displayed.");
+            Assert.AreEqual(FirmwareStatusPage.ExpectedValues.CentrellaInformationPopUpHeaderText.ToLower(), firmwareStatusPage.InformationPopUpHeader.Text.ToLower(), "Centrella firmware report header is not matching the expected value.");
+        }
+
+        [Then(@"""(.*)"" status and definition of Centrella is displayed")]
+        public void ThenStatusAndDefinitionOfCentrellaIsDisplayed(string statusTitle)
+        {
+            //status and defination
+            string statusTabledata = firmwareStatusPage.InformationPopUpData.Text;
+            statusDefinationPairs = firmwareStatusPage.GetstatusTable(statusTabledata);
+            string ActualDefination = statusDefinationPairs[statusTitle];
+            string ExpectedDefinaton = null;
+            switch (statusTitle.ToLower().Trim())
+            {
+                case "started":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStartedDefination;
+                    break;
+                case "downloading":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaDownloadingDefination;
+                    break;
+                case "staging":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStagingDefination;
+                    break;
+                case "staging complete":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStagingCompleteDefination;
+                    break;
+                case "toggling":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaTogglingDefination;
+                    break;
+                case "toggle complete":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaTogglingCompleteDefination;
+                    break;
+                case "upgrade success":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaUpgradeSuccessDefination;
+                    break;
+                case "download failure":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaDownloadFailureDefination;
+                    break;
+                case "staging failure":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStagingFailureDefination;
+                    break;
+                case "staging inconsistent":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStagingInconsistentDefination;
+                    break;
+                case "toggle failure":
+                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaToggeleFailureDefination;
+                    break;
+                default:
+                    Assert.Fail(statusTitle + " does not exist in test data");
+                    break;
+            }
+            Assert.AreEqual(ExpectedDefinaton, ActualDefination, statusTitle + " defination does not match with expected text");
+        }
+
+        [Given(@"Centrella Firmware Report Statuses dialog is displayed")]
+        public void GivenCentrellaFirmwareReportStatusesDialogIsDisplayed()
+        {
+            firmwareStatusPage.InformationButton.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(FirmwareStatusPage.Locators.InformationPopUpId)));
+            Assert.IsTrue(firmwareStatusPage.InformationPopUp.GetElementVisibility(), "Centrella firmware report status dialog is not displayed.");
+        }
+
+        [Then(@"Centrella Firmware Report Statuses dialog closes")]
+        public void ThenCentrellaFirmwareReportStatusesDialogCloses()
+        {
+            Assert.IsFalse(firmwareStatusPage.InformationPopUp.GetElementVisibility(), "Centrella Firmware Report Statuses dialog is not closed");
+        }
+
+        [Then(@"Centrella Firmware Upgrade Status page is displayed")]
+        public void ThenCentrellaFirmwareUpgradeStatusPageIsDisplayed()
+        {
+            Assert.IsTrue(firmwareStatusPage.InformationButton.GetElementVisibility(), "User is not on Centrella firmware upgrade status page");
+        }
 
     }
 }

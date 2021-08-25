@@ -48,6 +48,7 @@ Scenario: Edit User Cancel Blank Full Name
 	Then user list page is displayed
 	And user is not edited
 
+	#Need to work
 @TestCaseID_9334 @UISID_8704
 Scenario: Edit User Phone Number
 	Given manager user is on Edit User page
