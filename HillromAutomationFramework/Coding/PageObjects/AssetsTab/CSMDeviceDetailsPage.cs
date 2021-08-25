@@ -56,6 +56,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LastCalibrationDateID = "lastCalDate";
             public const string CalibrationOverDueArrowID = "icon_overdue";
             public const string CalibrationOverDueTextID = "cal_overdue";
+            public const string CalenderXPath = "(//div[@class=\"col-xs-12\"])[3]";
+            public const string LeftArrowXPath = "//*[@src=\"./icon_kbd_arrow_left.svg\"]";
+            public const string RightArrowXPath = "//*[@src=\"./icon_kbd_arrow_right.svg\"]";
+            public const string CurrentCalenderYearXPath = "//*[@src=\"./icon_kbd_arrow_left.svg\"]/parent::span/parent::div";
+            public const string NextCalenderYearXPath = "//*[@src=\"./icon_kbd_arrow_right.svg\"]/parent::span/parent::div";
             //Newly Added
             public const string PMTabID = "mat-tab-label-0-0";
             public const string HostControllerGraphicXPath = "//*[@class=\"col-xs-7\"]/span/img";
@@ -86,8 +91,23 @@ namespace HillromAutomationFramework.Coding.PageObjects
             //Preventive maintainenece
             public const string PMNameHeadingText = "Name";
             public const string PMLastCalibrationText = "Last calibration";
-            
+
         }
+
+        [FindsBy(How = How.XPath, Using = Locators.NextCalenderYearXPath)]
+        public IWebElement NextCalenderYear { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.CurrentCalenderYearXPath)]
+        public IWebElement CurrentCalenderYear { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.RightArrowXPath)]
+        public IWebElement RightArrow { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.LeftArrowXPath)]
+        public IWebElement LeftArrow { get; set; }
+
+        [FindsBy(How = How.XPath, Using = Locators.CalenderXPath)]
+        public IWebElement CalenderXP { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.HostContollerColumnXPath)]
         public IWebElement HostContollerColumn { get; set; }
@@ -169,22 +189,22 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.LogFilesID)]
         public IList<IWebElement> LogFiles { get; set; }
 
-        [FindsBy(How =How.Id, Using = Locators.LogsNextButtonID)]
+        [FindsBy(How = How.Id, Using = Locators.LogsNextButtonID)]
         public IWebElement LogsNextButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LogsPreviousButtonID)]
         public IWebElement LogsPreviousButton { get; set; }
 
-        [FindsBy(How =How.Id,Using =Locators.LogsPageNumberID)]
+        [FindsBy(How = How.Id, Using = Locators.LogsPageNumberID)]
         public IWebElement LogsPageNumber { get; set; }
 
-        [FindsBy(How =How.Id,Using =Locators.LogsPageRequestButtonID)]
+        [FindsBy(How = How.Id, Using = Locators.LogsPageRequestButtonID)]
         public IWebElement LogsRequestButton { get; set; }
 
-        [FindsBy(How =How.XPath,Using =Locators.LogsPendingMessageXPath)]
+        [FindsBy(How = How.XPath, Using = Locators.LogsPendingMessageXPath)]
         public IWebElement LogsPendingMessage { get; set; }
 
-        [FindsBy(How =How.Id, Using =Locators.DateSortingID)]
+        [FindsBy(How = How.Id, Using = Locators.DateSortingID)]
         public IWebElement DateSorting { get; set; }
 
         [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]
@@ -193,7 +213,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
 
         //Preventive maintenance
-        [FindsBy(How =How.Id,Using =Locators.PMNameHeadngID)]
+        [FindsBy(How = How.Id, Using = Locators.PMNameHeadngID)]
         public IWebElement PMNameHeading { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.PMLastCalibrationHeadingId)]
@@ -267,7 +287,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             LastElementPreviousPage = DateTime.Parse(LogDateListPreviousPage[n].Text);
             LogsNextButton.Click();
             Thread.Sleep(3000);
-            
+
             if (count.Equals(n))
             {
                 if (FirstElementCurrentPage <= LastElementPreviousPage)

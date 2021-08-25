@@ -290,9 +290,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case "location":
                     labelValueElement = rv700DeviceDetailsPage.SummaryLocationValue;
                     break;
-                case "connection status":
-                    labelValueElement = rv700DeviceDetailsPage.SummaryConnectionStatusValue;
-                    break;
                 case "room/bed":
                     labelValueElement = rv700DeviceDetailsPage.SummaryRoomBedValue;
                     break;

@@ -138,6 +138,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [When(@"user navigates to next logs page")]
         public void WhenUserNavigatesToNextLogsPage()
         {
+            SetMethods.MoveTotheElement(cvsmDeviceDetailsPage.LogsNextButton, "Next page Icon");
             cvsmDeviceDetailsPage.LogsNextButton.Click();
         }
 

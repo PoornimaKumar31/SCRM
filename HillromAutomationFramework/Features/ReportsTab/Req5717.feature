@@ -30,7 +30,7 @@ Scenario: CSM Usage Report Elements
 Scenario: CSM Usage Report Table Elements
 	Given user is on CSM Usage Report page
 	Then Assets are grouped by unit
-	And all the devices within each unit are displayed
+	And all devices within each unit are displayed
 	And "Model" column heading is displayed
 	And "Asset tag" column heading is displayed
 	And "Serial number" column heading is displayed

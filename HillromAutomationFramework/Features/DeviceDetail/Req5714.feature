@@ -35,7 +35,6 @@ Scenario: RV700 Asset Data Summary
 	And summary "Location" label is displayed
 	And summary "Location" is "(not set)"
 	And summary "Connection status" label is displayed
-	#And summary "Connection status" is "Last connected on: 11 Jul 2021, 10:04 PM"
 	And summary "Room/Bed" label is displayed
 	And summary "Room/Bed" is "/"
 	And summary "Last firmware deployed" label is displayed
@@ -54,7 +53,7 @@ Scenario: RV700 Asset Details Connex Device
 Scenario: RV700 Asset Details Radio Newmar
 	Given user is on Component details page for RV700 Serial number "700090000023"
 	Then Radio "Name" is "Newmar"
-	Then Radio "Firmware version" is "2.00.02 A0001"
+	And Radio "Firmware version" is "2.00.02 A0001"
 	And Radio "Serial number" is "NA"
 	When user clicks Newmar toggle arrow
 	Then Radio "GUID" label is displayed
