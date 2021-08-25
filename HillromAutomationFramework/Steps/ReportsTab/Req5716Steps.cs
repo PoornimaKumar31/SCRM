@@ -8,7 +8,6 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.ReportsTab

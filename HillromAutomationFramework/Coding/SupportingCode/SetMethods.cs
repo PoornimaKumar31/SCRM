@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -10,6 +11,8 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 {
     public static class SetMethods
     {
+
+
         /// <summary>
         /// For entering text in text field.
         /// </summary>
@@ -17,7 +20,18 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// <param name="value">Text to enter.</param>
         public static void EnterText(this IWebElement element, string value)
         {
-            element.SendKeys(value);
+
+            try
+            {
+                element.SendKeys(value);
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e + " Exception Occured");
+
+            }
+
         }
 
         /// <summary>
@@ -26,8 +40,34 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// <param name="element">Webelement to double click.</param>
         public static void DoubleClick(this IWebElement element)
         {
-            Actions actions = new Actions(PropertyClass.Driver);
-            actions.DoubleClick(element).Perform();
+            try
+            {
+                Actions actions = new Actions(PropertyClass.Driver);
+                actions.DoubleClick(element).Perform();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e + " Exception Occured");
+            }
+        }
+
+        public static void ClickWebElement(this IWebElement element)
+        {
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            try
+            {
+                Actions actions = new Actions(PropertyClass.Driver);
+                actions.MoveToElement(element);
+                actions.Perform();
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
+                element.Click();
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e + " Exception Occured");
+            }
+
         }
 
         /// <summary>
@@ -36,8 +76,16 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// <param name="webElement">WebElement to click.</param>
         public static void JavaSciptClick(this IWebElement webElement)
         {
-            IJavaScriptExecutor executor = (IJavaScriptExecutor)PropertyClass.Driver;
-            executor.ExecuteScript("arguments[0].click()", webElement);
+            try
+            {
+                IJavaScriptExecutor executor = (IJavaScriptExecutor)PropertyClass.Driver;
+                executor.ExecuteScript("arguments[0].click()", webElement);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e + " Exceptions Occured");
+            }
+
         }
 
         /// <summary>
@@ -46,21 +94,29 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static void ScrollToBottomofWebpage()
         {
             long scrollHeight = 0;
-            do
+            try
             {
-                IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)(PropertyClass.Driver);
-                var newScrollHeight = (long)javaScriptExecutor.ExecuteScript("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;");
-                if (newScrollHeight == scrollHeight)
+                do
                 {
-                    break;
-                }
-                else
-                {
-                    scrollHeight = newScrollHeight;
-                    Thread.Sleep(400);
-                }
-            } while (true);
+                    IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)(PropertyClass.Driver);
+                    var newScrollHeight = (long)javaScriptExecutor.ExecuteScript("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;");
+                    if (newScrollHeight == scrollHeight)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        scrollHeight = newScrollHeight;
+                        Thread.Sleep(400);
+                    }
+                } while (true);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e+" Exception Occured");
+            }
         }
+
         /// <summary>
         /// Scroll till the element is visible and clickable
         /// </summary>
@@ -69,13 +125,21 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static void MoveTotheElement(IWebElement element,string elementName)
         {
             Actions actions = new Actions(PropertyClass.Driver);
-            actions.MoveToElement(element);
-            actions.Perform();
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
+            try
             {
-                Message = "The" + elementName + " is not visible and unable to click on it"
-            };
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
+                actions.MoveToElement(element);
+                actions.Perform();
+                WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
+                {
+                    Message = "The" + elementName + " is not visible and unable to click on it"
+                };
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e+" Exception Occured");
+            }
+            
         }
 
         /// <summary>
@@ -110,15 +174,8 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             {
                 if (element.Text != "Date")
                 {
-
                     FormatedDateList.Add(DateTime.Parse(element.Text));
-                    
                 }
-            }
-            Console.WriteLine("Now Normal List That displayed : \n\n");
-            foreach(DateTime a in FormatedDateList)
-            {
-                Console.WriteLine(a+"   ");
             }
 
             List<DateTime> SortedList = new List<DateTime>(FormatedDateList);
@@ -126,11 +183,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             if (typeOfSort.ToLower() == "d")
             {
                 SortedList.Reverse();
-            }
-            Console.WriteLine("Now Sorted List\n\n");
-            foreach(DateTime a in SortedList)
-            {
-                Console.WriteLine(a+"   ");
             }
 
             return SortedList.SequenceEqual(FormatedDateList);

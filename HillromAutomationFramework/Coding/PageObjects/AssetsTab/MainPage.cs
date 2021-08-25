@@ -254,6 +254,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
         //Search the Serial number and click on the device.
         public void SearchSerialNumberAndClick(string serialNumber)
         {
+            Thread.Sleep(1000);
+            SearchField.Clear();
             SearchField.EnterText(serialNumber);
             SearchField.EnterText(Keys.Enter);
             //Waiting for data to load
@@ -263,32 +265,32 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
 
 
-        //Function to check sorting
-        public bool CheckSort(string sortColumnName,string sortingOrder="a")
-        {
-            IList<IWebElement> DeviceTableHeadingElements = DeviceListTableHeader.FindElements(By.TagName("th"));
-            List<string> DeviceTableHeadingElementsText = new List<string>();
-            foreach (IWebElement columnHeading in DeviceTableHeadingElements)
-            {
-                DeviceTableHeadingElementsText.Add(columnHeading.Text.ToString().ToLower());
-            }
-            int columnNumber = DeviceTableHeadingElementsText.IndexOf(sortColumnName.ToLower().Trim())+1;
-            IList<IWebElement> ColumnData = DeviceListTableBody.FindElements(By.XPath("//td["+columnNumber+"]"));
-            List<string> ColumnDataText = new List<string>();
-            foreach (IWebElement rowdata in ColumnData)
-            {
-                string ColumnText = rowdata.Text;
-                ColumnDataText.Add(ColumnText);
-            }
-            List<string> UnsortedColumnData = new List<string>(ColumnDataText);
-            ColumnDataText.Sort((s1, s2) => s1.CompareTo(s2));
-            if (sortingOrder.ToLower().Contains("d"))
-            {
-                ColumnDataText.Reverse();
-            }
-            return (Enumerable.SequenceEqual(ColumnDataText, UnsortedColumnData));
+    
 
+        /// <summary>
+        /// Getting column data from the Asset list Page
+        /// </summary>
+        /// <param name="sortColumnName">Name of column from which data needs to be retrived</param>
+        /// <returns>List of Column Data</returns>
+        public List<string> GetColumnData(string sortColumnName)
+        {
+            //Finding the index of sorted column
+            IList<IWebElement> DeviceTableHeadingElements = DeviceListTableHeader.FindElements(By.TagName("th"));
+            List<string> DeviceTableHeadingElementsText = (DeviceTableHeadingElements.Select(columnHeading => columnHeading.Text.ToString().ToLower())).ToList();
+            int columnNumber = DeviceTableHeadingElementsText.IndexOf(sortColumnName.ToLower().Trim()) + 1;
+            
+            //Taking the column data from the application
+            IList<IWebElement> ColumnDataWebElementList = DeviceListTableBody.FindElements(By.XPath("//td[" + columnNumber + "]"));
+
+            List<string> ColumnData = new List<string>();
+            foreach(IWebElement rowdata in ColumnDataWebElementList)
+            {
+                ColumnData.Add(rowdata.Text);
+            }
+
+            return (ColumnData);
         }
+
 
         //function for checking display page result
         public bool DisplayPageResults(string[] PageInfo, int p0, int p1, int p2)

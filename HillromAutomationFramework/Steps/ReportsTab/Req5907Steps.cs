@@ -217,8 +217,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenUserIsOnCentrellaFirmwareUpgradeStatusReportPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.EdenHospitalMedicalCenterOrganizationTitle, "Centrella Orgaization");
-            landingPage.EdenHospitalMedicalCenterOrganizationFacilityMedicalCenter.Click();
+            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.ReportsTab.JavaSciptClick();
             reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);

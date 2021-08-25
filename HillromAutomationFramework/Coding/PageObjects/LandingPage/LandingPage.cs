@@ -40,9 +40,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string Organization2Facility0ServerID = "serv20";
             public const string Organization2Facility0DeviceID = "dev20";
 
-            //EDEN HOSPITAL MEDICAL CENTER 602412
-            public const string EdenHospitalMedicalCenterOrganizationTitleXpath = "//span[text()='" + ExpectedValues.EdenHospitalMedicalCenterOrganizationTitle + "']";
-            public const string EdenHospitalMedicalCenterOrganizationFacilityMedicalCenterXpath= EdenHospitalMedicalCenterOrganizationTitleXpath + "//parent::div//parent::div//span[text()='" + ExpectedValues.EdenHospitalMedicalCenterOrganizationFacilityMedicalCenter + "']";
+            //PSS Service Organization
+            public const string PSSServiceOrganizationTitleXpath = "//span[text()='" + ExpectedValues.PSSServiceOrganizationTitle + "']";
+            public const string PSSServiceOrganizationFacilityBatesvilleXpath = PSSServiceOrganizationTitleXpath + "//parent::div//parent::div//span[text()='" + ExpectedValues.PSSServiceOrganizationFacilityBatesville + "']";
 
             //Header elements
             public const string UserNameLogoID = "userprofile_logo";
@@ -67,9 +67,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LNTAutomatedEyeTestOrganizationTitle = "LT Automated Eye Test";
             public const string LNTAutomatedEyeTestOrganizationFacilityTest1 = "Test1";
 
-            //EDEN HOSPITAL MEDICAL CENTER 602412
-            public const string EdenHospitalMedicalCenterOrganizationTitle = "EDEN HOSPITAL MEDICAL CENTER 602412";
-            public const string EdenHospitalMedicalCenterOrganizationFacilityMedicalCenter = "EDEN HOSPITAL MEDICAL CENTER";
+            //PSS Service Organization
+            public const string PSSServiceOrganizationTitle = "PSS Service";
+            public const string PSSServiceOrganizationFacilityBatesville = "Batesville";
         }
 
 
@@ -135,12 +135,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locator.Organization2Facility0DeviceID)]
         public IWebElement Organization2Facility0Device { get; set; }
 
-        //EDEN HOSPITAL MEDICAL CENTER 602412
-        [FindsBy(How = How.XPath, Using = Locator.EdenHospitalMedicalCenterOrganizationTitleXpath)]
-        public IWebElement EdenHospitalMedicalCenterOrganizationTitle { get; set; }
+        //PSS Service organization
+        [FindsBy(How = How.XPath, Using = Locator.PSSServiceOrganizationTitleXpath)]
+        public IWebElement PSSServiceOrganizationTitle { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locator.EdenHospitalMedicalCenterOrganizationFacilityMedicalCenterXpath)]
-        public IWebElement EdenHospitalMedicalCenterOrganizationFacilityMedicalCenter { get; set; }
+        [FindsBy(How = How.XPath, Using = Locator.PSSServiceOrganizationFacilityBatesvilleXpath)]
+        public IWebElement PSSServiceOrganizationFacilityBatesville { get; set; }
 
     }
 }
