@@ -72,6 +72,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case 0:
                     //Selecting CSM device with no log files
                     landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.SearchSerialNumberAndClick("100010000005");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
@@ -80,6 +81,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case 10:
                     //selecting CSM device with 10 log files
                     landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.SearchSerialNumberAndClick("110010000019");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
@@ -87,6 +89,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case 24:
                     //selecting CSM device with 25 log files
                     landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.SearchSerialNumberAndClick("110010000000");
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
@@ -127,6 +130,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
+            SetMethods.MoveTotheElement(csmDeviceDetailsPage.LogsNextButton, "Next logs page");
             csmDeviceDetailsPage.LogsNextButton.Click();
             Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "1","User can navigate to the next page");
         }
