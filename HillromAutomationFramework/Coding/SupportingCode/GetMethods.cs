@@ -219,16 +219,18 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         }
 
         /// <summary>
-        /// Generate random mobile number.
+        /// Generated Random N Digit Number
         /// </summary>
-        /// <param name="length">mobile number size.</param>
-        /// <returns>Random mobile number of size</returns>
-        public static string GenerateRandomPhoneNumber(int MinLength, int MaxLength)
+        /// <param name="n">expected digits</param>
+        /// <returns>N Digit Random number</returns>
+        public static string GenerateNDigitRandomNumber(int n)
         {
-            Random ran = new Random();
-            int RandomNumber = ran.Next(MinLength, MaxLength);           
-            string Random4Digits = RandomNumber.ToString();
-            return Random4Digits;
+            Random randGen = new Random();
+            int minValue = (int)Math.Pow(10, n - 1);
+            int maxValue = (int)(Math.Pow(10, n) - 1);
+            int randomNumber = randGen.Next(minValue, maxValue);
+
+            return randomNumber.ToString();
         }
 
         public static string CleanString(string str)
