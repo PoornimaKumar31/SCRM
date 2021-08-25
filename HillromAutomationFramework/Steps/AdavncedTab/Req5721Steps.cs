@@ -21,7 +21,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string RandomFullName = null;
         string RandomPhoneNumber = null;
         string BlankFullName = "";
-        int PhoneNumberLength = 10000;
+        int MinLength = 1000;
+        int MaxLength = 9999;
         int RandomInvalidUsernameLength = 51;
         int RandomValidUsernameLength = 49;
         int DetailsButtonPosition;
@@ -246,7 +247,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             advancePage.PhoneTextField.Clear();
             //Generating phone number just by passing length of phone number to the method.
-            string Random4Digits = GetMethods.GenerateRandomPhoneNumber(PhoneNumberLength);
+            string Random4Digits = GetMethods.GenerateRandomPhoneNumber(MinLength, MaxLength);
             string Prefix = "+1315685";
             RandomPhoneNumber = Prefix + Random4Digits;
             advancePage.PhoneTextField.EnterText(RandomPhoneNumber);
@@ -296,7 +297,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             advancePage.PhoneTextField.Clear();
             
             //Generating Random 4 digits int number
-            string Random4Digits = GetMethods.GenerateRandomPhoneNumber(PhoneNumberLength);
+            string Random4Digits = GetMethods.GenerateRandomPhoneNumber(MinLength, MaxLength);
             string Prefix = "+1315685";
             RandomPhoneNumber = Prefix + Random4Digits;
 

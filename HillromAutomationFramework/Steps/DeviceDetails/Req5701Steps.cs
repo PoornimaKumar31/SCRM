@@ -57,37 +57,37 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             bool IsHostControllerGraphicDisplayed = csmDeviceDetailsPage.HostControllerGraphic.GetElementVisibility();
 
-            Assert.IsTrue(IsHostControllerGraphicDisplayed);
+            Assert.IsTrue(IsHostControllerGraphicDisplayed, "Host controller graphic is not displayed.");
             Assert.AreEqual(IndexOfName, IndexOfHostController, "Host controller graphic is not displayed in Name column.");
         }
         
 
        [Then(@"""(.*)"" is displayed in ""(.*)"" column")]
-        public void ThenIsDisplayedInColumn(string p0, string p1)
+        public void ThenIsDisplayedInColumn(string HostController, string NameColumn)
         {
             int IndexOfName = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMNameHeading);
             int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
-            string str = csmDeviceDetailsPage.HostContollerColumn.Text;
+            //string str = csmDeviceDetailsPage.HostContollerColumn.Text;
             Thread.Sleep(2000);
             bool IsHostControllerDisplayed = csmDeviceDetailsPage.HostController.GetElementVisibility();
 
-            Assert.IsTrue(IsHostControllerDisplayed);
+            Assert.IsTrue(IsHostControllerDisplayed, "Host controller is not displayed.");
             Assert.AreEqual(IndexOfName, IndexOfHostController, "Host controller is not displayed in Name column.");
         }
 
         [Then(@"""(.*)"" is ""(.*)"" on ""(.*)"" row in ""(.*)"" column")]
-        public void ThenIsOnRowInColumn(string p0, string p1, string p2, string p3)
+        public void ThenIsOnRowInColumn(string LastCalibration, string LastExpectedCalibrationDate, string HostControllerRow, string LastCalibrationColumn)
         {
             int LastCalibrationHeading = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMLastCalibrationHeading);
             int LastCalibrationDate = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.LastCalibrationDate);
-            Assert.AreEqual(LastCalibrationHeading, LastCalibrationDate, "Last calibration is not in Host controller row in Last calibration column");
+            Assert.AreEqual(LastCalibrationHeading, LastCalibrationDate, "Last calibration is not in Host controller row in Last calibration column.");
 
-            string str = csmDeviceDetailsPage.LastCalibrationDate.Text;
-            Assert.AreEqual(str, p1, "Last calibration is not 30 Sep 2015 on Host controller row in Last calibration column");           
+            string LastActualCalibrationDate = csmDeviceDetailsPage.LastCalibrationDate.Text;
+            Assert.AreEqual(LastActualCalibrationDate, LastExpectedCalibrationDate, "Last calibration is not 30 Sep 2015 on Host controller row in Last calibration column.");           
         }
 
         [Then(@"""(.*)"" message is displayed on ""(.*)"" row")]
-        public void ThenMessageIsDisplayedOnRow(string Message, string HostControllerRow)
+        public void ThenMessageIsDisplayedOnRow(string CalibrationMessage, string HostControllerRow)
         {
             string text = csmDeviceDetailsPage.CalibrationOverDueText.Text;
             string[] calibrationOverDue = text.Split();
@@ -97,15 +97,15 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             string LastCalibrationDateText = csmDeviceDetailsPage.LastCalibrationDate.Text;
             int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
-            if (calibrationOverdueText == Message)
+            if (calibrationOverdueText == CalibrationMessage)
             {
                 bool IsDisplayed = csmDeviceDetailsPage.CalibrationOverDueText.GetElementVisibility();
-                Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row");
+                Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
             }
-            else if (calibrationOverdueDate == Message)
+            else if (calibrationOverdueDate == CalibrationMessage)
             {
                 bool IsDisplayed = csmDeviceDetailsPage.LastCalibrationDate.GetElementVisibility();
-                Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row");
+                Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
             }
         }
 
@@ -114,7 +114,72 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             bool IsDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrowe.GetElementVisibility();
             int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
-            Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row");
+            Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
+        }
+
+        [Then(@"upward pointing black arrow is displayed on ""(.*)"" row")]
+        public void ThenUpwardPointingBlackArrowIsDisplayedOnRow(string HostControllerRow)
+        {
+            bool IsUpwardPointingArrowDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrowe.GetElementVisibility();
+            Assert.IsTrue(IsUpwardPointingArrowDisplayed, "Upward pointing black arrow is displayed on Host controller row.");
+            string color = csmDeviceDetailsPage.CalibrationOverDueArrowe.GetCssValue("color");
+
+            String[] hexValue = color.Replace("rgba(", "").Replace(")", "").Split(",");
+
+            int hexValue1 = int.Parse(hexValue[0].Trim());
+            int hexValue2 = int.Parse(hexValue[1].Trim());
+            int hexValue3 = int.Parse(hexValue[2].Trim());
+
+            string actualColour = GetMethods.ConvertRGBtoHex(hexValue1, hexValue2, hexValue3);
+
+            Assert.AreEqual("#444444", actualColour, "Upward pointing black arrow is displayed on Host controller row");
+        }
+
+        //3rd
+        [Given(@"user is on the Preventive maintenance tab")]
+        public void GivenUserIsOnThePreventiveMaintenanceTab()
+        {
+            GivenUserIsOnAssetListPage();
+            WhenUserSelectsCSMDeviceWithSerialNumber("100055940720");
+        }
+
+        [Then(@"""(.*)"" column heading is displayed")]
+        public void ThenColumnHeadingIsDisplayed(string ColumnHeading)
+        {
+            string str = csmDeviceDetailsPage.PMNameHeading.Text;
+            bool IsColumnHeadingDisplayed = csmDeviceDetailsPage.PMNameHeading.GetElementVisibility();
+            Assert.IsTrue(IsColumnHeadingDisplayed, ColumnHeading + " column heading is not displayed.");
+        }
+
+        [Then(@"""(.*)"" and current calendar year label is displayed")]
+        public void ThenAndCurrentCalendarYearLabelIsDisplayed(string LeftArrowSymbol)
+        {
+            Thread.Sleep(2000);
+            bool IsLeftArrowDisplayed = csmDeviceDetailsPage.LeftArrow.GetElementVisibility();
+            bool currentYearDisplayed = csmDeviceDetailsPage.CurrentCalenderYear.GetElementVisibility();
+
+            Assert.IsTrue(IsLeftArrowDisplayed, "Left arrow symbol is not displayed.");
+            Assert.IsTrue(currentYearDisplayed, "Current calendar year label is not displayed.");
+        }
+
+        [Then(@"next calendar year and ""(.*)"" is displayed")]
+        public void ThenNextCalendarYearAndIsDisplayed(string RigthArrowSymbol)
+        {
+            bool IsRightArrowDisplayed = csmDeviceDetailsPage.RightArrow.GetElementVisibility();
+            bool IsNextYearDisplayed = csmDeviceDetailsPage.NextCalenderYear.GetElementVisibility();
+
+            Assert.IsTrue(IsRightArrowDisplayed, "Right arrow symbol is not displayed.");
+            Assert.IsTrue(IsNextYearDisplayed, "Next calendar year is not displayed.");
+        }
+
+        [Then(@"current month is displayed followed by the other months")]
+        public void ThenCurrentMonthIsDisplayedFollowedByTheOtherMonths()
+        {
+            bool IsCalenderDisplayed = csmDeviceDetailsPage.CalenderXP.GetElementVisibility();
+            string[] text = csmDeviceDetailsPage.CalenderXP.Text.Split();
+            DateTime dt = DateTime.Now;
+            string[] calArray = { };
+
         }
     }
 }
