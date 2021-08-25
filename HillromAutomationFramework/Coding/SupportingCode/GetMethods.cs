@@ -219,9 +219,9 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         }
 
         /// <summary>
-        /// Generated Random N Digit Number
+        /// Generates Random N Digit Number
         /// </summary>
-        /// <param name="n">expected digits</param>
+        /// <param name="n">Number of Digits Required</param>
         /// <returns>N Digit Random number</returns>
         public static string GenerateNDigitRandomNumber(int n)
         {
