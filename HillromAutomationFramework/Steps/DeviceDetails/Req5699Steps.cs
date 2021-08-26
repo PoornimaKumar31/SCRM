@@ -135,55 +135,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "1","User can navigate to the next page");
         }
 
-        [When(@"user clicks Request Logs button")]
-        public void WhenUserClicksRequestLogsButton()
-        {
-            csmDeviceDetailsPage.LogsRequestButton.Click();
-        }
-
-        [Then(@"Received, Pending or Executing message is displayed")]
-        public void ThenPendingOrExecutingMessageIsDisplayed()
-        {
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Received, Pending or Executing message is not displayed.");
-            Assert.AreEqual(true, csmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files request message does not match the expected value.");
-        }
-
-        [Then(@"user can navigate to next logs page")]
-        public void ThenUserCanNavigateToNextLogsPage()
-        {
-            csmDeviceDetailsPage.LogsNextButton.Click();
-            Thread.Sleep(1000);
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "2","User cannot navigate to the next page");
-        }
-
-        [Given(@"Received, Pending or Executing message is displayed")]
-        public void GivenPendingOrExecutingMessageIsDisplayed()
-        {
-            if(!(csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility()))
-            {
-                //create a log file request if not there
-                csmDeviceDetailsPage.LogsRequestButton.Click();
-                Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
-                Assert.AreEqual(true, csmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files request message does not match the expected value.");
-            }
-        }
-
-        [When(@"user navigates to next logs page")]
-        public void WhenUserNavigatesToNextLogsPage()
-        {
-            csmDeviceDetailsPage.LogsNextButton.Click();
-            Thread.Sleep(1000);
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "2","User navigates to the next page.");
-        }
-
-        [When(@"user navigates to previous logs page")]
-        public void WhenUserNavigatesToPreviousLogsPage()
-        {
-            csmDeviceDetailsPage.LogsPreviousButton.Click();
-            Thread.Sleep(1000);
-            Assert.AreEqual(true, csmDeviceDetailsPage.LogsPageNumber.Text == "1", "User cannot navigate to the previous page.");
-        }
-
         [Then(@"no logs for CSM device are displayed")]
         public void ThenNoLogsForCSMDeviceAreDisplayed()
         {

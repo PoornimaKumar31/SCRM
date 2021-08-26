@@ -1022,6 +1022,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 194
  testRunner.And("Nellcor \"Hardware version\" is \"Nellcor_HW\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 195
+ testRunner.And("Nellcor \"Serial number\" is \"NELLCOR_SN\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 196
  testRunner.When("user clicks Nellcor toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -1130,7 +1133,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Radio Lamarr \"Name\" is \"Radio-Lamarr\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 213
- testRunner.Then("Radio Lamarr \"Serial number\" is \"987654321\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Radio Lamarr \"Serial number\" is \"987654321\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 214
  testRunner.And("Radio Lamarr \"Usage value\" is \"N/A\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1151,7 +1154,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Radio Lamarr \"Radio IP Address\" is \"172.21.33.52\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 220
- testRunner.Then("Radio Lamarr \"MAC Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Radio Lamarr \"MAC Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 221
  testRunner.And("Radio Lamarr \"MAC Address\" is \"00:1A:FA:02:78:6A\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1245,7 +1248,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Radio Newmar \"Radio IP Address\" is \"172.21.34.53\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 242
- testRunner.Then("Radio Newmar \"MAC Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Radio Newmar \"MAC Address\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 243
  testRunner.And("Radio Newmar \"MAC Address\" is \"00:17:23:E1:20:56\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1423,7 +1426,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Component details page for CVSM Serial number \"103001220215\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 272
- testRunner.Then("Details Summary CVSM image is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("CVSM image is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 273
  testRunner.And("Details Summary \"Asset name\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

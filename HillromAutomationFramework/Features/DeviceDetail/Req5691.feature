@@ -20,21 +20,6 @@ Scenario: CVSM Log Files 10 Files
 	Then 10 logs for CVSM device are displayed
 	And user cannot navigate to next logs page
 
-@TestCaseID_8956 @UISID_8678 @UISID_8669
-Scenario: CVSM Log Files 10 Files Request Next
-	Given user is on CVSM Log Files page with 10 logs
-	When user clicks Request Logs button
-	Then Received, Pending or Executing message is displayed
-	And user can navigate to next logs page
-
-@TestCaseID_8957 @UISID_8678 @UISID_8669
-Scenario: CVSM Log Files 10 Files Request Previous
-	Given user is on CVSM Log Files page with 10 logs
-	And Received, Pending or Executing message is displayed
-	When user navigates to next logs page
-	And user navigates to previous logs page
-	Then Received, Pending or Executing message is displayed
-
 @TestCaseID_8958 @UISID_8678 @UISID_8669
 Scenario: CVSM Log Files 24 Files All Pages
 	Given user is on CVSM Log Files page with 24 logs

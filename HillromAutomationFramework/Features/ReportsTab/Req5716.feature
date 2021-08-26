@@ -17,7 +17,7 @@ Scenario: CVSM Usage Report Elements
 	And CVSM Asset type is selected in Asset type dropdown
 	And Usage Report type is selected
 	When user clicks Get report button
-	Then CVSM Asset Usage Report label is displayed
+	Then Asset Usage Report (CVSM) label is displayed
 	And Print button is displayed
 	And Number of Devices on Each Floor label is displayed
 	And pie chart is displayed

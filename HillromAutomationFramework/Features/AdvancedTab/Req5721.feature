@@ -54,7 +54,7 @@ Scenario: Edit User Phone Number
 	When user enters phone number "1234567890"
 	Then phone number error message is displayed
 	And Save button is disabled
-	When user enters a plus sign and a random 11-digit Phone number
+	When user enters a plus sign and a valid random 11-digit Phone number
 	Then phone number error message is not displayed
 	And Save button is enabled
 	When user clicks Save button

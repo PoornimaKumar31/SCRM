@@ -107,8 +107,9 @@ Scenario: CSM Review Action Elements
 	And Date or Time of push label is displayed
 	And Immediately label is displayed
 	And Immediately label is by default selected
-	And Checkbox is displayed for Immediately And it is selected
-	And Checkbox is displayed for schedule
+	And Radio Button is displayed for Immediately 
+	And it is selected
+	And Radio Button is displayed for schedule
 	And Schedule label is displayed
 	And Select update indicator is not highlighted
 	And Select assets indicator is not highlighted

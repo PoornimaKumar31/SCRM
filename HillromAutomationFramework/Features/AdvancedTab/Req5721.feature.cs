@@ -334,7 +334,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Save button is disabled", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
- testRunner.When("user enters a plus sign and a random 11-digit Phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters a plus sign and a valid random 11-digit Phone number", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 58
  testRunner.Then("phone number error message is not displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

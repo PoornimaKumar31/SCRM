@@ -192,7 +192,7 @@ Scenario: CVSM Asset Details SpO2 Nellcor2
 	Then Nellcor "Name" is "Nellcor"
 	And Nellcor "Firmware version" is "1.00.14"
 	And Nellcor "Hardware version" is "Nellcor_HW"
-	#And Nellcor "Serial number" is "0000011"
+	And Nellcor "Serial number" is "NELLCOR_SN"
 	When user clicks Nellcor toggle arrow
 	Then Nellcor "Model number" label is displayed
 	And Nellcor "Model number" is "405712"
@@ -210,14 +210,14 @@ Given user is on Component details page for CVSM Serial number "100042631718"
 Scenario: CVSM Asset Details Radio Lamarr
 	Given user is on Component details page for CVSM Serial number "100073764115"
 	Then Radio Lamarr "Name" is "Radio-Lamarr"
-	Then Radio Lamarr "Serial number" is "987654321"
+	And Radio Lamarr "Serial number" is "987654321"
 	And Radio Lamarr "Usage value" is "N/A"
 	When user clicks Radio-Lamarr toggle arrow
 	Then Radio Lamarr "Access point MAC address" label is displayed
 	And Radio Lamarr "Access point MAC address" is "78:BC:1A:B4:2A:24"
 	And Radio Lamarr "Radio IP Address" label is displayed
 	And Radio Lamarr "Radio IP Address" is "172.21.33.52"
-	Then Radio Lamarr "MAC Address" label is displayed
+	And Radio Lamarr "MAC Address" label is displayed
 	And Radio Lamarr "MAC Address" is "00:1A:FA:02:78:6A"
 	And Radio Lamarr "Model Number" label is displayed
 	And Radio Lamarr "Model Number" is "Lamarr_REF2"
@@ -239,7 +239,7 @@ Scenario: CVSM Asset Details Radio Newmar
 	And Radio Newmar "Access point MAC address" is "78:BC:1A:9F:FD:C1"
 	And Radio Newmar "Radio IP Address" label is displayed
 	And Radio Newmar "Radio IP Address" is "172.21.34.53"
-	Then Radio Newmar "MAC Address" label is displayed
+	And Radio Newmar "MAC Address" label is displayed
 	And Radio Newmar "MAC Address" is "00:17:23:E1:20:56"
 	And Radio Newmar "Model Number" label is displayed
 	And Radio Newmar "Model Number" is "ABN_REF"
@@ -269,7 +269,7 @@ Scenario: CVSM Asset Details Host Controller
 @TestCaseID_9493 @UISID_8672 @UISID_8679
 Scenario: CVSM Asset Data Summary1
 	Given user is on Component details page for CVSM Serial number "103001220215"
-	Then Details Summary CVSM image is displayed
+	Then CVSM image is displayed
 	And Details Summary "Asset name" label is displayed
 	And Details Summary "Asset name" is "CVSM"
 	And Details Summary "Serial number" label is displayed

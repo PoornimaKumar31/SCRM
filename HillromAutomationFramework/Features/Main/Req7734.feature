@@ -6,7 +6,7 @@ Feature: Software Requirement 7734
 Scenario: Centrella Error Pop-up Dialog
 	Given user is on device details page for Centrella Serial number "PY673002"
 	When user clicks Error codes tab
-	And clicks expension arrow on a row in Error codes table
+	And clicks expansion arrow on a row in Error codes table
 	Then Centrella error code pop-up dialog is displayed
 	And "Error code:" title label is displayed
 	And error code title value is displayed

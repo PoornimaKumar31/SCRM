@@ -109,45 +109,6 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL,cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"),"Button is not disabled");
         }
 
-        [When(@"user clicks Request Logs button")]
-        public void WhenUserClicksRequestLogsButton()
-        {
-            cvsmDeviceDetailsPage.LogsRequestButton.Click();
-        }
-
-        [Then(@"Received, Pending or Executing message is displayed")]
-        public void ThenPendingOrExecutingMessageIsDisplayed()
-        {
-            Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Received, Pending or Executing message is not displayed");
-            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Displayed message is not matching with the expected");
-        }
-
-        [Then(@"user can navigate to next logs page")]
-        public void ThenUserCanNavigateToNextLogsPage()
-        {
-            Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.NextEnableImageURL, cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
-        }
-
-        [Given(@"Received, Pending or Executing message is displayed")]
-        public void GivenPendingOrExecutingMessageIsDisplayed()
-        {
-            Assert.AreEqual(true,cvsmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Received, Pending or Executing message is not displayed");
-            Assert.AreEqual(true, cvsmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Displayed message is not as expected");
-        }
-
-        [When(@"user navigates to next logs page")]
-        public void WhenUserNavigatesToNextLogsPage()
-        {
-            SetMethods.MoveTotheElement(cvsmDeviceDetailsPage.LogsNextButton, "Next page Icon");
-            cvsmDeviceDetailsPage.LogsNextButton.Click();
-        }
-
-        [When(@"user navigates to previous logs page")]
-        public void WhenUserNavigatesToPreviousLogsPage()
-        {
-            cvsmDeviceDetailsPage.LogsPreviousButton.Click();
-        }
-
         [Then(@"(.*) newest logs are displayed")]
         public void GivenNewestLogsAreDisplayed(int num)
         {

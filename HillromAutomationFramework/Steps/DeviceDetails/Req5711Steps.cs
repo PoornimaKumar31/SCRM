@@ -104,45 +104,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.NextDisableImageURL, rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
         }
-            
-        [When(@"user clicks Request Logs button")]
-        public void WhenUserClicksRequestLogsButton()
-        {
-            rv700DeviceDetailsPage.LogsRequestButton.Click();
-        }
-
-        [Then(@"Received, Pending or Executing message is displayed")]
-        public void ThenPendingOrExecutingMessageIsDisplayed()
-        {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Reciving, Pending or Executing message is not displayed");
-            Assert.AreEqual(true, rv700DeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files status message is not matching with the expected value.");
-        }
-
-        [Then(@"user can navigate to next logs page")]
-        public void ThenUserCanNavigateToNextLogsPage()
-        {
-            Assert.AreEqual(RV700DeviceDetailsPage.ExpectedValues.NextEnableImageURL, rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Button is not disabled");
-        }
-
-        [Given(@"Received, Pending or Executing message is displayed")]
-        public void GivenPendingOrExecutingMessageIsDisplayed()
-        {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.LogsPendingMessage.Displayed,"Pending or executing message is not displayed");
-        }
-
-        [When(@"user navigates to next logs page")]
-        public void WhenUserNavigatesToNextLogsPage()
-        {
-            rv700DeviceDetailsPage.LogsNextButton.Click();
-        }
-
-        [When(@"user navigates to previous logs page")]
-        public void WhenUserNavigatesToPreviousLogsPage()
-        {
-            rv700DeviceDetailsPage.LogsPreviousButton.Click();
-        }
-
-
+        
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
         {

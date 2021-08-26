@@ -1274,8 +1274,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " is not as expected.");
         }
 
-        [Then(@"Details Summary CVSM image is displayed")]
-        public void ThenDetailsSummaryCVSMImageIsDisplayed()
+        [Then(@"CVSM image is displayed")]
+        public void ThenCVSMImageIsDisplayed()
         {
             Assert.IsTrue(CVSMassetListPage.DetailsSummaryCVSMImage.GetElementVisibility(), "CVSM Image is not displayed");
         }

@@ -41,7 +41,7 @@ namespace HillromAutomationFramework.Steps.Main
             centrellaDeviceDetailsPage.ErrorCodeTab.Click();
         }
 
-        [When(@"clicks expension arrow on a row in Error codes table")]
+        [When(@"clicks expansion arrow on a row in Error codes table")]
         public void WhenClicksOnARowInErrorCodesTable()
         {
             centrellaDeviceDetailsPage.ErrorRowExpenstionArrow.Click();

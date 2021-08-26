@@ -452,14 +452,20 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, updateReviewActionPage.ImmediateCheckbox.Selected, "Immediately radio button is not selected");
         }
 
-        [Then(@"Checkbox is displayed for Immediately And it is selected")]
-        public void ThenCheckboxIsDisplayedForImmediatelyAndItIsSelected()
+        [Then(@"Radio Button is displayed for Immediately")]
+        public void ThenCheckboxIsDisplayedForImmediately()
         {
             Assert.AreEqual(true, updateReviewActionPage.ImmediateCheckbox.GetElementVisibility(), "Checkbox is not displayed");
+            
+        }
+
+        [Then(@"it is selected")]
+        public void AndItIsSelected()
+        {
             Assert.AreEqual(true, updateReviewActionPage.ImmediateCheckbox.Selected, "CheckBox is not selected");
         }
 
-        [Then(@"Checkbox is displayed for schedule")]
+        [Then(@"Radio Button is displayed for schedule")]
         public void ThenCheckboxIsDisplayedForSchedule()
         {
             Assert.AreEqual(true, updateReviewActionPage.ScheduleCheckbox.GetElementVisibility(), "Schedule checkbox is not displayed");

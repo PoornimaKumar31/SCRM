@@ -72,7 +72,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             ActualOptionList.Should().BeEquivalentTo(ExpectedOptionList, "Expected Options are not same as Actual");
         }
 
-        [Then(@"CVSM Asset Usage Report label is displayed")]
+        [Then(@"Asset Usage Report \(CVSM\) label is displayed")]
         public void ThenCVSMAssetUsageReportLabelIsDisplayed()
         {
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UsageReportPage.Locator.ReportTitleHeaderID)));

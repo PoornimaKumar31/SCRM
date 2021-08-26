@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks Error codes tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("clicks expension arrow on a row in Error codes table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("clicks expansion arrow on a row in Error codes table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
  testRunner.Then("Centrella error code pop-up dialog is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

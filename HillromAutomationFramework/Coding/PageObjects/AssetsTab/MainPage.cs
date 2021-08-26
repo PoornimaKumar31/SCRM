@@ -60,6 +60,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LocationHeadingID = "loc";
             public const string LastConnectedHeadingID = "last";
             public const string PMDueHeadingID = "calibration";
+            public const string StatusHeadingID = "status";
 
             //rows
             public const string DeviceTypeXPath = "//tbody[@id='tbody_assets']/tr[1]/td[1]";
@@ -99,6 +100,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string LocationHeadingText = "Location";
             public const string LastConnectedHeadingText = "Last connected";
             public const string PmDueHeadingText = "PM due";
+            public const string StatusHeadingText = "Status";
+
 
             //Asset type dropdowm elements
             public const string AllAssetsText = "All assets";
@@ -133,6 +136,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             PageFactory.InitElements(PropertyClass.Driver, this);
         }
+
+        [FindsBy(How = How.Id, Using = Locators.StatusHeadingID)]
+        public IWebElement StatusHeading { get; set; }
 
         [FindsBy(How = How.ClassName, Using = Locators.DeviceFirmwareVersionClassName)]
         public IWebElement DeviceFirmwareVersion { get; set; }

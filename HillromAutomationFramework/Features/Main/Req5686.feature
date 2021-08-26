@@ -12,6 +12,7 @@ Scenario: Assets List Elements
 	And Asset type dropdown is displayed
 	And Search field is displayed
 	And "Type" column heading is displayed
+	And "Status" column heading is displayed
 	And "Firmware" column heading is displayed
 	And "Config file" column heading is displayed
 	And "Asset tag" column heading is displayed
@@ -26,7 +27,7 @@ Scenario: Assets List Elements
 Scenario: Assets List Elements Table Columns
 	Given the user is on Landing page
 	When user clicks Facility panel for an organization
-	And "Type" label is in column 1 
+	Then "Type" label is in column 1 
 	And "Status" label is in column 2
 	And "Firmware" label is in column 3
 	And "Config file" label is in column 4

@@ -242,7 +242,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Assert.IsTrue(IsPhoneNumberErrorMessage, "phone number error message is not displayed");
         }
 
-        [When(@"user enters a plus sign and a random 11-digit Phone number")]
+        [When(@"user enters a plus sign and a valid random 11-digit Phone number")]
         public void WhenUserEntersPhoneNumberStartingWithFollowedByTenDigitsMobileNumber()
         {
             advancePage.PhoneTextField.Clear();

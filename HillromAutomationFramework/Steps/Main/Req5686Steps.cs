@@ -83,6 +83,10 @@ namespace HillromAutomationFramework.Steps.Main
                     heading = mainPage.TypeHeading;
                     ExpectedText = MainPage.ExpectedValues.TypeHeadingText;
                     break;
+                case "status":
+                    heading = mainPage.StatusHeading;
+                    ExpectedText = MainPage.ExpectedValues.StatusHeadingText;
+                    break;
                 case "firmware":
                     heading = mainPage.FirmwareHeading;
                     ExpectedText = MainPage.ExpectedValues.FirmwareHeadingText;
@@ -119,8 +123,8 @@ namespace HillromAutomationFramework.Steps.Main
         }
 
 
-        [When(@"""(.*)"" label is in column (.*)")]
-        public void WhenColumnHeadingIsDisplayed(string columnName, int columnNumber)
+        [Then(@"""(.*)"" label is in column (.*)")]
+        public void ThenColumnHeadingIsDisplayed(string columnName, int columnNumber)
         {
             //Entire row
             IList<IWebElement> DeviceTableHeadingElements = mainPage.DeviceListTableHeader.FindElements(By.TagName("th"));
