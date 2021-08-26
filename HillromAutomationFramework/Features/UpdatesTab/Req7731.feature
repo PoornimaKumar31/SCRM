@@ -84,25 +84,24 @@ Scenario: Centrella Review Action Page
 	And clicks Next button
 	Then Centrella Review Action page is displayed
 
-#@TestCaseID_9951 @UISID_8698
-#Scenario: Centrella Review Action Elements
-#	Given user is on Centrella Review Action page
-#	Then Item to push label is displayed
-#	And Item to push value is displayed
-#	And Destinations label is displayed
-#	And Destinations value is displayed
-#	And Date or Time of push label is displayed
-#	And Immediately label is displayed
-#	And Immediately label is by default selected
-#	And radio button is displayed for Immediately
-#	And it is selected
-#	And radio button is displayed for schedule
-#	And Schedule label is displayed
-#	And Select update indicator is not highlighted
-#	And Select assets indicator is not highlighted
-#	And Review action indicator is highlighted
-#	And Previous button is enabled
-#	And Confirm button is enabled
+@TestCaseID_9951 @UISID_8698
+Scenario: Centrella Review Action Elements
+	Given user is on Centrella Review Action page
+	Then Item to push label is displayed
+	And Item to push value is displayed
+	And Destinations label is displayed
+	And Destinations value is displayed
+	And Date or Time of push label is displayed
+	And Immediately label is displayed
+	And radio button is displayed for Immediately
+	And it is selected
+	And radio button is displayed for schedule
+	And Schedule label is displayed
+	And Select update indicator is not highlighted
+	And Select assets indicator is not highlighted
+	And Review action indicator is highlighted
+	And Previous button is enabled
+	And Confirm button is enabled
 
 @TestCaseID_9952 @UISID_8698
 Scenario: Centrella Review Action Confirm

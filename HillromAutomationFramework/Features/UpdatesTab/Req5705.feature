@@ -106,7 +106,6 @@ Scenario: CSM Review Action Elements
 	And Destinations value is displayed
 	And Date or Time of push label is displayed
 	And Immediately label is displayed
-	And Immediately label is by default selected
 	And Radio Button is displayed for Immediately 
 	And it is selected
 	And Radio Button is displayed for schedule

@@ -1,6 +1,9 @@
 ﻿using HillromAutomationFramework.Coding.SupportingCode;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
+using System;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
@@ -142,5 +145,103 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.XPath, Using = Locator.PSSServiceOrganizationFacilityBatesvilleXpath)]
         public IWebElement PSSServiceOrganizationFacilityBatesville { get; set; }
 
+        public enum Organizations
+        {
+            LNTAutomatedtestEast,
+            LNTAutomatedTest,
+            PSSService,
+            LNTAutomatedEyeTest
+        }
+
+        public enum Facility
+        {
+            Test1,
+            Test2,
+            Test4,
+            Batesville,
+        }
+
+
+
+
+        public void LoginAndSelectPreferredOrganization(LandingPage.Organizations organizations,LandingPage.Facility facility)
+        {
+            IWebElement facilityWebElement=null;
+
+            LoginPage loginPage = new LoginPage();
+            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
+            {
+                Message = "Roll up page is not displayed"
+            };
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.UrlContains("rollup-page"));
+
+            //Select the required Organization and Facility under that organization
+            switch(organizations)
+            {
+                //L&T Automated Test East
+                case LandingPage.Organizations.LNTAutomatedtestEast:
+                        switch(facility)
+                        {
+                            case LandingPage.Facility.Test4:
+                                facilityWebElement = LNTAutomatedTestEastOrganizationFacilityPanelTest4Title;
+                                break;
+                            default:
+                                Assert.Fail(facility.ToString()+" facility does not exist in organization "+organizations.ToString());
+                                break;
+                        }
+                 break;
+                //L&T Automated Test 
+                case LandingPage.Organizations.LNTAutomatedTest:
+                    switch (facility)
+                    {
+                        case LandingPage.Facility.Test1:
+                            facilityWebElement = LNTAutomatedTestOrganizationFacilityTest1Title;
+                            break;
+                        case LandingPage.Facility.Test2:
+                            facilityWebElement = LNTAutomatedTestOrganizationFacilityTest2Title;
+                            break;
+                        default:
+                            Assert.Fail(facility.ToString() + " facility does not exist in organization " + organizations.ToString());
+                            break;
+                    }
+                    break;
+                //PSS Service
+                case LandingPage.Organizations.PSSService:
+                    switch (facility)
+                    {
+                        case LandingPage.Facility.Batesville:
+                            facilityWebElement = PSSServiceOrganizationFacilityBatesville;
+                            break;
+                        default:
+                            Assert.Fail(facility.ToString() + " facility does not exist in organization " + organizations.ToString());
+                            break;
+                    }
+                    break;
+                //L&T Automated Eye Test
+                case LandingPage.Organizations.LNTAutomatedEyeTest:
+                    switch (facility)
+                    {
+                        case LandingPage.Facility.Test1:
+                            facilityWebElement =LNTAutomatedEyeTestOrganizationFacilityTest1Title;
+                            break;
+                        default:
+                            Assert.Fail(facility.ToString() + " facility does not exist in organization " + organizations.ToString());
+                            break;
+                    }
+                    break;
+
+                default:
+                    Assert.Fail(organizations.ToString() + " organization does not exists.");
+                    break;
+            }
+
+            //Move the element till visible
+            SetMethods.MoveTotheElement(facilityWebElement, "Organization " + organizations.ToString() + " and facility "+facility.ToString());
+            facilityWebElement.Click();
+            wait.Message = "Asset list is not displayed in the Main Page.";
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+        }
     }
 }

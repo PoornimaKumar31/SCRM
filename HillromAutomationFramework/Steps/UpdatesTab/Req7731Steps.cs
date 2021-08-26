@@ -260,7 +260,23 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
         [Then(@"Previous button is enabled")]
         public void ThenPreviousButtonIsEnabled()
         {
-            Assert.IsTrue(updateSelectDevicesPage.PreviousButton.Enabled,"Previous button is not enabled.");
+            //for select assets page
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("centrella select assets elements"))
+            {
+                Assert.IsTrue(updateSelectDevicesPage.PreviousButton.Enabled, "Previous button is not enabled.");
+            }
+            //for review action page
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("centrella review action elements"))
+            {
+                Assert.IsTrue(updateReviewActionPage.PreviousButton.Enabled, "Previous button is not enabled.");
+            }
+            //If this does not belong to any scenario
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have a step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
+
+            
         }
 
         [Then(@"Select all checkbox is unchecked")]
@@ -420,6 +436,89 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
         {
             bool IsSelectDevicePage = (updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (updateSelectDevicesPage.DeviceTypeLabel.GetElementVisibility());
             Assert.AreEqual(true, IsSelectDevicePage, "Select devices page is not displayed");
+        }
+
+        [Then(@"Item to push label is displayed")]
+        public void ThenItemToPushLabelIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.ItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText.ToLower(), updateReviewActionPage.ItemToPushLabel.Text.ToLower(), "Item to push label is not matching with the expected value.");
+        }
+
+        [Then(@"Item to push value is displayed")]
+        public void ThenItemToPushValueIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.ItemToPushValue.GetElementVisibility(), "Item to push value is not displayed.");
+        }
+
+        [Then(@"Destinations label is displayed")]
+        public void ThenDestinationsLabelIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.DestinationLabel.GetElementVisibility(), "Destinations label is not displayed.");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DestinationLabelText.ToLower(), updateReviewActionPage.DestinationLabel.Text.ToLower(), "Destination label is not displayed.");
+        }
+
+        [Then(@"Destinations value is displayed")]
+        public void ThenDestinationsValueIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.DestinationValue.GetElementVisibility(), "Destinations value is not displayed.");
+        }
+
+        [Then(@"Date or Time of push label is displayed")]
+        public void ThenDateOrTimeOfPushLabelIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.DateOrTimePushLabel.GetElementVisibility(), "Date or Time Label is not displayed");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DateOrTimeOfPushLabelText.ToLower(), updateReviewActionPage.DateOrTimePushLabel.Text.ToLower(), "Date or time label is not matching with the expected value.");
+        }
+
+        [Then(@"Immediately label is displayed")]
+        public void ThenImmediatelyLabelIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.ImmediateLabel.GetElementVisibility(), "Immediate label is not displayed");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ImmediatelyLabel.ToLower(), updateReviewActionPage.ImmediateLabel.Text.ToLower(), "Immediate label is not matching with expected value.");
+        }
+
+        [Then(@"radio button is displayed for Immediately")]
+        public void ThenRadioButtonIsDisplayedForImmediately()
+        {
+            Assert.IsTrue(updateReviewActionPage.ImmediateCheckbox.GetElementVisibility(), "Immediately radio button is not displayed.");
+        }
+
+        [Then(@"it is selected")]
+        public void ThenItIsSelected()
+        {
+            Assert.IsTrue(updateReviewActionPage.ImmediateCheckbox.Selected, "Immediately radio button is not selected");
+        }
+
+        [Then(@"radio button is displayed for schedule")]
+        public void ThenRadioButtonIsDisplayedForSchedule()
+        {
+            Assert.IsTrue(updateReviewActionPage.ScheduleCheckbox.GetElementVisibility(), "Schedule radio button is not displayed");
+        }
+
+        [Then(@"Schedule label is displayed")]
+        public void ThenScheduleLabelIsDisplayed()
+        {
+            Assert.IsTrue(updateReviewActionPage.ScheduleLabel.GetElementVisibility(), "Schedule Label is not displayed");
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ScheduleLabelText.ToLower(), updateReviewActionPage.ScheduleLabel.Text.ToLower(), "Schedule label is not matching with the expected value.");
+        }
+
+        [Then(@"Select assets indicator is not highlighted")]
+        public void ThenSelectAssetsIndicatorIsNotHighlighted()
+        {
+            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, updateSelectDevicesPage.Heading.GetCssValue("color"), "Select device indicator is highlighted");
+        }
+
+        [Then(@"Review action indicator is highlighted")]
+        public void ThenReviewActionIndicatorIsHighlighted()
+        {
+            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, updateReviewActionPage.Heading.GetCssValue("color"), "Review action indicator is not highlighted");
+        }
+
+        [Then(@"Confirm button is enabled")]
+        public void ThenConfirmButtonIsEnabled()
+        {
+            Assert.IsTrue(updateReviewActionPage.ConfirmButton.Enabled, "Confirm button is not enabled.");
         }
 
 
