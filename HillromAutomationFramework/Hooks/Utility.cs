@@ -146,7 +146,7 @@ namespace HillromAutomationFramework.Hooks
             }
             
             
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20); // Implicit wait for 15 seconds
+            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); // Implicit wait for 5 seconds
         }
 
 

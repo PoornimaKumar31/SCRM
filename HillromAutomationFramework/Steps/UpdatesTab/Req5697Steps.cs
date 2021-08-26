@@ -244,7 +244,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [When(@"user selects CVSM configuration from the list")]
         public void WhenUserSelectsCVSMConfigurationFromTheList()
         {
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
         }
 
         [Then(@"Next button is enabled")]
@@ -270,7 +270,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             GivenUserIsOnCVSMUpdatesPage();
             updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
             updatesSelectUpdatePage.NextButton.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
         }
