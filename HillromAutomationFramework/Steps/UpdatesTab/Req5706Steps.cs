@@ -39,7 +39,7 @@ namespace HillromAutomationFramework.Steps.Updates
             updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
 
             //first upgrade file
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
 
             updatesSelectUpdatePage.NextButton.Click();
             //Select device page
