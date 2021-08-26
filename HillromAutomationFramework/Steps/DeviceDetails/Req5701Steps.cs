@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.Component_Information;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -181,14 +182,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             string[] monthsArray = csmDeviceDetailsPage.CalenderXP.Text.Split();           
             List<string> listOfMonths = monthsArray.ToList<string>();
             listOfMonths.RemoveAll(p => string.IsNullOrEmpty(p));
+
             monthsArray = listOfMonths.ToArray();
 
-            //Expected 
+            //Expected            
             var monthsName = GetMethods.GetMonthsName();
-            string[] Expectedmonths = monthsName.ToArray();
-            bool isSequenceSame = false;
-            isSequenceSame = monthsArray.SequenceEqual(monthsName);
-            Assert.IsTrue(isSequenceSame, "Current month is not displayed followed by the other months");
+            monthsArray.Should().Equal(monthsName, "Current month should be displayed followed by the other months");
         }
     }
 }
