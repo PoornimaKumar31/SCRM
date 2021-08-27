@@ -61,7 +61,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string RightArrowXPath = "//*[@src=\"./icon_kbd_arrow_right.svg\"]";
             public const string CurrentCalenderYearXPath = "//*[@src=\"./icon_kbd_arrow_left.svg\"]/parent::span/parent::div";
             public const string NextCalenderYearXPath = "//*[@src=\"./icon_kbd_arrow_right.svg\"]/parent::span/parent::div";
-            //Newly Added
+            public const string CalibrationOverDueDateID = "caldue_date";
             public const string PMTabID = "mat-tab-label-0-0";
             public const string HostControllerGraphicXPath = "//*[@class=\"col-xs-7\"]/span/img";
             public const string HostControllerID = "name";
@@ -69,6 +69,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string PMSHeaderXPath = "//div[@id=\"lbl_name\"]/parent::div/div";
             public const string PMSRowXPath = "//div[@id='lastCalDate']/parent::div//div";
             public const string HostContollerColumnXPath = "//span[@id='name']/parent::div";
+            public const string PreventiveMaintenanceID = "device-details";
+            public const string AssetDetailsSummaryID = "csm_details_summary";
 
         }
 
@@ -93,6 +95,15 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string PMLastCalibrationText = "Last calibration";
 
         }
+
+        [FindsBy(How = How.Id, Using = Locators.AssetDetailsSummaryID)]
+        public IWebElement AssetDetailsSummary { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PreventiveMaintenanceID)]
+        public IWebElement PreventiveMaintenance { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.CalibrationOverDueDateID)]
+        public IWebElement CalibrationOverDueDate { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.NextCalenderYearXPath)]
         public IWebElement NextCalenderYear { get; set; }
@@ -223,7 +234,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement LastCalibrationDate { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.CalibrationOverDueArrowID)]
-        public IWebElement CalibrationOverDueArrowe { get; set; }
+        public IWebElement CalibrationOverDueArrow { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.CalibrationOverDueTextID)]
         public IWebElement CalibrationOverDueText { get; set; }
