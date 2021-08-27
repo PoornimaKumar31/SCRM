@@ -48,7 +48,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [When(@"user selects CVSM configuration")]
         public void WhenUserSelectsCVSMConfiguration()
         {
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
         }
         
         [When(@"user clicks Delete button")]
@@ -69,8 +69,8 @@ namespace HillromAutomationFramework.Steps.Updates
             GivenUserIsOnCVSMUpdatesPage();
             updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
             updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
-            ConfigFileName = updatesSelectUpdatePage.FirstFileCVSMInTable.FindElement(By.Id("name")).Text;
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
+            ConfigFileName = updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.FindElement(By.Id("name")).Text;
             updatesSelectUpdatePage.DeleteButton.Click();
         }
 

@@ -50,6 +50,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string FirstConfigFileName = "Vanilla-signed.waconfig";
             public const string UpgradeLabelText = "Upgrade";
             public const string RV700DeviceName = "RV700";
+            public const string CentrellaDeviceName = "Centrella";
 
             //Color of selected tab
             public const string HighlightedHeadingColor = "rgba(84, 104, 229, 1)";

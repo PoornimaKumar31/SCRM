@@ -130,7 +130,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             {
                 ExpectedNoOfEntires = 50;
             }
-            int ActualNumberOfEntries = updatesSelectUpdatePage.RV700FileNameList.GetElementCount();
+            int ActualNumberOfEntries = updatesSelectUpdatePage.RV700AndCentrellaFileNameList.GetElementCount();
             Assert.LessOrEqual(ActualNumberOfEntries,ExpectedNoOfEntires, ActualNumberOfEntries + " entries are displayed");
         }
 
@@ -161,7 +161,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
         public void GivenUserHasSelectedUpgradeFile()
         {
             //Clicking on the first file
-            updatesSelectUpdatePage.RV700FileNameList[0].Click();
+            updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Click();
         }
 
         [When(@"user clicks Next button")]
@@ -184,8 +184,8 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             GivenUserIsOnRVUpdatesPage();
             updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
             //Clicking on the first file
-            updatesSelectUpdatePage.RV700FileNameList[0].Click();
-            firstFileName = updatesSelectUpdatePage.RV700FileNameList[0].Text;
+            updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Click();
+            firstFileName = updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Text;
             updatesSelectUpdatePage.NextButton.Click();
             ThenRVSelectAssetsPageIsDisplayed();
         }
@@ -276,12 +276,12 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             {
                 //For select update page
                 case "name":
-                    HeadingElement = updatesSelectUpdatePage.RV700NameColumnHeading;
+                    HeadingElement = updatesSelectUpdatePage.CentrellaAndRV700NameColumnHeading;
                     ExpectedHeadingText = UpdatesSelectUpdatePage.ExpectedValues.TableNameHeadingText;
                     break;
 
                 case "date created":
-                    HeadingElement = updatesSelectUpdatePage.RV700DateColumnHeading;
+                    HeadingElement = updatesSelectUpdatePage.CentrellaAndRV700DateColumnHeading;
                     ExpectedHeadingText = UpdatesSelectUpdatePage.ExpectedValues.TableDateHeadingText;
                     break;
 

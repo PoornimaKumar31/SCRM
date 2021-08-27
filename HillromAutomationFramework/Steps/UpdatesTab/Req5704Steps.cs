@@ -350,11 +350,11 @@ namespace HillromAutomationFramework.Steps.Updates
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
-        public void ThenColumnHeadingIsDisplayed(string HeadingName)
+        public void ThenColumnHeadingIsDisplayed(string columnHeadingName)
         {
             IWebElement HeadingElement = null;
             string ExpectedHeadingText = null;
-            switch (HeadingName.ToLower().Trim())
+            switch (columnHeadingName.ToLower().Trim())
             {
                 case "firmware": HeadingElement = updateSelectDevicesPage.FirmwareHeading;
                     ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.FirwareHeadingText;
@@ -379,12 +379,12 @@ namespace HillromAutomationFramework.Steps.Updates
                     HeadingElement = updateSelectDevicesPage.LastFilesDeployedHeading;
                     ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.LastFilesDeployedHeadingText;
                     break;
-                default: Assert.Fail(HeadingName + " is a invalid heading name");
+                default: Assert.Fail(columnHeadingName + " is a invalid heading name");
                     break;
             }
-            Assert.AreEqual(true, HeadingElement.GetElementVisibility(), HeadingName + " is not displayed.");
+            Assert.AreEqual(true, HeadingElement.GetElementVisibility(), columnHeadingName + " is not displayed.");
             string ActualHeadingText = HeadingElement.Text.ToLower();
-            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText, HeadingName + " not matches with the expected value");
+            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText, columnHeadingName + " not matches with the expected value");
 
         }
 

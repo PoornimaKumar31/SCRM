@@ -24,14 +24,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string FileTableListClassName = "config-list";
             public const string NameColumnHeadingID = "config-heading-name";
             public const string DateColumnHeadingID = "config-heading-date";
-            public const string RV700NameColumnHeadingID = "name";
-            public const string RV700DateColumnHeadingID = "lastup";
-            public const string FirstFileCVSMInTableID = "cvsm_config0";
+            public const string CentrellaAndRV700NameColumnHeadingID = "name";
+            public const string CentrellaAndRV700DateColumnHeadingID = "lastup";
+            public const string FirstFileCVSMAndCentrellaInTableID = "cvsm_config0";
             public const string FirstFileCSMInTableID = "config0";
             public const string NextButtonID = "nextbtn";
             public const string DeleteButtonID = "delete";
             public const string FileNameListID = "name";
-            public const string RV700FileNameListID = "name_value";
+            public const string RV700AndCentrellaFileNameListID = "name_value";
 
 
 
@@ -83,6 +83,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
+            public const string CentrellaDeviceName = "Centrella";
+
             public const string AssetTypeLabelText = "Asset type";
             public const string UpdateTypeLabelText = "Update type";
             public const string UpdateTypeDropdownDefault = "Select";
@@ -136,14 +138,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.DateColumnHeadingID)]
         public IWebElement DateColumnHeading { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.RV700NameColumnHeadingID)]
-        public IWebElement RV700NameColumnHeading { get; set; }
+        [FindsBy(How = How.Id, Using = Locators.CentrellaAndRV700NameColumnHeadingID)]
+        public IWebElement CentrellaAndRV700NameColumnHeading { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.RV700DateColumnHeadingID)]
-        public IWebElement RV700DateColumnHeading { get; set; }
+        [FindsBy(How = How.Id, Using = Locators.CentrellaAndRV700DateColumnHeadingID)]
+        public IWebElement CentrellaAndRV700DateColumnHeading { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.FirstFileCVSMInTableID)]
-        public IWebElement FirstFileCVSMInTable { get; set; }
+        [FindsBy(How = How.Id, Using = Locators.FirstFileCVSMAndCentrellaInTableID)]
+        public IWebElement FirstFileCVSMAndCentrellaInTable { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.FirstFileCSMInTableID)]
         public IWebElement FirstFileCSMInTable { get; set; }
@@ -157,8 +159,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.FileNameListID)]
         public IList<IWebElement> FileNameList { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.RV700FileNameListID)]
-        public IList<IWebElement> RV700FileNameList { get; set; }
+        [FindsBy(How = How.Id, Using = Locators.RV700AndCentrellaFileNameListID)]
+        public IList<IWebElement> RV700AndCentrellaFileNameList { get; set; }
 
         //Pagination
         [FindsBy(How = How.Id, Using = Locators.PaginationPreviousIconID)]

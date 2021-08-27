@@ -182,8 +182,8 @@ namespace HillromAutomationFramework.Steps.Updates
         [Given(@"user has selected Upgrade file")]
         public void GivenUserHasSelectedUpgradeFile()
         {
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
-            UpgardeFileName = updatesSelectUpdatePage.FirstFileCVSMInTable.FindElement(By.Id("name")).Text;
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
+            UpgardeFileName = updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.FindElement(By.Id("name")).Text;
         }
 
         [When(@"user clicks Next button")]
