@@ -4,6 +4,8 @@ using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using FluentAssertions;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
@@ -38,6 +40,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string PaginationXofYClassName = "paginationMessage";
             public const string PaginationDisplayXYClassName = "dataTables_info";
 
+
+            //Search Column Elements
+            public const string ColumnCommonXpath = "//div[@class='measurements']/div/div";
         }
         public static class ExpectedValues
         {
@@ -98,6 +103,20 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CentrellaStagingFailureDefination = "A failure occurred when distributing the firmware to the boards.";
             public const string CentrellaStagingInconsistentDefination = "The downloaded firmware and boards are inconsistent. Bed features may not work as expected.";
             public const string CentrellaToggeleFailureDefination = "A failure occurred during the new firmware application to boards.";
+
+            //Centrella Search Text
+            public const string CentrellaSerialNumberSearchText = "PY673002";
+            public const string CentrellaFirmwareVersionSearchText = "1.33.006";
+            public const string CentrellaStatusSearchText = "Started";
+            public const string CentrellaLocationSearchText = "Batesville";
+            public const string CentrellaLastDeployedSearchText = "1.35.612";
+
+            //CSMSearch Text
+            public const string CSMSerialNumberSearchText = "100010000000";
+            public const string CSMFirmwareVersionSearchText = "1.00.00-A0001";
+            public const string CSMStatusSearchText = "Scheduled";
+            public const string CSMLocationSearchText = "Station2";
+            public const string CSMLastDeployedSearchText = "1.52.00-A0002";
         }
 
         public FirmwareStatusPage()
@@ -172,7 +191,6 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IList<IWebElement> StatusLabel { get; set; }
 
 
-
         /// <summary>
         /// Split the data from the information table into status and defination.
         /// </summary>
@@ -201,6 +219,46 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public string GetStatusLabel(int row)
         {
             return (StatusLabel[row].Text);
+        }
+
+        /// <summary>
+        /// Get Data from the respecive column
+        /// </summary>
+        /// <param name="columnName"></param>
+        /// <returns>List of data present in respective column</returns>
+        public List<string> GetColumnData(string columnName)
+        {
+            //Getting columnHeading
+            IList<IWebElement> columnList;
+            columnList= TableHeader.FindElements(By.TagName("div"));
+
+            //Getting index of the column
+            List<string> columnHeadingList = (columnList.Select(column => column.Text.ToLower())).ToList();
+        
+            //Check if column is present in the 
+            columnHeadingList.Should().Contain(columnName.ToLower(), columnName + " is a invalid column heading.");
+
+            int columnIndex = columnHeadingList.IndexOf(columnName.ToLower())+1;
+
+            //Check if any device match the search result
+            int searchMatchCount;
+            try
+            {
+                searchMatchCount = (PropertyClass.Driver.FindElements(By.XPath(Locators.ColumnCommonXpath + "[" + columnIndex + "]"))).Count;
+            }
+            catch(Exception)
+            {
+                searchMatchCount = 0;
+            }
+           
+            searchMatchCount.Should().BeGreaterThan(0, "Atleast one search Result should match the search by " +columnName);
+
+            //Getting column Data
+            List<string> columnDataList = new List<string>();
+
+            columnList = PropertyClass.Driver.FindElements(By.XPath(Locators.ColumnCommonXpath + "[" + columnIndex + "]"));
+            columnDataList.AddRange(columnList.Select(rowData => rowData.Text.ToLower()));
+            return (columnDataList);
         }
     }
 }
