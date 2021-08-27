@@ -63,6 +63,14 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, updatesSelectUpdatePage.DeleteConfigFilePopUp.GetElementVisibility(), "CVSM Configuration File Delete Confirmation dialog is not displayed");
         }
 
+        [Then(@"CVSM Updates page is displayed")]
+        public void ThenCVSMUpdatesPageIsDisplayed()
+        {
+            bool UpdatePageElements = (updatesSelectUpdatePage.AssetTypeDropDown.GetElementVisibility()) || (updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility());
+            Assert.AreEqual(true, UpdatePageElements, "User is not on CVSM Update page");
+        }
+
+
         [Given(@"user is on CVSM Configuration File Delete dialog")]
         public void GivenUserIsOnCVSMConfigurationFileDeleteDialog()
         {

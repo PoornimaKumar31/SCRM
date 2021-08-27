@@ -141,7 +141,7 @@ namespace HillromAutomationFramework.Hooks
             }
             else
             {
-                Assert.Fail("Invalid Browser Name");
+                Assert.Fail("Invalid Browser Name:"+BrowserName);
                 Environment.Exit(1);
             }
             
