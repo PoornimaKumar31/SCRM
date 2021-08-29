@@ -395,5 +395,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             // If all elements were same.
             return true;
         }
+
     }
 }

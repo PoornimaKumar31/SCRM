@@ -355,6 +355,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 58
  testRunner.Given("user is on Component details page for CSM Serial number \"100001232114\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 59
+ testRunner.Then("APM row \"Name\" is \"Accessory Power Module\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
 #line 60
  testRunner.Then("APM battery row \"Name\" is \"Battery-SANYO\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

@@ -147,8 +147,17 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// </summary>
         public static void ScrollUpWebPage()
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
-            js.ExecuteScript("window.scrollTo(0, 0)");
+            try
+            {
+                IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
+                js.ExecuteScript("window.scrollTo(0, 0)");
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e + " Exception Occured");
+            }
+            
         }
 
         /// <summary>
@@ -158,7 +167,15 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// <param name="value">Option text to select.</param>
         public static void SelectDDL(this IWebElement element, string value)
         {
-            new SelectElement(element).SelectByText(value);
+            try
+            {
+                new SelectElement(element).SelectByText(value);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e + " Exception Occured");
+            }
+            
         }
 
         /// <summary>
@@ -209,6 +226,28 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
         }
 
+
+        public static void WaitUntilNewWindowIsOpened(this IWebDriver driver, int ExpectedNumberOfWindows, int maxRetryCount = 100)
+        {
+            int ActualNumberofWindows;
+            bool boolReturnValue;
+            for (var i = 0; i < maxRetryCount; Thread.Sleep(100), i++)
+            {
+                ActualNumberofWindows = driver.WindowHandles.Count;
+                boolReturnValue = (ActualNumberofWindows == ExpectedNumberOfWindows ? true : false);
+                if (boolReturnValue)
+                {
+                    return;
+                }
+            }
+            //try one last time to check for window
+            ActualNumberofWindows = driver.WindowHandles.Count;
+            boolReturnValue = (ActualNumberofWindows == ExpectedNumberOfWindows ? true : false);
+            if (!boolReturnValue)
+            {
+                throw new ApplicationException("New window did not open.");
+            }
+        }
     }
 }
 

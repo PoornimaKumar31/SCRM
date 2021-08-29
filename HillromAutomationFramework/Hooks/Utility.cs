@@ -98,10 +98,10 @@ namespace HillromAutomationFramework.Hooks
                 chromeOptions.AddArgument("--incognito");
 
                 // Maximize the window
-                //chromeOptions.AddArgument("start-maximized");
+                chromeOptions.AddArgument("start-maximized");
 
                 //for full screen
-                chromeOptions.AddArgument("--start-fullscreen");
+                //chromeOptions.AddArgument("--start-fullscreen");
 
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);

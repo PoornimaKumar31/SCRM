@@ -367,7 +367,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
             return TotalRecords;           
         }
 
-
+        /// <summary>
+        /// Returns the Web Element for given column name and serial number
+        /// </summary>
+        /// <param name="columnnName">Column Name for which data required</param>
+        /// <param name="serialNumber">Serial number of the Device</param>
+        /// <returns>Web Element for given column name and Serial Number</returns>
         public IWebElement GetDeviceColumnData(string columnnName, string serialNumber)
         {
             SearchField.Clear();
