@@ -55,6 +55,7 @@ namespace HillromAutomationFramework.Steps.Main
             Thread.Sleep(2000);
             mainPage.OrganizationDropdown.Click();
             mainPage.LNTAutomatedTestDDLExpensionArrow.Click();
+            Thread.Sleep(2000);
             mainPage.LNTAutomatedTestDDLFacility1.Click();
         }
 
