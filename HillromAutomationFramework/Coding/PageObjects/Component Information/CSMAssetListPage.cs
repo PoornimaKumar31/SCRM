@@ -70,7 +70,7 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
             public const string BatteryRelativeChildElementsXPath = "//div[@id = '" + BatteryRowCycleCountID + "']//parent::div/div";
 
             //Accessory Power Module
-            public const string APMRowNameID = "";
+            public const string APMRowNameID = "lbl_apm";
             public const string APMBatteryRowNameID = "apm_battery_name";
             public const string APMBatteryRowManufacturerDateID = "apm_battery_manufacture";
             public const string APMBatteryRowSerialNumberID = "apm_battery_serailNo";

@@ -56,7 +56,7 @@ Scenario: CSM Asset Details Battery
 @TestCaseID_9676 @UISID_8672 @UISID_8677 @UISID_8680
 Scenario: CSM Asset Details APM
 	Given user is on Component details page for CSM Serial number "100001232114"
-	#Then APM row "Name" is "Accessory Power Module"
+	Then APM row "Name" is "Accessory Power Module"
 	Then APM battery row "Name" is "Battery-SANYO"
 	And APM battery row "Manufacture Date" is "2015-12-28"
 	And APM battery row "Serial number" is "310"
