@@ -45,7 +45,9 @@ namespace HillromAutomationFramework.Steps.Main
         public void GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage()
         {
             GivenUserWithoutRoll_UpForMultipleOrganizationsIsOnAssetsPage();
+            Thread.Sleep(1000);
             mainPage.OrganizationDropdown.Click();
+            Thread.Sleep(1000);
             mainPage.LNTAutomatedTestDDLSelection.Click();
         }
 
@@ -96,6 +98,7 @@ namespace HillromAutomationFramework.Steps.Main
         public void WhenUserSelectsAllLocationsFromOrganizationDropdown()
         {
             mainPage.OrganizationDropdown.Click();
+            Thread.Sleep(1000);
             mainPage.AllOrganizationsOption.Click();
         }
 
