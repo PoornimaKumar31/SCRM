@@ -7,6 +7,9 @@ using System;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
+    /// <summary>
+    /// Landing Page related locators are stored.
+    /// </summary>
     class LandingPage
     {
         public LandingPage()
@@ -14,6 +17,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             PageFactory.InitElements(PropertyClass.Driver, this);
         }
 
+        /// <summary>
+        /// Landing Page related locators are stored.
+        /// </summary>
         public static class Locator
         {
 
@@ -125,7 +131,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public IWebElement Organization1Facility1Device { get; set; }
 
 
-        ////L&T Automated Eye Test Organization
+        ///L&T Automated Eye Test Organization
         [FindsBy(How = How.XPath, Using = Locator.LNTAutomatedEyeTestOrganizationTitleXPath)]
         public IWebElement LNTAutomatedEyeTestOrganizationTitle { get; set; }
 
@@ -138,13 +144,16 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locator.Organization2Facility0DeviceID)]
         public IWebElement Organization2Facility0Device { get; set; }
 
-        //PSS Service organization
+        ///PSS Service organization
         [FindsBy(How = How.XPath, Using = Locator.PSSServiceOrganizationTitleXpath)]
         public IWebElement PSSServiceOrganizationTitle { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locator.PSSServiceOrganizationFacilityBatesvilleXpath)]
         public IWebElement PSSServiceOrganizationFacilityBatesville { get; set; }
 
+        /// <summary>
+        /// List of organizations
+        /// </summary>
         public enum Organizations
         {
             LNTAutomatedtestEast,
@@ -153,6 +162,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             LNTAutomatedEyeTest
         }
 
+        /// <summary>
+        /// List of facilities
+        /// </summary>
         public enum Facility
         {
             Test1,
@@ -163,7 +175,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
 
 
-
+        /// <summary>
+        /// Login and selects the preferred organization.
+        /// </summary>
+        /// <param name="organizations">Organization to select</param>
+        /// <param name="facility">facility to select on the organization</param>
         public void LoginAndSelectPreferredOrganization(LandingPage.Organizations organizations,LandingPage.Facility facility)
         {
             IWebElement facilityWebElement=null;

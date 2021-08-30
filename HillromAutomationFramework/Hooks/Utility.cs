@@ -98,17 +98,17 @@ namespace HillromAutomationFramework.Hooks
                 chromeOptions.AddArgument("--incognito");
 
                 // Maximize the window
-                chromeOptions.AddArgument("start-maximized");
+                //chromeOptions.AddArgument("start-maximized");
 
                 //for full screen
-                //chromeOptions.AddArgument("--start-fullscreen");
+                chromeOptions.AddArgument("--start-fullscreen");
 
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
                 chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
 
                 //Headless chrome (without opening chrome browser run test cases internally)
-                //chromeOptions.AddArgument("--headless");
+                chromeOptions.AddArgument("--headless");
 
                 // Setting up the chrome driver
                 PropertyClass.Driver = new ChromeDriver(chromeOptions);
@@ -131,7 +131,7 @@ namespace HillromAutomationFramework.Hooks
                 edgeoptions.AddArgument("start-maximized");
 
                 //for full screen
-                //edgeoptions.AddArgument("--start-fullscreen");
+                edgeoptions.AddArgument("--start-fullscreen");
 
                 //Headless(without opening edge browser,run the test internally)
                 //edgeoptions.AddArgument("--headless");
@@ -197,7 +197,7 @@ namespace HillromAutomationFramework.Hooks
                     
                     //taking screenshot for extent report
                     var mediaEntity = GetMethods.CaptureScreenshotBase64("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
-                    _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message + "\n" + _scenarioContext.TestError.InnerException, mediaEntity);
+                    _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message + "\n\n" + _scenarioContext.TestError.InnerException, mediaEntity);
                     screenShotNameCounter++;
                     break;
 

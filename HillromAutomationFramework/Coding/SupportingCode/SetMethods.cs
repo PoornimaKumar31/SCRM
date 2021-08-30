@@ -234,7 +234,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             for (var i = 0; i < maxRetryCount; Thread.Sleep(100), i++)
             {
                 ActualNumberofWindows = driver.WindowHandles.Count;
-                boolReturnValue = (ActualNumberofWindows == ExpectedNumberOfWindows ? true : false);
+                boolReturnValue = (ActualNumberofWindows == ExpectedNumberOfWindows);
                 if (boolReturnValue)
                 {
                     return;
