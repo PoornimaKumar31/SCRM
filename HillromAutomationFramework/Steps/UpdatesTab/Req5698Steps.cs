@@ -48,7 +48,7 @@ namespace HillromAutomationFramework.Steps.Updates
         [When(@"user selects CVSM configuration")]
         public void WhenUserSelectsCVSMConfiguration()
         {
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
         }
         
         [When(@"user clicks Delete button")]
@@ -63,14 +63,22 @@ namespace HillromAutomationFramework.Steps.Updates
             Assert.AreEqual(true, updatesSelectUpdatePage.DeleteConfigFilePopUp.GetElementVisibility(), "CVSM Configuration File Delete Confirmation dialog is not displayed");
         }
 
+        [Then(@"CVSM Updates page is displayed")]
+        public void ThenCVSMUpdatesPageIsDisplayed()
+        {
+            bool UpdatePageElements = (updatesSelectUpdatePage.AssetTypeDropDown.GetElementVisibility()) || (updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility());
+            Assert.AreEqual(true, UpdatePageElements, "User is not on CVSM Update page");
+        }
+
+
         [Given(@"user is on CVSM Configuration File Delete dialog")]
         public void GivenUserIsOnCVSMConfigurationFileDeleteDialog()
         {
             GivenUserIsOnCVSMUpdatesPage();
             updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
             updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
-            ConfigFileName = updatesSelectUpdatePage.FirstFileCVSMInTable.FindElement(By.Id("name")).Text;
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
+            ConfigFileName = updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.FindElement(By.Id("name")).Text;
             updatesSelectUpdatePage.DeleteButton.Click();
         }
 

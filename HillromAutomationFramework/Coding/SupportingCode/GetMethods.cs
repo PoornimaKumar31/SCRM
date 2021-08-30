@@ -271,7 +271,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 
         /// <summary>
         /// Function to convert the RGB code to Hex color code
-        /// https://www.geeksforgeeks.org/convert-the-given-rgb-color-code-to-hex-color-code/
         /// </summary>
         /// <param name="R"></param>
         /// <param name="G"></param>
@@ -367,33 +366,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                 dt = dt.AddMonths(1);
             }
             return monthsList;
-        }
-
-
-        // Returns true if arr1[0..n-1] and
-        // arr2[0..m-1] contain same elements.
-        //Ref: https://www.geeksforgeeks.org/check-if-two-arrays-are-equal-or-not/
-        public static bool AreEqual(string[] arr1, string[] arr2)
-        {
-            int n = arr1.Length;
-            int m = arr2.Length;
-
-            // If lengths of array are not
-            // equal means array are not equal
-            if (n != m)
-                return false;
-
-            // Sort both arrays
-            Array.Sort(arr1);
-            Array.Sort(arr2);
-
-            // Linearly compare elements
-            for (int i = 0; i < n; i++)
-                if (arr1[i] != arr2[i])
-                    return false;
-
-            // If all elements were same.
-            return true;
         }
 
     }

@@ -182,8 +182,8 @@ namespace HillromAutomationFramework.Steps.Updates
         [Given(@"user has selected Upgrade file")]
         public void GivenUserHasSelectedUpgradeFile()
         {
-            updatesSelectUpdatePage.FirstFileCVSMInTable.Click();
-            UpgardeFileName = updatesSelectUpdatePage.FirstFileCVSMInTable.FindElement(By.Id("name")).Text;
+            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
+            UpgardeFileName = updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.FindElement(By.Id("name")).Text;
         }
 
         [When(@"user clicks Next button")]
@@ -444,12 +444,6 @@ namespace HillromAutomationFramework.Steps.Updates
         {
             Assert.AreEqual(true, updateReviewActionPage.ImmediateLabel.GetElementVisibility(), "Immediate label is not displayed");
             Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ImmediatelyLabel.ToLower(), updateReviewActionPage.ImmediateLabel.Text.ToLower(),"Immediate label is not matching with expected value.");
-        }
-
-        [Then(@"Immediately label is by default selected")]
-        public void ThenImmediatelyLabelIsByDefaultSelected()
-        {
-            Assert.AreEqual(true, updateReviewActionPage.ImmediateCheckbox.Selected, "Immediately radio button is not selected");
         }
 
         [Then(@"Radio Button is displayed for Immediately")]

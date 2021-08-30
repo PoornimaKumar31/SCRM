@@ -141,12 +141,12 @@ namespace HillromAutomationFramework.Hooks
             }
             else
             {
-                Assert.Fail("Invalid Browser Name");
+                Assert.Fail("Invalid Browser Name:"+BrowserName);
                 Environment.Exit(1);
             }
             
             
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(20); // Implicit wait for 15 seconds
+            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); // Implicit wait for 5 seconds
         }
 
 

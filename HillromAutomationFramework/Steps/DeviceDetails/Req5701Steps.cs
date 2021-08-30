@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.Component_Information;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -21,6 +22,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         CSMAssetListPage csmAssetListPage = new CSMAssetListPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
         MainPage mainPage = new MainPage();
+        string testDeviceSerialNumber = "100055940720";
 
         [Given(@"user is on Asset List page")]
         public void GivenUserIsOnAssetListPage()
@@ -47,8 +49,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Preventive maintenance schedule subsection is displayed")]
         public void ThenPreventiveMaintenanceScheduleSubsectionIsDisplayed()
         {
-            bool IsScheduleSubsectionDisplayed = csmDeviceDetailsPage.PreventiveMaintenanceLabel.GetElementVisibility();
-            Assert.IsTrue(IsScheduleSubsectionDisplayed, "Preventive maintenance schedule subsection is not displayed");
+            bool IsPMScheduleSubsectionDisplayed = csmDeviceDetailsPage.PreventiveMaintenance.GetElementVisibility();
+            Assert.IsTrue(IsPMScheduleSubsectionDisplayed, "Preventive maintenance schedule subsection is not displayed.");
         }
 
         [Then(@"Host controller graphic is displayed in ""(.*)"" column")]
@@ -65,11 +67,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         
 
        [Then(@"""(.*)"" is displayed in ""(.*)"" column")]
-        public void ThenIsDisplayedInColumn(string HostController, string NameColumn)
+        public void ThenIsDisplayedInColumn(string HostController, string ColumnName)
         {
             int IndexOfName = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMNameHeading);
             int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
-            //string str = csmDeviceDetailsPage.HostContollerColumn.Text;
             Thread.Sleep(2000);
             bool IsHostControllerDisplayed = csmDeviceDetailsPage.HostController.GetElementVisibility();
 
@@ -92,12 +93,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenMessageIsDisplayedOnRow(string CalibrationMessage, string HostControllerRow)
         {
             string text = csmDeviceDetailsPage.CalibrationOverDueText.Text;
-            string[] calibrationOverDue = text.Split();
-            string calibrationOverdueText = calibrationOverDue[0] + " " + calibrationOverDue[1];
-            string calibrationOverdueDate = calibrationOverDue[3] + " " + calibrationOverDue[4] + " " + calibrationOverDue[5];
+            string calibrationOverdueDate = csmDeviceDetailsPage.CalibrationOverDueDate.Text;
+
+            string[] calibrationOverdue = text.Split();
+            string calibrationOverdueText = calibrationOverdue[0] + " " + calibrationOverdue[1];
 
             Thread.Sleep(2000);
-            string LastCalibrationDateText = csmDeviceDetailsPage.LastCalibrationDate.Text;
             int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
             if (calibrationOverdueText == CalibrationMessage)
             {
@@ -114,17 +115,15 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"left pointing red arrow is displayed on ""(.*)"" row")]
         public void ThenLeftPointingRedArrowIsDisplayedOnRow(string HostControllerRow)
         {
-            bool IsDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrowe.GetElementVisibility();
-            int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
-            Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
-        }
+            bool IsDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
+            Assert.IsTrue(IsDisplayed, "Left pointing arrow is displayed on "+ "Host controller" + " row");
 
-        [Then(@"upward pointing black arrow is displayed on ""(.*)"" row")]
-        public void ThenUpwardPointingBlackArrowIsDisplayedOnRow(string HostControllerRow)
-        {
-            bool IsUpwardPointingArrowDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrowe.GetElementVisibility();
-            Assert.IsTrue(IsUpwardPointingArrowDisplayed, "Upward pointing black arrow is displayed on Host controller row.");
-            string color = csmDeviceDetailsPage.CalibrationOverDueArrowe.GetCssValue("color");
+            int IndexOfHostControllerColumn = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
+            Assert.AreEqual(IsDisplayed, 0 == IndexOfHostControllerColumn, "Calibration overdue message is not displayed on Host controller row.");
+
+            string color = csmDeviceDetailsPage.CalibrationOverDueArrow.GetCssValue("color");
+
+            //string bgColor = csmDeviceDetailsPage.CalibrationOverDueArrow.GetCssValue("background-color");
 
             String[] hexValue = color.Replace("rgba(", "").Replace(")", "").Split(",");
 
@@ -134,20 +133,39 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
             string actualColour = GetMethods.ConvertRGBtoHex(hexValue1, hexValue2, hexValue3);
 
-            Assert.AreEqual("#444444", actualColour, "Upward pointing black arrow is displayed on Host controller row");
+            //Assert.AreEqual("#FF0000", actualColour, "Left pointing red arrow is not displayed on Host controller row");
+
+        }
+
+        [Then(@"upward pointing black arrow is displayed on ""(.*)"" row")]
+        public void ThenUpwardPointingBlackArrowIsDisplayedOnRow(string HostControllerRow)
+        {
+            bool IsUpwardPointingArrowDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
+            Assert.IsTrue(IsUpwardPointingArrowDisplayed, "Upward pointing black arrow is displayed on Host controller row.");
+            string color = csmDeviceDetailsPage.CalibrationOverDueArrow.GetCssValue("color");
+            //string bgColor = csmDeviceDetailsPage.CalibrationOverDueArrow.GetCssValue("background-color");
+
+            String[] hexValue = color.Replace("rgba(", "").Replace(")", "").Split(",");
+
+            int hexValue1 = int.Parse(hexValue[0].Trim());
+            int hexValue2 = int.Parse(hexValue[1].Trim());
+            int hexValue3 = int.Parse(hexValue[2].Trim());
+
+            string actualColour = GetMethods.ConvertRGBtoHex(hexValue1, hexValue2, hexValue3);
+
+            Assert.AreEqual("#444444", actualColour, "Upward pointing black arrow is not displayed on Host controller row");
         }
 
         [Given(@"user is on the Preventive maintenance tab")]
         public void GivenUserIsOnThePreventiveMaintenanceTab()
         {
             GivenUserIsOnAssetListPage();
-            WhenUserSelectsCSMDeviceWithSerialNumber("100055940720");
+            WhenUserSelectsCSMDeviceWithSerialNumber(testDeviceSerialNumber);
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string ColumnHeading)
         {
-            string str = csmDeviceDetailsPage.PMNameHeading.Text;
             bool IsColumnHeadingDisplayed = csmDeviceDetailsPage.PMNameHeading.GetElementVisibility();
             Assert.IsTrue(IsColumnHeadingDisplayed, ColumnHeading + " column heading is not displayed.");
         }
@@ -175,20 +193,18 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
         [Then(@"current month is displayed followed by the other months")]
         public void ThenCurrentMonthIsDisplayedFollowedByTheOtherMonths()
-        {
-            //Actual
+        {           
             bool IsCalenderDisplayed = csmDeviceDetailsPage.CalenderXP.GetElementVisibility();
             string[] monthsArray = csmDeviceDetailsPage.CalenderXP.Text.Split();           
             List<string> listOfMonths = monthsArray.ToList<string>();
             listOfMonths.RemoveAll(p => string.IsNullOrEmpty(p));
-            monthsArray = listOfMonths.ToArray();
 
-            //Expected 
+            //Actual array
+            monthsArray = listOfMonths.ToArray();
+            
+            //Expected array       
             var monthsName = GetMethods.GetMonthsName();
-            string[] Expectedmonths = monthsName.ToArray();
-            bool isSequenceSame = false;
-            isSequenceSame = monthsArray.SequenceEqual(monthsName);
-            Assert.IsTrue(isSequenceSame, "Current month is not displayed followed by the other months");
+            monthsArray.Should().Equal(monthsName, "Current month should be displayed followed by the other months");
         }
     }
 }

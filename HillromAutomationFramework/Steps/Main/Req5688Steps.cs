@@ -52,8 +52,10 @@ namespace HillromAutomationFramework.Steps.Main
         [When(@"user selects facility from Organization dropdown")]
         public void WhenUserSelectsFacilityFromOrganizationDropdown()
         {
+            Thread.Sleep(2000);
             mainPage.OrganizationDropdown.Click();
             mainPage.LNTAutomatedTestDDLExpensionArrow.Click();
+            Thread.Sleep(2000);
             mainPage.LNTAutomatedTestDDLFacility1.Click();
         }
 

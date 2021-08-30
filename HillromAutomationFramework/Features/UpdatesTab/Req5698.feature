@@ -10,6 +10,7 @@ Scenario: CVSM Configuration File Delete
 	When user selects CVSM configuration
 	And user clicks Delete button
 	Then CVSM Configuration File Delete Confirmation dialog is displayed
+	And CVSM Updates page is displayed
 
 @TestCaseID_9046 @UISID_8696
 Scenario: CVSM Configuration File Delete Dialog Elements
