@@ -59,7 +59,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            Assert.AreEqual(false,cvsmDeviceDetailsPage.LogsRequestButton.Enabled, "Request Logs button is not disabled");
+            Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.RequestLogButtonDisabledClassName,cvsmDeviceDetailsPage.LogsRequestButton.GetAttribute("class"), "Request Logs button is not disabled");
         }
 
     }
