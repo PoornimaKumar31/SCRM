@@ -82,7 +82,9 @@ namespace HillromAutomationFramework.Steps.Main
         public void WhenUserSelectsUnitFromOrganizationDropdown()
         {
             mainPage.OrganizationDropdown.Click();
+            Thread.Sleep(1000);
             mainPage.LNTAutmatedTestDDLFacility1ExpensionArrow.Click();
+            Thread.Sleep(1000);
             mainPage.LNTAutmatedTestDDLFacility1Unit1.Click();
         }
 
@@ -97,6 +99,7 @@ namespace HillromAutomationFramework.Steps.Main
         [When(@"user selects All locations from Organization dropdown")]
         public void WhenUserSelectsAllLocationsFromOrganizationDropdown()
         {
+            Thread.Sleep(1000);
             mainPage.OrganizationDropdown.Click();
             Thread.Sleep(1000);
             mainPage.AllOrganizationsOption.Click();
