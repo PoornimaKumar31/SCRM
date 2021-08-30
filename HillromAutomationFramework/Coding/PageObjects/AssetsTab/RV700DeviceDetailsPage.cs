@@ -94,6 +94,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
         public static class ExpectedValues
         {
+            public const string RequestLogButtonDisabledClassName = "requestLogsbtn disable";
             public const string NewRoomValue = "New Room";
             public const string NewBedValue = "New Bed";
             public const string UpdateRoomValue = "Update Room";

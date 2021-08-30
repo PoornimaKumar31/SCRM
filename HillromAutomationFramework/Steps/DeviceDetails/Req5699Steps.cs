@@ -130,9 +130,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            SetMethods.MoveTotheElement(csmDeviceDetailsPage.LogsNextButton, "Next logs page");
-            csmDeviceDetailsPage.LogsNextButton.Click();
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "1","User can navigate to the next page");
+            SetMethods.MoveTotheElement(csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")), "Next logs page");
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL, csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Next page icon is not disabled.");
         }
 
         [Then(@"no logs for CSM device are displayed")]

@@ -55,7 +55,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            Assert.AreEqual(false,csmDeviceDetailsPage.LogsRequestButton.Enabled, "Request Logs button is not disabled");
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.RequestLogButtonDisabledClassName,csmDeviceDetailsPage.LogsRequestButton.GetAttribute("class"), "Request Logs button is not disabled");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]

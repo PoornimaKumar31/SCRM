@@ -79,7 +79,7 @@ namespace HillromAutomationFramework.Hooks
         {
             //log scenario in extent report
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
-
+            _scenario.AssignCategory(_scenarioContext.ScenarioInfo.Tags);
             //Browser setup
             //create downloads folder if not exists
             if (!Directory.Exists(PropertyClass.DownloadPath))

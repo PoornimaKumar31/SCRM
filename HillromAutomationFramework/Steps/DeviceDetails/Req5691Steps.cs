@@ -106,6 +106,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
+            SetMethods.MoveTotheElement(cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")), "Next log page button");
             Assert.AreEqual(CVSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL,cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"),"Button is not disabled");
         }
 

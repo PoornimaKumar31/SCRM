@@ -290,7 +290,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         //Search the Serial number and click on the device.
         public void SearchSerialNumberAndClick(string serialNumber)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             SearchField.Clear();
             SearchField.EnterText(serialNumber);
             SearchField.EnterText(Keys.Enter);
