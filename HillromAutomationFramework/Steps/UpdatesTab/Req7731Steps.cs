@@ -464,45 +464,6 @@ namespace HillromAutomationFramework.Steps.UpdatesTab
             Assert.IsTrue(updateReviewActionPage.DestinationValue.GetElementVisibility(), "Destinations value is not displayed.");
         }
 
-        [Then(@"Date or Time of push label is displayed")]
-        public void ThenDateOrTimeOfPushLabelIsDisplayed()
-        {
-            Assert.IsTrue(updateReviewActionPage.DateOrTimePushLabel.GetElementVisibility(), "Date or Time Label is not displayed");
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DateOrTimeOfPushLabelText.ToLower(), updateReviewActionPage.DateOrTimePushLabel.Text.ToLower(), "Date or time label is not matching with the expected value.");
-        }
-
-        [Then(@"Immediately label is displayed")]
-        public void ThenImmediatelyLabelIsDisplayed()
-        {
-            Assert.IsTrue(updateReviewActionPage.ImmediateLabel.GetElementVisibility(), "Immediate label is not displayed");
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ImmediatelyLabel.ToLower(), updateReviewActionPage.ImmediateLabel.Text.ToLower(), "Immediate label is not matching with expected value.");
-        }
-
-        [Then(@"radio button is displayed for Immediately")]
-        public void ThenRadioButtonIsDisplayedForImmediately()
-        {
-            Assert.IsTrue(updateReviewActionPage.ImmediateCheckbox.GetElementVisibility(), "Immediately radio button is not displayed.");
-        }
-
-        [Then(@"it is selected")]
-        public void ThenItIsSelected()
-        {
-            Assert.IsTrue(updateReviewActionPage.ImmediateCheckbox.Selected, "Immediately radio button is not selected");
-        }
-
-        [Then(@"radio button is displayed for schedule")]
-        public void ThenRadioButtonIsDisplayedForSchedule()
-        {
-            Assert.IsTrue(updateReviewActionPage.ScheduleCheckbox.GetElementVisibility(), "Schedule radio button is not displayed");
-        }
-
-        [Then(@"Schedule label is displayed")]
-        public void ThenScheduleLabelIsDisplayed()
-        {
-            Assert.IsTrue(updateReviewActionPage.ScheduleLabel.GetElementVisibility(), "Schedule Label is not displayed");
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ScheduleLabelText.ToLower(), updateReviewActionPage.ScheduleLabel.Text.ToLower(), "Schedule label is not matching with the expected value.");
-        }
-
         [Then(@"Select assets indicator is not highlighted")]
         public void ThenSelectAssetsIndicatorIsNotHighlighted()
         {

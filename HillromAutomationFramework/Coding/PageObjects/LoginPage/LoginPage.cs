@@ -239,7 +239,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
             /// Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(15))
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(20))
             {
                 Message = "Login page is not loaded. Selenium could not find the hillrom logo."
             };
