@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -6,59 +7,76 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5904")]
     public class Req5904Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        ReportsPage reportsPage = new ReportsPage();
-        CSMConfigStatusPage csmConfigStatusPage = new CSMConfigStatusPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+        private readonly CSMConfigStatusPage _csmConfigStatusPage;
+        
+
         IDictionary<string, string> statusDefinationPairs;
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
+
+        public Req5904Steps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();
+            _csmConfigStatusPage = new CSMConfigStatusPage();
+        }
+
 
         [Given(@"user is on CSM Configuration Update Status page")]
         public void GivenUserIsOnCSMConfigurationUpdateStatusPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
-            mainPage.ReportsTab.JavaSciptClick();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
-            reportsPage.GetReportButton.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id("deviceTable")));
+            _mainPage.ReportsTab.JavaSciptClick();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+            _reportsPage.GetReportButton.Click();
         }
         
         [When(@"user clicks Information button")]
         public void WhenUserClicksInformationButton()
         {
-            csmConfigStatusPage.InformationButton.Click();
+            _csmConfigStatusPage.InformationButton.Click();
         }
         
         [Then(@"CSM Configuration report Statuses dialog is displayed")]
         public void ThenCSMConfigurationReportStatusesDialogIsDisplayed()
         {
-            Assert.AreEqual(csmConfigStatusPage.InformationPopUp.GetElementVisibility(), true, "Information popup is not displayed.\n");
+            (_csmConfigStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("Information popup dialog box should be displayed when user clicks on the Information button");
         }
         
         [Then(@"CSM Configuration Report Statuses header is displayed")]
         public void ThenUserCanSeeCSMConfigurationReportStatusesHeader()
         {
-            Assert.AreEqual(csmConfigStatusPage.InformationPopUpHeader.GetElementVisibility(), true, "CSM Configuration report status header is not visible");
-            string ActualHeaderText = csmConfigStatusPage.InformationPopUpHeader.Text;
+            (_csmConfigStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue("CSM Configuration report status header should be displayed in information dialog box");
+            string ActualHeaderText = _csmConfigStatusPage.InformationPopUpHeader.Text;
             string ExpectedHeaderText = CSMConfigStatusPage.ExpectedValues.InformationPopUPHeaderText;
-            Assert.AreEqual(ExpectedHeaderText, ActualHeaderText, "CSM Configuration report status header text is not matching with the expected value.\n");
+            ActualHeaderText.Should().BeEquivalentTo(ExpectedHeaderText, "CSM Configuration report status header text should match with the expected value");
         }
 
         [Then(@"""(.*)"" status and definition is displayed")]
         public void ThenUserCanSeeStartedStatusAndDefinition(string statustitle)
         {
             //status defination
-            string statusTabledata = csmConfigStatusPage.InformationPopUpData.Text;
-            statusDefinationPairs = csmConfigStatusPage.GetstatusTable(statusTabledata);
+            string statusTabledata = _csmConfigStatusPage.InformationPopUpData.Text;
+            statusDefinationPairs = _csmConfigStatusPage.GetstatusTable(statusTabledata);
             string ActualDefination = statusDefinationPairs[statustitle];
             string ExpectedDefinaton=null;
             switch(statustitle.ToLower().Trim())
@@ -81,37 +99,37 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 default: Assert.Fail(statustitle+" does not exist in test data");
                     break;
             }
-            Assert.AreEqual(ExpectedDefinaton, ActualDefination, statustitle + " defination does not match with expected");
+            ActualDefination.Should().BeEquivalentTo(ExpectedDefinaton, statustitle + " definationshould match with the expected value.");
         }        
         [Then(@"Close button is displayed")]
         public void ThenUserCanSeeCloseButton()
         {
-            Assert.AreEqual(csmConfigStatusPage.InformationPopUpCloseButton.GetElementVisibility(), true, "Close button is not displayed.\n");
+            (_csmConfigStatusPage.InformationPopUpCloseButton.GetElementVisibility()).Should().BeTrue("Close button should be displayed in the information pop up dialog box");
         }
 
         [Given(@"CSM Configuration Report Statuses dialog is displayed")]
         public void GivenCSMConfigurationReportStatusesDialogIsDisplayed()
         {
-            csmConfigStatusPage.InformationButton.Click();
-            Assert.AreEqual(csmConfigStatusPage.InformationPopUp.GetElementVisibility(), true, "CSM Configuration report status is not displayed");
+            _csmConfigStatusPage.InformationButton.Click();
+            (_csmConfigStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("CSM Configuration report status dialog should be displayed when user clicks Information button in Configuration update status report page.");
         }
 
         [When(@"user clicks Close button")]
         public void WhenUserClicksCloseButton()
         {
-            csmConfigStatusPage.InformationPopUpCloseButton.Click();
+            _csmConfigStatusPage.InformationPopUpCloseButton.Click();
         }
 
         [Then(@"CSM Configuration Report Statuses dialog closes")]
         public void ThenCSMConfigurationReportStatusesDialogCloses()
         {
-            Assert.AreEqual(csmConfigStatusPage.InformationPopUp.GetElementVisibility(), false, "CSM Configuration report status is not closed");
+            (_csmConfigStatusPage.InformationPopUp.GetElementVisibility()).Should().BeFalse("CSM Configuration report status dialog should be closed when user clicks close button in Information Dialog box");
         }
 
         [Then(@"CSM Configuration Update Status page is displayed")]
         public void ThenCSMConfigurationUpdateStatusPageIsDisplayed()
         {
-            Assert.AreEqual(csmConfigStatusPage.InformationButton.GetElementVisibility(), true, "User is not on Configuration update status page");
+            (_csmConfigStatusPage.InformationButton.GetElementVisibility()).Should().BeTrue("User should be on Configuration update status page aftre clicking on close button in Information dialog box");
         }
 
 

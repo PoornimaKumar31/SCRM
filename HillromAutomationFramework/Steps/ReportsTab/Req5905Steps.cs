@@ -6,51 +6,58 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
     [Binding, Scope(Tag = "SoftwareRequirementID_5905")]
     public sealed class Req5905Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        ReportsPage reportsPage = new ReportsPage();
-        FirmwareStatusPage firmwareStatusPage = new FirmwareStatusPage();
+        private readonly LoginPage _loginPage ;
+        private readonly LandingPage _landingPage ;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+        private readonly FirmwareStatusPage _firmwareStatusPage;
 
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
 
         public Req5905Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();
+            _firmwareStatusPage = new FirmwareStatusPage();
         }
 
         [Given(@"user is on Centrella Firmware Upgrade Status Report page")]
         public void GivenUserIsOnCentrellaFirmwareUpgradeStatusReportPage()
         {
             //Loging in
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
-            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.ReportsTab.JavaSciptClick();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
-            reportsPage.GetReportButton.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            _mainPage.ReportsTab.JavaSciptClick();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"Search textbox displays ""(.*)""")]
         public void ThenSearchTextboxDisplays(string hintText)
         {
-            Assert.IsTrue(firmwareStatusPage.SearchBox.GetElementVisibility(),"Search box is not displayed.");
+            (_firmwareStatusPage.SearchBox.GetElementVisibility()).Should().BeTrue("Search box should be displayed in Centrella Firmware Upgrade Status Report page");
             //Matching place holder value
-            Assert.AreEqual(hintText.ToLower(), firmwareStatusPage.SearchBox.GetAttribute("placeholder").ToLower(), "Search box hint text does not match the expected value.");
-
+            string ActualHintText = _firmwareStatusPage.SearchBox.GetAttribute("placeholder");
+            ActualHintText.Should().BeEquivalentTo(hintText,because:"Search box hint text should match the expected string");
         }
 
         [When(@"user enters ""(.*)"" in Search textbox")]
@@ -105,13 +112,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _scenarioContext.Add("searchText", searchText);
 
             //Enter the text in search box
-            firmwareStatusPage.SearchBox.EnterText(searchText);
+            _firmwareStatusPage.SearchBox.EnterText(searchText);
         }
 
         [When(@"presses Enter")]
         public void WhenPressesEnter()
         {
-            firmwareStatusPage.SearchBox.EnterText(Keys.Enter);
+            _firmwareStatusPage.SearchBox.EnterText(Keys.Enter);
         }
 
         [Then(@"devices with matching ""(.*)"" are displayed")]
@@ -122,7 +129,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             string ExpectedText = _scenarioContext.Get<string>("searchText");
 
             //Fetching data
-            List<string> searchColumnElementList = firmwareStatusPage.GetColumnData(searchType);
+            List<string> searchColumnElementList = _firmwareStatusPage.GetColumnData(searchType);
 
             //Check if Search matches the expected
             foreach (string data in searchColumnElementList)
@@ -136,15 +143,15 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenUserIsOnCSMFirmwareUpgradeStatusReportPage()
         {
             //Loging in
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.LNTAutomatedTestOrganizationFacilityTest1Title, "L&T Automated test Orgaization");
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.LNTAutomatedTestOrganizationFacilityTest1Title, "L&T Automated test Orgaization");
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
-            mainPage.ReportsTab.JavaSciptClick();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
-            reportsPage.GetReportButton.Click();
+            _mainPage.ReportsTab.JavaSciptClick();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
 
