@@ -299,7 +299,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
             SearchField.EnterText(Keys.Enter);
             //Waiting for data to load
             Thread.Sleep(3000);
-            Assert.AreEqual(1, DeviceListRow.GetElementCount(), "more than devices are present matching serial number "+serialNumber);
+            Assert.AreEqual(1, DeviceListRow.GetElementCount(), "More than one devices are present matching with serial number " + serialNumber);
+            
+            //1.Should().BeGreaterThan(DeviceListRow.GetElementCount(), "More than one devices are present matching with serial number " + serialNumber);
+
             DeviceListRow[0].Click();
         }
 
@@ -343,7 +346,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
 
         //function for checking display page result
-        public bool DisplayPageResults(string[] PageInfo, int expectedCurrentPage, int expectedLastPage, int expectedTotalRecords)
+        public void DisplayPageResults(string[] PageInfo, int expectedCurrentPage, int expectedLastPage, int expectedTotalRecords)
         {
             string currentPageLastPageInfo = PageInfo[1];
             char[] currentAndLastPage = currentPageLastPageInfo.ToCharArray();
@@ -353,20 +356,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             string totalRecords = PageInfo[3];
             int actualTotalRecords = int.Parse(totalRecords);
 
-            //
-            bool isCurrentPageZero = actualCurrentPage == expectedCurrentPage;
-            bool isLastPageZero = actualLastPage == expectedLastPage;
-            bool isTotalRecordZero = actualTotalRecords == expectedTotalRecords;
-            isCurrentPageZero.Should().Be(isLastPageZero, "Current page and Last page should be zero.");
-            isCurrentPageZero.Should().BeTrue("Current page is displaying zero.");
-            isLastPageZero.Should().BeTrue("Last page is displaying zero.");
-            isTotalRecordZero.Should().BeTrue("All record is displaying zero.");
-
-            bool isTotalRecordsZero = actualTotalRecords == expectedTotalRecords;
-            bool isPageInfoZeroZeroZero = isCurrentPageZero == isLastPageZero && isCurrentPageZero == isTotalRecordsZero;
-
-            bool isDisplayed = actualCurrentPage == expectedCurrentPage && actualLastPage == expectedLastPage && actualTotalRecords == expectedTotalRecords;
-            return isDisplayed;
+            actualCurrentPage.Should().Be(expectedCurrentPage, "Current page should display zero.");
+            actualLastPage.Should().Be(expectedLastPage, "Last page should display zero.");
+            actualTotalRecords.Should().Be(expectedTotalRecords, "Total record should display zero.");
         }
 
         public bool APMACAddressesMatchSearchText(IWebElement CompInfo, IWebElement RadioNewMarr, IWebElement MACAddress)

@@ -166,8 +166,7 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenDisplayingToOfResultsIsDisplayed(int currentPage, int lastPage, int totalRecords)
         {
             string[] PageInformation = mainPage.PaginationDisplay.Text.Split();
-            bool IsPageResultDisplayed = mainPage.DisplayPageResults(PageInformation, currentPage, lastPage, totalRecords);
-            Assert.AreEqual(true, IsPageResultDisplayed, "Displaying 0 to 0 of 0 results is not displayed.");
+            mainPage.DisplayPageResults(PageInformation, currentPage, lastPage, totalRecords);
         }
 
         [Then(@"results in table contain only assets with AP MAC addresses that match Search text")]
