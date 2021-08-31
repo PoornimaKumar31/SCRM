@@ -8,36 +8,44 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5902")]
     public class Req5902Steps
     {
-        private readonly LoginPage loginPage = new LoginPage();
-        private readonly LandingPage landingPage = new LandingPage();
-        private readonly MainPage mainPage = new MainPage();
-        private readonly ReportsPage reportsPage = new ReportsPage();
-        private readonly CSMConfigStatusPage csmConfigStatusPage = new CSMConfigStatusPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+        private readonly CSMConfigStatusPage _csmConfigStatusPage;
 
-        private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
 
         public Req5902Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
-        }
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();
+            _csmConfigStatusPage = new CSMConfigStatusPage();             
+    }
 
         [Given(@"user is on CSM CONFIGURATION UPDATE STATUS page")]
         public void GivenUserIsOnCSMCONFIGURATIONUPDATESTATUSPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.ReportsTab.JavaSciptClick();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
-            reportsPage.GetReportButton.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.ReportsTab.JavaSciptClick();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+            _reportsPage.GetReportButton.Click();
         }
         
         [When(@"user enters ""(.*)"" in Search textbox")]
@@ -69,13 +77,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 default: Assert.Fail(searchType + " is a invalid search type.");
                     break;
             }
-            csmConfigStatusPage.SearchBox.EnterText(SearchText);
+            _csmConfigStatusPage.SearchBox.EnterText(SearchText);
         }
         
         [When(@"presses Enter")]
         public void WhenPressEnter()
         {
-            csmConfigStatusPage.SearchBox.EnterText(Keys.Enter);
+            _csmConfigStatusPage.SearchBox.EnterText(Keys.Enter);
         }
         
         [Then(@"device with matching ""(.*)"" is displayed")]
@@ -90,27 +98,27 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch(searchType.ToLower().Trim())
             {
                 case "serial number":
-                    column = csmConfigStatusPage.SerialNumberColumn;
+                    column = _csmConfigStatusPage.SerialNumberColumn;
                     ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.SerialNumberSearchText;
                     break;
 
                 case "configuration":
-                    column = csmConfigStatusPage.ConfigurationColumn;
+                    column = _csmConfigStatusPage.ConfigurationColumn;
                     ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.ConfigurationSearchText;
                     break;
 
                 case "location":
-                    column = csmConfigStatusPage.LocationColumn;
+                    column = _csmConfigStatusPage.LocationColumn;
                     ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.LocationSearchText;
                     break;
 
                 case "status":
-                    column = csmConfigStatusPage.StatusColumn;
+                    column = _csmConfigStatusPage.StatusColumn;
                     ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.StatusSearchText;
                     break;
 
                 case "last deployed":
-                    column = csmConfigStatusPage.LastDeployedColumn;
+                    column = _csmConfigStatusPage.LastDeployedColumn;
                     ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.LastDeployedSearchText;
                     break;
 

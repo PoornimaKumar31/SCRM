@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -6,74 +7,82 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5719")]
     public class Req5719Steps
     {
-        private readonly LoginPage loginPage = new LoginPage();
-        private readonly LandingPage landingPage = new LandingPage();
-        private readonly MainPage mainPage = new MainPage();
-        private readonly ReportsPage reportsPage = new ReportsPage();
-        private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
 
         public Req5719Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
-        }
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();    
+    }
 
         
         [When(@"user clicks Download button")]
         public void WhenUserClicksOnDownloadButton()
         {
-            reportsPage.DownloadButton.Click();
+            _reportsPage.DownloadButton.Click();
         }
   
         [Given(@"user is on ""(.*)"" page")]
         public void GivenUserIsOnPage(string reportName)
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             /**
              * Selecting the organization based on the report type. 
              */
             switch(reportName.ToLower().Trim())
             {
                 case "csm configuration update status":
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                    mainPage.ReportsTab.JavaSciptClick();
-                    reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-                    reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+                    _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _mainPage.ReportsTab.JavaSciptClick();
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
                     break;
                 case "csm firmware upgrade status":
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                    mainPage.ReportsTab.JavaSciptClick();
-                    reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-                    reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+                    _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _mainPage.ReportsTab.JavaSciptClick();
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
                     break;
                 case "csm activity report":
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                    mainPage.ReportsTab.JavaSciptClick();
-                    reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-                    reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+                    _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _mainPage.ReportsTab.JavaSciptClick();
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
                     break;
                 case "rv700 firmware upgrade status":
-                    landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                    mainPage.ReportsTab.JavaSciptClick();
-                    reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
-                    reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+                    _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _mainPage.ReportsTab.JavaSciptClick();
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
                     break;
                 default:
                     Assert.Fail(reportName + " is a Invalid report type");
                     break;
             }
             
-            reportsPage.GetReportButton.Click();
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"""(.*)"" Report is downloaded as csv file")]
@@ -107,8 +116,11 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 default: Assert.Fail(reportName + " is a invalid report name.");
                     break;
             }
-            Assert.AreEqual(true, GetMethods.IsFileDownloaded(filename,10),reportName + " file is not downloaded.");
-            Assert.AreEqual(true, GetMethods.CheckFileFormat(".csv"), reportName+" file is not in .csv format.");
+            bool fileDownload = GetMethods.IsFileDownloaded(filename, 10);
+            fileDownload.Should().BeTrue(reportName + " should be downloaded when you press the download button");
+
+            bool fileFormat = GetMethods.CheckFileFormat(".csv");
+            fileFormat.Should().BeTrue(reportName + " should be in csv format");
         }
     }
 }

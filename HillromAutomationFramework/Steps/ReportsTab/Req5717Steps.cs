@@ -9,51 +9,64 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5717")]
     public class Req5717Steps
     {
-        private readonly LoginPage loginPage = new LoginPage();
-        private readonly LandingPage landingPage = new LandingPage();
-        private readonly MainPage mainPage = new MainPage();
-        private readonly ReportsPage reportsPage = new ReportsPage();
-        private readonly UsageReportPage usageReportPage = new UsageReportPage();
-        private readonly FirmwareVersionPage firmwareVersionPage = new FirmwareVersionPage();
-        private readonly FirmwareStatusPage firmwareStatusPage = new FirmwareStatusPage();
-        private readonly CSMConfigStatusPage csmConfigStatusPage = new CSMConfigStatusPage();
-        private readonly ActivityReportPage activityReportPage = new ActivityReportPage();
+        //POM
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+        private readonly UsageReportPage _usageReportPage;
+        private readonly FirmwareVersionPage _firmwareVersionPage;
+        private readonly FirmwareStatusPage _firmwareStatusPage;
+        private readonly CSMConfigStatusPage _csmConfigStatusPage;
+        private readonly ActivityReportPage _activityReportPage;
 
-        private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
 
         public Req5717Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();
+            _usageReportPage = new UsageReportPage();
+            _firmwareVersionPage = new FirmwareVersionPage();
+            _firmwareStatusPage = new FirmwareStatusPage();
+            _csmConfigStatusPage = new CSMConfigStatusPage();
+            _activityReportPage = new ActivityReportPage();
         }
 
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Message = "Asset list is not displayed in main page.Timed out after 10 seconds.";
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.ReportsTab.JavaSciptClick();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _wait.Message = "Asset list is not displayed in main page.Timed out after 10 seconds.";
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.ReportsTab.JavaSciptClick();
         }
         
         [Given(@"CSM Asset type is selected")]
         public void GivenCSMAssetTypeIsSelected()
         {
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
         }
         
         [When(@"user clicks report type dropdown")]
         public void WhenUserClicksReportTypeDropdown()
         {
-            reportsPage.ReportTypeDDL.Click();
+            _reportsPage.ReportTypeDDL.Click();
         }
         
         [Then(@"Report type dropdown displays ""(.*)""")]
@@ -61,8 +74,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         {
             //Spliting Based on comma for getting parameter
             List<string> ExpecteddropdownOptionsList = new List<string>(dropdownOptions.Split(",").Select(option => option.Trim().ToLower()).ToArray());
-            //List<string> ExpectedOptionList = new List<string>(dropdownOptions.ToLower().Split(", "));
-            List<string> ActualOptionList = new List<string>(reportsPage.ReportTypeDDL.GetAllOptionsFromDDL().Select(x => x.Text.ToLower()));
+            //Actual List
+            List<string> ActualOptionList = new List<string>(_reportsPage.ReportTypeDDL.GetAllOptionsFromDDL().Select(x => x.Text.ToLower()));
             //Getting the actual option from the dropdown list.
             ActualOptionList.Remove("select"); //Removing the select item
             //Asserting
@@ -73,46 +86,46 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"Usage Report type is selected")]
         public void GivenUsageReportTypeIsSelected()
         {
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.UsageReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.UsageReportType);
         }
 
         [When(@"user clicks Get report button")]
         public void WhenUserClicksGetReportButton()
         {
-            reportsPage.GetReportButton.Click();
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"Asset Usage Report \(CSM\) label is displayed")]
         public void ThenAssetUsageReportCSMLabelIsDisplayed()
         {
-            Assert.AreEqual(true,usageReportPage.ReportsTitleHeader.GetElementVisibility(), "Usage Report header is not displayed");
-            Assert.AreEqual(UsageReportPage.ExpectedValues.ReportTiltleHeaderCSM.ToLower(), usageReportPage.ReportsTitleHeader.Text.ToLower(), "Usage report is not matching with the expected value.");
+            (_usageReportPage.ReportsTitleHeader.GetElementVisibility()).Should().BeTrue("Report title should be displayed in Usage report");
+            (_usageReportPage.ReportsTitleHeader.Text).Should().BeEquivalentTo(UsageReportPage.ExpectedValues.ReportTiltleHeaderCSM,"Usage report titlr header should match the expected string.");
         }
 
         [Then(@"Print button is displayed")]
         public void ThenPrintButtonIsDisplayed()
         {
-            Assert.AreEqual(true, reportsPage.PrintButton.GetElementVisibility(),"Print button is not displayed.");
+            (_reportsPage.PrintButton.GetElementVisibility()).Should().BeTrue("Print button should be displayed in Report page");
         }
 
         [Then(@"Number of Devices on Each Floor label is displayed")]
         public void ThenNumberOfDevicesOnEachFloorLabelIsDisplayed()
         {
-            Assert.AreEqual(true, usageReportPage.NumberOfdevicesOneachFloorLabel.GetElementVisibility(), "Number of Devices on Each Floor label is not displayed");
-            Assert.AreEqual(UsageReportPage.ExpectedValues.NumberofDevicesOnEachFlorrLabelText.ToLower(), usageReportPage.NumberOfdevicesOneachFloorLabel.Text.ToLower(), "Number of Devices on Each Floor label is not matching the expected text.");
+            (_usageReportPage.NumberOfdevicesOneachFloorLabel.GetElementVisibility()).Should().BeTrue("Number of Devices on Each Floor label should be displayed in usage report page.");
+            (_usageReportPage.NumberOfdevicesOneachFloorLabel.Text).Should().BeEquivalentTo(UsageReportPage.ExpectedValues.NumberofDevicesOnEachFlorrLabelText, "Number of Devices on Each Floor label should match the expected text.");
         }
 
         [Then(@"pie chart is displayed")]
         public void ThenPieChartIsDisplayed()
         {
-            Assert.AreEqual(true, usageReportPage.PieChart.GetElementVisibility(),"Pie chart is not displayed.");
+            (_usageReportPage.PieChart.GetElementVisibility()).Should().BeTrue("Pie chart should be displayed in Usage report page");
         }
 
         [Then(@"Total Usage Details - Components label is displayed")]
         public void ThenTotalUsageDetails_ComponentsLabelIsDisplayed()
         {
-            Assert.AreEqual(true, usageReportPage.TotalUsageComponentsLabel.GetElementVisibility(), "Total usage label is not displayed.");
-            Assert.AreEqual(UsageReportPage.ExpectedValues.TotalUsageDetailsComponentLabelText.ToLower(), usageReportPage.TotalUsageComponentsLabel.Text.ToLower(),"Total usage label is not matching the expected value.");
+            (_usageReportPage.TotalUsageComponentsLabel.GetElementVisibility()).Should().BeTrue("Total Usage Label should be displayed in Usage report page");
+            (_usageReportPage.TotalUsageComponentsLabel.Text).Should().BeEquivalentTo("Total usage label should match the expected value.");
         }
 
 
@@ -120,16 +133,16 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenUserIsOnCSMUsageReportsPage()
         {
             GivenUserIsOnReportPage();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.UsageReportType);
-            reportsPage.GetReportButton.Click();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.UsageReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"Assets are grouped by unit")]
         public void ThenAssetsAreGroupedByUnit()
         {
             SetMethods.ScrollToBottomofWebpage();
-            int unitCount = usageReportPage.UnitsRowList.GetElementCount();
+            int unitCount = _usageReportPage.UnitsRowList.GetElementCount();
             for(int row=0;row<unitCount;row++)
             {
                 IWebElement deviceParent = PropertyClass.Driver.FindElement(By.Id("devices" + row)).FindElement(By.XPath(".."));
@@ -145,16 +158,16 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenAllTheDevicesWithinThatUnitIsDisplayed()
         {
             //Unit1
-            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit1Column, UsageReportPage.ExpectedValues.Unit1CSMDeviceSerialNumbers);
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit1Column, UsageReportPage.ExpectedValues.Unit1CSMDeviceSerialNumbers);
 
             //Unit2
-            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit2Column,UsageReportPage.ExpectedValues.Unit2CSMDevicesSerialNumber);
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit2Column,UsageReportPage.ExpectedValues.Unit2CSMDevicesSerialNumber);
 
             //Unit3
-            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit3Column, UsageReportPage.ExpectedValues.Unit3CSMDevicesSerialNumber);
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit3Column, UsageReportPage.ExpectedValues.Unit3CSMDevicesSerialNumber);
 
             //Unit4
-            usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(usageReportPage.SerialNumberUnit4Column, UsageReportPage.ExpectedValues.Unit4CSMDevicesSerialNumber);
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit4Column, UsageReportPage.ExpectedValues.Unit4CSMDevicesSerialNumber);
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
@@ -169,37 +182,37 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 switch (columnHeading.ToLower().Trim())
                 {
                     case "model":
-                        column = usageReportPage.ModelHeading;
+                        column = _usageReportPage.ModelHeading;
                         ExpectedColumnHeading = UsageReportPage.ExpectedValues.ModelHeadingText;
                         break;
 
                     case "asset tag":
-                        column = usageReportPage.AssetTagHeading;
+                        column = _usageReportPage.AssetTagHeading;
                         ExpectedColumnHeading = UsageReportPage.ExpectedValues.AssetTagHeadingText;
                         break;
 
                     case "serial number":
-                        column = usageReportPage.SerialNumberHeading;
+                        column = _usageReportPage.SerialNumberHeading;
                         ExpectedColumnHeading = UsageReportPage.ExpectedValues.SerialNumberHeadingText;
                         break;
 
                     case "battery cycle count":
-                        column = usageReportPage.BatteryCycleCountHeading;
+                        column = _usageReportPage.BatteryCycleCountHeading;
                         ExpectedColumnHeading = UsageReportPage.ExpectedValues.BatteryCycleCountHeadingText;
                         break;
 
                     case "suretemp thermometer cycle count":
-                        column = usageReportPage.SureTempThermometerCycyleCountHeading;
+                        column = _usageReportPage.SureTempThermometerCycyleCountHeading;
                         ExpectedColumnHeading = UsageReportPage.ExpectedValues.SureTempThermometerCycleCountHeadingText;
                         break;
 
                     case "nibp sensor cycle count":
-                        column = usageReportPage.NIBPSensorCycleHeading;
+                        column = _usageReportPage.NIBPSensorCycleHeading;
                         ExpectedColumnHeading = UsageReportPage.ExpectedValues.NIBPSensorCycleCountHeadingText;
                         break;
 
                     case "sphb cycle count":
-                        column = usageReportPage.SPHBCycleCountHeading;
+                        column = _usageReportPage.SPHBCycleCountHeading;
                         ExpectedColumnHeading = UsageReportPage.ExpectedValues.SPHBCycleCountHeadingText;
                         break;
 
@@ -207,6 +220,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         Assert.Fail(columnHeading + " is a invalid heading.");
                         break;
                 }
+                (column.GetElementVisibility()).Should().BeTrue(columnHeading+" column heading should be displayed in Usage report page");
+                (column.Text).Should().BeEquivalentTo(ExpectedColumnHeading, columnHeading + " should match the expected value in usage report column heading.");
             }
             //for Configuration update report
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm configuration update status report table elements"))
@@ -214,31 +229,31 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 switch (columnHeading.ToLower().Trim())
                 {
                     case "serial number":
-                        column = csmConfigStatusPage.SerialNumberHeading;
+                        column = _csmConfigStatusPage.SerialNumberHeading;
                         ExpectedColumnHeading = CSMConfigStatusPage.ExpectedValues.SerialNumberHeadingText;
                         break;
 
                     case "configuration":
-                        column = csmConfigStatusPage.ConfigurationHeading;
+                        column = _csmConfigStatusPage.ConfigurationHeading;
                         ExpectedColumnHeading = CSMConfigStatusPage.ExpectedValues.ConfigurationHeadingText;
                         break;
 
                     case "location":
-                        column = csmConfigStatusPage.LocationHeading;
+                        column = _csmConfigStatusPage.LocationHeading;
                         ExpectedColumnHeading = CSMConfigStatusPage.ExpectedValues.LocationHeadingText;
                         break;
 
                     case "status":
-                        column = csmConfigStatusPage.StatusHeading;
+                        column = _csmConfigStatusPage.StatusHeading;
                         ExpectedColumnHeading = CSMConfigStatusPage.ExpectedValues.StatusHeadingText;
                         break;
 
                     case "last deployed":
-                        column = csmConfigStatusPage.LastDeployedHeading;
+                        column = _csmConfigStatusPage.LastDeployedHeading;
                         ExpectedColumnHeading = CSMConfigStatusPage.ExpectedValues.LastDeployedHeadingText;
                         break;
                     case "last connected":
-                        column = csmConfigStatusPage.LastConnectedHeading;
+                        column = _csmConfigStatusPage.LastConnectedHeading;
                         ExpectedColumnHeading = CSMConfigStatusPage.ExpectedValues.LastConnectedHeadingText;
                         break;
 
@@ -246,6 +261,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         Assert.Fail(columnHeading + " is a invalid heading name.");
                         break;
                 }
+                (column.GetElementVisibility()).Should().BeTrue(columnHeading + " column heading should be displayed in Configuration update status report page");
+                (column.Text).Should().BeEquivalentTo(ExpectedColumnHeading, columnHeading + " should match the expected value.");
             }
             //For CSM Firmware upgrade report
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware upgrade status report page table elements"))
@@ -253,31 +270,31 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 switch (columnHeading.ToLower().Trim())
                 {
                     case "serial number":
-                        column = firmwareStatusPage.SerialNumberHeading;
+                        column = _firmwareStatusPage.SerialNumberHeading;
                         ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.SerialNumberHeadingText;
                         break;
 
                     case "firmware version":
-                        column = firmwareStatusPage.FirmwareVerionHeading;
+                        column = _firmwareStatusPage.FirmwareVerionHeading;
                         ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.FirmwareVesrionHeadingText;
                         break;
 
                     case "location":
-                        column = firmwareStatusPage.LocationHeading;
+                        column = _firmwareStatusPage.LocationHeading;
                         ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.LocationHeadingText;
                         break;
 
                     case "status":
-                        column = firmwareStatusPage.StatusHeading;
+                        column = _firmwareStatusPage.StatusHeading;
                         ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.StatusHeadingText;
                         break;
 
                     case "last deployed":
-                        column = firmwareStatusPage.LastDeployedHeading;
+                        column = _firmwareStatusPage.LastDeployedHeading;
                         ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.LastDeployedHeadingText;
                         break;
                     case "last connected":
-                        column = firmwareStatusPage.LastConnectedHeading;
+                        column = _firmwareStatusPage.LastConnectedHeading;
                         ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.LastConnectedHeadingText;
                         break;
 
@@ -285,6 +302,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         Assert.Fail(columnHeading + " is a invalid heading name.");
                         break;
                 }
+                (column.GetElementVisibility()).Should().BeTrue(columnHeading + " column heading should be displayed in Firmware upgrade status report page");
+                (column.Text).Should().BeEquivalentTo(ExpectedColumnHeading, columnHeading + " should match the expected value.");
             }
             //For CSM Acitivity report
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm activity report page table elements"))
@@ -292,17 +311,17 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 switch (columnHeading.ToLower().Trim())
                 {
                     case "serial number":
-                        column = activityReportPage.SerialNumberHeading;
+                        column = _activityReportPage.SerialNumberHeading;
                         ExpectedColumnHeading = ActivityReportPage.ExpectedValues.SerialNumberHeadingText;
                         break;
 
                     case "location":
-                        column = activityReportPage.LocationHeading;
+                        column = _activityReportPage.LocationHeading;
                         ExpectedColumnHeading = ActivityReportPage.ExpectedValues.LocationHeadingText;
                         break;
 
                     case "last vital sent":
-                        column = activityReportPage.LastVitalSentHeading;
+                        column = _activityReportPage.LastVitalSentHeading;
                         ExpectedColumnHeading = ActivityReportPage.ExpectedValues.LastVitalSentHeadingText;
                         break;
 
@@ -310,14 +329,14 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         Assert.Fail(columnHeading + " is a invalid heading name.");
                         break;
                 }
+                (column.GetElementVisibility()).Should().BeTrue(columnHeading + " column heading should be displayed in Activity report page");
+                (column.Text).Should().BeEquivalentTo(ExpectedColumnHeading, columnHeading + " should match the expected value.");
             }
+            //If Test step does not belong to any secnario
             else
             {
                 Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
             }
-
-            Assert.AreEqual(true, column.GetElementVisibility(),columnHeading+" is not displayed");
-            Assert.AreEqual(ExpectedColumnHeading.ToLower(), column.Text.ToLower(),columnHeading+" is not matching with the expected value.");
 
         }
 
@@ -327,23 +346,27 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         {
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm usage report table elements columns"))
             {
-                IList<IWebElement> columns = usageReportPage.TableHeader.FindElements(By.TagName("div"));
-                Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+                IList<IWebElement> columns = _usageReportPage.TableHeader.FindElements(By.TagName("div"));
+                string columnName = columns[columnNumber - 1].Text;
+                (columnName).Should().BeEquivalentTo(columnHeading, columnHeading + " should be in " + columnNumber+" in usage report page");
             }
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm configuration update status report table elements columns"))
             {
-                IList<IWebElement> columns = csmConfigStatusPage.TableHeading.FindElements(By.TagName("div"));
-                Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+                IList<IWebElement> columns = _csmConfigStatusPage.TableHeading.FindElements(By.TagName("div"));
+                string columnName = columns[columnNumber - 1].Text;
+                (columnName).Should().BeEquivalentTo(columnHeading, columnHeading + " should be in " + columnNumber+" in Configuration update status report page");
             }
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware upgrade status report page table elements columns"))
             {
-                IList<IWebElement> columns = firmwareStatusPage.TableHeader.FindElements(By.TagName("div"));
-                Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+                IList<IWebElement> columns = _firmwareStatusPage.TableHeader.FindElements(By.TagName("div"));
+                string columnName = columns[columnNumber - 1].Text;
+                (columnName).Should().BeEquivalentTo(columnHeading, columnHeading + " should be in " + columnNumber+" in firmware upgrade status page");
             }
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm activity report page table elements columns"))
             {
-                IList<IWebElement> columns = activityReportPage.TableHeading.FindElements(By.TagName("div"));
-                Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+                IList<IWebElement> columns = _activityReportPage.TableHeading.FindElements(By.TagName("div"));
+                string columnName = columns[columnNumber - 1].Text;
+                (columnName).Should().BeEquivalentTo(columnHeading, columnHeading + " should be in " + columnNumber+" is in Activity report page.");
             }
             else
             {
@@ -357,11 +380,11 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         {
             if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm usage report table toggle"))
             {
-                usageReportPage.Station1.Click();
+                _usageReportPage.Station1.Click();
             }
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware version report table toggle"))
             {
-                firmwareVersionPage.Unit1Row.Click();
+                _firmwareVersionPage.Unit1Row.Click();
             }
             else
             {
@@ -375,13 +398,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenAssetsForUnitAreHidden()
         {
             //Checking the visibility of entire device table
-                Assert.AreEqual(false, usageReportPage.Station1Devices.GetElementVisibility(), "Assets for units are not hidden");
+            (_usageReportPage.Station1Devices.GetElementVisibility()).Should().BeFalse("Assets under unit should be hidden in usage report page When user clicks on unit row");
         }
 
         [Then(@"assets for unit are displayed")]
         public void ThenAssetsForUnitAreDisplayed()
         {
-            Assert.AreEqual(true, firmwareVersionPage.Unit1RowDetails.GetElementVisibility(), "Unit 1 rows are displayed");
+            (_firmwareVersionPage.Unit1RowDetails.GetElementVisibility()).Should().BeTrue("Assets under unit should be displayed in firmware version report page When user clicks on unit row");
         }
 
 
@@ -389,130 +412,130 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"Firmware Version Report type is selected")]
         public void GivenFirmwareVersionReportTypeIsSelected()
         {
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
         }
 
         [Then(@"Firmware Version Report \(CSM\) label is displayed")]
         public void ThenFirmwareVersionReportCSMLabelIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareVersionPage.FirmwareReportTitle.GetElementVisibility(),"Firmware verion report label is not displayed.");
-            Assert.AreEqual(FirmwareVersionPage.ExpectedValues.ReportCSMLabelText.ToLower(),firmwareVersionPage.FirmwareReportTitle.Text.ToLower(),"Firware version report(CSM) is not mathing with the expected value.");
+            (_firmwareVersionPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Report header should be displayed in the firmware version report page");
+            (_firmwareVersionPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.ReportCSMLabelText, "Firmware version report header should match the expected value.");
         }
 
         [Then(@"Components column heading is displayed")]
         public void ThenComponentsColumnHeadingIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareVersionPage.ComponentsHeading.GetElementVisibility(),"Components heading is not displayed.");
-            Assert.AreEqual(FirmwareVersionPage.ExpectedValues.ComponentsHeadingText.ToLower(), firmwareVersionPage.ComponentsHeading.Text.ToLower(), "Components heading is not matching with the expected value.");
+            (_firmwareVersionPage.ComponentsHeading.GetElementVisibility()).Should().BeTrue("Components heading should be displayed in firware version report page.");
+            (_firmwareVersionPage.ComponentsHeading.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.ComponentsHeadingText, "Components heading should match the expected value.");
         }
 
         [Then(@"Firmware version column heading is displayed")]
         public void ThenFirmwareVersionColumnHeadingIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareVersionPage.FirmwareVersionHeading.GetElementVisibility(),"Firmware version heading is not displayed.");
-            Assert.AreEqual(FirmwareVersionPage.ExpectedValues.FirmwareVersionHeadingText.ToLower(), firmwareVersionPage.FirmwareVersionHeading.Text.ToLower(),"Firmware version heading is not matching with the expected value.");
+            (_firmwareVersionPage.FirmwareVersionHeading.GetElementVisibility()).Should().BeTrue("Firmware version heading should be displayed in firmware version report page.");
+            (_firmwareVersionPage.FirmwareVersionHeading.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.FirmwareVersionHeadingText, "Firmware version heading text should match the expected value.");
         }
 
         [Then(@"Total devices column heading is displayed")]
         public void ThenTotalDevicesColumnHeadingIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareVersionPage.TotaldevicesHeading.GetElementVisibility(), "Total devices heading is not displayed.");
-            Assert.AreEqual(FirmwareVersionPage.ExpectedValues.TotalDevicesHeadingText.ToLower(), firmwareVersionPage.TotaldevicesHeading.Text.ToLower(), "Total devices heading is not matching with the expected value.");
+            (_firmwareVersionPage.TotaldevicesHeading.GetElementVisibility()).Should().BeTrue("Total devices heading should be displayed in firmware version report page.");
+            (_firmwareVersionPage.TotaldevicesHeading.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.TotalDevicesHeadingText, "Total devices heading text should match the expected value.");
         }
 
         [Given(@"user is on CSM Firmware Version Report page")]
         public void GivenUserIsOnCSMFirmwareVersionReportPage()
         {
             GivenUserIsOnReportPage();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
-            reportsPage.GetReportButton.Click();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [When(@"user clicks Total row")]
         public void WhenUserClicksTotalRow()
         {
-            firmwareVersionPage.TotalRow.Click();
+            _firmwareVersionPage.TotalRow.Click();
         }
 
         [Then(@"rows below Total are displayed")]
         public void ThenRowsBelowTotalAreDisplayed()
         {
-            Assert.AreEqual(true, firmwareVersionPage.TotalRowDetails.GetElementVisibility(), message: "Rows below table are displayed.");
+            (_firmwareVersionPage.TotalRowDetails.GetElementVisibility()).Should().BeTrue("Rows below total should be displayed when user clicks total row in firmware version report.");
         }
 
         [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9378", Scenario = "CSM Firmware Version Report Print")]
         public void ThenThePrintButtonIsEnabledFirmwareVersionReport()
         {
-            Assert.IsTrue(firmwareVersionPage.PrintButton.Enabled, "print button is not enabled");
+            (_firmwareVersionPage.PrintButton.Enabled).Should().BeTrue("Print button should be enabled in Firmware version report page");
         }
 
         [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9383", Scenario = "CSM Configuration Update Status Report Print")]
         public void ThenThePrintButtonIsEnabledConfigurationUpdateStatus()
         {
-            Assert.IsTrue(csmConfigStatusPage.PrintButton.Enabled, "print button is not enabled");
+            (_csmConfigStatusPage.PrintButton.Enabled).Should().BeTrue(because: "Print button should be enabled in Firmware version report page");
         }
 
         [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9388",Scenario = "CSM Firmware Upgrade Status Report Print")]
         public void ThenThePrintButtonIsEnabledFirmwareUpgrade()
         {
-            Assert.IsTrue(firmwareStatusPage.PrintButton.Enabled, "print button is not enabled");
+            (_firmwareStatusPage.PrintButton.Enabled).Should().BeTrue(because: "Print button should be enabled in Firmware Upgrade status report page");
         }
 
 
         [Given(@"Configuration Update Status Report type is selected")]
         public void GivenConfigurationUpdateStatusReportTypeIsSelected()
         {
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
         }
 
         [Then(@"Configuration Update Status Report \(CSM\) label is displayed")]
         public void ThenConfigurationUpdateStatusReportCSMLabelIsDisplayed()
         {
-            Assert.AreEqual(true, csmConfigStatusPage.ReportTitle.GetElementVisibility(),"Configuration update status report label is not displayed.");
-            Assert.AreEqual(CSMConfigStatusPage.ExpectedValues.ConfigurationUpdateStatusCSMLabelText.ToLower(),csmConfigStatusPage.ReportTitle.Text.ToLower(),"Configuration update status report is not matching with the expected value.");
+            (_csmConfigStatusPage.ReportTitle.GetElementVisibility()).Should().BeTrue(because: "Report Title label should be displayed in Configurayion update status report page");
+            (_csmConfigStatusPage.ReportTitle.Text).Should().BeEquivalentTo(CSMConfigStatusPage.ExpectedValues.ConfigurationUpdateStatusCSMLabelText, because: "Configuration update status report title should match with the expected value.");
         }
 
         [Then(@"Information button is displayed")]
         public void ThenInformationButtonIsDisplayed()
         {
-            Assert.AreEqual(true, reportsPage.InformationButton.GetElementVisibility(),"Information button is not displayed.");
+            (_reportsPage.InformationButton.GetElementVisibility()).Should().BeTrue("Information button should be displayed in Reports page");
         }
 
         [Then(@"Download button is displayed")]
         public void ThenDownloadButtonIsDisplayed()
         {
-            Assert.AreEqual(true, reportsPage.DownloadButton.GetElementVisibility(),"Download button is not displayed.");
+            (_reportsPage.DownloadButton.GetElementVisibility()).Should().BeTrue("Download button should be displayed in Reports page");
         }
 
         [Then(@"Search box is displayed")]
         public void ThenSearchBoxIsDisplayed()
         {
-            Assert.AreEqual(true, csmConfigStatusPage.SearchBox.GetElementVisibility(),"Search box is not displayed.");
+            (_csmConfigStatusPage.SearchBox.GetElementVisibility()).Should().BeTrue("Search Box should be displayed in Reports page");
         }
 
         [Then(@"Previous page icon is displayed")]
         public void ThenPreviousPageIconIsDisplayed()
         {
-            Assert.AreEqual(true, csmConfigStatusPage.PreviousPaginationIcon.GetElementVisibility(),"Previous pagination icon is not displayed.");
+            (_csmConfigStatusPage.PreviousPaginationIcon.GetElementVisibility()).Should().BeTrue("Previous page pagination icon should be displayed in reports page.");
         }
 
         [Then(@"Next page icon is displayed")]
         public void ThenNextPageIconIsDisplayed()
         {
-            Assert.AreEqual(true, csmConfigStatusPage.NextPaginationIcon.GetElementVisibility(),"Next page pagination icon is not displayed.");
+            (_csmConfigStatusPage.NextPaginationIcon.GetElementVisibility()).Should().BeTrue("Next page pagination icon should be displayed in reports page.");
         }
 
         [Then(@"Page x of y indicator is displayed")]
         public void ThenPageXOfYIndicatorIsDisplayed()
         {
-            Assert.AreEqual(true, csmConfigStatusPage.PageXOfY.GetElementVisibility(), "Page x of y label is not displayed.");
+            (_csmConfigStatusPage.PageXOfY.GetElementVisibility()).Should().BeTrue("Page x of y label should be displayed in reports page.");
         }
 
         [Then(@"Displaying x to y of z results indicator is displayed")]
         public void ThenDisplayingXToYOfZResultsIndicatorIsDisplayed()
         {
-            Assert.AreEqual(true,csmConfigStatusPage.PageDisplay.GetElementVisibility(),"Displaying x of z results indicator is displayed.");
+            (_csmConfigStatusPage.PageDisplay.GetElementVisibility()).Should().BeTrue("Displaying x of z results indicator should be displayed in reports page.");
         }
 
 
@@ -520,53 +543,53 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenUserIsOnCSMConfigurationUpdateStatusReportPage()
         {
             GivenUserIsOnReportPage();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
-            reportsPage.GetReportButton.Click();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [Given(@"Firmware Status Report type is selected")]
         public void GivenFirmwareStatusReportTypeIsSelected()
         {
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
         }
 
         [Then(@"Firmware Upgrade Status Report \(CSM\) label is displayed")]
         public void ThenFirmwareUpgradeStatusReportCSMLabelIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareStatusPage.FirmwareReportTitle.GetElementVisibility(),"Firmware upgrade status report csm is not displayed");
-            Assert.AreEqual(FirmwareStatusPage.ExpectedValues.FirmwareUpgradeStatusCSMLabel.ToLower(), firmwareStatusPage.FirmwareReportTitle.Text.ToLower(), "Firmware upgrade status report CSM is not matching with the expected value.");
+            (_firmwareStatusPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Report title should be displayed in Firmware upgrade status report page.");
+            (_firmwareStatusPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareStatusPage.ExpectedValues.FirmwareUpgradeStatusCSMLabel,because: "Firmware upgrade status report label should match the expected value.");
         }
 
         [Given(@"user is on CSM Firmware Upgrade Status Report page")]
         public void GivenUserIsOnCSMFirmwareUpgradeStatusReportPage()
         {
             GivenUserIsOnReportPage();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
-            reportsPage.GetReportButton.Click();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [Given(@"Activity Report type is selected")]
         public void GivenActivityReportTypeIsSelected()
         {
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
         }
 
         [Then(@"Activity Report \(CSM\) label is displayed")]
         public void ThenActivityReportCSMLabelIsDisplayed()
         {
-            Assert.AreEqual(true, activityReportPage.ActivityReportHeader.GetElementVisibility(),"Activity report header label is not displayed.");
-            Assert.AreEqual(ActivityReportPage.ExpectedValues.ActivityReportCSMHeader.ToLower(),activityReportPage.ActivityReportHeader.Text.ToLower(),"Activity report header is not matching with the expected value.");
+            (_activityReportPage.ActivityReportHeader.GetElementVisibility()).Should().BeTrue(because: "Activity report header label should be displayed in Activity report page");
+            (_activityReportPage.ActivityReportHeader.Text).Should().BeEquivalentTo(ActivityReportPage.ExpectedValues.ActivityReportCSMHeader, because: "Activity report header text should match the expected value.");
         }
 
         [Given(@"user is on CSM Activity Report page")]
         public void GivenUserIsOnCSMActivityReportPage()
         {
             GivenUserIsOnReportPage();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
-            reportsPage.GetReportButton.Click();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
 

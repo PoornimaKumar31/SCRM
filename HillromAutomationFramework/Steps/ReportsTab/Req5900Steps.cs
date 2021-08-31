@@ -9,42 +9,50 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5900")]
     public class Req5900Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        ReportsPage reportsPage = new ReportsPage();
-        ActivityReportPage activityReportPage = new ActivityReportPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+        private readonly ActivityReportPage _activityReportPage;
 
-        private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
 
         public Req5900Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();
+            _activityReportPage = new ActivityReportPage();  
         }
 
         [Given(@"user is on CSM ACTIVITY REPORT page")]
         public void GivenUserIsOnCSMACTIVITYREPORTPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.ReportsTab.JavaSciptClick();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
-            reportsPage.GetReportButton.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            _mainPage.ReportsTab.JavaSciptClick();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+            _reportsPage.GetReportButton.Click();
         }
         
         [Then(@"Search Textbox displays ""(.*)""")]
         public void ThenSearchTextboxDisplays(string ExpectedsearchBoxHintText)
         {
-            string ActualHintText = activityReportPage.SearchBox.GetAttribute("placeholder");
+            string ActualHintText = _activityReportPage.SearchBox.GetAttribute("placeholder");
             ActualHintText.Should().BeEquivalentTo(ExpectedsearchBoxHintText.Trim(),"It displays hint text which is searchable.");
         }
 
@@ -52,7 +60,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [When(@"presses Enter")]
         public void WhenPressesEnter()
         {
-            activityReportPage.SearchBox.EnterText(Keys.Enter);
+            _activityReportPage.SearchBox.EnterText(Keys.Enter);
         }
 
         [When(@"user enters ""(.*)"" in Search textbox")]
@@ -73,7 +81,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     break;
             }
             //entering the search text in the search box.
-            activityReportPage.SearchBox.EnterText(searchText);
+            _activityReportPage.SearchBox.EnterText(searchText);
         }
 
         [Then(@"device with matching ""(.*)"" is displayed")]
@@ -86,12 +94,12 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch (searchType.ToLower().Trim())
             {
                 case "serial number":
-                    column = activityReportPage.SerialNumberColumn;
+                    column = _activityReportPage.SerialNumberColumn;
                     ExpectedSearchText = ActivityReportPage.ExpectedValues.SerialNumberSearchText;
                     break;
 
                 case "location":
-                    column = activityReportPage.LocationColumn;
+                    column = _activityReportPage.LocationColumn;
                     ExpectedSearchText = ActivityReportPage.ExpectedValues.LocationSearchText;
                     break;
 
