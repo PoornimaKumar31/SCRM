@@ -227,7 +227,7 @@ namespace HillromAutomationFramework.Steps.Main
 
             }
             
-            ActualValue.Should().BeTrue();
+            ActualValue.Should().BeTrue(labelName+" should be dislpayed when no records are present.");
         }
 
         [Then(@"service date picker control is displayed")]
