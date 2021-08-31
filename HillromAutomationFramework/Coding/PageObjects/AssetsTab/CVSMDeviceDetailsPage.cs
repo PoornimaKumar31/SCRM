@@ -49,12 +49,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
         }
         public static class ExpectedValues
         {
+            public const string RequestLogButtonDisabledClassName = "requestLogsbtn disable";
             public const string EditAssetDetailsPopUpTitle = "EDIT ASSET DETAILS";
             public const string EditAssetDetailsPopUpAssetTagLabel = "Asset tag";
             public const string EditAssetDetailsPopUpFacilityLabel = "Facility";
             public const string EditAssetDetailsPopUpLocationLabel = "Location";
             public const string RoomLabelHintText = "Room";
             public const string BedLabelHintText = "Bed";
+            
 
             public const string NewRoomValue = "New Room";
             public const string NewBedValue = "New Bed";
@@ -62,12 +64,12 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string UpdateBedValue = "Update Bed";
             public const string RoomAndBedNotSet = "(not set)";
 
-            public const string SortDecreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_up.svg\")";
-            public const string SortIncreasingIconURL = "url(\"https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_sort_down.svg\")";
-            public const string PreviousDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/left_disabled.png";
-            public const string PreviousEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_previous.svg";
-            public const string NextDisableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/right_disabled.png";
-            public const string NextEnableImageURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement/icon_page_next.svg";
+            public static string SortDecreasingIconURL = "url(\""+PropertyClass.BaseURL+"/icon_sort_up.svg\")";
+            public static string SortIncreasingIconURL = "url(\""+PropertyClass.BaseURL+"/icon_sort_down.svg\")";
+            public static string PreviousDisableImageURL = PropertyClass.BaseURL+"/left_disabled.png";
+            public static string PreviousEnableImageURL = PropertyClass.BaseURL+"/icon_page_previous.svg";
+            public static string NextDisableImageURL = PropertyClass.BaseURL+"/right_disabled.png";
+            public static string NextEnableImageURL = PropertyClass.BaseURL+"/icon_page_next.svg";
         }
 
         public CVSMDeviceDetailsPage()

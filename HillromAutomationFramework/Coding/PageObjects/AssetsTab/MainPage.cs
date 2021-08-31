@@ -109,6 +109,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
+            public const string CentrellaDeviceName = "Centrella";
 
             //search elements
             public static int AllOrganizationsDevicesListWithRollUp = 31;
@@ -130,6 +131,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const int LNTAutomatedTestOrganizationDeviceCount = 194;
             public const int LNTAutomatedTestOrganizationFacilityOneDeviceCount = 31;
             public const int LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount = 12;
+            public const int PSSServiceBastesvilleDeviceCount = 58;
 
         }
 
@@ -291,7 +293,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         //Search the Serial number and click on the device.
         public void SearchSerialNumberAndClick(string serialNumber)
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             SearchField.Clear();
             SearchField.EnterText(serialNumber);
             SearchField.EnterText(Keys.Enter);
@@ -312,9 +314,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public List<string> GetColumnData(string ColumnName)
         {
             //Finding the index of sorted column
-            IList<IWebElement> DeviceTableHeadingElements = DeviceListTableHeader.FindElements(By.TagName("th"));
-            List<string> DeviceTableHeadingElementsText = (DeviceTableHeadingElements.Select(columnHeading => columnHeading.Text.ToString().ToLower())).ToList();
-            int columnNumber = DeviceTableHeadingElementsText.IndexOf(ColumnName.ToLower().Trim()) + 1;
+            int columnNumber = GetColumnIndex(ColumnName);
             
             //Taking the column data from the application
             IList<IWebElement> ColumnDataWebElementList = DeviceListTableBody.FindElements(By.XPath("//td[" + columnNumber + "]"));
@@ -326,6 +326,19 @@ namespace HillromAutomationFramework.Coding.PageObjects
             }
 
             return (ColumnData);
+        }
+
+        /// <summary>
+        /// Gets the index of the specified column(1 based indexing).
+        /// </summary>
+        /// <param name="columnName">Name of the column</param>
+        /// <returns>Index of the column</returns>
+        public int GetColumnIndex(string columnName)
+        {
+            IList<IWebElement> DeviceTableHeadingElements = DeviceListTableHeader.FindElements(By.TagName("th"));
+            List<string> DeviceTableHeadingElementsText = (DeviceTableHeadingElements.Select(columnHeading => columnHeading.Text.ToString().ToLower())).ToList();
+            int columnNumber = DeviceTableHeadingElementsText.IndexOf(columnName.ToLower().Trim()) + 1;
+            return (columnNumber);
         }
 
 
@@ -397,35 +410,38 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
             if (DeviceListRow.GetElementCount() == 1)
             {
-                if (columnnName.Trim().ToLower() == "type")
-                    return DeviceType;
+                switch (columnnName.ToLower().Trim())
+                {
+                    case "type":
+                        return DeviceType;
 
-                else if (columnnName.Trim().ToLower() == "status")
-                    return DeviceStatus;
+                    case "status":
+                        return DeviceStatus;
 
-                else if (columnnName.Trim().ToLower() == "firmware")
-                    return DeviceFirmwareVersion;
+                    case "firmware":
+                        return DeviceFirmwareVersion;
 
-                else if (columnnName.Trim().ToLower() == "config file")
-                    return DeviceConfigFile;
+                    case "config file":
+                        return DeviceConfigFile;
 
-                else if (columnnName.Trim().ToLower() == "asset tag")
-                    return DeviceAssetTag;
+                    case "asset tag":
+                        return DeviceAssetTag;
 
-                else if (columnnName.Trim().ToLower() == "serial number")
-                    return DeviceSerialNumber;
+                    case "serial number":
+                        return DeviceSerialNumber;
 
-                else if (columnnName.Trim().ToLower() == "location")
-                    return DeviceLocation;
+                    case "location":
+                        return DeviceLocation;
 
-                else if (columnnName.Trim().ToLower() == "last connected")
-                    return DeviceLastConnection;
+                    case "last connected":
+                        return DeviceLastConnection;
 
-                else if (columnnName.Trim().ToLower() == "pm due")
-                    return DevicePMDue;
+                    case "pm due":
+                        return DevicePMDue;
 
-                else
-                    throw new ArgumentException("Column Name is not valid");
+                    default:
+                        throw new ArgumentException("Column Name is not valid");
+                }
             }
             else
                 throw new ArgumentException("Serial Number is not valid");

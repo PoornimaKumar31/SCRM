@@ -217,11 +217,17 @@ namespace HillromAutomationFramework.Coding.PageObjects
         /// </summary>
         public enum LogInType
         {
-            //Adminstrator user with roll-up page
+            /// <summary>
+            /// Adminstrator user with roll-up page
+            /// </summary>
             AdminWithRollUpPage,
-            //Administrator user without roll-up page
+            /// <summary>
+            /// Administrator user without roll-up page
+            /// </summary>
             AdminWithOutRollUpPage,
-            //Standard User without rill-up page
+            /// <summary>
+            /// Standard User without rill-up page
+            /// </summary>
             StandardUserWithoutRollUpPage
         }
 
@@ -232,41 +238,44 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public void LogIn(LogInType Type)
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
-            // Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(15))
+            /// Explicit wait-> Wait till logo is displayed
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(20))
             {
                 Message = "Login page is not loaded. Selenium could not find the hillrom logo."
             };
             //Wait till Login page is loaded.
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
-            //Wait message for the Landing page.               
-            wait.Message = "Landing page organization is not loaded.";
+            //Wait message for the Main page.               
+            wait.Message = "Asset list(Main page) page is not loaded";
             ///Login based on user type.
             switch(Type)
             {
                 case LogInType.AdminWithRollUpPage:
                     EmailField.EnterText(Config.EmailIDAdminWithRollUp);
                     PasswordField.EnterText(Config.PasswordAdminWithRollUp);
+                    SetMethods.MoveTotheElement(LoginButton,"Login button");
                     LoginButton.Click();
+                    wait.Message = "Landing page organization is not loaded.";
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedEyeTestOrganizationTitleXPath)));
                     break;
                 case LogInType.AdminWithOutRollUpPage:
                     EmailField.EnterText(Config.EmailAdminWithoutRollUp);
                     PasswordField.EnterText(Config.PasswordAdminWithoutRollUp);
+                    SetMethods.MoveTotheElement(LoginButton, "Login button");
                     LoginButton.Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     break;
                 case LogInType.StandardUserWithoutRollUpPage:
                     EmailField.EnterText(Config.EmailStandardWithoutRollUp);
                     PasswordField.EnterText(Config.PasswordStandardWithoutRollUp);
+                    SetMethods.MoveTotheElement(LoginButton, "Login button");
                     LoginButton.Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
                     break;
-                default: Assert.Fail(Type + " is a invalid login type.");
+                default: Assert.Fail(Type.ToString() + " is a invalid login type.");
                     break;
             }
         }
-
 
     }
 }

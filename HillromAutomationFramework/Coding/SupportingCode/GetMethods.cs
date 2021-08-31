@@ -1,14 +1,9 @@
 ﻿using AventStack.ExtentReports;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace HillromAutomationFramework.Coding.SupportingCode
@@ -177,7 +172,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static string GenerateRandomString(int stringSize)
         {
             int length = stringSize;
-            StringBuilder str_build = new StringBuilder();
             Random random = new Random();
             string str = "";
             char letter;
@@ -187,7 +181,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                 double flt = random.NextDouble();
                 int shift = Convert.ToInt32(Math.Floor(25 * flt));
                 letter = Convert.ToChar(shift + 65);
-                str = str + letter.ToString();
+                str += letter.ToString();
             }
             return str;
         }
@@ -200,7 +194,6 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         public static string GenerateRandomUsername(int stringSize)
         {
             int length = stringSize;
-            StringBuilder str_build = new StringBuilder();
             Random random = new Random();
             string str = "";
             char letter;
@@ -210,7 +203,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                 double flt = random.NextDouble();
                 int shift = Convert.ToInt32(Math.Floor(25 * flt));
                 letter = Convert.ToChar(shift + 65);
-                str = str + letter.ToString();
+                str += letter.ToString();
             }
 
             string str2 = "@hillrom.com";
@@ -311,13 +304,10 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             int i = 0;
             while (n != 0)
             {
-                // Temporary variable to
-                // store remainder
-                int temp = 0;
 
                 // Storing remainder in
                 // temp variable.
-                temp = n % 16;
+                int temp = n % 16;
 
                 // Check if temp < 10
                 if (temp < 10)
@@ -330,7 +320,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                     hexaDeciNum[i] = (char)(temp + 55);
                     i++;
                 }
-                n = n / 16;
+                n /= 16;
             }
             string hexCode = "";
 

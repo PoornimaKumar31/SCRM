@@ -1,9 +1,12 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -40,6 +43,10 @@ namespace HillromAutomationFramework.Steps.Main
                     loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
                     landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
                     break;
+                case "centrella":
+                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+                    landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+                    break;
                 default: Assert.Fail("Invalid device name " + deviceName);
                     break;
             }
@@ -68,6 +75,9 @@ namespace HillromAutomationFramework.Steps.Main
                 case "rv700":
                     Device = MainPage.ExpectedValues.RV700DeviceName;
                     break;
+                case "centrella":
+                    Device = MainPage.ExpectedValues.CentrellaDeviceName;
+                    break;
                 default:
                     Assert.Fail("Invalid device name " + deviceName);
                     break;
@@ -80,30 +90,24 @@ namespace HillromAutomationFramework.Steps.Main
         public void ThenAllOrganizationDevicesAreDisplayed()
         {
             int TotalRecords = mainPage.DeviceListRow.GetElementCount();
-            Assert.AreEqual(true, MainPage.ExpectedValues.AllOrganizationsDevicesListWithRollUp == TotalRecords, "All Organization's devices are not displayed");
+            Assert.AreEqual(MainPage.ExpectedValues.AllOrganizationsDevicesListWithRollUp, TotalRecords, "All Organization's devices are not displayed");
         }
         
         [Then(@"all organization ""(.*)"" devices are displayed")]
-        public void ThenAllOrgnaizationRVDevicesAreDisplayed(string deviceName)
+        public void ThenAllOrgnaizationRVDevicesAreDisplayed(string DeviceName)
         {  
-            int ExpectedDeviceCount=0;
-            switch (deviceName.ToLower().Trim())
+            //Getting the list of Device type
+            List<string> DeviceList = mainPage.GetColumnData("Type");
+
+            for (int i = 0; i < DeviceList.Count; i++)
             {
-                case "csm":
-                    ExpectedDeviceCount = MainPage.ExpectedValues.AllOrgnaizationCSMDevicesCount;
-                    break;
-                case "cvsm":
-                    ExpectedDeviceCount = MainPage.ExpectedValues.AllOrgnaizationCVSMDevicesCount;
-                    break;
-                case "rv700":
-                    ExpectedDeviceCount = MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount;
-                    break;
-                default:
-                    Assert.Fail("Invalid device name " + deviceName);
-                    break;
+                DeviceList[i] = (DeviceList[i]).ToLower();
             }
-            int ActualDeviceCount = mainPage.DeviceListRow.GetElementCount();
-            Assert.AreEqual(ExpectedDeviceCount, ActualDeviceCount,"All organization "+deviceName+" devices are not displayed");
+
+            List<string> DeviceListLowerCase = new List<string>(DeviceList.Select(deviceType => deviceType.ToLower()));
+
+            //Asserting
+            DeviceListLowerCase.Should().AllBe(DeviceName.ToLower());
         }
     }
 }

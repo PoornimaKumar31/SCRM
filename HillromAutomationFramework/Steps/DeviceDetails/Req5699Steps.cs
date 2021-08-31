@@ -8,6 +8,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
@@ -17,11 +18,13 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         LoginPage loginPage = new LoginPage();
         LandingPage landingPage = new LandingPage();
         CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        
         readonly MainPage mainPage = new MainPage();
         readonly DeviceDetailsPage deviceDetailsPage = new DeviceDetailsPage();
-        private ScenarioContext _scenarioContext;
 
+
+        readonly private ScenarioContext _scenarioContext;
+        readonly private WebDriverWait _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
         public Req5699Steps(ScenarioContext scenarioContext)
         {
@@ -33,7 +36,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             Thread.Sleep(1000);
             mainPage.SearchSerialNumberAndClick("110010000019");
@@ -52,7 +55,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
             csmDeviceDetailsPage.LogsTab.Click();
         }
 
@@ -72,26 +75,26 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                 case 0:
                     //Selecting CSM device with no log files
                     landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.SearchSerialNumberAndClick("100010000005");
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
                     //selecting CSM device with 10 log files
                     landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.SearchSerialNumberAndClick("110010000019");
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
                     break;
                 case 24:
                     //selecting CSM device with 25 log files
                     landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     mainPage.SearchSerialNumberAndClick("110010000000");
-                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     csmDeviceDetailsPage.LogsTab.Click();
                     break;
                 default: Assert.Fail("Invalid number of logs \""+ noOfLogs+"\"");
@@ -130,9 +133,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            SetMethods.MoveTotheElement(csmDeviceDetailsPage.LogsNextButton, "Next logs page");
-            csmDeviceDetailsPage.LogsNextButton.Click();
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPageNumber.Text == "1","User can navigate to the next page");
+            SetMethods.MoveTotheElement(csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")), "Next logs page");
+            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL, csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src"), "Next page icon is not disabled.");
         }
 
         [Then(@"no logs for CSM device are displayed")]

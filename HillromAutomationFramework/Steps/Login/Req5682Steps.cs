@@ -43,6 +43,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"clicks Login button")]
         public void WhenClicksLoginButton()
         {
+            SetMethods.MoveTotheElement(loginPage.LoginButton, "Login button");
             loginPage.LoginButton.Click();
         }
 

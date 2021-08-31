@@ -25,3 +25,9 @@ Scenario: Asset Type RV700
 	Given user is on Assets List page with more than one "RV700"
 	When user selects "RV700" from Asset type dropdown
 	Then all organization "RV700" devices are displayed
+
+@TestCaseID_10115 @UISID_8666
+Scenario: Asset Type Centrella
+	Given user is on Assets List page with more than one "Centrella"
+	When user selects "Centrella" from Asset type dropdown
+	Then all organization "Centrella" devices are displayed
