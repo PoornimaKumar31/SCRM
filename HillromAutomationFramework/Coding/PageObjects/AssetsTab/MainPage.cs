@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.SupportingCode;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
@@ -329,17 +330,30 @@ namespace HillromAutomationFramework.Coding.PageObjects
 
 
         //function for checking display page result
-        public bool DisplayPageResults(string[] PageInfo, int p0, int p1, int p2)
+        public bool DisplayPageResults(string[] PageInfo, int expectedCurrentPage, int expectedLastPage, int expectedTotalRecords)
         {
-            string str0 = PageInfo[1];
-            char[] cha = str0.ToCharArray();
-            int[] Aint = Array.ConvertAll(cha, c => (int)Char.GetNumericValue(c));
-            int a1 = Aint[0];
-            int a11 = Aint[2];
-            string str2 = PageInfo[3];
-            int NoOfPages = int.Parse(str2);
-            bool boo = a1 == p0 && a11 == p1 && NoOfPages == p2;
-            return boo;
+            string currentPageLastPageInfo = PageInfo[1];
+            char[] currentAndLastPage = currentPageLastPageInfo.ToCharArray();
+            int[] pageNumericValue = Array.ConvertAll(currentAndLastPage, c => (int)Char.GetNumericValue(c));
+            int actualCurrentPage = pageNumericValue[0];
+            int actualLastPage = pageNumericValue[2];
+            string totalRecords = PageInfo[3];
+            int actualTotalRecords = int.Parse(totalRecords);
+
+            //
+            bool isCurrentPageZero = actualCurrentPage == expectedCurrentPage;
+            bool isLastPageZero = actualLastPage == expectedLastPage;
+            bool isTotalRecordZero = actualTotalRecords == expectedTotalRecords;
+            isCurrentPageZero.Should().Be(isLastPageZero, "Current page and Last page should be zero.");
+            isCurrentPageZero.Should().BeTrue("Current page is displaying zero.");
+            isLastPageZero.Should().BeTrue("Last page is displaying zero.");
+            isTotalRecordZero.Should().BeTrue("All record is displaying zero.");
+
+            bool isTotalRecordsZero = actualTotalRecords == expectedTotalRecords;
+            bool isPageInfoZeroZeroZero = isCurrentPageZero == isLastPageZero && isCurrentPageZero == isTotalRecordsZero;
+
+            bool isDisplayed = actualCurrentPage == expectedCurrentPage && actualLastPage == expectedLastPage && actualTotalRecords == expectedTotalRecords;
+            return isDisplayed;
         }
 
         public bool APMACAddressesMatchSearchText(IWebElement CompInfo, IWebElement RadioNewMarr, IWebElement MACAddress)

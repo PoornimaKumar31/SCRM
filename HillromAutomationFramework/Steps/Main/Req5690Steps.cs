@@ -163,10 +163,10 @@ namespace HillromAutomationFramework.Steps.Main
         }
 
         [Then(@"Displaying (.*) to (.*) of (.*) results is displayed")]
-        public void ThenDisplayingToOfResultsIsDisplayed(int p0, int p1, int p2)
+        public void ThenDisplayingToOfResultsIsDisplayed(int currentPage, int lastPage, int totalRecords)
         {
             string[] PageInformation = mainPage.PaginationDisplay.Text.Split();
-            bool IsPageResultDisplayed = mainPage.DisplayPageResults(PageInformation, p0, p1, p2);
+            bool IsPageResultDisplayed = mainPage.DisplayPageResults(PageInformation, currentPage, lastPage, totalRecords);
             Assert.AreEqual(true, IsPageResultDisplayed, "Displaying 0 to 0 of 0 results is not displayed.");
         }
 
