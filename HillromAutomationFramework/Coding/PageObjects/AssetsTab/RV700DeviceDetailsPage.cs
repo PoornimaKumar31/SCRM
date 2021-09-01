@@ -41,14 +41,14 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string AssetDetailsSubSectionId = "device-details";
 
             //connex device
-            public const string DeviceNameXpath = "//div[@id='firm_version']/parent::div/div[1]";
+            public const string DeviceNameID = "device_name";
             public const string FirmwareVersionXpath = "//div[@id='firm_version']";
-            public const string SerialNumberXpath = "//div[@id='firm_version']/parent::div/div[5]";
+            public const string SerialNumberID = "serial_number";
 
             //Newmar
             public const string NewMarNameId = "newmar";
             public const string NewMarFirmwareVersionID = "newmar_firm_version";
-            public const string NewMarSerialNumberXpath = "//div[@id='newmar_firm_version']/parent::div/div[5]";
+            public const string NewMarSerialNumberID = "newmar_serial_number";
             public const string NewMarToggleArrowId = "radio";
             public const string NewMarMACAddressLabelID = "lbl_newmar_mac";
             public const string NewMarMACAddresValueId = "newmar_mac";
@@ -178,10 +178,10 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.XPath, Using = Locators.FirmwareVersionXpath)]
         public IWebElement FirmwareVersion { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.DeviceNameXpath)]
+        [FindsBy(How = How.Id, Using = Locators.DeviceNameID)]
         public IWebElement DeviceName { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.SerialNumberXpath)]
+        [FindsBy(How = How.Id, Using = Locators.SerialNumberID)]
         public IWebElement SerialNumber { get; set; }
 
         //Newmar
@@ -191,7 +191,7 @@ namespace HillromAutomationFramework.Coding.PageObjects
         [FindsBy(How = How.Id, Using = Locators.NewMarFirmwareVersionID)]
         public IWebElement NewMarFirmwareVersion { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.NewMarSerialNumberXpath)]
+        [FindsBy(How = How.Id, Using = Locators.NewMarSerialNumberID)]
         public IWebElement NewMarSerialNumber { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.NewMarToggleArrowId)]

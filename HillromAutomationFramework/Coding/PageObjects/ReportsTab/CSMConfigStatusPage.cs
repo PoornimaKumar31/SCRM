@@ -1,7 +1,10 @@
-﻿using HillromAutomationFramework.Coding.SupportingCode;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HillromAutomationFramework.Coding.PageObjects
 {
@@ -41,8 +44,8 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string StatusColumnXpath = "//div[@class='measurements']//div//div[4]";
             public const string LastDeployedColumnXpath = "//div[@class='measurements']//div//div[5]";
             public const string LastConnectedColumnXpath = "//div[@class='measurements']//div//div[6]";
-            
 
+            public const string ColumnCommonXpath = "//div[@class='measurements']/div/div";
         }
         public static class ExpectedValues
         {
@@ -55,7 +58,11 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public const string CSMConfigurationReport = "CFG Update Status";
             public const string CSMFirmwareStatusReport = "Firmware Status";
             public const string CSMActivityReport = "Activity";
-            
+
+            //Sorting indicators
+            public static string IncreasingSortIndicatorURL = "url(\"" + PropertyClass.BaseURL + "/icon_sort_down.svg\")";
+            public static string DecreasingSortIndicatorURL = "url(\"" + PropertyClass.BaseURL + "/icon_sort_up.svg\")";
+
             //status heading
             public const string InformationPopUPHeaderText = "CSM Configuration Report Statuses:";
             public const string StratedDefinition = "Configuration update has been initiated.";
@@ -190,6 +197,46 @@ namespace HillromAutomationFramework.Coding.PageObjects
         public string GetStatusLabel(int row)
         {
             return (StatusLabel[row].Text);
+        }
+
+        /// <summary>
+        /// Getting specific column Data
+        /// </summary>
+        /// <param name="columnName">Name of the column specified</param>
+        /// <returns>Returns list of data of specified column</returns>
+        public List<string> GetColumnData(string columnName)
+        {
+            //Getting columnHeading
+            IList<IWebElement> columnList;
+            columnList = TableHeading.FindElements(By.TagName("div"));
+
+            //Getting index of the column
+            List<string> columnHeadingList = (columnList.Select(column => column.Text.ToLower())).ToList();
+
+            //Check if column is present in the 
+            columnHeadingList.Should().Contain(columnName.ToLower(), columnName + " is a invalid column heading.");
+
+            int columnIndex = columnHeadingList.IndexOf(columnName.ToLower()) + 1;
+
+            //Check if any device match the search result
+            int columnDataCount;
+            try
+            {
+                columnDataCount = (PropertyClass.Driver.FindElements(By.XPath(Locators.ColumnCommonXpath + "[" + columnIndex + "]"))).Count;
+            }
+            catch (Exception)
+            {
+                columnDataCount = 0;
+            }
+
+            columnDataCount.Should().BeGreaterThan(0, "Atleast one device should present in table with data " + columnName);
+
+            //Getting column Data
+            List<string> columnDataList = new List<string>();
+
+            columnList = PropertyClass.Driver.FindElements(By.XPath(Locators.ColumnCommonXpath + "[" + columnIndex + "]"));
+            columnDataList.AddRange(columnList.Select(rowData => rowData.Text.ToLower()));
+            return (columnDataList);
         }
     }
 }

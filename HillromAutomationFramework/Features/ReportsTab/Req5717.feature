@@ -190,3 +190,13 @@ Scenario: CSM Activity Report Page Table Elements Columns
 	Then "Serial number" label is in column 1
 	And "Location" label is in column 2
 	And "Last vital sent" label is in column 3
+
+@TestCaseID_10169 @UISID_8684 @UISID_8685 @UISID_8693
+Scenario: CSM Configuration Update Status Report Sorting
+	Given user is on CSM Configuration Update Status Report page
+	When user clicks "Serial number" column heading
+	Then logs are sorted by increasing "serial number"
+	And increasing "serial number" sorting indicator is displayed
+	When user clicks "Serial number" column heading
+	Then logs are sorted by decreasing "serial number"
+	And decreasing "serial number" sorting indicator is displayed

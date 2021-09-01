@@ -28,7 +28,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
 
             catch (Exception e)
             {
-                Console.WriteLine(e + " Exception Occured");
+                Assert.Fail("Exception has occured.\n"+e.Message);
 
             }
 
@@ -47,7 +47,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
             catch (Exception e)
             {
-                Console.WriteLine(e + " Exception Occured");
+                Assert.Fail("Exception has occured.\n"+e.Message);
             }
         }
 
@@ -155,7 +155,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             catch (Exception e)
             {
 
-                Console.WriteLine(e + " Exception Occured");
+                Assert.Fail("Exception has occured.\n"+e.Message);
             }
             
         }
@@ -173,7 +173,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
             }
             catch(Exception e)
             {
-                Console.WriteLine(e + " Exception Occured");
+                Assert.Fail("Exception has occured.\n"+e.Message);
             }
             
         }

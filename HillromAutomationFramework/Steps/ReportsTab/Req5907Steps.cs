@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -6,6 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.DeviceDetails
 {
@@ -13,53 +15,68 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     public class Req5907Steps
     {
 
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        ReportsPage reportsPage = new ReportsPage();
-        FirmwareStatusPage firmwareStatusPage = new FirmwareStatusPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+        private readonly FirmwareStatusPage _firmwareStatusPage;
+        private readonly WebDriverWait _wait;
+
         IDictionary<string, string> statusDefinationPairs;
+
+        private readonly ScenarioContext _scenarioContext;
+
+        public Req5907Steps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();
+            _firmwareStatusPage = new FirmwareStatusPage();
+        }
 
         [Given(@"user is on CSM Firmware Upgrade Status report page")]
         public void GivenUserIsOnCSMFirmwareUpgradeStatusReportPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id("deviceTable")));
-            mainPage.ReportsTab.JavaSciptClick();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
-            reportsPage.GetReportButton.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id("deviceTable")));
+            _mainPage.ReportsTab.JavaSciptClick();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
         }
         
         [When(@"user clicks Information button")]
         public void WhenUserClicksInformationButton()
         {
-            firmwareStatusPage.InformationButton.Click();
+            _firmwareStatusPage.InformationButton.Click();
         }
         
         [Then(@"CSM Firmware Report Statuses dialog is displayed")]
         public void ThenCSMFirmwareReportStatusesDialogIsDisplayed()
         {
-            Assert.AreEqual(firmwareStatusPage.InformationPopUp.GetElementVisibility(), true, "CSM firmware report status dialog box is not displayed");
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue(because: "CSM firmware report status dialog box should be displayed when user clicks on information button in CSM Firmware Upgrade Status report page");
         }
         
         [Then(@"CSM Firmware Report Statuses header is displayed")]
         public void ThenCSMFirmwareReportStatusesHeaderIsDisplayed()
         {
-            Assert.AreEqual(firmwareStatusPage.InformationPopUpHeader.GetElementVisibility(), true, "CSM Firmware report staus header is not displayed");
-            string ActualHeaderText = firmwareStatusPage.InformationPopUpHeader.Text;
+            (_firmwareStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue(because: "CSM Firmware report staus header should be displayed in CSM firmware report status dialog box");
+            string ActualHeaderText = _firmwareStatusPage.InformationPopUpHeader.Text;
             string ExpectedHeaderText = FirmwareStatusPage.ExpectedValues.CSMInformationPopUPHeaderText;
-            Assert.AreEqual(ExpectedHeaderText, ActualHeaderText, "CSM Firmware report status header text does not match the expected text.\n");
+            ActualHeaderText.Should().BeEquivalentTo(ExpectedHeaderText, because: "CSM Firmware report status header text should match with the expected text");
         }
 
         [Then(@"""(.*)"" status and definition is displayed")]
         public void ThenStatusAndDefinitionIsDisplayed(string statustitle)
         {
             //status defination
-            string statusTabledata = firmwareStatusPage.InformationPopUpData.Text;
-            statusDefinationPairs = firmwareStatusPage.GetstatusTable(statusTabledata);
+            string statusTabledata = _firmwareStatusPage.InformationPopUpData.Text;
+            statusDefinationPairs = _firmwareStatusPage.GetstatusTable(statusTabledata);
             string ActualDefination = statusDefinationPairs[statustitle];
             string ExpectedDefinaton = null;
             switch (statustitle.ToLower().Trim())
@@ -101,75 +118,76 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     Assert.Fail(statustitle + " does not exist in test data");
                     break;
             }
-            Assert.AreEqual(ExpectedDefinaton, ActualDefination, statustitle + " defination does not match with expected text");
+            ActualDefination.Should().BeEquivalentTo(ExpectedDefinaton,because: statustitle + " defination should match with expected text");
         }
 
         [Then(@"Close button is displayed")]
         public void CloseButtonIsDisplayed()
         {
-            Assert.AreEqual(firmwareStatusPage.InformationPopUpCloseButton.GetElementVisibility(), true, "Close button is not displayed");
+            (_firmwareStatusPage.InformationPopUpCloseButton.GetElementVisibility()).Should().BeTrue("Close button should be displayed  in CSM firmware report status dialog box");
         }
 
         [Given(@"CSM Firmware Report Statuses dialog is displayed")]
         public void GivenCSMFirmwareReportStatusesDialogIsDisplayed()
         {
-            firmwareStatusPage.InformationButton.Click();
-            Assert.AreEqual(true, firmwareStatusPage.InformationPopUp.GetElementVisibility(), "Firmware report status dialog is not displayed");
+            _firmwareStatusPage.InformationButton.Click();
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue(because: "CSM firmware report status dialog box should be displayed when user clicks on information button in CSM Firmware Upgrade Status report page");
         }
 
         [When(@"user clicks Close button")]
         public void WhenUserClicksCloseButton()
         {
-            firmwareStatusPage.InformationPopUpCloseButton.Click();
+            _firmwareStatusPage.InformationPopUpCloseButton.Click();
         }
 
         [Then(@"CSM Firmware Report Statuses dialog closes")]
         public void ThenCSMFirmwareReportStatusesDialogCloses()
         {
-            Assert.AreEqual(false, firmwareStatusPage.InformationPopUp.GetElementVisibility(), "Firmware report status dialog is not closed");
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeFalse(because: "Firmware report status dialog should be closed when user clicks on close button");
         }
 
         [Then(@"CSM Firmware Upgrade Status page is displayed")]
         public void ThenUserIsOnCSMFirmwareUpgradeStatusPage()
         {
-            Assert.AreEqual(true, firmwareStatusPage.InformationButton.GetElementVisibility(), "User is not on Upgrade status page");
+            (_firmwareStatusPage.InformationButton.GetElementVisibility()).Should().BeTrue(because: "User should be CSM firmware Upgrade status page when user clicks on close button in Firmware report status dialog box");
         }
 
 
         [Given(@"user is on RV700 Firmware Upgrade Status report page")]
         public void GivenUserIsOnRVFirmwareUpgradeStatusReportPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title,"L&T Automated Eye Test.");
-            landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.ReportsTab.JavaSciptClick();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
-            reportsPage.GetReportButton.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title,"L&T Automated Eye Test.");
+            _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            _mainPage.ReportsTab.JavaSciptClick();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"RV700 Firmware Report Statuses dialog is displayed")]
         public void ThenRVFirmwareReportStatusesDialogIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareStatusPage.InformationPopUp.GetElementVisibility(), "RV700 Firmware Report Statuses dialog is not displayed");
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("RV700 Firmware Report Statuses dialog box should be displayed when user clicks on information button in RV700 Firmware Upgrade Status report page");
         }
 
         [Then(@"RV700 Firmware Report Statuses header is displayed")]
         public void ThenRVFirmwareReportStatusesHeaderIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareStatusPage.InformationPopUpHeader.GetElementVisibility(), "Rv700 Firmware report status header is not displayed");
-            string ActualHeaderText = firmwareStatusPage.InformationPopUpHeader.Text;
+            (_firmwareStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue(because: "RV700 Firmware report status header should be displayed in RV700 Firmware Report Statuses dialog box");
+            string ActualHeaderText = _firmwareStatusPage.InformationPopUpHeader.Text;
             string ExpectedHeaderText = FirmwareStatusPage.ExpectedValues.RV700InformationPopUPHeaderText;
-            Assert.AreEqual(ExpectedHeaderText, ActualHeaderText, "RV700 report status header text is not matching with expected.\n");
+            ActualHeaderText.Should().BeEquivalentTo(ExpectedHeaderText, because: "RV700 report status header text should match with expected text.");
         }
 
         [Then(@"""(.*)"" status and definition of RV700 is displayed")]
         public void ThenUserCanSeeStatusAndDefinitionOfRV(string statusTitle)
         {
             //status and defination
-            string statusTabledata = firmwareStatusPage.InformationPopUpData.Text;
-            statusDefinationPairs = firmwareStatusPage.GetstatusTable(statusTabledata);
+            string statusTabledata = _firmwareStatusPage.InformationPopUpData.Text;
+            statusDefinationPairs = _firmwareStatusPage.GetstatusTable(statusTabledata);
             string ActualDefination = statusDefinationPairs[statusTitle];
             string ExpectedDefinaton = null;
             switch (statusTitle.ToLower().Trim())
@@ -190,62 +208,63 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     Assert.Fail(statusTitle + " does not exist in test data");
                     break;
             }
-            Assert.AreEqual(ExpectedDefinaton, ActualDefination, statusTitle + " defination does not match with expected text");
+            ActualDefination.Should().BeEquivalentTo(ExpectedDefinaton,because: statusTitle + " defination should match with expected text");
         }
 
 
         [Given(@"RV700 Firmware Report Statuses dialog is displayed")]
         public void GivenRVFirmwareReportStatusesDialogIsDisplayed()
         {
-            firmwareStatusPage.InformationButton.Click();
-            Assert.AreEqual(true, firmwareStatusPage.InformationPopUp.GetElementVisibility(), "RV700 Firmware Report Statuses dialog is not displayed.\n");
+            _firmwareStatusPage.InformationButton.Click();
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue(because: "RV700 Firmware Report Statuses dialog should be displayed When user clicks information button on RV700 Firmware Upgrade Status report page.");
         }
 
         [Then(@"RV700 Firmware Report Statuses dialog closes")]
         public void ThenRVFirmwareReportStatusesDialogCloses()
         {
-            Assert.AreEqual(false, firmwareStatusPage.InformationPopUp.GetElementVisibility(), "RV700 Firmware Report Statuses dialog is not closed");
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeFalse("RV700 Firmware Report Statuses dialog should be closed when user clicks close button in RV700 Firmware Report Statuses dialog box");
         }
 
         [Then(@"RV700 Firmware Upgrade Status page is displayed")]
         public void ThenRVFirmwareUpgradeStatusPageIsDisplayed()
         {
-            Assert.AreEqual(true, firmwareStatusPage.InformationButton.GetElementVisibility(), "User is not on RV700 firmware upgrade status page");
+            (_firmwareStatusPage.InformationButton.GetElementVisibility()).Should().BeTrue("RV700 firmware upgrade status page should be displayed when user clicks close button in RV700 Firmware Report Statuses dialog box");
         }
 
         [Given(@"user is on Centrella Firmware Upgrade Status report page")]
         public void GivenUserIsOnCentrellaFirmwareUpgradeStatusReportPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
-            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.ReportsTab.JavaSciptClick();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
-            reportsPage.GetReportButton.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            _mainPage.ReportsTab.JavaSciptClick();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"Centrella Firmware Report Statuses dialog is displayed")]
         public void ThenCentrellaFirmwareReportStatusesDialogIsDisplayed()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(FirmwareStatusPage.Locators.InformationPopUpId)));
-            Assert.IsTrue(firmwareStatusPage.InformationPopUp.GetElementVisibility(),"Centrella firmware report status dialog is not displayed.");
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareStatusPage.Locators.InformationPopUpId)));
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("Centrella Firmware Report Statuses dialog should be displayed When user clicks information button on Centrella Firmware Upgrade Status report page.");
         }
 
         [Then(@"Centrella Firmware Report Statuses header is displayed")]
         public void ThenCentrellaFirmwareReportStatusesHeaderIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.InformationPopUpHeader.GetElementVisibility(),"Centrella firmware report header is not displayed.");
-            Assert.AreEqual(FirmwareStatusPage.ExpectedValues.CentrellaInformationPopUpHeaderText.ToLower(), firmwareStatusPage.InformationPopUpHeader.Text.ToLower(), "Centrella firmware report header is not matching the expected value.");
+            (_firmwareStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue(because: "Centrella firmware report header should be displayed in Centrella Firmware Report Statuses dialog");
+            (_firmwareStatusPage.InformationPopUpHeader.Text).Should().BeEquivalentTo(FirmwareStatusPage.ExpectedValues.CentrellaInformationPopUpHeaderText, because: "Centrella firmware report header should match with the expected value.");
         }
 
         [Then(@"""(.*)"" status and definition of Centrella is displayed")]
         public void ThenStatusAndDefinitionOfCentrellaIsDisplayed(string statusTitle)
         {
             //status and defination
-            string statusTabledata = firmwareStatusPage.InformationPopUpData.Text;
-            statusDefinationPairs = firmwareStatusPage.GetstatusTable(statusTabledata);
+            string statusTabledata = _firmwareStatusPage.InformationPopUpData.Text;
+            statusDefinationPairs = _firmwareStatusPage.GetstatusTable(statusTabledata);
             string ActualDefination = statusDefinationPairs[statusTitle];
             string ExpectedDefinaton = null;
             switch (statusTitle.ToLower().Trim())
@@ -287,27 +306,27 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     Assert.Fail(statusTitle + " does not exist in test data");
                     break;
             }
-            Assert.AreEqual(ExpectedDefinaton, ActualDefination, statusTitle + " defination does not match with expected text");
+            ActualDefination.Should().BeEquivalentTo(ExpectedDefinaton, because: statusTitle + " defination should match with expected text");
         }
 
         [Given(@"Centrella Firmware Report Statuses dialog is displayed")]
         public void GivenCentrellaFirmwareReportStatusesDialogIsDisplayed()
         {
-            firmwareStatusPage.InformationButton.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(FirmwareStatusPage.Locators.InformationPopUpId)));
-            Assert.IsTrue(firmwareStatusPage.InformationPopUp.GetElementVisibility(), "Centrella firmware report status dialog is not displayed.");
+            _firmwareStatusPage.InformationButton.Click();
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareStatusPage.Locators.InformationPopUpId)));
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("Centrella Firmware Report Statuses dialog should be displayed When user clicks information button on Centrella Firmware Upgrade Status report page.");
         }
 
         [Then(@"Centrella Firmware Report Statuses dialog closes")]
         public void ThenCentrellaFirmwareReportStatusesDialogCloses()
         {
-            Assert.IsFalse(firmwareStatusPage.InformationPopUp.GetElementVisibility(), "Centrella Firmware Report Statuses dialog is not closed");
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeFalse(because: "when user clicks on the close button in Centrella Firmware Report Statuses dialog,Then Centrella Firmware Report Statuses dialog should be closed");
         }
 
         [Then(@"Centrella Firmware Upgrade Status page is displayed")]
         public void ThenCentrellaFirmwareUpgradeStatusPageIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.InformationButton.GetElementVisibility(), "User is not on Centrella firmware upgrade status page");
+            (_firmwareStatusPage.InformationButton.GetElementVisibility()).Should().BeTrue("when user clicks on close button in Centrella Firmware Report Statuses dialog,Then Centrella firmware upgrade status page should be displayed");
         }
 
     }
