@@ -1,123 +1,132 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
+
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
     [Binding, Scope(Tag = "SoftwareRequirementID_7732")]
     public sealed class Req7732Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        ReportsPage reportsPage = new ReportsPage();
-        FirmwareStatusPage firmwareStatusPage = new FirmwareStatusPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+        private readonly FirmwareStatusPage _firmwareStatusPage;
 
+        
+        private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
         public Req7732Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();
+            _firmwareStatusPage = new FirmwareStatusPage();  
         }
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportsPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
-            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.ReportsTab.JavaSciptClick();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.ReportsTab.JavaSciptClick();
         }
 
         [Given(@"Centrella Asset type is selected")]
         public void GivenCentrellaAssetTypeIsSelected()
         {
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
         }
 
         [Given(@"Firmware Status Report type is selected")]
         public void GivenFirmwareStatusReportTypeIsSelected()
         {
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
         }
 
         [When(@"user clicks Get report button")]
         public void WhenUserClicksGetReportButton()
         {
-            reportsPage.GetReportButton.Click();
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"Firmware Upgrade Status Report \(Centrella\) label is displayed")]
         public void ThenFirmwareUpgradeStatusReportCentrellaLabelIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.FirmwareReportTitle.GetElementVisibility(), "Firmware upgrade status report label is not displayed.");
-            Assert.AreEqual(FirmwareStatusPage.ExpectedValues.FirmwareUpgradeStatusCentrellaLabel.ToLower(),firmwareStatusPage.FirmwareReportTitle.Text.ToLower(), "Firmware upgrade status report label is not matching the expected value.");
+            (_firmwareStatusPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Firmware upgrade status report label should be displayed in Firmware Status Report page");
+            (_firmwareStatusPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareStatusPage.ExpectedValues.FirmwareUpgradeStatusCentrellaLabel, because: "Firmware upgrade status report label should match the expected value in Firmware Status Report page.");
         }
 
         [Then(@"Print button is displayed")]
         public void ThenPrintButtonIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.PrintButton.GetElementVisibility(),"Print button is not displayed.");
+            (_firmwareStatusPage.PrintButton.GetElementVisibility()).Should().BeTrue("Print button should be displayed in Firmware Upgrade status report.");
         }
 
         [Then(@"Information button is displayed")]
         public void ThenInformationButtonIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.InformationButton.GetElementVisibility(),"Information button is not displayed.");
+            (_firmwareStatusPage.InformationButton.GetElementVisibility()).Should().BeTrue("Information button should be displayed in Firmware Upgrade status report.");
         }
 
         [Then(@"Download button is displayed")]
         public void ThenDownloadButtonIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.DownloadButton.GetElementVisibility(),"Download button is not displayed.");
+            (_firmwareStatusPage.DownloadButton.GetElementVisibility()).Should().BeTrue("Download button should be displayed in Firmware Upgrade status report.");
         }
 
         [Then(@"Search box is displayed")]
         public void ThenSearchBoxIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.SearchBox.GetElementVisibility(),"Search box is not displayed.");
+            (_firmwareStatusPage.SearchBox.GetElementVisibility()).Should().BeTrue("Search box should be displayed in Firmware Upgrade status report.");
         }
 
         [Then(@"Previous page icon is displayed")]
         public void ThenPreviousPageIconIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.PaginationPreviousIcon.GetElementVisibility(),"Previous page icon is displayed.");
+            (_firmwareStatusPage.PaginationPreviousIcon.GetElementVisibility()).Should().BeTrue("Previous page icon should be displayed in Firmware Upgrade status report.");
         }
 
         [Then(@"Next page icon is displayed")]
         public void ThenNextPageIconIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.PaginationNextIcon.GetElementVisibility(), "Next page icon is not displayed.");
+            (_firmwareStatusPage.PaginationNextIcon.GetElementVisibility()).Should().BeTrue("Next page icon should be displayed in Firmware Upgrade status report.");
         }
 
         [Then(@"Page x of y indicator is displayed")]
         public void ThenPageXOfYIndicatorIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.PaginationXofY.GetElementVisibility(), "Page x of y label is not displayed.");
+            (_firmwareStatusPage.PaginationXofY.GetElementVisibility()).Should().BeTrue("Page x of y label should be displayed in Firmware Upgrade status report.");
         }
 
         [Then(@"Displaying x to y of z results indicator is displayed")]
         public void ThenDisplayingXToYOfZResultsIndicatorIsDisplayed()
         {
-            Assert.IsTrue(firmwareStatusPage.PaginationDisplayXY.GetElementVisibility(),"Displaying x to y of z label is not displayed.");
+            (_firmwareStatusPage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue("Displaying x to y of z label should be displayed in Firmware Upgrade status report.");
         }
 
         [Given(@"user is on Centrella Firmware Upgrade Status Report page")]
         public void GivenUserIsOnCentrellaFirmwareUpgradeStatusReportPage()
         {
             GivenUserIsOnReportsPage();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
-            reportsPage.GetReportButton.Click();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
@@ -127,49 +136,49 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch (columnHeading.ToLower().Trim())
             {
                 case "serial number":
-                    column = firmwareStatusPage.SerialNumberHeading;
+                    column = _firmwareStatusPage.SerialNumberHeading;
                     break;
 
                 case "firmware version":
-                    column = firmwareStatusPage.FirmwareVerionHeading;
+                    column = _firmwareStatusPage.FirmwareVerionHeading;
                     break;
 
                 case "location":
-                    column = firmwareStatusPage.LocationHeading;
+                    column = _firmwareStatusPage.LocationHeading;
                     break;
 
                 case "status":
-                    column = firmwareStatusPage.StatusHeading;
+                    column = _firmwareStatusPage.StatusHeading;
                     break;
 
                 case "last deployed":
-                    column = firmwareStatusPage.LastDeployedHeading;
+                    column = _firmwareStatusPage.LastDeployedHeading;
                     break;
                 case "last connected":
-                    column = firmwareStatusPage.LastConnectedHeading;
+                    column = _firmwareStatusPage.LastConnectedHeading;
                     break;
 
                 default:
                     Assert.Fail(columnHeading + " is a invalid heading name.");
                     break;
             }
-            Assert.AreEqual(true, column.GetElementVisibility(), columnHeading + " is not displayed");
-            Assert.AreEqual(columnHeading.ToLower(), column.Text.ToLower(), columnHeading + " is not matching with the expected value.");
+            (column.GetElementVisibility()).Should().BeTrue(columnHeading + " should be displayed in Firmware Upgrade status report page.");
+            string ActualColumnName = column.Text;
+            (ActualColumnName).Should().BeEquivalentTo(columnHeading + " should match with the expected value in Firmware Upgrade status report page.");
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
         {
-            IList<IWebElement> columns = firmwareStatusPage.TableHeader.FindElements(By.TagName("div"));
-            Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+            IList<IWebElement> columns = _firmwareStatusPage.TableHeader.FindElements(By.TagName("div"));
+            string ActualColumnName = columns[columnNumber - 1].Text;
+            (ActualColumnName).Should().BeEquivalentTo(columnHeading, because: columnHeading + " should be in " + columnNumber);
         }
 
         [Then(@"the Print button is enabled")]
         public void ThenThePrintButtonIsEnabled()
         {
-            Assert.IsTrue(firmwareStatusPage.PrintButton.Enabled, "Print button is not enabled");
+            (_firmwareStatusPage.PrintButton.Enabled).Should().BeTrue("Print button should be enabled in Firmware Upgrade status report page.");
         }
-
-
     }
 }

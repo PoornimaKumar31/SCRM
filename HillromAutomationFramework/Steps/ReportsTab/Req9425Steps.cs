@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -6,39 +7,47 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_9425")]
     public class Req9425Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        ReportsPage reportsPage = new ReportsPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
 
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
 
         public Req9425Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();        
         }
 
         [Given(@"user is on ""(.*)"" page")]
         public void GivenUserIsOnPage(string reportType)
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
 
             if (reportType.ToLower().Trim().Equals("centrella activity report"))
             {
-                SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
-                landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                mainPage.ReportsTab.JavaSciptClick();
-                reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-                reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
-                reportsPage.GetReportButton.Click();
+                SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+                _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+                _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+                _mainPage.ReportsTab.JavaSciptClick();
+                _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+                _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+                _reportsPage.GetReportButton.Click();
             }
             else
             {
@@ -49,7 +58,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [When(@"user clicks Download button")]
         public void WhenUserClicksDownloadButton()
         {
-            reportsPage.DownloadButton.Click();
+            _reportsPage.DownloadButton.Click();
         }
         
         [Then(@"""(.*)"" Report is downloaded as csv file")]
@@ -64,9 +73,11 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             {
                 Assert.Fail(reportName + " is a invalid report.");
             }
+            bool isFileDownloaded = GetMethods.IsFileDownloaded(fileName, 10);
+            (isFileDownloaded).Should().BeTrue(because: reportName + " file should be downloaded when user clicks on download button in centrella activity report page.");
 
-            Assert.AreEqual(true, GetMethods.IsFileDownloaded(fileName, 10), reportName + " file is not downloaded.");
-            Assert.AreEqual(true, GetMethods.CheckFileFormat(".csv"), reportName + " file is not in .csv format.");
+            bool IsFileFormatCSV = GetMethods.CheckFileFormat(".csv");
+            (IsFileFormatCSV).Should().BeTrue(reportName + " file should be in .csv format.");
         }
     }
 }

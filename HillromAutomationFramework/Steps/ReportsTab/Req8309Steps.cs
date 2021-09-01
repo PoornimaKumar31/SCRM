@@ -1,14 +1,13 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
@@ -16,53 +15,60 @@ namespace HillromAutomationFramework.Steps.ReportsTab
     public sealed class Req8309Steps
     {
 
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        ReportsPage reportsPage = new ReportsPage();
-        FirmwareVersionPage firmwareVersionPage = new FirmwareVersionPage();
+        LoginPage _loginPage;
+        LandingPage _landingPage;
+        MainPage _mainPage;
+        ReportsPage _reportsPage;
+        FirmwareVersionPage _firmwareVersionPage;
 
         private readonly ScenarioContext _scenarioContext;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        WebDriverWait _wait;
 
         public Req8309Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _reportsPage = new ReportsPage();
+            _firmwareVersionPage = new FirmwareVersionPage();
         }
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportsPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
-            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.ReportsTab.JavaSciptClick();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.ReportsTab.JavaSciptClick();
         }
 
         [Given(@"Centrella Asset type is selected in Asset type dropdown")]
         public void GivenCentrellaAssetTypeIsSelectedInAssetTypeDropdown()
         {
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
         }
 
         [Given(@"Firmware Version Report type is selected")]
         public void GivenFirmwareVersionReportTypeIsSelected()
         {
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
         }
 
         [When(@"user clicks Get report button")]
         public void WhenUserClicksGetReportButton()
         {
-            reportsPage.GetReportButton.Click();
+            _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"Firmware Version Report \(Centrella\) label is displayed")]
         public void ThenFirmwareVersionReportCentrellaLabelIsDisplayed()
         {
-            Assert.IsTrue(firmwareVersionPage.FirmwareReportTitle.GetElementVisibility(),"Firmware version report label is not displayed.");
-            Assert.AreEqual(FirmwareVersionPage.ExpectedValues.ReportCentrellaLabelText.ToLower(), firmwareVersionPage.FirmwareReportTitle.Text.ToLower(), "Firmware version report label is not matching the expected value.");
+            (_firmwareVersionPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Firmware version report label should be displayed in Firmware Version Report page");
+            (_firmwareVersionPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.ReportCentrellaLabelText, because: "Firmware version report label should match the expected value in Firmware Version Report page.");
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
@@ -73,62 +79,62 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch (columnHeading.ToLower().Trim())
             {
                 case "components":
-                    column = firmwareVersionPage.ComponentsHeading;
+                    column = _firmwareVersionPage.ComponentsHeading;
                     break;
 
                 case "firmware version":
-                    column = firmwareVersionPage.FirmwareVersionHeading;
+                    column = _firmwareVersionPage.FirmwareVersionHeading;
                     break;
 
                 case "total devices":
-                    column = firmwareVersionPage.TotaldevicesHeading;
+                    column = _firmwareVersionPage.TotaldevicesHeading;
                     break;
                 default:
                     Assert.Fail(columnHeading + " is a invalid headid name.");
                     break;
             }
-            Assert.IsTrue(column.GetElementVisibility(), columnHeading+" column heading is not displayed");
-            Assert.AreEqual(columnHeading.ToLower(), column.Text.ToLower(), columnHeading+" column heading is not matching with the expected value");
-
+            (column.GetElementVisibility()).Should().BeTrue(columnHeading + " column heading should be displayed in Firmware Version Report page table.");
+            string ActualColumnName = column.Text;
+            (ActualColumnName).Should().BeEquivalentTo(columnHeading, because: columnHeading + " column heading should match with the expected value in Firmware Version Report page table.");
         }
 
         [Given(@"user is on Centrella Firmware Version Report page")]
         public void GivenUserIsOnCentrellaFirmwareVersionReportPage()
         {
             GivenUserIsOnReportsPage();
-            reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-            reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
-            reportsPage.GetReportButton.Click();
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
+            _reportsPage.GetReportButton.Click();
         }
 
         [When(@"user clicks Total row")]
         public void WhenUserClicksTotalRow()
         {
-            firmwareVersionPage.TotalRow.Click();
+            _firmwareVersionPage.TotalRow.Click();
         }
 
         [Then(@"rows below Total are displayed")]
         public void ThenRowsBelowTotalAreDisplayed()
         {
-            Assert.IsTrue(firmwareVersionPage.TotalRowDetails.GetElementVisibility(),"Total row details are not displayed.");
+            (_firmwareVersionPage.TotalRowDetails.GetElementVisibility()).Should().BeTrue("Total row details should be displayed when user cliks on total row in Centrella Firmware Version Report page.");
         }
 
         [When(@"user clicks unit row")]
         public void WhenUserClicksUnitRow()
         {
-            firmwareVersionPage.Unit1Row.Click();
+            _firmwareVersionPage.Unit1Row.Click();
         }
 
         [Then(@"assets for unit are displayed")]
         public void ThenAssetsForUnitAreDisplayed()
         {
-            Assert.IsTrue(firmwareVersionPage.Unit1RowDetails.GetElementVisibility(),"Unit row details are not displayed.");
+            (_firmwareVersionPage.Unit1RowDetails.GetElementVisibility()).Should().BeTrue(because: "Assets for unit should be displayed when user clicks unit row in Centrella Firmware Version Report page.");
         }
 
         [Then(@"the Print button is enabled")]
         public void ThenThePrintButtonIsEnabled()
         {
-            Assert.IsTrue(firmwareVersionPage.PrintButton.Enabled, "Print button is not enabled.");
+            (_firmwareVersionPage.PrintButton.Enabled).Should().BeTrue("Print button should be enabled in Centrella Firmware Version Report page.");
         }
     }
 }
