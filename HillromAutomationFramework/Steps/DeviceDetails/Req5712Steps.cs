@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -14,34 +15,42 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     [Binding, Scope(Tag = "SoftwareRequirementID_5712")]
     class Req5712Steps
     {
-        RV700DeviceDetailsPage rv700DeviceDetailsPage = new RV700DeviceDetailsPage();
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
+        private readonly RV700DeviceDetailsPage _rv700DeviceDetailsPage;
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+        public Req5712Steps()
+        {
+            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage();
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+        }
 
         [Given(@"user is on RV700 Log Files page")]
         public void GivenUserIsOnRVLogFilesPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
             Thread.Sleep(1000);
-            mainPage.SearchSerialNumberAndClick("700090000004");
-            rv700DeviceDetailsPage.LogsTab.Click();
+            _mainPage.SearchSerialNumberAndClick("700090000004");
+            _rv700DeviceDetailsPage.LogsTab.Click();
         }
 
         [Given(@"at least one log is present")]
         public void GivenAtLeastOneLogIsPresent()
         {
-            Assert.AreEqual(true,rv700DeviceDetailsPage.LogFiles.GetElementCount()>0,"No logs are present.");
+            _rv700DeviceDetailsPage.LogFiles.GetElementCount().Should().BeGreaterThan(0,"No logs are present.");
         }
 
         [When(@"user clicks log")]
         public void WhenUserClicksLog()
         {
-            rv700DeviceDetailsPage.LogFiles[0].Click();
+            _rv700DeviceDetailsPage.LogFiles[0].Click();
         }
 
         [Then(@"log is downloaded to computer")]
@@ -53,7 +62,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
                 Task.Delay(1000).Wait();
                 count++;
-                if (File.Exists(PropertyClass.DownloadPath + "\\" + rv700DeviceDetailsPage.LogFiles[0].Text))
+                if (File.Exists(PropertyClass.DownloadPath + "\\" + _rv700DeviceDetailsPage.LogFiles[0].Text))
                 {
                     file_exist = true;
                 }
@@ -63,7 +72,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Then(@"downloaded filename matches")]
         public void ThenDownloadedFilenameMatches()
         {
-            Assert.AreEqual(true,File.Exists(PropertyClass.DownloadPath + "\\" + rv700DeviceDetailsPage.LogFiles[0].Text),"Download filename does not match with the log file name");
+            File.Exists(PropertyClass.DownloadPath + "\\" + _rv700DeviceDetailsPage.LogFiles[0].Text).Should().BeTrue("Download filename does not match with the log file name");
         }
 
     }

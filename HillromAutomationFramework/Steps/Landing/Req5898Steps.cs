@@ -6,12 +6,17 @@ namespace HillromAutomationFramework.Steps.Landing
     [Binding,Scope(Tag = "SoftwareRequirementID_5898")]
     public class LandingPageFooterLinksSteps
     {
-        readonly LoginPage loginPage = new LoginPage();
+        readonly LoginPage _loginPage;
+
+        public LandingPageFooterLinksSteps()
+        {
+            _loginPage = new LoginPage();
+        }
 
         [Given(@"user is on Landing page")]
         public void GivenUserIsOnLandingPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -12,57 +13,57 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     [Binding,Scope(Tag = "SoftwareRequirementID_5700")]
     public class Req5700Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
+        LoginPage _loginPage = new LoginPage();
+        LandingPage _landingPage = new LandingPage();
+        CSMDeviceDetailsPage _csmDeviceDetailsPage = new CSMDeviceDetailsPage();
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        readonly MainPage mainPage = new MainPage();
+        readonly MainPage _mainPage = new MainPage();
 
 
         [Given(@"user is on CSM Log Files page")]
         public void GivenUserIsOnCSMLogFilesPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             Thread.Sleep(1000);
             //select the row according to the data
-            mainPage.SearchSerialNumberAndClick("110010000025");
+            _mainPage.SearchSerialNumberAndClick("110010000025");
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
-            csmDeviceDetailsPage.LogsTab.Click();
+            _csmDeviceDetailsPage.LogsTab.Click();
         }
         
         [Given(@"Received, Pending or Executing message is not displayed")]
         public void GivenPendingOrExecutingMessageIsNotDisplayed()
         {
-            Assert.AreEqual(false,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Receiving,Pending or Executing message is displayed");
+            _csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility().Should().BeFalse("Receiving,Pending or Executing message is displayed");
         }
         
         [When(@"user clicks Request Logs button")]
         public void WhenUserClicksRequestLogsButton()
         {
-            csmDeviceDetailsPage.LogsRequestButton.Click();
+            _csmDeviceDetailsPage.LogsRequestButton.Click();
         }
         
         [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
-            Assert.AreEqual(true, csmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files request message is not matching the expected.");
+            _csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility().Should().BeTrue("Pending or Executing message is not displayed");
+            _csmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification().Should().BeTrue("Log files request message is not matching the expected.");
         }
         
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            Assert.AreEqual(CSMDeviceDetailsPage.ExpectedValues.RequestLogButtonDisabledClassName,csmDeviceDetailsPage.LogsRequestButton.GetAttribute("class"), "Request Logs button is not disabled");
+           _csmDeviceDetailsPage.LogsRequestButton.GetAttribute("class").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.RequestLogButtonDisabledClassName, "Request Logs button is not disabled");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
-            Assert.AreEqual(true,csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility(), "Pending or Executing message is not displayed");
-            Assert.AreEqual(true, csmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification(), "Log files request message is not matching the expected.");
+            _csmDeviceDetailsPage.LogsPendingMessage.GetElementVisibility().Should().BeTrue("Pending or Executing message is not displayed");
+            _csmDeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification().Should().BeTrue("Log files request message is not matching the expected.");
         }
 
     }
