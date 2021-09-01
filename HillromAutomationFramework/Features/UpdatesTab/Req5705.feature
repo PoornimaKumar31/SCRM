@@ -38,7 +38,7 @@ Scenario: CSM Upgrade Selected
 	Then CSM Select assets page is displayed
 
 @TestCaseID_9158 @UISID_8697 @UISID_8669
-Scenario: CSM Select Assets Elements
+Scenario: CSM Select Assets Elements Upgrade
 	Given user is on CSM Upgrade Select assets page
 	Then Select update indicator is not highlighted
 	And Select assets indicator is highlighted
@@ -56,7 +56,7 @@ Scenario: CSM Select Assets Elements
 	And Displaying x to y of z results label is displayed
 
 @TestCaseID_9159 @UISID_8697
-Scenario: CSM Select Assets Elements Table
+Scenario: CSM Select Assets Elements Table Upgrade
 	Given user is on CSM Upgrade Select assets page
 	Then Select all checkbox is unchecked
 	And "Firmware" column heading is displayed
@@ -67,7 +67,7 @@ Scenario: CSM Select Assets Elements Table
 	And "Last Files Deployed" column heading is displayed
 
 @TestCaseID_9211 @UISID_8697
-Scenario: CSM Select Assets Elements Table Columns
+Scenario: CSM Select Assets Elements Table Columns Upgrade
 	Given user is on CSM Upgrade Select assets page
 	Then Select all checkbox is in column 1
 	And "Firmware" label is in column 2
@@ -78,27 +78,27 @@ Scenario: CSM Select Assets Elements Table Columns
 	And "Last Files Deployed" label is in column 7
 
 @TestCaseID_9160 @UISID_8697
-Scenario: CSM Select Assets
+Scenario: CSM Select Assets Upgrade
 	Given user is on CSM Upgrade Select assets page
 	When user selects one device
 	Then count of selected devices changes from 0 to 1
 	And Next button is enabled
 
 @TestCaseID_9161 @UISID_8697
-Scenario: CSM Select Assets Previous
+Scenario: CSM Select Assets Previous Upgrade
 	Given user is on CSM Upgrade Select assets page
 	When user clicks Previous button
 	Then CSM Updates page is displayed
 
 @TestCaseID_9162 @UISID_8698
-Scenario: CSM Review Action Page
+Scenario: CSM Review Action Page Upgrade
 	Given user is on CSM Upgrade Select assets page
 	When user selects one device
 	And Clicks Next button
 	Then CSM Review Action page is displayed
 
 @TestCaseID_9163 @UISID_8698
-Scenario: CSM Review Action Elements
+Scenario: CSM Review Action Elements Upgrade
 	Given user is on CSM Review Action page
 	Then Item to push label is displayed
 	And Item to push value is displayed
@@ -117,14 +117,14 @@ Scenario: CSM Review Action Elements
 	And Confirm button is enabled
 
 @TestCaseID_9164 @UISID_8698
-Scenario: CSM Review Action Confirm
+Scenario: CSM Review Action Confirm Upgrade
 	Given user is on CSM Review Action page
 	When user clicks Confirm button
 	Then Update process has been established message is displayed
 	And Select assets page is displayed
 
 @TestCaseID_9165 @UISID_8698
-Scenario: CSM Review Action Previous
+Scenario: CSM Review Action Previous Upgrade
 	Given user is on CSM Review Action page
 	When user clicks Previous button
 	Then Select assets page is displayed
