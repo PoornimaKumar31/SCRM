@@ -15,10 +15,11 @@ namespace HillromAutomationFramework.Steps.Login
             _loginPage = new LoginPage();
         }
 
-        [Then(@"""(.*)"" is displayed")]
-        public void ThenIsDisplayed(string ExpectedText)
+        [Then(@"Version Number is displayed")]
+        public void ThenVersionNumberIsDisplayed()
         {
-            string ActualVersionNoDisplayed = _loginPage.VersionNumber.Text;
+            string ActualVersionNoDisplayed = _loginPage.VersionNumber.Text.Trim();
+            string ExpectedText = PropertyClass.VersionNumber.Trim();
             //Verifying the version no is displayed
             _loginPage.VersionNumber.GetElementVisibility().Should().BeTrue("Version no is not displayed\n");
             //Verifying the version no displayed is correct

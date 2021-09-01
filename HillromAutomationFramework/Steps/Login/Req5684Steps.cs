@@ -49,6 +49,13 @@ namespace HillromAutomationFramework.Steps.Login
             wait.Until(ExplicitWait.ElementExists(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));
         }
 
+        [Then(@"Submit button is disabled")]
+        public void ThenSubmitButtonIsDisabled()
+        {
+            _forgotPasswordPage.SubmitButton.Enabled.Should().BeFalse("Submit button is enable");
+        }
+
+
         [When(@"email field is blank")]
         public void WhenEmailFieldIsBlank()
         {

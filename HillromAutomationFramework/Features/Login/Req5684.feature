@@ -33,8 +33,7 @@ Scenario: Forgot Password Valid Email
 @TestCaseID_8913 @UISID_8660 @UISID_8662	
 Scenario: Forgot Password No Email
     Given user is on Forgot Password page
-    When user clicks Submit button
-    Then forgot invalid error message is displayed
+    Then Submit button is disabled
 
 @TestCaseID_8914 @UISID_8660 @UISID_8662	
 Scenario: Forgot Password Login

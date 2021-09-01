@@ -60,7 +60,7 @@ namespace HillromAutomationFramework.Steps.Login
             _loginPage.EmailField.EnterText(Config.InvalidEmailID);
         }
 
-        [When("enters any password")]
+        [When("enters any password"),When(@"user enters any password")]
         public void WhenEntersAnyPassword()
         {
             _loginPage.PasswordField.EnterText(Config.InvalidPassword);
@@ -130,5 +130,13 @@ namespace HillromAutomationFramework.Steps.Login
             string ExpectedhintText = LoginPage.ExpectedValues.PasswordFieldHintText;
             ActualhintText.Should().BeEquivalentTo(ExpectedhintText,"Password field hint text does not match with the expected value");
         }
+
+       
+        [Then(@"Login button is disabled")]
+        public void ThenLoginButtonIsDisabled()
+        {
+            _loginPage.LoginButton.Enabled.Should().BeFalse("Login Button is enabled");
+        }
+
     }
 }

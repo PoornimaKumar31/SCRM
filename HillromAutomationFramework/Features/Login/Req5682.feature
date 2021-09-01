@@ -35,16 +35,16 @@ Scenario: Invalid Login Blank
 @TestCaseID_8905 @UISID_8660	
 Scenario: Invalid Login No Email
     Given user is on Login page
-    When enters any password
-    And clicks Login button
-    Then login authentication error message will display
+    When username field is blank
+    And user enters any password
+    Then Login button is disabled
 
 @TestCaseID_8906 @UISID_8660	
 Scenario: Invalid Login No Password
     Given user is on Login page
-    When user enters valid email ID
-    And clicks Login button
-    Then login authentication error message will display
+    When password field is blank
+    And user enters valid email ID
+    Then Login button is disabled
 
 @TestCaseID_8907 @UISID_8660 @UISID_8721	
 Scenario: Field Entry Username Empty

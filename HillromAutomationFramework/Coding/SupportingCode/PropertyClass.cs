@@ -17,6 +17,12 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// </summary>
         public static string BaseURL = Environment.GetEnvironmentVariable("BaseURL");
 
+
+        /// <summary>
+        /// Version number of AUT
+        /// </summary>
+        public static string VersionNumber = Environment.GetEnvironmentVariable("ApplicationVersionNumber");
+
         /// <summary>
         /// Name of the browser to run tests.
         /// </summary>
