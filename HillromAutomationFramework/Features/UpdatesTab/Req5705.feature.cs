@@ -262,18 +262,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Elements")]
+        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Elements Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9158")]
         [NUnit.Framework.CategoryAttribute("UISID_8697")]
         [NUnit.Framework.CategoryAttribute("UISID_8669")]
-        public virtual void CSMSelectAssetsElements()
+        public virtual void CSMSelectAssetsElementsUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9158",
                     "UISID_8697",
                     "UISID_8669"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Elements Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 41
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -344,16 +344,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Elements Table")]
+        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Elements Table Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9159")]
         [NUnit.Framework.CategoryAttribute("UISID_8697")]
-        public virtual void CSMSelectAssetsElementsTable()
+        public virtual void CSMSelectAssetsElementsTableUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9159",
                     "UISID_8697"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Elements Table", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Elements Table Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 59
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -403,16 +403,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Elements Table Columns")]
+        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Elements Table Columns Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9211")]
         [NUnit.Framework.CategoryAttribute("UISID_8697")]
-        public virtual void CSMSelectAssetsElementsTableColumns()
+        public virtual void CSMSelectAssetsElementsTableColumnsUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9211",
                     "UISID_8697"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Elements Table Columns", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Elements Table Columns Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 70
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -462,16 +462,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Select Assets")]
+        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9160")]
         [NUnit.Framework.CategoryAttribute("UISID_8697")]
-        public virtual void CSMSelectAssets()
+        public virtual void CSMSelectAssetsUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9160",
                     "UISID_8697"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 81
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -509,16 +509,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Previous")]
+        [NUnit.Framework.DescriptionAttribute("CSM Select Assets Previous Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9161")]
         [NUnit.Framework.CategoryAttribute("UISID_8697")]
-        public virtual void CSMSelectAssetsPrevious()
+        public virtual void CSMSelectAssetsPreviousUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9161",
                     "UISID_8697"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Previous", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Select Assets Previous Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 88
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -553,16 +553,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Review Action Page")]
+        [NUnit.Framework.DescriptionAttribute("CSM Review Action Page Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9162")]
         [NUnit.Framework.CategoryAttribute("UISID_8698")]
-        public virtual void CSMReviewActionPage()
+        public virtual void CSMReviewActionPageUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9162",
                     "UISID_8698"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Review Action Page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Review Action Page Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 94
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -600,16 +600,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Review Action Elements")]
+        [NUnit.Framework.DescriptionAttribute("CSM Review Action Elements Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9163")]
         [NUnit.Framework.CategoryAttribute("UISID_8698")]
-        public virtual void CSMReviewActionElements()
+        public virtual void CSMReviewActionElementsUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9163",
                     "UISID_8698"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Review Action Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Review Action Elements Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 101
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -683,16 +683,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Review Action Confirm")]
+        [NUnit.Framework.DescriptionAttribute("CSM Review Action Confirm Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9164")]
         [NUnit.Framework.CategoryAttribute("UISID_8698")]
-        public virtual void CSMReviewActionConfirm()
+        public virtual void CSMReviewActionConfirmUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9164",
                     "UISID_8698"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Review Action Confirm", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Review Action Confirm Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 120
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -730,16 +730,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Review Action Previous")]
+        [NUnit.Framework.DescriptionAttribute("CSM Review Action Previous Upgrade")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_9165")]
         [NUnit.Framework.CategoryAttribute("UISID_8698")]
-        public virtual void CSMReviewActionPrevious()
+        public virtual void CSMReviewActionPreviousUpgrade()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_9165",
                     "UISID_8698"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Review Action Previous", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Review Action Previous Upgrade", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 127
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
