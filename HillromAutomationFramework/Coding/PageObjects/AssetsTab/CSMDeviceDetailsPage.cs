@@ -89,6 +89,9 @@ namespace HillromAutomationFramework.Coding.PageObjects
             public static string NextDisableImageURL = PropertyClass.BaseURL+"/right_disabled.png";
             public static string NextEnableImageURL = PropertyClass.BaseURL+"/icon_page_next.svg";
 
+            public static string LeftPointingRedArrowImageURL = PropertyClass.BaseURL + "/icon_pm_overdue.png";
+            public static string UpwardPointingBlackArrowImageURL = PropertyClass.BaseURL + "/icon_pm_due.png";
+
             public const string SerialNumberwithRoomAndBed = "100010000005";
 
             //Preventive maintainenece

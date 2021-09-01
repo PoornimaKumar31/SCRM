@@ -50,7 +50,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenPreventiveMaintenanceScheduleSubsectionIsDisplayed()
         {
             bool IsPMScheduleSubsectionDisplayed = csmDeviceDetailsPage.PreventiveMaintenance.GetElementVisibility();
-            Assert.IsTrue(IsPMScheduleSubsectionDisplayed, "Preventive maintenance schedule subsection is not displayed.");
+            IsPMScheduleSubsectionDisplayed.Should().BeTrue("Preventive maintenance schedule subsection is displayed.");
         }
 
         [Then(@"Host controller graphic is displayed in ""(.*)"" column")]
@@ -61,7 +61,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             bool IsHostControllerGraphicDisplayed = csmDeviceDetailsPage.HostControllerGraphic.GetElementVisibility();
 
-            Assert.IsTrue(IsHostControllerGraphicDisplayed, "Host controller graphic is not displayed.");
+            IsHostControllerGraphicDisplayed.Should().BeTrue("Host controller graphic is displayed.");
             Assert.AreEqual(IndexOfName, IndexOfHostController, "Host controller graphic is not displayed in Name column.");
         }
         
@@ -115,45 +115,27 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"left pointing red arrow is displayed on ""(.*)"" row")]
         public void ThenLeftPointingRedArrowIsDisplayedOnRow(string HostControllerRow)
         {
-            bool IsDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Left pointing arrow is displayed on "+ "Host controller" + " row");
+            bool isLeftPointingRedArrowDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
+            isLeftPointingRedArrowDisplayed.Should().BeTrue("Left pointing arrow is displayed on " + HostControllerRow + " row.");
 
             int IndexOfHostControllerColumn = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
-            Assert.AreEqual(IsDisplayed, 0 == IndexOfHostControllerColumn, "Calibration overdue message is not displayed on Host controller row.");
+            IndexOfHostControllerColumn.Should().Be(0, "Left pointing arrow is displayed on " + HostControllerRow + " row.");
 
-            string color = csmDeviceDetailsPage.CalibrationOverDueArrow.GetCssValue("color");
-
-            //string bgColor = csmDeviceDetailsPage.CalibrationOverDueArrow.GetCssValue("background-color");
-
-            String[] hexValue = color.Replace("rgba(", "").Replace(")", "").Split(",");
-
-            int hexValue1 = int.Parse(hexValue[0].Trim());
-            int hexValue2 = int.Parse(hexValue[1].Trim());
-            int hexValue3 = int.Parse(hexValue[2].Trim());
-
-            string actualColour = GetMethods.ConvertRGBtoHex(hexValue1, hexValue2, hexValue3);
-
-            //Assert.AreEqual("#FF0000", actualColour, "Left pointing red arrow is not displayed on Host controller row");
-
+            string leftPointingRedArrowURL = csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
+            leftPointingRedArrowURL.Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.LeftPointingRedArrowImageURL, "Left pointing red arrow is displayed on " + HostControllerRow + " row.");
         }
 
         [Then(@"upward pointing black arrow is displayed on ""(.*)"" row")]
         public void ThenUpwardPointingBlackArrowIsDisplayedOnRow(string HostControllerRow)
         {
             bool IsUpwardPointingArrowDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
-            Assert.IsTrue(IsUpwardPointingArrowDisplayed, "Upward pointing black arrow is displayed on Host controller row.");
-            string color = csmDeviceDetailsPage.CalibrationOverDueArrow.GetCssValue("color");
-            //string bgColor = csmDeviceDetailsPage.CalibrationOverDueArrow.GetCssValue("background-color");
+            IsUpwardPointingArrowDisplayed.Should().BeTrue("Upward pointing arrow is displayed on " + HostControllerRow + " row.");
 
-            String[] hexValue = color.Replace("rgba(", "").Replace(")", "").Split(",");
+            int IndexOfHostControllerColumn = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
+            IndexOfHostControllerColumn.Should().Be(0, "Upward pointing arrow is displayed on " + HostControllerRow + " row.");
 
-            int hexValue1 = int.Parse(hexValue[0].Trim());
-            int hexValue2 = int.Parse(hexValue[1].Trim());
-            int hexValue3 = int.Parse(hexValue[2].Trim());
-
-            string actualColour = GetMethods.ConvertRGBtoHex(hexValue1, hexValue2, hexValue3);
-
-            Assert.AreEqual("#444444", actualColour, "Upward pointing black arrow is not displayed on Host controller row");
+            string upwardPointingBlackArrowURL = csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
+            upwardPointingBlackArrowURL.Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.UpwardPointingBlackArrowImageURL, "Upward pointing black arrow is not displayed on " + HostControllerRow + " row.");                    
         }
 
         [Given(@"user is on the Preventive maintenance tab")]
