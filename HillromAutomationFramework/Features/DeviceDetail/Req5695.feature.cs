@@ -314,7 +314,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Braun4000 \"Cycle count\" is displayed in \"Usage\" column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 56
- testRunner.And("Braun4000 \"Cycle Count\" is \"120\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Braun4000 \"Cycle Count\" is \"Cycle count: 120\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
  testRunner.When("user clicks Braun Pro 4000 toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

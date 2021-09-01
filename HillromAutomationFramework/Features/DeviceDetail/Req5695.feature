@@ -53,7 +53,7 @@ Scenario: CVSM Asset Details Braun4000
 	And Braun4000 "Hardware version" is "1"
 	And Braun4000 "Serial number" is "103000413311"
 	And Braun4000 "Cycle count" is displayed in "Usage" column
-	And Braun4000 "Cycle Count" is "120"
+	And Braun4000 "Cycle Count" is "Cycle count: 120"
 	When user clicks Braun Pro 4000 toggle arrow
 	Then Braun4000 "Model number" label is displayed
 	And Braun4000 "Model number" is "407362"

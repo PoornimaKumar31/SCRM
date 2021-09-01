@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -6,6 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.Login
 {
@@ -13,63 +15,65 @@ namespace HillromAutomationFramework.Steps.Login
     public class Req5684Steps
     {
         private readonly ScenarioContext _scenarioContext;
-        readonly LoginPage loginPage = new LoginPage();
-        readonly ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
+        private readonly LoginPage _loginPage;
+        private readonly ForgotPasswordPage _forgotPasswordPage;
+        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
         public Req5684Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _loginPage = new LoginPage();
+            _forgotPasswordPage = new ForgotPasswordPage();
         }
 
         [When(@"user clicks forgot password")]
         public void WhenUserClickOnForgotPassword()
         {
-            loginPage.ForgotPasswordLink.Click();
+            _loginPage.ForgotPasswordLink.Click();
         }
 
         [Then(@"Forgot Password page is displayed")]
         public void ThenForgotPasswordPageIsDisplayed()
         {
-            Assert.AreEqual(forgotPasswordPage.EmailFeild.Displayed,true,"Forgot password page is not displayed");
-            Assert.AreEqual(forgotPasswordPage.SubmitButton.Displayed,true, "Forgot password page is not displayed");
-            Assert.AreEqual(forgotPasswordPage.LoginLink.Displayed,true, "Forgot password page is not displayed");
+            _forgotPasswordPage.EmailFeild.GetElementVisibility().Should().BeTrue("Forgot password page is not displayed");
+            _forgotPasswordPage.SubmitButton.GetElementVisibility().Should().BeTrue("Forgot password page is not displayed");
+            _forgotPasswordPage.LoginLink.GetElementVisibility().Should().BeTrue("Forgot password page is not displayed");
         }
 
         [Given(@"user is on Forgot Password page")]
         public void GivenUserIsOnForgotPasswordPage()
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
-            loginPage.ForgotPasswordLink.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));
+            wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            _loginPage.ForgotPasswordLink.Click();
+            wait.Until(ExplicitWait.ElementExists(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));
         }
 
         [When(@"email field is blank")]
         public void WhenEmailFieldIsBlank()
         {
             Thread.Sleep(500);
-            Assert.AreEqual(forgotPasswordPage.EmailFeild.Text.Length == 0,true,"Email field is not blank.\n");
+            _forgotPasswordPage.EmailFeild.Text.Should().BeNullOrEmpty("Email field is not blank.\n");
         }
 
         [Then(@"email field contains hint text")]
         public void ThenEmailFieldContainsHintText()
         {
             string ExpectedHintText = ForgotPasswordPage.ExpectedValues.EmailFieldHintText;
-            string ActualHintText = forgotPasswordPage.EmailFeild.GetAttribute("placeholder");
-            Assert.AreEqual(ExpectedHintText, ActualHintText,"Email field hint text is not matching with expected value.\n");
+            string ActualHintText = _forgotPasswordPage.EmailFeild.GetAttribute("placeholder");
+            ActualHintText.Should().BeEquivalentTo(ExpectedHintText,"Email field hint text is not matching with expected value.\n");
         }
 
         [When(@"user enters invalid email address")]
         public void WhenEnterInvalidEmailInForgotPasswordPage()
         {
-            forgotPasswordPage.EmailFeild.EnterText(Config.InvalidEmailID);
+            _forgotPasswordPage.EmailFeild.EnterText(Config.InvalidEmailID);
         }
 
         [When(@"user clicks Submit button")]
         public void Whenclickonsubmitbutton()
         {
-            forgotPasswordPage.SubmitButton.Click();
+            _forgotPasswordPage.SubmitButton.Click();
         }
 
         [Then(@"forgot invalid error message is displayed")]
@@ -83,34 +87,34 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user enters valid email address")]
         public void WhenUserEntersValidEmailAddress()
         {
-            forgotPasswordPage.EmailFeild.EnterText(Config.EmailIDAdminWithRollUp);
+            _forgotPasswordPage.EmailFeild.EnterText(Config.EmailIDAdminWithRollUp);
         }
 
         [Then(@"Login page is displayed")]
         public void ThenLoginPageIsDisplayed()
         {
-            Assert.AreEqual(loginPage.EmailField.Displayed,true,"Login page is not displayed.\n");
-            Assert.AreEqual(loginPage.PasswordField.Displayed,true, "Login page is not displayed.\n");
-            Assert.AreEqual(loginPage.ForgotPasswordLink.Displayed,true, "Login page is not displayed..\n");
+            _loginPage.EmailField.GetElementVisibility().Should().BeTrue("Login page is not displayed.\n");
+            _loginPage.PasswordField.GetElementVisibility().Should().BeTrue("Login page is not displayed.\n");
+            _loginPage.ForgotPasswordLink.GetElementVisibility().Should().BeTrue("Login page is not displayed..\n");
         }
 
         [Then(@"notification message is displayed")]
         public void ThenNotificationMessageIsDisplayed()
         {
-            Assert.AreEqual(loginPage.ForgetPasswordSuccessMessage.Displayed,true,"Notification message is not displayed.\n");
+            _loginPage.ForgetPasswordSuccessMessage.GetElementVisibility().Should().BeTrue("Notification message is not displayed.\n");
         }
 
         [Then(@"notification message disappears after a few seconds")]
         public void ThenNotificationMessageDisappearsAfterAFewSeconds()
         {
             Thread.Sleep(10000);
-            Assert.AreEqual(loginPage.ForgetPasswordSuccessMessage.Displayed,false, "Notification message is not disappear.\n");
+            _loginPage.ForgetPasswordSuccessMessage.GetElementVisibility().Should().BeFalse("Notification message is not disappear.\n");
         }
 
         [When(@"user clicks Login")]
         public void WhenUserClicksLogin()
         {
-            forgotPasswordPage.LoginLink.Click();
+            _forgotPasswordPage.LoginLink.Click();
         }
     }
 }

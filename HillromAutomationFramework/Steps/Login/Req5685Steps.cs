@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
 using System.IO;
@@ -10,12 +11,17 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding]
     public class Req5685Steps
     {
-        readonly LoginPage loginPage = new LoginPage();
+        private readonly LoginPage _loginPage;
+        
+        public Req5685Steps()
+        {
+            _loginPage = new LoginPage();
+        }
 
         [When(@"user clicks PartnerConnect")]
         public void WhenUserClicksPartnerConnect()
         {
-            loginPage.PartnerConnectLink.Click();
+            _loginPage.PartnerConnectLink.Click();
             // Checking if download starts.
             int count = 0;
             bool file_exist = false;
@@ -36,7 +42,7 @@ namespace HillromAutomationFramework.Steps.Login
             // Checking if Partner Connect ZIP file is downloaded successfuly.
             if (Directory.Exists(PropertyClass.DownloadPath))
             {
-                Assert.AreEqual(File.Exists(PropertyClass.PartnerConnectFilePath), true, "PartnerConnect zip file is not downloaded");
+                File.Exists(PropertyClass.PartnerConnectFilePath).Should().BeTrue("PartnerConnect zip file is not downloaded");
                 //Delete file after verifying
                 File.Delete(PropertyClass.PartnerConnectFilePath);
             }
@@ -49,7 +55,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks Service Monitor")]
         public void WhenUserClicksServiceMonitor()
         {
-            loginPage.ServiceMoniterLink.Click();
+            _loginPage.ServiceMoniterLink.Click();
             // Checking if download starts.
             bool file_exist = false;
             int count = 0;
@@ -70,7 +76,7 @@ namespace HillromAutomationFramework.Steps.Login
             // Checking if Partner Connect ZIP file is downloaded successfuly.
             if (Directory.Exists(PropertyClass.DownloadPath))
             {
-                Assert.AreEqual(File.Exists(PropertyClass.ServiceMonitorFilePath), true, "Service Moniter Zip file is not downloaded");
+                File.Exists(PropertyClass.ServiceMonitorFilePath).Should().BeTrue("Service Moniter Zip file is not downloaded");
                 // Delete after Verifying.
                 File.Delete(PropertyClass.ServiceMonitorFilePath);
             }
@@ -83,7 +89,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks DCP")]
         public void WhenUserClicksDCP()
         {
-            loginPage.DCPLink.Click();
+            _loginPage.DCPLink.Click();
             // Checking if download starts.
             bool file_exist = false;
             int count = 0;
@@ -104,7 +110,7 @@ namespace HillromAutomationFramework.Steps.Login
             // Checking if Partner Connect ZIP file is downloaded successfuly.
             if (Directory.Exists(PropertyClass.DownloadPath))
             {
-                Assert.AreEqual(File.Exists(PropertyClass.DCPFilePath), true, "Dcp zip file is not downloaded\n");
+                File.Exists(PropertyClass.DCPFilePath).Should().BeTrue("Dcp zip file is not downloaded\n");
                 // Delete after verifying.
                 File.Delete(PropertyClass.DCPFilePath);
             }
@@ -117,46 +123,64 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user clicks Administrator Guide")]
         public void WhenUserClicksAdministratorGuide()
         {
-            loginPage.AdministratorsGuidePDFLink.Click();
+            _loginPage.AdministratorsGuidePDFLink.Click();
         }
 
         [Then(@"Administrator Guide PDF opens in browser")]
         public void ThenAdministratorGuidePDFOpensInBrowser()
         {
-            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
-            Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"PDF is not opened in new tab"); // checking if new tab was opened
-            PropertyClass.Driver.SwitchTo().Window(popup); // Switch to new tab.
-            Assert.AreEqual(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, PropertyClass.Driver.Url,"Administator guide PDF is not opened");
+            // handler for the new tab
+            var popup = PropertyClass.Driver.WindowHandles[1];
+
+            // checking if new tab was opened
+            string.IsNullOrEmpty(popup).Should().BeFalse("PDF is not opened in new tab");
+
+            // Switch to new tab.
+            PropertyClass.Driver.SwitchTo().Window(popup);
+            
+            PropertyClass.Driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, "Administator guide PDF is not opened");
         }
 
         [When(@"user clicks Instructions for Use")]
         public void WhenUserClicksInstructionsForUse()
         {
-            loginPage.InstructionForUsePDFLink.Click();
+            _loginPage.InstructionForUsePDFLink.Click();
         }
 
         [Then(@"Instructions for Use PDF opens in browser")]
         public void ThenInstructionsForUsePDFOpensInBrowser()
         {
-            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
-            Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"New tab is not opened"); // check if new tab was opened
-            PropertyClass.Driver.SwitchTo().Window(popup); // Switch to new tab.
-            Assert.AreEqual(LoginPage.ExpectedValues.InstructionForUsePDFURL, PropertyClass.Driver.Url,"Instructions for use PDF is not opened");
+            // handler for the new tab
+            var popup = PropertyClass.Driver.WindowHandles[1];
+
+            // check if new tab was opened
+            string.IsNullOrEmpty(popup).Should().BeFalse("New tab is not opened");
+
+            // Switch to new tab.
+            PropertyClass.Driver.SwitchTo().Window(popup); 
+            
+            PropertyClass.Driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.InstructionForUsePDFURL, "Instructions for use PDF is not opened");
         }
 
         [When(@"user clicks Release Notes")]
         public void WhenUserClicksReleaseNotes()
         {
-            loginPage.ReleaseNotesPDFLink.Click();
+            _loginPage.ReleaseNotesPDFLink.Click();
         }
 
         [Then(@"Release Notes PDF opens in browser")]
         public void ThenReleaseNotesPDFOpensInBrowser()
         {
-            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
-            Assert.AreEqual(!string.IsNullOrEmpty(popup),true,"New tab is not opened"); // tab was opened
-            PropertyClass.Driver.SwitchTo().Window(popup); //Switch to new tab
-            Assert.AreEqual(LoginPage.ExpectedValues.RealeaseNotesPDFURL, PropertyClass.Driver.Url,"Release notes pdf is not opened");
+            // handler for the new tab
+            var popup = PropertyClass.Driver.WindowHandles[1];
+
+            // tab was opened
+            string.IsNullOrEmpty(popup).Should().BeFalse("New tab is not opened");
+
+            //Switch to new tab
+            PropertyClass.Driver.SwitchTo().Window(popup);
+
+            PropertyClass.Driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.RealeaseNotesPDFURL, "Release notes pdf is not opened");
         }
     }
 }

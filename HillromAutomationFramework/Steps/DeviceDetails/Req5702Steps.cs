@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.Component_Information;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -13,87 +14,94 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
     [Binding,Scope(Tag = "SoftwareRequirementID_5702")]
     class Req5702Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
+        private readonly LoginPage _loginPage = new LoginPage();
+        private readonly LandingPage _landingPage = new LandingPage();
+        private readonly CSMAssetListPage _csmAssetListPage = new CSMAssetListPage();
+        private readonly MainPage _mainPage = new MainPage();
+
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        CSMAssetListPage csmAssetListPage = new CSMAssetListPage();
-        MainPage mainPage = new MainPage();
         
 
         //Context Injection
         private ScenarioContext _scenarioContext;
         public Req5702Steps(ScenarioContext scnenarioContext)
         {
-            _scenarioContext = scnenarioContext;              
+            _scenarioContext = scnenarioContext;
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _csmAssetListPage = new CSMAssetListPage();
+            _mainPage = new MainPage();
         }
 
 
         [Given(@"user is on Asset List page with more than one CSM")]
         public void GivenUserIsOnAssetListPageWithMoreThanOneCSM()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
-            Assert.Greater(csmAssetListPage.GetDeviceCount(), 2);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            _csmAssetListPage.GetDeviceCount().Should().BeGreaterThan(1);
         }
 
         [When(@"user clicks any CSM")]
         public void WhenUserClicksAnyCSM()
         {
             Thread.Sleep(2000);
-            mainPage.SearchSerialNumberAndClick("100010000000");
+            _mainPage.SearchSerialNumberAndClick("100010000000");
         }
 
         [Then(@"Asset Details landing page is displayed")]
         public void ThenAssetDetailsLandingPageIsDisplayed()
         {
-            Assert.IsTrue(csmAssetListPage.CSMDetailsPage.GetElementVisibility(), "Asset Details Landing Page is not displayed");
+            _csmAssetListPage.CSMDetailsPage.GetElementVisibility().Should().BeTrue( "Asset Details Landing Page is not displayed");
         }
 
         [Then(@"Asset Detail summary subsection with Edit button is displayed")]
         public void ThenAssetDetailSummarySubsectionWithEditButtonIsDisplayed()
         {
-            Assert.IsTrue(csmAssetListPage.CSMDetailsSummary.GetElementVisibility(), "CVSM details summary subsection is not displayed");
-            Assert.IsTrue(csmAssetListPage.EditButton.GetElementVisibility(), "Edit Button is not displayed");
+            _csmAssetListPage.CSMDetailsSummary.GetElementVisibility().Should().BeTrue( "CVSM details summary subsection is not displayed");
+            _csmAssetListPage.EditButton.GetElementVisibility().Should().BeTrue( "Edit Button is not displayed");
         }
 
         [Then(@"Preventive Maintenance tab is displayed")]
         public void ThenPreventiveMaintenanceTabIsDisplayed()
         {
-            Assert.IsTrue(csmAssetListPage.PreventiveMaintenanceTab.GetElementVisibility(), "Preventive Mainetenance Tab is not displayed");
+            _csmAssetListPage.PreventiveMaintenanceTab.GetElementVisibility().Should().BeTrue( "Preventive Mainetenance Tab is not displayed");
         }
 
         [Then(@"Component Information tab is displayed")]
         public void ThenComponentInformationTabIsDisplayed()
         {
-            Assert.IsTrue(csmAssetListPage.ComponentInformationTab.GetElementVisibility(), "Component information tab is not displayed");
+            _csmAssetListPage.ComponentInformationTab.GetElementVisibility().Should().BeTrue( "Component information tab is not displayed");
         }
 
         [Then(@"Logs tab is displayed")]
         public void ThenLogsTabIsDisplayed()
         {
-            Assert.IsTrue(csmAssetListPage.LogsTab.GetElementVisibility(), "Logs tab is not displayed");
+            _csmAssetListPage.LogsTab.GetElementVisibility().Should().BeTrue( "Logs tab is not displayed");
         }
 
         [Then(@"Asset Detail subsection is displayed")]
         public void ThenAssetDetailSubsectionIsDisplayed()
         {
-            Assert.IsTrue(csmAssetListPage.AssetDetailsSubsection.GetElementVisibility(), "Asset Details Subsection is not displayed");
+            _csmAssetListPage.AssetDetailsSubsection.GetElementVisibility().Should().BeTrue( "Asset Details Subsection is not displayed");
         }
 
 
         [Given(@"user is on Component details page for CSM Serial number ""(.*)""")]
         public void GivenUserIsOnComponentDetailsPageForCSMSerialNumber(string SerialNumber)
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
-            Assert.Greater(csmAssetListPage.GetDeviceCount(), 2);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            
+            _csmAssetListPage.GetDeviceCount().Should().BeGreaterThan(1);
             Thread.Sleep(2000);
-            mainPage.SearchSerialNumberAndClick(SerialNumber);
-            csmAssetListPage.ComponentInformationTab.Click();
+            
+            _mainPage.SearchSerialNumberAndClick(SerialNumber);
+            _csmAssetListPage.ComponentInformationTab.Click();
             Thread.Sleep(2000);
         }
 
@@ -104,20 +112,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.Name.Text;
+                    ActualValue = _csmAssetListPage.Name.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.SerialNumber.Text;
+                    ActualValue = _csmAssetListPage.SerialNumber.Text;
                     break;
                 case "device hours on":
-                    ActualValue = csmAssetListPage.TotalRunTimeValue.Text;
+                    ActualValue = _csmAssetListPage.TotalRunTimeValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"""(.*)"" label is displayed in ""(.*)"" column")]
@@ -138,14 +146,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "device hours on":
-                    ActualColumnIndex = csmAssetListPage.ConnexElementList.IndexOf(csmAssetListPage.UsageColumn);
+                    ActualColumnIndex = _csmAssetListPage.ConnexElementList.IndexOf(_csmAssetListPage.UsageColumn);
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
+            ActualColumnIndex.Should().Be(ExpectedColumnIndex, LabelName + " is not in " + ColumnName);
 
         }
 
@@ -156,23 +164,23 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "manufacture date":
-                    ActualValue = csmAssetListPage.BatteryRowManufactureDate.Text;
+                    ActualValue = _csmAssetListPage.BatteryRowManufactureDate.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.BatteryRowSerialNumber.Text;
+                    ActualValue = _csmAssetListPage.BatteryRowSerialNumber.Text;
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.BatteryRowCycleCount.Text;
+                    ActualValue = _csmAssetListPage.BatteryRowCycleCount.Text;
                     break;
                 case "name":
-                    ActualValue = csmAssetListPage.BatteryRowName.Text;
+                    ActualValue = _csmAssetListPage.BatteryRowName.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"battery row ""(.*)"" is displayed in ""(.*)"" column")]
@@ -193,14 +201,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "cycle count":
-                    ActualColumnIndex = csmAssetListPage.BatteryElementList.IndexOf(csmAssetListPage.BatteryRowCycleCount);
+                    ActualColumnIndex = _csmAssetListPage.BatteryElementList.IndexOf(_csmAssetListPage.BatteryRowCycleCount);
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + "is not in" + ColumnName);
+            ActualColumnIndex.Should().Be(ExpectedColumnIndex, LabelName + "is not in" + ColumnName);
         }
 
 
@@ -212,99 +220,98 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "manufacture date":
-                    ActualValue = csmAssetListPage.BatteryManufacturerDateValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryManufacturerDateValue.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.BatterySerialNumberValue.Text;
+                    ActualValue = _csmAssetListPage.BatterySerialNumberValue.Text;
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.BatteryCycleCountValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryCycleCountValue.Text;
                     break;
                 case "temperature":
-                    ActualValue = csmAssetListPage.BatteryTemparatureValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryTemparatureValue.Text;
                     break;
                 case "remaining capacity":
-                    ActualValue = csmAssetListPage.BatteryRemainingCapacityValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryRemainingCapacityValue.Text;
                     break;
                 case "voltage":
-                    ActualValue = csmAssetListPage.BatteryVoltageValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryVoltageValue.Text;
                     break;
                 case "full charge capacity":
-                    ActualValue = csmAssetListPage.BatteryFullChargeCapacityValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryFullChargeCapacityValue.Text;
                     break;
                 case "current":
-                    ActualValue = csmAssetListPage.BatteryCurrentValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryCurrentValue.Text;
                     break;
                 case "designed capacity":
-                    ActualValue = csmAssetListPage.BatteryDesignedCapacityValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryDesignedCapacityValue.Text;
                     break;
                 case "model number":
-                    ActualValue = csmAssetListPage.BatteryModelNumberValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryModelNumberValue.Text;
                     break;
                 case "manufacture name":
-                    ActualValue = csmAssetListPage.BatteryManufacturerNameValue.Text;
+                    ActualValue = _csmAssetListPage.BatteryManufacturerNameValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"battery ""(.*)"" label is displayed")]
         public void ThenBatteryLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
             switch (LabelName.ToLower().Trim())
             {
               
                 case "manufacture date":
-                    ActualValue = csmAssetListPage.BatteryManufacturerDateLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryManufacturerDateLabel.GetElementVisibility();
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.BatterySerialNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatterySerialNumberLabel.GetElementVisibility();
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.BatteryCycleCountLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryCycleCountLabel.GetElementVisibility();
                     break;
                 case "temperature":
-                    ActualValue = csmAssetListPage.BatteryTemparatureLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryTemparatureLabel.GetElementVisibility();
                     break;
                 case "remaining capacity":
-                    ActualValue = csmAssetListPage.BatteryRemainingCapacityLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryRemainingCapacityLabel.GetElementVisibility();
                     break;
                 case "voltage":
-                    ActualValue = csmAssetListPage.BatteryVoltageLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryVoltageLabel.GetElementVisibility();
                     break;
                 case "full charge capacity":
-                    ActualValue = csmAssetListPage.BatteryFullChargeCapacityLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryFullChargeCapacityLabel.GetElementVisibility();
                     break;
                 case "current":
-                    ActualValue = csmAssetListPage.BatteryCurrentLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryCurrentLabel.GetElementVisibility();
                     break;
                 case "designed capacity":
-                    ActualValue = csmAssetListPage.BatteryDesignedCapacityLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryDesignedCapacityLabel.GetElementVisibility();
                     break;
                 case "model number":
-                    ActualValue = csmAssetListPage.BatteryModelNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryModelNumberLabel.GetElementVisibility();
                     break;
                 case "manufacture name":
-                    ActualValue = csmAssetListPage.BatteryManufacturerNameLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.BatteryManufacturerNameLabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " label is not displayed");
+            ActualValue.Should().BeTrue(LabelName+"Label is not displayed");
         }
 
         [When(@"user clicks battery row toggle arrow")]
         public void WhenUserClicksBatteryRowToggleArrow()
         {
-            csmAssetListPage.BatteryRowToggelArrow.Click();
+            _csmAssetListPage.BatteryRowToggelArrow.Click();
             Thread.Sleep(2000);
         }
 
@@ -316,14 +323,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.APMRowName.Text;
+                    ActualValue = _csmAssetListPage.APMRowName.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"APM battery row ""(.*)"" is ""(.*)""")]
@@ -333,23 +340,23 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.APMBatteryRowName.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryRowName.Text;
                     break;
                 case "manufacture date":
-                    ActualValue = csmAssetListPage.APMBatteryRowManufacturerDate.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryRowManufacturerDate.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.APMBatteryRowSerialNumber.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryRowSerialNumber.Text;
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.APMBatteryRowCycleCount.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryRowCycleCount.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"APM battery row ""(.*)"" is displayed in ""(.*)"" column")]
@@ -370,20 +377,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "cycle count":
-                    ActualColumnIndex = csmAssetListPage.APMElementList.IndexOf(csmAssetListPage.APMBatteryRowCycleCount);
+                    ActualColumnIndex = _csmAssetListPage.APMElementList.IndexOf(_csmAssetListPage.APMBatteryRowCycleCount);
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
+            ActualColumnIndex.Should().Be(ExpectedColumnIndex, LabelName + " is not in " + ColumnName);
         }
 
         [When(@"user clicks APM battery row toggle arrow")]
         public void WhenUserClicksAPMBatteryRowToggleArrow()
         {
-            csmAssetListPage.APMBatteryRowToggleArrow.Click();
+            _csmAssetListPage.APMBatteryRowToggleArrow.Click();
             Thread.Sleep(2000);
         }
 
@@ -391,55 +398,54 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenAPMBatteryLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
             switch (LabelName.ToLower().Trim())
             {
 
                 case "manufacture date":
-                    ActualValue = csmAssetListPage.APMBatteryManufactureDateLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryManufactureDateLabel.GetElementVisibility();
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.APMBatterySerialNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatterySerialNumberLabel.GetElementVisibility();
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.APMBatteryCycleCountLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryCycleCountLabel.GetElementVisibility();
                     break;
                 case "temperature":
-                    ActualValue = csmAssetListPage.APMBatteryTemparatureLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryTemparatureLabel.GetElementVisibility();
                     break;
                 case "remaining capacity":
-                    ActualValue = csmAssetListPage.APMBatteryRemainingCapacityLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryRemainingCapacityLabel.GetElementVisibility();
                     break;
                 case "voltage":
-                    ActualValue = csmAssetListPage.APMBatteryVoltageLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryVoltageLabel.GetElementVisibility();
                     break;
                 case "full charge capacity":
-                    ActualValue = csmAssetListPage.APMBatteryFullChargeCapacityLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryFullChargeCapacityLabel.GetElementVisibility();
                     break;
                 case "current":
-                    ActualValue = csmAssetListPage.APMBatteryCurrentLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryCurrentLabel.GetElementVisibility();
                     break;
                 case "battery designed capacity":
-                    ActualValue = csmAssetListPage.APMBatteryBatteryDesigedCapacityLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryBatteryDesigedCapacityLabel.GetElementVisibility();
                     break;
                 case "model number":
-                    ActualValue = csmAssetListPage.APMBatteryModelNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryModelNumberLabel.GetElementVisibility();
                     break;
                 case "manufacture name":
-                    ActualValue = csmAssetListPage.APMBatteryManufactureNameLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryManufactureNameLabel.GetElementVisibility();
                     break;
                 case "combined battery remaining capacity":
-                    ActualValue = csmAssetListPage.APMBatteryCombinedBatteryRemainingCapacityLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryCombinedBatteryRemainingCapacityLabel.GetElementVisibility();
                     break;
                 case "pic processor firmware version":
-                    ActualValue = csmAssetListPage.APMBatteryPICProcessorFirmwareVersionLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.APMBatteryPICProcessorFirmwareVersionLabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " label is not displayed");
+            ActualValue.Should().BeTrue(LabelName+"Label is not displayed");
         }   
         
 
@@ -452,50 +458,50 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
 
                 case "manufacture date":
-                    ActualValue = csmAssetListPage.APMBatteryManufactureDateValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryManufactureDateValue.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.APMBatterySerialNumberValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatterySerialNumberValue.Text;
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.APMBatteryCycleCountValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryCycleCountValue.Text;
                     break;
                 case "temperature":
-                    ActualValue = csmAssetListPage.APMBatteryTemparatureValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryTemparatureValue.Text;
                     break;
                 case "remaining capacity":
-                    ActualValue = csmAssetListPage.APMBatteryRemainingCapacityValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryRemainingCapacityValue.Text;
                     break;
                 case "voltage":
-                    ActualValue = csmAssetListPage.APMBatteryVoltageValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryVoltageValue.Text;
                     break;
                 case "full charge capacity":
-                    ActualValue = csmAssetListPage.APMBatteryFullChargeCapacityValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryFullChargeCapacityValue.Text;
                     break;
                 case "current":
-                    ActualValue = csmAssetListPage.APMBatteryCurrentValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryCurrentValue.Text;
                     break;
                 case "battery designed capacity":
-                    ActualValue = csmAssetListPage.APMBatteryBatteryDesignedCapacityValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryBatteryDesignedCapacityValue.Text;
                     break;
                 case "model number":
-                    ActualValue = csmAssetListPage.APMBatteryModelNumberValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryModelNumberValue.Text;
                     break;
                 case "manufacture name":
-                    ActualValue = csmAssetListPage.APMBatteryManufactureNameValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryManufactureNameValue.Text;
                     break;
                 case "combined battery remaining capacity":
-                    ActualValue = csmAssetListPage.APMBatteryCombinedBatteryRemainingCapacityValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryCombinedBatteryRemainingCapacityValue.Text;
                     break;
                 case "pic processor firmware version":
-                    ActualValue = csmAssetListPage.APMBatteryPICProcessorFirmwareVersionValue.Text;
+                    ActualValue = _csmAssetListPage.APMBatteryPICProcessorFirmwareVersionValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
 
@@ -507,26 +513,26 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.NIBPRowName.Text;
+                    ActualValue = _csmAssetListPage.NIBPRowName.Text;
                     break;
                 case "firmware version":
-                    ActualValue = csmAssetListPage.NIBPRowFirmwareVersion.Text;
+                    ActualValue = _csmAssetListPage.NIBPRowFirmwareVersion.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.NIBPRowSerialNumber.Text;
+                    ActualValue = _csmAssetListPage.NIBPRowSerialNumber.Text;
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.NIBPRowCycleCount.Text;
+                    ActualValue = _csmAssetListPage.NIBPRowCycleCount.Text;
                     break;
                 case "hardware version":
-                    ActualValue = csmAssetListPage.NIBPRowHardwareVersion.Text;
+                    ActualValue = _csmAssetListPage.NIBPRowHardwareVersion.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"NIBP row ""(.*)"" is displayed in ""(.*)"" column")]
@@ -547,20 +553,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "cycle count":
-                    ActualColumnIndex = csmAssetListPage.NIBPElementList.IndexOf(csmAssetListPage.NIBPRowCycleCount);
+                    ActualColumnIndex = _csmAssetListPage.NIBPElementList.IndexOf(_csmAssetListPage.NIBPRowCycleCount);
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
+            ActualColumnIndex.Should().Be(ExpectedColumnIndex, LabelName + " is not in " + ColumnName);
         }
 
         [When(@"user clicks NIBP row sensor toggle arrow")]
         public void WhenUserClicksNIBPRowSensorToggleArrow()
         {
-            csmAssetListPage.NIBPRowToggleArrow.Click();
+            _csmAssetListPage.NIBPRowToggleArrow.Click();
             Thread.Sleep(2000);
         }
 
@@ -568,18 +574,17 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenNIBPLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
             switch (LabelName.ToLower().Trim())
             {
 
                 case "last calibration date":
-                    ActualValue = csmAssetListPage.NIBPLastCalibrationDateLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.NIBPLastCalibrationDateLabel.GetElementVisibility();
                     break;
                 case "nibp module cycle count":
-                    ActualValue = csmAssetListPage.NIBPModuleCycleCountLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.NIBPModuleCycleCountLabel.GetElementVisibility();
                     break;
                 case "calibration signature":
-                    ActualValue = csmAssetListPage.NIBPCalibrationSignatureLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.NIBPCalibrationSignatureLabel.GetElementVisibility();
                     break;
                 
                 default:
@@ -587,7 +592,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " label is not displayed");
+            ActualValue.Should().BeTrue(LabelName+"Label is not displayed");
         }
 
         [Then(@"NIBP ""(.*)"" is ""(.*)""")]
@@ -598,13 +603,13 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
 
                 case "last calibration date":
-                    ActualValue = csmAssetListPage.NIBPLastCalibrationDateValue.Text;
+                    ActualValue = _csmAssetListPage.NIBPLastCalibrationDateValue.Text;
                     break;
                 case "nibp module cycle count":
-                    ActualValue = csmAssetListPage.NIBPModuleCycleCountValue.Text;
+                    ActualValue = _csmAssetListPage.NIBPModuleCycleCountValue.Text;
                     break;
                 case "calibration signature":
-                    ActualValue = csmAssetListPage.NIBPCalibrationSignatureValue.Text;
+                    ActualValue = _csmAssetListPage.NIBPCalibrationSignatureValue.Text;
                     break;
 
                 default:
@@ -612,7 +617,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
 
@@ -623,21 +628,21 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.TempProbeRowName.Text;
+                    ActualValue = _csmAssetListPage.TempProbeRowName.Text;
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.TempProbeRowCycleCount.Text;
+                    ActualValue = _csmAssetListPage.TempProbeRowCycleCount.Text;
                     ActualValue = GetMethods.CleanString(ActualValue);
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.TempProbeRowSerialNumber.Text;
+                    ActualValue = _csmAssetListPage.TempProbeRowSerialNumber.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"Temperature probe row ""(.*)"" is displayed in ""(.*)"" column")]
@@ -658,20 +663,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "cycle count":
-                    ActualColumnIndex = csmAssetListPage.TempProbeElementList.IndexOf(csmAssetListPage.TempProbeRowCycleCount);
+                    ActualColumnIndex = _csmAssetListPage.TempProbeElementList.IndexOf(_csmAssetListPage.TempProbeRowCycleCount);
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
+            ActualColumnIndex.Should().Be(ExpectedColumnIndex, LabelName + " is not in " + ColumnName);
         }
 
         [When(@"user clicks Temperature probe row toggle arrow")]
         public void WhenUserClicksTemperatureProbeRowToggleArrow()
         {
-            csmAssetListPage.TempProbeRowToggleArrow.Click();
+            _csmAssetListPage.TempProbeRowToggleArrow.Click();
             Thread.Sleep(2000);
         }
 
@@ -680,43 +685,42 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenTemperatureProbeLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
             switch (LabelName.ToLower().Trim())
             {
 
                 case "probe type":
-                    ActualValue = csmAssetListPage.TempProbeTypeLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbeTypeLabel.GetElementVisibility();
                     break;
                 case "probe cycle count":
-                    ActualValue = csmAssetListPage.TempProbeCycleCountLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbeCycleCountLabel.GetElementVisibility();
                     break;
                 case "part number":
-                    ActualValue = csmAssetListPage.TempProbePartNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbePartNumberLabel.GetElementVisibility();
                     break;
                 case "lot code":
-                    ActualValue = csmAssetListPage.TempProbeLotCodeLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbeLotCodeLabel.GetElementVisibility();
                     break;
                 case "lot sequence number":
-                    ActualValue = csmAssetListPage.TempProbeLotSequenceNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbeLotSequenceNumberLabel.GetElementVisibility();
                     break;
                 case "calibration date":
-                    ActualValue = csmAssetListPage.TempProbeCalibrationDateLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbeCalibrationDateLabel.GetElementVisibility();
                     break;
                 case "calibration signature":
-                    ActualValue = csmAssetListPage.TempProbeCalibrationSignatureLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbeCalibrationSignatureLabel.GetElementVisibility();
                     break;
                 case "last device serial number":
-                    ActualValue = csmAssetListPage.TempProbeLastDeviceSerialNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbeLastDeviceSerialNumberLabel.GetElementVisibility();
                     break;
                 case "number of times probe changed devices":
-                    ActualValue = csmAssetListPage.TempProbeNumberOfTimesProbeChangedLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.TempProbeNumberOfTimesProbeChangedLabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " label is not displayed");
+            ActualValue.Should().BeTrue(LabelName+"Label is not displayed");
         }
 
 
@@ -728,37 +732,37 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             {
 
                 case "probe type":
-                    ActualValue = csmAssetListPage.TempProbeTypeValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbeTypeValue.Text;
                     break;
                 case "probe cycle count":
-                    ActualValue = csmAssetListPage.TempProbeCycleCountValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbeCycleCountValue.Text;
                     break;
                 case "part number":
-                    ActualValue = csmAssetListPage.TempProbePartNumberValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbePartNumberValue.Text;
                     break;
                 case "lot code":
-                    ActualValue = csmAssetListPage.TempProbeLotCodeValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbeLotCodeValue.Text;
                     break;
                 case "lot sequence number":
-                    ActualValue = csmAssetListPage.TempProbeLotSequenceNumberValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbeLotSequenceNumberValue.Text;
                     break;
                 case "calibration date":
-                    ActualValue = csmAssetListPage.TempProbeCalibrationDateValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbeCalibrationDateValue.Text;
                     break;
                 case "calibration signature":
-                    ActualValue = csmAssetListPage.TempProbeCalibrationSignatureValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbeCalibrationSignatureValue.Text;
                     break;
                 case "last device serial number":
-                    ActualValue = csmAssetListPage.TempProbeLastDeviceSerialNumberValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbeLastDeviceSerialNumberValue.Text;
                     break;
                 case "number of times probe changed devices":
-                    ActualValue = csmAssetListPage.TempProbeNumberOfTimesProbeChangedValue.Text;
+                    ActualValue = _csmAssetListPage.TempProbeNumberOfTimesProbeChangedValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
 
@@ -769,26 +773,26 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.SureTempName.Text;
+                    ActualValue = _csmAssetListPage.SureTempName.Text;
                     break;
                 case "firmware version":
-                    ActualValue = csmAssetListPage.SureTempFirmwareVersion.Text;
+                    ActualValue = _csmAssetListPage.SureTempFirmwareVersion.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.SureTempSerialNumber.Text;
+                    ActualValue = _csmAssetListPage.SureTempSerialNumber.Text;
                     break;
                 case "cycle count":
-                    ActualValue = csmAssetListPage.SureTempCycleCount.Text;
+                    ActualValue = _csmAssetListPage.SureTempCycleCount.Text;
                     break;
                 case "hardware version":
-                    ActualValue = csmAssetListPage.SureTempHardwareVersion.Text;
+                    ActualValue = _csmAssetListPage.SureTempHardwareVersion.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
 
@@ -810,14 +814,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "cycle count":
-                    ActualColumnIndex = csmAssetListPage.SureTempElementList.IndexOf(csmAssetListPage.SureTempCycleCount);
+                    ActualColumnIndex = _csmAssetListPage.SureTempElementList.IndexOf(_csmAssetListPage.SureTempCycleCount);
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedColumnIndex, ActualColumnIndex, LabelName + " is not in " + ColumnName);
+            ActualColumnIndex.Should().Be(ExpectedColumnIndex, LabelName + " is not in " + ColumnName);
         }
 
 
@@ -829,20 +833,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.Spo2MasimoName.Text;
+                    ActualValue = _csmAssetListPage.Spo2MasimoName.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [When(@"user clicks Masimo MX-7 toggle arrow")]
         public void WhenUserClicksToggleArrow()
         {
-            csmAssetListPage.MasimoToggleArrow.Click();
+            _csmAssetListPage.MasimoToggleArrow.Click();
             Thread.Sleep(2000);
         }
 
@@ -853,49 +857,48 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "firmware version":
-                    ActualValue = csmAssetListPage.MasimoFirmwareVersion.Text;
+                    ActualValue = _csmAssetListPage.MasimoFirmwareVersion.Text;
                     break;
 
                 case "hardware version":
-                    ActualValue = csmAssetListPage.MasimoHardwareVersion.Text;
+                    ActualValue = _csmAssetListPage.MasimoHardwareVersion.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.MasimoSerialNummber.Text;
+                    ActualValue = _csmAssetListPage.MasimoSerialNummber.Text;
                     break;
                 case "model number":
-                    ActualValue = csmAssetListPage.MasimoModelNumberValue.Text;
+                    ActualValue = _csmAssetListPage.MasimoModelNumberValue.Text;
                     break;
                 case "module type":
-                    ActualValue = csmAssetListPage.MasimoModuleTypeValue.Text;
+                    ActualValue = _csmAssetListPage.MasimoModuleTypeValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"Masimo ""(.*)"" label is displayed")]
         public void ThenMasimoLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
 
             switch (LabelName.ToLower().Trim())
             {
                 case "model number":
-                    ActualValue = csmAssetListPage.MasimoModelNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.MasimoModelNumberLabel.GetElementVisibility();
                     break;
                 case "module type":
-                    ActualValue = csmAssetListPage.MasimoModuleTypeLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.MasimoModuleTypeLabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " label is not displayed");
+            ActualValue.Should().BeTrue(LabelName+"Label is not displayed");
         }
 
         [Then(@"SpO2 Nellcor ""(.*)"" is ""(.*)""")]
@@ -905,20 +908,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.Spo2NellcorName.Text;
+                    ActualValue = _csmAssetListPage.Spo2NellcorName.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [When(@"user clicks Nellcor toggle arrow")]
         public void WhenUserClicksNellcorToggleArrow()
         {
-            csmAssetListPage.NellcorToggleArrow.Click();
+            _csmAssetListPage.NellcorToggleArrow.Click();
             Thread.Sleep(2000);
         }
 
@@ -929,49 +932,48 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "firmware version":
-                    ActualValue = csmAssetListPage.NellcorFirmwareVersion.Text;
+                    ActualValue = _csmAssetListPage.NellcorFirmwareVersion.Text;
                     break;
 
                 case "hardware version":
-                    ActualValue = csmAssetListPage.NellcorHardwareVersion.Text;
+                    ActualValue = _csmAssetListPage.NellcorHardwareVersion.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.NellcorSerialNummber.Text;
+                    ActualValue = _csmAssetListPage.NellcorSerialNummber.Text;
                     break;
                 case "model number":
-                    ActualValue = csmAssetListPage.NellcorModelNumberValue.Text;
+                    ActualValue = _csmAssetListPage.NellcorModelNumberValue.Text;
                     break;
                 case "module type":
-                    ActualValue = csmAssetListPage.NellcorModuleTypeValue.Text;
+                    ActualValue = _csmAssetListPage.NellcorModuleTypeValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"Nellcor ""(.*)"" label is displayed")]
         public void ThenNellcorLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
 
             switch (LabelName.ToLower().Trim())
             {
                 case "model number":
-                    ActualValue = csmAssetListPage.NellcorModelNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.NellcorModelNumberLabel.GetElementVisibility();
                     break;
                 case "module type":
-                    ActualValue = csmAssetListPage.NellcorModuleTypeLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.NellcorModuleTypeLabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " label is not displayed");
+            ActualValue.Should().BeTrue(LabelName+"Label is not displayed");
         }
 
 
@@ -982,20 +984,20 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.Spo2NoninName.Text;
+                    ActualValue = _csmAssetListPage.Spo2NoninName.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [When(@"user clicks Nonin toggle arrow")]
         public void WhenUserClicksNoninToggleArrow()
         {
-            csmAssetListPage.NoninToggleArrow.Click();
+            _csmAssetListPage.NoninToggleArrow.Click();
             Thread.Sleep(2000);
         }
 
@@ -1006,49 +1008,48 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "firmware version":
-                    ActualValue = csmAssetListPage.NoninFirmwareVersion.Text;
+                    ActualValue = _csmAssetListPage.NoninFirmwareVersion.Text;
                     break;
 
                 case "hardware version":
-                    ActualValue = csmAssetListPage.NoninHardwareVersion.Text;
+                    ActualValue = _csmAssetListPage.NoninHardwareVersion.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.NoninSerialNummber.Text;
+                    ActualValue = _csmAssetListPage.NoninSerialNummber.Text;
                     break;
                 case "model number":
-                    ActualValue = csmAssetListPage.NoninModelNumberValue.Text;
+                    ActualValue = _csmAssetListPage.NoninModelNumberValue.Text;
                     break;
                 case "module type":
-                    ActualValue = csmAssetListPage.NoninModuleTypeValue.Text;
+                    ActualValue = _csmAssetListPage.NoninModuleTypeValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [Then(@"Nonin ""(.*)"" label is displayed")]
         public void ThenNoninLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
-
+            
             switch (LabelName.ToLower().Trim())
             {
                 case "model number":
-                    ActualValue = csmAssetListPage.NoninModelNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.NoninModelNumberLabel.GetElementVisibility();
                     break;
                 case "module type":
-                    ActualValue = csmAssetListPage.NoninModuleTypeLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.NoninModuleTypeLabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " label is not displayed");
+            ActualValue.Should().BeTrue(LabelName+"Label is not displayed");
         }
 
 
@@ -1059,26 +1060,26 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "name":
-                    ActualValue = csmAssetListPage.RadioNewmarRowName.Text;
+                    ActualValue = _csmAssetListPage.RadioNewmarRowName.Text;
                     break;
                 case "firmware version":
-                    ActualValue = csmAssetListPage.RadioNewmarRowFirmwareVersion.Text;
+                    ActualValue = _csmAssetListPage.RadioNewmarRowFirmwareVersion.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.RadioNewmarRowSerialNumber.Text;
+                    ActualValue = _csmAssetListPage.RadioNewmarRowSerialNumber.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
         [When(@"user clicks Radio-Newmar toggle arrow")]
         public void WhenUserClicksRadio_NewmarToggleArrow()
         {
-            csmAssetListPage.RadioNewmarRowToggleArrow.Click();
+            _csmAssetListPage.RadioNewmarRowToggleArrow.Click();
             Thread.Sleep(2000);
         }
 
@@ -1086,24 +1087,23 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenRadioNewmarLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
-
+            
             switch (LabelName.ToLower().Trim())
             {
                 case "access point mac address":
-                    ActualValue = csmAssetListPage.RadioNewmarAPMacAddressLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.RadioNewmarAPMacAddressLabel.GetElementVisibility();
                     break;
                 case "channel":
-                    ActualValue = csmAssetListPage.RadioNewmarChannelLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.RadioNewmarChannelLabel.GetElementVisibility();
                     break;
                 case "connection mode":
-                    ActualValue = csmAssetListPage.RadioNewmarConnectionModeLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.RadioNewmarConnectionModeLabel.GetElementVisibility();
                     break;
                 case "ssid":
-                    ActualValue = csmAssetListPage.RadioNewmarSSIDLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.RadioNewmarSSIDLabel.GetElementVisibility();
                     break;
                 case "rssi":
-                    ActualValue = csmAssetListPage.RadioNewmarRSSILabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.RadioNewmarRSSILabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
@@ -1111,7 +1111,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " label is not displayed");
+            ActualValue.Should().BeTrue(LabelName+"Label is not displayed");
         }
 
         [Then(@"Radio Newmar ""(.*)"" is ""(.*)""")]
@@ -1121,19 +1121,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "access point mac address":
-                    ActualValue = csmAssetListPage.RadioNewmarAPMacAddressValue.Text;
+                    ActualValue = _csmAssetListPage.RadioNewmarAPMacAddressValue.Text;
                     break;
                 case "channel":
-                    ActualValue = csmAssetListPage.RadioNewmarChannelValue.Text;
+                    ActualValue = _csmAssetListPage.RadioNewmarChannelValue.Text;
                     break;
                 case "connection mode":
-                    ActualValue = csmAssetListPage.RadioNewmarConnectionModeValue.Text;
+                    ActualValue = _csmAssetListPage.RadioNewmarConnectionModeValue.Text;
                     break;
                 case "ssid":
-                    ActualValue = csmAssetListPage.RadioNewmarSSIDValue.Text;
+                    ActualValue = _csmAssetListPage.RadioNewmarSSIDValue.Text;
                     break;
                 case "rssi":
-                    ActualValue = csmAssetListPage.RadioNewmarRSSIValue.Text;
+                    ActualValue = _csmAssetListPage.RadioNewmarRSSIValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is invalid");
@@ -1141,14 +1141,14 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
 
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
 
         [Then(@"Summary CSM image is displayed")]
         public void ThenSummaryCSMImageIsDisplayed()
         {
-            Assert.IsTrue(csmAssetListPage.SummaryCSMImage.GetElementVisibility(), "Image is not displayed");
+            _csmAssetListPage.SummaryCSMImage.GetElementVisibility().Should().BeTrue( "Image is not displayed");
                 
         }
 
@@ -1156,44 +1156,43 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenSummaryLabelIsDisplayed(string LabelName)
         {
             bool ActualValue = false;
-            bool ExpectedValue = true;
             switch (LabelName.ToLower().Trim())
             {
                 case "ip address":
-                    ActualValue = csmAssetListPage.SummaryIPAddressLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryIPAddressLabel.GetElementVisibility();
                     break;
                 case "radio ip address":
-                    ActualValue = csmAssetListPage.SummaryRadioIPAddressLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryRadioIPAddressLabel.GetElementVisibility();
                     break;
                 case "ethernet mac address":
-                    ActualValue = csmAssetListPage.SummaryEthernetMacAddressLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryEthernetMacAddressLabel.GetElementVisibility();
                     break;
                 case "model":
-                    ActualValue = csmAssetListPage.SummaryModelLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryModelLabel.GetElementVisibility();
                     break;
                 case "asset name":
-                    ActualValue = csmAssetListPage.SummaryAssetNameLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryAssetNameLabel.GetElementVisibility();
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.SummarySerialNumberLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummarySerialNumberLabel.GetElementVisibility();
                     break;
                 case "facility":
-                    ActualValue = csmAssetListPage.SummaryFacilityLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryFacilityLabel.GetElementVisibility();
                     break;
                 case "location":
-                    ActualValue = csmAssetListPage.SummaryLocationLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryLocationLabel.GetElementVisibility();
                     break;
                 case "room/bed":
-                    ActualValue = csmAssetListPage.SummaryRoomBedLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryRoomBedLabel.GetElementVisibility();
                     break;
                 case "asset tag":
-                    ActualValue = csmAssetListPage.SummaryAssetTagLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryAssetTagLabel.GetElementVisibility();
                     break;
                 case "connection status":
-                    ActualValue = csmAssetListPage.SummaryConnectionStatusLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryConnectionStatusLabel.GetElementVisibility();
                     break;
                 case "last vital sent":
-                    ActualValue = csmAssetListPage.SummaryLastVitalSentLabel.GetElementVisibility();
+                    ActualValue = _csmAssetListPage.SummaryLastVitalSentLabel.GetElementVisibility();
                     break;
 
                 default:
@@ -1201,7 +1200,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
                     break;
             }
 
-            Assert.AreEqual(ActualValue, ExpectedValue, LabelName + " is not displayed");
+            ActualValue.Should().BeTrue(LabelName + " is not displayed");
         }
 
         [Then(@"Summary ""(.*)"" is ""(.*)""")]
@@ -1211,60 +1210,47 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "ip address":
-                    ActualValue = csmAssetListPage.SummaryIPAddressValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryIPAddressValue.Text;
                     break;
                 case "radio ip address":
-                    ActualValue = csmAssetListPage.SummaryRadioIpAddressValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryRadioIpAddressValue.Text;
                     break;
                 case "ethernet mac address":
-                    ActualValue = csmAssetListPage.SummaryEthernetMacAddressValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryEthernetMacAddressValue.Text;
                     break;
                 case "model":
-                    ActualValue = csmAssetListPage.SummaryModelValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryModelValue.Text;
                     break;
                 case "asset name":
-                    ActualValue = csmAssetListPage.SummaryAssetNameValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryAssetNameValue.Text;
                     break;
                 case "serial number":
-                    ActualValue = csmAssetListPage.SummarySerialNumberValue.Text;
+                    ActualValue = _csmAssetListPage.SummarySerialNumberValue.Text;
                     break;
                 case "facility":
-                    ActualValue = csmAssetListPage.SummaryFacilityValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryFacilityValue.Text;
                     break;
                 case "location":
-                    ActualValue = csmAssetListPage.SummaryLocationValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryLocationValue.Text;
                     break;
                 
                 case "asset tag":
-                    ActualValue = csmAssetListPage.SummaryAssetTagValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryAssetTagValue.Text;
                     break;
                 case "last vital sent":
-                    ActualValue = GetMethods.ConvertDateTimeLocalToUTC(csmAssetListPage.SummaryLastVitalSentValue.Text);
+                    ActualValue = GetMethods.ConvertDateTimeLocalToUTC(_csmAssetListPage.SummaryLastVitalSentValue.Text);
                     ExpectedValue = GetMethods.ConvertNewYorkTimetoUTC(ExpectedValue);
                     break;
                 case "room/bed":
-                    ActualValue = csmAssetListPage.SummaryRoomBedValue.Text;
+                    ActualValue = _csmAssetListPage.SummaryRoomBedValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is Invalid");
                     break;
             }
 
-            Assert.AreEqual(ExpectedValue, ActualValue, LabelName + " value is not as Expected Value");
+            ActualValue.Should().BeEquivalentTo(ExpectedValue, LabelName + "value is not as Expected Value");;
         }
 
-        [Then(@"Summary ""(.*)"" is blank")]
-        public void ThenSummaryIsBlank(string LabelName)
-        {
-            switch(LabelName.Trim().ToLower())
-            {
-                case "room/bed":
-                    Assert.IsEmpty(csmAssetListPage.SummaryRoomBedValue.Text, LabelName+" is not blank");
-                    break;
-                default:
-                    Assert.Fail(LabelName + " is Invalid");
-                    break;
-            }
-        }
     }
 }

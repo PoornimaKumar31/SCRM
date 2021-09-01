@@ -122,7 +122,7 @@ namespace HillromAutomationFramework.Coding.SupportingCode
         /// </summary>
         /// <param name="element"></param>
         /// <param name="elementName"></param>
-        public static void MoveTotheElement(IWebElement element,string elementName)
+        public static void MoveTotheElement(this IWebElement element,string elementName = "WebElement")
         {
             Actions actions = new Actions(PropertyClass.Driver);
             try
@@ -223,6 +223,26 @@ namespace HillromAutomationFramework.Coding.SupportingCode
                 AllDateList.Sort();
                 AllDateList.Reverse();
                 return AllDateList;
+            }
+        }
+
+        public static void WaitUntilTwoStringsAreEqual(string FirstString, string SecoundString,int maxRetryCount = 100)
+        {
+            FirstString = FirstString.ToLower().Trim();
+            SecoundString = SecoundString.ToLower().Trim();
+
+            for (var i = 0; i < maxRetryCount; Thread.Sleep(100), i++)
+            {
+                if(FirstString.Equals(SecoundString))
+                {
+                    return;
+                }
+            }
+
+            bool boolReturnValue = (FirstString.Equals(SecoundString) ? true : false);
+            if (!boolReturnValue)
+            {
+                throw new ApplicationException("strings are not equal. Timedout after 10 Seconds");
             }
         }
 

@@ -812,6 +812,9 @@ namespace HillromAutomationFramework.Coding.PageObjects.Component_Information
         [FindsBy(How = How.Id, Using = Locator.BraunDockCycleCountLabelID)]
         public IWebElement BraunDockCycleCountLabel { get; set; }
 
+        [FindsBy(How = How.Id, Using = Locator.BraunDockCycleCountValueID)]
+        public IWebElement BraunDockCycleCountValue { get; set; }
+
         [FindsBy(How = How.Id, Using = Locator.BraunCycleCountValueID)]
         public IWebElement BraunCycleCountValue { get; set; }
 

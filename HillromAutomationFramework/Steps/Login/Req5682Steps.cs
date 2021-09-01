@@ -8,117 +8,127 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
+using FluentAssertions;
 
 namespace HillromAutomationFramework.Steps.Login
 {
     [Binding]
     public class Req5682Steps
     {
-        readonly LoginPage loginPage = new LoginPage();
-
-        // Explicit wait-> Wait till the organization list is displayed
+        private readonly LoginPage _loginPage;
         WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
+        public Req5682Steps()
+        {
+            _loginPage = new LoginPage();
+        }
+
+ 
         [Given(@"user is on Login page")]
         public void GivenTheUserIsInTheLoginPage()
         {
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
-            // Explicit wait-> Wait till logo is displayed
-            
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            // Launch the Application
+            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
+
+            // Wait till logo is displayed
+            wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
         }
         
         [When(@"user enters valid email ID")]
         public void WhenTheUserEntersAValidEmailId()
         {
-            loginPage.EmailField.EnterText(Config.EmailIDAdminWithRollUp);
+            _loginPage.EmailField.EnterText(Config.EmailIDAdminWithRollUp);
         }
         
         [When(@"enters valid password")]
         public void WhenEntersAValidPassword()
         {
-            loginPage.PasswordField.EnterText(Config.PasswordAdminWithRollUp);
+            _loginPage.PasswordField.EnterText(Config.PasswordAdminWithRollUp);
         }
         
         [When(@"clicks Login button")]
         public void WhenClicksLoginButton()
         {
-            SetMethods.MoveTotheElement(loginPage.LoginButton, "Login button");
-            loginPage.LoginButton.Click();
+            SetMethods.MoveTotheElement(_loginPage.LoginButton, "Login button");
+            _loginPage.LoginButton.Click();
         }
 
         [When(@"user enters invalid email ID")]
         public void WhenEnterInvalidEmailId()
         {
-            loginPage.EmailField.EnterText(Config.InvalidEmailID);
+            _loginPage.EmailField.EnterText(Config.InvalidEmailID);
         }
 
         [When("enters any password")]
         public void WhenEntersAnyPassword()
         {
-            loginPage.PasswordField.EnterText(Config.InvalidPassword);
+            _loginPage.PasswordField.EnterText(Config.InvalidPassword);
         }
 
         [When(@"enters invalid password")]
         public void WhenEnterInvalidPassword()
         {
-            loginPage.PasswordField.EnterText(Config.InvalidPassword);
+            _loginPage.PasswordField.EnterText(Config.InvalidPassword);
         }
         
         [Then(@"user will login successfully")]
         public void ThenUserWillLoginSuccessfully()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedTestEastOrganizationTitleXPath)));
+            wait.Until(ExplicitWait.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedTestEastOrganizationTitleXPath)));
             string actualTitle = PropertyClass.Driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
-            Assert.AreEqual(expectedTitle, actualTitle,"User is not on the landing page"); //Compare the title
+
+            //Compare the title
+            actualTitle.Should().BeEquivalentTo(expectedTitle,"User is not on the landing page"); 
+            
         }
         
         [Then(@"login invalid error message will display")]
         public void ThenUsernameOrPasswordIsInvalidErrorMessageWillDisplay()
         {
-            Assert.AreEqual(true, loginPage.ErrorMessage.GetElementVisibility(), "Login invalid error message is not displayed");
+            _loginPage.ErrorMessage.GetElementVisibility().Should().BeTrue("Login invalid error message is not displayed");
             Thread.Sleep(1000);
-            String ActualErrortext = loginPage.ErrorMessage.Text;
-            String ExpectedErrorText = LoginPage.ExpectedValues.InvalidEntryErrorMessage;
-            Assert.AreEqual(ExpectedErrorText, ActualErrortext,"Error message not matches with the expected value"); //Compare the error message displayed.
+            string ActualErrortext = _loginPage.ErrorMessage.Text;
+            string ExpectedErrorText = LoginPage.ExpectedValues.InvalidEntryErrorMessage;
+            ActualErrortext.Should().BeEquivalentTo(ExpectedErrorText,"Error message not matches with the expected value"); //Compare the error message displayed.
         }
         
         [Then(@"login authentication error message will display")]
         public void AuthenticationErrorMessageWillDisplay()
         {
-            Assert.AreEqual(true, loginPage.ErrorMessage.GetElementVisibility(), "Authentication error message is not displayed");
-            String ActualErrortext = loginPage.ErrorMessage.Text;
-            String ExpectedErrorText = LoginPage.ExpectedValues.NoEntryErrorMessage;
-            Assert.AreEqual(ExpectedErrorText, ActualErrortext,"Authentication error message is not matching with the expected value"); //Compare the error message displayed.
+            _loginPage.ErrorMessage.GetElementVisibility().Should().BeTrue("Authentication error message is not displayed");
+            string ActualErrortext = _loginPage.ErrorMessage.Text;
+            string ExpectedErrorText = LoginPage.ExpectedValues.NoEntryErrorMessage;
+            ActualErrortext.Should().BeEquivalentTo(ExpectedErrorText,"Authentication error message is not matching with the expected value"); //Compare the error message displayed.
         }
 
         [When(@"username field is blank")]
         public void WhenUsernameFieldIsBlank()
         {
-            Assert.AreEqual(loginPage.EmailField.Text.Length == 0,true,"Username field is not empty");
+            _loginPage.EmailField.Text.Should().BeNullOrEmpty("Username field is not empty");
         }
 
         [Then(@"username field contains hint text")]
         public void ThenUsernameFieldContainsHintText()
         {
-            String ActualhintText = loginPage.EmailField.GetAttribute("placeholder");
-            String ExpectedhintText = LoginPage.ExpectedValues.EmailFieldHintText;
-            Assert.AreEqual(ExpectedhintText, ActualhintText,"Username field hint text does not match with the expeceted value");
+            string ActualhintText = _loginPage.EmailField.GetAttribute("placeholder");
+            string ExpectedhintText = LoginPage.ExpectedValues.EmailFieldHintText;
+            ActualhintText.Should().BeEquivalentTo(ExpectedhintText,"Username field hint text does not match with the expeceted value");
         }
 
         [When(@"password field is blank")]
         public void WhenPasswordFieldIsBlank()
         {
-            Assert.AreEqual(loginPage.PasswordField.Text.Length == 0,true,"Password field is not blank");
+            _loginPage.PasswordField.Text.Should().BeNullOrEmpty("Password field is not blank");
         }
 
         [Then(@"password field contains hint text")]
         public void ThenPasswordFieldContainsHintText()
         {
-            String ActualhintText = loginPage.PasswordField.GetAttribute("placeholder");
-            String ExpectedhintText = LoginPage.ExpectedValues.PasswordFieldHintText;
-            Assert.AreEqual(ExpectedhintText, ActualhintText,"Password field hint text does not match with the expected value");
+            string ActualhintText = _loginPage.PasswordField.GetAttribute("placeholder");
+            string ExpectedhintText = LoginPage.ExpectedValues.PasswordFieldHintText;
+            ActualhintText.Should().BeEquivalentTo(ExpectedhintText,"Password field hint text does not match with the expected value");
         }
     }
 }
