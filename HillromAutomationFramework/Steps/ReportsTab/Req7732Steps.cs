@@ -164,7 +164,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
             (column.GetElementVisibility()).Should().BeTrue(columnHeading + " should be displayed in Firmware Upgrade status report page.");
             string ActualColumnName = column.Text;
-            (ActualColumnName).Should().BeEquivalentTo(columnHeading + " should match with the expected value in Firmware Upgrade status report page.");
+            (ActualColumnName).Should().BeEquivalentTo(columnHeading,because:columnHeading + " should match with the expected value in Firmware Upgrade status report page.");
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]

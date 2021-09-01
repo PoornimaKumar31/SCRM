@@ -172,7 +172,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
             (column.GetElementVisibility()).Should().BeTrue(because: columnHeading + " should be displayed in Centrella Activity Report Page Table.");
             string ActualcolumnName = column.Text;
-            (ActualcolumnName).Should().BeEquivalentTo(ExpectedColumnHeading, because: columnHeading + " should match with the expected value in Centrella Activity Report Page Table.");
+            (ActualcolumnName).Should().BeEquivalentTo(ExpectedColumnHeading, because: columnHeading + " column heading should match with the expected value in Centrella Activity Report Page Table.");
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]

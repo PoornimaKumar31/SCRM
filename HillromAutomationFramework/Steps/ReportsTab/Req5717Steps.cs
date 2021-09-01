@@ -8,6 +8,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using TechTalk.SpecFlow;
 using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
@@ -125,7 +126,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenTotalUsageDetails_ComponentsLabelIsDisplayed()
         {
             (_usageReportPage.TotalUsageComponentsLabel.GetElementVisibility()).Should().BeTrue("Total Usage Label should be displayed in Usage report page");
-            (_usageReportPage.TotalUsageComponentsLabel.Text).Should().BeEquivalentTo("Total usage label should match the expected value.");
+            (_usageReportPage.TotalUsageComponentsLabel.Text).Should().BeEquivalentTo(UsageReportPage.ExpectedValues.TotalUsageDetailsComponentLabelText,"Total usage label should match the expected value.");
         }
 
 
@@ -591,6 +592,76 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
             _reportsPage.GetReportButton.Click();
         }
+
+        [When(@"user clicks Serial number column heading")]
+        public void WhenUserClicksSerialNumberColumnHeading()
+        {
+            _csmConfigStatusPage.SerialNumberHeading.Click();
+        }
+
+        [When(@"user clicks ""(.*)"" column heading")]
+        public void WhenUserClicksColumnHeading(string columnName)
+        {
+            switch(columnName.ToLower().Trim())
+            {
+                case "serial number":
+                    _csmConfigStatusPage.SerialNumberHeading.Click();
+                    break;
+
+                default: Assert.Fail(columnName + " is an invalid column Name");
+                    break;
+            }
+            //Wait till data is loaded
+            Thread.Sleep(2000);
+        }
+
+        [Then(@"logs are sorted by increasing ""(.*)""")]
+        public void ThenLogsAreSortedByIncreasing(string columnName)
+        {  
+            List<string> columnDataList = _csmConfigStatusPage.GetColumnData(columnName);
+            columnDataList.Should().BeInAscendingOrder("logs should be sorted by"+columnName+ " in ascending order.");
+        }
+
+        [Then(@"increasing ""(.*)"" sorting indicator is displayed")]
+        public void ThenIncreasingSortingIndicatorIsDisplayed(string columnName)
+        {
+            IWebElement columnWebElement=null;
+            switch(columnName.ToLower().Trim())
+            {
+                case "serial number":
+                    columnWebElement = _csmConfigStatusPage.SerialNumberHeading;
+                    break;
+                default: Assert.Fail(columnName + " is an invalid column Name");
+                    break;
+            }
+            string columnnIndiatorURL = columnWebElement.GetCssValue("background-image");
+            (columnnIndiatorURL).Should().BeEquivalentTo(CSMConfigStatusPage.ExpectedValues.IncreasingSortIndicatorURL, because:"Increasing sort indicator should be displayed beside " + columnName + " when logs are sorted in ascending order.");
+        }
+
+        [Then(@"logs are sorted by decreasing ""(.*)""")]
+        public void ThenLogsAreSortedByDecreasing(string columnName)
+        {
+            List<string> columnDataList = _csmConfigStatusPage.GetColumnData(columnName);
+            columnDataList.Should().BeInDescendingOrder("logs should be sorted by" + columnName+" in descending order.");
+        }
+
+        [Then(@"decreasing ""(.*)"" sorting indicator is displayed")]
+        public void ThenDecreasingSortingIndicatorIsDisplayed(string columnName)
+        {
+            IWebElement columnWebElement = null;
+            switch (columnName.ToLower().Trim())
+            {
+                case "serial number":
+                    columnWebElement = _csmConfigStatusPage.SerialNumberHeading;
+                    break;
+                default:
+                    Assert.Fail(columnName + " is an invalid column Name");
+                    break;
+            }
+            string columnnIndiatorURL = columnWebElement.GetCssValue("background-image");
+            (columnnIndiatorURL).Should().BeEquivalentTo(CSMConfigStatusPage.ExpectedValues.DecreasingSortIndicatorURL, because: "Decreasing sort indicator should be displayed beside" + columnName + "when logs are sorted in desending order order.");
+        }
+
 
 
     }
