@@ -17,7 +17,7 @@ namespace HillromAutomationFramework.Steps.Login
         private readonly ScenarioContext _scenarioContext;
         private readonly LoginPage _loginPage;
         private readonly ForgotPasswordPage _forgotPasswordPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(25));
 
         public Req5684Steps(ScenarioContext scenarioContext)
         {
@@ -74,7 +74,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"user enters invalid email address")]
         public void WhenEnterInvalidEmailInForgotPasswordPage()
         {
-            _forgotPasswordPage.EmailFeild.EnterText(Config.InvalidEmailID);
+            _forgotPasswordPage.EmailFeild.EnterText(Config.InvalidFormatEmailID);
         }
 
         [When(@"user clicks Submit button")]
@@ -86,8 +86,8 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"forgot invalid error message is displayed")]
         public void ThenForgotInvalidErrorMessageIsDisplayed()
         {
-            //Forgot invalid error message web element is missing
-            _scenarioContext.Pending();
+            _forgotPasswordPage.InvalidEmailErrorMessage.GetElementVisibility().Should().BeTrue("Error message should be displayed when user enters invalid format email.");
+            (_forgotPasswordPage.InvalidEmailErrorMessage.Text).Should().BeEquivalentTo(ForgotPasswordPage.ExpectedValues.InvalidEmailErrorMessageText, because:"Error message text should match the expected value.");
         }
 
 

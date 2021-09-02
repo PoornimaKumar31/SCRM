@@ -88,11 +88,20 @@ namespace HillromAutomationFramework {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ltts_testinhillrocom.
+        ///   Looks up a localized string similar to ltts_tetin@hillro.com.
         /// </summary>
         internal static string InvalidEmailID {
             get {
                 return ResourceManager.GetString("InvalidEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ltts_tetinhillrocom.
+        /// </summary>
+        internal static string InvalidFormatEmailID {
+            get {
+                return ResourceManager.GetString("InvalidFormatEmailID", resourceCulture);
             }
         }
         
