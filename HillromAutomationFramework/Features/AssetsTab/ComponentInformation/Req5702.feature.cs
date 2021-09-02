@@ -359,7 +359,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("APM row \"Name\" is \"Accessory Power Module\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 60
- testRunner.Then("APM battery row \"Name\" is \"Battery-SANYO\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("APM battery row \"Name\" is \"Battery-SANYO\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 61
  testRunner.And("APM battery row \"Manufacture Date\" is \"2015-12-28\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

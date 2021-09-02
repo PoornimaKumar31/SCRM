@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on device details page for Centrella Serial number \"PY673002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.When("user clicks Error code tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Error codes tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
  testRunner.And("clicks expansion arrow on a row in Error codes table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -185,7 +185,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on device details page for Centrella Serial number \"PY673002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 24
- testRunner.When("user clicks Error code tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Error codes tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
  testRunner.And("clicks expansion arrow on a row in Error codes table", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -244,7 +244,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on device details page for Centrella Serial number \"PY673002\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 35
- testRunner.When("user clicks Error code tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user clicks Error codes tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 36
  testRunner.And("clicks Reference button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

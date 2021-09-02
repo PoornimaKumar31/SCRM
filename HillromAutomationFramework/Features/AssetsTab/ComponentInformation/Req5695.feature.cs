@@ -933,8 +933,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 177
  testRunner.When("user clicks Masimo toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 178
+ testRunner.Then("Masimo \"RRa license\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 179
+ testRunner.And("Masimo \"RRa license value\" is \"No\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 180
- testRunner.Then("Masimo \"SpHb license\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Masimo \"SpHb license\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 181
  testRunner.And("Masimo \"SpHb License value\" is \"No\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
