@@ -351,7 +351,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Radio \"Firmware version\" is \"2.00.02 A0001\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
- testRunner.And("Radio \"Serial number\" is \"NA\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Radio \"Serial number\" is \"NEWMAR_SN\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 58
  testRunner.When("user clicks Newmar toggle arrow", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
