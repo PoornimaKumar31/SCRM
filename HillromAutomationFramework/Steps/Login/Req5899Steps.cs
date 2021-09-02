@@ -15,11 +15,12 @@ namespace HillromAutomationFramework.Steps.Login
     public class Req5899Steps
     {
         private readonly LoginPage _loginPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly WebDriverWait _wait;
 
         public Req5899Steps()
         {
             _loginPage = new LoginPage();
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         }
 
         [When(@"user clicks Supported Browsers")]
@@ -52,7 +53,7 @@ namespace HillromAutomationFramework.Steps.Login
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
             
             //Wait till logo is displayed
-            wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
             
             _loginPage.SupportedBrowsersLink.Click();
             

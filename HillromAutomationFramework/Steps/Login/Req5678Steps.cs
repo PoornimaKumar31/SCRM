@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login

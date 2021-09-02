@@ -4,9 +4,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using TechTalk.SpecFlow;
-using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using FluentAssertions;
@@ -17,11 +14,12 @@ namespace HillromAutomationFramework.Steps.Login
     public class Req5682Steps
     {
         private readonly LoginPage _loginPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly WebDriverWait _wait;
 
         public Req5682Steps()
         {
             _loginPage = new LoginPage();
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         }
 
  
@@ -32,7 +30,7 @@ namespace HillromAutomationFramework.Steps.Login
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
 
             // Wait till logo is displayed
-            wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
         }
         
         [When(@"user enters valid email ID")]
@@ -75,7 +73,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"user will login successfully")]
         public void ThenUserWillLoginSuccessfully()
         {
-            wait.Until(ExplicitWait.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedTestEastOrganizationTitleXPath)));
+            _wait.Until(ExplicitWait.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedTestEastOrganizationTitleXPath)));
             string actualTitle = PropertyClass.Driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
 

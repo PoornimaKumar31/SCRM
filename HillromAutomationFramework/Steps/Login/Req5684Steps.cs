@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -17,11 +16,12 @@ namespace HillromAutomationFramework.Steps.Login
         private readonly ScenarioContext _scenarioContext;
         private readonly LoginPage _loginPage;
         private readonly ForgotPasswordPage _forgotPasswordPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(25));
+        private readonly WebDriverWait _wait;
 
         public Req5684Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(25));
             _loginPage = new LoginPage();
             _forgotPasswordPage = new ForgotPasswordPage();
         }
@@ -44,9 +44,9 @@ namespace HillromAutomationFramework.Steps.Login
         public void GivenUserIsOnForgotPasswordPage()
         {
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
-            wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
             _loginPage.ForgotPasswordLink.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));
         }
 
         [Then(@"Submit button is disabled")]
