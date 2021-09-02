@@ -38,7 +38,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             mainPage.SearchSerialNumberAndClick(serialNumber);
         }
 
-        [When(@"user clicks Error code tab")]
+        [When(@"user clicks Error codes tab")]
         public void WhenUserClicksErrorCodeTab()
         {
             centrellaDeviceDetailsPage.ErrorCodeTab.Click();

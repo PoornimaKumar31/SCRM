@@ -678,14 +678,26 @@ this.ScenarioInitialize(scenarioInfo);
 #line 130
  testRunner.And("Temp Probe \"Probe type\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 131
+ testRunner.And("Temp Probe \"Probe type\" is \"Oral\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 132
  testRunner.And("Temp Probe \"Last device serial number\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 133
+ testRunner.And("Temp Probe \"Last device serial number\" is \"00651718SS\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 134
  testRunner.And("Temp Probe \"Number of times probe changed devices\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 135
+ testRunner.And("Temp Probe \"Number of times probe changed devices\" is \"7\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 136
  testRunner.And("Temp Probe \"Part number\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 137
+ testRunner.And("Temp Probe \"Part number\" is \"02692100\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

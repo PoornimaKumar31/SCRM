@@ -2,7 +2,6 @@
 Feature: Software Requirement
 	The customer portal shall display Centrella general service data.
 
-#Need to update the gherkin because label and values are not separate elements
 @TestCaseID_9936 @UISID_8674
 Scenario: AP Mapping List Elements Manager User No AP
 	Given manager user is on device details page for Centrella Serial number "PY673001"
@@ -48,7 +47,7 @@ Scenario: AP Mapping List Table No Match
 	And value in "Floor" column is "N/A"
 	And value in "AP Location" column is "N/A"
 
-@TestCaseID_9941 @UISID_8674
+@TestCaseID_9941 @UISID_8674 @UISID_8721
 Scenario: AP Mapping List Table Add
 	Given manager user is on Locate Asset pop-up dialog for Centrella Serial number "PY673001"
 	When user clicks Add AP mapping button	

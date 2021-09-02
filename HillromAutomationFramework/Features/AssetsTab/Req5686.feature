@@ -57,6 +57,16 @@ Scenario: Asset List Sorting
 	When user clicks "Config file" column header
 	Then upward arrow shows beside "Config file" column header for descending order
 	And list is sorted in descending order by "Config file"
+
+    When user clicks "Status" column header
+	Then downward arrow shows beside "Status" column header for ascending order
+	And list is sorted in ascending order by "Status"
+	And beds with errors are at the top of the list
+	When user clicks "Status" column header
+	Then upward arrow shows beside "Status" column header for descending order
+	And list is sorted in descending order by "Status"
+	And beds with errors are at the bottom of the list	
+
 	When user clicks "Asset tag" column header
 	Then downward arrow shows beside "Asset tag" column header for ascending order
 	And list is sorted in ascending order by "Asset tag"

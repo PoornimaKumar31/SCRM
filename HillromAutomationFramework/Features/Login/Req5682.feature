@@ -29,8 +29,7 @@ Scenario: Invalid Login Password Error
 @TestCaseID_8904 @UISID_8660	
 Scenario: Invalid Login Blank
     Given user is on Login page
-    When clicks Login button
-    Then login authentication error message will display
+    Then Login button is disabled
 
 @TestCaseID_8905 @UISID_8660	
 Scenario: Invalid Login No Email

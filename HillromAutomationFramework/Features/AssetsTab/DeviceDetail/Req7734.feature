@@ -5,7 +5,7 @@ Feature: Software Requirement 7734
 @TestCaseID_9925 @UISID_9817
 Scenario: Centrella Error Pop-up Dialog
 	Given user is on device details page for Centrella Serial number "PY673002"
-	When user clicks Error code tab
+	When user clicks Error codes tab
 	And clicks expansion arrow on a row in Error codes table
 	Then Centrella error code pop-up dialog is displayed
 	And "Error code title" label and value is displayed
@@ -21,7 +21,7 @@ Scenario: Centrella Error Pop-up Dialog
 @TestCaseID_9926 @UISID_9817
 Scenario: Centrella Error Pop-up Dialog Reference Close
 	Given user is on device details page for Centrella Serial number "PY673002"
-	When user clicks Error code tab
+	When user clicks Error codes tab
 	And clicks expansion arrow on a row in Error codes table
 	Then Centrella error code pop-up dialog is displayed
 	When user clicks Reference link
@@ -32,6 +32,6 @@ Scenario: Centrella Error Pop-up Dialog Reference Close
 @TestCaseID_9927 @UISID_9817
 Scenario: Centrella Asset Details Error Tab Reference
 	Given user is on device details page for Centrella Serial number "PY673002"
-	When user clicks Error code tab
+	When user clicks Error codes tab
 	And clicks Reference button
 	Then Service manual opens in a new tab

@@ -128,13 +128,13 @@ Scenario: CVSM Asset Details Temp Probe
 	Then Temp Probe "Model number" label is displayed
 	And Temp Probe "Model number" is "Probe_REF2"
 	And Temp Probe "Probe type" label is displayed
-	#And Temp Probe "Probe type" is "Oral"
+	And Temp Probe "Probe type" is "Oral"
 	And Temp Probe "Last device serial number" label is displayed
-	#And Temp Probe "Last device serial number" is "00651718SS"
+	And Temp Probe "Last device serial number" is "00651718SS"
 	And Temp Probe "Number of times probe changed devices" label is displayed
-	#And Temp Probe "Number of times probe changed devices" is "7"
+	And Temp Probe "Number of times probe changed devices" is "7"
 	And Temp Probe "Part number" label is displayed
-	#And Temp Probe "Part number" is "02692100"
+	And Temp Probe "Part number" is "02692100"
 
 @TestCaseID_9482 @UISID_8672 @UISID_8679
 Scenario: CVSM Asset Details Scale
@@ -175,9 +175,9 @@ Scenario: CVSM Asset Details SpO2 Masimo License Yes
 Scenario: CVSM Asset Details SpO2 Masimo License No
 	Given user is on Component details page for CVSM Serial number "103001220216"
 	When user clicks Masimo toggle arrow
-	#Then Masimo "RRa license" label is displayed
-	#And Masimo "RRa license value" is "No"
-	Then Masimo "SpHb license" label is displayed
+	Then Masimo "RRa license" label is displayed
+	And Masimo "RRa license value" is "No"
+	And Masimo "SpHb license" label is displayed
 	And Masimo "SpHb License value" is "No"
 
 @TestCaseID_9486 @UISID_8672 @UISID_8679
