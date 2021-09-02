@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using HillromAutomationFramework.Coding.PageObjects;
-using HillromAutomationFramework.Coding.SupportingCode;
+using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using System.Threading;
 using TechTalk.SpecFlow;

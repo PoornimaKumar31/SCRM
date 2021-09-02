@@ -1,6 +1,6 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
-using HillromAutomationFramework.Coding.PageObjects.AdvancedTab;
-using HillromAutomationFramework.Coding.SupportingCode;
+﻿using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AdvancedTab;
+using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

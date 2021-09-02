@@ -1,5 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
-using HillromAutomationFramework.Coding.SupportingCode;
+﻿using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;

@@ -1,4 +1,4 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using HillromAutomationFramework.PageObjects;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Landing
