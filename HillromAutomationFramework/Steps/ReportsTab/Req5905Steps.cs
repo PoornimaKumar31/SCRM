@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using HillromAutomationFramework.Coding.PageObjects;
-using HillromAutomationFramework.Coding.SupportingCode;
+using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -121,7 +121,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _firmwareStatusPage.SearchBox.EnterText(Keys.Enter);
         }
 
-        [Then(@"devices with matching ""(.*)"" are displayed")]
+        [Then(@"devices with matching ""(.*)"" are displayed"), Then(@"device with matching ""(.*)"" are displayed")]
         public void ThenDeviceWithMatchingIsDisplayed(string searchType)
         {
             //Wait till Data is loaded

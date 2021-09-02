@@ -18,8 +18,8 @@ Scenario: Field Entry Email Empty
 Scenario: Forgot Password Invalid Email
     Given user is on Forgot Password page
     When user enters invalid email address
-    And user clicks Submit button
-    Then forgot invalid error message is displayed
+    Then Submit button is disabled
+    And forgot invalid error message is displayed
 
 @TestCaseID_8912 @UISID_8660 @UISID_8662	
 Scenario: Forgot Password Valid Email

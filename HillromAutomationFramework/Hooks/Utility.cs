@@ -1,7 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
-using HillromAutomationFramework.Coding.SupportingCode;
+using HillromAutomationFramework.SupportingCode;
 using Microsoft.Edge.SeleniumTools;
 using NUnit.Framework;
 using OpenQA.Selenium;

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using HillromAutomationFramework.Coding.PageObjects;
-using HillromAutomationFramework.Coding.PageObjects.ReportsTab;
-using HillromAutomationFramework.Coding.SupportingCode;
+using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.ReportsTab;
+using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
