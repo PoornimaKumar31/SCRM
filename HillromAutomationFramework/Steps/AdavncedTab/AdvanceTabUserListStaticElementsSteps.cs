@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.Coding.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.Coding.PageObjects;
 using HillromAutomationFramework.Coding.PageObjects.AdvancedTab;
 using HillromAutomationFramework.Coding.SupportingCode;
 using NUnit.Framework;
@@ -36,7 +37,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             bool IsUserListLabelTextDisplayed = advancePage.UserListLabel.GetElementVisibility();
-            Assert.IsTrue(IsUserListLabelTextDisplayed, "User list page is not displayed");
+            IsUserListLabelTextDisplayed.Should().BeTrue("User list page is displayed");
+            //Assert.IsTrue(IsUserListLabelTextDisplayed, "User list page is not displayed");
         }
 
         [Then(@"Create button is displayed")]
