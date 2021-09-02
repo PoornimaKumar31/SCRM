@@ -90,6 +90,7 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
             public const string UpdatedFullName = "Alex Hasi";
             public const string PhoneNumberInvalid = "123";
             public const string SuperAdminUsername = "ltts_testing@hillrom.com";
+            public const string UserInformationLabel = "User Information:";
         }
 
         [FindsBy(How = How.Id, Using = Locators.DeletePopupYesButtonID)]
