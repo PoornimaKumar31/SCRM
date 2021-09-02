@@ -54,7 +54,7 @@ Scenario: RV700 Asset Details Radio Newmar
 	Given user is on Component details page for RV700 Serial number "700090000023"
 	Then Radio "Name" is "Newmar"
 	And Radio "Firmware version" is "2.00.02 A0001"
-	And Radio "Serial number" is "NA"
+	And Radio "Serial number" is "NEWMAR_SN"
 	When user clicks Newmar toggle arrow
 	Then Radio "GUID" label is displayed
 	And Radio "GUID" is "NEWMAR_GUID"

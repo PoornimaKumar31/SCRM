@@ -84,10 +84,10 @@ namespace HillromAutomationFramework.PageObjects
         {
             public static string MainpageURL = PropertyClass.BaseURL+ "/index.html#/landing-page/devices";
 
-            public const string GlobalServiceCenterTitle = "Services | Hillrom";
-            public const string ContactUsTitle = "Contact Us | Hillrom";
-            public const string TermsConditonTitle = "Hillrom Terms and Conditions | Hillrom";
-            public const string PrivacyPolicyTitle = "Global Privacy Notice | Hillrom";
+            public const string GlobalServiceCenterURL = "https://www.hillrom.com/en/services/";
+            public const string ContactUsURL = "https://www.hillrom.com/en/about-us/contact-us/";
+            public const string TermsAndConditonsURL = "https://www.hillrom.com/en/about-us/hill-rom-terms-and-conditions/";
+            public const string PrivacyPolicyURL = "https://www.hillrom.com/en/about-us/global-privacy-notice/";
 
             public const string OrganizationLabelText = "Organization";
             public const string AssetTypeLabelText = "Asset type";

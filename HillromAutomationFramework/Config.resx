@@ -127,7 +127,10 @@
     <value>ltts_testing_nr_basic@hillrom.com</value>
   </data>
   <data name="InvalidEmailID" xml:space="preserve">
-    <value>ltts_testinhillrocom</value>
+    <value>ltts_tetin@hillro.com</value>
+  </data>
+  <data name="InvalidFormatEmailID" xml:space="preserve">
+    <value>ltts_tetinhillrocom</value>
   </data>
   <data name="InvalidPassword" xml:space="preserve">
     <value>12dds22</value>

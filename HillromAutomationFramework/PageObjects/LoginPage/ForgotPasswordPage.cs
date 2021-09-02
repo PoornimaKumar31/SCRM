@@ -18,6 +18,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string ApplicationTitleID= "lbl_app_title";
             public const string ApplicationSubtitleID = "lbl_app_sub_title";
             public const string ResetPasswordInstructionsID = "lbl_forgot_email";
+            public const string InvalidEmailErrorMessageXpath= "//input[@id='forgot_email']/parent::c8y-form-group/c8y-messages/small/div";
         }
         public static class ExpectedValues
         {
@@ -26,6 +27,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string EmailFieldHintText = "Email address";
             public const string FailedErrorMessage = "Invalid email address Try again";
             public const string ResetPasswordInstructionsText = "Enter your email address and we will send you instructions for resetting your password.";
+            public const string InvalidEmailErrorMessageText = "Invalid email address.";
         }
 
         public ForgotPasswordPage()
@@ -56,8 +58,12 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.Id, Using = Locator.ApplicationSubtitleID)]
         public IWebElement ApplicationSubtitle { get; set; }
 
-        //Rest password instructions
+        //Reset password instructions
         [FindsBy(How = How.Id, Using = Locator.ResetPasswordInstructionsID)]
         public IWebElement ResetPasswordInstructions { get; set; }
+
+        //Invalid email address erroe message
+        [FindsBy(How = How.XPath, Using = Locator.InvalidEmailErrorMessageXpath)]
+        public IWebElement InvalidEmailErrorMessage { get; set; }
     }
 }

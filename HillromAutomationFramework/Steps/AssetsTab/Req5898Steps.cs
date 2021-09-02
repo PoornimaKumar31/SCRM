@@ -35,8 +35,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
-            Assert.AreEqual(MainPage.ExpectedValues.GlobalServiceCenterTitle, ActualPageTitle, "Title is not matching");
+            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            Assert.AreEqual(MainPage.ExpectedValues.GlobalServiceCenterURL, ActualPageURL, "URL is not matching");
         }
 
         [When(@"user clicks Contact Us")]
@@ -52,8 +52,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
-            Assert.AreEqual(MainPage.ExpectedValues.ContactUsTitle, ActualPageTitle, "Title is not matching");
+            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            Assert.AreEqual(MainPage.ExpectedValues.ContactUsURL, ActualPageURL, "URL is not matching");
         }
 
         [Scope(Tag = "TestCaseID_8947")]
@@ -64,8 +64,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
-            Assert.AreEqual(MainPage.ExpectedValues.TermsConditonTitle, ActualPageTitle, "Title is not matching");
+            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            Assert.AreEqual(MainPage.ExpectedValues.TermsAndConditonsURL, ActualPageURL, "URL is not matching");
         }
 
         
@@ -76,8 +76,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageTitle = PropertyClass.Driver.SwitchTo().Window(popup).Title;
-            Assert.AreEqual(MainPage.ExpectedValues.PrivacyPolicyTitle, ActualPageTitle,"Title is not matching");
+            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            Assert.AreEqual(MainPage.ExpectedValues.PrivacyPolicyURL, ActualPageURL,"URL is not matching");
         }
 
 

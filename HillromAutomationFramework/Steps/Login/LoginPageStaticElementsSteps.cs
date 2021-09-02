@@ -14,12 +14,13 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding,Scope(Feature = "Login page Static Elements")]
     public class LoginPageStaticElementsSteps
     {
-        readonly LoginPage _loginpage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly LoginPage _loginpage;
+        private readonly WebDriverWait _wait;
 
         public LoginPageStaticElementsSteps()
         {
             _loginpage = new LoginPage();
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10)); ;
         }
 
         [Given(@"user is on Login page")]
@@ -29,7 +30,7 @@ namespace HillromAutomationFramework.Steps.Login
             PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL); 
 
             // Explicit wait-> Wait till logo is displayed
-            wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
         }
 
         [Then(@"Hillrom logo is displayed")]
