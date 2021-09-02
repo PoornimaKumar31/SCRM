@@ -6,9 +6,8 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
 {
@@ -27,7 +26,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
             landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.SearchSerialNumberAndClick(serialNumber);
         }
 
@@ -40,6 +39,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Locate Asset pop-up dialog is displayed")]
         public void ThenLocateAssetPop_UpDialogIsDisplayed()
         {
+            wait.Until(ExplicitWait.ElementIsVisible(By.XPath(CentrellaDeviceDetailsPage.Locators.APMappingLocateAssetPopupDialogXPath)));
             centrellaDeviceDetailsPage.APMappingLocateAssetPopupDialog.GetElementVisibility().Should().BeTrue("Dialog box is not displayed");
         }
 
@@ -88,7 +88,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         public void GivenRegularUserIsOnDeviceDetailsPageForCentrellaSerialNumber(string serialNumber)
         {
             loginPage.LogIn(LoginPage.LogInType.StandardUserWithoutRollUpPage);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.SearchSerialNumberAndClick(serialNumber);
         }
 

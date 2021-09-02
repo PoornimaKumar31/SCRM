@@ -154,7 +154,8 @@ namespace HillromAutomationFramework.SupportingCode
         /// <returns>true if the request message is matching the expected value, else return false.</returns>
         public static bool LogFilesRequestStatusMessageVerification(this IWebElement element)
         {
-            if (element.Text == "Log file request - EXECUTING" || element.Text == "Log file request - PENDING" || element.Text == "Log file request - RECEIVED")
+            string RequestMessage = element.Text.ToLower();
+            if (RequestMessage.Equals("log file request - executing") || RequestMessage.Equals("log file request - pending") || RequestMessage.Equals("log file request - received"))
             {
                 return true;
             }
