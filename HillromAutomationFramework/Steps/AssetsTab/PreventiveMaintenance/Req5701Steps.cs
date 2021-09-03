@@ -24,6 +24,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         MainPage mainPage = new MainPage();
         string testDeviceSerialNumber = "100055940720";
 
+
         [Given(@"user is on Asset List page")]
         public void GivenUserIsOnAssetListPage()
         {
@@ -59,34 +60,36 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
             int IndexOfName = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMNameHeading);
             int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
             Thread.Sleep(2000);
+            
             bool IsHostControllerGraphicDisplayed = csmDeviceDetailsPage.HostControllerGraphic.GetElementVisibility();
-
             IsHostControllerGraphicDisplayed.Should().BeTrue("Host controller graphic is displayed.");
-            Assert.AreEqual(IndexOfName, IndexOfHostController, "Host controller graphic is not displayed in Name column.");
+
+            bool isDisplayedNameColumn = IndexOfName == IndexOfHostController;
+            isDisplayedNameColumn.Should().BeTrue("Host controller graphic should be displayed in Name column on device details page.");
         }
         
 
        [Then(@"""(.*)"" is displayed in ""(.*)"" column")]
         public void ThenIsDisplayedInColumn(string HostController, string ColumnName)
         {
-            int IndexOfName = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMNameHeading);
-            int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
-            Thread.Sleep(2000);
-            bool IsHostControllerDisplayed = csmDeviceDetailsPage.HostController.GetElementVisibility();
-
-            Assert.IsTrue(IsHostControllerDisplayed, "Host controller is not displayed.");
-            Assert.AreEqual(IndexOfName, IndexOfHostController, "Host controller is not displayed in Name column.");
+            int indexOfName = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMNameHeading);
+            int indexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
+            Thread.Sleep(2000);            
+            bool isHostControllerDisplayed = csmDeviceDetailsPage.HostController.GetElementVisibility();
+            isHostControllerDisplayed.Should().BeTrue("Host controller should be displayed on device details page.");
+            bool iSHostControllerDisplayedUnderNameColumn = indexOfName == indexOfHostController;
+            iSHostControllerDisplayedUnderNameColumn.Should().BeTrue("Host controller should be displayed in Name column on device details page.");
         }
 
         [Then(@"""(.*)"" is ""(.*)"" on ""(.*)"" row in ""(.*)"" column")]
         public void ThenIsOnRowInColumn(string LastCalibration, string LastExpectedCalibrationDate, string HostControllerRow, string LastCalibrationColumn)
         {
-            int LastCalibrationHeading = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMLastCalibrationHeading);
-            int LastCalibrationDate = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.LastCalibrationDate);
-            Assert.AreEqual(LastCalibrationHeading, LastCalibrationDate, "Last calibration is not in Host controller row in Last calibration column.");
+            int lastCalibrationHeaderRow = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMLastCalibrationHeading);
+            int lastCalibrationDateRow = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.LastCalibrationDate);
+            lastCalibrationHeaderRow.Should().Be(lastCalibrationDateRow, "Last calibration should be in Host controller row in Last calibration column.");
 
-            string LastActualCalibrationDate = csmDeviceDetailsPage.LastCalibrationDate.Text;
-            Assert.AreEqual(LastActualCalibrationDate, LastExpectedCalibrationDate, "Last calibration is not 30 Sep 2015 on Host controller row in Last calibration column.");           
+            string lastActualCalibrationDate = csmDeviceDetailsPage.LastCalibrationDate.Text;
+            lastActualCalibrationDate.Should().Be(LastExpectedCalibrationDate, "Last calibration should be 30 Sep 2015 on Host controller row in Last calibration column on device details page.");
         }
 
         [Then(@"""(.*)"" message is displayed on ""(.*)"" row")]
@@ -103,12 +106,14 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
             if (calibrationOverdueText == CalibrationMessage)
             {
                 bool IsDisplayed = csmDeviceDetailsPage.CalibrationOverDueText.GetElementVisibility();
-                Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
+                bool isTrue = 0 == IndexOfHostController;
+                isTrue.Should().Be(IsDisplayed, "Calibration overdue message should be displayed on Host controller row on device details page.");
             }
             else if (calibrationOverdueDate == CalibrationMessage)
             {
                 bool IsDisplayed = csmDeviceDetailsPage.LastCalibrationDate.GetElementVisibility();
-                Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
+                bool isSame = 0 == IndexOfHostController;
+                isSame.Should().Be(IsDisplayed, "Calibration overdue message should be displayed on Host controller row on device details page.");
             }
         }
 
@@ -148,29 +153,30 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string ColumnHeading)
         {
-            bool IsColumnHeadingDisplayed = csmDeviceDetailsPage.PMNameHeading.GetElementVisibility();
-            Assert.IsTrue(IsColumnHeadingDisplayed, ColumnHeading + " column heading is not displayed.");
+            bool isColumnHeadingDisplayed = csmDeviceDetailsPage.PMNameHeading.GetElementVisibility();
+
+            Assert.IsTrue(isColumnHeadingDisplayed, ColumnHeading + " column heading is not displayed.");
         }
 
         [Then(@"""(.*)"" and current calendar year label is displayed")]
         public void ThenAndCurrentCalendarYearLabelIsDisplayed(string LeftArrowSymbol)
         {
             Thread.Sleep(2000);
-            bool IsLeftArrowDisplayed = csmDeviceDetailsPage.LeftArrow.GetElementVisibility();
-            bool currentYearDisplayed = csmDeviceDetailsPage.CurrentCalenderYear.GetElementVisibility();
+            bool isLeftArrowDisplayed = csmDeviceDetailsPage.LeftArrow.GetElementVisibility();           
+            isLeftArrowDisplayed.Should().BeTrue("Left arrow symbol should be displayed on device details page.");
 
-            Assert.IsTrue(IsLeftArrowDisplayed, "Left arrow symbol is not displayed.");
-            Assert.IsTrue(currentYearDisplayed, "Current calendar year label is not displayed.");
+            bool currentYearDisplayed = csmDeviceDetailsPage.CurrentCalenderYear.GetElementVisibility();
+            currentYearDisplayed.Should().BeTrue("Current calendar year label should be displayed on device details page.");
         }
 
         [Then(@"next calendar year and ""(.*)"" is displayed")]
         public void ThenNextCalendarYearAndIsDisplayed(string RigthArrowSymbol)
         {
-            bool IsRightArrowDisplayed = csmDeviceDetailsPage.RightArrow.GetElementVisibility();
-            bool IsNextYearDisplayed = csmDeviceDetailsPage.NextCalenderYear.GetElementVisibility();
-
-            Assert.IsTrue(IsRightArrowDisplayed, "Right arrow symbol is not displayed.");
-            Assert.IsTrue(IsNextYearDisplayed, "Next calendar year is not displayed.");
+            bool isRightArrowDisplayed = csmDeviceDetailsPage.RightArrow.GetElementVisibility();
+            isRightArrowDisplayed.Should().BeTrue("Right arrow symbol should be displayed on device details page.");
+         
+            bool isNextYearDisplayed = csmDeviceDetailsPage.NextCalenderYear.GetElementVisibility();
+            isNextYearDisplayed.Should().BeTrue("Next calendar year should be displayed on device details page.");
         }
 
         [Then(@"current month is displayed followed by the other months")]
