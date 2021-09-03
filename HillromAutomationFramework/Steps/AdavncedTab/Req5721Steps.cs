@@ -357,7 +357,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             }
             if (LogHistory.Length == 0)
             {
-                Assert.IsTrue(LogHistory.Length == 0, "No any user is present which has History Logs.");
+                bool isEqual = LogHistory.Length == 0;
+                isEqual.Should().BeTrue("No any user is present which has History Logs.");
             }
         }
 
@@ -365,7 +366,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenLogHistoryTableIsSortedByDescendingDateSortOrder()
         {
             var DateTimeList = _advancePage.FindLogHistoryDateOrder();
-            
             Assert.That(DateTimeList, Is.Ordered.Descending, "Data is not in descending order.");
         }
 
@@ -389,7 +389,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                     break;
                 }
             }
-            if (IsAllUserRowPhoneNull==-1)
+            if (IsAllUserRowPhoneNull == -1)
             {
                 Assert.Fail("Phone number does not exist in any user records.");
             }
@@ -400,8 +400,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Phone number is unchanged")]
         public void ThenUserPhoneNumberIsNotChanged()
         {
-            string PhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreEqual(_scenarioContext.Get<string>("phonenumber"), PhoneNumber, "User phone number is changed");
+            string actualPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
+            string expectedPhonenumber = _scenarioContext.Get<string>("phonenumber");
+            actualPhoneNumber.Should().Be(expectedPhonenumber, "Phone number should be unchanged.");
         }
 
         [Then(@"presses Tab")]
@@ -421,8 +422,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             _advancePage.DetailsButtonList[DetailsButtonPosition].Click();
             Thread.Sleep(2000);
-            string ActualUserName = _advancePage.FullName.GetAttribute("value");
-            Assert.AreEqual(true, BlankFullName != ActualUserName, "New user is created");
+            string actualUserName = _advancePage.FullName.GetAttribute("value");
+            bool isTrue = BlankFullName != actualUserName;
+            isTrue.Should().BeTrue("User should not be edited on Edit User page.");
         }
 
         [Then(@"Phone number is entered number")]
@@ -430,15 +432,16 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             string EnteredPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreEqual(true, RandomPhoneNumber == EnteredPhoneNumber, "Phone number is not entered number.");
+            bool isSamePhonenumber = RandomPhoneNumber == EnteredPhoneNumber;
+            isSamePhonenumber.Should().BeTrue("Phone number should be entered number on Edit User page.");
         }
 
         [Then(@"full name error message is not displayed")]
         public void ThenFullNameErrorMessageIsNotDisplayed()
         {
             Thread.Sleep(2000);
-            bool FullNameErrorMessageisplayed = _advancePage.NameFieldErrorMessage.GetElementVisibility();
-            Assert.IsFalse(FullNameErrorMessageisplayed, "Full name error message is displayed");
+            bool isFullNameErrorMessageDisplayed = _advancePage.NameFieldErrorMessage.GetElementVisibility();
+            isFullNameErrorMessageDisplayed.Should().BeFalse("Full name error message should not be displayed on User List page.");
         }
 
         [When(@"(.*)clicks Details button for same user")]
@@ -452,8 +455,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenPhoneNumberIsBlank()
         {
             Thread.Sleep(2000);
-            string EnteredPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreEqual("", EnteredPhoneNumber, "Phone number is not entered number");
+            string enteredPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
+            enteredPhoneNumber.Should().BeEmpty("Phone number should be blank on Edit User page.");
         }
 
         [When(@"user clicks Details button for user with Administrator role")]
@@ -482,8 +485,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenRegularIsDisplayedInRoleColumnInUserList()
         {
             Thread.Sleep(2000);
-            string Role = PropertyClass.Driver.FindElement(By.XPath(RoleXpath)).Text;
-            Assert.AreEqual(true, Role == AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage, "Regular is not displayed in Role column in user list");
+            string actualRole = PropertyClass.Driver.FindElement(By.XPath(RoleXpath)).Text;
+            string expectedRole = AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage;
+            actualRole.Should().Be(expectedRole, "Regular should be displayed in Role column on User List page.");
         }
 
         [When(@"user selects the User Manager checkbox")]
@@ -497,15 +501,16 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenAdministratorIsDisplayedInRoleColumnInUserList()
         {
             Thread.Sleep(2000);
-            string Role = PropertyClass.Driver.FindElement(By.XPath(RoleXpath)).Text;
-            Assert.AreEqual(true, AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage == Role, "Administrator is not displayed in Role column in User List");
+            string actualRole = PropertyClass.Driver.FindElement(By.XPath(RoleXpath)).Text;
+            string expectedRole = AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage;
+            actualRole.Should().Be(expectedRole, "Administrator should be displayed in Role column on User List page.");
         }
 
         [Then(@"Username textbox is read only")]
         public void ThenUsernameTextboxIsReadOnly()
         {
-            bool IsUsernameReadOnly = _advancePage.UserNameOREmailField.IsReadOnly();
-            Assert.IsTrue(IsUsernameReadOnly, "Username field is not read only");
+            bool isUsernameReadOnly = _advancePage.UserNameOREmailField.IsReadOnly();
+            isUsernameReadOnly.Should().BeTrue("Username textbox should be read only on Edit User page.");
         }
 
         [Then(@"checkbox is unchecked")]
@@ -518,22 +523,22 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Cancel button is enabled")]
         public void ThenCancelButtonEnabled()
         {
-            bool IsCancelButtonEnabled = _advancePage.CancelButton.Enabled;
-            Assert.IsTrue(IsCancelButtonEnabled, "Save button is disabled");
+            bool isCancelButtonEnabled = _advancePage.CancelButton.Enabled;
+            isCancelButtonEnabled.Should().BeTrue("Cancel button should be enabled on Edit User page.");
         }
 
         [Then(@"Full name textbox is displayed")]
         public void ThenFullNameTextboxIsDisplayed()
         {
-            bool IsDisplayed = _advancePage.FullNameLabelOnEditUserPage.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Full Name textbox is not displayed");
+            bool isDisplayed = _advancePage.FullNameLabelOnEditUserPage.GetElementVisibility();
+            isDisplayed.Should().BeTrue("Full name textbox should be displayed on Edit User page.");
         }
 
         [Then(@"Phone number textbox is displayed")]
         public void ThenPhoneNumberTextboxIsDisplayed()
         {
-            bool IsDisplayed = _advancePage.PhoneTextField.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Phone number textbox is not displayed");
+            bool isDisplayed = _advancePage.PhoneTextField.GetElementVisibility();
+            isDisplayed.Should().BeTrue("Phone number textbox should be displayed on Edit User page.");
         }
 
         [Given(@"manager user is on User List page")]
