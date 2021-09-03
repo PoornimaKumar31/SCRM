@@ -110,8 +110,6 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             GivenManagerUserIsOnDeviceDetailsPageForCentrellaSerialNumber(serialNumber);
             WhenUserClicksLocateAssetButton();
             ThenLocateAssetPop_UpDialogIsDisplayed();
-            WhenUserClicksLocateAssetButton();
-            ThenLocateAssetPop_UpDialogIsDisplayed();
         }
 
 
@@ -121,6 +119,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             loginPage.LogIn(LoginPage.LogInType.StandardUserWithoutRollUpPage);
             wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.SearchSerialNumberAndClick(serialNumber);
+            WhenUserClicksLocateAssetButton();
+            ThenLocateAssetPop_UpDialogIsDisplayed();
         }
 
 

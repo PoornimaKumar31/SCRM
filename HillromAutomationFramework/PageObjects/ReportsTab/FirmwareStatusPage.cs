@@ -110,7 +110,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string CentrellaFirmwareVersionSearchText = "1.33.006";
             public const string CentrellaStatusSearchText = "Started";
             public const string CentrellaLocationSearchText = "Batesville";
-            public const string CentrellaLastDeployedSearchText = "1.36.000";
+            public const string CentrellaLastDeployedSearchText = "1.36.00";
 
             //CSMSearch Text
             public const string CSMSerialNumberSearchText = "100010000000";
