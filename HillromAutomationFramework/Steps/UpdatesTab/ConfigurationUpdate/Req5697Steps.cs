@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -7,79 +8,94 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
+using ExpliciWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5697")]
     public class Req5697Steps
     {
-        LoginPage loginPage = new LoginPage();
-        MainPage mainPage = new MainPage();
-        LandingPage landingPage = new LandingPage();
-        UpdatesSelectUpdatePage updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
-        UpdateSelectDevicesPage updateSelectDevicePage = new UpdateSelectDevicesPage();
-        UpdateReviewActionPage updateReviewActionPage = new UpdateReviewActionPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly UpdatesSelectUpdatePage _updatesSelectUpdatePage;
+        private readonly UpdateSelectDevicesPage _updateSelectDevicePage;
+        private readonly UpdateReviewActionPage _updateReviewActionPage;
 
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
 
         public Req5697Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext=scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _mainPage = new MainPage();
+            _landingPage = new LandingPage();
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
+            _updateSelectDevicePage = new UpdateSelectDevicesPage();
+            _updateReviewActionPage = new UpdateReviewActionPage();
         }
 
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            _wait.Until(ExpliciWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
         }
         
         [When(@"user clicks Updates")]
         public void WhenUserClicksUpdates()
         {
-            mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick();
         }
         
         [Then(@"Select update indicator is highlighted")]
         public void ThenSelectUpdateIndicatorIsHighlighted()
         {
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.HighlightedHeadingColor, updatesSelectUpdatePage.Heading.GetCssValue("color"), "Select update indicator is not highlighted.");
+            string SelectUpdatecolor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
+            (SelectUpdatecolor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.HighlightedHeadingColor,because: "Select update indicator should be highlighted in select update page.");
         }
         
         [Then(@"Select assets indicator is not highlighted")]
         public void ThenSelectAssetsIndicatorIsNotHighlighted()
         {
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, updateSelectDevicePage.Heading.GetCssValue("color"), "Select assets indicator is highlighted.");
+            string SelectAssetsColor = _updateSelectDevicePage.Heading.GetCssValue("color");
+            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
         }
 
         [Then(@"Review action indicator is not highlighted")]
         public void ThenReviewActionIndicatorIsNotHighlighted()
         {
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.NonHighlightedHeadingColor, updateReviewActionPage.Heading.GetCssValue("color"), "Review action indicator is not highlighted.");
+            string ReviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
+            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
         }
 
         [Then(@"Asset type label is displayed")]
         public void ThenAssetTypeLabelIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.AssetTypeLabel.GetElementVisibility(), "Asset type label is not displayed.");
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.AssetTypeLabelText.ToLower(), updatesSelectUpdatePage.AssetTypeLabel.Text.ToLower(),"Asset type label is not matching with the expected value.");
+            (_updatesSelectUpdatePage.AssetTypeLabel.GetElementVisibility()).Should().BeTrue(because: "Asset type label should be displayed in Select update page.");
+            (_updatesSelectUpdatePage.AssetTypeLabel.Text).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.AssetTypeLabelText, because: "Asset type label text should match with the expected value in select update page.");
         }
 
 
         [Then(@"Update type label is displayed")]
         public void ThenUpdateTypeLabelIsDisplayed()
         {
-            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("select updates elements"))
+            //select updates elements
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("select updates elements"))
             {
-                Assert.AreEqual(true, updatesSelectUpdatePage.UpgradeTypeLabel.GetElementVisibility(), "Update type label is not displayed.");
-                Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeLabelText.ToLower(), updatesSelectUpdatePage.UpgradeTypeLabel.Text.ToLower(), "Update type label is not matching with the expected value.");
+                (_updatesSelectUpdatePage.UpgradeTypeLabel.GetElementVisibility()).Should().BeTrue(because: "Update type label should be displayed in Select update page.");
+                (_updatesSelectUpdatePage.UpgradeTypeLabel.Text).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeLabelText,because: "Update type label text should match with the expected value in select update page.");
             }
-            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
+            //cvsm select assets elements
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
             {
-                Assert.AreEqual(true, updateSelectDevicePage.TypeofUpdateConfigLabel.GetElementVisibility(), "Update type label is not displayed.");
-                Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText.ToLower(), updateSelectDevicePage.TypeofUpdateConfigLabel.Text.ToLower(), "Update type label is not matching with the expected value.");
+                (_updateSelectDevicePage.TypeofUpdateConfigLabel.GetElementVisibility()).Should().BeTrue(because: "Update type label should be displayed in select assets page.");
+                (_updateSelectDevicePage.TypeofUpdateConfigLabel.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText, because: "Update type label text should match with the expected value.");
             }
+            //If test step does not belong to any scenario
             else
             {
                 Assert.Fail(_scenarioContext.ScenarioInfo.Title + "sceanrio has no step defination for " + _scenarioContext.StepContext.StepInfo.Text);
@@ -90,86 +106,93 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Asset type drop down is displayed")]
         public void ThenAssetTypeDropDownIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.AssetTypeDropDown.GetElementVisibility(), "Asset type dropdown is not displayed.");
+            (_updatesSelectUpdatePage.AssetTypeDropDown.GetElementVisibility()).Should().BeTrue(because: "Asset type dropdown should be displayed in select update page");
         }
         
         [Then(@"Update type drop down is displayed")]
         public void ThenUpdateTypeDropDownIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility(), "Update type drop down is not displayed.");
+            (_updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility()).Should().BeTrue(because: "Update type drop down should be displayed in Select update page");
         }
         
         [Then(@"Next button is displayed")]
         public void ThenNextButtonIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.NextButton.GetElementVisibility(), "Next button is not displayed.");
+            (_updatesSelectUpdatePage.NextButton.GetElementVisibility()).Should().BeTrue(because: "Next button should be displayed in select assets page.");
         }
 
         [Given(@"user is on Updates page")]
         public void GivenUserIsOnUpdatesPage()
         {
             GivenUserIsOnMainPage();
-            mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick();
         }
 
         [When(@"user selects CVSM Asset type")]
         public void WhenUserSelectsCVSMAssetType()
         {
-            updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
         }
 
         [Then(@"CVSM displays as Asset type")]
         public void ThenCVSMDisplaysAsAssetType()
         {
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName, updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL(), "CVSM is not displayed as asset type.");
+            string selectedOptionInAssetTypeDropdown = _updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL();
+            (selectedOptionInAssetTypeDropdown).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName,because: "CVSM should be displayed as asset type when user select CVSM in Asset type dropdown.");
         }
 
         [Then(@"Update type drop down contains Configuration entry only")]
         public void ThenUpdateTypeDropDownContainsConfigurationEntryOnly()
         {
-            SelectElement updateTypeDropdown = new SelectElement(updatesSelectUpdatePage.UpgradeTypeDropDown);
-            //2 entries the select and Configuration
-            Assert.AreEqual(true, updateTypeDropdown.Options.Count == 2, "Update type configuration has more than one entry.");
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeDropdownDefault, updateTypeDropdown.Options[0].Text, "Update type default option is not Select.");
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration, updateTypeDropdown.Options[1].Text, "Configuartion option is not present.");
+            IList<IWebElement> dropdownOptionList = _updatesSelectUpdatePage.UpgradeTypeDropDown.GetAllOptionsFromDDL();
+            List<string> dropdownOptionTextList = new List<string>();
+            //Extracting text fro the dropdown
+            foreach(IWebElement option in dropdownOptionList)
+            {
+                dropdownOptionTextList.Add(option.Text.ToLower());
+            }
+
+            dropdownOptionTextList.Should().BeEquivalentTo(new List<string> { UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeDropdownDefault.ToLower(), UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration.ToLower() },because:"Update type drop down should contain only selct and configuration options when user selects CVSM as Asset type");
         }
 
         [Given(@"user is on CVSM Updates page")]
         public void GivenUserIsOnCVSMUpdatesPage()
         {
             GivenUserIsOnMainPage();
-            mainPage.UpdatesTab.JavaSciptClick();
-            updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
+            _mainPage.UpdatesTab.JavaSciptClick();
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
         }
 
         [Given(@"CVSM Asset type is selected")]
         public void GivenCVSMAssetTypeIsSelected()
         {
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName, updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL(),"CVSM Asset type is not selected.");
+            string selectOptionInAssetTypeDropDown = _updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL();
+            (selectOptionInAssetTypeDropDown).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName, because: "CVSM Asset type should be selected when user selects CVSM in asset type dropdown");
         }
 
         [When(@"user selects Configuration Update type")]
         public void WhenUserSelectsConfigurationUpdateType()
         {
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
         }
 
         [Then(@"Configuration displays as Update type")]
         public void ThenConfigurationDisplaysAsUpdateType()
         {
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration, updatesSelectUpdatePage.UpgradeTypeDropDown.GetSelectedOptionFromDDL(), "Configuration is not displayed as update type.");
+            string selectOptionInUpdateTypeDropDown = _updatesSelectUpdatePage.UpgradeTypeDropDown.GetSelectedOptionFromDDL();
+            (selectOptionInUpdateTypeDropDown).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration, because: "Configuration should be selected when user selects CVSM in asset type dropdown and Configuration in update type dropdown");
         }
 
         [Then(@"CVSM configuration list is displayed")]
         public void ThenCVSMConfigurationListIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.FileTableList.GetElementVisibility(), "CVSM configuration list is not displayed.");
+            (_updatesSelectUpdatePage.FileTableList.GetElementVisibility()).Should().BeTrue(because: "CVSM configuration list should be displayed when user select the CVSM configuration in select update page.");
         }
 
         [Then(@"Delete button is displayed")]
         public void ThenDeleteButtonIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.DeleteButton.GetElementVisibility(), "Delete button is not displayed");
+            (_updatesSelectUpdatePage.DeleteButton.GetElementVisibility()).Should().BeTrue(because: "Delete button should be displayed in CVSM configuration select update page.");
         }
 
         [Given(@"user is on CVSM Updates page with ""(.*)"" entries")]
@@ -179,125 +202,123 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             switch(noOfEntries)
             {
                 case "<=50":
-                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+                    _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
 
                 case ">50":
-                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
+                    _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+                    _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
                     break;
 
                 case ">50 and <=100":
-                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
+                    _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+                    _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
                     break;
                 default: Assert.Fail(noOfEntries+" is a invalid number of configuration files.");
                     break;
             }
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.UpdatesTab.JavaSciptClick();
-            updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _wait.Until(ExpliciWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.UpdatesTab.JavaSciptClick();
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
         }
 
         [Then(@"Previous page icon is disabled")]
         public void ThenPreviousPageiconIsDisabled()
         {
             SetMethods.ScrollToBottomofWebpage();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
-            string PaginationTextBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).JavaSciptClick();
-            string PaginationTextAfterClick= updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Previous page button is not disabled");
+            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
+            string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
+            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource, because:"Previous page icon should be disabled in First page of entries in select update page");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
             SetMethods.ScrollToBottomofWebpage();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
-            string PaginationTextBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationNextIcon.JavaSciptClick();
-            string PaginationTextAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Next page button is not disabled");
+            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
+            string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
+            (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled");
         }
 
         [Then(@"Previous page icon is enabled")]
         public void ThenPreviousPageIconIsEnabled()
         {
             SetMethods.ScrollToBottomofWebpage();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
-            string PaginationTextBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).Click();
-            string PaginationTextAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreNotEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Previous page button is not enabled");
+            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
+            string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
+            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
         }
 
 
         [Given(@"Configuration Update type is selected")]
         public void GivenConfigurationUpdateTypeIsSelected()
         {
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
         }
 
         [When(@"user selects CVSM configuration from the list")]
         public void WhenUserSelectsCVSMConfigurationFromTheList()
         {
-            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
+            //Selecting first file
+            _updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
         }
 
         [Then(@"Next button is enabled")]
         public void ThenNextButtonIsEnabled()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.NextButton.Enabled, "Next button is not enabled");
+            (_updatesSelectUpdatePage.NextButton.Enabled).Should().BeTrue(because: "Next button should be enabled when select any one entries in the list.");
         }
 
         [Then(@"user clicks Next button")]
         public void ThenClicksNextButton()
         {
-            updatesSelectUpdatePage.NextButton.Click();
+            _updatesSelectUpdatePage.NextButton.Click();
         }
 
         [Then(@"Select Assets page is displayed")]
         public void ThenSelectAssetsPageIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.DeployHead.GetElementVisibility(), "Select assets page is not displayed");
+            bool IsSelectAssetPageDisplayed = (_updateSelectDevicePage.DeployHead.GetElementVisibility()) || (_updateSelectDevicePage.DestinationLabel.GetElementVisibility());
+            (IsSelectAssetPageDisplayed).Should().BeTrue(because: "Select assets page should be displayed when user clicks enabled next button in select update page.");
         }
 
         [Given(@"user is on CVSM Configuration Select assets page")]
         public void GivenUserIsOnCVSMConfigurationSelectAssetsPage()
         {
             GivenUserIsOnCVSMUpdatesPage();
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
-            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
-            updatesSelectUpdatePage.NextButton.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
+            _updatesSelectUpdatePage.NextButton.Click();
+            _wait.Until(ExpliciWait.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
         }
 
         [Then(@"Select update indicator is not highlighted")]
         public void ThenSelectUpdateIndicatorIsNotHighlighted()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.NonHighlightedHeadingColor,updatesSelectUpdatePage.Heading.GetCssValue("color"), "Select Update tab is highlighted.");
+            _wait.Until(ExpliciWait.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
+            string selectUpdateIndicatorColor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
+            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.NonHighlightedHeadingColor,because: "Select Update tab indicator should not be highlighted.");
         }
 
         [Then(@"Select assets indicator is highlighted")]
         public void ThenSelectAssetsIndicatorIsHighlighted()
         {
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor,updateSelectDevicePage.Heading.GetCssValue("color"), "Select devices tab is not highlighted.");
+            string selectAssetsIndicatorColor = _updateSelectDevicePage.Heading.GetCssValue("color");
+            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, because: "Select devices tab should not be highlighted");
         }
 
         [Given(@"Configuration list is not empty")]
         public void GivenConfigurationListIsNotEmpty()
         {
-            Assert.AreEqual(true,updatesSelectUpdatePage.FileNameList.GetElementCount()>0,"Configuration list is empty");
+            (_updatesSelectUpdatePage.FileNameList.GetElementCount()).Should().BeGreaterThan(0, because:"Configuration list should not be empty");
         }
 
         [Then(@"configuration files are sorted in ascending alphabetical order")]
         public void ThenConfigurationFilesAreSortedInAscendingAlphabeticalOrder()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.IsFileSorted(updatesSelectUpdatePage.FileNameList),"Config file is not sorted");
+            (_updatesSelectUpdatePage.IsFileSorted(_updatesSelectUpdatePage.FileNameList)).Should().BeTrue("Config files should be sorted in select update page.");
         }
 
 
@@ -308,18 +329,16 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             //For CVSM Select assets page
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
             {
-                Assert.AreEqual(true, updateSelectDevicePage.ItemtoPush.GetElementVisibility(), "Item to push label is not displayed.");
-                string ActualText = updateSelectDevicePage.ItemtoPush.Text;
-                string ExpectedText = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
-                Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.");
+                (_updateSelectDevicePage.ItemtoPush.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in CVSM select assets page.");
+                string ActualItemToPushLabelText = _updateSelectDevicePage.ItemtoPush.Text;
+                (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CVSM select assets page.");
             }
             //For CVSM Review action page
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
             {
-                Assert.AreEqual(true, updateReviewActionPage.ItemToPushLabel.GetElementVisibility(), "Item to push label is not displayed.");
-                string ActualText = updateReviewActionPage.ItemToPushLabel.Text;
-                string ExpectedText = UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText;
-                Assert.AreEqual(ExpectedText, ActualText, "Item to push label text is not matching with expected value.");
+                (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in CVSM Review action page page.");
+                string ActualItemToPushLabelText = _updateReviewActionPage.ItemToPushLabel.Text;
+                (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CVSM Review action page.");
             }
             //If this does not belong to any scenario
             else
@@ -332,13 +351,13 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Device type label is displayed")]
         public void ThenDeviceTypeLabelIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.DeviceTypeLabel.GetElementVisibility(), "Device type label is not displayed.");
+            (_updateSelectDevicePage.DeviceTypeLabel.GetElementVisibility()).Should().BeTrue(because: "Device type label should be displayed in CVSM Select Assets Elements.");
         }
 
         [Then(@"Config file to push label is displayed")]
         public void ThenConfigFileToPushLabelIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.FileName.GetElementVisibility(), "Config file name is not displayed.");
+            (_updateSelectDevicePage.FileName.GetElementVisibility()).Should().BeTrue(because: "Config file to push label should be displayed in CVSM Select Assets Elements.");
         }
 
         [Then(@"Destinations label is displayed")]
@@ -347,18 +366,16 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             //For CVSM Select assets page
             if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
             {
-                Assert.AreEqual(true, updateSelectDevicePage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
-                string ActualLabelText = updateSelectDevicePage.DestinationLabel.Text;
-                string ExpectedLabelText = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
-                Assert.AreEqual(ExpectedLabelText.ToLower(), ActualLabelText.ToLower(), "Destination label text is not matching with expected value.");
+                (_updateSelectDevicePage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in CVSM select assets Page.");
+                string ActualDestinationLabelText = _updateSelectDevicePage.DestinationLabel.Text;
+                (ActualDestinationLabelText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in CVSM select assets Page.");
             }
             //For CVSM Review action page
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
             {
-                Assert.AreEqual(true, updateReviewActionPage.DestinationLabel.GetElementVisibility(), "Destination label is not displayed.");
-                string ActualLabelText = updateReviewActionPage.DestinationLabel.Text;
-                string ExpectedLabelText = UpdateReviewActionPage.ExpectedValues.DestinationLabelText;
-                Assert.AreEqual(ExpectedLabelText.ToLower(), ActualLabelText.ToLower(), "Destination label text is not matching with expected value.");
+                (_updateReviewActionPage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in CVSM review action Page.");
+                string ActualDesinationLabelText = _updateReviewActionPage.DestinationLabel.Text;
+                ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in CVSM review action Page.");
             }
             //If this does not belong to any scenario
             else
@@ -370,251 +387,270 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"location hierarchy selectors are displayed")]
         public void ThenLocationHierarchySelectorsAreDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.LocationHierarchy.GetElementVisibility(), "Location hierarchy selectors are not displayed.");
+            (_updateSelectDevicePage.LocationHierarchy.GetElementVisibility()).Should().BeTrue(because: "Location hierarchy selectors should be displayed in CVSM Configuration Select Assets page.");
         }
 
         [Then(@"count of selected devices is displayed")]
         public void ThenCountOfSelectedDevicesIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.DeviceCount.GetElementVisibility(), "Selected device count is not displayed");
+            (_updateSelectDevicePage.DeviceCount.GetElementVisibility()).Should().BeTrue(because: "Selected device count should be displayed in CVSM Configuration Select Assets page");
         }
 
         [Then(@"Previous button is displayed")]
         public void ThenPreviousButtonIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.PreviousButton.GetElementVisibility(), "Previous button is not displayed.");
+            (_updateSelectDevicePage.PreviousButton.GetElementVisibility()).Should().BeTrue(because: "Previous button should be displayed in CVSM Configuration Select Assets page");
         }
 
         [Then(@"Page x of y indicator is displayed")]
         public void ThenPageXOfYIndicatorIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.PaginationXofY.GetElementVisibility(), "Page x of y indicator is not displayed.");
+            (_updateSelectDevicePage.PaginationXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y indicator should be displayed in CVSM Configuration Select Assets page");
         }
 
         [Then(@"Displaying x to y of z results indicator is displayed")]
         public void ThenDisplayingXToYOfZResultsIndicatorIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.PaginationDisplayXY.GetElementVisibility(), "Displaying x to y of z results indicator is not displayed.");
+            (_updateSelectDevicePage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue(because: "Displaying x to y of z results indicator should be displayed in CVSM Configuration Select Assets page");
         }
 
         [Then(@"Select all checkbox is unchecked")]
         public void ThenSelectAllCheckboxIsUnchecked()
         {
-            Assert.AreEqual(false, updateSelectDevicePage.SelectAllcheckBox.Selected,"Select all check box is not uncheked.");
+            (_updateSelectDevicePage.SelectAllcheckBox.Selected).Should().BeFalse(because: "Select all check box should be uncheked in the CVSM Configuration Select Assets page");
         }
+        
+        //Done till here
 
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string HeadingName)
         {
-            IWebElement Heading=null;
-            string ExpectedHeadingText=null;
-            switch(HeadingName.ToLower().Trim())
+            IWebElement HeadingWebElement = null;
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Trim().Equals("select cvsm configuration update type"))
             {
-                case "firmware": Heading = updateSelectDevicePage.FirmwareHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.FirwareHeadingText;
-                                break;
-                case "config":
-                    Heading = updateSelectDevicePage.ConfigHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.ConfigHeadingText;
-                    break;
-                case "asset tag":
-                    Heading = updateSelectDevicePage.AssetTagHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.AssetTagHeadingText;
-                    break;
-                case "serial number":
-                    Heading = updateSelectDevicePage.SerialNoHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.SerialHeadingText;
-                    break;
-                case "location":
-                    Heading = updateSelectDevicePage.LocationHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.LocationHeadingText;
-                    break;
-                case "last files deployed":
-                    Heading = updateSelectDevicePage.LastFilesDeployedHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.LastFilesDeployedHeadingText;
-                    break;
+                switch(HeadingName.ToLower().Trim())
+                {
+                    case "name":
+                        HeadingWebElement = _updatesSelectUpdatePage.NameColumnHeading;
+                        break;
 
-                case "name":
-                    Heading = updatesSelectUpdatePage.NameColumnHeading;
-                    ExpectedHeadingText = UpdatesSelectUpdatePage.ExpectedValues.TableNameHeadingText;
-                    break;
-
-                case "date created":
-                    Heading = updatesSelectUpdatePage.DateColumnHeading;
-                    ExpectedHeadingText = UpdatesSelectUpdatePage.ExpectedValues.TableDateHeadingText;
-                    break;
-                default: Assert.Fail(HeadingName+"is not present on the test data");
-                    break;
+                    case "date created":
+                        HeadingWebElement = _updatesSelectUpdatePage.DateColumnHeading;
+                        break;
+                    default:
+                        Assert.Fail(HeadingName + "is an invalid column heading name.");
+                        break;
+                }
+                (HeadingWebElement.GetElementVisibility()).Should().BeTrue(because: HeadingWebElement + " column heading should be displayed in CVSM configuration select update table");
+                string ActualHeadingText = HeadingWebElement.Text;
+                (ActualHeadingText).Should().BeEquivalentTo(HeadingName, because: HeadingName + " heading name text should match with the expected value in CVSM configuration select update table");
             }
-            Assert.AreEqual(true, Heading.GetElementVisibility(), Heading+" is not displayed.");
-            string ActualHeadingText = Heading.Text;
-            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText.ToLower(), HeadingName+" text is not matxhing with the expected value.");
+            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Trim().Equals("cvsm select assets elements table"))
+            {
+                switch (HeadingName.ToLower().Trim())
+                {
+                    case "firmware":
+                        HeadingWebElement = _updateSelectDevicePage.FirmwareHeading;
+                        break;
+                    case "config":
+                        HeadingWebElement = _updateSelectDevicePage.ConfigHeading;
+                        break;
+                    case "asset tag":
+                        HeadingWebElement = _updateSelectDevicePage.AssetTagHeading;
+                        break;
+                    case "serial number":
+                        HeadingWebElement = _updateSelectDevicePage.SerialNoHeading;
+                        break;
+                    case "location":
+                        HeadingWebElement = _updateSelectDevicePage.LocationHeading;
+                        break;
+                    case "last files deployed":
+                        HeadingWebElement = _updateSelectDevicePage.LastFilesDeployedHeading;
+                        break;
+                    default:
+                        Assert.Fail(HeadingName + "is an invalid column heading name");
+                        break;
+                }
+                (HeadingWebElement.GetElementVisibility()).Should().BeTrue(because: HeadingWebElement + " column heading should be displayed in CVSM configuration select assets table");
+                string ActualHeadingText = HeadingWebElement.Text;
+                (ActualHeadingText).Should().BeEquivalentTo(HeadingName, because: HeadingName + " heading name text should match with the expected value in CVSM configuration select assets table.");
+            }
+            //If test step does not belong to any scenario
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have a step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
         }
 
         [Then(@"Select all checkbox is in column (.*)")]
         public void ThenSelectAllCheckboxIsInColumn(int columnNumber)
         {
-            string firstcolumnId = updateSelectDevicePage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
-            Assert.AreEqual(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
+            string firstcolumnId = _updateSelectDevicePage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
+            (firstcolumnId).Should().BeEquivalentTo(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, because: "Select all checkbox should be in column " + columnNumber);
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
         {
-            IList<IWebElement> columns = updateSelectDevicePage.TableHeading.FindElements(By.TagName("div"));
-            Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+            IList<IWebElement> columnsList = _updateSelectDevicePage.TableHeading.FindElements(By.TagName("div"));
+            List<string> columnListText = new List<string>();
+            foreach(IWebElement column in columnsList)
+            {
+                columnListText.Add(column.Text.ToLower());
+            }
+            //Making as zero based Indexing
+            columnNumber--;
+            columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
         }
 
         [When(@"user selects one device")]
         public void WhenUserSelectsOneDevice()
         {
-            updateSelectDevicePage.FirstDeviceCheckBox.Click();
+            _updateSelectDevicePage.FirstDeviceCheckBox.Click();
         }
 
         [Then(@"count of selected devices changes from 0 to 1")]
         public void ThenCountOfSelectedDevicesChangesFromTo()
         {
-            string ActualDestinationCountText = updateSelectDevicePage.DeviceCount.Text;
-            string ExpectedDestinationCountText = UpdateSelectDevicesPage.ExpectedValues.Desination1DeviceCountText;
-            Assert.AreEqual(ExpectedDestinationCountText, ActualDestinationCountText, "Count of selected devices does not change.\n");
+            string ActualDestinationCountText = _updateSelectDevicePage.DeviceCount.Text;
+            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
         }
 
         [When(@"user clicks Previous button")]
         public void WhenUserClicksPreviousButton()
         {
-            updateSelectDevicePage.PreviousButton.Click();
+            _updateSelectDevicePage.PreviousButton.Click();
         }
 
         [Then(@"user is on CVSM Updates page")]
         public void ThenUserIsOnCVSMUpdatesPage()
         {
-            bool UpdatePageElements = (updatesSelectUpdatePage.AssetTypeDropDown.GetElementVisibility()) || (updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility()); 
-            Assert.AreEqual(true, UpdatePageElements, "User is not on CVSM Update page");
+            bool IsUpdatePageDisplayed = (_updatesSelectUpdatePage.AssetTypeDropDown.GetElementVisibility()) || (_updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility()); 
+            (IsUpdatePageDisplayed).Should().BeTrue(because: "CVSM update page should be displayed when user clicks previous button CVSM Select Assets Page");
         }
 
         [When(@"Clicks Next button")]
         public void WhenClicksNextButton()
         {
-            updatesSelectUpdatePage.NextButton.Click();
+            _updatesSelectUpdatePage.NextButton.Click();
         }
 
         [Then(@"CVSM Review Action page is displayed")]
         public void ThenCVSMReviewActionPageIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.PushItems.GetElementVisibility(), "CVSM review action page is not displayed.");
+            (_updateReviewActionPage.PushItems.GetElementVisibility()).Should().BeTrue(because:"CVSM review action page should be displayed when user clicks next button in CVSM select assets page.");
         }
 
         [Given(@"user is on CVSM Review Action page")]
         public void GivenUserIsOnCVSMReviewActionPage()
         {
             GivenUserIsOnCVSMConfigurationSelectAssetsPage();
-            updateSelectDevicePage.FirstDeviceCheckBox.Click();
-            updateSelectDevicePage.NextButton.Click();
-            Assert.AreEqual(true, updateReviewActionPage.PushItems.GetElementVisibility(), "CVSM review action page is not displayed.");
+            _updateSelectDevicePage.FirstDeviceCheckBox.Click();
+            _updateSelectDevicePage.NextButton.Click();
+            (_updateReviewActionPage.PushItems.GetElementVisibility()).Should().BeTrue(because: "CVSM review action page should be displayed when user clicks next button in CVSM select assets page.");
         }
         
 
         [Then(@"Item to push value is displayed")]
         public void ThenItemToPushValueIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.ItemToPushValue.GetElementVisibility(), "Item to push value is not displayed");
+            (_updateReviewActionPage.ItemToPushValue.GetElementVisibility()).Should().BeTrue(because: "Item to push value should be displayed in CVSM review action page");
         }
 
         [Then(@"Destinations value is displayed")]
         public void ThenDestinationsValueIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.DestinationValue.GetElementVisibility(), "Destinations value is not displayed.");
+            (_updateReviewActionPage.DestinationValue.GetElementVisibility()).Should().BeTrue(because: "Destinations value should be displayed in CVSM review action page");
         }
-
-        
-
 
         [Then(@"Review action indicator is highlighted")]
         public void ThenReviewActionIndicatorIsHighlighted()
         {
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, updateReviewActionPage.Heading.GetCssValue("color"), "Review action indicator is not highlighted.");
+            string reviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
+            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in CVSM review action page");
         }
 
         [Then(@"Confirm button is enabled")]
         public void ThenConfirmButtonIsEnabled()
         {
-            Assert.AreEqual(true, updateReviewActionPage.ConfirmButton.Enabled, "Confirm button is not enabled.");
+            (_updateReviewActionPage.ConfirmButton.Enabled).Should().BeTrue(because: "Confirm button should be enabled in CVSM review action page.");
         }
 
 
         [When(@"user clicks Confirm button")]
         public void WhenUserClicksConfirmButton()
         {
-            updateReviewActionPage.ConfirmButton.Click();
+            _updateReviewActionPage.ConfirmButton.Click();
         }
 
         [Then(@"Update process has been established message is displayed")]
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
-           Assert.AreEqual(true, updateSelectDevicePage.SuccessUpadteMessage.GetElementVisibility(), "Update process has been established message is not displayed");
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText.ToLower(), updateSelectDevicePage.SuccessUpadteMessage.Text.ToLower(), "Update message is not matching with expected value.");
+            (_updateSelectDevicePage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button on CVSM review action page.");
+            (_updateSelectDevicePage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
         }
 
         [Then(@"Select devices page is displayed")]
         public void ThenSelectDevicesPageIsDisplayed()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID)));
-            bool SelectDevicePageElements = (updateSelectDevicePage.SelectAllcheckBox.GetElementVisibility()) || (updateSelectDevicePage.DeployHead.GetElementVisibility());
-            Assert.AreEqual(true, SelectDevicePageElements, "Select devices page is not displayed.\n");
+            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID)));
+            bool IsSelectDevicePageDisplayed = (_updateSelectDevicePage.SelectAllcheckBox.GetElementVisibility()) || (_updateSelectDevicePage.DeployHead.GetElementVisibility());
+            (IsSelectDevicePageDisplayed).Should().BeTrue(because: "Select devices page should be displayed");
         }
 
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
         {
             SetMethods.ScrollToBottomofWebpage();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
-            string PaginationTextBeforeClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            updatesSelectUpdatePage.PaginationNextIcon.Click();
-            string PaginationTextAfterClick = updatesSelectUpdatePage.PaginationXofY.Text;
-            Assert.AreNotEqual(PaginationTextBeforeClick, PaginationTextAfterClick, "Next page button is not disabled");
+            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
+            string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
+            (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled");
         }
 
         [Given(@"first (.*) entries are displayed")]
-        public void GivenFirstEntriesAreDisplayed(int p0)
+        public void GivenFirstEntriesAreDisplayed(int noOfEntries)
         {
-            Assert.AreEqual(50, updatesSelectUpdatePage.FileNameList.GetElementCount(), "First 50 entries are not displayed");
+            (_updatesSelectUpdatePage.FileNameList.GetElementCount()).Should().Be(noOfEntries, because: noOfEntries+" entries should display");
         }
 
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
         {
             SetMethods.ScrollToBottomofWebpage();
-            updatesSelectUpdatePage.PaginationNextIcon.Click();
+            _updatesSelectUpdatePage.PaginationNextIcon.Click();
         }
 
         [Then(@"second page of entries is displayed")]
         public void ThenSecondPageOfEntriesIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.FileNameList.GetElementCount() > 0, "second page of entries are not displayed");
+            Thread.Sleep(1000);
+            string PageNumber = _updatesSelectUpdatePage.PaginationXofY.Text;
+            (PageNumber).Should().StartWithEquivalentOf("Page 2", because:"second page entries should be displayed");
+            (_updatesSelectUpdatePage.FileNameList.GetElementCount()).Should().BeGreaterThan(0, because: "Atleast one entry should be present in the Second page");
         }
 
         [Then(@"Next button is disabled")]
         public void ThenNextButtonIsDisabled()
         {
-            Assert.AreEqual(false, updatesSelectUpdatePage.NextButton.Enabled, "Next button is not disabled");
+            (_updatesSelectUpdatePage.NextButton.Enabled).Should().BeFalse(because: "Next button should be disabled");
         }
 
         [Then(@"Previous page icon is displayed")]
         public void ThenPreviousPageIconIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.PaginationPreviousIcon.GetElementVisibility(), "Previous icon is not displayed");
+            (_updateSelectDevicePage.PaginationPreviousIcon.GetElementVisibility()).Should().BeTrue(because: "Previous page icon should be displayed in CVSM Select Assets page");
         }
 
         [Then(@"Next page icon is displayed")]
         public void ThenNextPageIconIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicePage.PaginationNextIcon.GetElementVisibility(), "Next icon is not displayed");
+            (_updateSelectDevicePage.PaginationNextIcon.GetElementVisibility()).Should().BeTrue(because: "Next page icon should be displayed in CVSM Select Assets page");
         }
 
         [Then(@"Previous button is enabled")]
         public void ThenPreviousButtonIsEnabled()
         {
-            Assert.AreEqual(true, updateReviewActionPage.PreviousButton.Enabled, "previous button is not enabled");
+            (_updateReviewActionPage.PreviousButton.Enabled).Should().BeTrue(because: "previous button should be enabled in CVSM Review Action");
         }
 
     }
