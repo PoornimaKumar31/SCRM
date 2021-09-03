@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
-using ExpliciWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
 {
@@ -42,7 +42,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void GivenUserIsOnMainPage()
         {
             _loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
-            _wait.Until(ExpliciWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
         }
         
         [When(@"user clicks Updates")]
@@ -218,7 +218,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
                 default: Assert.Fail(noOfEntries+" is a invalid number of configuration files.");
                     break;
             }
-            _wait.Until(ExpliciWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.UpdatesTab.JavaSciptClick();
             _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
             _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
@@ -228,7 +228,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenPreviousPageiconIsDisabled()
         {
             SetMethods.ScrollToBottomofWebpage();
-            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
             (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource, because:"Previous page icon should be disabled in First page of entries in select update page");
         }
@@ -237,7 +237,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenNextPageIconIsDisabled()
         {
             SetMethods.ScrollToBottomofWebpage();
-            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
             (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled");
         }
@@ -246,7 +246,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenPreviousPageIconIsEnabled()
         {
             SetMethods.ScrollToBottomofWebpage();
-            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
             (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
         }
@@ -291,13 +291,13 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
             _updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
             _updatesSelectUpdatePage.NextButton.Click();
-            _wait.Until(ExpliciWait.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
         }
 
         [Then(@"Select update indicator is not highlighted")]
         public void ThenSelectUpdateIndicatorIsNotHighlighted()
         {
-            _wait.Until(ExpliciWait.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
             string selectUpdateIndicatorColor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
             (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.NonHighlightedHeadingColor,because: "Select Update tab indicator should not be highlighted.");
         }
@@ -318,7 +318,8 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"configuration files are sorted in ascending alphabetical order")]
         public void ThenConfigurationFilesAreSortedInAscendingAlphabeticalOrder()
         {
-            (_updatesSelectUpdatePage.IsFileSorted(_updatesSelectUpdatePage.FileNameList)).Should().BeTrue("Config files should be sorted in select update page.");
+            List<string> ConfigurationFilesList = _updatesSelectUpdatePage.GetListOfConfigFiles(_updatesSelectUpdatePage.FileNameList);
+            ConfigurationFilesList.Should().BeInAscendingOrder(because: "Configuration files should be sorted in alphabetical order");
         }
 
 
@@ -593,7 +594,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Select devices page is displayed")]
         public void ThenSelectDevicesPageIsDisplayed()
         {
-            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID)));
             bool IsSelectDevicePageDisplayed = (_updateSelectDevicePage.SelectAllcheckBox.GetElementVisibility()) || (_updateSelectDevicePage.DeployHead.GetElementVisibility());
             (IsSelectDevicePageDisplayed).Should().BeTrue(because: "Select devices page should be displayed");
         }
@@ -602,7 +603,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenNextPageIconIsEnabled()
         {
             SetMethods.ScrollToBottomofWebpage();
-            _wait.Until(ExpliciWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
             (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled");
         }

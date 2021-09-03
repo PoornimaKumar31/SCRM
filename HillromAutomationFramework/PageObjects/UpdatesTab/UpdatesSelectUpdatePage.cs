@@ -262,16 +262,14 @@ namespace HillromAutomationFramework.PageObjects
         /// </summary>
         /// <param name="elements">List of Iwebelements</param>
         /// <returns></returns>
-        public bool IsFileSorted(IList<IWebElement> elements)
+        public List<string> GetListOfConfigFiles(IList<IWebElement> elements)
         {
             List<string> fileListName = new List<string>();
             foreach (IWebElement configname in elements)
             {
-                fileListName.Add(configname.Text.ToString());
+                fileListName.Add(configname.Text.ToString().ToLower());
             }
-            List<string> UnSortedList = new List<string>(fileListName);
-            fileListName.Sort((s1, s2) => s1.CompareTo(s2));
-            return (Enumerable.SequenceEqual(fileListName, UnSortedList));
+            return (fileListName);
         }
 
     }
