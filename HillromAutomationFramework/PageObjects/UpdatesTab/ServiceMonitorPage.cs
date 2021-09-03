@@ -33,7 +33,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string PaginationPreviousButtonXpath = "//span[@id='previous']";
             public const string PaginationNextButtonID = "next";
             public const string PaginationDisplayXofYClassName = "dataTables_info";
-            public const string DestinalitioDeviceCountClassName = "showCount";
+            public const string DestinationDeviceCountClassName = "showCount";
             public const string UpdateMessageXpath= "//*[@id=\"cdk-overlay-0\"]/snack-bar-container";
         }
 
@@ -75,6 +75,10 @@ namespace HillromAutomationFramework.PageObjects
 
             //Message
             public const string UpdateMessageText = "Update process has been established";
+
+            public const string CallHomePeriodDropdownOptionP1DPatialText = "P1D";
+            public const string DeploymentModeDropdownOptionFalsePartialText = "False";
+
         }
 
         public ServiceMonitorPage()
@@ -149,8 +153,8 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.Id, Using = Locators.PaginationNextButtonID)]
         public IWebElement PaginationNextButton { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = Locators.DestinalitioDeviceCountClassName)]
-        public IWebElement DestinalitioDeviceCount { get; set; }
+        [FindsBy(How = How.ClassName, Using = Locators.DestinationDeviceCountClassName)]
+        public IWebElement DestinationDeviceCount { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.UpdateMessageXpath)]
         public IWebElement UpdateMessage { get; set; }

@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -6,6 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
 {
@@ -13,255 +15,254 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
     public class Req5709Steps
     {
 
-        LoginPage loginPage = new LoginPage();
-        MainPage mainPage = new MainPage();
-        ServiceMonitorPage serviceMoniterPage = new ServiceMonitorPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
+        private readonly LoginPage _loginPage;
+        private readonly MainPage _mainPage;
+        private readonly ServiceMonitorPage _serviceMoniterPage ;
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
 
         public Req5709Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _mainPage = new MainPage();
+            _serviceMoniterPage = new ServiceMonitorPage();
         }
 
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "User is not on main page");
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            (_mainPage.AssetsTab.GetElementVisibility()).Should().BeTrue(because:"User should be on the main page after login without roll-up");
         }
         
         [When(@"user clicks Updates")]
         public void WhenUserClicksUpdates()
         {
-            mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick();
         }
         
         [When(@"user selects Service Monitor")]
         public void WhenUserSelectsServiceMonitor()
         {
-            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
+            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
         }
         
         [Then(@"Service Monitor Settings page displays")]
         public void ThenServiceMonitorSettingsPageDisplays()
         {
-            Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings page is displayed");
+            (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()).Should().BeTrue("Service Monitor Settings page is displayed when user selects Service Monitor");
         }
 
         [Given(@"user is on Service Monitor Settings page")]
         public void GivenUserIsOnServiceMonitorSettingsPage()
         {
             GivenUserIsOnMainPage();
-            mainPage.UpdatesTab.JavaSciptClick();
-            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
-            Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings page is displayed");
+            _mainPage.UpdatesTab.JavaSciptClick();
+            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
+            (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()).Should().BeTrue("Service Monitor Settings page is displayed when user selects Service Monitor");
         }
 
         [When(@"user clicks Call home period drop-down")]
         public void WhenUserClicksCallHomePeriodDrop_Down()
         {
-            Assert.AreEqual(true, serviceMoniterPage.CallHomePeriodDropDown.GetElementVisibility(), "Call home period drop-down is not displayed");
-            serviceMoniterPage.CallHomePeriodDropDown.Click();
+            (_serviceMoniterPage.CallHomePeriodDropDown.GetElementVisibility()).Should().BeTrue(because: "Call home period drop-down should be displayed in service moniter page");
+            _serviceMoniterPage.CallHomePeriodDropDown.Click();
         }
 
         [Then(@"drop down displays P1D \(24 HOURS\), PT8H \(8 HOURS\), PT4H \(4 HOURS\), PT15M \(15 MINUTES\)")]
         public void ThenDropDownDisplaysPDHOURSPTHHOURSPTHHOURSPTMMINUTES()
         {
-            IList<IWebElement> Dropdownlist = serviceMoniterPage.CallHomePeriodDropDown.GetAllOptionsFromDDL();
-            IList<string> DropDownListString = new List<string>();
-            foreach(IWebElement option in Dropdownlist)
+            IList<IWebElement> DropdownWebElementList = _serviceMoniterPage.CallHomePeriodDropDown.GetAllOptionsFromDDL();
+            List<string> DropDownListText = new List<string>();
+            foreach(IWebElement option in DropdownWebElementList)
             {
-                DropDownListString.Add(option.Text);
+                DropDownListText.Add(option.Text);
             }
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionP1D), ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionP1D+" Option is not available.\n");
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT8H), ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT8H+ " Option is not available.\n");
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT4H), ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT4H+ " Option is not available.\n");
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT15M), ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT15M + " Option is not available.\n");
+            DropDownListText.Should().BeEquivalentTo(new List<string> { ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionP1D , ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT8H , ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT4H , ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT15M }, because:"Drop down list should contain only expected options");
         }
 
 
         [When(@"user clicks Deployment mode drop-down")]
         public void WhenUserClicksDeploymentModeDrop_Down()
         {
-            serviceMoniterPage.DeploymentModeDropDown.Click();
+            _serviceMoniterPage.DeploymentModeDropDown.Click();
         }
 
         [Then(@"drop down displays FALSE, TRUE")]
         public void ThenDropDownDisplaysFALSETRUE()
         {
-            IList<IWebElement> Dropdownlist = serviceMoniterPage.DeploymentModeDropDown.GetAllOptionsFromDDL();
+            IList<IWebElement> Dropdownlist = _serviceMoniterPage.DeploymentModeDropDown.GetAllOptionsFromDDL();
             IList<string> DropDownListString = new List<string>();
             foreach (IWebElement option in Dropdownlist)
             {
                 DropDownListString.Add(option.Text);
             }
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionTrue), ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionTrue + " Option is not available.\n");
-            Assert.AreEqual(true, DropDownListString.Contains(ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionFalse), ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionFalse + " Option is not available.\n");
+            DropDownListString.Should().BeEquivalentTo(new List<string> { ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionTrue , ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionFalse }, because: "Deployment mode drop-down should contain only true and false");
         }
 
         [When(@"user clicks Previous button")]
         public void WhenUserClicksPreviousButton()
         {
-            serviceMoniterPage.PreviousButton.Click();
+            _serviceMoniterPage.PreviousButton.Click();
         }
+
 
         [Then(@"Updates page is displayed")]
         public void ThenUpdatesPageIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.AssetTypeDropDown.GetElementVisibility(), "Updates page is not displayed.\n");
+            (_serviceMoniterPage.AssetTypeDropDown.GetElementVisibility()).Should().BeTrue(because: "Updates page should display when clicks previous button in service moniter settings page");
         }
 
         [Given(@"no devices are selected")]
         public void GivenNoDevicesAreSelected()
         {
-            Assert.AreEqual(ServiceMonitorPage.ExpectedValues.DestinationNoDeviceCountText, serviceMoniterPage.DestinalitioDeviceCount.Text, "Devices are selected.\n");
+            (_serviceMoniterPage.DestinationDeviceCount.Text).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.DestinationNoDeviceCountText, "No device should be selected in Service Monitor Settings page intially");
         }
 
         [Then(@"Service Monitor Settings label is displayed")]
         public void ThenServiceMonitorSettingsLabelIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings label is not displayed.\n");
-            string ActualLabel = serviceMoniterPage.ServiceMoniterLabel.Text;
-            string ExpectedLabel = ServiceMonitorPage.ExpectedValues.ServiceMoniterLabel;
-            Assert.AreEqual(ExpectedLabel, ActualLabel, "Service Monitor Settings label text does not match with the expected text.\n");
+            (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()).Should().BeTrue(because: "Service Monitor Settings label should be displayed in Service Monitor Settings page");
+            string ActualServiceMoniterSettingsLabelText = _serviceMoniterPage.ServiceMoniterLabel.Text;
+            (ActualServiceMoniterSettingsLabelText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.ServiceMoniterLabel, because: "Service Monitor Settings label text should match with the expected text");
         }
 
         [Then(@"Call home period label is displayed")]
         public void ThenCallHomePeriodLabelIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.CallHomePeroidLabel.GetElementVisibility(), "Call home period label is not displayed.\n");
-            string ActualLabel = serviceMoniterPage.CallHomePeroidLabel.Text;
-            string ExpectedLabel = ServiceMonitorPage.ExpectedValues.CallHomePeriodLabel;
-            Assert.AreEqual(ExpectedLabel.ToLower(), ActualLabel.ToLower(), "Call home period label text does not match with the expected text.\n");
+            (_serviceMoniterPage.CallHomePeroidLabel.GetElementVisibility()).Should().BeTrue(because: "Call home period label should be displayed in Service Monitor Settings page");
+            string ActualCallHomePeriodLabelText = _serviceMoniterPage.CallHomePeroidLabel.Text;
+            (ActualCallHomePeriodLabelText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.CallHomePeriodLabel, because: "Call home period label text shoud match with the expected text in Service Monitor Settings page");
         }
 
         [Then(@"Call home period dropdown is displayed")]
         public void ThenCallHomePeriodDropdownIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.CallHomePeriodDropDown.GetElementVisibility(), "Call home period dropdown is not displayed");
+            (_serviceMoniterPage.CallHomePeriodDropDown.GetElementVisibility()).Should().BeTrue(because: "Call home period dropdown should be displayed in Service Monitor Settings page");
         }
 
         [Then(@"Deployment mode label is displayed")]
         public void ThenDeploymentModeLabelIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.DeploymentModeLabel.GetElementVisibility(), "Deployment mode label is not displayed.\n");
-            string ActualLabel = serviceMoniterPage.DeploymentModeLabel.Text;
-            string ExpectedLabel = ServiceMonitorPage.ExpectedValues.DeploymentModeLabel;
-            Assert.AreEqual(ExpectedLabel, ActualLabel, "Deployment mode label text does not match with the expected text.\n");
+            (_serviceMoniterPage.DeploymentModeLabel.GetElementVisibility()).Should().BeTrue(because: "Deployment mode label should be displayed in Service Monitor Settings page");
+            string ActualDeploymentModeLabelText = _serviceMoniterPage.DeploymentModeLabel.Text;
+            (ActualDeploymentModeLabelText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.DeploymentModeLabel,because: "Deployment mode label text does not match with the expected text in Service Monitor Settings page");
         }
 
         [Then(@"Deployment mode drop down is displayed")]
         public void ThenDeploymentModeDropDownIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.DeploymentModeDropDown.GetElementVisibility(), "Deployment mode drop down is not displayed");
+            (_serviceMoniterPage.DeploymentModeDropDown.GetElementVisibility()).Should().BeTrue(because: "Deployment mode drop down should be displayed in Service Monitor Settings page");
         }
 
         [Then(@"Destinations label is displayed")]
         public void ThenDestinationsLabelIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.DestinationLabel.GetElementVisibility(), "Destinations label is not displayed.\n");
-            string ActualLabel = serviceMoniterPage.DestinationLabel.Text;
-            string ExpectedLabel = ServiceMonitorPage.ExpectedValues.DestinationLabel;
-            Assert.AreEqual(ExpectedLabel, ActualLabel, "Destinations label text does not match with the expected text.\n");
+            (_serviceMoniterPage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destinations label should be displayed in Service Monitor Settings page");
+            string ActualDestinationLabelLabelText = _serviceMoniterPage.DestinationLabel.Text;
+            (ActualDestinationLabelLabelText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.DestinationLabel, because: "Destinations label text should match with the expected text");
         }
 
         [Then(@"location hierarchy selectors are displayed")]
         public void ThenLocationHierarchySelectorsAreDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.LocationHierarchySelectors.GetElementVisibility(), "location hierarchy selectors are not displayed");
+            (_serviceMoniterPage.LocationHierarchySelectors.GetElementVisibility()).Should().BeTrue(because: "location hierarchy selectors should be displayed in Service Monitor Settings page");
         }
 
         [Then(@"count of selected devices is displayed")]
         public void ThenCountOfSelectedDevicesIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.DestinalitioDeviceCount.GetElementVisibility(), "count of selected devices is not displayed");
+            (_serviceMoniterPage.DestinationDeviceCount.GetElementVisibility()).Should().BeTrue(because: "count of selected devices should be displayed in Service Monitor Settings page");
         }
 
         [Then(@"count of selected locations is displayed")]
         public void ThenCountOfSelectedLocationsIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.DestinalitioDeviceCount.GetElementVisibility(), "count of selected locations is not displayed");
+            (_serviceMoniterPage.DestinationDeviceCount.GetElementVisibility()).Should().BeTrue(because: "count of selected location should be displayed in Service Monitor Settings page");
         }
 
         [Then(@"Previous button is enabled")]
         public void ThenPreviousButtonIsEnabled()
         {
-            Assert.AreEqual(true, serviceMoniterPage.PreviousButton.Enabled, "Previous button is disabled");
+            (_serviceMoniterPage.PreviousButton.Enabled).Should().BeTrue(because: "Previous button should be enabled in Service moniter settings page");
         }
 
         [Then(@"Deploy button is disabled")]
         public void ThenDeployButtonIsDisabled()
         {
-            Assert.AreEqual(false, serviceMoniterPage.DeployButton.Enabled, "Deploy button is enabled");
+            (_serviceMoniterPage.DeployButton.Enabled).Should().BeFalse(because: "Deploy button should not be enabled when no service moniter device is selected.");
         }
 
         [Then(@"Page x of y label is displayed")]
         public void ThenPageXOfYLabelIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.PaginationXofY.GetElementVisibility(), "Page x of y label is not displayed");
+            (_serviceMoniterPage.PaginationXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y label should be displayed in Service Monitor Settings page");
         }
 
         [Then(@"Displaying x to y of z results label is displayed")]
         public void ThenDisplayingXToYOfZResultsLabelIsDisplayed()
         {
-            Assert.AreEqual(true, serviceMoniterPage.PaginationDisplayXofY.GetElementVisibility(), "Displaying x to y of z results label is not displayed");
+            (_serviceMoniterPage.PaginationDisplayXofY.GetElementVisibility()).Should().BeTrue(because: "Displaying x to y of z results label should be displayed in Service Monitor Settings page");
         }
 
         [Then(@"Select all checkbox is unchecked")]
         public void ThenSelectAllCheckboxIsUnchecked()
         {
-            Assert.AreEqual(false, serviceMoniterPage.SelectAllCheckBox.Selected, "Select all checkbox in column 1 is checked");
+            (_serviceMoniterPage.SelectAllCheckBox.Selected).Should().BeFalse(because: "Select all checkbox should be unchecked Intially when service moniter settings page got loaded initially");
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenInColumnIsDisplayed(string headingName)
         {
             IWebElement headingElement=null;
-            string ExpectedHeadingText=null;
             switch(headingName.ToLower().Trim())
             {
-                case "serial number": headingElement = serviceMoniterPage.SerialNumHeading;
-                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.SerialNumHeadingText;
+                case "serial number": headingElement = _serviceMoniterPage.SerialNumHeading;
                     break;
                 case "call home period":
-                    headingElement = serviceMoniterPage.CallHomePeriodHeading;
-                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.CallHomePeriodHeadingText;
+                    headingElement = _serviceMoniterPage.CallHomePeriodHeading;
                     break;
                 case "deployment mode":
-                    headingElement = serviceMoniterPage.DeploymentModeHeading;
-                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.DeploymentModeHeadingText;
+                    headingElement = _serviceMoniterPage.DeploymentModeHeading;
                     break;
                 case "location":
-                    headingElement = serviceMoniterPage.LocationHeading;
-                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.LocationHeadingText;
+                    headingElement = _serviceMoniterPage.LocationHeading;
                     break;
                 case "last files deployed":
-                    headingElement = serviceMoniterPage.LastFilesDeployedHeading;
-                    ExpectedHeadingText = ServiceMonitorPage.ExpectedValues.LastFilesDeployedHeadingText;
+                    headingElement = _serviceMoniterPage.LastFilesDeployedHeading;
                     break;
                 default: Assert.Fail(headingName+" does not exist in the test data.\n");
                     break;
             }
-            Assert.AreEqual(true, headingElement.GetElementVisibility(), headingName+" is not displayed");
-            string ActualHeadingText = headingElement.Text;
-            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText.ToLower(), headingName+"is not matching with the expected value");
-
+            (headingElement.GetElementVisibility()).Should().BeTrue(because: headingName + " column heading should be displayed in service moniter settings page table");
+            string ActualColumnHeadingText = headingElement.Text;
+            (ActualColumnHeadingText).Should().BeEquivalentTo(headingName, because: headingName + " column heading should match with the expected value");
         }
 
         [Then(@"Select all checkbox is in column (.*)")]
         public void ThenSelectAllCheckboxIsInColumn(int columnNumber)
         {
-            string firstcolumnId = serviceMoniterPage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].FindElement(By.TagName("input")).GetAttribute("id");
-            Assert.AreEqual(ServiceMonitorPage.Locators.SelectAllCheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
+            string firstcolumnId = _serviceMoniterPage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].FindElement(By.TagName("input")).GetAttribute("id");
+            (firstcolumnId).Should().BeEquivalentTo(ServiceMonitorPage.Locators.SelectAllCheckBoxID, because: "Select all checkbox should be displayed in olumn number" + columnNumber);
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
         {
-            IList<IWebElement> columns = serviceMoniterPage.TableHeading.FindElements(By.TagName("div"));
-            Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+            IList<IWebElement> columnsList = _serviceMoniterPage.TableHeading.FindElements(By.TagName("div"));
+
+            List<string> columnListText = new List<string>();
+            foreach (IWebElement column in columnsList)
+            {
+                columnListText.Add(column.Text.ToLower());
+            }
+            //Making as zero based Indexing
+            columnNumber--;
+            columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
         }
 
 
@@ -274,85 +275,55 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
                 case "<=50":
                     GivenUserIsOnServiceMonitorSettingsPage();
                     break;
-                case ">50":
-                    _scenarioContext.Pending();
+                default: Assert.Fail(noOfEntries+" is a Invalid no of service moniter");
                     break;
-                case "50 and <=100":
-                    _scenarioContext.Pending();
-                    break;
-                default: Assert.Fail("Invalid no of service moniter");
-                    break;
-
-
             }
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(ServiceMonitorPage.Locators.FirstDeviceCheckBoxID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(ServiceMonitorPage.Locators.FirstDeviceCheckBoxID)));
         }
 
         [Then(@"Previous page icon is disabled")]
         public void ThenPreviousPageIconIsDisabled()
         {
-            String ActualPreviousIconPageNumberImage = serviceMoniterPage.PaginationPreviousButton.FindElement(By.TagName("img")).GetAttribute("src");
-            String ExpectedIconImage = ServiceMonitorPage.ExpectedValues.PaginationPreviousIconDisabledSrc;
-            Assert.AreEqual(ExpectedIconImage, ActualPreviousIconPageNumberImage, "Previous page button is enabled");
+            String ActualPreviousIconPageNumberImageSrc = _serviceMoniterPage.PaginationPreviousButton.FindElement(By.TagName("img")).GetAttribute("src");
+            (ActualPreviousIconPageNumberImageSrc).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.PaginationPreviousIconDisabledSrc, because: "Previous page button should be disabled in service moniter setting page which has less than 50 devices");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
-            String ActualPreviousIconPageNumberImage = serviceMoniterPage.PaginationNextButton.FindElement(By.TagName("img")).GetAttribute("src");
-            String ExpectedIconImage = ServiceMonitorPage.ExpectedValues.PaginationNextIconDisabledSrc;
-            Assert.AreEqual(ExpectedIconImage, ActualPreviousIconPageNumberImage, "Previous page button is enabled");
+            String ActualPreviousIconPageNumberImageSrc = _serviceMoniterPage.PaginationNextButton.FindElement(By.TagName("img")).GetAttribute("src");
+            (ActualPreviousIconPageNumberImageSrc).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.PaginationNextIconDisabledSrc, because: "Next page button should be disabled in service moniter setting page which has less than 50 devices");
         }
-
-        [Then(@"Next page icon is enabled")]
-        public void ThenNextPageIconIsEnabled()
-        {
-            String PageNumberBeforeClick = serviceMoniterPage.PaginationXofY.Text;
-            serviceMoniterPage.PaginationNextButton.JavaSciptClick();
-            string PageNumberAfterClick = serviceMoniterPage.PaginationXofY.Text;
-            Assert.AreNotEqual(PageNumberBeforeClick, PageNumberAfterClick, "Next page button is not enabled");
-        }
-
-
 
         [Given(@"user selects Call home period as P1D \(24 HOURS\)")]
         public void GivenUserSelectsCallHomePeriodAsPDHOURS()
         { 
-            SelectElement select = new SelectElement(serviceMoniterPage.CallHomePeriodDropDown);
-            select.SelectByText("P1D",true);
-            
+            _serviceMoniterPage.CallHomePeriodDropDown.SelectDDL(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionP1DPatialText, true);
         }
 
         [Given(@"Deployment mode as FALSE")]
         public void GivenDeploymentModeAsFALSE()
         {
-            serviceMoniterPage.DeploymentModeDropDown.SelectDDL("False");
+            _serviceMoniterPage.DeploymentModeDropDown.SelectDDL(ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionFalsePartialText,partialMatch:true);
         }
 
 
         [When(@"user selects checkbox for first data row in table")]
         public void WhenUserSelectsCheckboxForFirstDataRowInTable()
         {
-            serviceMoniterPage.FirstDeviceCheckBox.Click();
+            _serviceMoniterPage.FirstDeviceCheckBox.Click();
         }
 
         [Then(@"Upgrade count label updates with selection of row")]
         public void ThenUpgradeCountLabelUpdatedWithSelectionOfRow()
         {
-            Assert.AreEqual(ServiceMonitorPage.ExpectedValues.Destination1DeviceCountText, serviceMoniterPage.DestinalitioDeviceCount.Text, "Upgrade count label is not updated.\n");
+            (_serviceMoniterPage.DestinationDeviceCount.Text).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.Destination1DeviceCountText, because: "Upgrade count label should be updated when user selects one device in service moniter settings page");
         }
 
         [Then(@"Deploy button is enabled")]
         public void ThenDeployButtonIsEnabled()
         {
-            Assert.AreEqual(true, serviceMoniterPage.DeployButton.Enabled, "Deploy button is not enabled");
-        }
-
-        [When(@"user clicks Next page button")]
-        public void WhenUserClicksNextPageButton()
-        {
-            SetMethods.ScrollToBottomofWebpage();
-            serviceMoniterPage.PaginationNextButton.JavaSciptClick();
+            (_serviceMoniterPage.DeployButton.Enabled).Should().BeTrue(because: "Deploy button should be enabled when user selects one device in service moniter settings page");
         }
     }
 }

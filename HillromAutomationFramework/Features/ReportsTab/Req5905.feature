@@ -12,7 +12,7 @@ Scenario: Centrella Firmware Status Serial Number Search
 	Given user is on Centrella Firmware Upgrade Status Report page
 	When user enters "serial number" in Search textbox
 	And presses Enter
-	Then device with matching "serial number" are displayed
+	Then device with matching "serial number" is displayed
 
 @TestCaseID_10024 @UISID_8685 @UISID_8692
 Scenario: Centrella Firmware Status Firmware Version Search
@@ -52,7 +52,7 @@ Scenario: CSM Firmware Status Serial Number Search
 	Given user is on CSM Firmware Upgrade Status Report page
 	When user enters "serial number" in Search textbox
 	And presses Enter
-	Then device with matching "serial number" are displayed
+	Then device with matching "serial number" is displayed
 
 @TestCaseID_10030 @UISID_8685 @UISID_8692
 Scenario: CSM Firmware Status Firmware Version Search

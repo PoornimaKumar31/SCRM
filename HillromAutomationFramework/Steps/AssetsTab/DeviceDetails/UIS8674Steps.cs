@@ -110,7 +110,20 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             GivenManagerUserIsOnDeviceDetailsPageForCentrellaSerialNumber(serialNumber);
             WhenUserClicksLocateAssetButton();
             ThenLocateAssetPop_UpDialogIsDisplayed();
+            WhenUserClicksLocateAssetButton();
+            ThenLocateAssetPop_UpDialogIsDisplayed();
         }
+
+
+        [Given(@"regular user is on Locate Asset pop-up dialog for Centrella Serial number ""(.*)""")]
+        public void GivenRegularUserIsOnLocateAssetPop_UpDialogForCentrellaSerialNumber(string serialNumber)
+        {
+            loginPage.LogIn(LoginPage.LogInType.StandardUserWithoutRollUpPage);
+            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            mainPage.SearchSerialNumberAndClick(serialNumber);
+        }
+
+
 
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string columnName)

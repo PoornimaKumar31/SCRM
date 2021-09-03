@@ -121,7 +121,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _firmwareStatusPage.SearchBox.EnterText(Keys.Enter);
         }
 
-        [Then(@"devices with matching ""(.*)"" are displayed"), Then(@"device with matching ""(.*)"" are displayed")]
+        [Then(@"devices with matching ""(.*)"" are displayed"), Then(@"device with matching ""(.*)"" is displayed")]
         public void ThenDeviceWithMatchingIsDisplayed(string searchType)
         {
             //Wait till Data is loaded
