@@ -134,6 +134,5 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         {
             Assert.IsFalse(selectedRow.GetElementVisibility(), "Could not find the user");
         }
-
     }
 }
