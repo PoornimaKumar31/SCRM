@@ -33,7 +33,7 @@ Scenario: AP Mapping List Elements Regular User
 
 @TestCaseID_9939 @UISID_8674
 Scenario: AP Mapping List Table
-	Given manager user is on Locate Asset pop-up dialog for Centrella Serial number "PY673002"
+	Given regular user is on Locate Asset pop-up dialog for Centrella Serial number "PY673002"
 	Then "Campus" column heading is displayed
 	And "Building" column heading is displayed
 	And "Floor" column heading is displayed
@@ -41,7 +41,7 @@ Scenario: AP Mapping List Table
 
 @TestCaseID_9940 @UISID_8674
 Scenario: AP Mapping List Table No Match
-	Given manager user is on Locate Asset pop-up dialog for Centrella Serial number "PY673001"
+	Given regular user is on Locate Asset pop-up dialog for Centrella Serial number "PY673001"
 	Then  value in "Campus" column is "N/A"
 	And value in "Building" column is "N/A"
 	And value in "Floor" column is "N/A"

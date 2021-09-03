@@ -165,11 +165,11 @@ namespace HillromAutomationFramework.SupportingCode
         /// </summary>
         /// <param name="element">Dropdown WebElement</param>
         /// <param name="value">Option text to select.</param>
-        public static void SelectDDL(this IWebElement element, string value)
+        public static void SelectDDL(this IWebElement element, string value,bool partialMatch=false)
         {
             try
             {
-                new SelectElement(element).SelectByText(value);
+                new SelectElement(element).SelectByText(value,partialMatch);
             }
             catch(Exception e)
             {

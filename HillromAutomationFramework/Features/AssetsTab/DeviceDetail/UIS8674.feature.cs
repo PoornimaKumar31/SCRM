@@ -273,7 +273,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 36
- testRunner.Given("manager user is on Locate Asset pop-up dialog for Centrella Serial number \"PY6730" +
+ testRunner.Given("regular user is on Locate Asset pop-up dialog for Centrella Serial number \"PY6730" +
                         "02\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 37
@@ -324,7 +324,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 44
- testRunner.Given("manager user is on Locate Asset pop-up dialog for Centrella Serial number \"PY6730" +
+ testRunner.Given("regular user is on Locate Asset pop-up dialog for Centrella Serial number \"PY6730" +
                         "01\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 45

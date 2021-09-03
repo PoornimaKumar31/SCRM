@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AdvancedTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
@@ -18,7 +19,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly AdvancedPage _advancePage;
-        readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
+        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         string RandomString = null;
         string RandomUsername = null;
         string RandomPhoneNumber =null;
@@ -30,14 +32,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string UserInputFullname = null;
         string Role = null;
 
-        private readonly ScenarioContext _scenarioContext;
+        
 
         public Req5720Steps(ScenarioContext scenarioContext)
         {
             _loginPage = new LoginPage();
             _landingPage = new LandingPage();
-            _advancePage = new AdvancedPage();
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _advancePage = new AdvancedPage();           
             _scenarioContext = scenarioContext;
         }
 
@@ -47,7 +48,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             //Clicking on facility
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _advancePage.AdvancedTab.JavaSciptClick();
         }
 
@@ -63,60 +64,61 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Add User page is displayed")]
         public void ThenAddUserPageIsDisplayed()
         {
-            string AddUserTitle = _advancePage.AddUserOnCreatePage.Text;
-            Assert.AreEqual(AdvancedPage.ExpectedValues.AddUserListPageText, AddUserTitle, "Add User page is not displayed.");
+            string addUserTitle = _advancePage.AddUserOnCreatePage.Text;
+            addUserTitle.Should().Be(AdvancedPage.ExpectedValues.AddUserListPageText, "Add User page should be displayed on clicking on CREATE button.");
         }
 
         [Then(@"User information label is displayed")]
         public void ThenUserInformationLabelIsDisplayed()
         {
             string UserInformationLabel = _advancePage.UserInformationLabel.Text;
-            Assert.AreEqual("User Information:", UserInformationLabel, "User information label is not displayed.");
+            UserInformationLabel.Should().Be(AdvancedPage.ExpectedValues.UserInformationLabel, "User information label should be displayed on EDIT USER page.");
         }
 
         [Then(@"Username textbox is displayed")]
         public void ThenUsernameTextboxIsDisplayed()
         {
-            bool IsDisplayed = _advancePage.UserNameTextBoxOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Username textbox is not displayed.");
+            bool isUsernameTextBoxDisplayed = _advancePage.UserNameTextBoxOnCreatePage.GetElementVisibility();
+            isUsernameTextBoxDisplayed.Should().BeTrue(because: "Username textbox should be displayed on Add User page.");
         }
 
         [Then(@"unchecked checkbox with User manager label is displayed")]
         public void ThenUncheckedCheckboxWithUserManagerLabelIsDisplayed()
         {
             Thread.Sleep(2000);
-            bool IsUnchecked = _advancePage.UserManagerOnCreatePage.Selected;
-            Assert.IsFalse(IsUnchecked, "Unchecked checkbox with User manager label is not displayed.");
+            bool isDisplayed = _advancePage.UserManagerOnCreatePage.Selected;
+            isDisplayed.Should().BeFalse(because: "Unchecked checkbox with User manager label should be displayed on Add User page.");
         }
 
         [Then(@"Full name textbox is displayed")]
         public void ThenFullNameTextboxIsDisplayed()
         {
-            bool IsDisplayed = _advancePage.FullNameOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Full Name textbox is not displayed.");
+            bool isDisplayed = _advancePage.FullNameOnCreatePage.GetElementVisibility();
+            isDisplayed.Should().BeTrue(because: "Full Name textbox should be displayed on Add User page.");
         }
 
         [Then(@"Phone number textbox is displayed")]
         public void ThenPhoneNumberTextboxIsDisplayed()
         {
-            bool IsDisplayed = _advancePage.PhoneNumberOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Phone number textbox is not displayed.");
+            bool isDisplayed = _advancePage.PhoneNumberOnCreatePage.GetElementVisibility();
+            isDisplayed.Should().BeTrue(because: "Phone number textbox is displayed on Add User page.");
         }
 
         [Then(@"disabled Save button is displayed")]
         public void ThenDisabledSaveButtonIsDisplayed()
         {
-            bool IsDisabled = _advancePage.SaveButtonOnCreatePage.Enabled;
-            bool IsSaveButtonVisibility = _advancePage.SaveButtonOnCreatePage.GetElementVisibility();
-            Assert.IsFalse(IsDisabled, "Save button is not disabled");
-            Assert.IsTrue(IsSaveButtonVisibility, "Save button is not displayed");
+            bool isDisabled = _advancePage.SaveButtonOnCreatePage.Enabled;
+            bool isSaveButtonVisibility = _advancePage.SaveButtonOnCreatePage.GetElementVisibility();
+
+            isDisabled.Should().BeFalse(because: "Save button should be disabled on Add User page.");
+            isSaveButtonVisibility.Should().BeTrue(because: "Save button should be displayed on Add User page.");
         }
 
         [Then(@"enabled Cancel button is displayed")]
         public void ThenEnabledCancelButtonIsDisplayed()
         {
-            bool IsEnabled = _advancePage.CancelButtonOnCreatePage.Enabled;
-            Assert.IsTrue(IsEnabled, "Cancel button is not enabled");
+            bool isEnabled = _advancePage.CancelButtonOnCreatePage.Enabled;
+            isEnabled.Should().BeTrue(because: "Cancel button should be enabled on Add User page.");
         }
 
         [Given(@"manager user is on Add User page")]
@@ -154,23 +156,25 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"no username error message is displayed")]
         public void ThenNoUsernameErrorMessageIsDisplayed()
         {
-            bool IsDisplayed = _advancePage.UserNameErrorMessageOnCreatePage.GetElementVisibility();
-            Assert.IsFalse(IsDisplayed, "Username error message is displayed");
+            bool isDisplayed = _advancePage.UserNameErrorMessageOnCreatePage.GetElementVisibility();
+            isDisplayed.Should().BeFalse(because: "Error message should not be displayed when user enters valid username.");
         }
 
         [Then(@"enabled Save button is displayed")]
         public void ThenEnabledSaveButtonIsDisplayed()
         {
             bool IsSaveButtonEnabled = _advancePage.SaveButtonOnCreatePage.Enabled;
-            Assert.IsTrue(IsSaveButtonEnabled);
+            IsSaveButtonEnabled.Should().BeTrue(because: "Save button should be enabled on Add User page.");
+            bool isSaveDisplayed = _advancePage.SaveButtonOnCreatePage.GetElementVisibility();
+            isSaveDisplayed.Should().BeTrue(because: "Save button should be displayed on Add User page.");
         }
 
         [Then(@"username error message is displayed")]
         public void ThenUsernameErrorMessageIsDisplayed()
         {
             Thread.Sleep(1000);
-            bool IsDisplayed = _advancePage.UserNameErrorMessageOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsDisplayed, "Username error message is not displayed");
+            bool isUsernameErrorMessageDisplayed = _advancePage.UserNameErrorMessageOnCreatePage.GetElementVisibility();
+            isUsernameErrorMessageDisplayed.Should().BeTrue("Username error message should be displayed on Add User page.");
         }
 
         [When(@"user enters invalid Username ""(.*)""")]
@@ -193,7 +197,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             SetMethods.ScrollUpWebPage();
             Thread.Sleep(1000);
             bool IsUserListDisplayed = _advancePage.UserListLabel.GetElementVisibility();
-            Assert.IsTrue(IsUserListDisplayed, "User list Page is not displayed");
+            IsUserListDisplayed.Should().BeTrue("User list Page should be displayed");
         }
 
         [Then(@"no user is created")]
@@ -212,7 +216,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                     break;
                 }
             }
-            Assert.IsFalse(IsUserCreated, "New user is created");
+            IsUserCreated.Should().BeFalse("New user should be created on USER LIST page");
         }
 
         [Given(@"manager user is on User Management page")]
@@ -220,7 +224,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             bool IsUserManagementVisible = _advancePage.UserManagement.GetElementVisibility();
-            Assert.IsTrue(IsUserManagementVisible, "Manager user is not on User Management page");
+            IsUserManagementVisible.Should().BeTrue("Manager user should be on User Management page");
         }
 
         [When(@"user enters Username ""(.*)""")]
@@ -247,16 +251,16 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"no name error message is displayed")]
         public void ThenNoNameErrorMessageIsDisplayed()
         {
-            bool IsNameErrorMessageDisplayed = _advancePage.FullNameErrorMessageOnCreatePage.GetElementVisibility();
-            Assert.IsFalse(IsNameErrorMessageDisplayed, "Name error message is displayed");
+            bool isNameErrorMessageDisplayed = _advancePage.FullNameErrorMessageOnCreatePage.GetElementVisibility();
+            isNameErrorMessageDisplayed.Should().BeFalse("No name error message should be displayed on ADD USER page.");
         }
 
         [Then(@"name error message is displayed")]
         public void ThenNameErrorMessageIsDisplayed()
         {
             Thread.Sleep(2000);
-            bool IsNameErrorMessageDisplayed = _advancePage.FullNameErrorMessageOnCreatePage.GetElementVisibility();
-            Assert.IsTrue(IsNameErrorMessageDisplayed, "Name error message is not displayed");
+            bool isNameErrorMessageDisplayed = _advancePage.FullNameErrorMessageOnCreatePage.GetElementVisibility();
+            isNameErrorMessageDisplayed.Should().BeTrue("Name error message should be displayed on ADD USER page.");
         }
 
         [When(@"enters (.*)-character valid Full name")]
@@ -291,9 +295,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"new user is created")]
         public void ThenNewUserIsCreated()
         {
-            bool IsCreated = false;
+            bool isUserCreated = false;
             IList<IWebElement> list = _advancePage.UserList;
-            Assert.Greater(list.Count, 0, "No user is present except logged User.");
+            //Assert.Greater(list.Count, 0, "No user is present except logged User.");
+            list.Count.Should().BeGreaterThan(0, "No user should be present except logged User on USER LIST page");
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -302,39 +307,44 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                 ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
                 if (ActualEmail == RandomUsername)
                 {
-                    IsCreated = true;
+                    isUserCreated = true;
                     break;
                 }
             }
-            Assert.IsTrue(IsCreated, "New user is not created");
+            isUserCreated.Should().BeTrue("New user should be created on USER LIST page.");
         }
 
         [Then(@"new user role is Administrator")]
         public void ThenNewUserRoleIsAdministrator()
         {
-            Assert.IsTrue(ActualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage, "New user role is not Administrator");
+            bool isTrue = ActualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage;
+            isTrue.Should().BeTrue("New user role should appear Administrator on USER LIST page.");
         }
 
         [Then(@"Username, Name, and Phone number match")]
         public void ThenUsernameNameAndPhoneNumberMatch()
         {
             //Username and Full name matching from the User List Page
-            Assert.AreEqual(true, RandomUsername == ActualEmail, "Username does not match");
-            Assert.AreEqual(true, RandomFullName == ActualFullName, "Name does not match");
+            bool isSameUsername = RandomUsername == ActualEmail;
+            isSameUsername.Should().BeTrue("Username should be matched.");
+
+            bool isSameFullname = RandomFullName == ActualFullName;
+            isSameFullname.Should().BeTrue("Name should be matched.");
 
             //To match Phone number, need to click on Details button then I will get Phone number. So passing ActualUserName through method to find in table content and then Click on corresponding Details button.
             _advancePage.ClickOnDetailsButtonOfSpecifiedUser(RandomUsername);
             
             //Getting Phone number after clicking on Details button
             string ActualPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
-            Assert.AreEqual(true, ActualPhoneNumber == RandomPhoneNumber, "Phone does not match");
+            bool isSamePhoneNumber = ActualPhoneNumber == RandomPhoneNumber;
+            isSamePhoneNumber.Should().BeTrue("Phone number should be matched.");
         }
 
         [When(@"does not click User Manager checkbox")]
         public void WhenDoesNotClickUserManagerCheckbox()
         {
             bool IsCheckboxSelected = _advancePage.UserManagerCheckBox.Selected;
-            Assert.IsTrue(IsCheckboxSelected, "Click User Manager checkbox");
+            IsCheckboxSelected.Should().BeTrue("User Manager checkbox is already selected.");
         }
 
         [Then(@"new user role is Regular")]
@@ -351,14 +361,17 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                     break;
                 }
             }
-            Assert.AreEqual(AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage, ActualRole, "New user role is not Regular");
+            ActualRole.Should().Be(AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage, "New user role should be Regular on USER LIST page.");
         }
 
         [Then(@"Username and Name match")]
         public void ThenUsernameAndNameMatch()
         {
-            Assert.AreEqual(true, RandomFullName == ActualFullName, "Name not matched");
-            Assert.AreEqual(true, RandomUsername == ActualEmail, "Username not matched");
+            bool isSameUsername = RandomUsername == ActualEmail;
+            isSameUsername.Should().BeTrue("Username should be matched.");
+
+            bool isSameFullName = RandomFullName == ActualFullName;
+            isSameFullName.Should().BeTrue("Name should be matched.");
         }
 
         [Then(@"Phone number is blank")]
@@ -366,7 +379,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             _advancePage.ClickOnDetailsButtonOfSpecifiedUser(RandomUsername);
             string phoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
-            Assert.IsEmpty(phoneNumber, "Phone number is not blank");
+            phoneNumber.Should().BeEmpty("Phone number should be blank.");
         }
 
         [When(@"user enters valid Username")]
@@ -391,7 +404,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             if (IsCheckboxSelected == true)
             {                
                 _advancePage.UserManagerOnCreatePage.JavaSciptClick();
-                //Role = AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage;
             }
         }
 
@@ -404,8 +416,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"phone number error message is displayed")]
         public void ThenPhoneNumberErrorMessageIsDisplayed()
         {
-            bool IsPhoneNumberErrorMessageDisplayed = _advancePage.PhoneErrorMessageOnAddUserPage.GetElementVisibility();
-            Assert.IsTrue(IsPhoneNumberErrorMessageDisplayed, "Phone number error message is not displayed");
+            bool isPhoneNumberErrorMessageDisplayed = _advancePage.PhoneErrorMessageOnAddUserPage.GetElementVisibility();
+            isPhoneNumberErrorMessageDisplayed.Should().BeTrue("Phone number error message should be displayed on ADD USER page.");
         }
 
         [When(@"user enters valid email address, Name, Phone")]

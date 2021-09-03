@@ -16,50 +16,51 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
     [Binding, Scope(Tag = "SoftwareRequirementID_5725")]
     public sealed class Req5725Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        AdvancedPage advancePage = new AdvancedPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly AdvancedPage _advancePage;
         string RandomUsername = "";
         string FullnameRandom = "";
 
-        private readonly ScenarioContext _scenarioContext;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
-        public Req5725Steps(ScenarioContext scenarioContext)
+        public Req5725Steps()
         {
-            _scenarioContext = scenarioContext;
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _advancePage = new AdvancedPage();
         }
 
         [Given(@"Manager user is on Add User page")]
         public void GivenManagerUserIsOnAddUserPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            advancePage.AdvancedTab.JavaSciptClick();
+            _advancePage.AdvancedTab.JavaSciptClick();
             Thread.Sleep(2000);
-            advancePage.CreateUserOnCreatePage.Click();
+            _advancePage.CreateUserOnCreatePage.Click();
         }
 
         [When(@"user enters valid Username")]
         public void WhenUserEntersValidUsername()
         {
             RandomUsername = GetMethods.GenerateRandomUsername(15);
-            advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
+            _advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
         }
 
         [When(@"enters valid Full name")]
         public void WhenEntersValidFullName()
         {
             FullnameRandom = GetMethods.GenerateRandomString(15);
-            advancePage.FullNameOnCreatePage.EnterText(FullnameRandom);
+            _advancePage.FullNameOnCreatePage.EnterText(FullnameRandom);
         }
 
         [When(@"checks User Manager checkbox")]
         public void WhenChecksUserManagerCheckbox()
         {
             Thread.Sleep(1000);
-            advancePage.UserManagerOnCreatePage.JavaSciptClick();
+            _advancePage.UserManagerOnCreatePage.JavaSciptClick();
         }
 
         [When(@"clicks Save button")]
@@ -67,7 +68,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             SetMethods.ScrollToBottomofWebpage();
             Thread.Sleep(2000);
-            advancePage.SaveButtonOnCreatePage.Click();
+            _advancePage.SaveButtonOnCreatePage.Click();
         }
 
         [Then(@"User List page is displayed")]
@@ -76,7 +77,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             SetMethods.ScrollUpWebPage();
             Thread.Sleep(4000);
-            string UserListLabelText = advancePage.UserListLabel.Text;
+            string UserListLabelText = _advancePage.UserListLabel.Text;
             Assert.AreEqual(AdvancedPage.ExpectedValues.UserListPageLabelText, UserListLabelText, "User list page is not displayed");
         }
 
@@ -84,7 +85,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenNewlyAddedManagerUserIsDisplayed()
         {
             bool IsUserManagerDisplayed = false;
-            IList<IWebElement> list = advancePage.UserList;
+            IList<IWebElement> list = _advancePage.UserList;
             Assert.Greater(list.Count, 0, "No user is present except logged User.");
 
             for (int i = 0; i < list.Count; i++)
