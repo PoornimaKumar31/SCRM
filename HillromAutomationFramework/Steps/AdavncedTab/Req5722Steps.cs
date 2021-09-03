@@ -11,37 +11,42 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5722")]
     class Req5722Steps
-    {
+    {       
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;        
+        private readonly AdvancedPage _advancedPage;
+        private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private ScenarioContext _scenarioContext;
+
         public string email, fullname;
         public int FirstElementIndex = 0;
         public IWebElement selectedRow;
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        AdvancedPage advancedPage = new AdvancedPage();
 
-        private ScenarioContext _scenarioContext;
         public Req5722Steps(ScenarioContext scenarioContext)
         {
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _advancedPage = new AdvancedPage();
             _scenarioContext = scenarioContext;
         }
 
         [Given(@"manager user is on User List page having more than (.*) records")]
         public void GivenManagerUserIsOnUserListPageHavingMoreThanRecords(int numberOfUser)
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.AdvancedTab.JavaSciptClick();
-            Assert.Greater(advancedPage.UserList.Count, numberOfUser,"User List Page does not have more than 2 records");
+            _mainPage.AdvancedTab.JavaSciptClick();
+            Assert.Greater(_advancedPage.UserList.Count, numberOfUser,"User List Page does not have more than 2 records");
            
         }
 
         [When(@"user clicks Delete button for user")]
         public void WhenUserClicksDeleteButtonForUser()
         {
-            selectedRow = advancedPage.UserListExceptLoggedInUser()[FirstElementIndex];
+            selectedRow = _advancedPage.UserListExceptLoggedInUser()[FirstElementIndex];
             string selectedRowID = selectedRow.GetAttribute("id");
             char rowNum = selectedRowID[selectedRowID.Length - 1];
             email = selectedRow.FindElement(By.Id("email" + rowNum)).Text;
@@ -52,40 +57,40 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [Then(@"Delete User pop-up dialog is displayed")]
         public void ThenDeleteUserPop_UpDialogIsDisplayed()
         {
-            Assert.IsTrue(advancedPage.DeletePopup.GetElementVisibility(),"Delete Popup is not displayed");
+            Assert.IsTrue(_advancedPage.DeletePopup.GetElementVisibility(),"Delete Popup is not displayed");
         }
 
         [Then(@"user full name and email address are displayed")]
         public void ThenUserFullNameAndEmailAddressAreDisplayed()
         {
             string ExpectedText = fullname + " (" + email+")";
-            Assert.AreEqual(ExpectedText, advancedPage.DeletePopupUserNameEmailID.Text, "Fullname and email is not as expected");
+            Assert.AreEqual(ExpectedText, _advancedPage.DeletePopupUserNameEmailID.Text, "Fullname and email is not as expected");
         }
 
         [Then(@"""(.*)"" message is displayed")]
         public void ThenMessageIsDisplayed(string ExpectedText)
         {
-            Assert.IsTrue(advancedPage.DeletePopupConfirmationMessage.GetElementVisibility(), "Confirmation message is not displayed");
+            Assert.IsTrue(_advancedPage.DeletePopupConfirmationMessage.GetElementVisibility(), "Confirmation message is not displayed");
         }
 
 
         [Then(@"Yes button is displayed")]
         public void ThenYesButtonIsDisplayed()
         {
-            Assert.IsTrue(advancedPage.DeletePopupYesButton.GetElementVisibility(),"Yes button is not displayed");
+            Assert.IsTrue(_advancedPage.DeletePopupYesButton.GetElementVisibility(),"Yes button is not displayed");
         }
 
         [Then(@"No button is displayed")]
         public void ThenNoButtonIsDisplayed()
         {
-            Assert.IsTrue(advancedPage.DeletePopupNoButton.GetElementVisibility(), "No button is not displayed");
+            Assert.IsTrue(_advancedPage.DeletePopupNoButton.GetElementVisibility(), "No button is not displayed");
         }
 
 
         [Given(@"user clicks Delete button for user")]
         public void GivenUserClicksDeleteButtonForUser()
         {
-            selectedRow = advancedPage.UserListExceptLoggedInUser()[FirstElementIndex];
+            selectedRow = _advancedPage.UserListExceptLoggedInUser()[FirstElementIndex];
             string selectedRowID = selectedRow.GetAttribute("id");
             char rowNum = selectedRowID[selectedRowID.Length - 1];
             email = selectedRow.FindElement(By.Id("email" + rowNum)).Text;
@@ -96,25 +101,25 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [Given(@"Delete User pop-up dialog is displayed")]
         public void GivenDeleteUserPop_UpDialogIsDisplayed()
         {
-            Assert.IsTrue(advancedPage.DeletePopup.GetElementVisibility(), "Delete Popup is not displayed");
+            Assert.IsTrue(_advancedPage.DeletePopup.GetElementVisibility(), "Delete Popup is not displayed");
         }
 
         [When(@"user clicks No button")]
         public void WhenUserClicksNoButton()
         {
-            advancedPage.DeletePopupNoButton.Click();
+            _advancedPage.DeletePopupNoButton.Click();
         }
 
         [Then(@"Delete User pop-up dialog closes")]
         public void ThenDeleteUserPop_UpDialogCloses()
         {
-            Assert.IsFalse(advancedPage.DeletePopup.GetElementVisibility(), "Delete Popup is displayed");
+            Assert.IsFalse(_advancedPage.DeletePopup.GetElementVisibility(), "Delete Popup is displayed");
         }
 
         [Then(@"User List page is displayed")]
         public void ThenUserListPageIsDisplayed()
         {
-            Assert.IsTrue(advancedPage.UserListLabel.GetElementVisibility(), "User is not on the user list page");
+            Assert.IsTrue(_advancedPage.UserListLabel.GetElementVisibility(), "User is not on the user list page");
         }
 
         [Then(@"user is not deleted")]
@@ -126,7 +131,7 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [When(@"user clicks Yes button")]
         public void WhenUserClicksYesButton()
         {
-            advancedPage.DeletePopupYesButton.Click();
+            _advancedPage.DeletePopupYesButton.Click();
         }
 
         [Then(@"user is deleted")]

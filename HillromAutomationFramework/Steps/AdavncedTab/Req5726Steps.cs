@@ -14,50 +14,57 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
     [Binding, Scope(Tag = "SoftwareRequirementID_5726")]
     public class Req5726Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        AdvancedPage advancePage = new AdvancedPage();
+        LoginPage _loginPage;
+        LandingPage _landingPage;
+        AdvancedPage _advancePage;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
         string RandomUsername = null;
         string RandomFullName = null;
         string Role = null;
 
+        public Req5726Steps()
+        {
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _advancePage = new AdvancedPage();
+        }
 
         [Given(@"Manager user is on Add User page")]
         public void GivenManagerUserIsOnAddUserPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
             //Clicking on facility
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            advancePage.AdvancedTab.JavaSciptClick();
+            _advancePage.AdvancedTab.JavaSciptClick();
 
             //User is on add user page
-            advancePage.CreateUserOnCreatePage.Click();
+            _advancePage.CreateUserOnCreatePage.Click();
         }
         
         [When(@"user enters valid Username")]
         public void WhenUserEntersValidUsername()
         {
             RandomUsername = GetMethods.GenerateRandomUsername(15);
-            advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
+            _advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
         }
         
         [When(@"enters valid Full name")]
         public void WhenEntersValidFullName()
         {
             RandomFullName = GetMethods.GenerateRandomString(15);
-            advancePage.FullNameOnCreatePage.EnterText(RandomFullName);
+            _advancePage.FullNameOnCreatePage.EnterText(RandomFullName);
         }
         
         [When(@"unchecks User Manager checkbox")]
         public void WhenUnchecksUserManagerCheckbox()
         {
-            bool IsCheckboxSelected = advancePage.UserManagerOnCreatePage.Selected;
+            bool IsCheckboxSelected = _advancePage.UserManagerOnCreatePage.Selected;
 
             if (IsCheckboxSelected == true)
             {
-                advancePage.UserManagerOnCreatePage.JavaSciptClick();
+                _advancePage.UserManagerOnCreatePage.JavaSciptClick();
             }
         }
         
@@ -66,7 +73,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             SetMethods.ScrollToBottomofWebpage();
             Thread.Sleep(1000);
-            advancePage.SaveButtonOnCreatePage.Click();
+            _advancePage.SaveButtonOnCreatePage.Click();
         }
         
         [Then(@"User List page is displayed")]
@@ -75,7 +82,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             SetMethods.ScrollUpWebPage();
             Thread.Sleep(1000);
-            bool IsUserListDisplayed = advancePage.UserListLabel.GetElementVisibility();
+            bool IsUserListDisplayed = _advancePage.UserListLabel.GetElementVisibility();
             Assert.IsTrue(IsUserListDisplayed, "User list page is not displayed");
         }
         
@@ -83,7 +90,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenNewlyAddedRegularUserIsDisplayed()
         {
             bool IsRegularUserDisplayed = false;
-            IList<IWebElement> list = advancePage.UserList;
+            IList<IWebElement> list = _advancePage.UserList;
             Assert.Greater(list.Count, 0, "No user is present except logged User.");
 
             for (int i = 0; i < list.Count; i++)
