@@ -67,7 +67,6 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
             string expectedText = fullname + " (" + email+")";
             string actualText = _advancedPage.DeletePopupUserNameEmailID.Text;
             actualText.Should().Be("User full name and email address should be displayed on User List page.");
-            //Assert.AreEqual(expectedText, _advancedPage.DeletePopupUserNameEmailID.Text, "Fullname and email is not as expected");
         }
 
         [Then(@"""(.*)"" message is displayed")]
@@ -82,7 +81,6 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         {
             bool isYesButtonDisplayed = _advancedPage.DeletePopupYesButton.GetElementVisibility();
             isYesButtonDisplayed.Should().BeTrue("Yes button should be displayed on DELETE USER popup.");
-            //Assert.IsTrue(_advancedPage.DeletePopupYesButton.GetElementVisibility(),"Yes button is not displayed");
         }
 
         [Then(@"No button is displayed")]
@@ -90,7 +88,6 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         {
             bool isNoButtonDisplayed = _advancedPage.DeletePopupNoButton.GetElementVisibility();
             isNoButtonDisplayed.Should().BeTrue("No button should be displayed on DELETE USER popup.");
-           // Assert.IsTrue(_advancedPage.DeletePopupNoButton.GetElementVisibility(), "No button is not displayed");
         }
 
         [Given(@"user clicks Delete button for user")]

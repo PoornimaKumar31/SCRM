@@ -47,7 +47,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             _advancePage.AdvancedTab.JavaSciptClick();
             int totalUser = _advancePage.DetailsButtonList.Count;
             totalUser.Should().BeGreaterThan(noOfMinimumEntries, "Manager user should be more than two entries on User Management page.");
-            //Assert.Greater(totalUser, noOfMinimumEntries, "Manager user is on User Management page is not more than two entries");
         }
 
         [When(@"user clicks Details button for other User record")]
