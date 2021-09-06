@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AdvancedTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
@@ -42,22 +43,22 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Main page is displayed")]
         public void ThenMainPageIsDisplayed()
         {
-            bool IsOrganisationDropdownDisplayed = _mainPage.OrganizationDropdown.GetElementVisibility();
-            Assert.IsTrue(IsOrganisationDropdownDisplayed, "Main page is not displayed");
+            bool isOrganisationDropdownDisplayed = _mainPage.OrganizationDropdown.GetElementVisibility();
+            isOrganisationDropdownDisplayed.Should().BeTrue("Main page should be displayed.");
         }
 
         [Then(@"Advanced tab is displayed")]
         public void ThenAdvancedTabIsDisplayed()
         {
-            bool IsAdvancedTabDisplayed = _advancePage.AdvancedTab.GetElementVisibility();
-            Assert.IsTrue(IsAdvancedTabDisplayed, "Advanced tab is not displayed");
+            bool isAdvancedTabDisplayed = _advancePage.AdvancedTab.GetElementVisibility();
+            isAdvancedTabDisplayed.Should().BeTrue("Advanced tab should be displayed on Main page.");
         }
 
         [Then(@"Advanced tab is not displayed")]
         public void ThenAdvancedTabIsNotDisplayed()
         {
-            bool IsAdvancedTabDisplayed = _advancePage.AdvancedTab.GetElementVisibility();
-            Assert.IsFalse(IsAdvancedTabDisplayed, "Advanced tab is displayed");
+            bool isAdvancedTabDisplayed = _advancePage.AdvancedTab.GetElementVisibility();;
+            Assert.IsFalse(isAdvancedTabDisplayed, "Advanced tab is displayed");
         }
     }
 }
