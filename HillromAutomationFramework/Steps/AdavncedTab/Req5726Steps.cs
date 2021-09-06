@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AdvancedTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
@@ -82,16 +83,16 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             SetMethods.ScrollUpWebPage();
             Thread.Sleep(1000);
-            bool IsUserListDisplayed = _advancePage.UserListLabel.GetElementVisibility();
-            Assert.IsTrue(IsUserListDisplayed, "User list page is not displayed");
+            bool isUserListDisplayed = _advancePage.UserListLabel.GetElementVisibility();
+            isUserListDisplayed.Should().BeTrue("User List page should be displayed.");
         }
         
         [Then(@"newly added regular user is displayed")]
         public void ThenNewlyAddedRegularUserIsDisplayed()
         {
-            bool IsRegularUserDisplayed = false;
+            bool isRegularUserDisplayed = false;
             IList<IWebElement> list = _advancePage.UserList;
-            Assert.Greater(list.Count, 0, "No user is present except logged User.");
+            list.Count.Should().BeGreaterThan(0, "No user is present except logged User.");
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -99,11 +100,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                 string ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
                 if (ActualEmail == RandomUsername && ActualRole == AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage)
                 {
-                    IsRegularUserDisplayed = true;
+                    isRegularUserDisplayed = true;
                     break;
                 }
             }
-            Assert.IsTrue(IsRegularUserDisplayed, "Newy added regular user is not displayed");
+            isRegularUserDisplayed.Should().BeTrue("Newly added regular user should be displayed on User List page.");
         }
     }
 }

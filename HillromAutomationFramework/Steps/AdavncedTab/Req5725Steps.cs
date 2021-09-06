@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AdvancedTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
@@ -77,16 +78,17 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             Thread.Sleep(2000);
             SetMethods.ScrollUpWebPage();
             Thread.Sleep(4000);
-            string UserListLabelText = _advancePage.UserListLabel.Text;
-            Assert.AreEqual(AdvancedPage.ExpectedValues.UserListPageLabelText, UserListLabelText, "User list page is not displayed");
+            string actualUserListLabelText = _advancePage.UserListLabel.Text;
+            string expectedUserListLabelText = AdvancedPage.ExpectedValues.UserListPageLabelText;
+            actualUserListLabelText.Should().Be(expectedUserListLabelText, "User List page should be displayed on User Management tab.");
         }
 
         [Then(@"newly added manager user is displayed")]
         public void ThenNewlyAddedManagerUserIsDisplayed()
         {
-            bool IsUserManagerDisplayed = false;
+            bool isUserManagerDisplayed = false;
             IList<IWebElement> list = _advancePage.UserList;
-            Assert.Greater(list.Count, 0, "No user is present except logged User.");
+            list.Count.Should().BeGreaterThan(0, "No user is present except logged User.");
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -94,11 +96,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                 string ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
                 if (ActualEmail == RandomUsername && ActualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage)
                 {
-                    IsUserManagerDisplayed = true;
+                    isUserManagerDisplayed = true;
                     break;
                 }
             }
-            Assert.IsTrue(IsUserManagerDisplayed, "Newy added manager user is not displayed");
+            isUserManagerDisplayed.Should().BeTrue("Newly added manager user should be displayed on User List page.");
         }
     }
 }
