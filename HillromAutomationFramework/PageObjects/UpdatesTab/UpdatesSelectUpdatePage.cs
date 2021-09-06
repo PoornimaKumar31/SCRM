@@ -78,7 +78,7 @@ namespace HillromAutomationFramework.PageObjects
             public static string PaginationNextIconDiabledSource = PropertyClass.BaseURL + "/right_disabled.png";
             public static string PaginationPreviousIconEnabledSource = PropertyClass.BaseURL + "/icon_page_previous.svg";
             public static string PaginationPreviousIconDiabledSource = PropertyClass.BaseURL + "/left_disabled.png";
-            public const string SecondPageNumber = "Page 2 of 2";
+            public const string SecondPageNumber = "Page 2";
 
             public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";

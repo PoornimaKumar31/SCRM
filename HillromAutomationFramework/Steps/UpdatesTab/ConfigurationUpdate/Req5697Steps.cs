@@ -337,7 +337,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             //For CVSM Review action page
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
             {
-                (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in CVSM Review action page page.");
+                (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in CVSM Review action page.");
                 string ActualItemToPushLabelText = _updateReviewActionPage.ItemToPushLabel.Text;
                 (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CVSM Review action page.");
             }
@@ -574,7 +574,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Confirm button is enabled")]
         public void ThenConfirmButtonIsEnabled()
         {
-            (_updateReviewActionPage.ConfirmButton.Enabled).Should().BeTrue(because: "Confirm button should be enabled in CVSM review action page.");
+            (_updateReviewActionPage.ConfirmButton.Enabled).Should().BeTrue(because: "Confirm button should be enabled by default in CVSM review action page.");
         }
 
 
