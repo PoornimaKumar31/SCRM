@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AdvancedTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
@@ -39,8 +40,7 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AdvancedTab.JavaSciptClick();
-            Assert.Greater(_advancedPage.UserList.Count, numberOfUser,"User List Page does not have more than 2 records");
-           
+            _advancedPage.UserList.Count.Should().BeGreaterThan(numberOfUser, "User List Page does not have more than 2 records.");
         }
 
         [When(@"user clicks Delete button for user")]
@@ -57,35 +57,41 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [Then(@"Delete User pop-up dialog is displayed")]
         public void ThenDeleteUserPop_UpDialogIsDisplayed()
         {
-            Assert.IsTrue(_advancedPage.DeletePopup.GetElementVisibility(),"Delete Popup is not displayed");
+            bool isDeleteUserPopupDisplayed = _advancedPage.DeletePopup.GetElementVisibility();
+            isDeleteUserPopupDisplayed.Should().BeTrue("Delete User pop-up dialog should be displayed.");
         }
 
         [Then(@"user full name and email address are displayed")]
         public void ThenUserFullNameAndEmailAddressAreDisplayed()
         {
-            string ExpectedText = fullname + " (" + email+")";
-            Assert.AreEqual(ExpectedText, _advancedPage.DeletePopupUserNameEmailID.Text, "Fullname and email is not as expected");
+            string expectedText = fullname + " (" + email+")";
+            string actualText = _advancedPage.DeletePopupUserNameEmailID.Text;
+            actualText.Should().Be("User full name and email address should be displayed on User List page.");
+            //Assert.AreEqual(expectedText, _advancedPage.DeletePopupUserNameEmailID.Text, "Fullname and email is not as expected");
         }
 
         [Then(@"""(.*)"" message is displayed")]
         public void ThenMessageIsDisplayed(string ExpectedText)
         {
-            Assert.IsTrue(_advancedPage.DeletePopupConfirmationMessage.GetElementVisibility(), "Confirmation message is not displayed");
+            bool isConfirmationMessageDisplayed = _advancedPage.DeletePopupConfirmationMessage.GetElementVisibility();
+            isConfirmationMessageDisplayed.Should().BeTrue("Are you sure you want to delete this user? message should be displayed on DELETE USER popup");
         }
-
 
         [Then(@"Yes button is displayed")]
         public void ThenYesButtonIsDisplayed()
         {
-            Assert.IsTrue(_advancedPage.DeletePopupYesButton.GetElementVisibility(),"Yes button is not displayed");
+            bool isYesButtonDisplayed = _advancedPage.DeletePopupYesButton.GetElementVisibility();
+            isYesButtonDisplayed.Should().BeTrue("Yes button should be displayed on DELETE USER popup.");
+            //Assert.IsTrue(_advancedPage.DeletePopupYesButton.GetElementVisibility(),"Yes button is not displayed");
         }
 
         [Then(@"No button is displayed")]
         public void ThenNoButtonIsDisplayed()
         {
-            Assert.IsTrue(_advancedPage.DeletePopupNoButton.GetElementVisibility(), "No button is not displayed");
+            bool isNoButtonDisplayed = _advancedPage.DeletePopupNoButton.GetElementVisibility();
+            isNoButtonDisplayed.Should().BeTrue("No button should be displayed on DELETE USER popup.");
+           // Assert.IsTrue(_advancedPage.DeletePopupNoButton.GetElementVisibility(), "No button is not displayed");
         }
-
 
         [Given(@"user clicks Delete button for user")]
         public void GivenUserClicksDeleteButtonForUser()
@@ -101,7 +107,8 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [Given(@"Delete User pop-up dialog is displayed")]
         public void GivenDeleteUserPop_UpDialogIsDisplayed()
         {
-            Assert.IsTrue(_advancedPage.DeletePopup.GetElementVisibility(), "Delete Popup is not displayed");
+            bool isDeleteUserPopupDisplayed = _advancedPage.DeletePopup.GetElementVisibility();
+            isDeleteUserPopupDisplayed.Should().BeTrue("Delete User pop-up dialog should be displayed.");
         }
 
         [When(@"user clicks No button")]
@@ -113,19 +120,22 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [Then(@"Delete User pop-up dialog closes")]
         public void ThenDeleteUserPop_UpDialogCloses()
         {
-            Assert.IsFalse(_advancedPage.DeletePopup.GetElementVisibility(), "Delete Popup is displayed");
+            bool isDeleteUserPopupDisplayed = _advancedPage.DeletePopup.GetElementVisibility();
+            isDeleteUserPopupDisplayed.Should().BeFalse("Delete User pop-up dialog should be closed.");
         }
 
         [Then(@"User List page is displayed")]
         public void ThenUserListPageIsDisplayed()
         {
-            Assert.IsTrue(_advancedPage.UserListLabel.GetElementVisibility(), "User is not on the user list page");
+            bool isUserListPageDisplayed = _advancedPage.UserListLabel.GetElementVisibility();
+            isUserListPageDisplayed.Should().BeTrue("User List page should be displayed");
         }
 
         [Then(@"user is not deleted")]
         public void ThenUserIsNotDeleted()
         {
-            Assert.IsTrue(selectedRow.GetElementVisibility(),"Could not find the user");
+            bool isUserNotDeleted = selectedRow.GetElementVisibility();
+            isUserNotDeleted.Should().BeTrue("User should not be deleted from User List page.");
         }
 
         [When(@"user clicks Yes button")]
@@ -137,7 +147,8 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [Then(@"user is deleted")]
         public void ThenUserIsDeleted()
         {
-            Assert.IsFalse(selectedRow.GetElementVisibility(), "Could not find the user");
+            bool isUserDeleted = selectedRow.GetElementVisibility();
+            isUserDeleted.Should().BeFalse("User should be deleted from User List page.");
         }
     }
 }
