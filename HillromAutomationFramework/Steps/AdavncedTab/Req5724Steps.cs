@@ -57,8 +57,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Advanced tab is not displayed")]
         public void ThenAdvancedTabIsNotDisplayed()
         {
-            bool isAdvancedTabDisplayed = _advancePage.AdvancedTab.GetElementVisibility();;
-            Assert.IsFalse(isAdvancedTabDisplayed, "Advanced tab is displayed");
+            bool isAdvancedTabDisplayed = _advancePage.AdvancedTab.GetElementVisibility();
+            isAdvancedTabDisplayed.Should().BeFalse("Advanced tab should not be displayed on Main page.");
         }
     }
 }

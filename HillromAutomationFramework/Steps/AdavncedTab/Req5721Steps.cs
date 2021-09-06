@@ -22,13 +22,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private readonly ScenarioContext _scenarioContext;
 
-        string RandomFullName = null;
-        string RandomPhoneNumber = null;
-        string BlankFullName = "";
-        int RandomInvalidUsernameLength = 51;
-        int RandomValidUsernameLength = 49;
-        int DetailsButtonPosition;
-        string RoleXpath = null;
+        string randomFullName = null;
+        string randomPhoneNumber = null;
+        string blankFullName = "";
+        int randomInvalidUsernameLength = 51;
+        int randomValidUsernameLength = 49;
+        int detailsButtonPosition;
+        string roleXpath = null;
 
         public Req5721Steps(ScenarioContext scenarioContext)
         {
@@ -52,12 +52,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user clicks Details button for other User record")]
         public void WhenUserClicksDetailsButtonForOtherUserRecord()
         {
-            DetailsButtonPosition = 0;
+            detailsButtonPosition = 0;
             IList<IWebElement> list = _advancePage.UserListExceptLoggedInUser();
             list.Count.Should().BeGreaterThan(0, "No user is present except logged User");
 
             //Selecting first user details button and clicking
-            list[DetailsButtonPosition].FindElement(By.Id(AdvancedPage.Locators.DetailsButtonID)).Click();
+            list[detailsButtonPosition].FindElement(By.Id(AdvancedPage.Locators.DetailsButtonID)).Click();
         }
 
         [Then(@"Edit Users page is displayed")]
@@ -131,12 +131,12 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _advancePage.AdvancedTab.JavaSciptClick();
 
-            DetailsButtonPosition = 0;
+            detailsButtonPosition = 0;
             IList<IWebElement> list = _advancePage.UserListExceptLoggedInUser();
             list.Count.Should().BeGreaterThan(0, "No user should be present except logged User.");
 
             //Selecting first user details button and clicking
-            list[DetailsButtonPosition].FindElement(By.Id(AdvancedPage.Locators.DetailsButtonID)).Click();
+            list[detailsButtonPosition].FindElement(By.Id(AdvancedPage.Locators.DetailsButtonID)).Click();
         }
 
         [When(@"user enters Full name with ""(.*)"" characters")]
@@ -145,14 +145,14 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             if (FullNameCharacterSize == ">50")
             {
                 _advancePage.FullName.Clear();
-                RandomFullName = GetMethods.GenerateRandomString(RandomInvalidUsernameLength);
-                _advancePage.FullName.EnterText(RandomFullName);
+                randomFullName = GetMethods.GenerateRandomString(randomInvalidUsernameLength);
+                _advancePage.FullName.EnterText(randomFullName);
             }
             else
             {
                 _advancePage.FullName.Clear();
-                RandomFullName = GetMethods.GenerateRandomString(RandomValidUsernameLength);
-                _advancePage.FullName.EnterText(RandomFullName);
+                randomFullName = GetMethods.GenerateRandomString(randomValidUsernameLength);
+                _advancePage.FullName.EnterText(randomFullName);
             }           
         }
 
@@ -203,7 +203,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             {
                 string ActualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
 
-                if (ActualFullName == RandomFullName)
+                if (ActualFullName == randomFullName)
                 {
                     isCreated = true;
                     break;
@@ -215,7 +215,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters blank Full name")]
         public void WhenUserEntersBlankFullName()
         {
-            _advancePage.FullName.EnterText(BlankFullName);
+            _advancePage.FullName.EnterText(blankFullName);
         }
 
         [When(@"clicks Cancel button")]
@@ -254,8 +254,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             //Generating phone number just by passing length of phone number to the method.
             string Random4Digits = GetMethods.GenerateNDigitRandomNumber(4);
             string Prefix = "+1315685";
-            RandomPhoneNumber = Prefix + Random4Digits;
-            _advancePage.PhoneTextField.EnterText(RandomPhoneNumber);
+            randomPhoneNumber = Prefix + Random4Digits;
+            _advancePage.PhoneTextField.EnterText(randomPhoneNumber);
         }
 
         [When(@"user enters blank Phone number")]
@@ -304,10 +304,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             //Generating Random 4 digits int number
             string Random4Digits = GetMethods.GenerateNDigitRandomNumber(4);
             string Prefix = "+1315685";
-            RandomPhoneNumber = Prefix + Random4Digits;
+            randomPhoneNumber = Prefix + Random4Digits;
 
             //Entering phone number in the text box
-            _advancePage.PhoneTextField.EnterText(RandomPhoneNumber);          
+            _advancePage.PhoneTextField.EnterText(randomPhoneNumber);          
             Thread.Sleep(3000);
             _advancePage.UserManagerCheckBox.JavaSciptClick();
         }
@@ -315,7 +315,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Full name, Phone number, and Role are not changed on User List page")]
         public void ThenUpdatedFullNameIsNotDisplayedOnUSERLISTPage()
         {
-            _advancePage.DetailsButtonList[DetailsButtonPosition].Click();
+            _advancePage.DetailsButtonList[detailsButtonPosition].Click();
             string actualFullname = _advancePage.FullName.GetAttribute("value");
             string expectedFullname = _scenarioContext.Get<string>("fullname");
             actualFullname.Should().Be(expectedFullname, "Full name should not be changed on EDIT USER page.");
@@ -340,9 +340,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
             int NoOfDetailsButton = _advancePage.DetailsButtonList.Count;
             string[] LogHistory = { };
-            for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
+            for (detailsButtonPosition = 0; detailsButtonPosition < NoOfDetailsButton; detailsButtonPosition++)
             {
-                PropertyClass.Driver.FindElement(By.XPath("(//*[@id=\"btn_edit\"])[" + (DetailsButtonPosition + 1) + "]")).Click();
+                PropertyClass.Driver.FindElement(By.XPath("(//*[@id=\"btn_edit\"])[" + (detailsButtonPosition + 1) + "]")).Click();
                 Thread.Sleep(2000);
                 int LogHistoryRows = _advancePage.UserListRow.Count;
                 if (LogHistoryRows > 2)
@@ -374,9 +374,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             int IsAllUserRowPhoneNull = -1;
             string phone = null;
             int NoOfDetailsButton = _advancePage.DetailsButtonList.Count;
-            for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
+            for (detailsButtonPosition = 0; detailsButtonPosition < NoOfDetailsButton; detailsButtonPosition++)
             {
-                _advancePage.DetailsButtonList[DetailsButtonPosition].Click();
+                _advancePage.DetailsButtonList[detailsButtonPosition].Click();
                 phone = _advancePage.PhoneTextField.GetAttribute("value");
                 if (phone == "")
                 {
@@ -419,10 +419,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"user is not edited")]
         public void ThenUserIsNotEdited()
         {
-            _advancePage.DetailsButtonList[DetailsButtonPosition].Click();
+            _advancePage.DetailsButtonList[detailsButtonPosition].Click();
             Thread.Sleep(2000);
             string actualUserName = _advancePage.FullName.GetAttribute("value");
-            bool isTrue = BlankFullName != actualUserName;
+            bool isTrue = blankFullName != actualUserName;
             isTrue.Should().BeTrue("User should not be edited on Edit User page.");
         }
 
@@ -431,7 +431,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             string EnteredPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
-            bool isSamePhonenumber = RandomPhoneNumber == EnteredPhoneNumber;
+            bool isSamePhonenumber = randomPhoneNumber == EnteredPhoneNumber;
             isSamePhonenumber.Should().BeTrue("Phone number should be entered number on Edit User page.");
         }
 
@@ -447,7 +447,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenClicksDetailsButtonForSameUser(string p0)
         {
             Thread.Sleep(2000);
-            _advancePage.DetailsButtonList[DetailsButtonPosition].Click();
+            _advancePage.DetailsButtonList[detailsButtonPosition].Click();
         }
 
         [Then(@"Phone number is blank")]
@@ -463,17 +463,17 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {   
             int NoOfDetailsButton = _advancePage.DetailsButtonList.Count;
             //Iterating through the user list
-            for (DetailsButtonPosition = 0; DetailsButtonPosition < NoOfDetailsButton; DetailsButtonPosition++)
+            for (detailsButtonPosition = 0; detailsButtonPosition < NoOfDetailsButton; detailsButtonPosition++)
             {
-                string userNameXPath = "//*[@id=\"email" + DetailsButtonPosition + "\"]";
+                string userNameXPath = "//*[@id=\"email" + detailsButtonPosition + "\"]";
                 string userName = PropertyClass.Driver.FindElement(By.XPath(userNameXPath)).Text;
                 if (userName != AdvancedPage.ExpectedValues.LoggedUser)
                 {
-                    RoleXpath = "//*[@id=\"role" + DetailsButtonPosition + "\"]";
-                    string Role = PropertyClass.Driver.FindElement(By.XPath(RoleXpath)).Text;
+                    roleXpath = "//*[@id=\"role" + detailsButtonPosition + "\"]";
+                    string Role = PropertyClass.Driver.FindElement(By.XPath(roleXpath)).Text;
                     if (Role == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage)
                     {
-                        _advancePage.DetailsButtonList[DetailsButtonPosition].Click();
+                        _advancePage.DetailsButtonList[detailsButtonPosition].Click();
                         break;
                     }
                 }
@@ -484,7 +484,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenRegularIsDisplayedInRoleColumnInUserList()
         {
             Thread.Sleep(2000);
-            string actualRole = PropertyClass.Driver.FindElement(By.XPath(RoleXpath)).Text;
+            string actualRole = PropertyClass.Driver.FindElement(By.XPath(roleXpath)).Text;
             string expectedRole = AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage;
             actualRole.Should().Be(expectedRole, "Regular should be displayed in Role column on User List page.");
         }
@@ -500,7 +500,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenAdministratorIsDisplayedInRoleColumnInUserList()
         {
             Thread.Sleep(2000);
-            string actualRole = PropertyClass.Driver.FindElement(By.XPath(RoleXpath)).Text;
+            string actualRole = PropertyClass.Driver.FindElement(By.XPath(roleXpath)).Text;
             string expectedRole = AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage;
             actualRole.Should().Be(expectedRole, "Administrator should be displayed in Role column on User List page.");
         }

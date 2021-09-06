@@ -21,16 +21,16 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         private readonly AdvancedPage _advancePage;
         private readonly ScenarioContext _scenarioContext;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        string RandomString = null;
-        string RandomUsername = null;
-        string RandomPhoneNumber =null;
-        string RandomFullName = null;
-        string ActualEmail = null;
-        string ActualFullName = null;
-        string ActualRole = null;
-        string UserInputInvalidUserName = null;
-        string UserInputFullname = null;
-        string Role = null;
+        string randomString = null;
+        string randomUsername = null;
+        string randomPhoneNumber =null;
+        string randomFullName = null;
+        string actualEmail = null;
+        string actualFullName = null;
+        string actualRole = null;
+        string userInputInvalidUserName = null;
+        string userInputFullname = null;
+        string role = null;
 
         
 
@@ -131,7 +131,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters Full name ""(.*)""")]
         public void WhenUserEntersFullNam(string FullName)
         {
-            UserInputFullname = FullName;
+            userInputFullname = FullName;
             _advancePage.FullNameOnCreatePage.EnterText(FullName);
         }
 
@@ -180,8 +180,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters invalid Username ""(.*)""")]
         public void WhenUserEntersInvalidUsername(string InvalidUserName)
         {
-            UserInputInvalidUserName = InvalidUserName;
-            _advancePage.UserNameTextBoxOnCreatePage.EnterText(UserInputInvalidUserName);
+            userInputInvalidUserName = InvalidUserName;
+            _advancePage.UserNameTextBoxOnCreatePage.EnterText(userInputInvalidUserName);
         }
 
         [When(@"user clicks Cancel button")]
@@ -209,8 +209,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
             for (int i = 0; i < list.Count; i++)
             {
-                ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
-                if (ActualEmail == RandomUsername)
+                actualEmail = list[i].FindElement(By.Id("email" + i)).Text;
+                if (actualEmail == randomUsername)
                 {
                     IsUserCreated = true;
                     break;
@@ -230,7 +230,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters Username ""(.*)""")]
         public void WhenUserEntersUsername(string UserName)
         {
-            UserInputInvalidUserName = UserName;
+            userInputInvalidUserName = UserName;
             _advancePage.UserNameTextBoxOnCreatePage.EnterText(UserName);
         }
 
@@ -244,7 +244,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenEnters_CharacterFullName(int stringSize)
         {
             string FullName = GetMethods.GenerateRandomString(stringSize);
-            UserInputFullname = FullName;
+            userInputFullname = FullName;
             _advancePage.FullNameOnCreatePage.EnterText(FullName);
         }
 
@@ -267,14 +267,14 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenEnters_CharacterValidFullName(int stringSize)
         {
             //Passing the length of string to the method and generating random string and that string is used as a Full name.
-            RandomString = GetMethods.GenerateRandomString(stringSize);
-            _advancePage.FullNameOnCreatePage.EnterText(RandomString);
+            randomString = GetMethods.GenerateRandomString(stringSize);
+            _advancePage.FullNameOnCreatePage.EnterText(randomString);
         }
 
         [When(@"enters Phone number ""(.*)""")]
         public void WhenEntersPhoneNumber(string phoneNumber)
         {
-            RandomPhoneNumber = phoneNumber;
+            randomPhoneNumber = phoneNumber;
             _advancePage.PhoneNumberOnCreatePage.EnterText(phoneNumber);
         }
 
@@ -302,10 +302,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
             for (int i = 0; i < list.Count; i++)
             {
-                ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
-                ActualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
-                ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
-                if (ActualEmail == RandomUsername)
+                actualEmail = list[i].FindElement(By.Id("email" + i)).Text;
+                actualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
+                actualRole = list[i].FindElement(By.Id("role" + i)).Text;
+                if (actualEmail == randomUsername)
                 {
                     isUserCreated = true;
                     break;
@@ -317,7 +317,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"new user role is Administrator")]
         public void ThenNewUserRoleIsAdministrator()
         {
-            bool isTrue = ActualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage;
+            bool isTrue = actualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage;
             isTrue.Should().BeTrue("New user role should appear Administrator on USER LIST page.");
         }
 
@@ -325,18 +325,18 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenUsernameNameAndPhoneNumberMatch()
         {
             //Username and Full name matching from the User List Page
-            bool isSameUsername = RandomUsername == ActualEmail;
+            bool isSameUsername = randomUsername == actualEmail;
             isSameUsername.Should().BeTrue("Username should be matched.");
 
-            bool isSameFullname = RandomFullName == ActualFullName;
+            bool isSameFullname = randomFullName == actualFullName;
             isSameFullname.Should().BeTrue("Name should be matched.");
 
             //To match Phone number, need to click on Details button then I will get Phone number. So passing ActualUserName through method to find in table content and then Click on corresponding Details button.
-            _advancePage.ClickOnDetailsButtonOfSpecifiedUser(RandomUsername);
+            _advancePage.ClickOnDetailsButtonOfSpecifiedUser(randomUsername);
             
             //Getting Phone number after clicking on Details button
             string ActualPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
-            bool isSamePhoneNumber = ActualPhoneNumber == RandomPhoneNumber;
+            bool isSamePhoneNumber = ActualPhoneNumber == randomPhoneNumber;
             isSamePhoneNumber.Should().BeTrue("Phone number should be matched.");
         }
 
@@ -353,31 +353,31 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             IList<IWebElement> list = _advancePage.UserList;
             for (int i = 0; i < list.Count; i++)
             {
-                ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
-                ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
-                ActualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
-                if (RandomUsername == ActualEmail)
+                actualRole = list[i].FindElement(By.Id("role" + i)).Text;
+                actualEmail = list[i].FindElement(By.Id("email" + i)).Text;
+                actualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
+                if (randomUsername == actualEmail)
                 {
                     break;
                 }
             }
-            ActualRole.Should().Be(AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage, "New user role should be Regular on USER LIST page.");
+            actualRole.Should().Be(AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage, "New user role should be Regular on USER LIST page.");
         }
 
         [Then(@"Username and Name match")]
         public void ThenUsernameAndNameMatch()
         {
-            bool isSameUsername = RandomUsername == ActualEmail;
+            bool isSameUsername = randomUsername == actualEmail;
             isSameUsername.Should().BeTrue("Username should be matched.");
 
-            bool isSameFullName = RandomFullName == ActualFullName;
+            bool isSameFullName = randomFullName == actualFullName;
             isSameFullName.Should().BeTrue("Name should be matched.");
         }
 
         [Then(@"Phone number is blank")]
         public void ThenPhoneNumberIsBlank()
         {
-            _advancePage.ClickOnDetailsButtonOfSpecifiedUser(RandomUsername);
+            _advancePage.ClickOnDetailsButtonOfSpecifiedUser(randomUsername);
             string phoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
             phoneNumber.Should().BeEmpty("Phone number should be blank.");
         }
@@ -385,15 +385,15 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters valid Username")]
         public void WhenUserEntersValidUsername()
         {
-            RandomUsername = GetMethods.GenerateRandomUsername(15);
-            _advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
+            randomUsername = GetMethods.GenerateRandomUsername(15);
+            _advancePage.UserNameTextBoxOnCreatePage.EnterText(randomUsername);
         }
 
         [When(@"enters valid Full name")]
         public void WhenEntersValidFullName()
         {
-            RandomFullName = GetMethods.GenerateRandomString(15);
-            _advancePage.FullNameOnCreatePage.EnterText(RandomFullName);
+            randomFullName = GetMethods.GenerateRandomString(15);
+            _advancePage.FullNameOnCreatePage.EnterText(randomFullName);
         }
       
         [When(@"unchecks User Manager checkbox")]
@@ -424,20 +424,20 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenUserEntersValidEmailAddressNamePhone()
         {
             //Entering valid user name
-            RandomUsername = GetMethods.GenerateRandomUsername(15);
-            _advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
-            UserInputInvalidUserName = RandomUsername;
+            randomUsername = GetMethods.GenerateRandomUsername(15);
+            _advancePage.UserNameTextBoxOnCreatePage.EnterText(randomUsername);
+            userInputInvalidUserName = randomUsername;
 
             //Entering valid Full name
-            RandomFullName = GetMethods.GenerateRandomString(15);
-            _advancePage.FullNameOnCreatePage.EnterText(RandomFullName);
-            UserInputFullname = RandomFullName;
+            randomFullName = GetMethods.GenerateRandomString(15);
+            _advancePage.FullNameOnCreatePage.EnterText(randomFullName);
+            userInputFullname = randomFullName;
 
             //Entering valid phone number
             string RandomNumber4Digits = GetMethods.GenerateNDigitRandomNumber(4);
             string Prefix = "+1315685";
-            RandomPhoneNumber = Prefix + RandomNumber4Digits;
-            _advancePage.PhoneNumberOnCreatePage.EnterText(RandomPhoneNumber);
+            randomPhoneNumber = Prefix + RandomNumber4Digits;
+            _advancePage.PhoneNumberOnCreatePage.EnterText(randomPhoneNumber);
         }
     }
 }

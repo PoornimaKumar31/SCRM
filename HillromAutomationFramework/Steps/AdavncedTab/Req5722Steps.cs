@@ -18,19 +18,17 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         private readonly MainPage _mainPage;        
         private readonly AdvancedPage _advancedPage;
         private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
 
         public string email, fullname;
-        public int FirstElementIndex = 0;
+        public int firstElementIndex = 0;
         public IWebElement selectedRow;
 
-        public Req5722Steps(ScenarioContext scenarioContext)
+        public Req5722Steps()
         {
             _loginPage = new LoginPage();
             _landingPage = new LandingPage();
             _mainPage = new MainPage();
             _advancedPage = new AdvancedPage();
-            _scenarioContext = scenarioContext;
         }
 
         [Given(@"manager user is on User List page having more than (.*) records")]
@@ -46,7 +44,7 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [When(@"user clicks Delete button for user")]
         public void WhenUserClicksDeleteButtonForUser()
         {
-            selectedRow = _advancedPage.UserListExceptLoggedInUser()[FirstElementIndex];
+            selectedRow = _advancedPage.UserListExceptLoggedInUser()[firstElementIndex];
             string selectedRowID = selectedRow.GetAttribute("id");
             char rowNum = selectedRowID[selectedRowID.Length - 1];
             email = selectedRow.FindElement(By.Id("email" + rowNum)).Text;
@@ -93,7 +91,7 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         [Given(@"user clicks Delete button for user")]
         public void GivenUserClicksDeleteButtonForUser()
         {
-            selectedRow = _advancedPage.UserListExceptLoggedInUser()[FirstElementIndex];
+            selectedRow = _advancedPage.UserListExceptLoggedInUser()[firstElementIndex];
             string selectedRowID = selectedRow.GetAttribute("id");
             char rowNum = selectedRowID[selectedRowID.Length - 1];
             email = selectedRow.FindElement(By.Id("email" + rowNum)).Text;

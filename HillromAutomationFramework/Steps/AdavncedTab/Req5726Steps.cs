@@ -20,9 +20,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         AdvancedPage _advancePage;
         readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
-        string RandomUsername = null;
-        string RandomFullName = null;
-        string Role = null;
+        string randomUsername = null;
+        string randomFullName = null;
+        string role = null;
 
         public Req5726Steps()
         {
@@ -47,15 +47,15 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters valid Username")]
         public void WhenUserEntersValidUsername()
         {
-            RandomUsername = GetMethods.GenerateRandomUsername(15);
-            _advancePage.UserNameTextBoxOnCreatePage.EnterText(RandomUsername);
+            randomUsername = GetMethods.GenerateRandomUsername(15);
+            _advancePage.UserNameTextBoxOnCreatePage.EnterText(randomUsername);
         }
         
         [When(@"enters valid Full name")]
         public void WhenEntersValidFullName()
         {
-            RandomFullName = GetMethods.GenerateRandomString(15);
-            _advancePage.FullNameOnCreatePage.EnterText(RandomFullName);
+            randomFullName = GetMethods.GenerateRandomString(15);
+            _advancePage.FullNameOnCreatePage.EnterText(randomFullName);
         }
         
         [When(@"unchecks User Manager checkbox")]
@@ -98,7 +98,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             {
                 string ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
                 string ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
-                if (ActualEmail == RandomUsername && ActualRole == AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage)
+                if (ActualEmail == randomUsername && ActualRole == AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage)
                 {
                     isRegularUserDisplayed = true;
                     break;
