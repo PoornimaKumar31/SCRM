@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
-using HillromAutomationFramework.PageObjects.Component_Information;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -10,136 +9,150 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
 {
     [Binding, Scope(Tag = "@SoftwareRequirementID_5701")]
     public class SoftwareRequirement5701Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        CSMAssetListPage csmAssetListPage = new CSMAssetListPage();
-        CSMDeviceDetailsPage csmDeviceDetailsPage = new CSMDeviceDetailsPage();
-        MainPage mainPage = new MainPage();
-        string testDeviceSerialNumber = "100055940720";
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly CSMDeviceDetailsPage _csmDeviceDetailsPage;
+        private readonly MainPage _mainPage;
 
+        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        
+        public SoftwareRequirement5701Steps()
+        {
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _csmDeviceDetailsPage = new CSMDeviceDetailsPage();
+            _mainPage = new MainPage();
+        }
+
+        private static class _Global
+        {
+           public static string testDeviceSerialNumber = "100055940720";
+        }
 
         [Given(@"user is on Asset List page")]
         public void GivenUserIsOnAssetListPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
         }
 
         [When(@"user selects CSM device with serial number ""(.*)""")]
         public void WhenUserSelectsCSMDeviceWithSerialNumber(string serialnumber)
         {
-            mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             Thread.Sleep(2000);
-            mainPage.SearchSerialNumberAndClick(serialnumber);
+            _mainPage.SearchSerialNumberAndClick(serialnumber);
         }
 
         [When(@"clicks Preventive maintenance tab")]
         public void WhenClicksPreventiveMaintenanceTab()
         {
-            csmDeviceDetailsPage.PMTab.Click();
+            _csmDeviceDetailsPage.PMTab.Click();
         }
 
         [Then(@"Preventive maintenance schedule subsection is displayed")]
         public void ThenPreventiveMaintenanceScheduleSubsectionIsDisplayed()
         {
-            bool IsPMScheduleSubsectionDisplayed = csmDeviceDetailsPage.PreventiveMaintenance.GetElementVisibility();
+            bool IsPMScheduleSubsectionDisplayed = _csmDeviceDetailsPage.PreventiveMaintenance.GetElementVisibility();
             IsPMScheduleSubsectionDisplayed.Should().BeTrue("Preventive maintenance schedule subsection is displayed.");
         }
 
         [Then(@"Host controller graphic is displayed in ""(.*)"" column")]
         public void ThenHostControllerGraphicIsDisplayedInColumn(string ColumnName)
         {
-            int IndexOfName = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMNameHeading);
-            int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
+            int IndexOfName = _csmDeviceDetailsPage.PMSHeader.IndexOf(_csmDeviceDetailsPage.PMNameHeading);
+            int IndexOfHostController = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
             Thread.Sleep(2000);
-            
-            bool IsHostControllerGraphicDisplayed = csmDeviceDetailsPage.HostControllerGraphic.GetElementVisibility();
-            IsHostControllerGraphicDisplayed.Should().BeTrue("Host controller graphic is displayed.");
+            bool IsHostControllerGraphicDisplayed = _csmDeviceDetailsPage.HostControllerGraphic.GetElementVisibility();
 
-            bool isDisplayedNameColumn = IndexOfName == IndexOfHostController;
-            isDisplayedNameColumn.Should().BeTrue("Host controller graphic should be displayed in Name column on device details page.");
+            IsHostControllerGraphicDisplayed.Should().BeTrue("Host controller graphic is displayed.");
+            IndexOfHostController.Should().Be(IndexOfName, "Host controller graphic is not displayed in Name column.");
         }
         
 
        [Then(@"""(.*)"" is displayed in ""(.*)"" column")]
         public void ThenIsDisplayedInColumn(string HostController, string ColumnName)
         {
-            int indexOfName = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMNameHeading);
-            int indexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
-            Thread.Sleep(2000);            
-            bool isHostControllerDisplayed = csmDeviceDetailsPage.HostController.GetElementVisibility();
-            isHostControllerDisplayed.Should().BeTrue("Host controller should be displayed on device details page.");
-            bool iSHostControllerDisplayedUnderNameColumn = indexOfName == indexOfHostController;
-            iSHostControllerDisplayedUnderNameColumn.Should().BeTrue("Host controller should be displayed in Name column on device details page.");
+            int IndexOfName = _csmDeviceDetailsPage.PMSHeader.IndexOf(_csmDeviceDetailsPage.PMNameHeading);
+            int IndexOfHostController = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
+            Thread.Sleep(2000);
+            bool IsHostControllerDisplayed = _csmDeviceDetailsPage.HostController.GetElementVisibility();
+
+            IsHostControllerDisplayed.Should().BeTrue("Host controller is not displayed.");
+            IndexOfHostController.Should().Be(IndexOfName, "Host controller is not displayed in Name column.");
         }
 
         [Then(@"""(.*)"" is ""(.*)"" on ""(.*)"" row in ""(.*)"" column")]
         public void ThenIsOnRowInColumn(string LastCalibration, string LastExpectedCalibrationDate, string HostControllerRow, string LastCalibrationColumn)
         {
-            int lastCalibrationHeaderRow = csmDeviceDetailsPage.PMSHeader.IndexOf(csmDeviceDetailsPage.PMLastCalibrationHeading);
-            int lastCalibrationDateRow = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.LastCalibrationDate);
-            lastCalibrationHeaderRow.Should().Be(lastCalibrationDateRow, "Last calibration should be in Host controller row in Last calibration column.");
+            int LastCalibrationHeading = _csmDeviceDetailsPage.PMSHeader.IndexOf(_csmDeviceDetailsPage.PMLastCalibrationHeading);
+            int LastCalibrationDate = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.LastCalibrationDate);
+            LastCalibrationDate.Should().Be(LastCalibrationHeading, "Last calibration is not in Host controller row in Last calibration column.");
 
-            string lastActualCalibrationDate = csmDeviceDetailsPage.LastCalibrationDate.Text;
-            lastActualCalibrationDate.Should().Be(LastExpectedCalibrationDate, "Last calibration should be 30 Sep 2015 on Host controller row in Last calibration column on device details page.");
+            string LastActualCalibrationDate = _csmDeviceDetailsPage.LastCalibrationDate.Text;
+            LastExpectedCalibrationDate.Should().Be(LastActualCalibrationDate, "Last calibration is not 30 Sep 2015 on Host controller row in Last calibration column.");           
         }
 
         [Then(@"""(.*)"" message is displayed on ""(.*)"" row")]
         public void ThenMessageIsDisplayedOnRow(string CalibrationMessage, string HostControllerRow)
         {
-            string text = csmDeviceDetailsPage.CalibrationOverDueText.Text;
-            string calibrationOverdueDate = csmDeviceDetailsPage.CalibrationOverDueDate.Text;
+            string text = _csmDeviceDetailsPage.CalibrationOverDueText.Text;
+            string calibrationOverdueDate = _csmDeviceDetailsPage.CalibrationOverDueDate.Text;
 
             string[] calibrationOverdue = text.Split();
             string calibrationOverdueText = calibrationOverdue[0] + " " + calibrationOverdue[1];
 
             Thread.Sleep(2000);
-            int IndexOfHostController = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
+            int IndexOfHostController = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
             if (calibrationOverdueText == CalibrationMessage)
             {
-                bool IsDisplayed = csmDeviceDetailsPage.CalibrationOverDueText.GetElementVisibility();
-                bool isTrue = 0 == IndexOfHostController;
-                isTrue.Should().Be(IsDisplayed, "Calibration overdue message should be displayed on Host controller row on device details page.");
+                bool IsDisplayed = _csmDeviceDetailsPage.CalibrationOverDueText.GetElementVisibility();
+                Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
             }
             else if (calibrationOverdueDate == CalibrationMessage)
             {
-                bool IsDisplayed = csmDeviceDetailsPage.LastCalibrationDate.GetElementVisibility();
-                bool isSame = 0 == IndexOfHostController;
-                isSame.Should().Be(IsDisplayed, "Calibration overdue message should be displayed on Host controller row on device details page.");
+                bool IsDisplayed = _csmDeviceDetailsPage.LastCalibrationDate.GetElementVisibility();
+                Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
             }
         }
 
         [Then(@"left pointing red arrow is displayed on ""(.*)"" row")]
         public void ThenLeftPointingRedArrowIsDisplayedOnRow(string HostControllerRow)
         {
-            bool isLeftPointingRedArrowDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
+            //Verifying whether element is displayed
+            bool isLeftPointingRedArrowDisplayed = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
             isLeftPointingRedArrowDisplayed.Should().BeTrue("Left pointing arrow is displayed on " + HostControllerRow + " row.");
 
-            int IndexOfHostControllerColumn = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
+            //Checking whether the element is in the host controller row
+            int IndexOfHostControllerColumn = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
             IndexOfHostControllerColumn.Should().Be(0, "Left pointing arrow is displayed on " + HostControllerRow + " row.");
 
-            string leftPointingRedArrowURL = csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
+            //Verifying whether displayed image is correct
+            string leftPointingRedArrowURL = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
             leftPointingRedArrowURL.Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.LeftPointingRedArrowImageURL, "Left pointing red arrow is displayed on " + HostControllerRow + " row.");
         }
 
         [Then(@"upward pointing black arrow is displayed on ""(.*)"" row")]
         public void ThenUpwardPointingBlackArrowIsDisplayedOnRow(string HostControllerRow)
         {
-            bool IsUpwardPointingArrowDisplayed = csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
+            //Verifying whether element is displayed
+            bool IsUpwardPointingArrowDisplayed = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
             IsUpwardPointingArrowDisplayed.Should().BeTrue("Upward pointing arrow is displayed on " + HostControllerRow + " row.");
 
-            int IndexOfHostControllerColumn = csmDeviceDetailsPage.PMSRow.IndexOf(csmDeviceDetailsPage.HostContollerColumn);
+            //Checking whether the element is in the host controller row
+            int IndexOfHostControllerColumn = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
             IndexOfHostControllerColumn.Should().Be(0, "Upward pointing arrow is displayed on " + HostControllerRow + " row.");
 
-            string upwardPointingBlackArrowURL = csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
+            //Verifying whether displayed image is correct
+            string upwardPointingBlackArrowURL = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
             upwardPointingBlackArrowURL.Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.UpwardPointingBlackArrowImageURL, "Upward pointing black arrow is not displayed on " + HostControllerRow + " row.");                    
         }
 
@@ -147,43 +160,42 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         public void GivenUserIsOnThePreventiveMaintenanceTab()
         {
             GivenUserIsOnAssetListPage();
-            WhenUserSelectsCSMDeviceWithSerialNumber(testDeviceSerialNumber);
+            WhenUserSelectsCSMDeviceWithSerialNumber(_Global.testDeviceSerialNumber);
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string ColumnHeading)
         {
-            bool isColumnHeadingDisplayed = csmDeviceDetailsPage.PMNameHeading.GetElementVisibility();
-
-            Assert.IsTrue(isColumnHeadingDisplayed, ColumnHeading + " column heading is not displayed.");
+            bool IsColumnHeadingDisplayed = _csmDeviceDetailsPage.PMNameHeading.GetElementVisibility();
+            Assert.IsTrue(IsColumnHeadingDisplayed, ColumnHeading + " column heading is not displayed.");
         }
 
         [Then(@"""(.*)"" and current calendar year label is displayed")]
         public void ThenAndCurrentCalendarYearLabelIsDisplayed(string LeftArrowSymbol)
         {
             Thread.Sleep(2000);
-            bool isLeftArrowDisplayed = csmDeviceDetailsPage.LeftArrow.GetElementVisibility();           
-            isLeftArrowDisplayed.Should().BeTrue("Left arrow symbol should be displayed on device details page.");
+            bool IsLeftArrowDisplayed = _csmDeviceDetailsPage.LeftArrow.GetElementVisibility();
+            bool currentYearDisplayed = _csmDeviceDetailsPage.CurrentCalenderYear.GetElementVisibility();
 
-            bool currentYearDisplayed = csmDeviceDetailsPage.CurrentCalenderYear.GetElementVisibility();
-            currentYearDisplayed.Should().BeTrue("Current calendar year label should be displayed on device details page.");
+            Assert.IsTrue(IsLeftArrowDisplayed, "Left arrow symbol is not displayed.");
+            Assert.IsTrue(currentYearDisplayed, "Current calendar year label is not displayed.");
         }
 
         [Then(@"next calendar year and ""(.*)"" is displayed")]
         public void ThenNextCalendarYearAndIsDisplayed(string RigthArrowSymbol)
         {
-            bool isRightArrowDisplayed = csmDeviceDetailsPage.RightArrow.GetElementVisibility();
-            isRightArrowDisplayed.Should().BeTrue("Right arrow symbol should be displayed on device details page.");
-         
-            bool isNextYearDisplayed = csmDeviceDetailsPage.NextCalenderYear.GetElementVisibility();
-            isNextYearDisplayed.Should().BeTrue("Next calendar year should be displayed on device details page.");
+            bool IsRightArrowDisplayed = _csmDeviceDetailsPage.RightArrow.GetElementVisibility();
+            bool IsNextYearDisplayed = _csmDeviceDetailsPage.NextCalenderYear.GetElementVisibility();
+
+            Assert.IsTrue(IsRightArrowDisplayed, "Right arrow symbol is not displayed.");
+            Assert.IsTrue(IsNextYearDisplayed, "Next calendar year is not displayed.");
         }
 
         [Then(@"current month is displayed followed by the other months")]
         public void ThenCurrentMonthIsDisplayedFollowedByTheOtherMonths()
         {           
-            bool IsCalenderDisplayed = csmDeviceDetailsPage.CalenderXP.GetElementVisibility();
-            string[] monthsArray = csmDeviceDetailsPage.CalenderXP.Text.Split();           
+            bool IsCalenderDisplayed = _csmDeviceDetailsPage.CalenderXP.GetElementVisibility();
+            string[] monthsArray = _csmDeviceDetailsPage.CalenderXP.Text.Split();           
             List<string> listOfMonths = monthsArray.ToList<string>();
             listOfMonths.RemoveAll(p => string.IsNullOrEmpty(p));
 

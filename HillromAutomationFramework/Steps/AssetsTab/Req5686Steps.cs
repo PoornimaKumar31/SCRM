@@ -188,6 +188,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             switch (columnHeaderName.ToLower().Trim())
             {
+                case "Status":
+                    mainPage.StatusHeading.Click();
+                    break;
                 case "firmware":
                     mainPage.FirmwareHeading.Click();
                     break;
@@ -217,8 +220,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Given(@"user is on Assets list page")]
         public void GivenUserIsOnAssetsListPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.Click();
+            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
         }
 
@@ -238,6 +240,10 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             string ActualClassName = null;
             switch (columnHeaderName.ToLower().Trim())
             {
+                case "status":
+                    ActualClassName = mainPage.StatusHeading.GetAttribute("class");
+                    ExpectedClassName = "status ascending";
+                    break;
                 case "firmware":
                     ActualClassName = mainPage.FirmwareHeading.GetAttribute("class");
                     ExpectedClassName = "firmware ascending";
@@ -382,5 +388,20 @@ namespace HillromAutomationFramework.Steps.AssetsTab
                 SortedColumnData.Should().Equal(UnsortedColumnData, "Asset list should be sorted by " + columnHeader + " in ascending order.");
             }  
         }
+
+
+
+        [Then(@"beds with errors are at the top of the list")]
+        public void ThenBedsWithErrorsAreAtTheTopOfTheList()
+        {
+            _scenarioContext.Pending();
+        }
+
+        [Then(@"beds with errors are at the bottom of the list")]
+        public void ThenBedsWithErrorsAreAtTheBottomOfTheList()
+        {
+            _scenarioContext.Pending();
+        }
+
     }
 }

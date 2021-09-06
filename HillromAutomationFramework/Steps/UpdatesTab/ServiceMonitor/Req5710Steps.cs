@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -12,45 +13,61 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
     public class Req5710Steps
     {
 
-        LoginPage loginPage = new LoginPage();
-        MainPage mainPage = new MainPage();
-        ServiceMonitorPage serviceMoniterPage = new ServiceMonitorPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly LoginPage _loginPage;
+        private readonly MainPage _mainPage;
+        private readonly ServiceMonitorPage _serviceMoniterPage;
+        private readonly WebDriverWait _wait;
+
+        private ScenarioContext _scenarioContext;
+
+        public Req5710Steps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _mainPage = new MainPage();
+            _serviceMoniterPage = new ServiceMonitorPage();
+        }
 
         [Given(@"user is on Service Monitor Settings page")]
         public void GivenUserIsOnServiceMonitorSettingsPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
-            Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "User is not on main page");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.UpdatesTab.JavaSciptClick();
-            serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
-            Assert.AreEqual(true, serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility(), "Service Monitor Settings page is not displayed");
+            //Login without roll-up
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            //Selecting Service Moniter Page
+            _mainPage.UpdatesTab.JavaSciptClick();
+            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
+            bool IsServiceMiniterSettingsPageDisplayed = (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()) || (_serviceMoniterPage.DeploymentModeLabel.GetElementVisibility());
+            (IsServiceMiniterSettingsPageDisplayed).Should().BeTrue(because: "Service Monitor Settings page should be displayed when user selects Service moniter in updates tab");
         }
         
         [Given(@"user selects a Service Monitor in the list")]
         public void WhenUserSelectsAServiceMonitorInTheList()
         {
-            serviceMoniterPage.FirstDeviceCheckBox.Click();
+            _serviceMoniterPage.FirstDeviceCheckBox.Click();
         }
         
         [When(@"the user clicks Deploy button")]
         public void WhenTheUserClicksDeployButton()
         {
-            serviceMoniterPage.DeployButton.Click();
+            _serviceMoniterPage.DeployButton.Click();
         }
         
         [Then(@"Deploy button is enabled")]
         public void ThenDeployButtonIsEnabled()
         {
-            Assert.AreEqual(true, serviceMoniterPage.DeployButton.Enabled, "Deploy button is not enabled.");
+            (_serviceMoniterPage.DeployButton.Enabled).Should().BeTrue(because: "Deploy button should be enabled when user selects one device in service moniter settings page");
         }
         
         [Then(@"Update process has been established message displays")]
         public void ThenUpdateProcessHasBeenEstablishedMessageDisplays()
         {
-            Assert.AreEqual(true, serviceMoniterPage.UpdateMessage.GetElementVisibility(), "Update message is not displayed.");
-            Assert.AreEqual(ServiceMonitorPage.ExpectedValues.UpdateMessageText, serviceMoniterPage.UpdateMessage.Text, "Update message is matching with the expected value.");
+            (_serviceMoniterPage.UpdateMessage.GetElementVisibility()).Should().BeTrue(because:"Update message should be displayed when user clicks on the confirm button");
+            string updateMessageText = _serviceMoniterPage.UpdateMessage.Text;
+            (updateMessageText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.UpdateMessageText, because: "Update message should match with the expected text");
         }
     }
 }

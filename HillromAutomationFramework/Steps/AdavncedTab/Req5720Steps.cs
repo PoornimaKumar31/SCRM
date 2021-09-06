@@ -87,7 +87,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             bool isDisplayed = _advancePage.UserManagerOnCreatePage.Selected;
-            isDisplayed.Should().BeTrue(because: "Unchecked checkbox with User manager label should be displayed on Add User page.");
+            isDisplayed.Should().BeFalse(because: "Unchecked checkbox with User manager label should be displayed on Add User page.");
         }
 
         [Then(@"Full name textbox is displayed")]
