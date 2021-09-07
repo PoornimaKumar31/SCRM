@@ -1,8 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
-using System;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Landing
