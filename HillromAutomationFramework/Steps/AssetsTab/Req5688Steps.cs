@@ -1,8 +1,7 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
-using OpenQA.Selenium.Support.UI;
-using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -37,8 +36,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"only devices in selected organization are displayed")]
         public void ThenOnlyDevicesInSelectedOrganizationAreDisplayed()
         {
+            SetMethods.ScrollToBottomofWebpage();
             Thread.Sleep(3000);
-            //Assert.AreEqual(true,mainPage.VerifyRecordPresence(MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount), "All devices for selected organization is not displayed");
+            Assert.AreEqual(MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount,mainPage.VerifyRecordPresence(), "All devices for selected organization is not displayed");
         }
 
         [Given(@"user without roll-up for multiple facilities is on Assets page")]
@@ -55,15 +55,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void WhenUserSelectsFacilityFromOrganizationDropdown()
         {
             Thread.Sleep(2000);
-            mainPage.OrganizationDropdown.Click();
-            mainPage.LNTAutomatedTestDDLExpensionArrow.Click();
+            mainPage.OrganizationDropdown.ClickWebElement("Organization DropDown");
+            mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement("LNT Automated Test organization ExpensionArrow in organization dropdown");
             Thread.Sleep(2000);
-            mainPage.LNTAutomatedTestDDLFacility1.Click();
+            mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement("LNT Automated Test organization Test1 facility");
         }
 
         [Then(@"only devices in selected facility are displayed")]
         public void ThenOnlyDevicesInSelectedFacilityAreDisplayed()
         {
+            SetMethods.ScrollToBottomofWebpage();
             Thread.Sleep(3000);
             int TotalRecords = mainPage.VerifyRecordPresence();
             Assert.AreEqual(true, MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneDeviceCount == TotalRecords, "Only devices in selected facility are not displayed");
@@ -73,9 +74,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void GivenUserWithoutRoll_UpForMultipleUnitsIsOnAssetsPage()
         {
             GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage();
-            mainPage.OrganizationDropdown.Click();
-            mainPage.LNTAutomatedTestDDLExpensionArrow.Click();
-            mainPage.LNTAutomatedTestDDLFacility1.Click();
+            mainPage.OrganizationDropdown.ClickWebElement("Organization dropdown");
+            mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement("LNT Automated Test organization ExpensionArrow in organization dropdown");
+            mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement("LNT Automated Test organization Test1 facility");
         }
 
         [When(@"user selects unit from Organization dropdown")]
@@ -91,6 +92,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"only devices in selected unit are displayed")]
         public void ThenOnlyDevicesInSelectedUnitAreDisplayed()
         {
+            SetMethods.ScrollToBottomofWebpage();
             Thread.Sleep(5000);
             int TotalRecords = mainPage.VerifyRecordPresence();
             Assert.AreEqual(true, TotalRecords == MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount, "Number of devices in unit of facility is not as expected");
@@ -108,9 +110,10 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"all devices belonging to all user organizations are displayed")]
         public void ThenAllDevicesBelongingToAllUserOrganizationsAreDisplayed()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
+            SetMethods.ScrollToBottomofWebpage();
             int totalRecords = mainPage.VerifyRecordPresence();
-            Assert.AreEqual(true, totalRecords == MainPage.ExpectedValues.AllOrgnaizationDevicesCount, "All devices are not displayed for all organization");
+            (totalRecords).Should().Be(MainPage.ExpectedValues.AllOrgnaizationDevicesCount, because: "All devices should be displayed for all organization");
         }
     }
 }

@@ -70,6 +70,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Centrella error code pop-up dialog is displayed")]
         public void ThenCentrellaErrorCodePop_UpDialogIsDisplayed()
         {
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(CentrellaDeviceDetailsPage.Locators.ErrorPopupDialogBoxXPath)));
             Assert.IsTrue(centrellaDeviceDetailsPage.ErrorPopupDialogBox.GetElementVisibility(),"Error Popup dialog is not displayed");
         }
 

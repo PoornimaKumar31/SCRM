@@ -64,7 +64,7 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         {
             string expectedText = fullname + " (" + email+")";
             string actualText = _advancedPage.DeletePopupUserNameEmailID.Text;
-            actualText.Should().Be("User full name and email address should be displayed on User List page.");
+            actualText.Should().BeEquivalentTo(expectedText,because:"User full name and email address should be displayed on User List page.");
         }
 
         [Then(@"""(.*)"" message is displayed")]
