@@ -6,23 +6,22 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5715")]
     public class Req5715Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        UpdatesSelectUpdatePage updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
-        UpdateSelectDevicesPage updateSelectDevicesPage = new UpdateSelectDevicesPage();
-        UpdateReviewActionPage updateReviewActionPage = new UpdateReviewActionPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly UpdatesSelectUpdatePage _updatesSelectUpdatePage;
+        private readonly UpdateSelectDevicesPage _updateSelectDevicesPage;
+        private readonly UpdateReviewActionPage _updateReviewActionPage;
 
-
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly WebDriverWait _wait;
         private ScenarioContext _scenarioContext;
 
         string firstFileName = "";
@@ -30,40 +29,50 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public Req5715Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
+            _updateSelectDevicesPage = new UpdateSelectDevicesPage();
+            _updateReviewActionPage = new UpdateReviewActionPage();
         }
 
         [Given(@"user is on RV700 Updates page")]
         public void GivenUserIsOnRVUpdatesPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.UpdatesTab.JavaSciptClick();
-            updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.RV700DeviceName);
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.UpdatesTab.JavaSciptClick();
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.RV700DeviceName);
         }
         
         [Given(@"RV700 Asset type is selected")]
         public void GivenRVAssetTypeIsSelected()
         {
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.RV700DeviceName, updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL(),"RV700 device is not selected in asset type dropdown.");
+            string selectedAssetType = _updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL();
+            (selectedAssetType).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.RV700DeviceName, because: "RV700 device should be selected when selects RV700 in asset type dropdown in Select upadtes tab.");
         }
         
         [When(@"user selects Upgrade Update type")]
         public void WhenUserSelectsUpgradeUpdateType()
         {
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
         }
         
         [Then(@"Upgrade displays as Update type")]
         public void ThenUpgradeDisplaysAsUpdateType()
         {
-            Assert.AreEqual(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade, updatesSelectUpdatePage.UpgradeTypeDropDown.GetSelectedOptionFromDDL(), "Update type is not selected in Upgrade type dropdown.");
+            string selectedUpdateType = _updatesSelectUpdatePage.UpgradeTypeDropDown.GetSelectedOptionFromDDL();
+            (selectedUpdateType).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade, because: "Upgrade type should be displayed when user selects Update as option in Upgrade type dropdown in RV700 select updates page");
         }
         
         [Then(@"RV700 upgrade list is displayed")]
         public void ThenRVUpgradeListIsDisplayed()
         {
-            Assert.AreEqual(true, updatesSelectUpdatePage.FileTableList.GetElementVisibility(),"Rv700 upgrade list is not displayed.");
+            (_updatesSelectUpdatePage.FileTableList.GetElementVisibility()).Should().BeTrue(because: "RV700 upgrade list should be displayed in RV700 update in slect updates page");
         }
            
         [Then(@"Next button is disabled")]
@@ -71,12 +80,13 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 upgrade elements"))
             {
-                Assert.AreEqual(false, updatesSelectUpdatePage.NextButton.Enabled, "Next button is enabled.");
+                (_updatesSelectUpdatePage.NextButton.Enabled).Should().BeFalse(because: "Next button should be disabled since user didn't select any upgrade file in RV700 select Update page");
             }
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 select assets elements"))
             {
-                Assert.AreEqual(false, updateSelectDevicesPage.NextButton.Enabled, "Next button is enabled.");
+                (_updateSelectDevicesPage.NextButton.Enabled).Should().BeFalse(because: "Next button should be disabled since user didn't select any device in RV700 select assets page");
             }
+            //if test step does not belong to any scenario
             else
             {
                 Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
@@ -87,14 +97,16 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Then(@"Page x of y label is displayed")]
         public void ThenPageXOfYLabelIsDisplayed()
         {
+            SetMethods.ScrollToBottomofWebpage();
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 upgrade elements"))
             {
-                Assert.IsTrue(updatesSelectUpdatePage.PaginationXofY.GetElementVisibility(), "Page X of Y label is not displayed.");
+                (_updatesSelectUpdatePage.PaginationXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y label should be displayed in RV700 Select Update page");
             }
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 select assets elements"))
             {
-                Assert.IsTrue(updateSelectDevicesPage.PaginationXofY.GetElementVisibility(), "Page X of Y label is not displayed.");
+                (_updateSelectDevicesPage.PaginationXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y label should be displayed in RV700 Select assets page");
             }
+            //if test step does not belong to any scenario
             else
             {
                 Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
@@ -107,12 +119,13 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 upgrade elements"))
             {
-                Assert.AreEqual(true, updatesSelectUpdatePage.PaginationDisplayXY.GetElementVisibility(), "Displaying X - Y of z results label is not displayed.");
+                (_updatesSelectUpdatePage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue(because: "Displaying X - Y of z results label should be displayed in RV700 Select Update page");
             }
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 select assets elements"))
             {
-                Assert.AreEqual(true, updateSelectDevicesPage.PaginationDisplayXY.GetElementVisibility(), "Displaying X - Y of z results label is not displayed.");
+                (_updateSelectDevicesPage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue(because: "Displaying X - Y of z results label should be displayed in RV700 Select assets page");
             }
+            //if test step does not belong to any scenario
             else
             {
                 Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
@@ -125,56 +138,54 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             int ExpectedNoOfEntires=0;
             GivenUserIsOnRVUpdatesPage();
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
             if(entries.Trim().Equals("<=50"))
             {
                 ExpectedNoOfEntires = 50;
             }
-            int ActualNumberOfEntries = updatesSelectUpdatePage.RV700AndCentrellaFileNameList.GetElementCount();
-            Assert.LessOrEqual(ActualNumberOfEntries,ExpectedNoOfEntires, ActualNumberOfEntries + " entries are displayed");
+            int ActualNumberOfEntries = _updatesSelectUpdatePage.RV700AndCentrellaFileNameList.GetElementCount();
+            (ActualNumberOfEntries).Should().BeLessOrEqualTo(ExpectedNoOfEntires, because: ExpectedNoOfEntires+" entries should be displayed in RV700 Select updates page.");
         }
 
         [Then(@"Previous page icon is disabled")]
         public void ThenPreviousPageIconIsDisabled()
         {
             //Checking the image source
-            string ActualPreviousPageIconState = updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            string ExpectedPreviousPageIconState = UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource;
-            Assert.AreEqual(ExpectedPreviousPageIconState, ActualPreviousPageIconState, "Previous page icon is not disabled.");
+            string PreviousPageIconImageSrc = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
+            (PreviousPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource, because: "Previous page icon should be disabled in First page entries list in RV700 upgrades page");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
-            string ActualNextPageIconState = updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            string ExpectedNextPageIconState = UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource;
-            Assert.AreEqual(ExpectedNextPageIconState, ActualNextPageIconState, "Next page icon is not disabled.");
+            string NextPageIconImageSrc = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
+            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled in RV700 upgrades page where total no of entries are less than or equal to 50.");
         }
 
         [Given(@"Upgrade Update type is selected")]
         public void GivenUpgradeUpdateTypeIsSelected()
         {
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
         }
 
         [Given(@"user has selected Upgrade file")]
         public void GivenUserHasSelectedUpgradeFile()
         {
             //Clicking on the first file
-            updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Click();
+            _updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Click();
         }
 
         [When(@"user clicks Next button")]
         public void WhenUserClicksNextButton()
         {
-            updatesSelectUpdatePage.NextButton.Click();
+            _updatesSelectUpdatePage.NextButton.Click();
         }
 
         [Then(@"RV700 Select assets page is displayed")]
         public void ThenRVSelectAssetsPageIsDisplayed()
         {
-            bool IsSelectAssetPageDisplayed = (updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (updateSelectDevicesPage.DestinationLabel.GetElementVisibility());
-            Assert.IsTrue(IsSelectAssetPageDisplayed, "Select assets page is not displayed.");
+            bool IsSelectAssetPageDisplayed = (_updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (_updateSelectDevicesPage.DestinationLabel.GetElementVisibility());
+            (IsSelectAssetPageDisplayed).Should().BeTrue(because: "Select assets page should be displayed since user clicked Enabled next button in RV700 Select assets page");
         }
 
         [Given(@"user is on RV700 Upgrade Select assets page")]
@@ -182,11 +193,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             //Go to updates page
             GivenUserIsOnRVUpdatesPage();
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+
             //Clicking on the first file
-            updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Click();
-            firstFileName = updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Text;
-            updatesSelectUpdatePage.NextButton.Click();
+            _updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Click();
+            firstFileName = _updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Text;
+
+            //Clicking on next button
+            _updatesSelectUpdatePage.NextButton.Click();
             ThenRVSelectAssetsPageIsDisplayed();
         }
 
@@ -194,19 +208,22 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenSelectUpdateIndicatorIsNotHighlighted()
         {
             //Checking the font color
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, updatesSelectUpdatePage.Heading.GetCssValue("color"), "Select update indicator is highlighted");
+            string selectUpdateIndicatorColor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
+            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.NonHighlightedHeadingColor, because: "Select Update tab indicator should not be highlighted.");
         }
 
         [Then(@"Select assets indicator is highlighted")]
         public void ThenSelectAssetsIndicatorIsHighlighted()
         {
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, updateSelectDevicesPage.Heading.GetCssValue("color"), "Select devices indicator is not highlighted");
+            string selectAssetsIndicatorColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
+            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, because: "Select devices tab should be highlighted in select device tab");
         }
 
         [Then(@"Review action indicator is not highlighted")]
         public void ThenReviewActionIndicatorIsNotHighlighted()
         {
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.NonHighlightedHeadingColor, updateReviewActionPage.Heading.GetCssValue("color"), "Review action indicator is highlighted");
+            string ReviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
+            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
         }
 
         [Then(@"""(.*)"" label is displayed")]
@@ -217,239 +234,277 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
            switch (LabelName.ToLower().Trim())
             {
                 case "item to push":
-                    label = updateSelectDevicesPage.ItemtoPush;
+                    label = _updateSelectDevicesPage.ItemtoPush;
                     ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
                     break;
                 case "asset type":
-                    label = updateSelectDevicesPage.DeviceTypeLabel;
+                    label = _updateSelectDevicesPage.DeviceTypeLabel;
                     ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.RV700DeviceName;
                     break;
                 case "update type":
-                    label = updateSelectDevicesPage.TypeOfUpdateUpgradeLabel;
+                    label = _updateSelectDevicesPage.TypeOfUpdateUpgradeLabel;
                     ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.UpgradeLabelText;
                     break;
                 case "upgrade file to push":
-                    label = updateSelectDevicesPage.FileName;
+                    label = _updateSelectDevicesPage.FileName;
                     ExpectedLabelName = firstFileName;
                     break;
                 case "destinations":
-                    label = updateSelectDevicesPage.DestinationLabel;
+                    label = _updateSelectDevicesPage.DestinationLabel;
                     ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
                     break;
                 default: Assert.Fail(LabelName + " is a invalid label name.");
                     break;
             }
-            Assert.IsTrue(label.GetElementVisibility(), LabelName+" label name is not displayed.");
-            Assert.AreEqual(ExpectedLabelName.ToLower(), label.Text.ToLower(), LabelName + " label name is not matching with the expected value.");
+            (label.GetElementVisibility()).Should().BeTrue(because: LabelName + " label name should be displayed in RV700 Select Assets page");
+            string LabelText = label.Text;
+            (LabelText).Should().BeEquivalentTo(ExpectedLabelName, because: LabelName + " label name should match with the expected value in RV700 Select Assets page");
         }
 
         [Then(@"location hierarchy selectors are displayed")]
         public void ThenLocationHierarchySelectorsAreDisplayed()
         {
-            Assert.IsTrue(updateSelectDevicesPage.LocationHierarchy.GetElementVisibility(), "location hierarchy selectors are not displayed");
+            (_updateSelectDevicesPage.LocationHierarchy.GetElementVisibility()).Should().BeTrue(because: "location hierarchy selectors should be displayed in RV700 Select assets page.");
         }
 
         [Then(@"count of selected devices is displayed")]
         public void ThenCountOfSelectedDevicesIsDisplayed()
         {
-            Assert.IsTrue(updateSelectDevicesPage.DeviceCount.GetElementVisibility(), "count of selected devices is not displayed");
+            (_updateSelectDevicesPage.DeviceCount.GetElementVisibility()).Should().BeTrue(because: "count of selected devices should be displayed in RV700 Select assets page");
         }
 
         [Then(@"Previous button is enabled")]
         public void ThenPreviousButtonIsEnabled()
         {
-            Assert.IsTrue(updateSelectDevicesPage.PreviousButton.Enabled, "Previous button is disabled.");
+            if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 select assets elements"))
+            {
+                (_updateSelectDevicesPage.PreviousButton.Enabled).Should().BeTrue(because: "Previous button should be enabled in RV700 Select assets page");
+            }
+            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 review action elements"))
+            {
+                (_updateReviewActionPage.PreviousButton.Enabled).Should().BeTrue(because: "Previous button should be enabled in RV700 Review Action page");
+            }
+            //if test step does not belong to any scenario
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
+            
         }
 
         [Then(@"Select all checkbox is unchecked")]
         public void ThenSelectAllCheckboxIsUnchecked()
         {
-            Assert.IsFalse(updateSelectDevicesPage.SelectAllcheckBox.Selected,"Select all checkbox is checked.");
+            (_updateSelectDevicesPage.SelectAllcheckBox.Selected).Should().BeFalse(because: "Select all checkbox should be unchecked by default in RV700 Select assets page");
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string columnHeading)
         {
             IWebElement HeadingElement = null;
-            string ExpectedHeadingText = null;
-            switch (columnHeading.ToLower().Trim())
+
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 upgrade elements"))
             {
-                //For select update page
-                case "name":
-                    HeadingElement = updatesSelectUpdatePage.CentrellaAndRV700NameColumnHeading;
-                    ExpectedHeadingText = UpdatesSelectUpdatePage.ExpectedValues.TableNameHeadingText;
-                    break;
+                switch (columnHeading.ToLower().Trim())
+                {
+                    //For select update page
+                    case "name":
+                        HeadingElement = _updatesSelectUpdatePage.CentrellaAndRV700NameColumnHeading;
+                        break;
 
-                case "date created":
-                    HeadingElement = updatesSelectUpdatePage.CentrellaAndRV700DateColumnHeading;
-                    ExpectedHeadingText = UpdatesSelectUpdatePage.ExpectedValues.TableDateHeadingText;
-                    break;
-
-                //For select device page.
-                case "firmware":
-                    HeadingElement = updateSelectDevicesPage.FirmwareHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.FirwareHeadingText;
-                    break;
-                case "config":
-                    HeadingElement = updateSelectDevicesPage.ConfigHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.ConfigHeadingText;
-                    break;
-                case "asset tag":
-                    HeadingElement = updateSelectDevicesPage.AssetTagHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.AssetTagHeadingText;
-                    break;
-                case "serial number":
-                    HeadingElement = updateSelectDevicesPage.SerialNoHeading;
-                    ExpectedHeadingText = "serial number";
-                    break;
-                case "location":
-                    HeadingElement = updateSelectDevicesPage.LocationHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.LocationHeadingText;
-                    break;
-                case "last files deployed":
-                    HeadingElement = updateSelectDevicesPage.LastFilesDeployedHeading;
-                    ExpectedHeadingText = UpdateSelectDevicesPage.ExpectedValues.LastFilesDeployedHeadingText;
-                    break;
-                default:
-                    Assert.Fail(columnHeading + " is a invalid heading name");
-                    break;
+                    case "date created":
+                        HeadingElement = _updatesSelectUpdatePage.CentrellaAndRV700DateColumnHeading;
+                        break;
+                    default:
+                        Assert.Fail(columnHeading + " is a invalid heading name");
+                        break;
+                }
+                (HeadingElement.GetElementVisibility()).Should().BeTrue(columnHeading + " column heading should be displayed in RV700 select updates page");
+                string ActualHeadingText = HeadingElement.Text.ToLower();
+                (ActualHeadingText).Should().BeEquivalentTo(columnHeading, because: columnHeading + " column heading should match with the expected value in RV700 select updates page");
             }
-            Assert.AreEqual(true, HeadingElement.GetElementVisibility(), columnHeading + " is not displayed.");
-            string ActualHeadingText = HeadingElement.Text.ToLower();
-            Assert.AreEqual(ExpectedHeadingText.ToLower(), ActualHeadingText, columnHeading + " not matches with the expected value");
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 upgrade elements"))
+            {
+                switch (columnHeading.ToLower().Trim())
+                {
+                    //For select device page.
+                    case "firmware":
+                        HeadingElement = _updateSelectDevicesPage.FirmwareHeading;
+                        break;
+                    case "config":
+                        HeadingElement = _updateSelectDevicesPage.ConfigHeading;
+                        break;
+                    case "asset tag":
+                        HeadingElement = _updateSelectDevicesPage.AssetTagHeading;
+                        break;
+                    case "serial number":
+                        HeadingElement = _updateSelectDevicesPage.SerialNoHeading;
+                        break;
+                    case "location":
+                        HeadingElement = _updateSelectDevicesPage.LocationHeading;
+                        break;
+                    case "last files deployed":
+                        HeadingElement = _updateSelectDevicesPage.LastFilesDeployedHeading;
+                        break;
+                    default:
+                        Assert.Fail(columnHeading + " is a invalid heading name");
+                        break;
+                }
+                (HeadingElement.GetElementVisibility()).Should().BeTrue(columnHeading + " column heading should be displayed in RV700 select Assets page");
+                string ActualHeadingText = HeadingElement.Text.ToLower();
+                (ActualHeadingText).Should().BeEquivalentTo(columnHeading, because: columnHeading + " column heading should match with the expected value in RV700 select assets page");
+            }
+            //if test step does not belong to any scenario
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
         }
 
         [Then(@"Select all checkbox is in column (.*)")]
         public void ThenSelectAllCheckboxIsInColumn(int columnNumber)
         {
-            string firstcolumnId = updateSelectDevicesPage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
-            Assert.AreEqual(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, firstcolumnId, "Select all checkbox is not in column " + columnNumber);
+            string firstcolumnId = _updateSelectDevicesPage.TableHeading.FindElements(By.TagName("div"))[columnNumber - 1].GetAttribute("id");
+            (firstcolumnId).Should().BeEquivalentTo(UpdateSelectDevicesPage.Locators.SelectAllcheckBoxID, because: "Select all checkbox should be in column " + columnNumber);
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
         {
-            IList<IWebElement> columns = updateSelectDevicesPage.TableHeading.FindElements(By.TagName("div"));
-            Assert.AreEqual(columnHeading.ToLower().Trim(), columns[columnNumber - 1].Text.ToLower(), columnHeading + " is not in " + columnNumber);
+            IList<IWebElement> columnsList = _updateSelectDevicesPage.TableHeading.FindElements(By.TagName("div"));
+            List<string> columnListText = new List<string>();
+            foreach (IWebElement column in columnsList)
+            {
+                columnListText.Add(column.Text.ToLower());
+            }
+            //Making as zero based Indexing
+            columnNumber--;
+            columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
         }
 
         [When(@"user selects one device")]
         public void WhenUserSelectsOneDevice()
         {
-            updateSelectDevicesPage.FirstDeviceCheckBox.Click();
+            _updateSelectDevicesPage.FirstDeviceCheckBox.Click();
         }
 
         [Then(@"count of selected devices changes from 0 to 1")]
         public void ThenCountOfSelectedDevicesChangesFromTo()
         {
-            string deviceCount = updateSelectDevicesPage.DeviceCount.Text.ToLower();
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.Desination1DeviceCountText.ToLower(), deviceCount,"Device count is not updated. device count:"+deviceCount);
+            string ActualDestinationCountText = _updateSelectDevicesPage.DeviceCount.Text;
+            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
         }
 
         [Then(@"Next button is enabled")]
         public void ThenNextButtonIsEnabled()
         {
-            Assert.IsTrue(updateSelectDevicesPage.NextButton.Enabled, "Next button is disabled.");
+            (_updateSelectDevicesPage.NextButton.Enabled).Should().BeTrue(because: "Next button should be enabled when user selects atleast one device in RV700 Upgrade Select Assets page");
         }
 
         [When(@"user clicks Previous button")]
         public void WhenUserClicksPreviousButton()
         {
-            updateSelectDevicesPage.PreviousButton.Click();
+            _updateSelectDevicesPage.PreviousButton.Click();
         }
 
         [Then(@"RV700 Updates page is displayed")]
         public void ThenRVUpdatesPageIsDisplayed()
         {
-            bool IsUpdatePageDisplayed = (updatesSelectUpdatePage.AssetTypeDropDown.GetElementVisibility()) || (updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility());
-            Assert.IsTrue(IsUpdatePageDisplayed, "RV700 Updates page is not displayed");
+            bool IsUpdatePageDisplayed = (_updatesSelectUpdatePage.AssetTypeDropDown.GetElementVisibility()) || (_updatesSelectUpdatePage.UpgradeTypeDropDown.GetElementVisibility());
+            (IsUpdatePageDisplayed).Should().BeTrue(because: "RV700 update page should be displayed when user cliks previous button in RV700 Upgrade Select Assets page");
         }
 
         [When(@"Clicks Next button")]
         public void WhenClicksNextButton()
         {
-            updateSelectDevicesPage.NextButton.Click();
+            _updateSelectDevicesPage.NextButton.Click();
         }
 
         [Then(@"RV700 Review Action page is displayed")]
         public void ThenRVReviewActionPageIsDisplayed()
         {
-            bool IsReviewActionPageDisplayed = (updateReviewActionPage.ItemToPushLabel.GetElementVisibility()) || (updateReviewActionPage.DestinationLabel.GetElementVisibility());
-            Assert.IsTrue(IsReviewActionPageDisplayed, "RV700 Review Action page is not displayed.");
+            bool IsReviewActionPageDisplayed = (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()) || (_updateReviewActionPage.DestinationLabel.GetElementVisibility());
+            (IsReviewActionPageDisplayed).Should().BeTrue(because: "Review action page should be displayed when user clicks enabled next button in RV700 Upgrade Select Assets page");
         }
 
         [Given(@"user is on RV700 Review Action page")]
         public void GivenUserIsOnRVReviewActionPage()
         {
             GivenUserIsOnRVUpgradeSelectAssetsPage();
-            updateSelectDevicesPage.FirstDeviceCheckBox.Click();
-            updateSelectDevicesPage.NextButton.Click();
+            //Select first device
+            _updateSelectDevicesPage.FirstDeviceCheckBox.Click();
+            //Click on next button
+            _updateSelectDevicesPage.NextButton.Click();
             ThenRVReviewActionPageIsDisplayed();
         }
 
         [Then(@"Item to push label is displayed")]
         public void ThenItemToPushLabelIsDisplayed()
         {
-            Assert.IsTrue(updateReviewActionPage.ItemToPushLabel.GetElementVisibility(),"Item to push label is not displayed.");
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText.ToLower(), updateReviewActionPage.ItemToPushLabel.Text.ToLower(),"Item to push label is not matching with the expected text.");
+            (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in RV700 Upgrade Review action page.");
+            string ActualItemToPushLabelText = _updateReviewActionPage.ItemToPushLabel.Text;
+            (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in RV700 Upgrade Review action page");
         }
 
         [Then(@"Item to push value is displayed")]
         public void ThenItemToPushValueIsDisplayed()
         {
-            Assert.IsTrue(updateReviewActionPage.ItemToPushValue.GetElementVisibility(), "Item to push value is not displayed.");
+            (_updateReviewActionPage.ItemToPushValue.GetElementVisibility()).Should().BeTrue(because: "Item to push value should be displayed in RV700 Upgrade review action page");
         }
 
         [Then(@"Destinations label is displayed")]
         public void ThenDestinationsLabelIsDisplayed()
         {
-            Assert.IsTrue(updateReviewActionPage.DestinationLabel.GetElementVisibility(),"Destination label is not displayed.");
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DestinationLabelText.ToLower(), updateReviewActionPage.DestinationLabel.Text.ToLower(),"Destination label is not matching the expected value.");
+            (_updateReviewActionPage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in RV700 upgrade review action Page.");
+            string ActualDesinationLabelText = _updateReviewActionPage.DestinationLabel.Text;
+            ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in RV700 upgrade review action Page.");
         }
 
         [Then(@"Destinations value is displayed")]
         public void ThenDestinationsValueIsDisplayed()
         {
-            Assert.IsTrue(updateReviewActionPage.DestinationValue.GetElementVisibility(), "Destination value is not displayed.");
+            (_updateReviewActionPage.DestinationValue.GetElementVisibility()).Should().BeTrue(because: "Destinations value should be displayed in RV700 upgrade review action page");
         }
 
         [Then(@"Select assets indicator is not highlighted")]
         public void ThenSelectAssetsIndicatorIsNotHighlighted()
         {
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor,updateSelectDevicesPage.Heading.GetCssValue("color"),"Select devices tab is highlighted.");
+            string SelectAssetsColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
+            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
         }
 
         [Then(@"Review action indicator is highlighted")]
         public void ThenReviewActionIndicatorIsHighlighted()
         {
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, updateReviewActionPage.Heading.GetCssValue("color"),"Review action indicator is not highlighted.");
+            string reviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
+            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in RV700 review action page");
         }
 
         [Then(@"Confirm button is enabled")]
         public void ThenConfirmButtonIsEnabled()
         {
-            bool IsConfirmButtonEnabled = updateReviewActionPage.ConfirmButton.Enabled;
+            bool IsConfirmButtonEnabled = _updateReviewActionPage.ConfirmButton.Enabled;
             (IsConfirmButtonEnabled).Should().Be(true,"Confirm button should be enabled in the review action page.");
         }
 
         [When(@"user clicks Confirm button")]
         public void WhenUserClicksConfirmButton()
         {
-            updateReviewActionPage.ConfirmButton.Click();
+            _updateReviewActionPage.ConfirmButton.Click();
         }
 
         [Then(@"Update process has been established message is displayed")]
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
-            Assert.IsTrue(updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility(),"Update success message is not displayed.");
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText.ToLower(),updateSelectDevicesPage.SuccessUpadteMessage.Text.ToLower(),"Update success message is not matching the expected value.");
+            (_updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button In RV700 Upgrade review action page.");
+            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value in RV700 Upgrade review action page");
         }
 
         [Then(@"Select assets page is displayed")]
         public void ThenSelectAssetsPageIsDisplayed()
         {
-            bool IsSelectAssetPageDisplayed = (updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (updateSelectDevicesPage.DestinationLabel.GetElementVisibility());
-            Assert.IsTrue(IsSelectAssetPageDisplayed, "Select assets page is not displayed.");
+            bool IsSelectAssetPageDisplayed = (_updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (_updateSelectDevicesPage.DestinationLabel.GetElementVisibility());
+            (IsSelectAssetPageDisplayed).Should().BeTrue(because: "Select devices page should be displayed");
         }
 
     }

@@ -231,7 +231,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenSelectAssetsIndicatorIsHighlighted()
         {
             string selectAssetsIndicatorColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
-            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, because: "Select devices tab should not be highlighted");
+            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, because: "Select devices tab should be highlighted in select device tab");
         }
 
         [Then(@"Review action indicator is not highlighted")]
@@ -292,6 +292,20 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Then(@"Previous button is enabled")]
         public void ThenPreviousButtonIsEnabled()
         {
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm select assets elements upgrade"))
+            {
+                (_updateSelectDevicesPage.PreviousButton.Enabled).Should().BeTrue(because: "Previous button should be enabled in CSM Select assets page");
+            }
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm review action elements upgrade"))
+            {
+                (_updateReviewActionPage.PreviousButton.Enabled).Should().BeTrue(because: "Previous button should be enabled in CSM Review Action page");
+            }
+            //if test step does not belong to any scenario
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
+
             (_updateSelectDevicesPage.PreviousButton.Enabled).Should().BeTrue(because: "Previous button should be enabled in CSM Select assets page");
         }
 
@@ -521,7 +535,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Then(@"Update process has been established message is displayed")]
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
-            (_updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button on CSM Upgrade review action page.");
+            (_updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button In CSM Upgrade review action page.");
             (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
         }
 
