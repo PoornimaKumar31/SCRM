@@ -171,7 +171,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
 
             _csmDeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 descending","Sorting Indicator is not as expected.");
             _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.SortDecreasingIconURL);
-            _csmDeviceDetailsPage.LogDateList.isDateSorted("d").Should().BeTrue("Log file are not sorted in decreasing date");
+            _csmDeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Log file are not sorted in decreasing date");
         }
 
 
@@ -186,7 +186,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             }
             _csmDeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 ascending", "Sorting Indicator is not as expected.");
             _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.SortIncreasingIconURL);
-            _csmDeviceDetailsPage.LogDateList.isDateSorted("a").Should().BeTrue("Log files are not sorted in increasing date");
+            _csmDeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Log files are not sorted in increasing date");
         }
 
         [When(@"user clicks Date column heading")]
@@ -199,7 +199,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"logs are sorted by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            _csmDeviceDetailsPage.LogDateList.isDateSorted("d").Should().BeTrue("Date is not sorted in the decreasing order");
+            _csmDeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Date is not sorted in the decreasing order");
         }
 
         [Then(@"decreasing date sorting indicator is displayed")]
@@ -213,7 +213,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"logs are sorted by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-            _csmDeviceDetailsPage.LogDateList.isDateSorted("a").Should().BeTrue("Logs are not sorted in increasing order");
+            _csmDeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Logs are not sorted in increasing order");
         }
 
         [Then(@"increasing date sorting indicator is displayed")]

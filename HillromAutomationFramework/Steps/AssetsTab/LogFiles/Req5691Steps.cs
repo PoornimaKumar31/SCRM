@@ -153,7 +153,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             }
             Thread.Sleep(2000);
             _cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(CVSMDeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, "Icon displayed for sorting is not as expected");
-            _cvsmDeviceDetailsPage.LogDateList.isDateSorted("d").Should().BeTrue("Logs are not sorted by decreasing date");
+            _cvsmDeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Logs are not sorted by decreasing date");
         }
 
 
@@ -169,7 +169,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             Thread.Sleep(2000);
             _cvsmDeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 ascending","Sorting indicator is not as expected.");
             _cvsmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(CVSMDeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, "Icon displayed for sorting is not as expected");
-            _cvsmDeviceDetailsPage.LogDateList.isDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date");
+            _cvsmDeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date");
         }
 
         [When(@"user clicks Date column heading")]
@@ -183,7 +183,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         public void ThenLogsSortByDecreasingDate()
         {
             Thread.Sleep(3000);
-            _cvsmDeviceDetailsPage.LogDateList.isDateSorted("d").Should().BeTrue("log files are sorted by decreasing date.");
+            _cvsmDeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("log files are sorted by decreasing date.");
         }
 
         [Then(@"decreasing date sorting indicator is displayed")]
@@ -196,7 +196,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         public void ThenLogsSortByIncreasingDate()
         {
             Thread.Sleep(3000);
-            _cvsmDeviceDetailsPage.LogDateList.isDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date.");
+            _cvsmDeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date.");
         }
 
         [Then(@"increasing date sorting indicator is displayed")]

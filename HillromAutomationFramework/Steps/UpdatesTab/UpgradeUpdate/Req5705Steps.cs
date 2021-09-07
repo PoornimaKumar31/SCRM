@@ -101,7 +101,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Then(@"Next button is disabled")]
         public void ThenNextButtonIsDisabled()
         {
-            (_updatesSelectUpdatePage.NextButton.Enabled).Should().BeTrue(because: "Next button should be disabled in CSM Upgrades page since user didn't select any upgrade file");
+            (_updatesSelectUpdatePage.NextButton.Enabled).Should().BeFalse(because: "Next button should be disabled in CSM Upgrades page since user didn't select any upgrade file");
         }
 
         [Then(@"Page x of y label is displayed")]

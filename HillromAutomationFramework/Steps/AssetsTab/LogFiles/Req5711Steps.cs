@@ -128,7 +128,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             }
             
             _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(RV700DeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, "Sorting icon is not as expected");
-            _rv700DeviceDetailsPage.LogDateList.isDateSorted("d").Should().BeTrue("Logs are not sorted by decreasing date");
+            _rv700DeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Logs are not sorted by decreasing date");
         }
 
         [Given(@"logs are sorted by increasing date")]
@@ -142,7 +142,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             }
             
             _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(RV700DeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, "Sorting icon is not as expected");
-            _rv700DeviceDetailsPage.LogDateList.isDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date");
+            _rv700DeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date");
         }
 
         [When(@"user clicks Date column heading")]
@@ -156,7 +156,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"logs are sorted by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            _rv700DeviceDetailsPage.LogDateList.isDateSorted("d").Should().BeTrue("Date is not sorted in decreasing order");
+            _rv700DeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Date is not sorted in decreasing order");
         }
 
         [Then(@"decreasing date sorting indicator is displayed")]
@@ -169,7 +169,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"logs are sorted by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-            _rv700DeviceDetailsPage.LogDateList.isDateSorted("a").Should().BeTrue("Date is not sorted in increasing order");
+            _rv700DeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Date is not sorted in increasing order");
         }
 
         [Then(@"increasing date sorting indicator is displayed")]

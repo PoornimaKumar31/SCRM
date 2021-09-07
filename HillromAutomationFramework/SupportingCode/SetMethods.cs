@@ -51,15 +51,18 @@ namespace HillromAutomationFramework.SupportingCode
             }
         }
 
-        public static void ClickWebElement(this IWebElement element)
+        public static void ClickWebElement(this IWebElement element, string elementName="Webelement")
         {
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-
+            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
+            {
+                Message = elementName + " element is not clickable."
+            };
             try
             {
                 Actions actions = new Actions(PropertyClass.Driver);
                 actions.MoveToElement(element);
                 actions.Perform();
+
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
                 element.Click();
             }
@@ -83,7 +86,7 @@ namespace HillromAutomationFramework.SupportingCode
             }
             catch (Exception e)
             {
-                Console.WriteLine(e + " Exceptions Occured");
+                Assert.Fail("Unable to click on the element using javascript.\n"+ e.Message);
             }
 
         }
@@ -113,7 +116,7 @@ namespace HillromAutomationFramework.SupportingCode
             }
             catch(Exception e)
             {
-                Console.WriteLine(e+" Exception Occured");
+                Assert.Fail("Unable to scroll to bottom of the webpage.\n " + e.Message);
             }
         }
 
@@ -137,7 +140,7 @@ namespace HillromAutomationFramework.SupportingCode
             }
             catch(Exception e)
             {
-                Console.WriteLine(e+" Exception Occured");
+                Assert.Fail("Unable to move to the element "+elementName+"\n"+e.Message);
             }
             
         }
@@ -155,7 +158,7 @@ namespace HillromAutomationFramework.SupportingCode
             catch (Exception e)
             {
 
-                Assert.Fail("Exception has occured.\n"+e.Message);
+                Assert.Fail("Unable to scoll to the top of the webpage.\n"+e.Message);
             }
             
         }
@@ -183,8 +186,8 @@ namespace HillromAutomationFramework.SupportingCode
         /// </summary>
         /// <param name="dateList">List of dates</param>
         /// <param name="typeOfSort">acensing or descending</param>
-        /// <returns></returns>
-        public static bool isDateSorted(this IList<IWebElement> dateList, string typeOfSort = "a")
+        /// <returns>true if dates are sorted in specified order, else false</returns>
+        public static bool IsDateSorted(this IList<IWebElement> dateList, string typeOfSort = "a")
         {
             List<DateTime> FormatedDateList = new List<DateTime>();
             foreach (IWebElement element in dateList)
@@ -226,6 +229,12 @@ namespace HillromAutomationFramework.SupportingCode
             }
         }
 
+        /// <summary>
+        /// Wait for a specified time interval  untill two strings are equal.
+        /// </summary>
+        /// <param name="FirstString">First string to compare</param>
+        /// <param name="SecoundString">Second string to compare</param>
+        /// <param name="maxRetryCount">Maximum retry count</param>
         public static void WaitUntilTwoStringsAreEqual(string FirstString, string SecoundString,int maxRetryCount = 100)
         {
             FirstString = FirstString.ToLower().Trim();
@@ -239,14 +248,19 @@ namespace HillromAutomationFramework.SupportingCode
                 }
             }
 
-            bool boolReturnValue = (FirstString.Equals(SecoundString) ? true : false);
+            bool boolReturnValue = (FirstString.Equals(SecoundString));
             if (!boolReturnValue)
             {
                 throw new ApplicationException("strings are not equal. Timedout after 10 Seconds");
             }
         }
 
-
+        /// <summary>
+        /// Wait's until new window is opened for a specified time interval
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <param name="ExpectedNumberOfWindows"></param>
+        /// <param name="maxRetryCount"></param>
         public static void WaitUntilNewWindowIsOpened(this IWebDriver driver, int ExpectedNumberOfWindows, int maxRetryCount = 100)
         {
             int ActualNumberofWindows;
