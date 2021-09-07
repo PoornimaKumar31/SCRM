@@ -1,179 +1,212 @@
-﻿using HillromAutomationFramework.PageObjects;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5706")]
     class Req5706Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        UpdatesSelectUpdatePage updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
-        UpdateSelectDevicesPage updateSelectDevicesPage = new UpdateSelectDevicesPage();
-        UpdateReviewActionPage updateReviewActionPage = new UpdateReviewActionPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly UpdatesSelectUpdatePage _updatesSelectUpdatePage;
+        private readonly UpdateSelectDevicesPage _updateSelectDevicesPage;
+        private readonly UpdateReviewActionPage _updateReviewActionPage;
 
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
 
         public Req5706Steps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage();
+            _landingPage = new LandingPage();
+            _mainPage = new MainPage();
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
+            _updateSelectDevicesPage = new UpdateSelectDevicesPage();
+            _updateReviewActionPage = new UpdateReviewActionPage(); 
         }
 
         [Given(@"user is on CSM Review Action page")]
         public void GivenUserIsOnCSMReviewActionPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.UpdatesTab.JavaSciptClick();
+            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.UpdatesTab.JavaSciptClick();
+
             //updates tab
-            updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);
-            updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
 
             //first upgrade file
-            updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
+            _updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
+            _updatesSelectUpdatePage.NextButton.Click();
 
-            updatesSelectUpdatePage.NextButton.Click();
             //Select device page
-            bool IsSelectDevicePage = (updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (updateSelectDevicesPage.DeviceTypeLabel.GetElementVisibility());
-            Assert.AreEqual(true, IsSelectDevicePage, "Select devices page is not displayed");
+            bool IsSelectDevicePageDisplayed = (_updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (_updateSelectDevicesPage.DeviceTypeLabel.GetElementVisibility());
+            (IsSelectDevicePageDisplayed).Should().BeTrue(because: "Select devices page should be displayed when userclicks enabled next button in CSM Upgrade Select update page");
 
-            updateSelectDevicesPage.FirstDeviceCheckBox.Click();
+            //Select first device and click on next button
+            _updateSelectDevicesPage.FirstDeviceCheckBox.Click();
+            _updateSelectDevicesPage.NextButton.Click();
 
-            updateSelectDevicesPage.NextButton.Click();
-
-            bool IsReviewActionPage = (updateReviewActionPage.ItemToPushLabel.GetElementVisibility()) || (updateReviewActionPage.DestinationLabel.GetElementVisibility());
-            Assert.AreEqual(true, IsReviewActionPage, "CSM Review action page is not displayed.");
+            bool IsReviewActionPageDisplayed = (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()) || (_updateReviewActionPage.DestinationLabel.GetElementVisibility());
+            (IsReviewActionPageDisplayed).Should().BeTrue(because: "Review action page should be displayed when user clicks enabled next button in CSM Upgrade Select Assets page");
         }
 
         [When(@"user clicks Schedule radio button")]
         public void WhenUserClicksScheduleRadioButton()
         {
-            updateReviewActionPage.ScheduleCheckbox.Click();
+            _updateReviewActionPage.ScheduleCheckbox.Click();
 
         }
 
         [Then(@"Date label is displayed")]
         public void ThenDateLabelIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.DateLabel.GetElementVisibility(), "Date Label is not displayed");
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.DateLabelText, updateReviewActionPage.DateLabel.Text, "Date label is not matching with the expected value.");
+            (_updateReviewActionPage.DateLabel.GetElementVisibility()).Should().BeTrue(because: "Date Label should be displayed in CSM Upgrade Review action page");
+            string DateLabelText = _updateReviewActionPage.DateLabel.Text;
+            (DateLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DateLabelText, because: "Date label text should match with the expected value in CSM Upgrade Review action page.");
         }
 
         [Then(@"Calendar icon is displayed")]
         public void ThenCalendarIconIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.CalendarIcon.GetElementVisibility(), "Calendar Icon is not displayed");
+            (_updateReviewActionPage.CalendarIcon.GetElementVisibility()).Should().BeTrue(because: "Calendar Icon should be displayed in CSM Upgrade Review action page");
         }
 
         [Then(@"Time label is displayed")]
         public void ThenTimeLabelIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.TimeLabel.GetElementVisibility(), "Time Label is not displayed");
-            Assert.AreEqual(UpdateReviewActionPage.ExpectedValues.TimeLabelText, updateReviewActionPage.TimeLabel.Text, "Time label is not matching the expected value.");
+            (_updateReviewActionPage.TimeLabel.GetElementVisibility()).Should().BeTrue(because: "Time Label should be displayed in CSM Upgrade Review action page");
+            string TimeLabelText = _updateReviewActionPage.TimeLabel.Text;
+            (TimeLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.TimeLabelText, because: "Time label should match with the expected value in CSM Upgrade Review action page.");
         }
 
         [Then(@"Hour dropdown is displayed")]
         public void ThenHourDropdownIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.HourDDL.GetElementVisibility(), "Hour Label is not displayed");
+            (_updateReviewActionPage.HourDDL.GetElementVisibility()).Should().BeTrue(because: "Hour dropdown should be displayed in CSM Upgrade Review action page");
         }
 
         [Then(@"Minutes dropdown is displayed")]
         public void ThenMinutesDropdownIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.MinuteDDL.GetElementVisibility(), "Minute Label is not displayed");
+            (_updateReviewActionPage.MinuteDDL.GetElementVisibility()).Should().BeTrue(because: "Minute dropdown should be displayed in CSM Upgrade Review action page");
         }
 
         [Then(@"Confirm button is displayed")]
         public void ThenConfirmButtonIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.ConfirmButton.GetElementVisibility(), "Confirm button is not displayed");
+            (_updateReviewActionPage.ConfirmButton.GetElementVisibility()).Should().BeTrue(because: "Confirm button should be displayed in CSM Upgrade Review action page");
         }
 
         [Then(@"Previous button is displayed")]
         public void ThenPreviousButtonIsDisplayed()
         {
-            Assert.AreEqual(true, updateReviewActionPage.PreviousButton.GetElementVisibility(), "Previous Button is not displayed");
+            (_updateReviewActionPage.PreviousButton.GetElementVisibility()).Should().BeTrue(because: "Previous Button should be displayed in CSM Upgrade Review action page");
         }
 
         [When(@"clicks Hour dropdown")]
         public void WhenClicksHourDropdown()
         {
-            updateReviewActionPage.HourDDL.Click();
+            _updateReviewActionPage.HourDDL.Click();
         }
 
         [Then(@"Hour dropdown displays (.*) to (.*)")]
-        public void ThenHourDropdownDisplaysTo(int p0, int p1)
+        public void ThenHourDropdownDisplaysTo(int startPoint, int endPoint)
         {
-            IList<IWebElement> AllOptions = updateReviewActionPage.HourDDL.GetAllOptionsFromDDL();
-            Assert.AreEqual((p1 - p0)+1, AllOptions.Count, "All elements are not present");
+            IList<IWebElement> AllOptions = _updateReviewActionPage.HourDDL.GetAllOptionsFromDDL();
+            List<int> AllOptionsText = new List<int>();
+            foreach(IWebElement option in AllOptions)
+            {
+                AllOptionsText.Add(int.Parse(option.Text));
+            }
+            int noOfOptions = (endPoint - startPoint) + 1;
+
+            List<int> ExpectedOptionsList = (Enumerable.Range(startPoint, noOfOptions)).ToList();
+
+            AllOptionsText.Should().Equal(ExpectedOptionsList, because: "Hour dropdown should contain all the options within range "+startPoint+" and "+endPoint);
         }
 
         [When(@"clicks Minutes dropdown")]
         public void WhenClicksMinutesDropdown()
         {
-            updateReviewActionPage.MinuteDDL.Click();
+            _updateReviewActionPage.MinuteDDL.Click();
         }
 
         [Then(@"Minutes dropdown displays (.*), (.*), (.*) and (.*)")]
-        public void ThenMinutesDropdownDisplaysAnd(int p0, int p1, int p2, int p3)
+        public void ThenMinutesDropdownDisplaysAnd(int option1, int option2, int option3, int option4)
         {
-            IList<IWebElement> AllOptions = updateReviewActionPage.MinuteDDL.GetAllOptionsFromDDL();
-            Assert.AreEqual(4, AllOptions.Count, "All Elements are not present in Minutes dropdows");
+            IList<IWebElement> AllOptions = _updateReviewActionPage.MinuteDDL.GetAllOptionsFromDDL();
+            List<int> AllOptionsText = new List<int>();
+            foreach (IWebElement option in AllOptions)
+            {
+                AllOptionsText.Add(int.Parse(option.Text));
+            }
+            List<int> ExpectedOptionList = new List<int> { option1,option2,option3,option4};
+
+            AllOptionsText.Should().Equal(ExpectedOptionList, because: "Minutes drop down should contain only {0} {1} {2} {3}", option1, option2,option3,option4);
         }
 
         [When(@"user selects Date from Date selector icon")]
         public void WhenUserSelectsDateFromDateSelectorIcon()
         {
-            updateReviewActionPage.CalendarIcon.Click();
-            updateReviewActionPage.Date.Click();
+            _updateReviewActionPage.CalendarIcon.Click();
+            _updateReviewActionPage.Date.Click();
         }
 
         [When(@"selects hours between (.*)")]
         public void WhenSelectsHoursBetween(string p0)
         {
+            //Selecting Random Hours
             var random = new Random();
-            IList<IWebElement> AllOptions = updateReviewActionPage.HourDDL.GetAllOptionsFromDDL();
-            int index = random.Next(AllOptions.Count);
-            updateReviewActionPage.HourDDL.SelectDDL(AllOptions[index].Text);
+            IList<IWebElement> AllOptions = _updateReviewActionPage.HourDDL.GetAllOptionsFromDDL();
+            int index = random.Next(1,AllOptions.Count);
+            _updateReviewActionPage.HourDDL.SelectDDL(AllOptions[index].Text);
         }
 
         [When(@"selects minutes between (.*)")]
         public void WhenSelectsMinutesBetween(string p0)
         {
+            //Selecting Random Minutes
             var random = new Random();
-            IList<IWebElement> AllOptions = updateReviewActionPage.MinuteDDL.GetAllOptionsFromDDL();
+            IList<IWebElement> AllOptions = _updateReviewActionPage.MinuteDDL.GetAllOptionsFromDDL();
             int index = random.Next(AllOptions.Count);
-            updateReviewActionPage.MinuteDDL.SelectDDL(AllOptions[index].Text);
+            _updateReviewActionPage.MinuteDDL.SelectDDL(AllOptions[index].Text);
         }
 
         [When(@"clicks Confirm button")]
         public void WhenClicksConfirmButton()
         {
-            updateReviewActionPage.ConfirmButton.Click();
+            _updateReviewActionPage.ConfirmButton.Click();
         }
 
         [Then(@"Upgrade process has been established message is displayed")]
         public void ThenUpgradeProcessHasBeenEstablishedMessageIsDisplayed()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.ClassName(UpdateSelectDevicesPage.Locators.SuccessUpadteMessageClassName)));
-            Assert.AreEqual(true, updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility(), "Update message is not displayed.");
-            Assert.AreEqual(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, updateSelectDevicesPage.SuccessUpadteMessage.Text, "Update message is matching the expected value.");
+            _wait.Until(ExplicitWait.ElementIsVisible(By.ClassName(UpdateSelectDevicesPage.Locators.SuccessUpadteMessageClassName)));
+            (_updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button on CSM Upgrade review action page.");
+            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
         }
 
         [Then(@"Select Assets page is displayed")]
         public void ThenSelectAssetsPageIsDisplayed()
         {
-            Assert.AreEqual(true, updateSelectDevicesPage.ItemtoPush.GetElementVisibility(), "Page is not loaded");
+            bool IsSelectDevicePageDisplayed = (_updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (_updateSelectDevicesPage.DeviceTypeLabel.GetElementVisibility());
+            (IsSelectDevicePageDisplayed).Should().BeTrue(because: "Select devices page should be displayed");
         }
     }
 }

@@ -204,8 +204,8 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Then(@"CSM Select assets page is displayed")]
         public void ThenCSMSelectAssetsPageIsDisplayed()
         {
-            bool IsSelectDevicePage = (_updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (_updateSelectDevicesPage.DeviceTypeLabel.GetElementVisibility());
-            Assert.AreEqual(true, IsSelectDevicePage, "Select devices page is not displayed");
+            bool IsSelectDevicePageDisplayed = (_updateSelectDevicesPage.ItemtoPush.GetElementVisibility()) || (_updateSelectDevicesPage.DeviceTypeLabel.GetElementVisibility());
+            (IsSelectDevicePageDisplayed).Should().BeTrue(because: "Select devices page should be displayed when userclicks enabled next button in CSM Upgrade Select update page");
         }
 
         [Given(@"user is on CSM Upgrade Select assets page")]
