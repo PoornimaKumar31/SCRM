@@ -76,16 +76,16 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Then(@"Name column heading is displayed")]
         public void ThenNameColumnHeadingIsDisplayed()
         {
-            (_updatesSelectUpdatePage.NameColumnHeading.GetElementVisibility()).Should().BeTrue(because: "Name column heading should be displayed in in Centrella select updates page table");
-            string ActualNameColumnHeadingText = _updatesSelectUpdatePage.NameColumnHeading.Text;
+            (_updatesSelectUpdatePage.CentrellaAndRV700NameColumnHeading.GetElementVisibility()).Should().BeTrue(because: "Name column heading should be displayed in in Centrella select updates page table");
+            string ActualNameColumnHeadingText = _updatesSelectUpdatePage.CentrellaAndRV700NameColumnHeading.Text;
             (ActualNameColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.TableNameHeadingText, because: "Name heading name text should match with the expected value in Centrella select updates page table");
         }
 
         [Then(@"Date created column heading is displayed")]
         public void ThenDateCreatedColumnHeadingIsDisplayed()
         {
-            (_updatesSelectUpdatePage.DateColumnHeading.GetElementVisibility()).Should().BeTrue(because: "Date column heading should be displayed in Centrella select updates page table");
-            string ActualDateColumnHeadingText = _updatesSelectUpdatePage.DateColumnHeading.Text;
+            (_updatesSelectUpdatePage.CentrellaAndRV700DateColumnHeading.GetElementVisibility()).Should().BeTrue(because: "Date column heading should be displayed in Centrella select updates page table");
+            string ActualDateColumnHeadingText = _updatesSelectUpdatePage.CentrellaAndRV700DateColumnHeading.Text;
             (ActualDateColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.TableDateHeadingText, because: "Date heading name text should match with the expected value in Centrella select updates page table");
         }
 

@@ -27,7 +27,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string LastFilesDeployedHeadingID = "FileDeploy";
             public const string FirstDeviceCheckBoxID = "checkbox-0";
 
-            public const string PreviousButtonXpath = "//button[@id='previous']";
+            public const string PreviousButtonID = "previous-btn";
             public const string DeployButtonID = "deploy";
             public const string PaginationXofYXpath = "//div[@class='config-pagecount']//span[2]";
             public const string PaginationPreviousButtonXpath = "//span[@id='previous']";
@@ -135,7 +135,7 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.Id, Using = Locators.FirstDeviceCheckBoxID)]
         public IWebElement FirstDeviceCheckBox { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.PreviousButtonXpath)]
+        [FindsBy(How = How.Id, Using = Locators.PreviousButtonID)]
         public IWebElement PreviousButton { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.DeployButtonID)]

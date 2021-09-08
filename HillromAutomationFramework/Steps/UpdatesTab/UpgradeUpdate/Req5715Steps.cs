@@ -323,7 +323,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
                 string ActualHeadingText = HeadingElement.Text.ToLower();
                 (ActualHeadingText).Should().BeEquivalentTo(columnHeading, because: columnHeading + " column heading should match with the expected value in RV700 select updates page");
             }
-            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 upgrade elements"))
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 select assets elements table"))
             {
                 switch (columnHeading.ToLower().Trim())
                 {
