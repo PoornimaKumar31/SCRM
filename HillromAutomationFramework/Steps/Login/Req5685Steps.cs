@@ -1,9 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
-using System.IO;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
@@ -22,102 +19,39 @@ namespace HillromAutomationFramework.Steps.Login
         public void WhenUserClicksPartnerConnect()
         {
             _loginPage.PartnerConnectLink.Click();
-            // Checking if download starts.
-            int count = 0;
-            bool file_exist = false;
-            while (file_exist != true || count <= 30)
-            {
-                Task.Delay(10000).Wait();
-                count++;
-                if (File.Exists(PropertyClass.PartnerConnectFilePath))
-                {
-                    file_exist = true;
-                }
-            }
         }
 
         [Then(@"PartnerConnect zip file is downloaded")]
         public void ThenPartnerConnectZipFileIsDownloaded()
         {
-            // Checking if Partner Connect ZIP file is downloaded successfuly.
-            if (Directory.Exists(PropertyClass.DownloadPath))
-            {
-                File.Exists(PropertyClass.PartnerConnectFilePath).Should().BeTrue("PartnerConnect zip file is not downloaded");
-                //Delete file after verifying
-                File.Delete(PropertyClass.PartnerConnectFilePath);
-            }
-            else
-            {
-                Assert.Fail("Directory/Folder Does not exist");
-            }
+            bool IsParterConnectFileDownloaded = GetMethods.IsFileDownloaded(LoginPage.ExpectedValues.PartnerConnectFileName, waitTimeInSeconds: 300);
+            (IsParterConnectFileDownloaded).Should().BeTrue(because: "Partner Connect Zip file should be downloaded when user clicks Partner Connect link in login page");
         }
 
         [When(@"user clicks Service Monitor")]
         public void WhenUserClicksServiceMonitor()
         {
             _loginPage.ServiceMoniterLink.Click();
-            // Checking if download starts.
-            bool file_exist = false;
-            int count = 0;
-            while (file_exist != true || count <= 30)
-            {
-                Task.Delay(10000).Wait();
-                count++;
-                if (File.Exists(PropertyClass.ServiceMonitorFilePath))
-                {
-                    file_exist = true;
-                }
-            }
         }
 
         [Then(@"Service Monitor zip file is downloaded")]
         public void ThenServiceMonitorZipFileIsDownloaded()
         {
-            // Checking if Partner Connect ZIP file is downloaded successfuly.
-            if (Directory.Exists(PropertyClass.DownloadPath))
-            {
-                File.Exists(PropertyClass.ServiceMonitorFilePath).Should().BeTrue("Service Moniter Zip file is not downloaded");
-                // Delete after Verifying.
-                File.Delete(PropertyClass.ServiceMonitorFilePath);
-            }
-            else
-            {
-                Assert.Fail("Directory/Folder Does not exist");
-            }
+            bool IsServiceMoniterFileDownloaded = GetMethods.IsFileDownloaded(LoginPage.ExpectedValues.ServiceMonitorFileName, waitTimeInSeconds: 300);
+            (IsServiceMoniterFileDownloaded).Should().BeTrue(because: "Service Moniter file should be downloaded when user clicks Service Moniter link.");
         }
 
         [When(@"user clicks DCP")]
         public void WhenUserClicksDCP()
         {
             _loginPage.DCPLink.Click();
-            // Checking if download starts.
-            bool file_exist = false;
-            int count = 0;
-            while (file_exist != true || count<=30)
-            {
-                Task.Delay(1000).Wait();
-                count++;
-                if (File.Exists(PropertyClass.DCPFilePath))
-                {
-                    file_exist = true;
-                }
-            }
         }
 
         [Then(@"DCP zip file is downloaded")]
         public void ThenDCPZipFileIsDownloaded()
         {
-            // Checking if Partner Connect ZIP file is downloaded successfuly.
-            if (Directory.Exists(PropertyClass.DownloadPath))
-            {
-                File.Exists(PropertyClass.DCPFilePath).Should().BeTrue("Dcp zip file is not downloaded\n");
-                // Delete after verifying.
-                File.Delete(PropertyClass.DCPFilePath);
-            }
-            else
-            {
-                Assert.Fail("Directory/Folder Does not exist");
-            }
+            bool IsDCPFileDownloaded = GetMethods.IsFileDownloaded(LoginPage.ExpectedValues.DCPFileName, waitTimeInSeconds: 300);
+            (IsDCPFileDownloaded).Should().BeTrue(because: "DCP file should be downloaded when user clicks DCP link.");
         }
 
         [When(@"user clicks Administrator Guide")]
@@ -129,10 +63,12 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Administrator Guide PDF opens in browser")]
         public void ThenAdministratorGuidePDFOpensInBrowser()
         {
-            // handler for the new tab
-            var popup = PropertyClass.Driver.WindowHandles[1];
+            int windowCount = PropertyClass.Driver.WindowHandles.Count;
 
             // checking if new tab was opened
+            (windowCount).Should().BeGreaterThan(1, because: "PDF should be pened in a new window");
+
+            var popup = PropertyClass.Driver.WindowHandles[1];
             string.IsNullOrEmpty(popup).Should().BeFalse("PDF is not opened in new tab");
 
             // Switch to new tab.
@@ -150,6 +86,11 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Instructions for Use PDF opens in browser")]
         public void ThenInstructionsForUsePDFOpensInBrowser()
         {
+            int windowCount = PropertyClass.Driver.WindowHandles.Count;
+
+            // checking if new tab was opened
+            (windowCount).Should().BeGreaterThan(1, because: "PDF should be pened in a new window");
+
             // handler for the new tab
             var popup = PropertyClass.Driver.WindowHandles[1];
 
@@ -171,6 +112,11 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Release Notes PDF opens in browser")]
         public void ThenReleaseNotesPDFOpensInBrowser()
         {
+            int windowCount = PropertyClass.Driver.WindowHandles.Count;
+
+            // checking if new tab was opened
+            (windowCount).Should().BeGreaterThan(1, because: "PDF should be pened in a new window");
+
             // handler for the new tab
             var popup = PropertyClass.Driver.WindowHandles[1];
 

@@ -108,24 +108,17 @@ namespace HillromAutomationFramework.SupportingCode
         /// Verify File is downloaded with in specified time
         /// </summary>
         /// <param name="fileName">Name of the downloaded file</param>
-        /// <param name="waitTime">Time to wait untill file is downloaded</param>
+        /// <param name="waitTimeInSeconds">Time to wait untill file is downloaded</param>
         /// <returns>true if file is downloaded, else return false</returns>
-        public static bool IsFileDownloaded(string fileName, int waitTime)
+        public static bool IsFileDownloaded(string fileName, int waitTimeInSeconds)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
-            //Delete all files in download folder
-            foreach (FileInfo file in directoryInfo.GetFiles())
-            {
-                file.Delete();
-            }
-
             bool file_exist = false;
-            int time = 0;
+            int timeInSeconds = 0;
             //Wait till file is downloaded
-            while (file_exist != true && time <= waitTime)
+            while (file_exist != true && timeInSeconds <= waitTimeInSeconds)
             {
                 Task.Delay(1000).Wait();
-                time++;
+                timeInSeconds++;
                 if (File.Exists(PropertyClass.DownloadPath + "\\" + fileName))
                 {
                     file_exist = true;
@@ -135,16 +128,29 @@ namespace HillromAutomationFramework.SupportingCode
         }
 
         /// <summary>
+        /// Delete all the files in the specified folder
+        /// </summary>
+        /// <param name="FolderPath">Path of the folder to delete files</param>
+        public static void ClearDownloadFolder(string FolderPath)
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(FolderPath);
+            //Delete all files in download folder
+            foreach (FileInfo file in directoryInfo.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+
+        /// <summary>
         /// Check the file format in the download folder.
         /// Pre-Condition: Only if the one file exists in the download folder. 
         /// </summary>
         /// <param name="fileExtension">extention of the file.</param>
         /// <returns>true if file extention matches the given extension</returns>
-        public static bool CheckFileFormat(string fileExtension)
+        public static bool CheckFileFormat(string filename,string fileExtension)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
-            FileInfo[] fileInfo = directoryInfo.GetFiles();
-            return (fileInfo[0].Extension == fileExtension);
+            FileInfo fileInfo = new FileInfo(PropertyClass.DownloadPath + "\\" + filename);
+            return (fileInfo.Extension == fileExtension);
         }
 
         /// <summary>

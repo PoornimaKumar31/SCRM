@@ -70,9 +70,12 @@ namespace HillromAutomationFramework.PageObjects
             //Forgot password
             public const string ForgotPasswordSuccessMessage = "You will receive an email with a link to update your password";
 
-            
+
 
             //Software Downloads
+            public static string PartnerConnectFileName = "PartnerConnect.zip";
+            public static string ServiceMonitorFileName = "ServiceMonitor.zip";
+            public static string DCPFileName = "DCP.zip";
 
             //PDF Documents URL
             public const string AdminstartorsGuidePDFURL = "https://www.hillrom.com/content/dam/hillrom-aem/us/en/sap-documents/LIT/80028/80028398LITPDF.pdf";

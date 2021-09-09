@@ -87,6 +87,11 @@ namespace HillromAutomationFramework.Hooks
             {
                 Directory.CreateDirectory(PropertyClass.DownloadPath);
             }
+            else
+            {
+                //Delete all files in download folder
+                GetMethods.ClearDownloadFolder(PropertyClass.DownloadPath + "\\");
+            }
 
 
             string BrowserName = PropertyClass.BrowserName.ToLower().Trim();

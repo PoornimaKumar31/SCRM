@@ -42,12 +42,6 @@ namespace HillromAutomationFramework.SupportingCode
         /// <summary>
         /// Download folder path of the browser.
         /// </summary>
-        public static string DownloadPath = workingDirectory + "\\Downloads";
-
-        // path in which Software Zip files are downloaded
-        readonly public static string PartnerConnectFilePath = @DownloadPath + "\\PartnerConnect.zip";
-        readonly public static string ServiceMonitorFilePath = @DownloadPath + "\\ServiceMonitor.zip";
-        readonly public static string DCPFilePath = @DownloadPath + "\\DCP.zip";
-        
+        public static string DownloadPath = workingDirectory + "\\Downloads";        
     }
 }

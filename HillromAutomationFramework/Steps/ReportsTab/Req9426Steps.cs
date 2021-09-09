@@ -77,7 +77,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             bool isFileDownloaded = GetMethods.IsFileDownloaded(fileName, 10);
             (isFileDownloaded).Should().BeTrue(because: reportName + " file should be downloaded when user clicks on download button in centrella firmware upgrade status report page.");
 
-            bool IsFileFormatCSV = GetMethods.CheckFileFormat(".csv");
+            bool IsFileFormatCSV = GetMethods.CheckFileFormat(fileName,".csv");
             (IsFileFormatCSV).Should().BeTrue(reportName + " file should be in .csv format.");
 
         }

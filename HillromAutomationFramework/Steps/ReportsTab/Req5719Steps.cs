@@ -119,7 +119,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             bool fileDownload = GetMethods.IsFileDownloaded(filename, 10);
             fileDownload.Should().BeTrue(reportName + " should be downloaded when you press the download button");
 
-            bool fileFormat = GetMethods.CheckFileFormat(".csv");
+            bool fileFormat = GetMethods.CheckFileFormat(filename,".csv");
             fileFormat.Should().BeTrue(reportName + " should be in csv format");
         }
     }
