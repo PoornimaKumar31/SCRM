@@ -19,7 +19,7 @@ namespace HillromAutomationFramework.Steps.Login
         public Req5682Steps()
         {
             _loginPage = new LoginPage();
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(20));
         }
 
  

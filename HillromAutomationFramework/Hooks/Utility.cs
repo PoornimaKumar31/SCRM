@@ -59,6 +59,17 @@ namespace HillromAutomationFramework.Hooks
             _extentReports.AddSystemInfo("Base URl", PropertyClass.BaseURL);
             _extentReports.AddSystemInfo("Operating System", Environment.OSVersion.ToString());
             _extentReports.AddSystemInfo("Browser", PropertyClass.BrowserName);
+
+            //create downloads folder if not exists
+            if (!Directory.Exists(PropertyClass.DownloadPath))
+            {
+                Directory.CreateDirectory(PropertyClass.DownloadPath);
+            }
+            else
+            {
+                //Delete all files in download folder
+                GetMethods.ClearDownloadFolder(PropertyClass.DownloadPath + "\\");
+            }
         }
 
 
@@ -81,19 +92,11 @@ namespace HillromAutomationFramework.Hooks
             //log scenario in extent report
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
             _scenario.AssignCategory(_scenarioContext.ScenarioInfo.Tags);
-            //Browser setup
-            //create downloads folder if not exists
-            if (!Directory.Exists(PropertyClass.DownloadPath))
-            {
-                Directory.CreateDirectory(PropertyClass.DownloadPath);
-            }
-            else
-            {
-                //Delete all files in download folder
-                GetMethods.ClearDownloadFolder(PropertyClass.DownloadPath + "\\");
-            }
 
+            
+            CreateRandomDirectoryInsideDownloadFolder();
 
+            //Browser setup  
             string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
 
             if(BrowserName.Contains("chrome"))
@@ -233,6 +236,15 @@ namespace HillromAutomationFramework.Hooks
         public static void AfterTestRun()
         {
             _extentReports.Flush();
+        }
+
+
+        public void CreateRandomDirectoryInsideDownloadFolder()
+        {
+            DirectoryInfo directory = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
+            string RandomDirectoryName = GetMethods.GenerateRandomString(5);
+            directory.CreateSubdirectory(RandomDirectoryName);
+            PropertyClass.DownloadPath = PropertyClass.DownloadPath + "\\" + RandomDirectoryName;
         }
 
     }

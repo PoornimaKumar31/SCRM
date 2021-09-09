@@ -139,6 +139,13 @@ namespace HillromAutomationFramework.SupportingCode
             {
                 file.Delete();
             }
+            //Delete all folders in Download Folder
+            foreach(DirectoryInfo directory in directoryInfo.GetDirectories())
+            {
+                directory.Delete(true);
+            }
+
+
         }
 
         /// <summary>
