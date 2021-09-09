@@ -6,9 +6,6 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
@@ -60,7 +57,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
                     break;
 
                 default:
-                    Assert.Fail("Label name is invalid");
+                    Assert.Fail(LabelName+" label name is invalid");
                     break;
             }
             
@@ -75,15 +72,52 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         }
 
         [Then(@"""(.*)"" label is displayed")]
-        public void ThenLabelIsDisplayed(string p0)
+        public void ThenLabelIsDisplayed(string labelName)
         {
-            _scenarioContext.Pending();
+            IWebElement labelWebElement = null;
+            switch(labelName.ToLower().Trim())
+            {
+                case "error code":
+                    labelWebElement = centrellaDeviceDetailsPage.ErrorCodeLabel;
+                    break;
+                case "description":
+                    labelWebElement = centrellaDeviceDetailsPage.ErrorDescriptionLabel;
+                    break;
+                case "solution":
+                    labelWebElement = centrellaDeviceDetailsPage.ErrorSolutionLabel;
+                    break;
+                default: Assert.Fail(labelName + " label name is invalid.");
+                    break;
+            }
+            bool IsLabelDisplayed = labelWebElement.GetElementVisibility();
+            (IsLabelDisplayed).Should().BeTrue(because: labelName+ " label should be displayed in Centrella error code pop-up dialog box");
+            string ActuallabelText = labelWebElement.Text;
+            //Assingning prefix
+            labelName += ":";
+            (ActuallabelText).Should().BeEquivalentTo(labelName, because: labelName+ " should match the expected value in Centrella error code pop-up dialog box");
         }
 
         [Then(@"""(.*)"" value is displayed")]
-        public void ThenValueIsDisplayed(string p0)
+        public void ThenValueIsDisplayed(string labelName)
         {
-            _scenarioContext.Pending();
+            IWebElement labelWebElement = null;
+            switch (labelName.ToLower().Trim())
+            {
+                case "error code":
+                    labelWebElement = centrellaDeviceDetailsPage.ErrorCodeValue;
+                    break;
+                case "description":
+                    labelWebElement = centrellaDeviceDetailsPage.ErrorDescriptionValue;
+                    break;
+                case "solution":
+                    labelWebElement = centrellaDeviceDetailsPage.ErrorSolutionValue;
+                    break;
+                default:
+                    Assert.Fail(labelName + " label name is invalid.");
+                    break;
+            }
+            bool IsLabelValueDisplayed = labelWebElement.GetElementVisibility();
+            (IsLabelValueDisplayed).Should().BeTrue(because: labelName + " label value should be displayed in Centrella error code pop-up dialog box");
         }
 
         [Then(@"Reference link is displayed")]

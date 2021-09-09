@@ -278,7 +278,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 45
- testRunner.Given("user is on device details page for Centrella Serial number \"PY673001\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on device details page for Centrella Serial number \"PY9885\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 46
  testRunner.When("user clicks Preventive maintenance tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

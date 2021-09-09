@@ -56,13 +56,6 @@ namespace HillromAutomationFramework.PageObjects
             public const string EditAssetDetailsPopUpLocationLabel = "Location";
             public const string RoomLabelHintText = "Room";
             public const string BedLabelHintText = "Bed";
-            
-
-            public const string NewRoomValue = "New Room";
-            public const string NewBedValue = "New Bed";
-            public const string UpdateRoomValue = "Update Room";
-            public const string UpdateBedValue = "Update Bed";
-            public const string RoomAndBedNotSet = "(not set)";
 
             public static string SortDecreasingIconURL = "url(\""+PropertyClass.BaseURL+"/icon_sort_up.svg\")";
             public static string SortIncreasingIconURL = "url(\""+PropertyClass.BaseURL+"/icon_sort_down.svg\")";

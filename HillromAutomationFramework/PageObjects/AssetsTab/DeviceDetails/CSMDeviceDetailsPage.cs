@@ -57,13 +57,13 @@ namespace HillromAutomationFramework.PageObjects
             public const string CalibrationOverDueArrowID = "icon_overdue";
             public const string CalibrationOverDueTextID = "cal_overdue";
             public const string CalenderXPath = "(//div[@class=\"col-xs-12\"])[3]";
-            public const string LeftArrowXPath = "//*[@src=\"./icon_kbd_arrow_left.svg\"]";
-            public const string RightArrowXPath = "//*[@src=\"./icon_kbd_arrow_right.svg\"]";
-            public const string CurrentCalenderYearXPath = "//*[@src=\"./icon_kbd_arrow_left.svg\"]/parent::span/parent::div";
-            public const string NextCalenderYearXPath = "//*[@src=\"./icon_kbd_arrow_right.svg\"]/parent::span/parent::div";
+            public const string LeftArrowID = "prev_year_arrow";
+            public const string RightArrowID = "next_year_arrow";
+            public const string CurrentCalenderYearID = "current_year";
+            public const string NextCalenderYearID = "next_year";
             public const string CalibrationOverDueDateID = "caldue_date";
             public const string PMTabID = "mat-tab-label-0-0";
-            public const string HostControllerGraphicXPath = "//*[@class=\"col-xs-7\"]/span/img";
+            public const string HostControllerGraphicID = "host_controller_img";
             public const string HostControllerID = "name";
             public const string PreventiveMaintenanceLabelID = "prev-maintenance";
             public const string PMSHeaderXPath = "//div[@id=\"lbl_name\"]/parent::div/div";
@@ -109,16 +109,16 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.Id, Using = Locators.CalibrationOverDueDateID)]
         public IWebElement CalibrationOverDueDate { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.NextCalenderYearXPath)]
+        [FindsBy(How = How.Id, Using = Locators.NextCalenderYearID)]
         public IWebElement NextCalenderYear { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.CurrentCalenderYearXPath)]
+        [FindsBy(How = How.Id, Using = Locators.CurrentCalenderYearID)]
         public IWebElement CurrentCalenderYear { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.RightArrowXPath)]
+        [FindsBy(How = How.Id, Using = Locators.RightArrowID)]
         public IWebElement RightArrow { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.LeftArrowXPath)]
+        [FindsBy(How = How.Id, Using = Locators.LeftArrowID)]
         public IWebElement LeftArrow { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.CalenderXPath)]
@@ -133,7 +133,7 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.XPath, Using = Locators.PMSHeaderXPath)]
         public IList<IWebElement> PMSHeader { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.HostControllerGraphicXPath)]
+        [FindsBy(How = How.Id, Using = Locators.HostControllerGraphicID)]
         public IWebElement HostControllerGraphic { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.PreventiveMaintenanceLabelID)]

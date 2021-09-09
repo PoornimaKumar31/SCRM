@@ -24,7 +24,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         {
             public const string ErrorCodeTabXPath = "//div[@class = 'mat-tab-list']/div/div[1]";
             public const string PreventiveMaintenanceTabXPath = "//div[@class = 'mat-tab-list']/div/div[2]";
-            public const string NoErrorReportedLabelXPath = "//div[@id = 'centrella-errorcode-details']/div[2]";
+            public const string NoErrorReportedLabelID = "no_error_code";
             public const string ReferenceButtonID = "btn_reference";
             public const string SaverityColumnHeadingID = "severity";
             public const string TimeStampColumnHeadingID = "time_stamp";
@@ -36,12 +36,12 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
             //Error popup
             public const string ErrorPopupDialogBoxXPath = "//mat-dialog-container[contains(@id, 'mat-dialog')]";
             public const string ErrorCodeTitleLabelID = "lbl_error_title";
-            public const string ErrorCodeLabelID = "";
-            public const string ErrorValueID = "";
-            public const string ErrorDescriptionLabelID = "";
-            public const string ErrorDescriptionValueID = "";
-            public const string ErrorSolutionLabelID = "";
-            public const string ErrorSolutionValueID = "";
+            public const string ErrorCodeLabelID = "lbl_errorCode";
+            public const string ErrorCodeValueID = "error_code";
+            public const string ErrorDescriptionLabelID = "lbl_description";
+            public const string ErrorDescriptionValueID = "short_desc";
+            public const string ErrorSolutionLabelID = "lbl_solution";
+            public const string ErrorSolutionValueID = "error_sol";
             public const string ErrorReferenceLinkID = "ref_link";
             public const string ErrorCloseButtonID = "btn_close";
 
@@ -80,7 +80,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
             //Preventive Maintenance Tab
             public const string PreventiveMaintenanceLabelID = "lbl-prev-maintenance";
             public const string RecentMaintenanceHistoryLabelID = "lbl-maintenance-history";
-            public const string NoMaintenanceHistoryLabelXPath = "//*[@id = 'centrella-pre-maintenance-details']/div[2]/div[3]/span";
+            public const string NoMaintenanceHistoryLabelID = "no_maintenance_history";
             public const string ServiceDatePickerControlID = "date_picker_icon";
             public const string SaveButtonClassName = "saveButton";
             public const string CancelButtonClassName = "cancelButton";
@@ -220,7 +220,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         [FindsBy(How = How.Id, Using = Locators.RecentMaintenanceHistoryLabelID)]
         public IWebElement RecentMaintenanceHistoryLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.NoMaintenanceHistoryLabelXPath)]
+        [FindsBy(How = How.Id, Using = Locators.NoMaintenanceHistoryLabelID)]
         public IWebElement NoMaintenanceHistoryLabel { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.ServiceDatePickerControlID)]
@@ -331,8 +331,8 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         [FindsBy(How = How.Id, Using = Locators.ErrorCodeLabelID)]
         public IWebElement ErrorCodeLabel { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.ErrorValueID)]
-        public IWebElement ErrorValue { get; set; }
+        [FindsBy(How = How.Id, Using = Locators.ErrorCodeValueID)]
+        public IWebElement ErrorCodeValue { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.ErrorDescriptionLabelID)]
         public IWebElement ErrorDescriptionLabel { get; set; }
@@ -375,7 +375,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         [FindsBy(How = How.XPath, Using = Locators.PreventiveMaintenanceTabXPath)]
         public IWebElement PreventiveMaintenanceTab { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.NoErrorReportedLabelXPath)]
+        [FindsBy(How = How.Id, Using = Locators.NoErrorReportedLabelID)]
         public IWebElement NoErrorReportedLabel { get; set; }
 
         public IWebElement RandomDate()

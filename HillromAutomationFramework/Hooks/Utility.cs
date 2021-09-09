@@ -93,7 +93,7 @@ namespace HillromAutomationFramework.Hooks
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
             _scenario.AssignCategory(_scenarioContext.ScenarioInfo.Tags);
 
-            
+            //Create random folder inside Download folder
             CreateRandomDirectoryInsideDownloadFolder();
 
             //Browser setup  
