@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.IO;
+using System.Reflection;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
 
@@ -117,7 +118,7 @@ namespace HillromAutomationFramework.Hooks
                 //chromeOptions.AddArgument("--headless");
 
                 // Setting up the chrome driver
-                PropertyClass.Driver = new ChromeDriver(chromeOptions);
+                PropertyClass.Driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);
             }
             else if(BrowserName.Contains("edge"))
             {
