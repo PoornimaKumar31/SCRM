@@ -26,6 +26,7 @@ namespace HillromAutomationFramework.Hooks
         //Sprcflow variables
         private readonly ScenarioContext _scenarioContext;
         private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
+        private static string DownloadPath;
 
         /// <summary>
         /// Constructor to intialize scenario Context
@@ -69,6 +70,7 @@ namespace HillromAutomationFramework.Hooks
                 //Delete all files in download folder
                 GetMethods.ClearDownloadFolder(PropertyClass.DownloadPath + "\\");
             }
+            DownloadPath = PropertyClass.DownloadPath;
         }
 
 
@@ -91,6 +93,8 @@ namespace HillromAutomationFramework.Hooks
             //log scenario in extent report
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
             _scenario.AssignCategory(_scenarioContext.ScenarioInfo.Tags);
+
+            PropertyClass.DownloadPath= DownloadPath;
 
             //Create random folder inside Download folder
             CreateRandomDirectoryInsideDownloadFolder();
