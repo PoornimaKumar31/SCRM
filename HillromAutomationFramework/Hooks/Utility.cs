@@ -10,9 +10,6 @@ using System;
 using System.IO;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-using WebDriverManager.Helpers;
 
 namespace HillromAutomationFramework.Hooks
 {
@@ -64,6 +61,7 @@ namespace HillromAutomationFramework.Hooks
             if (!Directory.Exists(PropertyClass.DownloadPath))
             {
                 Directory.CreateDirectory(PropertyClass.DownloadPath);
+                
             }
             else
             {
@@ -101,7 +99,6 @@ namespace HillromAutomationFramework.Hooks
 
             if(BrowserName.Contains("chrome"))
             {
-                new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
                 ChromeOptions chromeOptions = new ChromeOptions();
                 //for incognito mode
                 chromeOptions.AddArgument("--incognito");
@@ -124,7 +121,6 @@ namespace HillromAutomationFramework.Hooks
             }
             else if(BrowserName.Contains("edge"))
             {
-                new DriverManager().SetUpDriver(new EdgeConfig(), VersionResolveStrategy.MatchingBrowser);
                 EdgeOptions edgeoptions = new EdgeOptions
                 {
                     UseChromium = true,
@@ -242,9 +238,11 @@ namespace HillromAutomationFramework.Hooks
         public void CreateRandomDirectoryInsideDownloadFolder()
         {
             DirectoryInfo directory = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
+            _specFlowOutputHelper.WriteLine("Before:Download path:"+PropertyClass.DownloadPath);
             string RandomDirectoryName = GetMethods.GenerateRandomString(5);
             directory.CreateSubdirectory(RandomDirectoryName);
             PropertyClass.DownloadPath = PropertyClass.DownloadPath + "\\" + RandomDirectoryName;
+            _specFlowOutputHelper.WriteLine("After:Download path:" + PropertyClass.DownloadPath);
         }
 
     }

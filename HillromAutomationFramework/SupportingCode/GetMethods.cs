@@ -137,6 +137,8 @@ namespace HillromAutomationFramework.SupportingCode
             //Delete all files in download folder
             foreach (FileInfo file in directoryInfo.GetFiles())
             {
+                Console.WriteLine("file name:" + file.FullName);
+                Console.WriteLine("Path:" + file.DirectoryName);
                 file.Delete();
             }
             //Delete all folders in Download Folder

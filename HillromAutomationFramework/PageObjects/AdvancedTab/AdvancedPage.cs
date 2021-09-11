@@ -51,8 +51,8 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
             public const string FullNameOnCreatePageID = "create-name";
             public const string PhoneNumberOnCreatePageID = "create-phone";
             public const string UserManagerOnCreatePageID = "create-role-input";
-            public const string UserNameErrorMessageOnCreatePageID = "invalid_email";
-            public const string FullNameErrorMessageOnCreatePageXPath = "//*[contains(text(),'Please enter a valid name')]";
+            public const string UserNameErrorMessageOnCreatePageXpath= "//div[@id='usrmgt_create_edit_win']/form/div/div/div/mat-error";
+            public const string FullNameErrorMessageOnCreatePageXPath = "//div[@id='usrmgt_create_edit_win']/form/div[2]/div/div/mat-error";
 
             //Table Elements
             public const string FullnameLabelOnUserListID = "full_name";
@@ -138,7 +138,7 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
         [FindsBy(How = How.XPath, Using = Locators.LogHistoryTableDataXPath)]
         public IWebElement LogHistoryTableData { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.UserNameErrorMessageOnCreatePageID)]
+        [FindsBy(How = How.XPath, Using = Locators.UserNameErrorMessageOnCreatePageXpath)]
         public IWebElement UserNameErrorMessageOnCreatePage { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.FullNameErrorMessageOnCreatePageXPath)]

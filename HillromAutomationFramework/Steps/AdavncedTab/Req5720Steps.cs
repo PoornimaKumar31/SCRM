@@ -126,6 +126,8 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             GivenManagerUserIsOnUserListPage();
             _advancePage.CreateUserOnCreatePage.Click();
+            Thread.Sleep(1000);
+            ThenAddUserPageIsDisplayed();
         }
 
         [When(@"user enters Full name ""(.*)""")]
@@ -287,9 +289,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"clicks Save")]
         public void WhenClicksSave()
         {
-            SetMethods.ScrollToBottomofWebpage();
-            Thread.Sleep(1000);
-            _advancePage.SaveButtonOnCreatePage.Click();
+            //SetMethods.ScrollToBottomofWebpage();
+            //Thread.Sleep(1000);
+            _advancePage.SaveButtonOnCreatePage.ClickWebElement("Save button");
         }
 
         [Then(@"new user is created")]
@@ -393,6 +395,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenEntersValidFullName()
         {
             randomFullName = GetMethods.GenerateRandomString(15);
+            Thread.Sleep(1000);
             _advancePage.FullNameOnCreatePage.EnterText(randomFullName);
         }
       
