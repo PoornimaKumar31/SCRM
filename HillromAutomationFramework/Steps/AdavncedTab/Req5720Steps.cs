@@ -29,8 +29,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         string actualFullName = null;
         string actualRole = null;
         string userInputInvalidUserName = null;
-        string userInputFullname = null;
-        string role = null;
 
         
 
@@ -136,7 +134,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user enters Full name ""(.*)""")]
         public void WhenUserEntersFullNam(string FullName)
         {
-            userInputFullname = FullName;
             _advancePage.FullNameOnCreatePage.EnterText(FullName);
         }
 
@@ -249,7 +246,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenEnters_CharacterFullName(int stringSize)
         {
             string FullName = GetMethods.GenerateRandomString(stringSize);
-            userInputFullname = FullName;
             _advancePage.FullNameOnCreatePage.EnterText(FullName);
         }
 
@@ -435,7 +431,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             //Entering valid Full name
             randomFullName = GetMethods.GenerateRandomString(15);
             _advancePage.FullNameOnCreatePage.EnterText(randomFullName);
-            userInputFullname = randomFullName;
 
             //Entering valid phone number
             string RandomNumber4Digits = GetMethods.GenerateNDigitRandomNumber(4);

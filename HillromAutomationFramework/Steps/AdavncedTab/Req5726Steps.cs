@@ -22,7 +22,6 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
         string randomUsername = null;
         string randomFullName = null;
-        string role = null;
 
         public Req5726Steps()
         {
