@@ -2,21 +2,40 @@
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 using System.Threading;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.AssetsTab
 {
     [Binding, Scope(Tag = "SoftwareRequirementID_5688")]
     public class Req5688Steps
     {
-        MainPage mainPage = new MainPage();
-        LoginPage loginPage = new LoginPage();
-        CVSMDeviceDetailsPage cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(); 
+        MainPage mainPage;
+        LoginPage loginPage;
+        CVSMDeviceDetailsPage cvsmDeviceDetailsPage;
+
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5688Steps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+
+            mainPage = new MainPage();
+            loginPage = new LoginPage();
+            cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
+        }
+
         [Given(@"user without roll-up for multiple organizations is on Assets page")]
         public void GivenUserWithoutRoll_UpForMultipleOrganizationsIsOnAssetsPage()
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "Main page is not displayed");
         }
 
@@ -30,14 +49,15 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void WhenUserSelectsOrganizationFromOrganizationDropdown()
         {
             mainPage.OrganizationDropdown.Click();
+            Thread.Sleep(1000);
             mainPage.AutomatedEyeTestDDLSelection.Click();
         }
 
         [Then(@"only devices in selected organization are displayed")]
         public void ThenOnlyDevicesInSelectedOrganizationAreDisplayed()
         {
-            SetMethods.ScrollToBottomofWebpage();
             Thread.Sleep(3000);
+            SetMethods.ScrollToBottomofWebpage();
             Assert.AreEqual(MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount,mainPage.VerifyRecordPresence(), "All devices for selected organization is not displayed");
         }
 

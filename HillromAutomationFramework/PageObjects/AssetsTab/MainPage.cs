@@ -37,7 +37,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string SelectedOrganizationNameID = "orgFilterText3";
             public const string SelectedFacilityNameID = "orgFilterText4";
             public const string AllOrganizationDefaultID = "orgFilterText2";
-            public const string AutomatedEyeTestDDLSelectionID = "org2";
+            public const string AutomatedEyeTestDDLSelectionID = "org3";
             public const string LNTAutmatedTestDDLSelectionID = "org1";
             public const string LNTAutmatedTestDDLExpensionArrowID = "caret1";
             public const string LNTAutmatedTestDDLFacility1ID = "facility10";
@@ -125,7 +125,7 @@ namespace HillromAutomationFramework.PageObjects
             public const int MACTotalRecords = 7;
 
             //device count
-            public const int AllOrgnaizationDevicesCount = 1305;
+            public const int AllOrgnaizationDevicesCount = 1307;
             public const int AllOrgnaizationCSMDevicesCount = 12;
             public const int AllOrgnaizationCVSMDevicesCount = 19;
             public const int AllOrgnaizationRV700DevicesCount = 24;
