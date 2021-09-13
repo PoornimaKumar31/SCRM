@@ -188,7 +188,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             switch (columnHeaderName.ToLower().Trim())
             {
-                case "Status":
+                case "status":
                     mainPage.StatusHeading.Click();
                     break;
                 case "firmware":
@@ -222,6 +222,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            
         }
 
         [Given(@"downward arrow shows for ascending order beside Serial Number column header for default sorted column")]
@@ -283,6 +285,10 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             string ActualClassName = null;
             switch (columnHeaderName.ToLower().Trim())
             {
+                case "status":
+                    ActualClassName = mainPage.StatusHeading.GetAttribute("class");
+                    ExpectedClassName = "status descending";
+                    break;
                 case "firmware":
                     ActualClassName = mainPage.FirmwareHeading.GetAttribute("class");
                     ExpectedClassName = "firmware descending";
@@ -394,13 +400,79 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"beds with errors are at the top of the list")]
         public void ThenBedsWithErrorsAreAtTheTopOfTheList()
         {
-            _scenarioContext.Pending();
+            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0); // Implicit wait for 5 seconds
+           
+            //Finding the index of sorted column
+            int columnNumber = mainPage.GetColumnIndex("status");
+
+            //Taking the column data from the application
+            IList<IWebElement> li1 = mainPage.DeviceListTableBody.FindElements(By.XPath("//td[" + columnNumber + "]"));
+
+            List<int> li = new List<int>();
+
+            foreach (IWebElement e in li1)
+            {
+                li.Add(e.FindElements(By.TagName("img")).Count);
+            }
+
+            bool isTrue = true;
+            int i = 0;
+
+            while (isTrue)
+            {
+
+                if (li[i] == 1)
+                {
+                    li.RemoveAt(0);
+                }
+                else
+                {
+                    isTrue = false;
+                }
+            }
+
+
+            li.Distinct().Skip(1).Any().Should().BeFalse("Error Status message is not at the top");
+            
         }
 
         [Then(@"beds with errors are at the bottom of the list")]
         public void ThenBedsWithErrorsAreAtTheBottomOfTheList()
         {
-            _scenarioContext.Pending();
+            mainPage.GoToLastPage(27);
+            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0); // Implicit wait for 5 seconds
+
+            //Finding the index of sorted column
+            int columnNumber = mainPage.GetColumnIndex("status");
+
+            //Taking the column data from the application
+            IList<IWebElement> li1 = mainPage.DeviceListTableBody.FindElements(By.XPath("//td[" + columnNumber + "]"));
+
+            List<int> li = new List<int>();
+
+            foreach (IWebElement e in li1)
+            {
+                li.Add(e.FindElements(By.TagName("img")).Count);
+            }
+
+            bool isTrue = true;
+            int i = 0;
+
+            while (isTrue)
+            {
+
+                if (li[i] == 0)
+                {
+                    li.RemoveAt(0);
+                }
+                else
+                {
+                    isTrue = false;
+                }
+            }
+
+
+            li.Distinct().Skip(1).Any().Should().BeFalse("Error Status message is not at the bottom");
         }
 
     }

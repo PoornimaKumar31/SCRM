@@ -327,11 +327,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 61
  testRunner.Then("downward arrow shows beside \"Status\" column header for ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 62
- testRunner.And("list is sorted in ascending order by \"Status\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 63
- testRunner.And("beds with errors are at the top of the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("beds with errors are at the bottom of the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 64
  testRunner.When("user clicks \"Status\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -339,11 +336,8 @@ this.ScenarioInitialize(scenarioInfo);
 #line 65
  testRunner.Then("upward arrow shows beside \"Status\" column header for descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 66
- testRunner.And("list is sorted in descending order by \"Status\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 67
- testRunner.And("beds with errors are at the bottom of the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("beds with errors are at the top of the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 68
  testRunner.When("user clicks \"Asset tag\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");

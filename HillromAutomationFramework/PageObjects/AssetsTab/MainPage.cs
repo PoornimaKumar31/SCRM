@@ -2,6 +2,7 @@
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -306,6 +307,15 @@ namespace HillromAutomationFramework.PageObjects
             DeviceListRow[0].Click();
         }
 
+        public void GoToLastPage(int TotalPage)
+        {
+            for(int i =1;i<TotalPage;i++)
+            {
+                SetMethods.ScrollToBottomofWebpage();
+                PaginationNextIcon.ClickWebElement();
+                Thread.Sleep(4000);
+            }
+        }
 
     
 
