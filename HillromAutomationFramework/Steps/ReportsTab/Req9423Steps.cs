@@ -178,9 +178,15 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
         {
-            IList<IWebElement> columns = _activityReportPage.TableHeading.FindElements(By.TagName("div"));
-            string ActualColumnNameAtIndexColumnNumber = columns[columnNumber - 1].Text;
-            (ActualColumnNameAtIndexColumnNumber).Should().BeEquivalentTo(columnHeading, because: columnHeading + " should be in " + columnNumber+ " in Centrella Activity Report Page Table.");
+            IList<IWebElement> columnsList = _activityReportPage.TableHeading.FindElements(By.TagName("div"));
+            List<string> columnListText = new List<string>();
+            foreach (IWebElement column in columnsList)
+            {
+                columnListText.Add(column.Text.ToLower());
+            }
+            //Making as zero based Indexing
+            columnNumber--;
+            columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
         }
     }
 }

@@ -347,27 +347,51 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         {
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm usage report table elements columns"))
             {
-                IList<IWebElement> columns = _usageReportPage.TableHeader.FindElements(By.TagName("div"));
-                string columnName = columns[columnNumber - 1].Text;
-                (columnName).Should().BeEquivalentTo(columnHeading, columnHeading + " should be in " + columnNumber+" in usage report page");
+                IList<IWebElement> columnsList = _usageReportPage.TableHeader.FindElements(By.TagName("div"));
+                List<string> columnListText = new List<string>();
+                foreach (IWebElement column in columnsList)
+                {
+                    columnListText.Add(column.Text.ToLower());
+                }
+                //Making as zero based Indexing
+                columnNumber--;
+                columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
             }
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm configuration update status report table elements columns"))
             {
-                IList<IWebElement> columns = _csmConfigStatusPage.TableHeading.FindElements(By.TagName("div"));
-                string columnName = columns[columnNumber - 1].Text;
-                (columnName).Should().BeEquivalentTo(columnHeading, columnHeading + " should be in " + columnNumber+" in Configuration update status report page");
+                IList<IWebElement> columnsList = _csmConfigStatusPage.TableHeading.FindElements(By.TagName("div"));
+                List<string> columnListText = new List<string>();
+                foreach (IWebElement column in columnsList)
+                {
+                    columnListText.Add(column.Text.ToLower());
+                }
+                //Making as zero based Indexing
+                columnNumber--;
+                columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
             }
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware upgrade status report page table elements columns"))
             {
-                IList<IWebElement> columns = _firmwareStatusPage.TableHeader.FindElements(By.TagName("div"));
-                string columnName = columns[columnNumber - 1].Text;
-                (columnName).Should().BeEquivalentTo(columnHeading, columnHeading + " should be in " + columnNumber+" in firmware upgrade status page");
+                IList<IWebElement> columnsList = _firmwareStatusPage.TableHeader.FindElements(By.TagName("div"));
+                List<string> columnListText = new List<string>();
+                foreach (IWebElement column in columnsList)
+                {
+                    columnListText.Add(column.Text.ToLower());
+                }
+                //Making as zero based Indexing
+                columnNumber--;
+                columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
             }
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm activity report page table elements columns"))
             {
-                IList<IWebElement> columns = _activityReportPage.TableHeading.FindElements(By.TagName("div"));
-                string columnName = columns[columnNumber - 1].Text;
-                (columnName).Should().BeEquivalentTo(columnHeading, columnHeading + " should be in " + columnNumber+" is in Activity report page.");
+                IList<IWebElement> columnsList = _activityReportPage.TableHeading.FindElements(By.TagName("div"));
+                List<string> columnListText = new List<string>();
+                foreach (IWebElement column in columnsList)
+                {
+                    columnListText.Add(column.Text.ToLower());
+                }
+                //Making as zero based Indexing
+                columnNumber--;
+                columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
             }
             else
             {

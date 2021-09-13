@@ -267,11 +267,15 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
         {
-            //finding all the column under the heading tab
-            IList<IWebElement> columns = _firmwareStatusPage.TableHeader.FindElements(By.TagName("div"));
-            //Asserting if column heading is present in specified location.
-            string ActualColumnName = columns[columnNumber - 1].Text;
-            (ActualColumnName).Should().BeEquivalentTo(columnHeading, because: columnHeading + " should be in column number" + columnNumber);
+            IList<IWebElement> columnsList = _firmwareStatusPage.TableHeader.FindElements(By.TagName("div"));
+            List<string> columnListText = new List<string>();
+            foreach (IWebElement column in columnsList)
+            {
+                columnListText.Add(column.Text.ToLower());
+            }
+            //Making as zero based Indexing
+            columnNumber--;
+            columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
         }
     }
 }

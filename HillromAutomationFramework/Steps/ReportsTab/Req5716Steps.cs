@@ -273,9 +273,16 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenLabelIsInColumn(string columnHeading, int columnNumber)
         {
-            IList<IWebElement> columns = _usageReportPage.TableHeader.FindElements(By.TagName("div"));
-            string actualColumnName = columns[columnNumber - 1].Text;
-            (actualColumnName).Should().BeEquivalentTo(columnHeading.Trim(),columnHeading+" column heading should be displayed in "+columnNumber);
+            IList<IWebElement> columnsList = _usageReportPage.TableHeader.FindElements(By.TagName("div"));
+            List<string> columnListText = new List<string>();
+            foreach (IWebElement column in columnsList)
+            {
+                columnListText.Add(column.Text.ToLower());
+            }
+            //Making as zero based Indexing
+            columnNumber--;
+            columnListText.Should().HaveElementAt(columnNumber, columnHeading.ToLower(), because: columnHeading + " column heading should be in column number " + columnNumber);
+
         }
 
         [Given(@"Firmware Version Report type is selected")]
