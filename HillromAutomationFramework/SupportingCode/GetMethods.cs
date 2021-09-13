@@ -277,91 +277,10 @@ namespace HillromAutomationFramework.SupportingCode
             return FormatedDate.AddHours(4).ToString("f");
         }
 
-
-        /// <summary>
-        /// Function to convert the RGB code to Hex color code
-        /// </summary>
-        /// <param name="R"></param>
-        /// <param name="G"></param>
-        /// <param name="B"></param>
-        /// <returns>Hex colour code</returns>
-        public static string ConvertRGBtoHex(int R, int G, int B)
-        {
-            if ((R >= 0 && R <= 255) &&
-                (G >= 0 && G <= 255) &&
-                (B >= 0 && B <= 255))
-            {
-                string hexCode = "#";
-                hexCode += DecToHexa(R);
-                hexCode += DecToHexa(G);
-                hexCode += DecToHexa(B);
-
-                return hexCode;
-            }
-
-            // The hex color code doesn't exist
-            else
-                return "-1";
-        }
-
-        /// <summary>
-        /// Function to convert decimal to hexadecimal
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns>Hex code</returns>
-        public static string DecToHexa(int n)
-        {
-            // char array to store
-            // hexadecimal number
-            char[] hexaDeciNum = new char[2];
-
-            // Counter for hexadecimal
-            // number array
-            int i = 0;
-            while (n != 0)
-            {
-
-                // Storing remainder in
-                // temp variable.
-                int temp = n % 16;
-
-                // Check if temp < 10
-                if (temp < 10)
-                {
-                    hexaDeciNum[i] = (char)(temp + 48);
-                    i++;
-                }
-                else
-                {
-                    hexaDeciNum[i] = (char)(temp + 55);
-                    i++;
-                }
-                n /= 16;
-            }
-            string hexCode = "";
-
-            if (i == 2)
-            {
-                hexCode += hexaDeciNum[0];
-                hexCode += hexaDeciNum[1];
-            }
-            else if (i == 1)
-            {
-                hexCode = "0";
-                hexCode += hexaDeciNum[0];
-            }
-            else if (i == 0)
-                hexCode = "00";
-
-            // Return the equivalent
-            // hexadecimal color code
-            return hexCode;
-        }
-
         /// <summary>
         /// It returns Lists of months name starting from current months
         /// </summary>
-        /// <returns>Aug,Sep,Oct,Nov,Dec,Jan,Feb,Mar,Apr,May,Jun,Jul</returns>
+        /// <returns>Month list starting from current month</returns>
         public static List<string> GetMonthsName()
         {
             DateTime dt = DateTime.Now;

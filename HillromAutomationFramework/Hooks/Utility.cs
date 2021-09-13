@@ -26,7 +26,6 @@ namespace HillromAutomationFramework.Hooks
         //Sprcflow variables
         private readonly ScenarioContext _scenarioContext;
         private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
-        private static string DownloadPath;
 
         /// <summary>
         /// Constructor to intialize scenario Context
@@ -70,7 +69,6 @@ namespace HillromAutomationFramework.Hooks
                 //Delete all files in download folder
                 GetMethods.ClearDownloadFolder(PropertyClass.DownloadPath + "\\");
             }
-            DownloadPath = PropertyClass.DownloadPath;
         }
 
 
@@ -94,10 +92,6 @@ namespace HillromAutomationFramework.Hooks
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
             _scenario.AssignCategory(_scenarioContext.ScenarioInfo.Tags);
 
-            PropertyClass.DownloadPath= DownloadPath;
-
-            //Create random folder inside Download folder
-            CreateRandomDirectoryInsideDownloadFolder();
 
             //Browser setup  
             string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
@@ -123,6 +117,7 @@ namespace HillromAutomationFramework.Hooks
 
                 // Setting up the chrome driver
                 PropertyClass.Driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);
+                _specFlowOutputHelper.WriteLine("Launched chrome browser");
             }
             else if(BrowserName.Contains("edge"))
             {
@@ -148,9 +143,11 @@ namespace HillromAutomationFramework.Hooks
 
                 //Setting up Edge driver
                 PropertyClass.Driver = new EdgeDriver(edgeoptions);
+                _specFlowOutputHelper.WriteLine("Launched edge browser");
             }
             else
             {
+                _specFlowOutputHelper.WriteLine("Invalid browser name " + BrowserName);
                 Assert.Fail("Invalid Browser Name:"+BrowserName);
                 Environment.Exit(1);
             }
@@ -237,17 +234,6 @@ namespace HillromAutomationFramework.Hooks
         public static void AfterTestRun()
         {
             _extentReports.Flush();
-        }
-
-
-        public void CreateRandomDirectoryInsideDownloadFolder()
-        {
-            DirectoryInfo directory = new DirectoryInfo(PropertyClass.DownloadPath + "\\");
-            _specFlowOutputHelper.WriteLine("Before:Download path:"+PropertyClass.DownloadPath);
-            string RandomDirectoryName = GetMethods.GenerateRandomString(5);
-            directory.CreateSubdirectory(RandomDirectoryName);
-            PropertyClass.DownloadPath = PropertyClass.DownloadPath + "\\" + RandomDirectoryName;
-            _specFlowOutputHelper.WriteLine("After:Download path:" + PropertyClass.DownloadPath);
         }
 
     }
