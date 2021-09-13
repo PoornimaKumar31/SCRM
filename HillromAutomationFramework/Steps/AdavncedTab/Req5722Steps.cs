@@ -72,6 +72,8 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
         {
             bool isConfirmationMessageDisplayed = _advancedPage.DeletePopupConfirmationMessage.GetElementVisibility();
             isConfirmationMessageDisplayed.Should().BeTrue("Are you sure you want to delete this user? message should be displayed on DELETE USER popup");
+            string ConfirmationMessage = _advancedPage.DeletePopupConfirmationMessage.Text;
+            (ConfirmationMessage).Should().BeEquivalentTo(ExpectedText, because: "Are you sure message should match with the expected value.");
         }
 
         [Then(@"Yes button is displayed")]

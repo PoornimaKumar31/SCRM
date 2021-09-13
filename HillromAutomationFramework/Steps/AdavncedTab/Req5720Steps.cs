@@ -50,14 +50,17 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _advancePage.AdvancedTab.JavaSciptClick();
+
+            Thread.Sleep(1000);
+            bool IsUserListPageDisplayed = (_advancePage.FullnameLabelOnUserList.GetElementVisibility()) || (_advancePage.RoleColumnHeader.GetElementVisibility());
+            (IsUserListPageDisplayed).Should().BeTrue(because: "User list page should be displayed.");
         }
 
         [When(@"user clicks Create button")]
         public void WhenUserClicksCreateButton()
         {
             Thread.Sleep(1000);
-            IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
-            js.ExecuteScript("window.scrollTo(0, 0)");
+            SetMethods.ScrollUpWebPage();
             _advancePage.CreateUserOnCreatePage.Click();
         }
 
@@ -289,17 +292,15 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"clicks Save")]
         public void WhenClicksSave()
         {
-            //SetMethods.ScrollToBottomofWebpage();
-            //Thread.Sleep(1000);
             _advancePage.SaveButtonOnCreatePage.ClickWebElement("Save button");
         }
 
         [Then(@"new user is created")]
         public void ThenNewUserIsCreated()
         {
+            Thread.Sleep(1000);
             bool isUserCreated = false;
             IList<IWebElement> list = _advancePage.UserList;
-            //Assert.Greater(list.Count, 0, "No user is present except logged User.");
             list.Count.Should().BeGreaterThan(0, "No user should be present except logged User on USER LIST page");
 
             for (int i = 0; i < list.Count; i++)
@@ -307,7 +308,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                 actualEmail = list[i].FindElement(By.Id("email" + i)).Text;
                 actualFullName = list[i].FindElement(By.Id("full_name" + i)).Text;
                 actualRole = list[i].FindElement(By.Id("role" + i)).Text;
-                if (actualEmail == randomUsername)
+                if (actualEmail.Equals(randomUsername))
                 {
                     isUserCreated = true;
                     break;

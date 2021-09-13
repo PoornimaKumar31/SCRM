@@ -39,8 +39,14 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _advancePage.AdvancedTab.JavaSciptClick();
-            Thread.Sleep(2000);
+
+            Thread.Sleep(1000);
+            bool IsUserListPageDisplayed = (_advancePage.FullnameLabelOnUserList.GetElementVisibility()) || (_advancePage.RoleColumnHeader.GetElementVisibility());
+            (IsUserListPageDisplayed).Should().BeTrue(because: "User list page should be displayed.");
+
+            //User is on add user page
             _advancePage.CreateUserOnCreatePage.Click();
+            Thread.Sleep(1000);
         }
 
         [When(@"user enters valid Username")]
