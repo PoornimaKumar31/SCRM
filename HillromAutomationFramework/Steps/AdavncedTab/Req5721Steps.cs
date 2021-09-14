@@ -437,8 +437,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             string EnteredPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
-            bool isSamePhonenumber = randomPhoneNumber == EnteredPhoneNumber;
-            isSamePhonenumber.Should().BeTrue("Phone number should be entered number on Edit User page.");
+            EnteredPhoneNumber.Should().BeEquivalentTo(randomPhoneNumber, "Phone number should be entered number on Edit User page.");
         }
 
         [Then(@"full name error message is not displayed")]
