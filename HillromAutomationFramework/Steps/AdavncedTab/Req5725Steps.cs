@@ -20,25 +20,34 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly AdvancedPage _advancePage;
+
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
         string RandomUsername = "";
         string FullnameRandom = "";
 
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
-        public Req5725Steps()
+
+        public Req5725Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _advancePage = new AdvancedPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _advancePage = new AdvancedPage(driver);
         }
 
         [Given(@"Manager user is on Add User page")]
         public void GivenManagerUserIsOnAddUserPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _advancePage.AdvancedTab.JavaSciptClick();
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _advancePage.AdvancedTab.JavaSciptClick(_driver);
 
             Thread.Sleep(1000);
             bool IsUserListPageDisplayed = (_advancePage.FullnameLabelOnUserList.GetElementVisibility()) || (_advancePage.RoleColumnHeader.GetElementVisibility());
@@ -67,13 +76,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenChecksUserManagerCheckbox()
         {
             Thread.Sleep(1000);
-            _advancePage.UserManagerOnCreatePage.JavaSciptClick();
+            _advancePage.UserManagerOnCreatePage.JavaSciptClick(_driver);
         }
 
         [When(@"clicks Save button")]
         public void WhenClicksSaveButton()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             Thread.Sleep(2000);
             _advancePage.SaveButtonOnCreatePage.Click();
         }
@@ -82,7 +91,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenUserListPageIsDisplayed()
         {
             Thread.Sleep(2000);
-            SetMethods.ScrollUpWebPage();
+            SetMethods.ScrollUpWebPage(_driver);
             Thread.Sleep(4000);
             string actualUserListLabelText = _advancePage.UserListLabel.Text;
             string expectedUserListLabelText = AdvancedPage.ExpectedValues.UserListPageLabelText;

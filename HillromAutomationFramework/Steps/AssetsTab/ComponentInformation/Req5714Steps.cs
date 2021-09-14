@@ -14,31 +14,35 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
     public sealed class Req5714Steps
     {
 
-        LoginPage _loginPage;
-        LandingPage _landingPage;
-        MainPage _mainPage;
-        RV700DeviceDetailsPage _rv700DeviceDetailsPage;
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly RV700DeviceDetailsPage _rv700DeviceDetailsPage;
 
-        private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
-        public Req5714Steps(ScenarioContext scenarioContext)
+        public Req5714Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage(driver);
         }
 
         [Given(@"user is on Asset List page with more than one RV700")]
         public void GivenUserIsOnAssetListPageWithMoreThanOneRV()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(_landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title, "LNT Automated Eye Test Organization Facility Test1 Title");
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title, _driver,"LNT Automated Eye Test Organization Facility Test1 Title");
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Message = "Main page asset list is not displayed";
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Message = "Main page asset list is not displayed";
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
             //Wait till the data is loaded
             Thread.Sleep(1000);
@@ -89,11 +93,11 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         public void GivenUserIsOnComponentDetailsPageForRVSerialNumber(string serailNumber)
         {
             //Loging-in
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(_landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title, "LNT Automated Eye Test Organization Facility Test1 Title");
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title,_driver, "LNT Automated Eye Test Organization Facility Test1 Title");
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Message = "Main page asset list is not displayed";
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Message = "Main page asset list is not displayed";
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.SearchSerialNumberAndClick(serailNumber);
 
             //Wait till data is loaded in device details page.

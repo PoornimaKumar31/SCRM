@@ -15,19 +15,26 @@ namespace HillromAutomationFramework.Steps.Login
     public class LoginPageStaticElementsSteps
     {
         private readonly LoginPage _loginpage;
+
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
         private readonly WebDriverWait _wait;
 
-        public LoginPageStaticElementsSteps()
+        public LoginPageStaticElementsSteps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginpage = new LoginPage();
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10)); ;
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+
+            _loginpage = new LoginPage(driver);
         }
+
 
         [Given(@"user is on Login page")]
         public void GivenUserIsOnLoginPage()
         {
             // Launch the Application
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL); 
+            _driver.Navigate().GoToUrl(PropertyClass.BaseURL); 
 
             // Explicit wait-> Wait till logo is displayed
             _wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));

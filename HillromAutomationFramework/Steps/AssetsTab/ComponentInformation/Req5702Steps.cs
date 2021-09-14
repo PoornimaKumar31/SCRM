@@ -14,32 +14,38 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
     [Binding,Scope(Tag = "SoftwareRequirementID_5702")]
     class Req5702Steps
     {
-        private readonly LoginPage _loginPage = new LoginPage();
-        private readonly LandingPage _landingPage = new LandingPage();
-        private readonly CSMAssetListPage _csmAssetListPage = new CSMAssetListPage();
-        private readonly MainPage _mainPage = new MainPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly CSMAssetListPage _csmAssetListPage;
+        private readonly MainPage _mainPage;
 
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        
+        private readonly WebDriverWait _wait;
+
 
         //Context Injection
-        private ScenarioContext _scenarioContext;
-        public Req5702Steps(ScenarioContext scnenarioContext)
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+
+
+        public Req5702Steps(ScenarioContext scnenarioContext, IWebDriver driver)
         {
             _scenarioContext = scnenarioContext;
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _csmAssetListPage = new CSMAssetListPage();
-            _mainPage = new MainPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _csmAssetListPage = new CSMAssetListPage(driver);
+            _mainPage = new MainPage(driver);
         }
 
 
         [Given(@"user is on Asset List page with more than one CSM")]
         public void GivenUserIsOnAssetListPageWithMoreThanOneCSM()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             _csmAssetListPage.GetDeviceCount().Should().BeGreaterThan(1);
         }
@@ -92,9 +98,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         [Given(@"user is on Component details page for CSM Serial number ""(.*)""")]
         public void GivenUserIsOnComponentDetailsPageForCSMSerialNumber(string SerialNumber)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             
             _csmAssetListPage.GetDeviceCount().Should().BeGreaterThan(1);

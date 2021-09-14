@@ -14,33 +14,51 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
     [Binding, Scope(Tag = "UISID_8674")]
     class UIS8674Steps
     {
-        MainPage mainPage = new MainPage();
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        CentrellaDeviceDetailsPage centrellaDeviceDetailsPage = new CentrellaDeviceDetailsPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly CentrellaDeviceDetailsPage _centrellaDeviceDetailsPage;
+
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+
+        public UIS8674Steps(ScenarioContext scenarioContext, IWebDriver driver)
+        {
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _centrellaDeviceDetailsPage = new CentrellaDeviceDetailsPage(driver);
+
+        }
+
 
         [Given(@"manager user is on device details page for Centrella Serial number ""(.*)""")]
         public void GivenManagerUserIsOnDeviceDetailsPageForCentrellaSerialNumber(string serialNumber)
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
-            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.SearchSerialNumberAndClick(serialNumber);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.SearchSerialNumberAndClick(serialNumber);
         }
 
         [When(@"user clicks Locate Asset button")]
         public void WhenUserClicksLocateAssetButton()
         {
-            centrellaDeviceDetailsPage.CentrellaLocateAssetButton.Click();
+            _centrellaDeviceDetailsPage.CentrellaLocateAssetButton.Click();
         }
 
         [Then(@"Locate Asset pop-up dialog is displayed")]
         public void ThenLocateAssetPop_UpDialogIsDisplayed()
         {
-            wait.Until(ExplicitWait.ElementIsVisible(By.XPath(CentrellaDeviceDetailsPage.Locators.APMappingLocateAssetPopupDialogXPath)));
-            centrellaDeviceDetailsPage.APMappingLocateAssetPopupDialog.GetElementVisibility().Should().BeTrue("Dialog box is not displayed");
+            _wait.Until(ExplicitWait.ElementIsVisible(By.XPath(CentrellaDeviceDetailsPage.Locators.APMappingLocateAssetPopupDialogXPath)));
+            _centrellaDeviceDetailsPage.APMappingLocateAssetPopupDialog.GetElementVisibility().Should().BeTrue("Dialog box is not displayed");
         }
 
         [Then(@"""(.*)"" label and value is ""(.*)""")]
@@ -50,13 +68,13 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "source":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingSourceLabelValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingSourceLabelValue.Text;
                     break;
                 case "mac address":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingMacAddressLabelValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingMacAddressLabelValue.Text;
                     break;
                 case "rssi":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingRSSILabelValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingRSSILabelValue.Text;
                     break;
                 default:
                     Assert.Fail(LabelName + " is Invalid");
@@ -69,39 +87,39 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Add AP Mapping button is displayed")]
         public void ThenAddAPMappingButtonIsDisplayed()
         {
-            centrellaDeviceDetailsPage.APMappingAddAPMappingButton.GetElementVisibility().Should().BeTrue("Add AP Mapping Button is not displayed");
+            _centrellaDeviceDetailsPage.APMappingAddAPMappingButton.GetElementVisibility().Should().BeTrue("Add AP Mapping Button is not displayed");
         }
 
         [Then(@"Close button is displayed")]
         public void ThenCloseButtonIsDisplayed()
         {
-            centrellaDeviceDetailsPage.APMappingCloseButton.GetElementVisibility().Should().BeTrue("Close Button is not displayed");
+            _centrellaDeviceDetailsPage.APMappingCloseButton.GetElementVisibility().Should().BeTrue("Close Button is not displayed");
         }
 
         [Then(@"Edit AP Mapping button is displayed")]
         public void ThenEditAPMappingButtonIsDisplayed()
         {
-            centrellaDeviceDetailsPage.APMappingEditAPMappingButton.GetElementVisibility().Should().BeTrue("Edit AP Mapping Button is not displayed");
+            _centrellaDeviceDetailsPage.APMappingEditAPMappingButton.GetElementVisibility().Should().BeTrue("Edit AP Mapping Button is not displayed");
         }
 
         [Given(@"regular user is on device details page for Centrella Serial number ""(.*)""")]
         public void GivenRegularUserIsOnDeviceDetailsPageForCentrellaSerialNumber(string serialNumber)
         {
-            loginPage.LogIn(LoginPage.LogInType.StandardUserWithoutRollUpPage);
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.SearchSerialNumberAndClick(serialNumber);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.StandardUserWithoutRollUpPage);
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.SearchSerialNumberAndClick(serialNumber);
         }
 
         [Then(@"Edit AP Mapping button is not displayed")]
         public void ThenEditAPMappingButtonIsNotDisplayed()
         {
-            centrellaDeviceDetailsPage.APMappingEditAPMappingButton.GetElementVisibility().Should().BeFalse("Edit AP Mapping Button is displayed");
+            _centrellaDeviceDetailsPage.APMappingEditAPMappingButton.GetElementVisibility().Should().BeFalse("Edit AP Mapping Button is displayed");
         }
 
         [Then(@"Add AP Mapping button is not displayed")]
         public void ThenAddAPMappingButtonIsNotDisplayed()
         {
-            centrellaDeviceDetailsPage.APMappingAddAPMappingButton.GetElementVisibility().Should().BeFalse("Add AP Mapping Button is displayed");
+            _centrellaDeviceDetailsPage.APMappingAddAPMappingButton.GetElementVisibility().Should().BeFalse("Add AP Mapping Button is displayed");
         }
 
         [Given(@"manager user is on Locate Asset pop-up dialog for Centrella Serial number ""(.*)""")]
@@ -116,9 +134,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Given(@"regular user is on Locate Asset pop-up dialog for Centrella Serial number ""(.*)""")]
         public void GivenRegularUserIsOnLocateAssetPop_UpDialogForCentrellaSerialNumber(string serialNumber)
         {
-            loginPage.LogIn(LoginPage.LogInType.StandardUserWithoutRollUpPage);
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.SearchSerialNumberAndClick(serialNumber);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.StandardUserWithoutRollUpPage);
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.SearchSerialNumberAndClick(serialNumber);
             WhenUserClicksLocateAssetButton();
             ThenLocateAssetPop_UpDialogIsDisplayed();
         }
@@ -133,19 +151,19 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (columnName.ToLower().Trim())
             {
                 case "campus":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingCampusColumnHeading.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingCampusColumnHeading.GetElementVisibility();
                     break;
 
                 case "building":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingBuildingColumnHeading.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingBuildingColumnHeading.GetElementVisibility();
                     break;
 
                 case "floor":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingFloorColumnHeading.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingFloorColumnHeading.GetElementVisibility();
                     break;
 
                 case "ap location":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingAPLocationColumnHeading.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingAPLocationColumnHeading.GetElementVisibility();
                     break;
 
                 default:
@@ -164,19 +182,19 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (columnName.ToLower().Trim())
             {
                 case "campus":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingCampusColumnHeading.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingCampusColumnHeading.Text;
                     break;
 
                 case "building":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingBuildingColumnHeading.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingBuildingColumnHeading.Text;
                     break;
 
                 case "floor":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingFloorColumnHeading.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingFloorColumnHeading.Text;
                     break;
 
                 case "ap location":
-                    ActualValue = centrellaDeviceDetailsPage.APMappingAPLocationColumnHeading.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingAPLocationColumnHeading.Text;
                     break;
 
                 default:
@@ -190,7 +208,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [When(@"user clicks Add AP mapping button")]
         public void WhenUserClicksAddAPMappingButton()
         {
-            centrellaDeviceDetailsPage.APMappingAddAPMappingButton.Click();
+            _centrellaDeviceDetailsPage.APMappingAddAPMappingButton.Click();
         }
 
         [Then(@"""(.*)"" entry field with ""(.*)"" hint text is displayed")]
@@ -201,23 +219,23 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (textBoxName.ToLower().Trim())
             {
                 case "campus":
-                    centrellaDeviceDetailsPage.APMappingCampusTextBox.GetElementVisibility().Should().BeTrue(textBoxName+ " is not displayed");
-                    ActualValue = centrellaDeviceDetailsPage.APMappingCampusTextBox.GetAttribute("placeholder");
+                    _centrellaDeviceDetailsPage.APMappingCampusTextBox.GetElementVisibility().Should().BeTrue(textBoxName+ " is not displayed");
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingCampusTextBox.GetAttribute("placeholder");
                     break;
 
                 case "building":
-                    centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                    ActualValue = centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetAttribute("placeholder");
+                    _centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetAttribute("placeholder");
                     break;
 
                 case "floor":
-                    centrellaDeviceDetailsPage.APMappingFloorTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                    ActualValue = centrellaDeviceDetailsPage.APMappingFloorTextBox.GetAttribute("placeholder");
+                    _centrellaDeviceDetailsPage.APMappingFloorTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingFloorTextBox.GetAttribute("placeholder");
                     break;
 
                 case "ap location":
-                    centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                    ActualValue = centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetAttribute("placeholder");
+                    _centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetAttribute("placeholder");
                     break;
 
                 default:
@@ -232,13 +250,13 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Save button is displayed")]
         public void ThenSaveButtonIsDisplayed()
         {
-            centrellaDeviceDetailsPage.APMappingSaveButton.GetElementVisibility().Should().BeTrue("Save Button is not displayed");
+            _centrellaDeviceDetailsPage.APMappingSaveButton.GetElementVisibility().Should().BeTrue("Save Button is not displayed");
         }
 
         [When(@"user clicks Edit AP mapping button")]
         public void WhenUserClicksEditAPMappingButton()
         {
-            centrellaDeviceDetailsPage.APMappingEditAPMappingButton.Click();
+            _centrellaDeviceDetailsPage.APMappingEditAPMappingButton.Click();
         }
 
         [Then(@"""(.*)"" entry field with ""(.*)"" value is displayed")]
@@ -249,23 +267,23 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (textBoxName.ToLower().Trim())
             {
                 case "campus":
-                    centrellaDeviceDetailsPage.APMappingCampusTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                    ActualValue = centrellaDeviceDetailsPage.APMappingCampusTextBox.GetAttribute("value");
+                    _centrellaDeviceDetailsPage.APMappingCampusTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingCampusTextBox.GetAttribute("value");
                     break;
 
                 case "building":
-                    centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                    ActualValue = centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetAttribute("value");
+                    _centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetAttribute("value");
                     break;
 
                 case "floor":
-                    centrellaDeviceDetailsPage.APMappingFloorTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                    ActualValue = centrellaDeviceDetailsPage.APMappingFloorTextBox.GetAttribute("value");
+                    _centrellaDeviceDetailsPage.APMappingFloorTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingFloorTextBox.GetAttribute("value");
                     break;
 
                 case "ap location":
-                    centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                    ActualValue = centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetAttribute("value");
+                    _centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
+                    ActualValue = _centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetAttribute("value");
                     break;
 
                 default:

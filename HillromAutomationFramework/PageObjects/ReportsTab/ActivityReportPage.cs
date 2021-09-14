@@ -48,9 +48,9 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
 
         }
 
-        public ActivityReportPage()
+        public ActivityReportPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How =How.Id,Using =Locators.ActivityReportHeaderID)]

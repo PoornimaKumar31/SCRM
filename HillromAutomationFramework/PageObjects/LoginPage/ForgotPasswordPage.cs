@@ -30,9 +30,9 @@ namespace HillromAutomationFramework.PageObjects
             public const string InvalidEmailErrorMessageText = "Invalid email address.";
         }
 
-        public ForgotPasswordPage()
+        public ForgotPasswordPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         // Email Field in forget password form

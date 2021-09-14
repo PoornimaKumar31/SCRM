@@ -3,6 +3,7 @@ using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AdvancedTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,27 +18,33 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
-        private readonly AdvancedPage _advancePage;       
+        private readonly AdvancedPage _advancePage;
 
-        public Req5724Steps()
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+
+        public Req5724Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _advancePage = new AdvancedPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _advancePage = new AdvancedPage(driver);
         }
 
         [Given(@"user login as Manager role")]
         public void GivenUserLoginAsManagerRole()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
         }
 
         [Given(@"user login as Regular role")]
         public void GivenUserLoginAsRegularRole()
         {
-            _loginPage.LogIn(LoginPage.LogInType.StandardUserWithoutRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.StandardUserWithoutRollUpPage);
         }
 
         [Then(@"Main page is displayed")]

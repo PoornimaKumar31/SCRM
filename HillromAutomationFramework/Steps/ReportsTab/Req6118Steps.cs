@@ -22,30 +22,33 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly FirmwareVersionPage _firmwareVersionPage;
         private readonly FirmwareStatusPage _firmwareStatusPage;
 
-        private readonly WebDriverWait _wait;
-        private ScenarioContext _scenarioContext;
 
-        public Req6118Steps(ScenarioContext scenarioContext)
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+
+        public Req6118Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _reportsPage = new ReportsPage();
-            _firmwareVersionPage = new FirmwareVersionPage();
-            _firmwareStatusPage = new FirmwareStatusPage();      
-    }
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _reportsPage = new ReportsPage(driver);
+            _firmwareVersionPage = new FirmwareVersionPage(driver);
+            _firmwareStatusPage = new FirmwareStatusPage(driver);
+        }
 
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportsPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
         }
         
         [Given(@"RV700 Asset type is selected")]

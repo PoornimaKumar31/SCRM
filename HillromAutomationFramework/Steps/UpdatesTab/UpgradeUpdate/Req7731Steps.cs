@@ -23,29 +23,32 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
 
         private readonly ScenarioContext _scenarioContext;
         private readonly WebDriverWait _wait;
+        private readonly IWebDriver _driver;
+
         string FirstUpadeFileName;
 
-        public Req7731Steps(ScenarioContext scenarioContext)
+        public Req7731Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
-            _updateSelectDevicesPage = new UpdateSelectDevicesPage();
-            _updateReviewActionPage = new UpdateReviewActionPage();
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage(driver);
+            _updateSelectDevicesPage = new UpdateSelectDevicesPage(driver);
+            _updateReviewActionPage = new UpdateReviewActionPage(driver);
         }
 
         [Given(@"user is on Centrella Updates page")]
         public void GivenUserIsOnCentrellaUpdatesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
             _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
         }
 
         [Given(@"Centrella Asset type is selected")]
@@ -116,13 +119,13 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             //For select update page
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("centrella upgrade elements"))
             {
-                SetMethods.MoveTotheElement(_updatesSelectUpdatePage.PaginationXofY, "Page x of y label");
+                SetMethods.MoveTotheElement(_updatesSelectUpdatePage.PaginationXofY, _driver, "Page x of y label");
                 (_updatesSelectUpdatePage.PaginationXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y label should be displayed in Centrella Select Update page");
             }
             //for select assets page
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("centrella select assets elements"))
             {
-                SetMethods.MoveTotheElement(_updateSelectDevicesPage.PaginationXofY, "Page x of y label");
+                SetMethods.MoveTotheElement(_updateSelectDevicesPage.PaginationXofY, _driver, "Page x of y label");
                 (_updateSelectDevicesPage.PaginationXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y label should be displayed in Centrella Select assets page");
             }
             //If this does not belong to any scenario
@@ -138,13 +141,13 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             //For select update page
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("centrella upgrade elements"))
             {
-                SetMethods.MoveTotheElement(_updatesSelectUpdatePage.PaginationDisplayXY, "Displaying x to y of z results label");
+                SetMethods.MoveTotheElement(_updatesSelectUpdatePage.PaginationDisplayXY, _driver, "Displaying x to y of z results label");
                 (_updatesSelectUpdatePage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue(because: "Displaying X - Y of z results label should be displayed in Centrella Select Update page");
             }
             //for select assets page
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("centrella select assets elements"))
             {
-                SetMethods.MoveTotheElement(_updateSelectDevicesPage.PaginationDisplayXY, "Displaying x to y of z results label");
+                SetMethods.MoveTotheElement(_updateSelectDevicesPage.PaginationDisplayXY, _driver, "Displaying x to y of z results label");
                 (_updateSelectDevicesPage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue(because: "Displaying X - Y of z results label should be displayed in Centrella Select assets page");
             }
             //If this does not belong to any scenario

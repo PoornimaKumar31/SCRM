@@ -1,5 +1,5 @@
-﻿using HillromAutomationFramework.PageObjects;
-using HillromAutomationFramework.SupportingCode;
+﻿using FluentAssertions;
+using HillromAutomationFramework.PageObjects;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -11,15 +11,28 @@ namespace HillromAutomationFramework.Steps.AssetsTab
     [Binding,Scope(Tag = "SoftwareRequirementID_5898")]
     public class Req5898Steps
     {
-        readonly LoginPage loginPage = new LoginPage();
-        readonly MainPage mainPage = new MainPage();
+        private readonly LoginPage loginPage;
+        private readonly MainPage mainPage;
+
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5898Steps(ScenarioContext scenarioContext, IWebDriver driver)
+        {
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            loginPage = new LoginPage(driver);
+            mainPage = new MainPage(driver);
+        }
 
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
+            loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithOutRollUpPage);
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
         }
 
         [When(@"user clicks Global Service Center")]
@@ -31,11 +44,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"Global Service Center page is displayed")]
         public void ThenGlobalServiceCenterPageIsDisplayed()
         {
-            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
+            int windowCount = _driver.WindowHandles.Count;
+
+            // checking if new tab was opened
+            (windowCount).Should().BeGreaterThan(1, because: "Link should be pened in a new window");
+
+            var popup = _driver.WindowHandles[1]; // handler for the new tab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            string ActualPageURL = _driver.SwitchTo().Window(popup).Url;
             Assert.AreEqual(MainPage.ExpectedValues.GlobalServiceCenterURL, ActualPageURL, "URL is not matching");
         }
 
@@ -48,11 +66,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"Contact Us page is displayed")]
         public void ThenContactUsPageIsDisplayed()
         {
-            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
+            int windowCount = _driver.WindowHandles.Count;
+
+            // checking if new tab was opened
+            (windowCount).Should().BeGreaterThan(1, because: "Link should be pened in a new window");
+
+            var popup = _driver.WindowHandles[1]; // handler for the new tab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            string ActualPageURL = _driver.SwitchTo().Window(popup).Url;
             Assert.AreEqual(MainPage.ExpectedValues.ContactUsURL, ActualPageURL, "URL is not matching");
         }
 
@@ -60,11 +83,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"Terms of use page is displayed")]
         public void ThenTermsAndConditionsPageIsDisplayed()
         {
-            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
+            int windowCount = _driver.WindowHandles.Count;
+
+            // checking if new tab was opened
+            (windowCount).Should().BeGreaterThan(1, because: "Link should be pened in a new window");
+
+            var popup = _driver.WindowHandles[1]; // handler for the new tab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            string ActualPageURL = _driver.SwitchTo().Window(popup).Url;
             Assert.AreEqual(MainPage.ExpectedValues.TermsAndConditonsURL, ActualPageURL, "URL is not matching");
         }
 
@@ -72,11 +100,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"Privacy Policy page is displayed"), Scope(Tag = "TestCaseID_8949")]
         public void ThenPrivacyPolicyPageIsDisplayed()
         {
-            var popup = PropertyClass.Driver.WindowHandles[1]; // handler for the new tab
+            int windowCount = _driver.WindowHandles.Count;
+
+            // checking if new tab was opened
+            (windowCount).Should().BeGreaterThan(1, because: "Link should be pened in a new window");
+
+            var popup = _driver.WindowHandles[1]; // handler for the new tab
             // Check if new tab is opened
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
-            string ActualPageURL = PropertyClass.Driver.SwitchTo().Window(popup).Url;
+            string ActualPageURL = _driver.SwitchTo().Window(popup).Url;
             Assert.AreEqual(MainPage.ExpectedValues.PrivacyPolicyURL, ActualPageURL,"URL is not matching");
         }
 

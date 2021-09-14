@@ -18,28 +18,34 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         private readonly CVSMDeviceDetailsPage _cvsmDeviceDetailsPage;
         private readonly MainPage _mainPage;
 
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
 
-        public Req5693Steps()
+        public Req5693Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
-            _mainPage = new MainPage();
+            _scenarioContext = scenarioContext;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(driver);
         }
 
         [Given(@"user is on CVSM Log Files page")]
         public void GivenUserIsOnCVSMLogFilesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             
-            wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             
             //select the row according to the data 
             _mainPage.SearchSerialNumberAndClick("100020000004");
-            wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
             _cvsmDeviceDetailsPage.LogsTab.Click();
         }
 

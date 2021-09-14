@@ -27,9 +27,9 @@ namespace HillromAutomationFramework.PageObjects
             public const string LogFilesLabel = "LOG FILES";
             public const string RequestLogButton = "Request Log";
         }
-        public LogFilesStaticElements()
+        public LogFilesStaticElements(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         //Log Files

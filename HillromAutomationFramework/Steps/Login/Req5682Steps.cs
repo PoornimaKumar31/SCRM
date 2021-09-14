@@ -14,20 +14,26 @@ namespace HillromAutomationFramework.Steps.Login
     public class Req5682Steps
     {
         private readonly LoginPage _loginPage;
+
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
         private readonly WebDriverWait _wait;
 
-        public Req5682Steps()
+        public Req5682Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(20));
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+
+            _loginPage = new LoginPage(driver);
         }
 
- 
+
         [Given(@"user is on Login page")]
         public void GivenTheUserIsInTheLoginPage()
         {
             // Launch the Application
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
+            _driver.Navigate().GoToUrl(PropertyClass.BaseURL);
 
             // Wait till logo is displayed
             _wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
@@ -48,7 +54,7 @@ namespace HillromAutomationFramework.Steps.Login
         [When(@"clicks Login button")]
         public void WhenClicksLoginButton()
         {
-            SetMethods.MoveTotheElement(_loginPage.LoginButton, "Login button");
+            SetMethods.MoveTotheElement(_loginPage.LoginButton,_driver, "Login button");
             _loginPage.LoginButton.Click();
         }
 
@@ -74,7 +80,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenUserWillLoginSuccessfully()
         {
             _wait.Until(ExplicitWait.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedTestEastOrganizationTitleXPath)));
-            string actualTitle = PropertyClass.Driver.Title;
+            string actualTitle = _driver.Title;
             string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
 
             //Compare the title

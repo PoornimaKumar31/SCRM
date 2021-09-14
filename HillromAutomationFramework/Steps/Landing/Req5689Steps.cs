@@ -1,6 +1,9 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Landing
@@ -11,23 +14,32 @@ namespace HillromAutomationFramework.Steps.Landing
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
-        public Req5689Steps()
+
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5689Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
         }
 
         [Given(@"user login with roll-up page")]
         public void GivenUserLoginWithRollupPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
         }
 
         [Then(@"Roll-up page is displayed")]
         public void ThenRoll_UpPageIsDisplayed()
         {
-            string ActualURL = PropertyClass.Driver.Url;
+            string ActualURL = _driver.Url;
             string ExpectedURL = LandingPage.ExpectedValues.RollupPageURL;
             ActualURL.Should().BeEquivalentTo(ExpectedURL, "Roll up page is not displayed");
         }
@@ -35,14 +47,14 @@ namespace HillromAutomationFramework.Steps.Landing
         [Given(@"user is on Landing page")]
         public void GivenUserIsOnLandingPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
         }
 
         [Given(@"Roll-up page is displayed")]
         public void GivenRoll_UpPageIsDisplayed()
         {
             string ExpectedValue = LandingPage.ExpectedValues.RollupPageURL;
-            string ActualValue = PropertyClass.Driver.Url;
+            string ActualValue = _driver.Url;
             ActualValue.Should().BeEquivalentTo(ExpectedValue, "User is not on landing page");
         }
 
@@ -132,7 +144,7 @@ namespace HillromAutomationFramework.Steps.Landing
         [Given(@"user login without roll-up page")]
         public void GivenUserLoginWithoutRoll_UpPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithOutRollUpPage);
         }
 
         [Then(@"Roll-up page is not displayed")]

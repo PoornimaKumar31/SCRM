@@ -15,29 +15,37 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
     [Binding, Scope(Tag = "SoftwareRequirementID_5726")]
     public class Req5726Steps
     {
-        LoginPage _loginPage;
-        LandingPage _landingPage;
-        AdvancedPage _advancePage;
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly AdvancedPage _advancePage;
+
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
 
         string randomUsername = null;
         string randomFullName = null;
 
-        public Req5726Steps()
+        public Req5726Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _advancePage = new AdvancedPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _advancePage = new AdvancedPage(driver);
         }
+
 
         [Given(@"Manager user is on Add User page")]
         public void GivenManagerUserIsOnAddUserPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             //Clicking on facility
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _advancePage.AdvancedTab.JavaSciptClick();
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _advancePage.AdvancedTab.JavaSciptClick(_driver);
 
             Thread.Sleep(1000);
             bool IsUserListPageDisplayed = (_advancePage.FullnameLabelOnUserList.GetElementVisibility()) || (_advancePage.RoleColumnHeader.GetElementVisibility());
@@ -69,21 +77,21 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
             if (IsCheckboxSelected == true)
             {
-                _advancePage.UserManagerOnCreatePage.JavaSciptClick();
+                _advancePage.UserManagerOnCreatePage.JavaSciptClick(_driver);
             }
         }
         
         [When(@"clicks Save button")]
         public void WhenClicksSaveButton()
         {
-            _advancePage.SaveButtonOnCreatePage.ClickWebElement("Save Button");
+            _advancePage.SaveButtonOnCreatePage.ClickWebElement(_driver,"Save Button");
         }
         
         [Then(@"User List page is displayed")]
         public void ThenUserListPageIsDisplayed()
         {
             Thread.Sleep(2000);
-            SetMethods.ScrollUpWebPage();
+            SetMethods.ScrollUpWebPage(_driver);
             Thread.Sleep(1000);
             bool isUserListDisplayed = _advancePage.UserListLabel.GetElementVisibility();
             isUserListDisplayed.Should().BeTrue("User List page should be displayed.");

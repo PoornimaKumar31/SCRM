@@ -1,4 +1,7 @@
 ﻿using HillromAutomationFramework.PageObjects;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
@@ -10,17 +13,25 @@ namespace HillromAutomationFramework.Steps.Login
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
 
-        public Req5680Steps()
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5680Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
         }
 
         [Given(@"user is logged in")]
         public void GivenUserIsLoggedIn()
         {
             //Log in as Admin user with rollup
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
         }
 
         [When(@"user clicks Logout button")]

@@ -13,28 +13,33 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
     [Binding,Scope(Tag = "TestCaseID_8953")]
     public class LogFilesStaticElementsSteps
     {
-        private ScenarioContext _scenarioContext;
         private readonly LoginPage _loginPage;
         private readonly LogFilesStaticElements _logFilesStaticElements;
         private readonly MainPage _mainPage;
         private readonly CVSMDeviceDetailsPage _cvsmDeviceDetailsPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
-        public LogFilesStaticElementsSteps(ScenarioContext scenarioContext)
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+        public LogFilesStaticElementsSteps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _loginPage = new LoginPage();
-            _logFilesStaticElements = new LogFilesStaticElements();
-            _mainPage = new MainPage();
-            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _logFilesStaticElements = new LogFilesStaticElements(driver);
+            _mainPage = new MainPage(driver);
+            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(driver);
         }
-        
+
         [Given(@"user has selected any device")]
         public void GivenUserHasSelectedAnyDevice()
         {
             
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithOutRollUpPage);
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.SearchSerialNumberAndClick("100020000001");
 
         }

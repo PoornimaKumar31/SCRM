@@ -108,9 +108,9 @@ namespace HillromAutomationFramework.PageObjects
             public static string NextEnableImageURL = PropertyClass.BaseURL+"/icon_page_next.svg";
         }
 
-        public RV700DeviceDetailsPage()
+        public RV700DeviceDetailsPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.RV700DeviceID)]
@@ -313,12 +313,12 @@ namespace HillromAutomationFramework.PageObjects
         /// </summary>
         /// <param name="n">Number of Logs</param>
         /// <returns>List<DateTime></returns>
-        public List<DateTime> AllLogsDate(int n)
+        public List<DateTime> AllLogsDate(IWebDriver driver,int n)
         {
             List<DateTime> AllDateList = new List<DateTime>();
             for (int page=1; page<=(n/10)+1; page++)
             {
-                WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(LogsPageNumber, page.ToString()));
                 foreach (IWebElement element in LogDateList)
                 {

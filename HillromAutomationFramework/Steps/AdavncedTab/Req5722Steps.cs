@@ -12,32 +12,39 @@ namespace HillromAutomationFramework.Steps.AdvancedTab
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5722")]
     class Req5722Steps
-    {       
+    {
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
-        private readonly MainPage _mainPage;        
+        private readonly MainPage _mainPage;
         private readonly AdvancedPage _advancedPage;
-        private readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly WebDriverWait _wait;
+
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
         public string email, fullname;
         public int firstElementIndex = 0;
         public IWebElement selectedRow;
 
-        public Req5722Steps()
+        public Req5722Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _advancedPage = new AdvancedPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _advancedPage = new AdvancedPage(driver);
         }
 
         [Given(@"manager user is on User List page having more than (.*) records")]
         public void GivenManagerUserIsOnUserListPageHavingMoreThanRecords(int numberOfUser)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AdvancedTab.JavaSciptClick();
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.AdvancedTab.JavaSciptClick(_driver);
             _advancedPage.UserList.Count.Should().BeGreaterThan(numberOfUser, "User List Page does not have more than 2 records.");
         }
 

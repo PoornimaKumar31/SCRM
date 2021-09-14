@@ -9,9 +9,9 @@ namespace HillromAutomationFramework.PageObjects
 {
     class CSMDeviceDetailsPage
     {
-        public CSMDeviceDetailsPage()
+        public CSMDeviceDetailsPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         public static class Locators

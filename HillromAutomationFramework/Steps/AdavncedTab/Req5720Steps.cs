@@ -19,35 +19,43 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly AdvancedPage _advancePage;
+
+        private readonly IWebDriver _driver;
         private readonly ScenarioContext _scenarioContext;
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly WebDriverWait _wait;
+
         string randomString = null;
         string randomUsername = null;
-        string randomPhoneNumber =null;
+        string randomPhoneNumber = null;
         string randomFullName = null;
         string actualEmail = null;
         string actualFullName = null;
         string actualRole = null;
         string userInputInvalidUserName = null;
 
-        
 
-        public Req5720Steps(ScenarioContext scenarioContext)
+
+        public Req5720Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _advancePage = new AdvancedPage();           
             _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _advancePage = new AdvancedPage(driver);
+
+
         }
 
         [Given(@"manager user is on User List page")]
         public void GivenManagerUserIsOnUserListPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             //Clicking on facility
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _advancePage.AdvancedTab.JavaSciptClick();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _advancePage.AdvancedTab.JavaSciptClick(_driver);
 
             Thread.Sleep(1000);
             bool IsUserListPageDisplayed = (_advancePage.FullnameLabelOnUserList.GetElementVisibility()) || (_advancePage.RoleColumnHeader.GetElementVisibility());
@@ -58,7 +66,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenUserClicksCreateButton()
         {
             Thread.Sleep(1000);
-            SetMethods.ScrollUpWebPage();
+            SetMethods.ScrollUpWebPage(_driver);
             _advancePage.CreateUserOnCreatePage.Click();
         }
 
@@ -196,7 +204,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenUserListPageIsDisplayed()
         {
             Thread.Sleep(2000);
-            SetMethods.ScrollUpWebPage();
+            SetMethods.ScrollUpWebPage(_driver);
             Thread.Sleep(1000);
             bool IsUserListDisplayed = _advancePage.UserListLabel.GetElementVisibility();
             IsUserListDisplayed.Should().BeTrue("User list Page should be displayed");
@@ -282,13 +290,13 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"clicks User Manager checkbox")]
         public void WhenClicksUserManagerCheckbox()
         {
-            _advancePage.UserManagerOnCreatePage.JavaSciptClick();
+            _advancePage.UserManagerOnCreatePage.JavaSciptClick(_driver);
         }
 
         [When(@"clicks Save")]
         public void WhenClicksSave()
         {
-            _advancePage.SaveButtonOnCreatePage.ClickWebElement("Save button");
+            _advancePage.SaveButtonOnCreatePage.ClickWebElement(_driver,"Save button");
         }
 
         [Then(@"new user is created")]
@@ -331,7 +339,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             isSameFullname.Should().BeTrue("Name should be matched.");
 
             //To match Phone number, need to click on Details button then I will get Phone number. So passing ActualUserName through method to find in table content and then Click on corresponding Details button.
-            _advancePage.ClickOnDetailsButtonOfSpecifiedUser(randomUsername);
+            _advancePage.ClickOnDetailsButtonOfSpecifiedUser(_driver,randomUsername);
             
             //Getting Phone number after clicking on Details button
             string ActualPhoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
@@ -376,7 +384,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"Phone number is blank")]
         public void ThenPhoneNumberIsBlank()
         {
-            _advancePage.ClickOnDetailsButtonOfSpecifiedUser(randomUsername);
+            _advancePage.ClickOnDetailsButtonOfSpecifiedUser(_driver, randomUsername);
             string phoneNumber = _advancePage.PhoneTextField.GetAttribute("value");
             phoneNumber.Should().BeEmpty("Phone number should be blank.");
         }
@@ -403,7 +411,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 
             if (IsCheckboxSelected == true)
             {                
-                _advancePage.UserManagerOnCreatePage.JavaSciptClick();
+                _advancePage.UserManagerOnCreatePage.JavaSciptClick(_driver);
             }
         }
 

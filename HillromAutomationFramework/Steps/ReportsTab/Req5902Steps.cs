@@ -23,26 +23,28 @@ namespace HillromAutomationFramework.Steps.ReportsTab
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
-        public Req5902Steps(ScenarioContext scenarioContext)
+        public Req5902Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _reportsPage = new ReportsPage();
-            _csmConfigStatusPage = new CSMConfigStatusPage();             
-    }
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _reportsPage = new ReportsPage(driver);
+            _csmConfigStatusPage = new CSMConfigStatusPage(driver);
+        }
 
         [Given(@"user is on CSM CONFIGURATION UPDATE STATUS page")]
         public void GivenUserIsOnCSMCONFIGURATIONUPDATESTATUSPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
             _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
             _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
             _reportsPage.GetReportButton.Click();

@@ -19,22 +19,29 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
-        public Req5712Steps()
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5712Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage();
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage(driver);
         }
 
         [Given(@"user is on RV700 Log Files page")]
         public void GivenUserIsOnRVLogFilesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
             Thread.Sleep(1000);
             _mainPage.SearchSerialNumberAndClick("700090000004");
@@ -56,17 +63,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"log is downloaded to computer")]
         public void ThenLogIsDownloadedToComputer()
         {
-            bool file_exist = false;
-            int count = 0;
-            while (file_exist != true && count<=10)
-            {
-                Task.Delay(1000).Wait();
-                count++;
-                if (File.Exists(PropertyClass.DownloadPath + "\\" + _rv700DeviceDetailsPage.LogFiles[0].Text))
-                {
-                    file_exist = true;
-                }
-            }
+            bool IsRV700LofFileDownloaded = GetMethods.IsFileDownloaded(_rv700DeviceDetailsPage.LogFiles[0].Text, waitTimeInSeconds: 20);
+            (IsRV700LofFileDownloaded).Should().BeTrue(because: "CSM Log file should be downloaded when user clicks First Log File in Logs page");
         }
 
         [Then(@"downloaded filename matches")]

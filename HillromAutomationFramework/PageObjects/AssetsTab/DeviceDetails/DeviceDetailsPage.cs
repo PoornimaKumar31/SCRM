@@ -16,9 +16,9 @@ namespace HillromAutomationFramework.PageObjects
         }
       
 
-        public DeviceDetailsPage()
+        public DeviceDetailsPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How =How.ClassName,Using =Locators.AssetLabelClassName)]

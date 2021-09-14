@@ -14,20 +14,25 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
     [Binding, Scope(Tag = "SoftwareRequirementID_5703")]
     public sealed class Req5703Steps
     {
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly CSMDeviceDetailsPage _csmDeviceDetailsPage;
-        private readonly ScenarioContext _scenarioContext;
 
-        public Req5703Steps(ScenarioContext scenarioContext)
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+        public Req5703Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _csmDeviceDetailsPage = new CSMDeviceDetailsPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _csmDeviceDetailsPage = new CSMDeviceDetailsPage(driver);
         }
 
         private static class _Global
@@ -41,9 +46,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         public void GivenUserIsOnCSMEditAssetDetailsDialog()
         {
             //Login and selecting the required organization
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             //Searching serial number and clicking on device
             _mainPage.SearchSerialNumberAndClick(CSMDeviceDetailsPage.ExpectedValues.SerialNumberwithRoomAndBed);
@@ -57,8 +62,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             _csmDeviceDetailsPage.CSMDeviceEditButton.Click();
 
             //Waiting till popup is displayed
-            wait.Message = "CSM edit asset details dialog is not displayed within specifies time.";
-            wait.Until(ExplicitWait.ElementIsVisible(By.Id(CSMDeviceDetailsPage.Locators.EditLabelPopupID)));
+            _wait.Message = "CSM edit asset details dialog is not displayed within specifies time.";
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(CSMDeviceDetailsPage.Locators.EditLabelPopupID)));
 
 
             bool IsEditAssetDetails = _csmDeviceDetailsPage.EditLabelPopup.GetElementVisibility();
@@ -69,7 +74,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         public void WhenUserChangesRoomAndBedFields()
         {
             //waiting for room and bed field and clearing the data if present
-            wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.RoomFieldID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.RoomFieldID)));
             _csmDeviceDetailsPage.RoomField.Clear();
             _csmDeviceDetailsPage.BedField.Clear();
 

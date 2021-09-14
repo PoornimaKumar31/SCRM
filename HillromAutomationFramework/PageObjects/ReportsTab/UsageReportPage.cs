@@ -9,9 +9,9 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
 {
     class UsageReportPage
     {
-        public UsageReportPage()
+        public UsageReportPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
         public static class Locator
         {

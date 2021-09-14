@@ -30,32 +30,34 @@ namespace HillromAutomationFramework.Steps.ReportsTab
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
-        public Req5717Steps(ScenarioContext scenarioContext)
+        public Req5717Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _reportsPage = new ReportsPage();
-            _usageReportPage = new UsageReportPage();
-            _firmwareVersionPage = new FirmwareVersionPage();
-            _firmwareStatusPage = new FirmwareStatusPage();
-            _csmConfigStatusPage = new CSMConfigStatusPage();
-            _activityReportPage = new ActivityReportPage();
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _reportsPage = new ReportsPage(driver);
+            _usageReportPage = new UsageReportPage(driver);
+            _firmwareVersionPage = new FirmwareVersionPage(driver);
+            _firmwareStatusPage = new FirmwareStatusPage(driver);
+            _csmConfigStatusPage = new CSMConfigStatusPage(driver);
+            _activityReportPage = new ActivityReportPage(driver);
         }
 
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Message = "Asset list is not displayed in main page.Timed out after 10 seconds.";
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
         }
         
         [Given(@"CSM Asset type is selected")]
@@ -142,12 +144,12 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"Assets are grouped by unit")]
         public void ThenAssetsAreGroupedByUnit()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             int unitCount = _usageReportPage.UnitsRowList.GetElementCount();
             for(int row=0;row<unitCount;row++)
             {
-                IWebElement deviceParent = PropertyClass.Driver.FindElement(By.Id("devices" + row)).FindElement(By.XPath(".."));
-                IWebElement unitParent = PropertyClass.Driver.FindElement(By.Id("location" + row)).FindElement(By.XPath(".."));
+                IWebElement deviceParent = _driver.FindElement(By.Id("devices" + row)).FindElement(By.XPath(".."));
+                IWebElement unitParent = _driver.FindElement(By.Id("location" + row)).FindElement(By.XPath(".."));
                 if(!(deviceParent.Equals(unitParent)))
                 {
                     Assert.Fail("Assets are not grouped by unit.");
@@ -642,7 +644,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"logs are sorted by increasing ""(.*)""")]
         public void ThenLogsAreSortedByIncreasing(string columnName)
         {  
-            List<string> columnDataList = _csmConfigStatusPage.GetColumnData(columnName);
+            List<string> columnDataList = _csmConfigStatusPage.GetColumnData(_driver, columnName);
             columnDataList.Should().BeInAscendingOrder("logs should be sorted by"+columnName+ " in ascending order.");
         }
 
@@ -665,7 +667,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"logs are sorted by decreasing ""(.*)""")]
         public void ThenLogsAreSortedByDecreasing(string columnName)
         {
-            List<string> columnDataList = _csmConfigStatusPage.GetColumnData(columnName);
+            List<string> columnDataList = _csmConfigStatusPage.GetColumnData(_driver, columnName);
             columnDataList.Should().BeInDescendingOrder("logs should be sorted by" + columnName+" in descending order.");
         }
 

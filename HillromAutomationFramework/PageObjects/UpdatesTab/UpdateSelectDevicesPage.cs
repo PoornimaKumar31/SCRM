@@ -68,9 +68,9 @@ namespace HillromAutomationFramework.PageObjects
             public const string UpdateProcessMessageText = "Update process has been established";
         }
 
-        public UpdateSelectDevicesPage()
+        public UpdateSelectDevicesPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.HeadingID)]

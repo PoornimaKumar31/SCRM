@@ -15,35 +15,37 @@ namespace HillromAutomationFramework.Steps.ReportsTab
     public sealed class Req8309Steps
     {
 
-        LoginPage _loginPage;
-        LandingPage _landingPage;
-        MainPage _mainPage;
-        ReportsPage _reportsPage;
-        FirmwareVersionPage _firmwareVersionPage;
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly ReportsPage _reportsPage;
+        private readonly FirmwareVersionPage _firmwareVersionPage;
 
         private readonly ScenarioContext _scenarioContext;
-        WebDriverWait _wait;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
 
-        public Req8309Steps(ScenarioContext scenarioContext)
+        public Req8309Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _reportsPage = new ReportsPage();
-            _firmwareVersionPage = new FirmwareVersionPage();
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _reportsPage = new ReportsPage(driver);
+            _firmwareVersionPage = new FirmwareVersionPage(driver);
         }
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportsPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
             _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
         }
 
         [Given(@"Centrella Asset type is selected in Asset type dropdown")]

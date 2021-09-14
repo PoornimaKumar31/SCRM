@@ -15,22 +15,29 @@ namespace HillromAutomationFramework.Steps.AssetsTab
     [Binding,Scope(Tag = "SoftwareRequirementID_5686")]
     public class Req5686Steps
     {
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
+        private readonly LoginPage loginPage;
+        private readonly LandingPage landingPage;
+        private readonly MainPage mainPage;
 
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
 
-        public Req5686Steps(ScenarioContext scenarioContext)
+        public Req5686Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            loginPage = new LoginPage(driver);
+            landingPage = new LandingPage(driver);
+            mainPage = new MainPage(driver);
         }
 
         [Given(@"the user is on Landing page")]
         public void GivenTheUserIsOnLandingPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             Assert.AreEqual(true, landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.GetElementVisibility(), "User is not on Landing page.");
         }
         
@@ -220,8 +227,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Given(@"user is on Assets list page")]
         public void GivenUserIsOnAssetsListPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithOutRollUpPage);
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
 
             
         }
@@ -388,7 +395,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"beds with errors are at the top of the list")]
         public void ThenBedsWithErrorsAreAtTheTopOfTheList()
         {
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0); // Implicit wait for 5 seconds
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0); // Implicit wait for 5 seconds
            
             //Finding the index of sorted column
             int columnNumber = mainPage.GetColumnIndex("status");
@@ -427,8 +434,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"beds with errors are at the bottom of the list")]
         public void ThenBedsWithErrorsAreAtTheBottomOfTheList()
         {
-            mainPage.GoToLastPage(27);
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0); // Implicit wait for 5 seconds
+            mainPage.GoToLastPage(_driver,27);
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0); // Implicit wait for 5 seconds
 
             //Finding the index of sorted column
             int columnNumber = mainPage.GetColumnIndex("status");

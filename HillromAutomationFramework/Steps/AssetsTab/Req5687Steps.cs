@@ -15,42 +15,51 @@ namespace HillromAutomationFramework.Steps.AssetsTab
     [Binding,Scope(Tag = "SoftwareRequirementID_5687")]
     public class Req5687Steps
     {
-        LoginPage loginPage = new LoginPage();
-        MainPage mainPage = new MainPage();
-        LandingPage landingPage = new LandingPage();
+        private readonly LoginPage loginPage;
+        private readonly LandingPage landingPage;
+        private readonly MainPage mainPage;
 
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5687Steps(ScenarioContext scenarioContext, IWebDriver driver)
+        {
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            loginPage = new LoginPage(driver);
+            landingPage = new LandingPage(driver);
+            mainPage = new MainPage(driver);
+        }
 
 
         [Given(@"user is on Assets List page with more than one ""(.*)""")]
         public void GivenUserIsOnAssetsListPageWithMoreThanOneDevice(string deviceName)
         {
-            switch(deviceName.ToLower().Trim())
+            loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            switch (deviceName.ToLower().Trim())
             {
                 case "device":
-                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.ClickWebElement(_driver);
                     break;
                 case "csm":
-                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.ClickWebElement(_driver);
                     break;
                 case "cvsm":
-                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.ClickWebElement(_driver);
                     break;
                 case "rv700":
-                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
+                    landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.ClickWebElement(_driver);
                     break;
                 case "centrella":
-                    loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-                    landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+                    landingPage.PSSServiceOrganizationFacilityBatesville.ClickWebElement(_driver);
                     break;
                 default: Assert.Fail("Invalid device name " + deviceName);
                     break;
             }
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
         }
         
         [Given(@"Asset type is All assets")]

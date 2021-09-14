@@ -18,22 +18,29 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly RV700DeviceDetailsPage _rv700DeviceDetailsPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
-        public Req5711Steps(ScenarioContext scenarioContext)
+
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5711Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage(driver);
         }
+
         [Given(@"user has selected RV700 device")]
         public void GivenUserHasSelectedRV700Device()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
             Thread.Sleep(1000);
         }
@@ -41,7 +48,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
             _mainPage.AssetsTab.GetElementVisibility().Should().BeTrue( "Assets tab is not displayed");
             _mainPage.SearchSerialNumberAndClick("700090000004");
         }
@@ -61,9 +68,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Given(@"user is on RV700 Log Files page with (.*) logs")]
         public void GivenUserIsOnRVLogFilesPageWithLogs(int noOfLogs)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.ClickWebElement(_driver);
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);         
             Thread.Sleep(2000);
 
@@ -72,20 +79,20 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
                 case 0:
                     //Selecting RV700 device with no log files
                     _mainPage.SearchSerialNumberAndClick("700090000009");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     _rv700DeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
                     //selecting RV700 device with 10 log files
                     _mainPage.SearchSerialNumberAndClick("700090000004");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     _rv700DeviceDetailsPage.LogsTab.Click();
                     break;
                 case 24:
                     //selecting RV700 device with 24 log files
                     _mainPage.SearchSerialNumberAndClick("700090000001");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
                     _rv700DeviceDetailsPage.LogsTab.Click();
                     break;
             }
@@ -122,7 +129,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         {
             if (_rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
             {
-                SetMethods.MoveTotheElement(_rv700DeviceDetailsPage.DateSorting, "Sorting Arrow");
+                SetMethods.MoveTotheElement(_rv700DeviceDetailsPage.DateSorting, _driver, "Sorting Arrow");
                 _rv700DeviceDetailsPage.DateSorting.Click();
                 SetMethods.WaitUntilTwoStringsAreEqual(_rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 descending");
             }
@@ -136,7 +143,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         {
             if (_rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending")
             {
-                SetMethods.MoveTotheElement(_rv700DeviceDetailsPage.DateSorting, "Sorting Arrow");
+                SetMethods.MoveTotheElement(_rv700DeviceDetailsPage.DateSorting, _driver, "Sorting Arrow");
                 _rv700DeviceDetailsPage.DateSorting.Click();
                 SetMethods.WaitUntilTwoStringsAreEqual(_rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 ascending");
             }
@@ -148,7 +155,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [When(@"user clicks Date column heading")]
         public void WhenUserClicksDateColumnHeading()
         {
-            _rv700DeviceDetailsPage.DateSorting.MoveTotheElement();
+            _rv700DeviceDetailsPage.DateSorting.MoveTotheElement(_driver);
             _rv700DeviceDetailsPage.DateSorting.Click();
 
         }

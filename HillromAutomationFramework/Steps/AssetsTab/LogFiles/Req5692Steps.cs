@@ -15,29 +15,35 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
 {
     [Binding,Scope(Tag = "SoftwareRequirementID_5692")]
     class Req5692Steps
-    {
-        private readonly CVSMDeviceDetailsPage _cvsmDeviceDetailsPage;
+    { 
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
+        private readonly CVSMDeviceDetailsPage _cvsmDeviceDetailsPage;
 
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
 
-        public Req5692Steps()
+        public Req5692Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(driver);
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
         }
-       
+
         [Given(@"user is on CVSM Log Files page")]
         public void GivenUserIsOnCVSMLogFilesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             
-            wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(2000);
@@ -61,17 +67,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"log is downloaded to computer")]
         public void ThenLogIsDownloadedToComputer()
         {
-            bool file_exist = false;
-            int count = 0;
-            while (file_exist != true && count <= 10)
-            {
-                Task.Delay(1000).Wait();
-                count++;
-                if (File.Exists(PropertyClass.DownloadPath + "\\" + _cvsmDeviceDetailsPage.LogFiles[0].Text))
-                {
-                    file_exist = true;
-                }
-            }
+            bool IsCVSMLofFileDownloaded = GetMethods.IsFileDownloaded(_cvsmDeviceDetailsPage.LogFiles[0].Text, waitTimeInSeconds: 20);
+            (IsCVSMLofFileDownloaded).Should().BeTrue(because: "CVSM Log file should be downloaded when user clicks First Log File in Logs page");
         }
 
         [Then(@"downloaded filename matches")]

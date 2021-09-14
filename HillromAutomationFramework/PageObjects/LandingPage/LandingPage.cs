@@ -12,9 +12,9 @@ namespace HillromAutomationFramework.PageObjects
     /// </summary>
     class LandingPage
     {
-        public LandingPage()
+        public LandingPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         /// <summary>
@@ -180,14 +180,14 @@ namespace HillromAutomationFramework.PageObjects
         /// </summary>
         /// <param name="organizations">Organization to select</param>
         /// <param name="facility">facility to select on the organization</param>
-        public void LoginAndSelectPreferredOrganization(LandingPage.Organizations organizations,LandingPage.Facility facility)
+        public void LoginAndSelectPreferredOrganization(IWebDriver driver,LandingPage.Organizations organizations,LandingPage.Facility facility)
         {
             IWebElement facilityWebElement=null;
 
-            LoginPage loginPage = new LoginPage();
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.LogIn(driver,LoginPage.LogInType.AdminWithRollUpPage);
             
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10))
             {
                 Message = "Roll up page is not displayed"
             };
@@ -254,7 +254,7 @@ namespace HillromAutomationFramework.PageObjects
             }
 
             //Move the element till visible
-            SetMethods.MoveTotheElement(facilityWebElement, "Organization " + organizations.ToString() + " and facility "+facility.ToString());
+            SetMethods.MoveTotheElement(facilityWebElement,driver, "Organization " + organizations.ToString() + " and facility "+facility.ToString());
             facilityWebElement.Click();
             wait.Message = "Asset list is not displayed in the Main Page.";
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));

@@ -21,19 +21,22 @@ namespace HillromAutomationFramework.Steps.ReportsTab
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
-        public Req5719Steps(ScenarioContext scenarioContext)
+
+        public Req5719Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _reportsPage = new ReportsPage();    
-    }
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _reportsPage = new ReportsPage(driver);
+        }
 
-        
+
         [When(@"user clicks Download button")]
         public void WhenUserClicksOnDownloadButton()
         {
@@ -43,7 +46,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"user is on ""(.*)"" page")]
         public void GivenUserIsOnPage(string reportName)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             /**
              * Selecting the organization based on the report type. 
              */
@@ -52,28 +55,28 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 case "csm configuration update status":
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                    _mainPage.ReportsTab.JavaSciptClick();
+                    _mainPage.ReportsTab.JavaSciptClick(_driver);
                     _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
                     _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
                     break;
                 case "csm firmware upgrade status":
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                    _mainPage.ReportsTab.JavaSciptClick();
+                    _mainPage.ReportsTab.JavaSciptClick(_driver);
                     _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
                     _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
                     break;
                 case "csm activity report":
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                    _mainPage.ReportsTab.JavaSciptClick();
+                    _mainPage.ReportsTab.JavaSciptClick(_driver);
                     _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
                     _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
                     break;
                 case "rv700 firmware upgrade status":
                     _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
                     _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-                    _mainPage.ReportsTab.JavaSciptClick();
+                    _mainPage.ReportsTab.JavaSciptClick(_driver);
                     _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
                     _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
                     break;

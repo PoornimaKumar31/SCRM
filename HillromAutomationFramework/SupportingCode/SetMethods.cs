@@ -38,11 +38,11 @@ namespace HillromAutomationFramework.SupportingCode
         /// Double clicks on the webelement.
         /// </summary>
         /// <param name="element">Webelement to double click.</param>
-        public static void DoubleClick(this IWebElement element)
+        public static void DoubleClick(this IWebElement element,IWebDriver driver)
         {
             try
             {
-                Actions actions = new Actions(PropertyClass.Driver);
+                Actions actions = new Actions(driver);
                 actions.DoubleClick(element).Perform();
             }
             catch (Exception e)
@@ -51,15 +51,15 @@ namespace HillromAutomationFramework.SupportingCode
             }
         }
 
-        public static void ClickWebElement(this IWebElement element, string elementName="Webelement")
+        public static void ClickWebElement(this IWebElement element, IWebDriver driver, string elementName="Webelement")
         {
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10))
             {
                 Message = elementName + " element is not clickable."
             };
             try
             {
-                Actions actions = new Actions(PropertyClass.Driver);
+                Actions actions = new Actions(driver);
                 actions.MoveToElement(element);
                 actions.Perform();
 
@@ -68,7 +68,7 @@ namespace HillromAutomationFramework.SupportingCode
             }
             catch (Exception e)
             {
-                Assert.Fail(e + " Exception Occured");
+                Assert.Fail(" Exception Occured\n"+e);
             }
 
         }
@@ -77,11 +77,11 @@ namespace HillromAutomationFramework.SupportingCode
         /// Clicking on a element using javascipt
         /// </summary>
         /// <param name="webElement">WebElement to click.</param>
-        public static void JavaSciptClick(this IWebElement webElement)
+        public static void JavaSciptClick(this IWebElement webElement,IWebDriver driver)
         {
             try
             {
-                IJavaScriptExecutor executor = (IJavaScriptExecutor)PropertyClass.Driver;
+                IJavaScriptExecutor executor = (IJavaScriptExecutor)driver;
                 executor.ExecuteScript("arguments[0].click()", webElement);
             }
             catch (Exception e)
@@ -94,14 +94,14 @@ namespace HillromAutomationFramework.SupportingCode
         /// <summary>
         /// Scroll to the bottom of webpage.
         /// </summary>
-        public static void ScrollToBottomofWebpage()
+        public static void ScrollToBottomofWebpage(IWebDriver driver)
         {
             long scrollHeight = 0;
             try
             {
                 do
                 {
-                    IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)(PropertyClass.Driver);
+                    IJavaScriptExecutor javaScriptExecutor = (IJavaScriptExecutor)(driver);
                     var newScrollHeight = (long)javaScriptExecutor.ExecuteScript("window.scrollTo(0, document.body.scrollHeight); return document.body.scrollHeight;");
                     if (newScrollHeight == scrollHeight)
                     {
@@ -125,14 +125,14 @@ namespace HillromAutomationFramework.SupportingCode
         /// </summary>
         /// <param name="element"></param>
         /// <param name="elementName"></param>
-        public static void MoveTotheElement(this IWebElement element,string elementName = "WebElement")
+        public static void MoveTotheElement(this IWebElement element,IWebDriver driver,string elementName = "WebElement")
         {
-            Actions actions = new Actions(PropertyClass.Driver);
+            Actions actions = new Actions(driver);
             try
             {
                 actions.MoveToElement(element);
                 actions.Perform();
-                WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10))
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10))
                 {
                     Message = "The" + elementName + " is not visible and unable to click on it"
                 };
@@ -148,11 +148,11 @@ namespace HillromAutomationFramework.SupportingCode
         /// <summary>
         /// Scroll up web page
         /// </summary>
-        public static void ScrollUpWebPage()
+        public static void ScrollUpWebPage(IWebDriver driver)
         {
             try
             {
-                IJavaScriptExecutor js = (IJavaScriptExecutor)PropertyClass.Driver;
+                IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                 js.ExecuteScript("window.scrollTo(0, 0)");
             }
             catch (Exception e)

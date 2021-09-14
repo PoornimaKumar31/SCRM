@@ -13,17 +13,21 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding]
     public class Req5684Steps
     {
-        private readonly ScenarioContext _scenarioContext;
         private readonly LoginPage _loginPage;
         private readonly ForgotPasswordPage _forgotPasswordPage;
+
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
         private readonly WebDriverWait _wait;
 
-        public Req5684Steps(ScenarioContext scenarioContext)
+        public Req5684Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(25));
-            _loginPage = new LoginPage();
-            _forgotPasswordPage = new ForgotPasswordPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(25));
+
+            _loginPage = new LoginPage(driver);
+            _forgotPasswordPage = new ForgotPasswordPage(driver);
         }
 
         [When(@"user clicks forgot password")]
@@ -43,7 +47,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Given(@"user is on Forgot Password page")]
         public void GivenUserIsOnForgotPasswordPage()
         {
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
+            _driver.Navigate().GoToUrl(PropertyClass.BaseURL);
             _wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));
             _loginPage.ForgotPasswordLink.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));

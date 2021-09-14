@@ -81,9 +81,9 @@ namespace HillromAutomationFramework.PageObjects
 
         }
 
-        public ServiceMonitorPage()
+        public ServiceMonitorPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);   
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.AssetTypeDropDownID)]

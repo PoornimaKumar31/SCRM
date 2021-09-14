@@ -24,27 +24,29 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
-        public Req5706Steps(ScenarioContext scenarioContext)
+        public Req5706Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
-            _updateSelectDevicesPage = new UpdateSelectDevicesPage();
-            _updateReviewActionPage = new UpdateReviewActionPage(); 
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage(driver);
+            _updateSelectDevicesPage = new UpdateSelectDevicesPage(driver);
+            _updateReviewActionPage = new UpdateReviewActionPage(driver);
         }
 
         [Given(@"user is on CSM Review Action page")]
         public void GivenUserIsOnCSMReviewActionPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
 
             //updates tab
             _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);

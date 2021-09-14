@@ -15,26 +15,34 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
     [Binding,Scope(Tag = "SoftwareRequirementID_7733")]
     public sealed class Req7733Steps
     {
-        // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
+        private readonly LoginPage loginPage;
+        private readonly LandingPage landingPage;
+        private readonly MainPage mainPage;
+        private readonly CentrellaDeviceDetailsPage centrellaDeviceDetailsPage;
 
         private readonly ScenarioContext _scenarioContext;
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        MainPage mainPage = new MainPage();
-        CentrellaDeviceDetailsPage centrellaDeviceDetailsPage = new CentrellaDeviceDetailsPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        public Req7733Steps(ScenarioContext scenarioContext)
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+        public Req7733Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            loginPage = new LoginPage(driver);
+            landingPage = new LandingPage(driver);
+            mainPage = new MainPage(driver);
+            centrellaDeviceDetailsPage = new CentrellaDeviceDetailsPage(driver);
         }
 
         [Given(@"user is on Asset List for an organization with Centrella devices")]
         public void GivenUserIsOnAssetListForAnOrganizationWithCentrellaDevices()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville,_driver ,"Centrella Orgaization");
             landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
         }
 
         [Then(@"an error icon is displayed in the ""(.*)"" column for bed with serial number ""(.*)""")]
@@ -52,10 +60,10 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Given(@"user is on device details page for Centrella Serial number ""(.*)""")]
         public void GivenUserIsOnDeviceDetailsPageForCentrellaSerialNumber(string serialNumber)
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
             landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.SearchSerialNumberAndClick(serialNumber);
         }
 

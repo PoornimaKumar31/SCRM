@@ -10,9 +10,9 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
     class CentrellaDeviceDetailsPage
     {
         public string randomDate;
-        public CentrellaDeviceDetailsPage()
+        public CentrellaDeviceDetailsPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         public class ExpectedValue
@@ -378,11 +378,11 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         [FindsBy(How = How.Id, Using = Locators.NoErrorReportedLabelID)]
         public IWebElement NoErrorReportedLabel { get; set; }
 
-        public IWebElement RandomDate()
+        public IWebElement RandomDate(IWebDriver driver)
         {
             Random ran = new Random();
             randomDate = ran.Next(1, 28).ToString();
-            IWebElement date = PropertyClass.Driver.FindElement(By.XPath("//td/div[contains(text(),'" + randomDate + "')]"));
+            IWebElement date = driver.FindElement(By.XPath("//td/div[contains(text(),'" + randomDate + "')]"));
             return date;
         }
 

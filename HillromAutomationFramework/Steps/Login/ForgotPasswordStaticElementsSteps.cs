@@ -2,6 +2,9 @@
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 using System.Threading;
 using TechTalk.SpecFlow;
 
@@ -10,20 +13,22 @@ namespace HillromAutomationFramework.Steps.Login
     [Binding,Scope(Feature = "Forgot Password Static Elements")]
     public class ForgotPasswordStaticElementsSteps
     {
-        readonly ForgotPasswordPage _forgotPassword;
+        private readonly ForgotPasswordPage _forgotPassword;
 
-        public ForgotPasswordStaticElementsSteps()
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+
+        public ForgotPasswordStaticElementsSteps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _forgotPassword = new ForgotPasswordPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _forgotPassword = new ForgotPasswordPage(driver);
         }
 
-        [Then(@"Hillrom logo is displayed")]
-        public void ThenUserWillSeeHillromLogo()
-        {
-            Thread.Sleep(500);
-            _forgotPassword.HillromLogo.GetElementVisibility().Should().BeTrue("Hillrom logo is not displayed");
-        }
-        
         [Then(@"SmartCare Remote Management title is displayed")]
         public void ThenForgotSmartCareRemoteManagementTitle()
         {

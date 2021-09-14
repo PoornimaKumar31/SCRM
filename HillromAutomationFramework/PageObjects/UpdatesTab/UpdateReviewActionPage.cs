@@ -52,9 +52,9 @@ namespace HillromAutomationFramework.PageObjects
             public const string TimeLabelText = "Time:";
         }
 
-        public UpdateReviewActionPage()
+        public UpdateReviewActionPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.HeadingID)]

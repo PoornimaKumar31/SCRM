@@ -18,24 +18,32 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly CVSMDeviceDetailsPage _cvsmDeviceDetailsPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        string ExistingRoomAndBed;
-        string NewRoomAndBed="";
 
-        public Req5696Steps()
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+
+        private readonly WebDriverWait _wait;
+        string ExistingRoomAndBed;
+        string NewRoomAndBed = "";
+
+        public Req5696Steps(ScenarioContext scnenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
+            _scenarioContext = scnenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(driver);
         }
 
         [Given(@"user is on CVSM Asset Details page")]
         public void GivenUserIsOnCVSMAssetDetailsPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(2000);
             _mainPage.SearchSerialNumberAndClick("100020000000");
@@ -51,8 +59,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Edit Asset Details dialog is displayed")]
         public void ThenEditAssetDetailsDialogWillDisplay()
         {
-            wait.Message = "Edit Asset Details dialog is not displayed within 10 seconds";
-            wait.Until(ExplicitWait.ElementIsVisible(By.Id(CVSMDeviceDetailsPage.Locators.EditAssetDetailsPopUpTitleID)));
+            _wait.Message = "Edit Asset Details dialog is not displayed within 10 seconds";
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(CVSMDeviceDetailsPage.Locators.EditAssetDetailsPopUpTitleID)));
             _cvsmDeviceDetailsPage.EditAssetDetailsPopUpTitle.GetElementVisibility().Should().BeTrue("Edit Asset Details dialog is not displayed.");
         }
         
@@ -104,9 +112,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Given(@"user is on CVSM Edit Asset Details dialog")]
         public void GivenUserIsOnCVSMEditAssetDetailsDialog()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(1000);
             _mainPage.SearchSerialNumberAndClick("100020000002");
@@ -189,7 +197,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Asset Tag value is displayed")]
         public void ThenTheAssetTagValueIsDisplayed()
         {
-            wait.Until(ExplicitWait.ElementIsVisible(By.Id(CVSMDeviceDetailsPage.Locators.EditAssetDetailsPopUPAssetTagLabelID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(CVSMDeviceDetailsPage.Locators.EditAssetDetailsPopUPAssetTagLabelID)));
              _cvsmDeviceDetailsPage.EditAssetDetailsPopUPAssetTagValue.GetElementVisibility().Should().BeTrue("Asset Tag value is not displayed");
         }
 

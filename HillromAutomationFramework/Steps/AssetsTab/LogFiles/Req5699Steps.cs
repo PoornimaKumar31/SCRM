@@ -19,27 +19,32 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly CSMDeviceDetailsPage _csmDeviceDetailsPage;
-        private readonly MainPage _mainPage = new MainPage();
+        private readonly MainPage _mainPage;
         private readonly DeviceDetailsPage _deviceDetailsPage;
-        private readonly ScenarioContext _scenarioContext;
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
-        public Req5699Steps(ScenarioContext scenarioContext)
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+        public Req5699Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _csmDeviceDetailsPage = new CSMDeviceDetailsPage();
-            _mainPage = new MainPage();
-            _deviceDetailsPage = new DeviceDetailsPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _csmDeviceDetailsPage = new CSMDeviceDetailsPage(driver);
+            _mainPage = new MainPage(driver);
+            _deviceDetailsPage = new DeviceDetailsPage(driver);
         }
 
         [Given(@"user has selected CSM device")]
         public void GivenUserHasSelectedCSMDevice()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
-            wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             Thread.Sleep(1000);
             _mainPage.SearchSerialNumberAndClick("110010000019");
@@ -58,7 +63,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
         {
-            wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
             _csmDeviceDetailsPage.LogsTab.Click();
         }
 
@@ -72,32 +77,32 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Given(@"user is on CSM Log Files page with (.*) logs")]
         public void GivenUserIsOnCSMLogFilesPageWithLogs(int noOfLogs)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             switch (noOfLogs)
             {
                 case 0:
                     //Selecting CSM device with no log files
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-                    wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     _mainPage.SearchSerialNumberAndClick("100010000005");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     _csmDeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
                     //selecting CSM device with 10 log files
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
-                    wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     _mainPage.SearchSerialNumberAndClick("110010000019");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     _csmDeviceDetailsPage.LogsTab.Click();
                     break;
                 case 24:
                     //selecting CSM device with 25 log files
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
-                    wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
                     _mainPage.SearchSerialNumberAndClick("110010000000");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
                     _csmDeviceDetailsPage.LogsTab.Click();
                     break;
                 default: Assert.Fail("Invalid number of logs \""+ noOfLogs+"\"");
@@ -114,17 +119,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"log is downloaded to computer")]
         public void ThenLogIsDownloadedToComputer()
         {
-            bool file_exist = false;
-            int count = 0;
-            while (file_exist != true && count<=10)
-            {
-                Task.Delay(1000).Wait();
-                count++;
-                if (File.Exists(PropertyClass.DownloadPath +"\\"+ _csmDeviceDetailsPage.LogFiles[0].Text) || count ==15)
-                {
-                    file_exist = true;
-                }
-            }
+            bool IsCSMLofFileDownloaded = GetMethods.IsFileDownloaded(_csmDeviceDetailsPage.LogFiles[0].Text, waitTimeInSeconds: 20);
+            (IsCSMLofFileDownloaded).Should().BeTrue(because: "CSM Log file should be downloaded when user clicks First Log File in Logs page");
         }
 
         [Then(@"downloaded filename matches")]
@@ -136,7 +132,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            SetMethods.MoveTotheElement(_csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")), "Next logs page");
+            SetMethods.MoveTotheElement(_csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")), _driver, "Next logs page");
             _csmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL, "Next page icon is not disabled.");
         }
 
@@ -164,7 +160,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         {
             if (_csmDeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
             {
-                _csmDeviceDetailsPage.DateSorting.MoveTotheElement("Sorting Arrow");
+                _csmDeviceDetailsPage.DateSorting.MoveTotheElement(_driver, "Sorting Arrow");
                 _csmDeviceDetailsPage.DateSorting.Click();
                 SetMethods.WaitUntilTwoStringsAreEqual(_csmDeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 descending");
             }
@@ -180,7 +176,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         {
             if(_csmDeviceDetailsPage.DateSorting.GetAttribute("class")== "col-md-4 descending")
             {
-                _csmDeviceDetailsPage.DateSorting.MoveTotheElement("Sorting Arrow");
+                _csmDeviceDetailsPage.DateSorting.MoveTotheElement(_driver, "Sorting Arrow");
                 _csmDeviceDetailsPage.DateSorting.Click();
                 SetMethods.WaitUntilTwoStringsAreEqual(_csmDeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 ascending");
             }
@@ -192,7 +188,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [When(@"user clicks Date column heading")]
         public void WhenUserClicksDateColumnHeading()
         {
-            _csmDeviceDetailsPage.DateSorting.MoveTotheElement();
+            _csmDeviceDetailsPage.DateSorting.MoveTotheElement(_driver, "Date column Heading");
             _csmDeviceDetailsPage.DateSorting.Click();
         }
 

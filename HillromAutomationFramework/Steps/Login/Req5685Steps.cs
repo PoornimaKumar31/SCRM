@@ -1,6 +1,9 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
@@ -9,10 +12,18 @@ namespace HillromAutomationFramework.Steps.Login
     public class Req5685Steps
     {
         private readonly LoginPage _loginPage;
-        
-        public Req5685Steps()
+
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5685Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
         }
 
         [When(@"user clicks PartnerConnect")]
@@ -63,18 +74,18 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Administrator Guide PDF opens in browser")]
         public void ThenAdministratorGuidePDFOpensInBrowser()
         {
-            int windowCount = PropertyClass.Driver.WindowHandles.Count;
+            int windowCount = _driver.WindowHandles.Count;
 
             // checking if new tab was opened
             (windowCount).Should().BeGreaterThan(1, because: "PDF should be pened in a new window");
 
-            var popup = PropertyClass.Driver.WindowHandles[1];
+            var popup = _driver.WindowHandles[1];
             string.IsNullOrEmpty(popup).Should().BeFalse("PDF is not opened in new tab");
 
             // Switch to new tab.
-            PropertyClass.Driver.SwitchTo().Window(popup);
+            _driver.SwitchTo().Window(popup);
             
-            PropertyClass.Driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, "Administator guide PDF is not opened");
+            _driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, "Administator guide PDF is not opened");
         }
 
         [When(@"user clicks Instructions for Use")]
@@ -86,21 +97,21 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Instructions for Use PDF opens in browser")]
         public void ThenInstructionsForUsePDFOpensInBrowser()
         {
-            int windowCount = PropertyClass.Driver.WindowHandles.Count;
+            int windowCount = _driver.WindowHandles.Count;
 
             // checking if new tab was opened
             (windowCount).Should().BeGreaterThan(1, because: "PDF should be pened in a new window");
 
             // handler for the new tab
-            var popup = PropertyClass.Driver.WindowHandles[1];
+            var popup = _driver.WindowHandles[1];
 
             // check if new tab was opened
             string.IsNullOrEmpty(popup).Should().BeFalse("New tab is not opened");
 
             // Switch to new tab.
-            PropertyClass.Driver.SwitchTo().Window(popup); 
+            _driver.SwitchTo().Window(popup); 
             
-            PropertyClass.Driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.InstructionForUsePDFURL, "Instructions for use PDF is not opened");
+            _driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.InstructionForUsePDFURL, "Instructions for use PDF is not opened");
         }
 
         [When(@"user clicks Release Notes")]
@@ -112,21 +123,21 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Release Notes PDF opens in browser")]
         public void ThenReleaseNotesPDFOpensInBrowser()
         {
-            int windowCount = PropertyClass.Driver.WindowHandles.Count;
+            int windowCount = _driver.WindowHandles.Count;
 
             // checking if new tab was opened
             (windowCount).Should().BeGreaterThan(1, because: "PDF should be pened in a new window");
 
             // handler for the new tab
-            var popup = PropertyClass.Driver.WindowHandles[1];
+            var popup = _driver.WindowHandles[1];
 
             // tab was opened
             string.IsNullOrEmpty(popup).Should().BeFalse("New tab is not opened");
 
             //Switch to new tab
-            PropertyClass.Driver.SwitchTo().Window(popup);
+            _driver.SwitchTo().Window(popup);
 
-            PropertyClass.Driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.RealeaseNotesPDFURL, "Release notes pdf is not opened");
+            _driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.RealeaseNotesPDFURL, "Release notes pdf is not opened");
         }
     }
 }

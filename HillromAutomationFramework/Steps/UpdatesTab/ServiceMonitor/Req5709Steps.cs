@@ -18,23 +18,26 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         private readonly LoginPage _loginPage;
         private readonly MainPage _mainPage;
         private readonly ServiceMonitorPage _serviceMoniterPage ;
+
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
-        public Req5709Steps(ScenarioContext scenarioContext)
+        public Req5709Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _mainPage = new MainPage();
-            _serviceMoniterPage = new ServiceMonitorPage();
+            _loginPage = new LoginPage(driver);
+            _mainPage = new MainPage(driver);
+            _serviceMoniterPage = new ServiceMonitorPage(driver);
         }
 
         [Given(@"user is on Main page")]
         public void GivenUserIsOnMainPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithOutRollUpPage);
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             (_mainPage.AssetsTab.GetElementVisibility()).Should().BeTrue(because:"User should be on the main page after login without roll-up");
         }
@@ -42,7 +45,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         [When(@"user clicks Updates")]
         public void WhenUserClicksUpdates()
         {
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
         }
         
         [When(@"user selects Service Monitor")]
@@ -61,7 +64,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         public void GivenUserIsOnServiceMonitorSettingsPage()
         {
             GivenUserIsOnMainPage();
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
             _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
             (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()).Should().BeTrue("Service Monitor Settings page is displayed when user selects Service Monitor");
         }

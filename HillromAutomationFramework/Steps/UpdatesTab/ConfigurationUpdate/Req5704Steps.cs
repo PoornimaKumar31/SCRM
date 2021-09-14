@@ -21,29 +21,32 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         private readonly UpdatesSelectUpdatePage _updatesSelectUpdatePage;
         private readonly UpdateSelectDevicesPage _updateSelectDevicesPage;
         private readonly UpdateReviewActionPage _updateReviewActionPage;
-        private readonly WebDriverWait _wait; 
-        private readonly ScenarioContext _scenarioContext;
 
-        public Req5704Steps(ScenarioContext scenarioContext)
+        private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+
+        public Req5704Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
-            _updateSelectDevicesPage = new UpdateSelectDevicesPage();
-            _updateReviewActionPage = new UpdateReviewActionPage(); 
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage(driver);
+            _updateSelectDevicesPage = new UpdateSelectDevicesPage(driver);
+            _updateReviewActionPage = new UpdateReviewActionPage(driver);
         }
 
         [Given(@"user is on Updates page")]
         public void GivenUserIsOnUpdatesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
         }
 
         [When(@"user selects CSM Asset type")]
@@ -76,10 +79,10 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Given(@"user is on CSM Updates page")]
         public void GivenUserIsOnCSMUpdatesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
         }
 
         [Given(@"CSM Asset type is selected")]
@@ -138,7 +141,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Displaying x to y of z label is displayed")]
         public void ThenDisplayingXToYOfZLabelIsDisplayed()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             (_updatesSelectUpdatePage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue(because: "Displaying x to y of z label should be displayed in updates page");
         }
 
@@ -164,25 +167,23 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Given(@"user is on CSM Updates page with ""(.*)"" entries")]
         public void GivenUserIsOnCSMUpdatesPageWithEntries(string noOfEntries)
         {
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             switch (noOfEntries)
             {
                 case "<=50": 
-                    _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
                     break;
                 case ">50":
-                    _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
                 case ">50 and <=100":
-                    _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     break;
                 default: Assert.Fail("Invalid no of entries:" + noOfEntries);
                     break;
             }
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
             _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);
             _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
         }
@@ -190,7 +191,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Given(@"user is on page 1")]
         public void GivenUserIsOnPage()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             string PageNumber = _updatesSelectUpdatePage.PaginationXofY.Text;
             PageNumber.Should().StartWithEquivalentOf("Page 1", because: "User should be on page one in select update page");
         }
@@ -198,7 +199,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Previous page icon is disabled")]
         public void ThenPreviousPageIconIsDisabled()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
             (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource, because: "Previous page icon should be disabled in First page of entries in select update page");
@@ -207,7 +208,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
             (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled");
@@ -216,7 +217,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [When(@"user clicks Next page icon")]
         public void WhenUserClicksNextPageIcon()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             _updatesSelectUpdatePage.PaginationNextIcon.Click();
         }
 
@@ -232,7 +233,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
             (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled");
@@ -241,7 +242,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Then(@"Previous page icon is enabled")]
         public void ThenPreviousPageIconIsEnabled()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
             (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
@@ -270,10 +271,10 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void GivenUserIsOnCSMConfigurationSelectAssetsPage()
         {
             //Login and click on updates tab
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
 
             //Select CSM Configuration
             _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);

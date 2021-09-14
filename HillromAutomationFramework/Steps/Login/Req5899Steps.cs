@@ -15,13 +15,20 @@ namespace HillromAutomationFramework.Steps.Login
     public class Req5899Steps
     {
         private readonly LoginPage _loginPage;
+
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
         private readonly WebDriverWait _wait;
 
-        public Req5899Steps()
+        public Req5899Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
+
+            _loginPage = new LoginPage(driver);
         }
+
 
         [When(@"user clicks Supported Browsers")]
         public void WhenUserClicksSupportedBrowsers()
@@ -50,7 +57,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Given(@"user is on Supported Browsers dialog")]
         public void GivenUserIsOnSupportedBrowsersDialog()
         {
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);
+            _driver.Navigate().GoToUrl(PropertyClass.BaseURL);
             
             //Wait till logo is displayed
             _wait.Until(ExplicitWait.ElementExists(By.Id(LoginPage.Locator.LogoID)));

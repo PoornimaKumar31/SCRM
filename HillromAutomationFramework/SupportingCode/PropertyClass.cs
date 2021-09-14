@@ -10,7 +10,7 @@ namespace HillromAutomationFramework.SupportingCode
         /// <summary>
         /// WebDriver for operating the browser.
         /// </summary>
-        public static IWebDriver Driver { get; set; }
+        //public static IWebDriver Driver { get; set; }
 
         /// <summary>
         /// Base URL of the application under test.
@@ -42,6 +42,6 @@ namespace HillromAutomationFramework.SupportingCode
         /// <summary>
         /// Download folder path of the browser.
         /// </summary>
-        public static string DownloadPath = workingDirectory + "\\Downloads";        
+        public static string DownloadPath = workingDirectory + "\\Downloads";
     }
 }

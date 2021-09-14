@@ -14,30 +14,35 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
     [Binding,Scope(Tag = "SoftwareRequirementID_5691")]
     class Req5691Steps
     {
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly CVSMDeviceDetailsPage _cvsmDeviceDetailsPage;
-        private ScenarioContext _scenarioContext;
 
-        public Req5691Steps(ScenarioContext scenarioContext)
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+        public Req5691Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _loginPage = new LoginPage();
-            _mainPage = new MainPage();
-            _landingPage = new LandingPage();
-            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _mainPage = new MainPage(driver);
+            _landingPage = new LandingPage(driver);
+            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(driver);
         }
-        
+
         [Given(@"user has selected CVSM device")]
         public void GivenUserHasSelectedCVSMDevice()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             
@@ -50,7 +55,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
         {
-            wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
             _cvsmDeviceDetailsPage.LogsTab.Click();
         }
 
@@ -69,9 +74,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Given(@"user is on CVSM Log Files page with (.*) logs")]
         public void GivenUserIsOnCVSMLogFilesPageWithLogs(int noOfLogs)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             Thread.Sleep(2000);
 
@@ -80,20 +85,20 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
                 case 0:
                     //Selecting CVSM device with no log files
                     _mainPage.SearchSerialNumberAndClick("100020000000");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     _cvsmDeviceDetailsPage.LogsTab.Click();
                     break;
 
                 case 10:
                     //selecting CVSM device with 10 log files
                     _mainPage.SearchSerialNumberAndClick("100020000007");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     _cvsmDeviceDetailsPage.LogsTab.Click();
                     break;
                 case 24:
                     //selecting CVSM device with 24 log files
                     _mainPage.SearchSerialNumberAndClick("100020000001");
-                    wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(CVSMDeviceDetailsPage.Locators.LogsTabID)));
                     _cvsmDeviceDetailsPage.LogsTab.Click();
                     break;
                 default: Assert.Fail(noOfLogs + " is a invalid log files number.");
@@ -118,7 +123,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            SetMethods.MoveTotheElement(_cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")), "Next log page button");
+            SetMethods.MoveTotheElement(_cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")), _driver, "Next log page button");
             string ExpectedValue = CVSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL;
             _cvsmDeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(ExpectedValue,"Button is not disabled");
         }
@@ -175,7 +180,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [When(@"user clicks Date column heading")]
         public void WhenUserClicksDateColumnHeading()
         {
-            _cvsmDeviceDetailsPage.DateSorting.MoveTotheElement();
+            _cvsmDeviceDetailsPage.DateSorting.MoveTotheElement(_driver, "Date column Heading");
             _cvsmDeviceDetailsPage.DateSorting.Click();
         }
 

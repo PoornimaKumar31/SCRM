@@ -13,24 +13,39 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
     [Binding,Scope(Tag = "SoftwareRequirementID_5700")]
     public class Req5700Steps
     {
-        LoginPage _loginPage = new LoginPage();
-        LandingPage _landingPage = new LandingPage();
-        CSMDeviceDetailsPage _csmDeviceDetailsPage = new CSMDeviceDetailsPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        readonly MainPage _mainPage = new MainPage();
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly CSMDeviceDetailsPage _csmDeviceDetailsPage;
 
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+
+        public Req5700Steps(ScenarioContext scenarioContext, IWebDriver driver)
+        {
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _csmDeviceDetailsPage = new CSMDeviceDetailsPage(driver);
+        }
 
         [Given(@"user is on CSM Log Files page")]
         public void GivenUserIsOnCSMLogFilesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
             Thread.Sleep(1000);
             //select the row according to the data
             _mainPage.SearchSerialNumberAndClick("110010000025");
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(CSMDeviceDetailsPage.Locators.LogsTabID)));
             _csmDeviceDetailsPage.LogsTab.Click();
         }
         

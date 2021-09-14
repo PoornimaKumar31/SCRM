@@ -105,9 +105,9 @@ namespace HillromAutomationFramework.PageObjects
 
         }
 
-        public UpdatesSelectUpdatePage()
+        public UpdatesSelectUpdatePage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.HeadingID)]

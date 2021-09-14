@@ -17,30 +17,32 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly UpdatesSelectUpdatePage _updatesSelectUpdatePage;
-        private readonly WebDriverWait _wait;
-        
+
         private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+        private readonly IWebDriver _driver;
 
         private string ConfigFileName;
 
-        public Req5698Steps(ScenarioContext scenarioContext)
+        public Req5698Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage(driver);
         }
 
         [Given(@"user is on CVSM Updates page")]
         public void GivenUserIsOnCVSMUpdatesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
         }
         
         [Given(@"CVSM Asset type is selected")]

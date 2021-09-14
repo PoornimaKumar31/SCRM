@@ -20,23 +20,29 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         private readonly MainPage _mainPage;
         private readonly LandingPage _landingPage;
         private readonly CVSMAssetListPage _CVSMassetListPage;
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
 
-        public Req5695Steps(ScenarioContext scenarioContext)
+        private readonly WebDriverWait _wait;
+        private ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+
+        public Req5695Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _loginPage = new LoginPage();
-            _mainPage = new MainPage();
-            _landingPage = new LandingPage();
-            _CVSMassetListPage = new CVSMAssetListPage();
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _mainPage = new MainPage(driver);
+            _landingPage = new LandingPage(driver);
+            _CVSMassetListPage = new CVSMAssetListPage(driver);
         }
+
         [Given(@"user is on Asset List page with more than one CVSM")]
         public void GivenUserIsOnCVSMassetListPageWithMoreThanOneCVSM()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
             _CVSMassetListPage.GetDeviceCount().Should().BeGreaterThan(1);
         }
@@ -88,10 +94,10 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         [Given(@"user is on Component details page for CVSM Serial number ""(.*)""")]
         public void GivenUserIsOnComponentDetailsPageForCVSMSerialNumber(string SerialNumber)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
 
             _CVSMassetListPage.GetDeviceCount().Should().BeGreaterThan(1);

@@ -96,9 +96,9 @@ namespace HillromAutomationFramework.PageObjects
 
         }
         /// Constructor for login page which intializes all Web elements of login page.
-        public LoginPage()
+        public LoginPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         /*Attributes for assigning values to the webelement*/
@@ -238,11 +238,11 @@ namespace HillromAutomationFramework.PageObjects
         /// Login to the application based on login type.
         /// </summary>
         /// <param name="Type">Login type(Manager user or standard user)</param>
-        public void LogIn(LogInType Type)
+        public void LogIn(IWebDriver driver,LogInType Type)
         {
-            PropertyClass.Driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
+            driver.Navigate().GoToUrl(PropertyClass.BaseURL);  // Launch the Application
             /// Explicit wait-> Wait till logo is displayed
-            WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(20))
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20))
             {
                 Message = "Login page is not loaded. Selenium could not find the hillrom logo."
             };
@@ -256,7 +256,7 @@ namespace HillromAutomationFramework.PageObjects
                 case LogInType.AdminWithRollUpPage:
                     EmailField.EnterText(Config.EmailIDAdminWithRollUp);
                     PasswordField.EnterText(Config.PasswordAdminWithRollUp);
-                    SetMethods.MoveTotheElement(LoginButton,"Login button");
+                    SetMethods.MoveTotheElement(LoginButton,driver,"Login button");
                     LoginButton.Click();
                     wait.Message = "Landing page organization is not loaded.";
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedEyeTestOrganizationTitleXPath)));
@@ -264,14 +264,14 @@ namespace HillromAutomationFramework.PageObjects
                 case LogInType.AdminWithOutRollUpPage:
                     EmailField.EnterText(Config.EmailAdminWithoutRollUp);
                     PasswordField.EnterText(Config.PasswordAdminWithoutRollUp);
-                    SetMethods.MoveTotheElement(LoginButton, "Login button");
+                    SetMethods.MoveTotheElement(LoginButton,driver, "Login button");
                     LoginButton.Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     break;
                 case LogInType.StandardUserWithoutRollUpPage:
                     EmailField.EnterText(Config.EmailStandardWithoutRollUp);
                     PasswordField.EnterText(Config.PasswordStandardWithoutRollUp);
-                    SetMethods.MoveTotheElement(LoginButton, "Login button");
+                    SetMethods.MoveTotheElement(LoginButton,driver, "Login button");
                     LoginButton.Click();
                     wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
                     break;

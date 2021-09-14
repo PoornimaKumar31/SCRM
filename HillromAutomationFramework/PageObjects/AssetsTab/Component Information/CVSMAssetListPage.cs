@@ -9,9 +9,9 @@ namespace HillromAutomationFramework.PageObjects.Component_Information
 {
     class CVSMAssetListPage
     {
-        public CVSMAssetListPage()
+        public CVSMAssetListPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
         public class ExpectedValue
         {

@@ -136,9 +136,9 @@ namespace HillromAutomationFramework.PageObjects
 
         }
 
-        public MainPage()
+        public MainPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.StatusHeadingID)]
@@ -307,12 +307,12 @@ namespace HillromAutomationFramework.PageObjects
             DeviceListRow[0].Click();
         }
 
-        public void GoToLastPage(int TotalPage)
+        public void GoToLastPage(IWebDriver driver,int TotalPage)
         {
             for(int i =1;i<TotalPage;i++)
             {
-                SetMethods.ScrollToBottomofWebpage();
-                PaginationNextIcon.ClickWebElement();
+                SetMethods.ScrollToBottomofWebpage(driver);
+                PaginationNextIcon.ClickWebElement(driver);
                 Thread.Sleep(4000);
             }
         }
@@ -371,11 +371,11 @@ namespace HillromAutomationFramework.PageObjects
             actualTotalRecords.Should().Be(expectedTotalRecords, "Total record should display zero.");
         }
 
-        public bool APMACAddressesMatchSearchText(IWebElement CompInfo, IWebElement RadioNewMarr, IWebElement MACAddress)
+        public bool APMACAddressesMatchSearchText(IWebDriver driver,IWebElement CompInfo, IWebElement RadioNewMarr, IWebElement MACAddress)
         {
-            IWebElement AnyOneRecord = PropertyClass.Driver.FindElement(By.XPath("//tr[" + 1 + "]/td[" + 1 + "]"));
+            IWebElement AnyOneRecord = driver.FindElement(By.XPath("//tr[" + 1 + "]/td[" + 1 + "]"));
             AnyOneRecord.Click();
-            CompInfo.JavaSciptClick();
+            CompInfo.JavaSciptClick(driver);
             RadioNewMarr.Click();
             bool IsMACAddressVisible = MACAddress.GetElementVisibility();
             return IsMACAddressVisible;
@@ -412,38 +412,19 @@ namespace HillromAutomationFramework.PageObjects
 
             if (DeviceListRow.GetElementCount() == 1)
             {
-                switch (columnnName.ToLower().Trim())
+                return columnnName.ToLower().Trim() switch
                 {
-                    case "type":
-                        return DeviceType;
-
-                    case "status":
-                        return DeviceStatus;
-
-                    case "firmware":
-                        return DeviceFirmwareVersion;
-
-                    case "config file":
-                        return DeviceConfigFile;
-
-                    case "asset tag":
-                        return DeviceAssetTag;
-
-                    case "serial number":
-                        return DeviceSerialNumber;
-
-                    case "location":
-                        return DeviceLocation;
-
-                    case "last connected":
-                        return DeviceLastConnection;
-
-                    case "pm due":
-                        return DevicePMDue;
-
-                    default:
-                        throw new ArgumentException("Column Name is not valid");
-                }
+                    "type" => DeviceType,
+                    "status" => DeviceStatus,
+                    "firmware" => DeviceFirmwareVersion,
+                    "config file" => DeviceConfigFile,
+                    "asset tag" => DeviceAssetTag,
+                    "serial number" => DeviceSerialNumber,
+                    "location" => DeviceLocation,
+                    "last connected" => DeviceLastConnection,
+                    "pm due" => DevicePMDue,
+                    _ => throw new ArgumentException("Column Name is not valid"),
+                };
             }
             else
                 throw new ArgumentException("Serial Number is not valid");

@@ -20,31 +20,33 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
         private readonly FirmwareStatusPage _firmwareStatusPage;
-        private readonly WebDriverWait _wait;
 
         IDictionary<string, string> statusDefinationPairs;
 
         private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+        private readonly IWebDriver _driver;
 
-        public Req5907Steps(ScenarioContext scenarioContext)
+        public Req5907Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _reportsPage = new ReportsPage();
-            _firmwareStatusPage = new FirmwareStatusPage();
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _reportsPage = new ReportsPage(driver);
+            _firmwareStatusPage = new FirmwareStatusPage(driver);
         }
 
         [Given(@"user is on CSM Firmware Upgrade Status report page")]
         public void GivenUserIsOnCSMFirmwareUpgradeStatusReportPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id("deviceTable")));
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
             _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
             _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
@@ -156,12 +158,12 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on RV700 Firmware Upgrade Status report page")]
         public void GivenUserIsOnRVFirmwareUpgradeStatusReportPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(_landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title,"L&T Automated Eye Test.");
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title, _driver, "L&T Automated Eye Test.");
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
             _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
             _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
@@ -234,12 +236,12 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         [Given(@"user is on Centrella Firmware Upgrade Status report page")]
         public void GivenUserIsOnCentrellaFirmwareUpgradeStatusReportPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
             _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
             _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
             _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();

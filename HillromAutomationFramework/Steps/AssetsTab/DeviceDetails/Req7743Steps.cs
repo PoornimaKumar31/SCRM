@@ -17,67 +17,77 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
     [Binding,Scope(Tag = "SoftwareRequirementID_7743")]
     class Req7743Steps
     {
-        MainPage mainPage = new MainPage();
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        CentrellaDeviceDetailsPage centrellaDeviceDetailsPage = new CentrellaDeviceDetailsPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
-        
-        public Req7743Steps(ScenarioContext scenarioContext)
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly CentrellaDeviceDetailsPage _centrellaDeviceDetailsPage;
+
+
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+        public Req7743Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _mainPage = new MainPage(driver);
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _centrellaDeviceDetailsPage = new CentrellaDeviceDetailsPage(driver);
         }
 
         [Given(@"user is on Asset List page with more than one Centrella")]
         public void GivenUserIsOnAssetListPageWithMoreThanOneCentrella()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
-            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.DeviceListRow.GetElementCount().Should().BeGreaterThan(1, "More than one device is not displayed");
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.DeviceListRow.GetElementCount().Should().BeGreaterThan(1, "More than one device is not displayed");
 
         }
 
         [When(@"user clicks any Centrella")]
         public void WhenUserClicksAnyCentrella()
         {
-            mainPage.DeviceListRow[0].Click();
+            _mainPage.DeviceListRow[0].Click();
         }
 
         [Then(@"Asset Details landing page is displayed")]
         public void ThenAssetDetailsLandingPageIsDisplayed()
         {
-            centrellaDeviceDetailsPage.CentrellaDeviceSummarySubSection.GetElementVisibility().Should().BeTrue("Asset Details Page should be displayed");
+            _centrellaDeviceDetailsPage.CentrellaDeviceSummarySubSection.GetElementVisibility().Should().BeTrue("Asset Details Page should be displayed");
         }
 
         [Then(@"Asset Detail summary subsection is displayed")]
         public void ThenAssetDetailSummarySubsectionIsDisplayed()
         {
-            centrellaDeviceDetailsPage.CentrellaDeviceSummarySubSection.GetElementVisibility().Should().BeTrue("Asset Details Page should be displayed");
+            _centrellaDeviceDetailsPage.CentrellaDeviceSummarySubSection.GetElementVisibility().Should().BeTrue("Asset Details Page should be displayed");
         }
 
         [Then(@"Error codes tab is displayed")]
         public void ThenErrorCodesTabIsDisplayed()
         {
-            centrellaDeviceDetailsPage.ErrorCodeTab.GetElementVisibility().Should().BeTrue("Error code tab is not displayed");
+            _centrellaDeviceDetailsPage.ErrorCodeTab.GetElementVisibility().Should().BeTrue("Error code tab is not displayed");
         }
 
         [Then(@"Preventive maintenance tab is displayed")]
         public void ThenPreventiveMaintenanceTabIsDisplayed()
         {
-            centrellaDeviceDetailsPage.PreventiveMaintenanceTab.GetElementVisibility().Should().BeTrue("Preventive maintanance tab is not displayed");
+            _centrellaDeviceDetailsPage.PreventiveMaintenanceTab.GetElementVisibility().Should().BeTrue("Preventive maintanance tab is not displayed");
         }
 
         [Given(@"user is on device details page for Centrella Serial number ""(.*)""")]
         public void GivenUserIsOnDeviceDetailsPageForCentrellaSerialNumber(string serialNumber)
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
-            landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            mainPage.SearchSerialNumberAndClick(serialNumber);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _mainPage.SearchSerialNumberAndClick(serialNumber);
         }
 
 
@@ -85,7 +95,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Summary Centrella image is displayed")]
         public void ThenSummaryCentrellaImageIsDisplayed()
         {
-            centrellaDeviceDetailsPage.CentrellaDeviceImage.GetElementVisibility().Should().BeTrue("Image is not displayed");
+            _centrellaDeviceDetailsPage.CentrellaDeviceImage.GetElementVisibility().Should().BeTrue("Image is not displayed");
         }
 
         [Then(@"Summary ""(.*)"" label is displayed")]
@@ -96,44 +106,44 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "radio ip address":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRadioIPAddressLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRadioIPAddressLabel.GetElementVisibility();
                     break;
                 case "radio mac address":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRadioMACAddressLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRadioMACAddressLabel.GetElementVisibility();
                     break;
                 case "model":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaModelLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaModelLabel.GetElementVisibility();
                     break;
                 case "asset name":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaAssetNameLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaAssetNameLabel.GetElementVisibility();
                     break;
                 case "serial number":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaSerialNumberLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaSerialNumberLabel.GetElementVisibility();
                     break;
                 case "facility":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaFacilityLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaFacilityLabel.GetElementVisibility();
                     break;
                 case "location":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaLocationLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaLocationLabel.GetElementVisibility();
                     break;
                 case "room/bed/presence":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRoomBedLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRoomBedLabel.GetElementVisibility();
                     break;
                 case "radio ssid":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRadioSSIDLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRadioSSIDLabel.GetElementVisibility();
                     break;
                 case "radio rssi":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRadioRSSILabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRadioRSSILabel.GetElementVisibility();
                     break;
                 case "firmware version":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaFirmwareVersionLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaFirmwareVersionLabel.GetElementVisibility();
                     break;
 
                 case "connection status":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaConnectionStatusLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaConnectionStatusLabel.GetElementVisibility();
                     break;
                 case "last connected on":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaLastConnectedLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaLastConnectedLabel.GetElementVisibility();
                     break;
 
                 default:
@@ -151,37 +161,37 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (LabelName.ToLower().Trim())
             {
                 case "radio ip address":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRadioIPAddressValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRadioIPAddressValue.Text;
                     break;
                 case "radio mac address":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRadioMACAddressValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRadioMACAddressValue.Text;
                     break;
                 case "model":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaModelValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaModelValue.Text;
                     break;
                 case "asset name":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaAssetNameValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaAssetNameValue.Text;
                     break;
                 case "serial number":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaSerialNumberValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaSerialNumberValue.Text;
                     break;
                 case "facility":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaFacilityValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaFacilityValue.Text;
                     break;
                 case "location":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaLocationValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaLocationValue.Text;
                     break;
                 case "room/bed/presence":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRoomBedValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRoomBedValue.Text;
                     break;
                 case "radio ssid":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRadioSSIDValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRadioSSIDValue.Text;
                     break;
                 case "radio rssi":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaRadioRSSIValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaRadioRSSIValue.Text;
                     break;
                 case "firmware version":
-                    ActualValue = centrellaDeviceDetailsPage.CentrellaFirmwareVersionValue.Text;
+                    ActualValue = _centrellaDeviceDetailsPage.CentrellaFirmwareVersionValue.Text;
                     break;
 
                 default:
@@ -196,11 +206,11 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [When(@"user clicks Preventive maintenance tab")]
         public void WhenUserClicksPreventiveMaintenanceTab()
         {
-            centrellaDeviceDetailsPage.PreventiveMaintenanceTab.Click();
+            _centrellaDeviceDetailsPage.PreventiveMaintenanceTab.Click();
             Thread.Sleep(2000);
-            centrellaDeviceDetailsPage.ErrorCodeTab.Click();
-            centrellaDeviceDetailsPage.PreventiveMaintenanceTab.Click();
-            SetMethods.ScrollToBottomofWebpage();
+            _centrellaDeviceDetailsPage.ErrorCodeTab.Click();
+            _centrellaDeviceDetailsPage.PreventiveMaintenanceTab.Click();
+            SetMethods.ScrollToBottomofWebpage(_driver);
         }
 
         [Then(@"""(.*)"" label is displayed")]
@@ -211,15 +221,15 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (labelName.ToLower().Trim())
             {
                 case "preventive maintenance":
-                    ActualValue = centrellaDeviceDetailsPage.PreventiveMaintenanceLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.PreventiveMaintenanceLabel.GetElementVisibility();
                     break;
 
                 case "recent maintenance history":
-                    ActualValue = centrellaDeviceDetailsPage.RecentMaintenanceHistoryLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.RecentMaintenanceHistoryLabel.GetElementVisibility();
                     break;
 
                 case "there is no maintenance history":
-                    ActualValue = centrellaDeviceDetailsPage.NoMaintenanceHistoryLabel.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.NoMaintenanceHistoryLabel.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(labelName + " is Invalid");
@@ -233,26 +243,26 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"service date picker control is displayed")]
         public void ThenServiceDatePickerControlIsDisplayed()
         {
-            centrellaDeviceDetailsPage.ServiceDatePickerControl.GetElementVisibility().Should().BeTrue("Date Picker is not displayed");
+            _centrellaDeviceDetailsPage.ServiceDatePickerControl.GetElementVisibility().Should().BeTrue("Date Picker is not displayed");
         }
 
         [When(@"clicks service date picker control")]
         public void WhenClicksServiceDatePickerControl()
         {
-            centrellaDeviceDetailsPage.ServiceDatePickerControl.Click();
+            _centrellaDeviceDetailsPage.ServiceDatePickerControl.Click();
         }
 
         [When(@"clicks a date other than today and not the same as the Maintenance date in the first row of the table")]
         public void WhenClicksADateOtherThanTodayAndNotTheSameAsTheMaintenanceDateInTheFirstRowOfTheTable()
         {
-            centrellaDeviceDetailsPage.ServiceDatePickerPreviousArrow.Click();
-            centrellaDeviceDetailsPage.RandomDate().Click();
+            _centrellaDeviceDetailsPage.ServiceDatePickerPreviousArrow.Click();
+            _centrellaDeviceDetailsPage.RandomDate(_driver).Click();
             Thread.Sleep(2000);
-            if (!centrellaDeviceDetailsPage.NoMaintenanceHistoryLabel.GetElementVisibility())
+            if (!_centrellaDeviceDetailsPage.NoMaintenanceHistoryLabel.GetElementVisibility())
             {
-                string SelectedDateInTextBox = centrellaDeviceDetailsPage.CurrentMaintenanceDateTextBox.GetAttribute("value");
+                string SelectedDateInTextBox = _centrellaDeviceDetailsPage.CurrentMaintenanceDateTextBox.GetAttribute("value");
                 
-                string LastmaintenanceDate = DateTime.ParseExact(centrellaDeviceDetailsPage.RecentlyAddedEntryDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture).ToString("M'/'d'/'yyyy");
+                string LastmaintenanceDate = DateTime.ParseExact(_centrellaDeviceDetailsPage.RecentlyAddedEntryDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture).ToString("M'/'d'/'yyyy");
 
                 if (LastmaintenanceDate == SelectedDateInTextBox)
                 {
@@ -267,9 +277,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"date is displayed in Current maintenance date textbox")]
         public void ThenDateIsDisplayedInCurrentMaintenanceDateTextbox()
         {
-            string ActualDateInTextBox = centrellaDeviceDetailsPage.CurrentMaintenanceDateTextBox.GetAttribute("value");
+            string ActualDateInTextBox = _centrellaDeviceDetailsPage.CurrentMaintenanceDateTextBox.GetAttribute("value");
             
-            string ExpectedDateInTextBox = centrellaDeviceDetailsPage.SelectedDate();
+            string ExpectedDateInTextBox = _centrellaDeviceDetailsPage.SelectedDate();
             
             ActualDateInTextBox.Should().NotBeNullOrEmpty("Current Date Maintenance Date should not be empty");
 
@@ -279,27 +289,27 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Save button is displayed")]
         public void ThenSaveButtonIsDisplayed()
         {
-            centrellaDeviceDetailsPage.SaveButton.GetElementVisibility().Should().BeTrue("Save button is not displayed");
+            _centrellaDeviceDetailsPage.SaveButton.GetElementVisibility().Should().BeTrue("Save button is not displayed");
         }
 
         [Then(@"Cancel button is displayed")]
         public void ThenCancelButtonIsDisplayed()
         {
-            centrellaDeviceDetailsPage.CancelButton.GetElementVisibility().Should().BeTrue("Cancel button is not displayed");
+            _centrellaDeviceDetailsPage.CancelButton.GetElementVisibility().Should().BeTrue("Cancel button is not displayed");
         }
 
         [When(@"user clicks Save button")]
         public void WhenUserClicksSaveButton()
         {
-            centrellaDeviceDetailsPage.SaveButton.Click();
+            _centrellaDeviceDetailsPage.SaveButton.Click();
         }
 
         [Then(@"Recently added Maintenance date is date picked")]
         public void ThenRecentlyAddedMaintenanceDateIsDatePicked()
         {
-            string DatePicked = centrellaDeviceDetailsPage.SelectedDate();
+            string DatePicked = _centrellaDeviceDetailsPage.SelectedDate();
             Thread.Sleep(2000);
-            string maintenanceDate = DateTime.ParseExact(centrellaDeviceDetailsPage.RecentlyAddedEntryDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture).ToString("M'/'d'/'yyyy");
+            string maintenanceDate = DateTime.ParseExact(_centrellaDeviceDetailsPage.RecentlyAddedEntryDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture).ToString("M'/'d'/'yyyy");
             maintenanceDate.Should().BeEquivalentTo(DatePicked);
         }
 
@@ -307,7 +317,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         public void ThenRecentlyAddedModificationDateIsTodaySDate()
         {
             string CurrentDate = DateTime.Now.ToString("dd MMM yyyy");
-            string LastUpdateEntryModificationDateTime = centrellaDeviceDetailsPage.RecentlyAddedEntryModifiationDateTime.Text;
+            string LastUpdateEntryModificationDateTime = _centrellaDeviceDetailsPage.RecentlyAddedEntryModifiationDateTime.Text;
             string FormatedModificationDate = DateTime.ParseExact(LastUpdateEntryModificationDateTime, "dd MMM yyyy, hh:mm tt", CultureInfo.InvariantCulture).ToString("dd MMM yyyy");
             FormatedModificationDate.Should().BeEquivalentTo(CurrentDate);
         }
@@ -320,15 +330,15 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             switch (columnName.ToLower().Trim())
             {
                 case "maintenance date":
-                    ActualValue = centrellaDeviceDetailsPage.MaintenanceDateColumn.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.MaintenanceDateColumn.GetElementVisibility();
                     break;
 
                 case "user id":
-                    ActualValue = centrellaDeviceDetailsPage.UserIDColumn.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.UserIDColumn.GetElementVisibility();
                     break;
 
                 case "modification date/time":
-                    ActualValue = centrellaDeviceDetailsPage.ModificationDateColumn.GetElementVisibility();
+                    ActualValue = _centrellaDeviceDetailsPage.ModificationDateColumn.GetElementVisibility();
                     break;
                 default:
                     Assert.Fail(columnName + " is Invalid");

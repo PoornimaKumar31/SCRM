@@ -14,27 +14,29 @@ namespace HillromAutomationFramework.Steps.AssetsTab
     [Binding, Scope(Tag = "SoftwareRequirementID_5688")]
     public class Req5688Steps
     {
-        MainPage mainPage;
-        LoginPage loginPage;
-        CVSMDeviceDetailsPage cvsmDeviceDetailsPage;
+        private readonly LoginPage loginPage;
+        private readonly MainPage mainPage;
+        private readonly CVSMDeviceDetailsPage cvsmDeviceDetailsPage;
 
+        private readonly IWebDriver _driver;
         private readonly ScenarioContext _scenarioContext;
         private readonly WebDriverWait _wait;
 
-        public Req5688Steps(ScenarioContext scenarioContext)
+        public Req5688Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            mainPage = new MainPage();
-            loginPage = new LoginPage();
-            cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage();
+            loginPage = new LoginPage(driver);
+            mainPage = new MainPage(driver);
+            cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(driver);
         }
 
         [Given(@"user without roll-up for multiple organizations is on Assets page")]
         public void GivenUserWithoutRoll_UpForMultipleOrganizationsIsOnAssetsPage()
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithOutRollUpPage);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             Assert.AreEqual(true, mainPage.AssetsTab.GetElementVisibility(), "Main page is not displayed");
         }
@@ -57,7 +59,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenOnlyDevicesInSelectedOrganizationAreDisplayed()
         {
             Thread.Sleep(3000);
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             Assert.AreEqual(MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount,mainPage.VerifyRecordPresence(), "All devices for selected organization is not displayed");
         }
 
@@ -75,16 +77,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void WhenUserSelectsFacilityFromOrganizationDropdown()
         {
             Thread.Sleep(2000);
-            mainPage.OrganizationDropdown.ClickWebElement("Organization DropDown");
-            mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement("LNT Automated Test organization ExpensionArrow in organization dropdown");
+            mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization DropDown");
+            mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement(_driver,"LNT Automated Test organization ExpensionArrow in organization dropdown");
             Thread.Sleep(2000);
-            mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement("LNT Automated Test organization Test1 facility");
+            mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement(_driver,"LNT Automated Test organization Test1 facility");
         }
 
         [Then(@"only devices in selected facility are displayed")]
         public void ThenOnlyDevicesInSelectedFacilityAreDisplayed()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             Thread.Sleep(3000);
             int TotalRecords = mainPage.VerifyRecordPresence();
             Assert.AreEqual(true, MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneDeviceCount == TotalRecords, "Only devices in selected facility are not displayed");
@@ -94,9 +96,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void GivenUserWithoutRoll_UpForMultipleUnitsIsOnAssetsPage()
         {
             GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage();
-            mainPage.OrganizationDropdown.ClickWebElement("Organization dropdown");
-            mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement("LNT Automated Test organization ExpensionArrow in organization dropdown");
-            mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement("LNT Automated Test organization Test1 facility");
+            mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization dropdown");
+            mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement(_driver,"LNT Automated Test organization ExpensionArrow in organization dropdown");
+            mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement(_driver,"LNT Automated Test organization Test1 facility");
         }
 
         [When(@"user selects unit from Organization dropdown")]
@@ -112,7 +114,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"only devices in selected unit are displayed")]
         public void ThenOnlyDevicesInSelectedUnitAreDisplayed()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             Thread.Sleep(5000);
             int TotalRecords = mainPage.VerifyRecordPresence();
             Assert.AreEqual(true, TotalRecords == MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount, "Number of devices in unit of facility is not as expected");
@@ -131,7 +133,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenAllDevicesBelongingToAllUserOrganizationsAreDisplayed()
         {
             Thread.Sleep(5000);
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             int totalRecords = mainPage.VerifyRecordPresence();
             (totalRecords).Should().Be(MainPage.ExpectedValues.AllOrgnaizationDevicesCount, because: "All devices should be displayed for all organization");
         }

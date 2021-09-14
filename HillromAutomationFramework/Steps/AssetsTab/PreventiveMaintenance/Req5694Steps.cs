@@ -22,23 +22,31 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         private readonly CSMDeviceDetailsPage _csmDeviceDetailsPage;
         private readonly CVSMAssetListPage _cvsmAssetListPage;
         private readonly MainPage _mainPage;
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
 
-        public Req5694Steps()
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5694Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _csmDeviceDetailsPage = new CSMDeviceDetailsPage();
-            _cvsmAssetListPage = new CVSMAssetListPage();
-            _mainPage = new MainPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _csmDeviceDetailsPage = new CSMDeviceDetailsPage(driver);
+            _cvsmAssetListPage = new CVSMAssetListPage(driver);
         }
 
         [Given(@"user is on Asset List page")]
         public void GivenUserIsOnAssetListPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
         }
         
         [When(@"user selects any CVSM device")]

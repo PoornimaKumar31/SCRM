@@ -6,9 +6,9 @@ namespace HillromAutomationFramework.PageObjects
 {
     class ReportsPage
     {
-        public ReportsPage()
+        public ReportsPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         public static class Locator

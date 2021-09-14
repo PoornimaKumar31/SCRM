@@ -9,9 +9,9 @@ namespace HillromAutomationFramework.PageObjects.Component_Information
 {
     public class CSMAssetListPage
     {
-        public CSMAssetListPage()
+        public CSMAssetListPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         public class ExpectedValue

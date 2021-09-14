@@ -19,8 +19,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly AdvancedPage _advancePage;
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+
 
         string randomFullName = null;
         string randomPhoneNumber = null;
@@ -30,21 +32,25 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         int detailsButtonPosition;
         string roleXpath = null;
 
-        public Req5721Steps(ScenarioContext scenarioContext)
+        public Req5721Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _advancePage = new AdvancedPage();
             _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _advancePage = new AdvancedPage(driver);
         }
+
 
         [Given(@"manager user is on User Management page having user entries list > (.*)")]
         public void GivenManagerUserIsOnUserManagementPageHavingUserEntriesList(int noOfMinimumEntries)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _advancePage.AdvancedTab.JavaSciptClick();
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _advancePage.AdvancedTab.JavaSciptClick(_driver);
             int totalUser = _advancePage.DetailsButtonList.Count;
             totalUser.Should().BeGreaterThan(noOfMinimumEntries, "Manager user should be more than two entries on User Management page.");
         }
@@ -126,10 +132,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Given(@"manager user is on Edit User page")]
         public void GivenManagerUserIsOnEDITUSERPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _advancePage.AdvancedTab.JavaSciptClick();
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _advancePage.AdvancedTab.JavaSciptClick(_driver);
 
             detailsButtonPosition = 0;
             IList<IWebElement> list = _advancePage.UserListExceptLoggedInUser();
@@ -188,7 +194,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [When(@"user clicks Save button")]
         public void WhenUserClicksOnSaveButton()
         {
-            _advancePage.SaveButton.JavaSciptClick();
+            _advancePage.SaveButton.JavaSciptClick(_driver);
             Thread.Sleep(2000);
         }
 
@@ -280,7 +286,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             bool isSelected = _advancePage.UserManagerCheckBox.Selected;
             if (isSelected == true)
             {
-                _advancePage.UserManagerCheckBox.JavaSciptClick();
+                _advancePage.UserManagerCheckBox.JavaSciptClick(_driver);
             }
             else
             {
@@ -309,7 +315,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             //Entering phone number in the text box
             _advancePage.PhoneTextField.EnterText(randomPhoneNumber);          
             Thread.Sleep(3000);
-            _advancePage.UserManagerCheckBox.JavaSciptClick();
+            _advancePage.UserManagerCheckBox.JavaSciptClick(_driver);
         }
 
         [Then(@"Full name, Phone number, and Role are not changed on User List page")]
@@ -333,16 +339,16 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Given(@"manager user is on Edit User page with log entries > (.*)")]
         public void GivenManagerUserIsOnEDITUSERPageWithLogEntries(int LogHistoryCount)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            _advancePage.AdvancedTab.JavaSciptClick();
+            _advancePage.AdvancedTab.JavaSciptClick(_driver);
             Thread.Sleep(2000);
 
             int NoOfDetailsButton = _advancePage.DetailsButtonList.Count;
             string[] LogHistory = { };
             for (detailsButtonPosition = 0; detailsButtonPosition < NoOfDetailsButton; detailsButtonPosition++)
             {
-                PropertyClass.Driver.FindElement(By.XPath("(//*[@id=\"btn_edit\"])[" + (detailsButtonPosition + 1) + "]")).Click();
+                _driver.FindElement(By.XPath("(//*[@id=\"btn_edit\"])[" + (detailsButtonPosition + 1) + "]")).Click();
                 Thread.Sleep(2000);
                 int LogHistoryRows = _advancePage.UserListRow.Count;
                 if (LogHistoryRows > 2)
@@ -466,11 +472,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             for (detailsButtonPosition = 0; detailsButtonPosition < NoOfDetailsButton; detailsButtonPosition++)
             {
                 string userNameXPath = "//*[@id=\"email" + detailsButtonPosition + "\"]";
-                string userName = PropertyClass.Driver.FindElement(By.XPath(userNameXPath)).Text;
+                string userName = _driver.FindElement(By.XPath(userNameXPath)).Text;
                 if (userName != AdvancedPage.ExpectedValues.LoggedUser)
                 {
                     roleXpath = "//*[@id=\"role" + detailsButtonPosition + "\"]";
-                    string Role = PropertyClass.Driver.FindElement(By.XPath(roleXpath)).Text;
+                    string Role = _driver.FindElement(By.XPath(roleXpath)).Text;
                     if (Role == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage)
                     {
                         _advancePage.DetailsButtonList[detailsButtonPosition].Click();
@@ -484,7 +490,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenRegularIsDisplayedInRoleColumnInUserList()
         {
             Thread.Sleep(2000);
-            string actualRole = PropertyClass.Driver.FindElement(By.XPath(roleXpath)).Text;
+            string actualRole = _driver.FindElement(By.XPath(roleXpath)).Text;
             string expectedRole = AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage;
             actualRole.Should().Be(expectedRole, "Regular should be displayed in Role column on User List page.");
         }
@@ -493,14 +499,14 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenUserSelectsTheUserManagerCheckbox()
         {
             Thread.Sleep(2000);
-            _advancePage.UserManagerCheckBox.JavaSciptClick();
+            _advancePage.UserManagerCheckBox.JavaSciptClick(_driver);
         }
 
         [Then(@"Administrator is displayed in Role column in User List")]
         public void ThenAdministratorIsDisplayedInRoleColumnInUserList()
         {
             Thread.Sleep(2000);
-            string actualRole = PropertyClass.Driver.FindElement(By.XPath(roleXpath)).Text;
+            string actualRole = _driver.FindElement(By.XPath(roleXpath)).Text;
             string expectedRole = AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage;
             actualRole.Should().Be(expectedRole, "Administrator should be displayed in Role column on User List page.");
         }
@@ -516,7 +522,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenCheckboxIsUnchecked()
         {
             Thread.Sleep(2000);
-            _advancePage.UserManagerCheckBox.JavaSciptClick();
+            _advancePage.UserManagerCheckBox.JavaSciptClick(_driver);
         }
 
         [Then(@"Cancel button is enabled")]
@@ -543,9 +549,9 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Given(@"manager user is on User List page")]
         public void GivenManagerUserIsOnUserListPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            _advancePage.AdvancedTab.JavaSciptClick();
+            _advancePage.AdvancedTab.JavaSciptClick(_driver);
         }
 
         [When(@"user clears Full name field")]

@@ -21,26 +21,29 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
 
         private readonly ScenarioContext _scenarioContext;
         private readonly WebDriverWait _wait;
+        private readonly IWebDriver _driver;
 
-        public Req5707Steps(ScenarioContext scenarioContext)
+
+        public Req5707Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();  
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage(driver);
         }
-        
+
 
         [Given(@"user is on Select Updates page")]
         public void GivenUserIsOnSelectUpdatesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
         }
 
         [Given(@"CSM Asset type is selected")]
@@ -196,7 +199,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [When(@"clicks Cancel upgrade button")]
         public void WhenClicksCancelUpgradeButton()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             _updatesSelectUpdatePage.CancelUpgradeButton.Click();
         }
 

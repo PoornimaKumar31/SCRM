@@ -45,9 +45,9 @@ namespace HillromAutomationFramework.SupportingCode
         /// </summary>
         /// <param name="name">Screenshot name</param>
         /// <returns>Screenshot in media entity builder format.</returns>
-        public static MediaEntityModelProvider CaptureScreenshotBase64(this string name)
+        public static MediaEntityModelProvider CaptureScreenshotBase64(IWebDriver driver, string name)
         {
-            var screenshot = ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot().AsBase64EncodedString;
+            var screenshot = ((ITakesScreenshot)driver).GetScreenshot().AsBase64EncodedString;
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, name).Build();
         }
 

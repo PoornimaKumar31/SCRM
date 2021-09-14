@@ -13,25 +13,36 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
     [Binding,Scope(Tag = "SoftwareRequirementID_7734")]
     class Req7734Steps
     {
-        MainPage mainPage = new MainPage();
-        LoginPage loginPage = new LoginPage();
-        LandingPage landingPage = new LandingPage();
-        CentrellaDeviceDetailsPage centrellaDeviceDetailsPage = new CentrellaDeviceDetailsPage();
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        private ScenarioContext _scenarioContext;
-        public Req7734Steps(ScenarioContext scenarioContext)
+        private readonly LoginPage loginPage;
+        private readonly LandingPage landingPage;
+        private readonly MainPage mainPage;
+        private readonly CentrellaDeviceDetailsPage centrellaDeviceDetailsPage;
+
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
+        public Req7734Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+
+            mainPage = new MainPage(driver);
+            loginPage = new LoginPage(driver);
+            landingPage = new LandingPage(driver);
+            centrellaDeviceDetailsPage = new CentrellaDeviceDetailsPage(driver);
+
         }
 
 
         [Given(@"user is on device details page for Centrella Serial number ""(.*)""")]
         public void GivenUserIsOnDeviceDetailsPageForCentrellaSerialNumber(string serialNumber)
         {
-            loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
             landingPage.PSSServiceOrganizationFacilityBatesville.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             mainPage.SearchSerialNumberAndClick(serialNumber);
         }
 
@@ -67,7 +78,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Centrella error code pop-up dialog is displayed")]
         public void ThenCentrellaErrorCodePop_UpDialogIsDisplayed()
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(CentrellaDeviceDetailsPage.Locators.ErrorPopupDialogBoxXPath)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(CentrellaDeviceDetailsPage.Locators.ErrorPopupDialogBoxXPath)));
             Assert.IsTrue(centrellaDeviceDetailsPage.ErrorPopupDialogBox.GetElementVisibility(),"Error Popup dialog is not displayed");
         }
 
@@ -141,29 +152,29 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Service manual opens in a new tab")]
         public void ThenServiceManualOpensInANewTab()
         {
-            SetMethods.WaitUntilNewWindowIsOpened(PropertyClass.Driver, 2);
+            SetMethods.WaitUntilNewWindowIsOpened(_driver, 2);
 
             //Storing reference of Current Window
-            var CurrentWindow = PropertyClass.Driver.WindowHandles[0];
+            var CurrentWindow = _driver.WindowHandles[0];
 
             //Storing reference of Next Window
-            var NewTab = PropertyClass.Driver.WindowHandles[1]; 
+            var NewTab = _driver.WindowHandles[1]; 
             
             //Verifying if NewTab has opened
             NewTab.Should().NotBeNullOrEmpty("New Tab Should be Opened");
             
             //Switching to 
-            PropertyClass.Driver.SwitchTo().Window(NewTab);
+            _driver.SwitchTo().Window(NewTab);
          
             
-            string URL = PropertyClass.Driver.Url;
+            string URL = _driver.Url;
             
             //Verifying if URL contains ServiceManual PDF Name
             URL.Should().Contain(CentrellaDeviceDetailsPage.ExpectedValue.ServiceManualPDFName, "Service Manual is not displayed");
             
 
             //Switching Back to previous tab
-            PropertyClass.Driver.SwitchTo().Window(CurrentWindow);
+            _driver.SwitchTo().Window(CurrentWindow);
         }
 
         [When(@"user clicks Close button")]
@@ -182,7 +193,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [When(@"clicks Reference button")]
         public void WhenClicksReferenceButton()
         {
-            centrellaDeviceDetailsPage.ReferenceButton.JavaSciptClick();
+            centrellaDeviceDetailsPage.ReferenceButton.JavaSciptClick(_driver);
          
         }
     }

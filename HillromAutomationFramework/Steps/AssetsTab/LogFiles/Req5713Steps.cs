@@ -13,26 +13,33 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
     [Binding, Scope(Tag = "SoftwareRequirementID_5713")]
     class Req5713Steps
     {
-        RV700DeviceDetailsPage _rv700DeviceDetailsPage;
-        LoginPage _loginPage;
-        LandingPage _landingPage;
-        MainPage _mainPage;
-        WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
+        private readonly MainPage _mainPage;
+        private readonly RV700DeviceDetailsPage _rv700DeviceDetailsPage;
 
-        public Req5713Steps()
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5713Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage();
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage(driver);
         }
 
         [Given(@"user is on RV700 Log Files page")]
         public void GivenUserIsOnRVLogFilesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
             Thread.Sleep(1000);
             _mainPage.SearchSerialNumberAndClick("700090000008");

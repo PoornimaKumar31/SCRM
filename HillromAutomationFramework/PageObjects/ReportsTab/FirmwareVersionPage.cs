@@ -42,9 +42,9 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
             public const string TotalDevicesHeadingText = "Total devices";
         }
 
-        public FirmwareVersionPage()
+        public FirmwareVersionPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.FirmwareReportTitleID)]

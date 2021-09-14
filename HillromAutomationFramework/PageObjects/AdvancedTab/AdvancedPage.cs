@@ -11,9 +11,9 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
 {
     class AdvancedPage
     {
-        public AdvancedPage()
+        public AdvancedPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         public static class Locators
@@ -289,7 +289,7 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
         /// Finding Email oredr in Ascending
         /// </summary>
         /// <returns>Returns true if Email is sorted in Ascending order else false.</returns>
-        public bool FindEmailSortingOrder()
+        public bool FindEmailSortingOrder(IWebDriver driver)
         {           
             bool IsEmailIdAscendingOrder = false; 
             var list = new List<string>();
@@ -297,7 +297,7 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
             for (int i = 0; i < NoOfDetailsButton; i++)
             {
                 string userNameXPath = "//*[@id=\"email" + i + "\"]";
-                string userName = PropertyClass.Driver.FindElement(By.XPath(userNameXPath)).Text;
+                string userName = driver.FindElement(By.XPath(userNameXPath)).Text;
                 list.Add(userName);
             }
 
@@ -315,14 +315,14 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
         /// //To match Phone number I need to click on Details button then I will get Phone number. So providing ActualUserName through method to find in table content and then just Clicks only on corresponding Details button.
         /// </summary>
         /// <param name="ActualUserName"></param>
-        public void ClickOnDetailsButtonOfSpecifiedUser(string ActualUserName)
+        public void ClickOnDetailsButtonOfSpecifiedUser(IWebDriver driver,string ActualUserName)
         {
             int DetailsButtonCount;
             int NoOfDetailsButton = DetailsButtonList.Count;
             for (DetailsButtonCount = 0; DetailsButtonCount < NoOfDetailsButton; DetailsButtonCount++)
             {
                 string userNameXPath = "//*[@id=\"email" + DetailsButtonCount + "\"]";
-                string userName = PropertyClass.Driver.FindElement(By.XPath(userNameXPath)).Text;
+                string userName = driver.FindElement(By.XPath(userNameXPath)).Text;
                 if (userName == ActualUserName)
                 {
                     DetailsButtonList[DetailsButtonCount].Click();

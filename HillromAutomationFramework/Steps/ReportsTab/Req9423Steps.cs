@@ -24,28 +24,30 @@ namespace HillromAutomationFramework.Steps.ReportsTab
 
         private readonly ScenarioContext _scenarioContext;
         private readonly WebDriverWait _wait;
+        private readonly IWebDriver _driver;
 
-        public Req9423Steps(ScenarioContext scenarioContext)
+        public Req9423Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _reportsPage = new ReportsPage();
-            _activityReportPage = new ActivityReportPage();
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _reportsPage = new ReportsPage(driver);
+            _activityReportPage = new ActivityReportPage(driver);
         }
 
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportsPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, "Centrella Orgaization");
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
             _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
         }
         
         [Given(@"Centrella Asset type is selected")]
@@ -147,23 +149,19 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenColumnHeadingIsDisplayed(string columnHeading)
         {
             IWebElement column = null;
-            string ExpectedColumnHeading = "";
 
             switch (columnHeading.ToLower().Trim())
             {
                 case "serial number":
                     column = _activityReportPage.SerialNumberHeading;
-                    ExpectedColumnHeading = ActivityReportPage.ExpectedValues.SerialNumberHeadingText;
                     break;
 
                 case "location":
                     column = _activityReportPage.LocationHeading;
-                    ExpectedColumnHeading = ActivityReportPage.ExpectedValues.LocationHeadingText;
                     break;
 
                 case "last vital sent":
                     column = _activityReportPage.LastVitalSentHeading;
-                    ExpectedColumnHeading = ActivityReportPage.ExpectedValues.LastVitalSentHeadingText;
                     break;
 
                 default:
@@ -172,7 +170,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
             (column.GetElementVisibility()).Should().BeTrue(because: columnHeading + " should be displayed in Centrella Activity Report Page Table.");
             string ActualcolumnName = column.Text;
-            (ActualcolumnName).Should().BeEquivalentTo(ExpectedColumnHeading, because: columnHeading + " column heading should match with the expected value in Centrella Activity Report Page Table.");
+            (ActualcolumnName).Should().BeEquivalentTo(columnHeading, because: columnHeading + " column heading should match with the expected value in Centrella Activity Report Page Table.");
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]

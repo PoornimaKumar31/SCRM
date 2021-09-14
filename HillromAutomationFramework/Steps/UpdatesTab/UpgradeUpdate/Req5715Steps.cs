@@ -22,30 +22,32 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         private readonly UpdateReviewActionPage _updateReviewActionPage;
 
         private readonly WebDriverWait _wait;
-        private ScenarioContext _scenarioContext;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
         string firstFileName = "";
 
-        public Req5715Steps(ScenarioContext scenarioContext)
+        public Req5715Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _mainPage = new MainPage();
-            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage();
-            _updateSelectDevicesPage = new UpdateSelectDevicesPage();
-            _updateReviewActionPage = new UpdateReviewActionPage();
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _mainPage = new MainPage(driver);
+            _updatesSelectUpdatePage = new UpdatesSelectUpdatePage(driver);
+            _updateSelectDevicesPage = new UpdateSelectDevicesPage(driver);
+            _updateReviewActionPage = new UpdateReviewActionPage(driver);
         }
 
         [Given(@"user is on RV700 Updates page")]
         public void GivenUserIsOnRVUpdatesPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
             _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.RV700DeviceName);
         }
         
@@ -97,7 +99,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Then(@"Page x of y label is displayed")]
         public void ThenPageXOfYLabelIsDisplayed()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 upgrade elements"))
             {
                 (_updatesSelectUpdatePage.PaginationXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y label should be displayed in RV700 Select Update page");

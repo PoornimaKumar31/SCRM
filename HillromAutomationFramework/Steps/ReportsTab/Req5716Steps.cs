@@ -26,29 +26,31 @@ namespace HillromAutomationFramework.Steps.ReportsTab
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
 
-        public Req5716Steps(ScenarioContext scenarioContext)
+        public Req5716Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 
-            _loginPage = new LoginPage();
-            _mainPage = new MainPage();
-            _landingPage = new LandingPage();
-            _reportsPage = new ReportsPage();
-            _firmwareVersionPage = new FirmwareVersionPage();
-            _usageReportPage = new UsageReportPage();
+            _loginPage = new LoginPage(driver);
+            _mainPage = new MainPage(driver);
+            _landingPage = new LandingPage(driver);
+            _reportsPage = new ReportsPage(driver);
+            _firmwareVersionPage = new FirmwareVersionPage(driver);
+            _usageReportPage = new UsageReportPage(driver);
         }
-       
+
 
         [Given(@"user is on Reports page")]
         public void GivenUserIsOnReportsPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.ReportsTab.JavaSciptClick();
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
         }
 
         [Given(@"CVSM Asset type is selected in Asset type dropdown")]
@@ -165,15 +167,15 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"assets are grouped by unit")]
         public void ThenAssetsAreGroupedByUnit()
         {
-            SetMethods.ScrollToBottomofWebpage();
+            SetMethods.ScrollToBottomofWebpage(_driver);
             //Getting no of units
             int unitCount = _usageReportPage.UnitsRowList.GetElementCount();
             unitCount.Should().BeGreaterThan(0, "Atleast one unit should be present");
             //Check if the unit and device parent element are same.
             for (int row = 0; row < unitCount; row++)
             {
-                IWebElement deviceParent = PropertyClass.Driver.FindElement(By.Id("devices" + row)).FindElement(By.XPath(".."));
-                IWebElement unitParent = PropertyClass.Driver.FindElement(By.Id("location" + row)).FindElement(By.XPath(".."));
+                IWebElement deviceParent = _driver.FindElement(By.Id("devices" + row)).FindElement(By.XPath(".."));
+                IWebElement unitParent = _driver.FindElement(By.Id("location" + row)).FindElement(By.XPath(".."));
                 if (!(deviceParent.Equals(unitParent)))
                 {
                     Assert.Fail("Assets are not grouped by unit.");

@@ -120,9 +120,9 @@ namespace HillromAutomationFramework.PageObjects
             public const string CSMLastDeployedSearchText = "1.52.00-A0002";
         }
 
-        public FirmwareStatusPage()
+        public FirmwareStatusPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.FirmwareReportTitleID)]
@@ -227,7 +227,7 @@ namespace HillromAutomationFramework.PageObjects
         /// </summary>
         /// <param name="columnName"></param>
         /// <returns>List of data present in respective column</returns>
-        public List<string> GetColumnData(string columnName)
+        public List<string> GetColumnData(IWebDriver driver,string columnName)
         {
             //Getting columnHeading
             IList<IWebElement> columnList;
@@ -245,7 +245,7 @@ namespace HillromAutomationFramework.PageObjects
             int searchMatchCount;
             try
             {
-                searchMatchCount = (PropertyClass.Driver.FindElements(By.XPath(Locators.ColumnCommonXpath + "[" + columnIndex + "]"))).Count;
+                searchMatchCount = (driver.FindElements(By.XPath(Locators.ColumnCommonXpath + "[" + columnIndex + "]"))).Count;
             }
             catch(Exception)
             {
@@ -257,7 +257,7 @@ namespace HillromAutomationFramework.PageObjects
             //Getting column Data
             List<string> columnDataList = new List<string>();
 
-            columnList = PropertyClass.Driver.FindElements(By.XPath(Locators.ColumnCommonXpath + "[" + columnIndex + "]"));
+            columnList = driver.FindElements(By.XPath(Locators.ColumnCommonXpath + "[" + columnIndex + "]"));
             columnDataList.AddRange(columnList.Select(rowData => rowData.Text.ToLower()));
             return (columnDataList);
         }

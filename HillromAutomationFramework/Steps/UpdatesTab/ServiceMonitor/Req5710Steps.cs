@@ -16,29 +16,31 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         private readonly LoginPage _loginPage;
         private readonly MainPage _mainPage;
         private readonly ServiceMonitorPage _serviceMoniterPage;
+
         private readonly WebDriverWait _wait;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
 
-        private ScenarioContext _scenarioContext;
-
-        public Req5710Steps(ScenarioContext scenarioContext)
+        public Req5710Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
-            _loginPage = new LoginPage();
-            _mainPage = new MainPage();
-            _serviceMoniterPage = new ServiceMonitorPage();
+            _loginPage = new LoginPage(driver);
+            _mainPage = new MainPage(driver);
+            _serviceMoniterPage = new ServiceMonitorPage(driver);
         }
 
         [Given(@"user is on Service Monitor Settings page")]
         public void GivenUserIsOnServiceMonitorSettingsPage()
         {
             //Login without roll-up
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithOutRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithOutRollUpPage);
             _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             //Selecting Service Moniter Page
-            _mainPage.UpdatesTab.JavaSciptClick();
+            _mainPage.UpdatesTab.JavaSciptClick(_driver);
             _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
             bool IsServiceMiniterSettingsPageDisplayed = (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()) || (_serviceMoniterPage.DeploymentModeLabel.GetElementVisibility());
             (IsServiceMiniterSettingsPageDisplayed).Should().BeTrue(because: "Service Monitor Settings page should be displayed when user selects Service moniter in updates tab");

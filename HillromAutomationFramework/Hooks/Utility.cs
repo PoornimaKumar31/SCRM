@@ -1,6 +1,7 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Gherkin.Model;
 using AventStack.ExtentReports.Reporter;
+using BoDi;
 using HillromAutomationFramework.SupportingCode;
 using Microsoft.Edge.SeleniumTools;
 using NUnit.Framework;
@@ -18,21 +19,31 @@ namespace HillromAutomationFramework.Hooks
     public sealed class Utility
     {
         //Declaration of variables to handle extent report
-        private static ExtentTest _feature;
-        private static ExtentTest _scenario;
         private static ExtentReports _extentReports;
+        [ThreadStatic]
+        private static ExtentTest _feature;
+        [ThreadStatic]
+        private static ExtentTest _scenario;
+        
+        [ThreadStatic]
         private static int screenShotNameCounter = 0;
+
+        //WebDriver for operating the browser.
+        [ThreadStatic]
+        private static IWebDriver _driver;
 
         //Sprcflow variables
         private readonly ScenarioContext _scenarioContext;
         private readonly ISpecFlowOutputHelper _specFlowOutputHelper;
+        private readonly IObjectContainer _objectContainer;
 
         /// <summary>
         /// Constructor to intialize scenario Context
         /// </summary>
         /// <param name="scenarioContext">Scenario context from the existing scenario</param>
-        public Utility(ScenarioContext scenarioContext,ISpecFlowOutputHelper specFlowOutputHelper)
+        public Utility(IObjectContainer objectContainer,ScenarioContext scenarioContext,ISpecFlowOutputHelper specFlowOutputHelper)
         {
+            _objectContainer = objectContainer;
             _scenarioContext = scenarioContext;
             _specFlowOutputHelper = specFlowOutputHelper;
         }
@@ -115,7 +126,7 @@ namespace HillromAutomationFramework.Hooks
                 //chromeOptions.AddArgument("--headless");
 
                 // Setting up the chrome driver
-                PropertyClass.Driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);
+                _driver= new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);
                 _specFlowOutputHelper.WriteLine("Launched chrome browser");
             }
             else if(BrowserName.Contains("edge"))
@@ -141,7 +152,7 @@ namespace HillromAutomationFramework.Hooks
                 //edgeoptions.AddArgument("--headless");
 
                 //Setting up Edge driver
-                PropertyClass.Driver = new EdgeDriver(edgeoptions);
+                _driver= new EdgeDriver(edgeoptions);
                 _specFlowOutputHelper.WriteLine("Launched edge browser");
             }
             else
@@ -150,7 +161,10 @@ namespace HillromAutomationFramework.Hooks
                 Assert.Fail("Invalid Browser Name:"+BrowserName);
                 Environment.Exit(1);
             }
-            PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); // Implicit wait for 5 seconds
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); // Implicit wait for 5 seconds
+
+            //Register webdriver as instance
+            _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
         }
 
 
@@ -196,11 +210,11 @@ namespace HillromAutomationFramework.Hooks
                 case ScenarioExecutionStatus.TestError:
                     // Taking a screenshot for attaching in Test Context
                     var filePath = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName+ DateTime.Now.ToString("HH.mm.ss") + screenShotNameCounter}.jpg";
-                    ((ITakesScreenshot)PropertyClass.Driver).GetScreenshot().SaveAsFile(filePath);
+                    ((ITakesScreenshot)_driver).GetScreenshot().SaveAsFile(filePath);
                     TestContext.AddTestAttachment(filePath);
                     
                     //taking screenshot for extent report
-                    var mediaEntity = GetMethods.CaptureScreenshotBase64("screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
+                    var mediaEntity = GetMethods.CaptureScreenshotBase64(_driver,"screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));
                     _scenario.CreateNode<T>(_scenarioContext.StepContext.StepInfo.Text).Fail(_scenarioContext.TestError.Message + "\n\n" + _scenarioContext.TestError.InnerException, mediaEntity);
                     screenShotNameCounter++;
                     break;
@@ -221,7 +235,7 @@ namespace HillromAutomationFramework.Hooks
         [AfterScenario]
         public void CleanUp()
         {
-           PropertyClass.Driver.Quit();
+           _driver.Quit();
         }
 
         /// <summary>

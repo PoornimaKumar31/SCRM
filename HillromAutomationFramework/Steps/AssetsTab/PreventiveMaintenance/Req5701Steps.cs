@@ -21,14 +21,20 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         private readonly CSMDeviceDetailsPage _csmDeviceDetailsPage;
         private readonly MainPage _mainPage;
 
-        readonly WebDriverWait wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
-        
-        public SoftwareRequirement5701Steps()
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public SoftwareRequirement5701Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _csmDeviceDetailsPage = new CSMDeviceDetailsPage();
-            _mainPage = new MainPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _csmDeviceDetailsPage = new CSMDeviceDetailsPage(driver);
+            _mainPage = new MainPage(driver);
         }
 
         private static class _Global
@@ -39,9 +45,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Given(@"user is on Asset List page")]
         public void GivenUserIsOnAssetListPage()
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
-            wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
         }
 
         [When(@"user selects CSM device with serial number ""(.*)""")]

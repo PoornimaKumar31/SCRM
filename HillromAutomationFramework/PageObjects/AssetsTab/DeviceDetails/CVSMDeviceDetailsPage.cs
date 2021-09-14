@@ -65,9 +65,9 @@ namespace HillromAutomationFramework.PageObjects
             public static string NextEnableImageURL = PropertyClass.BaseURL+"/icon_page_next.svg";
         }
 
-        public CVSMDeviceDetailsPage()
+        public CVSMDeviceDetailsPage(IWebDriver driver)
         {
-            PageFactory.InitElements(PropertyClass.Driver, this);
+            PageFactory.InitElements(driver, this);
         }
 
         [FindsBy(How = How.Id, Using = Locators.CVSMDeviceID)]

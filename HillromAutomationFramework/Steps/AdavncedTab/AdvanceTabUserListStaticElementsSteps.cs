@@ -14,28 +14,34 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
 {
     [Binding,Scope(Tag = "TestCaseID_9662")]
     public sealed class AdvanceTabUserListStaticElementsSteps
-    {       
+    {
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly AdvancedPage _advancePage;
         private readonly WebDriverWait _wait;
 
-        public AdvanceTabUserListStaticElementsSteps()
+        private readonly ScenarioContext _scenarioContext;
+        private readonly IWebDriver _driver;
+
+        public AdvanceTabUserListStaticElementsSteps(IWebDriver driver, ScenarioContext scenarioContext)
         {
-            _loginPage = new LoginPage();
-            _landingPage = new LandingPage();
-            _advancePage = new AdvancedPage();
-            _wait = new WebDriverWait(PropertyClass.Driver, TimeSpan.FromSeconds(10));
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+
+            _loginPage = new LoginPage(driver);
+            _landingPage = new LandingPage(driver);
+            _advancePage = new AdvancedPage(driver);
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
 
         [Given(@"manager user is on User List page having user entries > (.*)")]
         public void GivenManagerUserIsOnUserListPageHavingUserEntries(int NoOfMinimumEntries)
         {
-            _loginPage.LogIn(LoginPage.LogInType.AdminWithRollUpPage);
+            _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _advancePage.AdvancedTab.JavaSciptClick();
+            _advancePage.AdvancedTab.JavaSciptClick(_driver);
             int TotalUser = _advancePage.DetailsButtonList.Count;
             TotalUser.Should().BeGreaterThan(NoOfMinimumEntries, because:" User list page should have greater than 2 enteries.");
         }
@@ -85,7 +91,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"User List Table is sorted by Email in Ascending order")]
         public void ThenUserListTableIsSortedByEmailAscendingOrder()
         {
-            bool IsEmailSortedOrder = _advancePage.FindEmailSortingOrder();
+            bool IsEmailSortedOrder = _advancePage.FindEmailSortingOrder(_driver);
             IsEmailSortedOrder.Should().BeTrue(because: " User List Table should be sorted by Email in Ascending order.");
         }
 

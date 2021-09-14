@@ -1,6 +1,9 @@
 ﻿using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.Login
@@ -10,9 +13,17 @@ namespace HillromAutomationFramework.Steps.Login
     {
         private readonly LoginPage _loginPage;
 
-        public Req5898Steps()
+        private readonly IWebDriver _driver;
+        private readonly ScenarioContext _scenarioContext;
+        private readonly WebDriverWait _wait;
+
+        public Req5898Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
-            _loginPage = new LoginPage();
+            _scenarioContext = scenarioContext;
+            _driver = driver;
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+
+            _loginPage = new LoginPage(driver);
         }
 
         [When(@"user clicks Privacy Policy")]
