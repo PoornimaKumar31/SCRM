@@ -330,5 +330,21 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
                 }
             }
         }
+
+        public int GetIndexOfSpecificUser(IWebDriver driver,string userName)
+        {
+            int NoOfDetailsButton = DetailsButtonList.Count;
+            //Iterating through the user list
+            for (int detailsButtonPosition = 0; detailsButtonPosition < NoOfDetailsButton; detailsButtonPosition++)
+            {
+                string userFullNameXPath = "//*[@id=\"full_name" + detailsButtonPosition + "\"]";
+                string userFullName = driver.FindElement(By.XPath(userFullNameXPath)).Text;
+                if(userFullName.ToLower().Equals(userName.ToLower()))
+                {
+                    return (detailsButtonPosition);
+                }
+            }
+            return (-1);
+        }
     }
 }

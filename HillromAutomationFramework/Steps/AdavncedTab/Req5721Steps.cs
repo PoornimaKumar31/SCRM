@@ -23,7 +23,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         private readonly ScenarioContext _scenarioContext;
         private readonly IWebDriver _driver;
 
-
+        string SelectedUserName = null;
         string randomFullName = null;
         string randomPhoneNumber = null;
         string blankFullName = "";
@@ -142,6 +142,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             list.Count.Should().BeGreaterThan(0, "No user should be present except logged User.");
 
             //Selecting first user details button and clicking
+            SelectedUserName = list[detailsButtonPosition].FindElement(By.Id("full_name"+detailsButtonPosition)).Text;
             list[detailsButtonPosition].FindElement(By.Id(AdvancedPage.Locators.DetailsButtonID)).Click();
         }
 
@@ -452,6 +453,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenClicksDetailsButtonForSameUser(string p0)
         {
             Thread.Sleep(2000);
+            detailsButtonPosition = _advancePage.GetIndexOfSpecificUser(_driver,SelectedUserName);
             _advancePage.DetailsButtonList[detailsButtonPosition].Click();
         }
 
