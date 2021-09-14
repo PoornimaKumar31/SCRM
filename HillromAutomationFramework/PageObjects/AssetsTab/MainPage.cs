@@ -125,7 +125,7 @@ namespace HillromAutomationFramework.PageObjects
             public const int MACTotalRecords = 7;
 
             //device count
-            public const int AllOrgnaizationDevicesCount = 1307;
+            public const int AllOrgnaizationDevicesCount = 1308;
             public const int AllOrgnaizationCSMDevicesCount = 12;
             public const int AllOrgnaizationCVSMDevicesCount = 19;
             public const int AllOrgnaizationRV700DevicesCount = 24;

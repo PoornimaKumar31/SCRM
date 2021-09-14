@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
@@ -78,7 +79,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Centrella error code pop-up dialog is displayed")]
         public void ThenCentrellaErrorCodePop_UpDialogIsDisplayed()
         {
-            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(CentrellaDeviceDetailsPage.Locators.ErrorPopupDialogBoxXPath)));
+            //Wait till dialog box is displayed with data
+            Thread.Sleep(2000);
             Assert.IsTrue(centrellaDeviceDetailsPage.ErrorPopupDialogBox.GetElementVisibility(),"Error Popup dialog is not displayed");
         }
 

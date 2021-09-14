@@ -78,6 +78,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             Thread.Sleep(2000);
             mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization DropDown");
+            Thread.Sleep(1000);
             mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement(_driver,"LNT Automated Test organization ExpensionArrow in organization dropdown");
             Thread.Sleep(2000);
             mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement(_driver,"LNT Automated Test organization Test1 facility");
@@ -86,8 +87,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"only devices in selected facility are displayed")]
         public void ThenOnlyDevicesInSelectedFacilityAreDisplayed()
         {
-            SetMethods.ScrollToBottomofWebpage(_driver);
             Thread.Sleep(3000);
+            SetMethods.ScrollToBottomofWebpage(_driver); 
             int TotalRecords = mainPage.VerifyRecordPresence();
             Assert.AreEqual(true, MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneDeviceCount == TotalRecords, "Only devices in selected facility are not displayed");
         }
@@ -97,7 +98,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage();
             mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization dropdown");
+            Thread.Sleep(1000);
             mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement(_driver,"LNT Automated Test organization ExpensionArrow in organization dropdown");
+            Thread.Sleep(1000);
             mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement(_driver,"LNT Automated Test organization Test1 facility");
         }
 
@@ -114,8 +117,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"only devices in selected unit are displayed")]
         public void ThenOnlyDevicesInSelectedUnitAreDisplayed()
         {
-            SetMethods.ScrollToBottomofWebpage(_driver);
             Thread.Sleep(5000);
+            SetMethods.ScrollToBottomofWebpage(_driver);
             int TotalRecords = mainPage.VerifyRecordPresence();
             Assert.AreEqual(true, TotalRecords == MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount, "Number of devices in unit of facility is not as expected");
         }
