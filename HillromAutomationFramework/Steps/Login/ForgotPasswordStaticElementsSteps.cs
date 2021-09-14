@@ -27,7 +27,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"SmartCare Remote Management title is displayed")]
         public void ThenForgotSmartCareRemoteManagementTitle()
         {
-            _forgotPassword.ApplicationTitle.GetElementVisibility().Should().BeTrue("Application title is not displayed");
+            _forgotPassword.ApplicationTitle.GetElementVisibility().Should().BeTrue(because:"Application title should be displayed in Forgot Password page.");
             _forgotPassword.ApplicationTitle.Text.Should().BeEquivalentTo(ForgotPasswordPage.ExpectedValues.ApplicationTitle, "Application title is not matching with the expected value.");
             //Application subtitle verification
             _forgotPassword.ApplicationSubtitle.GetElementVisibility().Should().BeTrue("Application sub-title is not displayed");

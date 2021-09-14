@@ -325,49 +325,61 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenListIsSortedInDescendingOrderBy(string columnHeader)
         {
             Thread.Sleep(3000);
-            List<string> UnsortedColumnData = mainPage.GetColumnData(columnHeader);
+            List<string> ColumnData = mainPage.GetColumnData(columnHeader);
 
-            List<DateTime> UnsortedDateList = new List<DateTime>();
+            List<DateTime> columnDateList = new List<DateTime>();
 
             //Sorting for date list
             if (columnHeader.ToLower().Equals("pm due") || columnHeader.ToLower().Equals("last connected"))
             {
                 //Converting into date list
-                UnsortedDateList.AddRange(UnsortedColumnData.Select(dateTime => DateTime.Parse(dateTime)));
+                foreach(string data in ColumnData)
+                {
+                    if(!(string.IsNullOrEmpty(data)))
+                    {
+                        columnDateList.Add(DateTime.Parse(data));
+                    }
+                }
 
                 //Assertion
-                UnsortedDateList.Should().BeInDescendingOrder(because:"Asset list should be sorted by " + columnHeader + " in descending order.");
+                columnDateList.Should().BeInDescendingOrder(because:"Asset list should be sorted by " + columnHeader + " in descending order.");
 
             }
             else
             {
                 //Asserting
-                UnsortedColumnData.Should().BeInDescendingOrder(because:"Asset list should be sorted by " + columnHeader + " in descending order.");
+                ColumnData.Should().BeInDescendingOrder(because:"Asset list should be sorted by " + columnHeader + " in descending order.");
             }
         }
 
         [Then(@"list is sorted in ascending order by ""(.*)""")]
         public void ThenListIsSortedInAscendingOrderBy(string columnHeader)
         {
-            Thread.Sleep(1000);
-            List<string> UnsortedColumnData = mainPage.GetColumnData(columnHeader);
+            Thread.Sleep(3000);
+            List<string> ColumnData = mainPage.GetColumnData(columnHeader);
 
-            List<DateTime> UnsortedDateList = new List<DateTime>();
+            List<DateTime> columnDateList = new List<DateTime>();
 
             //Sorting for date list
             if(columnHeader.ToLower().Equals("pm due") || columnHeader.ToLower().Equals("last connected"))
             {
                 //Converting into date list
-                UnsortedDateList.AddRange(UnsortedColumnData.Select(dateTime => DateTime.Parse(dateTime)));
+                foreach (string data in ColumnData)
+                {
+                    if (!(string.IsNullOrEmpty(data) && string.IsNullOrWhiteSpace(data)))
+                    {
+                        columnDateList.Add(DateTime.Parse(data));
+                    }
+                }
 
                 //Asserting
-                UnsortedDateList.Should().BeInAscendingOrder(because: "Asset list should be sorted by " + columnHeader + " in ascending order.");
+                columnDateList.Should().BeInAscendingOrder(because: "Asset list should be sorted by " + columnHeader + " in ascending order.");
 
             }
             else
             {
                 //Asserting
-                UnsortedColumnData.Should().BeInAscendingOrder(because: "Asset list should be sorted by " + columnHeader + " in ascending order.");
+                ColumnData.Should().BeInAscendingOrder(because: "Asset list should be sorted by " + columnHeader + " in ascending order.");
             }  
         }
 

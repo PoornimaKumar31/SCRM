@@ -100,9 +100,8 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Login page is displayed")]
         public void ThenLoginPageIsDisplayed()
         {
-            _loginPage.EmailField.GetElementVisibility().Should().BeTrue("Login page is not displayed.\n");
-            _loginPage.PasswordField.GetElementVisibility().Should().BeTrue("Login page is not displayed.\n");
-            _loginPage.ForgotPasswordLink.GetElementVisibility().Should().BeTrue("Login page is not displayed..\n");
+            bool IsLoginPageDisplayed = (_loginPage.EmailField.GetElementVisibility()) || (_loginPage.PasswordField.GetElementVisibility()) || (_loginPage.ForgotPasswordLink.GetElementVisibility());
+            IsLoginPageDisplayed.Should().BeTrue(because:"Login page should be displayed when user cliks logout button in Roll up page.");
         }
 
         [Then(@"notification message is displayed")]

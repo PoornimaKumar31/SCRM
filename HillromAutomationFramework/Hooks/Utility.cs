@@ -62,7 +62,6 @@ namespace HillromAutomationFramework.Hooks
             if (!Directory.Exists(PropertyClass.DownloadPath))
             {
                 Directory.CreateDirectory(PropertyClass.DownloadPath);
-                
             }
             else
             {
@@ -151,8 +150,6 @@ namespace HillromAutomationFramework.Hooks
                 Assert.Fail("Invalid Browser Name:"+BrowserName);
                 Environment.Exit(1);
             }
-            
-            
             PropertyClass.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); // Implicit wait for 5 seconds
         }
 
