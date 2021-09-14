@@ -1,12 +1,11 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Threading;
 using TechTalk.SpecFlow;
+using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.Login
 {
@@ -27,6 +26,14 @@ namespace HillromAutomationFramework.Steps.Login
             _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             _forgotPassword = new ForgotPasswordPage(driver);
+        }
+
+
+        [Then(@"Hillrom logo is displayed")]
+        public void ThenUserWillSeeHillromLogo()
+        {
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(ForgotPasswordPage.Locator.HillromLogoID)));
+            _forgotPassword.HillromLogo.GetElementVisibility().Should().BeTrue("Hillrom logo is not displayed");
         }
 
         [Then(@"SmartCare Remote Management title is displayed")]
