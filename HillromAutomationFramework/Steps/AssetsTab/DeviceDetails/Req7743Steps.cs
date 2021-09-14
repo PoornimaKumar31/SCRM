@@ -307,8 +307,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         [Then(@"Recently added Maintenance date is date picked")]
         public void ThenRecentlyAddedMaintenanceDateIsDatePicked()
         {
+            //Wait untill data is loaded
+            Thread.Sleep(3000);
             string DatePicked = _centrellaDeviceDetailsPage.SelectedDate();
-            Thread.Sleep(2000);
             string maintenanceDate = DateTime.ParseExact(_centrellaDeviceDetailsPage.RecentlyAddedEntryDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture).ToString("M'/'d'/'yyyy");
             maintenanceDate.Should().BeEquivalentTo(DatePicked);
         }
