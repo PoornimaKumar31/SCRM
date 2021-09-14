@@ -165,6 +165,9 @@ namespace HillromAutomationFramework.Hooks
 
             //Register webdriver as instance
             _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
+
+            //extent report path
+            _specFlowOutputHelper.WriteLine("Extent ReportPath:" +PropertyClass.extentReportPath);
         }
 
 
