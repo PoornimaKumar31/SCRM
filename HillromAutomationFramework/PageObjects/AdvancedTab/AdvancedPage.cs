@@ -331,6 +331,12 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
             }
         }
 
+        /// <summary>
+        /// Return the row number of the specific user
+        /// </summary>
+        /// <param name="driver">driver of the browser</param>
+        /// <param name="userName">FullName of the user</param>
+        /// <returns>Index of the user for specified full name</returns>
         public int GetIndexOfSpecificUser(IWebDriver driver,string userName)
         {
             int NoOfDetailsButton = DetailsButtonList.Count;

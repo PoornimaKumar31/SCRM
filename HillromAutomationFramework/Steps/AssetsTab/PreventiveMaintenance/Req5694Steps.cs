@@ -58,6 +58,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Then(@"CVSM Asset details landing page is displayed")]
         public void ThenCVSMAssetDetailsLandingPageIsDisplayed()
         {
+            Thread.Sleep(3000);
             _mainPage.DeviceListRow[0].Click();
             Thread.Sleep(2000);
             bool isAssetDetailsLandingPageDisplayed = _cvsmAssetListPage.CVSMDetailsPage.GetElementVisibility();
@@ -84,6 +85,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         {
             GivenUserIsOnAssetListPage();
             WhenUserSelectsAnyCVSMDevice();
+            Thread.Sleep(3000);
             _mainPage.DeviceListRow[0].Click();
             Thread.Sleep(2000);
             _csmDeviceDetailsPage.PMTab.Click();
