@@ -1,4 +1,5 @@
 ﻿using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -54,7 +55,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void GivenUserHasPerformedAssetSearch()
         {
             GivenUserIsOnAssetsListPage();
-            string ExpectedPartialValue = MainPage.ExpectedValues.PartialFirmwareVersionText;
+            string ExpectedPartialValue = MainPageExpectedValue.PartialFirmwareVersionText;
             _mainPage.SearchField.EnterText(ExpectedPartialValue);
             _mainPage.SearchField.EnterText(Keys.Enter);
             Thread.Sleep(1000);
@@ -66,14 +67,14 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             for (int i = 1; i <= _mainPage.DeviceListRow.Count; i++)
             {
                 string ActualAssetTypeText = _driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 3 + "]")).Text;
-                Assert.AreEqual(true, ActualAssetTypeText.Contains(MainPage.ExpectedValues.PartialFirmwareVersionText), "Only the same Asset Tags data is not appering that contain Search text");
+                Assert.AreEqual(true, ActualAssetTypeText.Contains(MainPageExpectedValue.PartialFirmwareVersionText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
 
         [When(@"user enters partial Type text in Search field")]
         public void WhenUserEntersPartialTypeTextInSearchField()
         {
-            string ExpectedPartialValue = MainPage.ExpectedValues.ValidPartialString.ToString();
+            string ExpectedPartialValue = MainPageExpectedValue.ValidPartialString.ToString();
             _mainPage.SearchField.EnterText(ExpectedPartialValue);
         }
 
@@ -87,34 +88,34 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [When(@"user enters partial Asset tag text in Search field")]
         public void WhenUserEntersPartialAssetTagTextInSearchField()
         {
-            string ExpectedPartialText = MainPage.ExpectedValues.ValidPartialString.ToString();
+            string ExpectedPartialText = MainPageExpectedValue.ValidPartialString.ToString();
             _mainPage.SearchField.EnterText(ExpectedPartialText);
         }
 
         [When(@"user enters partial Serial number text in Search field")]
         public void WhenUserEntersPartialSerialNumberTextInSearchField()
         {
-            string ExpectedPartialText = MainPage.ExpectedValues.PartialSerialNumberText;
+            string ExpectedPartialText = MainPageExpectedValue.PartialSerialNumberText;
             _mainPage.SearchField.EnterText(ExpectedPartialText);
         }
 
         [When(@"user enters partial Firmware version text in Search field")]
         public void WhenUserEntersPartialFirmwareVersionTextInSearchField()
         {
-            string ExpectedPartialText = MainPage.ExpectedValues.PartialFirmwareVersionText;
+            string ExpectedPartialText = MainPageExpectedValue.PartialFirmwareVersionText;
             _mainPage.SearchField.EnterText(ExpectedPartialText);
         }
 
         [When(@"user enters text in Search field that does not match any asset in table")]
         public void WhenUserEntersTextInSearchFieldThatDoesNotMatchAnyAssetInTable()
         {
-            _mainPage.SearchField.EnterText(MainPage.ExpectedValues.InvalidPartialString);
+            _mainPage.SearchField.EnterText(MainPageExpectedValue.InvalidPartialString);
         }
 
         [When(@"user enters valid MAC address in advanced AP search string")]
         public void WhenUserEntersValidMACAddressInAdvancedAPSearchString()
         {
-            _mainPage.SearchField.EnterText(MainPage.ExpectedValues.MACAddressText);
+            _mainPage.SearchField.EnterText(MainPageExpectedValue.MACAddressText);
         }
 
         [When(@"user clicks X button")]
@@ -127,7 +128,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"Search field contains hint text")]
         public void ThenSearchFieldContainsHintText()
         {
-            Assert.AreEqual(MainPage.ExpectedValues.SearchFieldHintText, _mainPage.SearchField.GetAttribute("placeholder"), "Search field hint text does not match the expected value.");
+            Assert.AreEqual(MainPageExpectedValue.SearchFieldHintText, _mainPage.SearchField.GetAttribute("placeholder"), "Search field hint text does not match the expected value.");
         }
 
         [Then(@"results in table contain only assets with types that contain Search text")]
@@ -136,7 +137,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             for (int i = 1; i <= _mainPage.DeviceListRow.Count; i++)
             {
                 string ActualAssetTypeText = _driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 1 + "]")).Text;
-                Assert.AreEqual(true, ActualAssetTypeText.Contains(MainPage.ExpectedValues.PartialTypeText), "Only the same Asset Tags data is not appering that contain Search text");
+                Assert.AreEqual(true, ActualAssetTypeText.Contains(MainPageExpectedValue.PartialTypeText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
 
@@ -146,7 +147,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             for (int i = 1; i <= _mainPage.DeviceListRow.Count; i++)
             {
                 string ActualAssetTagText = _driver.FindElement(By.XPath("//tr[" + i + "]/td[1]")).Text;
-                Assert.AreEqual(true, ActualAssetTagText.Contains(MainPage.ExpectedValues.PartialAssetTagText), "Only the same Asset Tags data is not appering that contain Search text");
+                Assert.AreEqual(true, ActualAssetTagText.Contains(MainPageExpectedValue.PartialAssetTagText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
 
@@ -156,7 +157,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             for (int i = 1; i <= _mainPage.DeviceListRow.Count; i++)
             {
                 string ActualSerialNumberText = _driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 6 + "]")).Text;
-                Assert.AreEqual(true, ActualSerialNumberText.Contains(MainPage.ExpectedValues.PartialSerialNumberText), "Only the same Asset Tags data is not appering that contain Search text");
+                Assert.AreEqual(true, ActualSerialNumberText.Contains(MainPageExpectedValue.PartialSerialNumberText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
 
@@ -166,7 +167,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             for (int i = 1; i <= _mainPage.DeviceListRow.Count; i++)
             {
                 string ActualFirmwareText = _driver.FindElement(By.XPath("//tr[" + i + "]/td[" + 3 + "]")).Text;
-                Assert.AreEqual(true, ActualFirmwareText.Contains(MainPage.ExpectedValues.PartialFirmwareVersionText), "Only the same Asset Tags data is not appering that contain Search text");
+                Assert.AreEqual(true, ActualFirmwareText.Contains(MainPageExpectedValue.PartialFirmwareVersionText), "Only the same Asset Tags data is not appering that contain Search text");
             }
         }
 
@@ -191,7 +192,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             int TotalRecords = _mainPage.DeviceListRow.Count;
 
-            Assert.AreEqual(true, TotalRecords == MainPage.ExpectedValues.MACTotalRecords, "Record is not displaying as per expected.");
+            Assert.AreEqual(true, TotalRecords == int.Parse(MainPageExpectedValue.MACTotalRecords), "Record is not displaying as per expected.");
             bool IsMACAddressVisible = _mainPage.APMACAddressesMatchSearchText(_driver,_mainPage.CompInfo, _mainPage.RadioNewMarr, _mainPage.MACAddress);
             Assert.AreEqual(true, IsMACAddressVisible, "MAC Address is not visible");
         }
@@ -206,7 +207,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"all assets are displayed")]
         public void ThenAllAssetsAreDisplayed()
         {
-            Assert.AreEqual(true, MainPage.ExpectedValues.AllOrganizationsDevicesListWithRollUp == _mainPage.DeviceListRow.Count, "All assets are not displayed.");
+            Assert.AreEqual(true, int.Parse(MainPageExpectedValue.AllOrganizationsDevicesListWithRollUp) == _mainPage.DeviceListRow.Count, "All assets are not displayed.");
         }
 
         [Then(@"Next page and Previous page icons are displayed")]

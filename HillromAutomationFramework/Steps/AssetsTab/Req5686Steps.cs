@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -51,7 +52,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenOrganizationLabelIsDisplayed()
         {
             Assert.AreEqual(true, mainPage.OrganizationLabel.GetElementVisibility(), "Organization label is not displayed.");
-            Assert.AreEqual(MainPage.ExpectedValues.OrganizationLabelText.ToLower(), mainPage.OrganizationLabel.Text.ToLower(),"Organization label is not matching the expected value.");
+            Assert.AreEqual(MainPageExpectedValue.OrganizationLabelText.ToLower(), mainPage.OrganizationLabel.Text.ToLower(),"Organization label is not matching the expected value.");
         }
         
         [Then(@"Organization dropdown is displayed")]
@@ -64,7 +65,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenAssetTypeLabelIsDisplayed()
         {
             Assert.AreEqual(true, mainPage.AssetTypeLabel.GetElementVisibility(), "Asset type label is not displayed.");
-            Assert.AreEqual(MainPage.ExpectedValues.AssetTypeLabelText.ToLower(), mainPage.AssetTypeLabel.Text.ToLower(), "Asset type label is not matching with the expected value.");
+            Assert.AreEqual(MainPageExpectedValue.AssetTypeLabelText.ToLower(), mainPage.AssetTypeLabel.Text.ToLower(), "Asset type label is not matching with the expected value.");
         }
         
         [Then(@"Asset type dropdown is displayed")]
@@ -88,39 +89,39 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             {
                 case "type": 
                     heading = mainPage.TypeHeading;
-                    ExpectedText = MainPage.ExpectedValues.TypeHeadingText;
+                    ExpectedText = MainPageExpectedValue.TypeHeadingText;
                     break;
                 case "status":
                     heading = mainPage.StatusHeading;
-                    ExpectedText = MainPage.ExpectedValues.StatusHeadingText;
+                    ExpectedText = MainPageExpectedValue.StatusHeadingText;
                     break;
                 case "firmware":
                     heading = mainPage.FirmwareHeading;
-                    ExpectedText = MainPage.ExpectedValues.FirmwareHeadingText;
+                    ExpectedText = MainPageExpectedValue.FirmwareHeadingText;
                     break;
                 case "config file":
                     heading = mainPage.ConfigFileHeading;
-                    ExpectedText = MainPage.ExpectedValues.ConfigFileHeadingText;
+                    ExpectedText = MainPageExpectedValue.ConfigFileHeadingText;
                     break;
                 case "asset tag":
                     heading = mainPage.AssetTagHeading;
-                    ExpectedText = MainPage.ExpectedValues.AssetTagHeadingText;
+                    ExpectedText = MainPageExpectedValue.AssetTagHeadingText;
                     break;
                 case "serial number":
                     heading = mainPage.SerialNumberHeading;
-                    ExpectedText = MainPage.ExpectedValues.SerialNumberHeadingText;
+                    ExpectedText = MainPageExpectedValue.SerialNumberHeadingText;
                     break;
                 case "location":
                     heading = mainPage.LocationHeading;
-                    ExpectedText = MainPage.ExpectedValues.LocationHeadingText;
+                    ExpectedText = MainPageExpectedValue.LocationHeadingText;
                     break;
                 case "last connected":
                     heading = mainPage.LastConnectedHeading;
-                    ExpectedText = MainPage.ExpectedValues.LastConnectedHeadingText;
+                    ExpectedText = MainPageExpectedValue.LastConnectedHeadingText;
                     break;
                 case "pm due":
                     heading = mainPage.PMDueHeading;
-                    ExpectedText = MainPage.ExpectedValues.PmDueHeadingText;
+                    ExpectedText = MainPageExpectedValue.PmDueHeadingText;
                     break;
                 default: Assert.Fail(columnHeading+" is an invalid heading name.");
                     break;
@@ -180,7 +181,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenAssetTypeDrop_DownDisplaysAllAssetsSelected()
         {
             string AssetTypeDropdownSelectedOption = mainPage.AssetTypeDropDown.GetSelectedOptionFromDDL();
-            string ExpectedOption = MainPage.ExpectedValues.AllAssetsText;
+            string ExpectedOption = MainPageExpectedValue.AllAssetsText;
             Assert.AreEqual(ExpectedOption, AssetTypeDropdownSelectedOption, AssetTypeDropdownSelectedOption + " option is selected in Asset type dropdown");
         }
 

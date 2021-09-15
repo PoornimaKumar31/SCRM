@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.ComponentInformation;
 using HillromAutomationFramework.PageObjects.Component_Information;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
@@ -46,7 +48,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CSMDeviceName);
             _csmAssetListPage.GetDeviceCount().Should().BeGreaterThan(1);
         }
 
@@ -101,7 +103,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CSMDeviceName);
             
             _csmAssetListPage.GetDeviceCount().Should().BeGreaterThan(1);
             Thread.Sleep(2000);
@@ -142,7 +144,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch (ColumnName.ToLower().Trim())
             {
                 case "usage":
-                    ExpectedColumnIndex = CSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    ExpectedColumnIndex = 5;
                     break;
                 default:
                     Assert.Fail(ColumnName + " is invalid");
@@ -197,7 +199,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch (ColumnName.ToLower().Trim())
             {
                 case "usage":
-                    ExpectedColumnIndex = CSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    ExpectedColumnIndex = int.Parse(AssetListPageExpectedValue.UsageColumnIndex);
                     break;
                 default:
                     Assert.Fail(ColumnName + " is invalid");
@@ -373,7 +375,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch (ColumnName.ToLower().Trim())
             {
                 case "usage":
-                    ExpectedColumnIndex = CSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    ExpectedColumnIndex = int.Parse(AssetListPageExpectedValue.UsageColumnIndex);
                     break;
                 default:
                     Assert.Fail(ColumnName + " is invalid");
@@ -549,7 +551,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch (ColumnName.ToLower().Trim())
             {
                 case "usage":
-                    ExpectedColumnIndex = CSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    ExpectedColumnIndex = int.Parse(AssetListPageExpectedValue.UsageColumnIndex);
                     break;
                 default:
                     Assert.Fail(ColumnName + " is invalid");
@@ -659,7 +661,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch (ColumnName.ToLower().Trim())
             {
                 case "usage":
-                    ExpectedColumnIndex = CSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    ExpectedColumnIndex = int.Parse(AssetListPageExpectedValue.UsageColumnIndex);
                     break;
                 default:
                     Assert.Fail(ColumnName + " is invalid");
@@ -810,7 +812,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch (ColumnName.ToLower().Trim())
             {
                 case "usage":
-                    ExpectedColumnIndex = CSMAssetListPage.ExpectedValue.UsageColumnIndex;
+                    ExpectedColumnIndex = int.Parse(AssetListPageExpectedValue.UsageColumnIndex);
                     break;
                 default:
                     Assert.Fail(ColumnName + " is invalid");

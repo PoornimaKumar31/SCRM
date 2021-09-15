@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.SupportingCode;    
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -51,7 +52,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             //Searching serial number and clicking on device
-            _mainPage.SearchSerialNumberAndClick(CSMDeviceDetailsPage.ExpectedValues.SerialNumberwithRoomAndBed);
+            _mainPage.SearchSerialNumberAndClick(CSMDeviceDetailsPageExpectedValues.SerialNumberwithRoomAndBed);
             Thread.Sleep(2000);
             
             //Storing the value of current room and bed details

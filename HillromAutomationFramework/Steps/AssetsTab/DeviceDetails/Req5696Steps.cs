@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -44,7 +46,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CVSMDeviceName);
             Thread.Sleep(2000);
             _mainPage.SearchSerialNumberAndClick("100020000000");
         }
@@ -69,7 +71,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         {
              _cvsmDeviceDetailsPage.EditAssetDetailsPopUpTitle.GetElementVisibility().Should().BeTrue("Edit Asset Details title is not displayed");
             string ActualTitle = _cvsmDeviceDetailsPage.EditAssetDetailsPopUpTitle.Text;
-            string ExpectedTitle = CVSMDeviceDetailsPage.ExpectedValues.EditAssetDetailsPopUpTitle;
+            string ExpectedTitle = CVSMDeviceDetailsPageExpectedValue.EditAssetDetailsPopUpTitle;
             Assert.AreEqual(ExpectedTitle, ActualTitle,"Edit asset title does not match the expected value.");
         }
         
@@ -115,7 +117,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CVSMDeviceName);
             Thread.Sleep(1000);
             _mainPage.SearchSerialNumberAndClick("100020000002");
             //to load the device details
@@ -175,7 +177,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         {
              _cvsmDeviceDetailsPage.BedLabel.GetElementVisibility().Should().BeTrue("Bed field hint text is not displayed.");
             string ActualHintText = _cvsmDeviceDetailsPage.BedLabel.Text;
-            string ExpectedHintText = CVSMDeviceDetailsPage.ExpectedValues.BedLabelHintText;
+            string ExpectedHintText = CVSMDeviceDetailsPageExpectedValue.BedLabelHintText;
             ActualHintText.Should().BeEquivalentTo(ExpectedHintText,"Bed Field hint text is matches the expected value.");
         }
 
@@ -190,7 +192,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
         {
              _cvsmDeviceDetailsPage.RoomLabel.GetElementVisibility().Should().BeTrue("Room field hint text is not displayed.");
             string ActualHintText = _cvsmDeviceDetailsPage.RoomLabel.Text;
-            string ExpectedHintText = CVSMDeviceDetailsPage.ExpectedValues.RoomLabelHintText;
+            string ExpectedHintText = CVSMDeviceDetailsPageExpectedValue.RoomLabelHintText;
             ActualHintText.Should().BeEquivalentTo(ExpectedHintText, "Room field hint text is not matching with the expected value.");
         }
 

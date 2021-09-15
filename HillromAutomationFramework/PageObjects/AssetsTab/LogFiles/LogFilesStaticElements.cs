@@ -20,13 +20,6 @@ namespace HillromAutomationFramework.PageObjects
             public const string PageNumberID = "pageNumber";
 
         }
-
-        /// Expected values in the login page.
-        public static class ExpectedValues
-        {
-            public const string LogFilesLabel = "LOG FILES";
-            public const string RequestLogButton = "Request Log";
-        }
         public LogFilesStaticElements(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);

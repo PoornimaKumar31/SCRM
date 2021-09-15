@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.LoginPageObject;
 using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -40,17 +41,17 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenForgotSmartCareRemoteManagementTitle()
         {
             _forgotPassword.ApplicationTitle.GetElementVisibility().Should().BeTrue(because:"Application title should be displayed in Forgot Password page.");
-            _forgotPassword.ApplicationTitle.Text.Should().BeEquivalentTo(ForgotPasswordPage.ExpectedValues.ApplicationTitle, "Application title is not matching with the expected value.");
+            _forgotPassword.ApplicationTitle.Text.Should().BeEquivalentTo(ForgotPasswordPageExpectedValue.ApplicationTitle, "Application title is not matching with the expected value.");
             //Application subtitle verification
             _forgotPassword.ApplicationSubtitle.GetElementVisibility().Should().BeTrue("Application sub-title is not displayed");
-            _forgotPassword.ApplicationSubtitle.Text.Should().BeEquivalentTo(ForgotPasswordPage.ExpectedValues.ApplicationSubTitle, "Application sub-title is not matching with the expected value.");
+            _forgotPassword.ApplicationSubtitle.Text.Should().BeEquivalentTo(ForgotPasswordPageExpectedValue.ApplicationSubTitle, "Application sub-title is not matching with the expected value.");
         }
         
         [Then(@"Reset instructions is displayed")]
         public void ThenResetInstructions()
         {
             _forgotPassword.ResetPasswordInstructions.GetElementVisibility().Should().BeTrue("Reset instructions are not displayed");
-            string ExpectedInstructions = ForgotPasswordPage.ExpectedValues.ResetPasswordInstructionsText;
+            string ExpectedInstructions = ForgotPasswordPageExpectedValue.ResetPasswordInstructionsText;
             string ActualInstructions = _forgotPassword.ResetPasswordInstructions.Text;
             ActualInstructions.Should().BeEquivalentTo(ExpectedInstructions,"Reset instructions does not match with the expected text");
         }

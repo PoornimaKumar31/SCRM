@@ -15,11 +15,6 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
             PageFactory.InitElements(driver, this);
         }
 
-        public class ExpectedValue
-        {
-            public const string ServiceManualPDFName = "193588_11.pdf";
-        }
-
         public class Locators
         {
             public const string ErrorCodeTabXPath = "//div[@class = 'mat-tab-list']/div/div[1]";

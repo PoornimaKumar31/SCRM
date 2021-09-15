@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.LoginPageObject;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -51,7 +52,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenSmartCareRemoteManagementTitleIsDisplayed()
         {
             _loginpage.ApplicationTitle.GetElementVisibility().Should().BeTrue("Smartcare remote mangement title is not displayed\n");
-            string ExpectedApplicationText = LoginPage.ExpectedValues.ApplicationTitleText;
+            string ExpectedApplicationText = LoginPageExpectedValue.ApplicationTitleText;
             string ActualApplicationText = _loginpage.ApplicationTitle.Text;
             ActualApplicationText.Should().BeEquivalentTo(ExpectedApplicationText, "Smartcare remote mangement title is not matching with the expected value");
         }
@@ -60,7 +61,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenLoginInstructionsIsDisplayed()
         {
             _loginpage.LoginInstructions.GetElementVisibility().Should().BeTrue("Login instructions are not displayed");
-            string ExpectedInstructionsText = LoginPage.ExpectedValues.LoginInstructionsText;
+            string ExpectedInstructionsText = LoginPageExpectedValue.LoginInstructionsText;
             string ActualInstructionsText = _loginpage.LoginInstructions.Text;
             ActualInstructionsText.Should().BeEquivalentTo(ExpectedInstructionsText,"Login instructions text is not matching with expected value");
         }
@@ -69,12 +70,12 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenReadyToGetStartedMessageIsDisplayed()
         {
             _loginpage.GetStartedTitle.GetElementVisibility().Should().BeTrue("Ready to get started title is not displayed");
-            string ExpectedGetStartedTitle = LoginPage.ExpectedValues.GetStartedTitleText;
+            string ExpectedGetStartedTitle = LoginPageExpectedValue.GetStartedTitleText;
             string ActualGetStartedTitle = _loginpage.GetStartedTitle.Text;
             Assert.AreEqual(ExpectedGetStartedTitle, ActualGetStartedTitle,"Ready to get started title text not matches with the expected value");
 
             _loginpage.GetStartedMessage.GetElementVisibility().Should().BeTrue("Ready to get started message is not displayed");
-            string ExpectedGetStartedMessage = LoginPage.ExpectedValues.GetStartedMessageText;
+            string ExpectedGetStartedMessage = LoginPageExpectedValue.GetStartedMessageText;
             string ActualGetStartedMessage = _loginpage.GetStartedMessage.Text;
             ActualGetStartedMessage.Should().BeEquivalentTo(ExpectedGetStartedMessage, "Ready to get started message text not matches with the expected value");
 
@@ -83,8 +84,8 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"copyright message is displayed")]
         public void ThenCopyrightMessageIsDisplayed()
         {
-            _loginpage.CopyRight.Text.Should().BeEquivalentTo(LoginPage.ExpectedValues.CopyRight, "Copyright message is not matching with the expected value.");
-            _loginpage.Rights.Text.Should().BeEquivalentTo(LoginPage.ExpectedValues.RightsReservedMessage, "Right reserved message is not matching with the expected value");
+            _loginpage.CopyRight.Text.Should().BeEquivalentTo(LoginPageExpectedValue.CopyRight, "Copyright message is not matching with the expected value.");
+            _loginpage.Rights.Text.Should().BeEquivalentTo(LoginPageExpectedValue.RightsReservedMessage, "Right reserved message is not matching with the expected value");
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -41,7 +43,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CVSMDeviceName);
             
             //select the row according to the data 
             _mainPage.SearchSerialNumberAndClick("100020000004");
@@ -78,7 +80,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            _cvsmDeviceDetailsPage.LogsRequestButton.GetAttribute("class").Should().BeEquivalentTo(CVSMDeviceDetailsPage.ExpectedValues.RequestLogButtonDisabledClassName, "Request Logs button is not disabled");
+            _cvsmDeviceDetailsPage.LogsRequestButton.GetAttribute("class").Should().BeEquivalentTo(CVSMDeviceDetailsPageExpectedValue.RequestLogButtonDisabledClassName, "Request Logs button is not disabled");
         }
 
     }

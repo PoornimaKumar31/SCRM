@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.LandingPageObjects;
 using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -40,7 +41,7 @@ namespace HillromAutomationFramework.Steps.Landing
         public void ThenRoll_UpPageIsDisplayed()
         {
             string ActualURL = _driver.Url;
-            string ExpectedURL = LandingPage.ExpectedValues.RollupPageURL;
+            string ExpectedURL = PropertyClass.BaseURL+ LandingPageExpectedValue.RollupPageURL;
             ActualURL.Should().BeEquivalentTo(ExpectedURL, "Roll up page is not displayed");
         }
 
@@ -53,7 +54,7 @@ namespace HillromAutomationFramework.Steps.Landing
         [Given(@"Roll-up page is displayed")]
         public void GivenRoll_UpPageIsDisplayed()
         {
-            string ExpectedValue = LandingPage.ExpectedValues.RollupPageURL;
+            string ExpectedValue = PropertyClass.BaseURL + LandingPageExpectedValue.RollupPageURL;
             string ActualValue = _driver.Url;
             ActualValue.Should().BeEquivalentTo(ExpectedValue, "User is not on landing page");
         }
@@ -62,21 +63,21 @@ namespace HillromAutomationFramework.Steps.Landing
         public void ThenOrganizationNameIsDisplayed()
         {
             //L&T Automated Test East
-            _landingPage.LNTAutomatedTestEastOrganizationTitle.GetElementVisibility().Should().BeTrue("Organization " + LandingPage.ExpectedValues.LNTAutomatedTestEastOrganizationTitle + " name is not displayed");
+            _landingPage.LNTAutomatedTestEastOrganizationTitle.GetElementVisibility().Should().BeTrue("Organization " + LandingPageExpectedValue.LNTAutomatedTestEastOrganizationTitle + " name is not displayed");
             string ActualTitle = _landingPage.LNTAutomatedTestEastOrganizationTitle.Text;
-            string ExpectedTitle = LandingPage.ExpectedValues.LNTAutomatedTestEastOrganizationTitle;
+            string ExpectedTitle = LandingPageExpectedValue.LNTAutomatedTestEastOrganizationTitle;
             ActualTitle.Should().BeEquivalentTo(ExpectedTitle, ExpectedTitle + " name is not matching with the expected value.");
 
             //L & T Automated Test
-            _landingPage.LNTAutomatedTestOrganizationTitle.GetElementVisibility().Should().BeTrue("Organization " + LandingPage.ExpectedValues.LNTAutomatedTestOrganizationTitle + " name is not displayed");
+            _landingPage.LNTAutomatedTestOrganizationTitle.GetElementVisibility().Should().BeTrue("Organization " + LandingPageExpectedValue.LNTAutomatedTestOrganizationTitle + " name is not displayed");
             ActualTitle = _landingPage.LNTAutomatedTestOrganizationTitle.Text;
-            ExpectedTitle = LandingPage.ExpectedValues.LNTAutomatedTestOrganizationTitle;
+            ExpectedTitle = LandingPageExpectedValue.LNTAutomatedTestOrganizationTitle;
             ActualTitle.Should().BeEquivalentTo(ExpectedTitle, ExpectedTitle + " name is not matching with the expected value.");
 
             //LT Automated Eye Test
-            _landingPage.LNTAutomatedEyeTestOrganizationTitle.GetElementVisibility().Should().BeTrue("Organization " + LandingPage.ExpectedValues.LNTAutomatedEyeTestOrganizationTitle + " name is not displayed");
+            _landingPage.LNTAutomatedEyeTestOrganizationTitle.GetElementVisibility().Should().BeTrue("Organization " + LandingPageExpectedValue.LNTAutomatedEyeTestOrganizationTitle + " name is not displayed");
             ActualTitle = _landingPage.LNTAutomatedEyeTestOrganizationTitle.Text;
-            ExpectedTitle = LandingPage.ExpectedValues.LNTAutomatedEyeTestOrganizationTitle;
+            ExpectedTitle = LandingPageExpectedValue.LNTAutomatedEyeTestOrganizationTitle;
             ActualTitle.Should().BeEquivalentTo(ExpectedTitle, ExpectedTitle + " name is not matching with the expected value.");
         }
 
@@ -84,27 +85,27 @@ namespace HillromAutomationFramework.Steps.Landing
         public void ThenFacilityNameIsDisplayed()
         {
             // //L&T Automated Test East Organization facility -Test4
-            _landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.GetElementVisibility().Should().BeTrue("Facility " + LandingPage.ExpectedValues.LNTAutomatedTestEastOrganizationFacilityTest4 + " name is not displayed.");
+            _landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.GetElementVisibility().Should().BeTrue("Facility " + LandingPageExpectedValue.LNTAutomatedTestEastOrganizationFacilityTest4 + " name is not displayed.");
             string ActualFacilityPanlelTitle = _landingPage.LNTAutomatedTestEastOrganizationFacilityPanelTest4Title.Text;
-            string ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.LNTAutomatedTestEastOrganizationFacilityTest4;
+            string ExpectedFacilityPanelTitle = LandingPageExpectedValue.LNTAutomatedTestEastOrganizationFacilityTest4;
             ActualFacilityPanlelTitle.Should().BeEquivalentTo(ExpectedFacilityPanelTitle, ExpectedFacilityPanelTitle+" title is not matching with the expected value.");
 
             //L&T Automated Test Organization facility test1
-            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.GetElementVisibility().Should().BeTrue("Facility " + LandingPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityTest1 + " name is not displayed.");
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.GetElementVisibility().Should().BeTrue("Facility " + LandingPageExpectedValue.LNTAutomatedTestOrganizationFacilityTest1 + " name is not displayed.");
             ActualFacilityPanlelTitle = _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Text;
-            ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityTest1;
+            ExpectedFacilityPanelTitle = LandingPageExpectedValue.LNTAutomatedTestOrganizationFacilityTest1;
             ActualFacilityPanlelTitle.Should().BeEquivalentTo(ExpectedFacilityPanelTitle, ExpectedFacilityPanelTitle+ " title is not matching with the expected value.");
 
             //L&T Automated Test Organization facility test2
-            _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.GetElementVisibility().Should().BeTrue("Facility " + LandingPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityTest2 + " name is not displayed.");
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.GetElementVisibility().Should().BeTrue("Facility " + LandingPageExpectedValue.LNTAutomatedTestOrganizationFacilityTest2 + " name is not displayed.");
             ActualFacilityPanlelTitle = _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Text;
-            ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityTest2;
+            ExpectedFacilityPanelTitle = LandingPageExpectedValue.LNTAutomatedTestOrganizationFacilityTest2;
             ActualFacilityPanlelTitle.Should().BeEquivalentTo(ExpectedFacilityPanelTitle, ExpectedFacilityPanelTitle+" title is not matching with the expected value.");
 
             //L&T Automated Eye Test Organization
-            _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.GetElementVisibility().Should().BeTrue("Facility " + LandingPage.ExpectedValues.LNTAutomatedEyeTestOrganizationFacilityTest1 + " name is not displayed.");
+            _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.GetElementVisibility().Should().BeTrue("Facility " + LandingPageExpectedValue.LNTAutomatedEyeTestOrganizationFacilityTest1 + " name is not displayed.");
             ActualFacilityPanlelTitle = _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Text;
-            ExpectedFacilityPanelTitle = LandingPage.ExpectedValues.LNTAutomatedEyeTestOrganizationFacilityTest1;
+            ExpectedFacilityPanelTitle = LandingPageExpectedValue.LNTAutomatedEyeTestOrganizationFacilityTest1;
             ActualFacilityPanlelTitle.Should().BeEquivalentTo(ExpectedFacilityPanelTitle, ExpectedFacilityPanelTitle+" title is not matching with the expected value.");
         }
 

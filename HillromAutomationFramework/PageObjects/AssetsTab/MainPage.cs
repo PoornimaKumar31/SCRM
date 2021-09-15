@@ -81,60 +81,6 @@ namespace HillromAutomationFramework.PageObjects
             public const string PaginationNextIconID = "next";
             public const string PaginationPreviousIconID = "previous";
         }
-        public static class ExpectedValues
-        {
-            public static string MainpageURL = PropertyClass.BaseURL+ "/index.html#/landing-page/devices";
-
-            public const string GlobalServiceCenterURL = "https://www.hillrom.com/en/services/";
-            public const string ContactUsURL = "https://www.hillrom.com/en/about-us/contact-us/";
-            public const string TermsAndConditonsURL = "https://www.hillrom.com/en/about-us/hill-rom-terms-and-conditions/";
-            public const string PrivacyPolicyURL = "https://www.hillrom.com/en/about-us/global-privacy-notice/";
-
-            public const string OrganizationLabelText = "Organization";
-            public const string AssetTypeLabelText = "Asset type";
-
-            //table headings
-            public const string TypeHeadingText = "Type";
-            public const string FirmwareHeadingText = "Firmware";
-            public const string ConfigFileHeadingText = "Config file";
-            public const string AssetTagHeadingText = "Asset tag";
-            public const string SerialNumberHeadingText = "Serial number";
-            public const string LocationHeadingText = "Location";
-            public const string LastConnectedHeadingText = "Last connected";
-            public const string PmDueHeadingText = "PM due";
-            public const string StatusHeadingText = "Status";
-
-
-            //Asset type dropdowm elements
-            public const string AllAssetsText = "All assets";
-            public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
-            public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
-            public const string RV700DeviceName = "RetinaVue 700 (RV700)";
-            public const string CentrellaDeviceName = "Centrella";
-
-            //search elements
-            public static int AllOrganizationsDevicesListWithRollUp = 31;
-            public const string SearchFieldHintText = "Search";
-            public const string PartialFirmwareVersionText = "1.52";
-            public const string ValidPartialString = "CV";
-            public static string PartialTypeText = "CV";
-            public static string PartialAssetTagText = "CV";
-            public const string PartialSerialNumberText = "10001";
-            public const string InvalidPartialString = "ICV";
-            public const string MACAddressText = "AP=B4:DE:31:0B:91:E4";
-            public const int MACTotalRecords = 7;
-
-            //device count
-            public const int AllOrgnaizationDevicesCount = 1308;
-            public const int AllOrgnaizationCSMDevicesCount = 12;
-            public const int AllOrgnaizationCVSMDevicesCount = 19;
-            public const int AllOrgnaizationRV700DevicesCount = 24;
-            public const int LNTAutomatedTestOrganizationDeviceCount = 194;
-            public const int LNTAutomatedTestOrganizationFacilityOneDeviceCount = 31;
-            public const int LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount = 12;
-            public const int PSSServiceBastesvilleDeviceCount = 58;
-
-        }
 
         public MainPage(IWebDriver driver)
         {
