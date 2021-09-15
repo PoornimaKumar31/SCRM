@@ -70,7 +70,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         public void ThenAssetDetailsSummarySubsectionIsDisplayed()
         {
             Thread.Sleep(2000);
-            bool isAssetDetailsSummarySubsectionDisplayed = _csmDeviceDetailsPage.AssetDetailsSummary.GetElementVisibility();
+            bool isAssetDetailsSummarySubsectionDisplayed =_driver.FindElement(By.Id("cvsm_details_summary")).GetElementVisibility();
             isAssetDetailsSummarySubsectionDisplayed.Should().BeTrue("Asset Details Summary subsection is not displayed.");
         }
 
