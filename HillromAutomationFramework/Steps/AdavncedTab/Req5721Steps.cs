@@ -381,8 +381,10 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             int IsAllUserRowPhoneNull = -1;
             string phone = null;
             int NoOfDetailsButton = _advancePage.DetailsButtonList.Count;
+            IList<IWebElement> list = _advancePage.UserList;
             for (detailsButtonPosition = 0; detailsButtonPosition < NoOfDetailsButton; detailsButtonPosition++)
             {
+                SelectedUserName = list[detailsButtonPosition].FindElement(By.Id("full_name" + detailsButtonPosition)).Text;
                 _advancePage.DetailsButtonList[detailsButtonPosition].Click();
                 phone = _advancePage.PhoneTextField.GetAttribute("value");
                 if (phone == "")
@@ -469,6 +471,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void WhenUserClicksDetailsButtonForUserWithAdministratorRole()
         {   
             int NoOfDetailsButton = _advancePage.DetailsButtonList.Count;
+            IList<IWebElement> list = _advancePage.UserList;
             //Iterating through the user list
             for (detailsButtonPosition = 0; detailsButtonPosition < NoOfDetailsButton; detailsButtonPosition++)
             {
@@ -480,6 +483,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                     string Role = _driver.FindElement(By.XPath(roleXpath)).Text;
                     if (Role == AdvancePageExpectedValues.UserRoleAdministratorOnUserListPage)
                     {
+                        SelectedUserName = list[detailsButtonPosition].FindElement(By.Id("full_name" + detailsButtonPosition)).Text;
                         _advancePage.DetailsButtonList[detailsButtonPosition].Click();
                         break;
                     }
