@@ -46,8 +46,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             _mainPage.ReportsTab.JavaSciptClick(_driver);
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
             _reportsPage.GetReportButton.Click();
         }
         
@@ -72,11 +72,11 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch(searchType.ToLower().Trim())
             {
                 case "serial number":
-                    searchText = ActivityReportPage.ExpectedValues.SerialNumberSearchText;
+                    searchText = ActivityReportPageExpectedValues.SerialNumberSearchText;
                     break;
 
                 case "location":
-                    searchText = ActivityReportPage.ExpectedValues.LocationSearchText;
+                    searchText = ActivityReportPageExpectedValues.LocationSearchText;
                     break;
 
                 default: Assert.Fail(searchType + " is a invalid search type");
@@ -97,12 +97,12 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             {
                 case "serial number":
                     column = _activityReportPage.SerialNumberColumn;
-                    ExpectedSearchText = ActivityReportPage.ExpectedValues.SerialNumberSearchText;
+                    ExpectedSearchText = ActivityReportPageExpectedValues.SerialNumberSearchText;
                     break;
 
                 case "location":
                     column = _activityReportPage.LocationColumn;
-                    ExpectedSearchText = ActivityReportPage.ExpectedValues.LocationSearchText;
+                    ExpectedSearchText = ActivityReportPageExpectedValues.LocationSearchText;
                     break;
 
                 default: Assert.Fail(searchType + " is invalid search type.");

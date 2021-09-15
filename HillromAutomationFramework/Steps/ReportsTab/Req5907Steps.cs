@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.ReportsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -19,7 +20,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
-        private readonly FirmwareStatusPage _firmwareStatusPage;
+        private readonly FirmwareStatusReportPage _firmwareStatusPage;
 
         IDictionary<string, string> statusDefinationPairs;
 
@@ -37,7 +38,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
             _reportsPage = new ReportsPage(driver);
-            _firmwareStatusPage = new FirmwareStatusPage(driver);
+            _firmwareStatusPage = new FirmwareStatusReportPage(driver);
         }
 
         [Given(@"user is on CSM Firmware Upgrade Status report page")]
@@ -47,8 +48,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id("deviceTable")));
             _mainPage.ReportsTab.JavaSciptClick(_driver);
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
         }
         
@@ -69,7 +70,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             (_firmwareStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue(because: "CSM Firmware report staus header should be displayed in CSM firmware report status dialog box");
             string ActualHeaderText = _firmwareStatusPage.InformationPopUpHeader.Text;
-            string ExpectedHeaderText = FirmwareStatusPage.ExpectedValues.CSMInformationPopUPHeaderText;
+            string ExpectedHeaderText = FirmwareStatusReportPageExpectedValues.CSMInformationPopUPHeaderText;
             ActualHeaderText.Should().BeEquivalentTo(ExpectedHeaderText, because: "CSM Firmware report status header text should match with the expected text");
         }
 
@@ -84,37 +85,37 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (statustitle.ToLower().Trim())
             {
                 case "started":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMStratedDefinition;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMStartedDefinition;
                     break;
                 case "available":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMAvailableDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMAvailableDefination;
                     break;
                 case "downloading":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMDownloadingDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMDownloadingDefination;
                     break;
                 case "downloaded":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMDownloadedDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMDownloadedDefination;
                     break;
                 case "scheduled":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMScheduledDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMScheduledDefination;
                     break;
                 case "updating":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMUpdatingDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMUpdatingDefination;
                     break;
                 case "applied":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMAppliedDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMAppliedDefination;
                     break;
                 case "cancel requested":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMCancelRequestedDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMCancelRequestedDefination;
                     break;
                 case "canceling":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMCancelingDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMCancelingDefination;
                     break;
                 case "download failed":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMDownloadFailedDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMDownloadFailedDefination;
                     break;
                 case "failed":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CSMFailedDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CSMFailedDefination;
                     break;
                 default:
                     Assert.Fail(statustitle + " does not exist in test data");
@@ -164,8 +165,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             _mainPage.ReportsTab.JavaSciptClick(_driver);
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.RV700DeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
         }
 
@@ -180,7 +181,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             (_firmwareStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue(because: "RV700 Firmware report status header should be displayed in RV700 Firmware Report Statuses dialog box");
             string ActualHeaderText = _firmwareStatusPage.InformationPopUpHeader.Text;
-            string ExpectedHeaderText = FirmwareStatusPage.ExpectedValues.RV700InformationPopUPHeaderText;
+            string ExpectedHeaderText = FirmwareStatusReportPageExpectedValues.RV700InformationPopUPHeaderText;
             ActualHeaderText.Should().BeEquivalentTo(ExpectedHeaderText, because: "RV700 report status header text should match with expected text.");
         }
 
@@ -195,16 +196,16 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (statusTitle.ToLower().Trim())
             {
                 case "started":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.RV700StratedDefinition;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.RV700StartedDefinition;
                     break;
                 case "available":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.RV700AvailableDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.RV700AvailableDefination;
                     break;
                 case "complete":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.RV700CompleteDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.RV700CompleteDefination;
                     break;
                 case "failure":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.RV700FailureDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.RV700FailureDefination;
                     break;
                 default:
                     Assert.Fail(statusTitle + " does not exist in test data");
@@ -242,15 +243,15 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             _mainPage.ReportsTab.JavaSciptClick(_driver);
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
         }
 
         [Then(@"Centrella Firmware Report Statuses dialog is displayed")]
         public void ThenCentrellaFirmwareReportStatusesDialogIsDisplayed()
         {
-            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareStatusPage.Locators.InformationPopUpId)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareStatusReportPage.Locators.InformationPopUpId)));
             (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("Centrella Firmware Report Statuses dialog should be displayed When user clicks information button on Centrella Firmware Upgrade Status report page.");
         }
 
@@ -258,7 +259,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void ThenCentrellaFirmwareReportStatusesHeaderIsDisplayed()
         {
             (_firmwareStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue(because: "Centrella firmware report header should be displayed in Centrella Firmware Report Statuses dialog");
-            (_firmwareStatusPage.InformationPopUpHeader.Text).Should().BeEquivalentTo(FirmwareStatusPage.ExpectedValues.CentrellaInformationPopUpHeaderText, because: "Centrella firmware report header should match with the expected value.");
+            (_firmwareStatusPage.InformationPopUpHeader.Text).Should().BeEquivalentTo(FirmwareStatusReportPageExpectedValues.CentrellaInformationPopUpHeaderText, because: "Centrella firmware report header should match with the expected value.");
         }
 
         [Then(@"""(.*)"" status and definition of Centrella is displayed")]
@@ -272,37 +273,37 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch (statusTitle.ToLower().Trim())
             {
                 case "started":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStartedDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaStartedDefination;
                     break;
                 case "downloading":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaDownloadingDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaDownloadingDefination;
                     break;
                 case "staging":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStagingDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaStagingDefination;
                     break;
                 case "staging complete":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStagingCompleteDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaStagingCompleteDefination;
                     break;
                 case "toggling":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaTogglingDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaTogglingDefination;
                     break;
                 case "toggle complete":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaTogglingCompleteDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaTogglingCompleteDefination;
                     break;
                 case "upgrade success":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaUpgradeSuccessDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaUpgradeSuccessDefination;
                     break;
                 case "download failure":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaDownloadFailureDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaDownloadFailureDefination;
                     break;
                 case "staging failure":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStagingFailureDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaStagingFailureDefination;
                     break;
                 case "staging inconsistent":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaStagingInconsistentDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaStagingInconsistentDefination;
                     break;
                 case "toggle failure":
-                    ExpectedDefinaton = FirmwareStatusPage.ExpectedValues.CentrellaToggeleFailureDefination;
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.CentrellaToggeleFailureDefination;
                     break;
                 default:
                     Assert.Fail(statusTitle + " does not exist in test data");
@@ -315,7 +316,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         public void GivenCentrellaFirmwareReportStatusesDialogIsDisplayed()
         {
             _firmwareStatusPage.InformationButton.Click();
-            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareStatusPage.Locators.InformationPopUpId)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareStatusReportPage.Locators.InformationPopUpId)));
             (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("Centrella Firmware Report Statuses dialog should be displayed When user clicks information button on Centrella Firmware Upgrade Status report page.");
         }
 

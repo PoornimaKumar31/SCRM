@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -41,7 +41,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
 
             //Selecting Service Moniter Page
             _mainPage.UpdatesTab.JavaSciptClick(_driver);
-            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
+            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPageExpectedValues.ServiceMoniterText);
             bool IsServiceMiniterSettingsPageDisplayed = (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()) || (_serviceMoniterPage.DeploymentModeLabel.GetElementVisibility());
             (IsServiceMiniterSettingsPageDisplayed).Should().BeTrue(because: "Service Monitor Settings page should be displayed when user selects Service moniter in updates tab");
         }
@@ -69,7 +69,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         {
             (_serviceMoniterPage.UpdateMessage.GetElementVisibility()).Should().BeTrue(because:"Update message should be displayed when user clicks on the confirm button");
             string updateMessageText = _serviceMoniterPage.UpdateMessage.Text;
-            (updateMessageText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.UpdateMessageText, because: "Update message should match with the expected text");
+            (updateMessageText).Should().BeEquivalentTo(ServiceMonitorPageExpectedValues.UpdateMessageText, because: "Update message should match with the expected text");
         }
     }
 }

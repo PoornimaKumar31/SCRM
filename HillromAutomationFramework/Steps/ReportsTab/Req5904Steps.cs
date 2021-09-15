@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.ReportsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -18,7 +19,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
-        private readonly CSMConfigStatusPage _csmConfigStatusPage;
+        private readonly ConfigStatusReportPage _csmConfigStatusPage;
 
 
         IDictionary<string, string> statusDefinationPairs;
@@ -36,7 +37,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
             _reportsPage = new ReportsPage(driver);
-            _csmConfigStatusPage = new CSMConfigStatusPage(driver);
+            _csmConfigStatusPage = new ConfigStatusReportPage(driver);
         }
 
 
@@ -47,8 +48,8 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id("deviceTable")));
             _mainPage.ReportsTab.JavaSciptClick(_driver);
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ConfigurationReportType);
             _reportsPage.GetReportButton.Click();
         }
         
@@ -69,7 +70,7 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
         {
             (_csmConfigStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue("CSM Configuration report status header should be displayed in information dialog box");
             string ActualHeaderText = _csmConfigStatusPage.InformationPopUpHeader.Text;
-            string ExpectedHeaderText = CSMConfigStatusPage.ExpectedValues.InformationPopUPHeaderText;
+            string ExpectedHeaderText = ConfigStatusReportPageExpectedValues.InformationPopUPHeaderText;
             ActualHeaderText.Should().BeEquivalentTo(ExpectedHeaderText, "CSM Configuration report status header text should match with the expected value");
         }
 
@@ -84,19 +85,19 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             switch(statustitle.ToLower().Trim())
             {
                 case "started":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.StratedDefinition;
+                    ExpectedDefinaton = ConfigStatusReportPageExpectedValues.StratedDefinition;
                     break;
                 case "transferred":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.TransferredDefinitation;
+                    ExpectedDefinaton = ConfigStatusReportPageExpectedValues.TransferredDefinitation;
                     break;
                 case "available":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.AvailableDefinitation;
+                    ExpectedDefinaton = ConfigStatusReportPageExpectedValues.AvailableDefinitation;
                     break;
                 case "applied":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.AppliedDefinitation;
+                    ExpectedDefinaton = ConfigStatusReportPageExpectedValues.AppliedDefinitation;
                     break;
                 case "failed":
-                    ExpectedDefinaton = CSMConfigStatusPage.ExpectedValues.FailedDefinition;
+                    ExpectedDefinaton = ConfigStatusReportPageExpectedValues.FailedDefinition;
                     break;
                 default: Assert.Fail(statustitle+" does not exist in test data");
                     break;

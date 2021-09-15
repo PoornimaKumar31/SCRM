@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -50,27 +51,27 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             _mainPage.UpdatesTab.JavaSciptClick(_driver);
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CSMDeviceName);
         }
 
         [Given(@"CSM Asset type is selected")]
         public void GivenCSMAssetTypeIsSelected()
         {
             string SelectedOptionInAssetType = _updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL();
-            (SelectedOptionInAssetType).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName, because: "CSM option should be displayed in asset type dropdown when user selects asset type as CSM in updates tab.");
+            (SelectedOptionInAssetType).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.CSMDeviceName, because: "CSM option should be displayed in asset type dropdown when user selects asset type as CSM in updates tab.");
         }
 
         [When(@"user selects Upgrade Update type")]
         public void WhenUserSelectsUpgradeUpdateType()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
         }
 
         [Then(@"Upgrade displays as Update type")]
         public void ThenUpgradeDisplaysAsUpdateType()
         {
             string SelectedOptionInUpdateType = _updatesSelectUpdatePage.UpgradeTypeDropDown.GetSelectedOptionFromDDL();
-            (SelectedOptionInUpdateType).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade, because: "Upgrade option should be displayed in update type dropdown when user selects update type as Upgrade in updates tab.");
+            (SelectedOptionInUpdateType).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade, because: "Upgrade option should be displayed in update type dropdown when user selects update type as Upgrade in updates tab.");
         }
 
         [Then(@"CSM upgrade list is displayed")]
@@ -91,7 +92,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updatesSelectUpdatePage.NameColumnHeading.GetElementVisibility()).Should().BeTrue(because: "Name column heading should be displayed in CSM Upgrades page");
             string NameColumnHeadingText = _updatesSelectUpdatePage.NameColumnHeading.Text;
-            (NameColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.TableNameHeadingText, because: "Name column heading should match with the expected value in CSM Upgrades page.");
+            (NameColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.TableNameHeadingText, because: "Name column heading should match with the expected value in CSM Upgrades page.");
         }
 
         [Then(@"Date created column heading is displayed")]
@@ -99,7 +100,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updatesSelectUpdatePage.DateColumnHeading.GetElementVisibility()).Should().BeTrue(because:"Date column heading should be displayed in CSM Upgrades page");
             string DateColumnHeadingText = _updatesSelectUpdatePage.DateColumnHeading.Text;
-            (DateColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.TableDateHeadingText, because: "Date column heading should match with the expected value in CSM Upgrades page.");
+            (DateColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.TableDateHeadingText, because: "Date column heading should match with the expected value in CSM Upgrades page.");
         }
 
         [Then(@"Next button is disabled")]
@@ -128,11 +129,11 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             {
                 case "<= 50":
                     GivenUserIsOnCSMUpdatesPage();
-                    _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+                    _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
                     break;
                 case ">50 and <=100":
                     GivenUserIsOnCSMUpdatesPage();
-                    _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+                    _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
                     break;
                 default:
                     Assert.Fail("Invalid no of entries:" + noOfEntries);
@@ -145,21 +146,21 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenPreviousPageIconIsDisabled()
         {
             string PreviousPageIconImageSrc = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src"); 
-            (PreviousPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource, because: "Previous page icon should be disabled in First page entries list in CSM upgrades page");
+            (PreviousPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDiabledSource, because: "Previous page icon should be disabled in First page entries list in CSM upgrades page");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
             string NextPageIconImageSrc = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled in second page entries list in CSM upgrades page where total no of entries are less than hundread.");
+            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled in second page entries list in CSM upgrades page where total no of entries are less than hundread.");
         }
 
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
         {
             string NextPageIconImageSrc = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled in first page entries list in CSM upgrades page where total no of entries are greater than fifty.");
+            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled in first page entries list in CSM upgrades page where total no of entries are greater than fifty.");
         }
 
         [When(@"first (.*) entries are displayed")]
@@ -181,7 +182,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             SetMethods.ScrollToBottomofWebpage(_driver);
             string PageNumber = _updatesSelectUpdatePage.PaginationXofY.Text;
-            (PageNumber).Should().StartWithEquivalentOf(UpdatesSelectUpdatePage.ExpectedValues.SecondPageNumber, because: "Second page should be displayed when user clicks on next page icon in CSM Upgrades page.");
+            (PageNumber).Should().StartWithEquivalentOf(UpdatesSelectUpdatePageExpectedValues.SecondPageNumber, because: "Second page should be displayed when user clicks on next page icon in CSM Upgrades page.");
             (_updatesSelectUpdatePage.FileNameList.GetElementCount()).Should().BeGreaterThan(0, because: "Second page entries should be displayed when user cliks next page icon");
         }
 
@@ -228,21 +229,21 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenSelectUpdateIndicatorIsNotHighlighted()
         {
             string selectUpdateIndicatorColor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
-            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.NonHighlightedHeadingColor, because: "Select Update tab indicator should not be highlighted.");
+            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.NonHighlightedHeadingColor, because: "Select Update tab indicator should not be highlighted.");
         }
 
         [Then(@"Select assets indicator is highlighted")]
         public void ThenSelectAssetsIndicatorIsHighlighted()
         {
             string selectAssetsIndicatorColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
-            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, because: "Select devices tab should be highlighted in select device tab");
+            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.HighlightedHeadingColor, because: "Select devices tab should be highlighted in select device tab");
         }
 
         [Then(@"Review action indicator is not highlighted")]
         public void ThenReviewActionIndicatorIsNotHighlighted()
         {
             string ReviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
-            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
+            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
         }
 
         [Then(@"""(.*)"" label is displayed")]
@@ -254,15 +255,15 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             {
                 case "item to push":
                     labelElement = _updateSelectDevicesPage.ItemtoPush;
-                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
+                    ExpectedText = UpdateSelectDevicesPageExpectedValues.ItemToPushLabelText;
                     break;
                 case "device type":
                     labelElement = _updateSelectDevicesPage.DeviceTypeLabel;
-                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.CSMDeviceName;
+                    ExpectedText = UpdateSelectDevicesPageExpectedValues.CSMDeviceName;
                     break;
                 case "update type":
                     labelElement = _updateSelectDevicesPage.TypeOfUpdateUpgradeLabel;
-                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.UpgradeLabelText;
+                    ExpectedText = UpdateSelectDevicesPageExpectedValues.UpgradeLabelText;
                     break;
                 case "upgrade file to push":
                     labelElement = _updateSelectDevicesPage.FileName;
@@ -270,7 +271,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
                     break;
                 case "destinations":
                     labelElement = _updateSelectDevicesPage.DestinationLabel;
-                    ExpectedText = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
+                    ExpectedText = UpdateSelectDevicesPageExpectedValues.DestinationLabelText;
                     break;
                 default:
                     Assert.Fail(labelName + " is an invalid label name");
@@ -319,7 +320,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
+            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
         }
 
 
@@ -394,7 +395,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenCountOfSelectedDevicesChangesFromTo()
         {
             string ActualDestinationCountText = _updateSelectDevicesPage.DeviceCount.Text;
-            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
+            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
         }
 
         [Then(@"Next button is enabled")]
@@ -443,7 +444,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in CSM Upgrade Review action page.");
             string ActualItemToPushLabelText = _updateReviewActionPage.ItemToPushLabel.Text;
-            (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CSM Upgrade Review action page");
+            (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CSM Upgrade Review action page");
         }
 
         [Then(@"Item to push value is displayed")]
@@ -459,7 +460,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in CSM upgrade review action Page.");
             string ActualDesinationLabelText = _updateReviewActionPage.DestinationLabel.Text;
-            ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in CSM upgrade review action Page.");
+            ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in CSM upgrade review action Page.");
         }
 
         [Then(@"Destinations value is displayed")]
@@ -473,7 +474,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.DateOrTimePushLabel.GetElementVisibility()).Should().BeTrue(because: "Date or Time Label should be displayed in CSM upgrade review action page");
             string DateTimeLabelText = _updateReviewActionPage.DateOrTimePushLabel.Text;
-            (DateTimeLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DateOrTimeOfPushLabelText, because: "Date or time label should match with expected value in CSM upgrade review action Page.");
+            (DateTimeLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.DateOrTimeOfPushLabelText, because: "Date or time label should match with expected value in CSM upgrade review action Page.");
         }
 
         [Then(@"Immediately label is displayed")]
@@ -481,7 +482,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.ImmediateLabel.GetElementVisibility()).Should().BeTrue(because: "Immediate label should be displayed in CSM upgrade review action page");
             string ImmediatelyLabelText = _updateReviewActionPage.ImmediateLabel.Text;
-            (ImmediatelyLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ImmediatelyLabel, because: "Immediate label should match with expected value in CSM upgrade review action Page");
+            (ImmediatelyLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.ImmediatelyLabel, because: "Immediate label should match with expected value in CSM upgrade review action Page");
         }
 
         [Then(@"Radio Button is displayed for Immediately")]
@@ -507,21 +508,21 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.ScheduleLabel.GetElementVisibility()).Should().BeTrue(because: "Schedule Label should be displayed in CSM upgrade review action page");
             string ScheduleLabelText = _updateReviewActionPage.ScheduleLabel.Text;
-            (ScheduleLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ScheduleLabelText,because: "Schedule label should match with expected value in CSM upgrade review action Page");
+            (ScheduleLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.ScheduleLabelText,because: "Schedule label should match with expected value in CSM upgrade review action Page");
         }
 
         [Then(@"Select assets indicator is not highlighted")]
         public void ThenSelectAssetsIndicatorIsNotHighlighted()
         {
             string SelectAssetsColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
-            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
+            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
         }
 
         [Then(@"Review action indicator is highlighted")]
         public void ThenReviewActionIndicatorIsHighlighted()
         {
             string reviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
-            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in CSM upgrade review action page");
+            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in CSM upgrade review action page");
         }
 
         [Then(@"Confirm button is enabled")]
@@ -540,7 +541,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
             (_updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button In CSM Upgrade review action page.");
-            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
+            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
         }
 
         [Then(@"Select assets page is displayed")]

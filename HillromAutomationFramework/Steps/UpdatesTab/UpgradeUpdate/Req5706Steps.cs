@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -49,8 +50,8 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             _mainPage.UpdatesTab.JavaSciptClick(_driver);
 
             //updates tab
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CSMDeviceName);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
 
             //first upgrade file
             _updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
@@ -80,7 +81,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.DateLabel.GetElementVisibility()).Should().BeTrue(because: "Date Label should be displayed in CSM Upgrade Review action page");
             string DateLabelText = _updateReviewActionPage.DateLabel.Text;
-            (DateLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DateLabelText, because: "Date label text should match with the expected value in CSM Upgrade Review action page.");
+            (DateLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.DateLabelText, because: "Date label text should match with the expected value in CSM Upgrade Review action page.");
         }
 
         [Then(@"Calendar icon is displayed")]
@@ -94,7 +95,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.TimeLabel.GetElementVisibility()).Should().BeTrue(because: "Time Label should be displayed in CSM Upgrade Review action page");
             string TimeLabelText = _updateReviewActionPage.TimeLabel.Text;
-            (TimeLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.TimeLabelText, because: "Time label should match with the expected value in CSM Upgrade Review action page.");
+            (TimeLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.TimeLabelText, because: "Time label should match with the expected value in CSM Upgrade Review action page.");
         }
 
         [Then(@"Hour dropdown is displayed")]
@@ -201,7 +202,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             _wait.Until(ExplicitWait.ElementIsVisible(By.ClassName(UpdateSelectDevicesPage.Locators.SuccessUpadteMessageClassName)));
             (_updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button on CSM Upgrade review action page.");
-            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
+            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
         }
 
         [Then(@"Select Assets page is displayed")]

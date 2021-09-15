@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -54,20 +55,20 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Given(@"Centrella Asset type is selected")]
         public void GivenCentrellaAssetTypeIsSelected()
         {
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CentrellaDeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CentrellaDeviceName);
         }
 
         [When(@"user selects Upgrade Update type")]
         public void WhenUserSelectsUpgradeUpdateType()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
         }
 
         [Then(@"Upgrade displays as Update type")]
         public void ThenUpgradeDisplaysAsUpdateType()
         {
             string selectedUpdateType = _updatesSelectUpdatePage.UpgradeTypeDropDown.GetSelectedOptionFromDDL();
-            (selectedUpdateType).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade, because: "Upgrade type should be displayed when user selects Update as option in Upgrade type dropdown in Centrella select updates page");
+            (selectedUpdateType).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade, because: "Upgrade type should be displayed when user selects Update as option in Upgrade type dropdown in Centrella select updates page");
         }
 
         [Then(@"Centrella upgrade list is displayed")]
@@ -81,7 +82,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updatesSelectUpdatePage.CentrellaAndRV700NameColumnHeading.GetElementVisibility()).Should().BeTrue(because: "Name column heading should be displayed in in Centrella select updates page table");
             string ActualNameColumnHeadingText = _updatesSelectUpdatePage.CentrellaAndRV700NameColumnHeading.Text;
-            (ActualNameColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.TableNameHeadingText, because: "Name heading name text should match with the expected value in Centrella select updates page table");
+            (ActualNameColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.TableNameHeadingText, because: "Name heading name text should match with the expected value in Centrella select updates page table");
         }
 
         [Then(@"Date created column heading is displayed")]
@@ -89,7 +90,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updatesSelectUpdatePage.CentrellaAndRV700DateColumnHeading.GetElementVisibility()).Should().BeTrue(because: "Date column heading should be displayed in Centrella select updates page table");
             string ActualDateColumnHeadingText = _updatesSelectUpdatePage.CentrellaAndRV700DateColumnHeading.Text;
-            (ActualDateColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.TableDateHeadingText, because: "Date heading name text should match with the expected value in Centrella select updates page table");
+            (ActualDateColumnHeadingText).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.TableDateHeadingText, because: "Date heading name text should match with the expected value in Centrella select updates page table");
         }
 
         [Then(@"Next button is disabled")]
@@ -160,7 +161,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Given(@"Upgrade Update type is selected")]
         public void GivenUpgradeUpdateTypeIsSelected()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
         }
 
         [Given(@"user has selected Upgrade file")]
@@ -189,10 +190,10 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             GivenUserIsOnCentrellaUpdatesPage();
 
             //Select centrella
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CentrellaDeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CentrellaDeviceName);
 
             //Select upgrade in upgrade type
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
 
             //Select upgrade file and click on next button
             _updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
@@ -205,7 +206,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             //Asserting the color(R,G,B,A) value of the Select update element
             string selectUpdateIndicatorColor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
-            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.NonHighlightedHeadingColor, because: "Select Update tab indicator should not be highlighted.");
+            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.NonHighlightedHeadingColor, because: "Select Update tab indicator should not be highlighted.");
         }
 
         [Then(@"Select assets indicator is highlighted")]
@@ -213,7 +214,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             //Asserting the color(R,G,B,A) value of the Select assets element
             string selectAssetsIndicatorColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
-            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, because: "Select devices tab should be highlighted in select device tab");
+            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.HighlightedHeadingColor, because: "Select devices tab should be highlighted in select device tab");
         }
 
         [Then(@"Review action indicator is not highlighted")]
@@ -221,7 +222,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             //Asserting the color(R,G,B,A) value of the Review action element
             string ReviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
-            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
+            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
         }
 
         [Then(@"""(.*)"" label is displayed")]
@@ -233,15 +234,15 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             {
                 case "item to push":
                     label = _updateSelectDevicesPage.ItemtoPush;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
+                    ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.ItemToPushLabelText;
                     break;
                 case "device type":
                     label = _updateSelectDevicesPage.DeviceTypeLabel;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.CentrellaDeviceName;
+                    ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.CentrellaDeviceName;
                     break;
                 case "update type":
                     label = _updateSelectDevicesPage.TypeOfUpdateUpgradeLabel;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.UpgradeLabelText;
+                    ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.UpgradeLabelText;
                     break;
                 case "upgrade file to push":
                     label = _updateSelectDevicesPage.FileName;
@@ -249,7 +250,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
                     break;
                 case "destinations":
                     label = _updateSelectDevicesPage.DestinationLabel;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
+                    ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.DestinationLabelText;
                     break;
                 default: Assert.Fail(labelName + " is a invalid label name.");
                     break;
@@ -364,7 +365,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenCountOfSelectedDevicesChangesFromTo()
         {
             string ActualDestinationCountText = _updateSelectDevicesPage.DeviceCount.Text;
-            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
+            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
         }
 
         [Then(@"Next button is enabled")]
@@ -441,7 +442,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
             (_updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button In Centrella Upgrade review action page.");
-            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value in Centrella Upgrade review action page");
+            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value in Centrella Upgrade review action page");
         }
 
         [Then(@"Select assets page is displayed")]
@@ -456,7 +457,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in Centrella Upgrade Review action page.");
             string ActualItemToPushLabelText = _updateReviewActionPage.ItemToPushLabel.Text;
-            (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in Centrella Upgrade Review action page");
+            (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in Centrella Upgrade Review action page");
         }
 
         [Then(@"Item to push value is displayed")]
@@ -470,7 +471,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in Centrella upgrade review action Page.");
             string ActualDesinationLabelText = _updateReviewActionPage.DestinationLabel.Text;
-            ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in Centrella upgrade review action Page.");
+            ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in Centrella upgrade review action Page.");
         }
 
         [Then(@"Destinations value is displayed")]
@@ -483,14 +484,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenSelectAssetsIndicatorIsNotHighlighted()
         {
             string SelectAssetsColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
-            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
+            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
         }
 
         [Then(@"Review action indicator is highlighted")]
         public void ThenReviewActionIndicatorIsHighlighted()
         {
             string reviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
-            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in Centrella review action page");
+            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in Centrella review action page");
         }
 
         [Then(@"Confirm button is enabled")]

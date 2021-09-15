@@ -53,7 +53,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"Centrella Asset type is selected")]
         public void GivenCentrellaAssetTypeIsSelected()
         {
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
         }
         
         [When(@"user clicks report type dropdown")]
@@ -76,7 +76,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"Activity Report type is selected")]
         public void GivenActivityReportTypeIsSelected()
         {
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
         }
 
         [When(@"user clicks Get report button")]
@@ -89,7 +89,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenActivityReportCentrellaLabelIsDisplayed()
         {
             (_activityReportPage.ActivityReportHeader.GetElementVisibility()).Should().BeTrue("Activity Report (Centrella) label should be displayed in Centrella Activity Report Page.");
-            (_activityReportPage.ActivityReportHeader.Text).Should().BeEquivalentTo(ActivityReportPage.ExpectedValues.ActivityReportCentreallaHeader, because: "Activity report header should match the expected value in Centrella Activity Report Page.");
+            (_activityReportPage.ActivityReportHeader.Text).Should().BeEquivalentTo(ActivityReportPageExpectedValues.ActivityReportCentreallaHeader, because: "Activity report header should match the expected value in Centrella Activity Report Page.");
         }
 
         [Then(@"Print button is displayed")]
@@ -139,9 +139,9 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         {
             GivenUserIsOnReportsPage();
             //Selecting Centrella device
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
             //Selecting the Activity Report
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
             _reportsPage.GetReportButton.Click();
         }
 

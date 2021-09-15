@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -51,7 +52,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         [When(@"user selects Service Monitor")]
         public void WhenUserSelectsServiceMonitor()
         {
-            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
+            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPageExpectedValues.ServiceMoniterText);
         }
         
         [Then(@"Service Monitor Settings page displays")]
@@ -65,7 +66,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         {
             GivenUserIsOnMainPage();
             _mainPage.UpdatesTab.JavaSciptClick(_driver);
-            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPage.Inputs.ServiceMoniterText);
+            _serviceMoniterPage.AssetTypeDropDown.SelectDDL(ServiceMonitorPageExpectedValues.ServiceMoniterText);
             (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()).Should().BeTrue("Service Monitor Settings page is displayed when user selects Service Monitor");
         }
 
@@ -85,7 +86,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
             {
                 DropDownListText.Add(option.Text);
             }
-            DropDownListText.Should().BeEquivalentTo(new List<string> { ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionP1D , ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT8H , ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT4H , ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionPT15M }, because:"Drop down list should contain only expected options");
+            DropDownListText.Should().BeEquivalentTo(new List<string> { ServiceMonitorPageExpectedValues.CallHomePeriodDropdownOptionP1D , ServiceMonitorPageExpectedValues.CallHomePeriodDropdownOptionPT8H , ServiceMonitorPageExpectedValues.CallHomePeriodDropdownOptionPT4H , ServiceMonitorPageExpectedValues.CallHomePeriodDropdownOptionPT15M }, because:"Drop down list should contain only expected options");
         }
 
 
@@ -104,7 +105,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
             {
                 DropDownListString.Add(option.Text);
             }
-            DropDownListString.Should().BeEquivalentTo(new List<string> { ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionTrue , ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionFalse }, because: "Deployment mode drop-down should contain only true and false");
+            DropDownListString.Should().BeEquivalentTo(new List<string> { ServiceMonitorPageExpectedValues.DeploymentModeDropdownOptionTrue , ServiceMonitorPageExpectedValues.DeploymentModeDropdownOptionFalse }, because: "Deployment mode drop-down should contain only true and false");
         }
 
         [When(@"user clicks Previous button")]
@@ -123,7 +124,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         [Given(@"no devices are selected")]
         public void GivenNoDevicesAreSelected()
         {
-            (_serviceMoniterPage.DestinationDeviceCount.Text).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.DestinationNoDeviceCountText, "No device should be selected in Service Monitor Settings page intially");
+            (_serviceMoniterPage.DestinationDeviceCount.Text).Should().BeEquivalentTo(ServiceMonitorPageExpectedValues.DestinationNoDeviceCountText, "No device should be selected in Service Monitor Settings page intially");
         }
 
         [Then(@"Service Monitor Settings label is displayed")]
@@ -131,7 +132,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         {
             (_serviceMoniterPage.ServiceMoniterLabel.GetElementVisibility()).Should().BeTrue(because: "Service Monitor Settings label should be displayed in Service Monitor Settings page");
             string ActualServiceMoniterSettingsLabelText = _serviceMoniterPage.ServiceMoniterLabel.Text;
-            (ActualServiceMoniterSettingsLabelText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.ServiceMoniterLabel, because: "Service Monitor Settings label text should match with the expected text");
+            (ActualServiceMoniterSettingsLabelText).Should().BeEquivalentTo(ServiceMonitorPageExpectedValues.ServiceMoniterLabel, because: "Service Monitor Settings label text should match with the expected text");
         }
 
         [Then(@"Call home period label is displayed")]
@@ -139,7 +140,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         {
             (_serviceMoniterPage.CallHomePeroidLabel.GetElementVisibility()).Should().BeTrue(because: "Call home period label should be displayed in Service Monitor Settings page");
             string ActualCallHomePeriodLabelText = _serviceMoniterPage.CallHomePeroidLabel.Text;
-            (ActualCallHomePeriodLabelText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.CallHomePeriodLabel, because: "Call home period label text shoud match with the expected text in Service Monitor Settings page");
+            (ActualCallHomePeriodLabelText).Should().BeEquivalentTo(ServiceMonitorPageExpectedValues.CallHomePeriodLabel, because: "Call home period label text shoud match with the expected text in Service Monitor Settings page");
         }
 
         [Then(@"Call home period dropdown is displayed")]
@@ -153,7 +154,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         {
             (_serviceMoniterPage.DeploymentModeLabel.GetElementVisibility()).Should().BeTrue(because: "Deployment mode label should be displayed in Service Monitor Settings page");
             string ActualDeploymentModeLabelText = _serviceMoniterPage.DeploymentModeLabel.Text;
-            (ActualDeploymentModeLabelText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.DeploymentModeLabel,because: "Deployment mode label text does not match with the expected text in Service Monitor Settings page");
+            (ActualDeploymentModeLabelText).Should().BeEquivalentTo(ServiceMonitorPageExpectedValues.DeploymentModeLabel,because: "Deployment mode label text does not match with the expected text in Service Monitor Settings page");
         }
 
         [Then(@"Deployment mode drop down is displayed")]
@@ -167,7 +168,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         {
             (_serviceMoniterPage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destinations label should be displayed in Service Monitor Settings page");
             string ActualDestinationLabelLabelText = _serviceMoniterPage.DestinationLabel.Text;
-            (ActualDestinationLabelLabelText).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.DestinationLabel, because: "Destinations label text should match with the expected text");
+            (ActualDestinationLabelLabelText).Should().BeEquivalentTo(ServiceMonitorPageExpectedValues.DestinationLabel, because: "Destinations label text should match with the expected text");
         }
 
         [Then(@"location hierarchy selectors are displayed")]
@@ -288,26 +289,26 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         public void ThenPreviousPageIconIsDisabled()
         {
             String ActualPreviousIconPageNumberImageSrc = _serviceMoniterPage.PaginationPreviousButton.FindElement(By.TagName("img")).GetAttribute("src");
-            (ActualPreviousIconPageNumberImageSrc).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.PaginationPreviousIconDisabledSrc, because: "Previous page button should be disabled in service moniter setting page which has less than 50 devices");
+            (ActualPreviousIconPageNumberImageSrc).Should().BeEquivalentTo(PropertyClass.BaseURL + ServiceMonitorPageExpectedValues.PaginationPreviousIconDisabledSrc, because: "Previous page button should be disabled in service moniter setting page which has less than 50 devices");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
             String ActualPreviousIconPageNumberImageSrc = _serviceMoniterPage.PaginationNextButton.FindElement(By.TagName("img")).GetAttribute("src");
-            (ActualPreviousIconPageNumberImageSrc).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.PaginationNextIconDisabledSrc, because: "Next page button should be disabled in service moniter setting page which has less than 50 devices");
+            (ActualPreviousIconPageNumberImageSrc).Should().BeEquivalentTo(PropertyClass.BaseURL + ServiceMonitorPageExpectedValues.PaginationNextIconDisabledSrc, because: "Next page button should be disabled in service moniter setting page which has less than 50 devices");
         }
 
         [Given(@"user selects Call home period as P1D \(24 HOURS\)")]
         public void GivenUserSelectsCallHomePeriodAsPDHOURS()
         { 
-            _serviceMoniterPage.CallHomePeriodDropDown.SelectDDL(ServiceMonitorPage.ExpectedValues.CallHomePeriodDropdownOptionP1DPatialText, true);
+            _serviceMoniterPage.CallHomePeriodDropDown.SelectDDL(ServiceMonitorPageExpectedValues.CallHomePeriodDropdownOptionP1DPatialText, true);
         }
 
         [Given(@"Deployment mode as FALSE")]
         public void GivenDeploymentModeAsFALSE()
         {
-            _serviceMoniterPage.DeploymentModeDropDown.SelectDDL(ServiceMonitorPage.ExpectedValues.DeploymentModeDropdownOptionFalsePartialText,partialMatch:true);
+            _serviceMoniterPage.DeploymentModeDropDown.SelectDDL(ServiceMonitorPageExpectedValues.DeploymentModeDropdownOptionFalsePartialText,partialMatch:true);
         }
 
 
@@ -320,7 +321,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         [Then(@"Upgrade count label updates with selection of row")]
         public void ThenUpgradeCountLabelUpdatedWithSelectionOfRow()
         {
-            (_serviceMoniterPage.DestinationDeviceCount.Text).Should().BeEquivalentTo(ServiceMonitorPage.ExpectedValues.Destination1DeviceCountText, because: "Upgrade count label should be updated when user selects one device in service moniter settings page");
+            (_serviceMoniterPage.DestinationDeviceCount.Text).Should().BeEquivalentTo(ServiceMonitorPageExpectedValues.Destination1DeviceCountText, because: "Upgrade count label should be updated when user selects one device in service moniter settings page");
         }
 
         [Then(@"Deploy button is enabled")]

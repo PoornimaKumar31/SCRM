@@ -47,8 +47,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
                 _mainPage.ReportsTab.JavaSciptClick(_driver);
-                _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-                _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+                _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+                _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
                 _reportsPage.GetReportButton.Click();
             }
             else
@@ -69,7 +69,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             string fileName = "";
             if (reportName.ToLower().Trim().Equals("activity"))
             {
-                fileName = ActivityReportPage.ExpectedValues.CentrellaActivityReportName;
+                fileName = ActivityReportPageExpectedValues.CentrellaActivityReportName;
             }
             else
             {

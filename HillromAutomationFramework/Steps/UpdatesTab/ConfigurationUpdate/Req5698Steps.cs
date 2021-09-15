@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -48,13 +49,13 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [Given(@"CVSM Asset type is selected")]
         public void GivenCVSMAssetTypeIsSelected()
         {
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CVSMDeviceName);
         }
         
         [Given(@"Configuration Update type is selected")]
         public void GivenConfigurationUpdateTypeIsSelected()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeConfiguration);
         }
         
         [When(@"user selects CVSM configuration")]
@@ -90,8 +91,8 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             GivenUserIsOnCVSMUpdatesPage();
             
             //Select CVSM Configuration
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CVSMDeviceName);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeConfiguration);
 
             //Clicking on the first file
             _updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
@@ -113,7 +114,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenAreYouSureMessageIsDisplayed()
         {
             (_updatesSelectUpdatePage.DeleteAreYouSureMessage.GetElementVisibility()).Should().BeTrue(because: "Are you sure message should be displayed in configuration delete pop up dialog box");
-            (_updatesSelectUpdatePage.DeleteAreYouSureMessage.Text.ToLower()).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.DeleteConfigAreYouSureText, because: "Are you sure message should match with the expected value.");
+            (_updatesSelectUpdatePage.DeleteAreYouSureMessage.Text.ToLower()).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.DeleteConfigAreYouSureText, because: "Are you sure message should match with the expected value.");
         }
 
         [Then(@"Yes button is displayed")]

@@ -63,6 +63,56 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AdvancePageExpectedValues.resx</DependentUpon>
     </Compile>
+    <Compile Update="PageObjects\ReportsTab\ActivityReportPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ActivityReportPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\ReportsTab\ConfigStatusReportPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ConfigStatusReportPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\ReportsTab\FirmwareStatusReportPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FirmwareStatusReportPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\ReportsTab\FirmwareVersionReportPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FirmwareVersionReportPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\ReportsTab\ReportsPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ReportsPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\ReportsTab\UsageReportPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UsageReportPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\UpdatesTab\ServiceMonitorPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ServiceMonitorPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\UpdatesTab\UpdateReviewActionPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateReviewActionPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\UpdatesTab\UpdateSelectDevicesPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdateSelectDevicesPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\UpdatesTab\UpdatesSelectUpdatePageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>UpdatesSelectUpdatePageExpectedValues.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -73,6 +123,46 @@
     <EmbeddedResource Update="PageObjects\AdvancedTab\AdvancePageExpectedValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AdvancePageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\ReportsTab\ActivityReportPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ActivityReportPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\ReportsTab\ConfigStatusReportPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConfigStatusReportPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\ReportsTab\FirmwareStatusReportPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FirmwareStatusReportPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\ReportsTab\FirmwareVersionReportPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FirmwareVersionReportPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\ReportsTab\ReportsPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ReportsPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\ReportsTab\UsageReportPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UsageReportPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\UpdatesTab\ServiceMonitorPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceMonitorPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\UpdatesTab\UpdateReviewActionPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UpdateReviewActionPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\UpdatesTab\UpdateSelectDevicesPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UpdateSelectDevicesPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\UpdatesTab\UpdatesSelectUpdatePageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>UpdatesSelectUpdatePageExpectedValues.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

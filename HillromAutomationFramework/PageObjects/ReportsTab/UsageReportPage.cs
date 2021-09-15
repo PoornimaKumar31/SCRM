@@ -54,14 +54,6 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
             public const string Station1HiddenDeviceStyleAttribute = "display: none;";
             public const string Station1VisibleDeviceStyleAttribute = "display: block;";
 
-            //Tables
-            public const string ModelHeadingText = "Model";
-            public const string AssetTagHeadingText = "Asset tag";
-            public const string SerialNumberHeadingText = "Serial number";
-            public const string BatteryCycleCountHeadingText = "Battery cycle count";
-            public const string SureTempThermometerCycleCountHeadingText = "Suretemp thermometer cycle count";
-            public const string NIBPSensorCycleCountHeadingText = "NIBP Sensor cycle count";
-            public const string SPHBCycleCountHeadingText = "SPHB cycle count";
             
             //CSM Devices
             //unit1

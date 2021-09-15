@@ -37,20 +37,6 @@ namespace HillromAutomationFramework.PageObjects
             public const string DateClassName = "mat-calendar-body-cell-content";
 
         }
-        public static class ExpectedValues
-        {
-            //Color of selected tab
-            public const string HighlightedHeadingColor = "rgba(84, 104, 229, 1)";
-            public const string NonHighlightedHeadingColor = "rgba(68, 68, 68, 1)";
-
-            public const string ItemToPushLabelText = "Item to push";
-            public const string DestinationLabelText = "DESTINATIONS";
-            public const string DateOrTimeOfPushLabelText = "Date or Time of push";
-            public const string ImmediatelyLabel = "Immediately";
-            public const string ScheduleLabelText = "Schedule";
-            public const string DateLabelText = "Date:";
-            public const string TimeLabelText = "Time:";
-        }
 
         public UpdateReviewActionPage(IWebDriver driver)
         {

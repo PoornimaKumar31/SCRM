@@ -19,8 +19,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
-        private readonly FirmwareVersionPage _firmwareVersionPage;
-        private readonly FirmwareStatusPage _firmwareStatusPage;
+        private readonly FirmwareVersionReportPage _firmwareVersionPage;
+        private readonly FirmwareStatusReportPage _firmwareStatusPage;
 
 
         private readonly WebDriverWait _wait;
@@ -37,8 +37,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
             _reportsPage = new ReportsPage(driver);
-            _firmwareVersionPage = new FirmwareVersionPage(driver);
-            _firmwareStatusPage = new FirmwareStatusPage(driver);
+            _firmwareVersionPage = new FirmwareVersionReportPage(driver);
+            _firmwareStatusPage = new FirmwareStatusReportPage(driver);
         }
 
 
@@ -55,7 +55,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenRVAssetTypeIsSelected()
         {
             //Selecting RV700 decice type
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.RV700DeviceName);
 
         }
         
@@ -63,7 +63,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenFirmwareVersionReportTypeIsSelected()
         {
             //Selecting firmware version in the report type dropdown
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareVersionReportType);
         }
         
         [When(@"user clicks Get report button")]
@@ -76,28 +76,28 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenFirmwareVersionReportRVLabelIsDisplayed()
         {
             (_firmwareVersionPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Firmware version report header should be displayed in Firmware Version Report Page.");
-            (_firmwareVersionPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.ReportRV700LabelText, "Firmware version report header text should match the expected value.");
+            (_firmwareVersionPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareVersionReportPageExpectedValues.ReportRV700LabelText, "Firmware version report header text should match the expected value.");
         }
         
         [Then(@"Components column heading is displayed")]
         public void ThenComponentsColumnHeadingIsDisplayed()
         {
             (_firmwareVersionPage.ComponentsHeading.GetElementVisibility()).Should().BeTrue("Components column heading should be displayed in Firmware Version Report page.");
-            (_firmwareVersionPage.ComponentsHeading.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.ComponentsHeadingText, "Components coumn heading should match the expected value");
+            (_firmwareVersionPage.ComponentsHeading.Text).Should().BeEquivalentTo(FirmwareVersionReportPageExpectedValues.ComponentsHeadingText, "Components coumn heading should match the expected value");
         }
         
         [Then(@"Firmware version column heading is displayed")]
         public void ThenFirmwareVersionColumnHeadingIsDisplayed()
         {
             (_firmwareVersionPage.FirmwareVersionHeading.GetElementVisibility()).Should().BeTrue("Firmware version column heading should be displayed in Firmware Version Report page.");
-            (_firmwareVersionPage.FirmwareVersionHeading.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.FirmwareVersionHeadingText, because: "Firmware version column heading text should match the expected value.");
+            (_firmwareVersionPage.FirmwareVersionHeading.Text).Should().BeEquivalentTo(FirmwareVersionReportPageExpectedValues.FirmwareVersionHeadingText, because: "Firmware version column heading text should match the expected value.");
         }
         
         [Then(@"Total devices column heading is displayed")]
         public void ThenTotalDevicesColumnHeadingIsDisplayed()
         {
             (_firmwareVersionPage.TotaldevicesHeading.GetElementVisibility()).Should().BeTrue("Total devices column heading should be displayed in Firmware Version Report page.");
-            (_firmwareVersionPage.TotaldevicesHeading.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.TotalDevicesHeadingText, because: "Total devices heading text should match with the expected value.");
+            (_firmwareVersionPage.TotaldevicesHeading.Text).Should().BeEquivalentTo(FirmwareVersionReportPageExpectedValues.TotalDevicesHeadingText, because: "Total devices heading text should match with the expected value.");
         }
 
         [Given(@"user is on RV700 Firmware Version Report page")]
@@ -105,9 +105,9 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         {
             GivenUserIsOnReportsPage();
             //Selecting RV700 decice type
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.RV700DeviceName);
             //Selecting firmware version in the report type dropdown
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareVersionReportType);
             _reportsPage.GetReportButton.Click();
         }
 
@@ -151,14 +151,14 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"Firmware Status Report type is selected")]
         public void GivenFirmwareStatusReportTypeIsSelected()
         {
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
         }
 
         [Then(@"Firmware Upgrade Status Report \(RV700\) label is displayed")]
         public void ThenFirmwareUpgradeStatusReportRVLabelIsDisplayed()
         {
             (_firmwareStatusPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Firmware upgrade status report (RV700) should be displayed RV700 Firmware Upgrade Status Report page.");
-            (_firmwareStatusPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareStatusPage.ExpectedValues.FirmwareUpgradeStatusRV700Label, "Firmware upgrade status report (RV700) should match with the expected value.");
+            (_firmwareStatusPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareStatusReportPageExpectedValues.FirmwareUpgradeStatusRV700Label, "Firmware upgrade status report (RV700) should match with the expected value.");
         }
 
         [Then(@"Print button is displayed")]
@@ -215,9 +215,9 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         {
             GivenUserIsOnReportsPage();
             //Selecting RV700 decice type
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.RV700DeviceName);
             //Selecting firmware version in the report type dropdown
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
         }
 
@@ -225,38 +225,31 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenColumnHeadingIsDisplayed(string columnHeading)
         {
             IWebElement column = null;
-            string ExpectedColumnHeading = "";
             
             //Selecting column heading webelement and expected heading text based on given column name.
             switch (columnHeading.ToLower().Trim())
             {
                 case "serial number":
                     column = _firmwareStatusPage.SerialNumberHeading;
-                    ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.SerialNumberHeadingText;
                     break;
 
                 case "firmware version":
                     column = _firmwareStatusPage.FirmwareVerionHeading;
-                    ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.FirmwareVesrionHeadingText;
                     break;
 
                 case "location":
                     column = _firmwareStatusPage.LocationHeading;
-                    ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.LocationHeadingText;
                     break;
 
                 case "status":
                     column = _firmwareStatusPage.StatusHeading;
-                    ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.StatusHeadingText;
                     break;
 
                 case "last deployed":
                     column = _firmwareStatusPage.LastDeployedHeading;
-                    ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.LastDeployedHeadingText;
                     break;
                 case "last connected":
                     column = _firmwareStatusPage.LastConnectedHeading;
-                    ExpectedColumnHeading = FirmwareStatusPage.ExpectedValues.LastConnectedHeadingText;
                     break;
 
                 default:
@@ -264,7 +257,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     break;
             }
             (column.GetElementVisibility()).Should().BeTrue(columnHeading + " should be displayed in RV700 Firmware Upgrade Status Report Page Table");
-            (column.Text).Should().BeEquivalentTo(ExpectedColumnHeading, because:columnHeading + " should match with the expected value in RV700 Firmware Upgrade Status Report Page Table.");
+            (column.Text).Should().BeEquivalentTo(columnHeading, because:columnHeading + " should match with the expected value in RV700 Firmware Upgrade Status Report Page Table.");
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]

@@ -21,13 +21,14 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly MainPage _mainPage;
         private readonly LandingPage _landingPage;
         private readonly ReportsPage _reportsPage;
-        private readonly FirmwareVersionPage _firmwareVersionPage;
+        private readonly FirmwareVersionReportPage _firmwareVersionPage;
         private readonly UsageReportPage _usageReportPage;
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
         private readonly IWebDriver _driver;
 
+        private static List<string> listOfDeviceSerialNumber;
 
         public Req5716Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
@@ -39,7 +40,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _mainPage = new MainPage(driver);
             _landingPage = new LandingPage(driver);
             _reportsPage = new ReportsPage(driver);
-            _firmwareVersionPage = new FirmwareVersionPage(driver);
+            _firmwareVersionPage = new FirmwareVersionReportPage(driver);
             _usageReportPage = new UsageReportPage(driver);
         }
 
@@ -56,15 +57,15 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"CVSM Asset type is selected in Asset type dropdown")]
         public void GivenAssetTypeIsCVSM()
         {
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CVSMDeviceName);
-            (_reportsPage.AssetTypeDDL.GetSelectedOptionFromDDL()).Should().BeEquivalentTo(ReportsPage.ExpectedValues.CVSMDeviceName,"CVSM device should be selected in the asset type dropdown.");
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CVSMDeviceName);
+            (_reportsPage.AssetTypeDDL.GetSelectedOptionFromDDL()).Should().BeEquivalentTo(ReportsPageExpectedValues.CVSMDeviceName,"CVSM device should be selected in the asset type dropdown.");
         }
 
         [Given(@"Usage Report type is selected")]
         public void GivenUsageReportTypeIsSelected()
         {
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.UsageReportType);
-            (_reportsPage.ReportTypeDDL.GetSelectedOptionFromDDL()).Should().BeEquivalentTo(ReportsPage.ExpectedValues.UsageReportType, "Usage report should be selected in Report type dropdown.");
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.UsageReportType);
+            (_reportsPage.ReportTypeDDL.GetSelectedOptionFromDDL()).Should().BeEquivalentTo(ReportsPageExpectedValues.UsageReportType, "Usage report should be selected in Report type dropdown.");
         }
 
         [When(@"user clicks Get report button")]
@@ -93,7 +94,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         {
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UsageReportPage.Locator.ReportTitleHeaderID)));
             (_usageReportPage.ReportsTitleHeader.GetElementVisibility()).Should().BeTrue("Report Title header should be displayed in the Uasge report page.");
-            (_usageReportPage.ReportsTitleHeader.Text).Should().BeEquivalentTo(UsageReportPage.ExpectedValues.ReportTitleHeaderCVSM, "CVSM usage report header should have matching string as expected");
+            (_usageReportPage.ReportsTitleHeader.Text).Should().BeEquivalentTo(UsageReportPageExpectedValues.ReportTitleHeaderCVSM, "CVSM usage report header should have matching string as expected");
         }
 
         [Then(@"Print button is displayed")]
@@ -149,7 +150,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"assets for the unit are hidden")]
         public void ThenAssetsForTheUnitAreHidden()
         {
-            (_usageReportPage.Station1DeviceContainer.GetAttribute("style")).Should().BeEquivalentTo(UsageReportPage.ExpectedValues.Station1HiddenDeviceStyleAttribute, "Asset for Unit should be hidden when user clicks unit toggle arrow");
+            (_usageReportPage.Station1DeviceContainer.GetAttribute("style")).Should().BeEquivalentTo(UsageReportPageExpectedValues.Station1HiddenDeviceStyleAttribute, "Asset for Unit should be hidden when user clicks unit toggle arrow");
         }
 
         [Then(@"the Print button is enabled"),Scope(Tag = "TestCaseID_9368",Scenario = "CVSM Usage Report Print")]
@@ -187,19 +188,24 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenAllTheDevicesWithinUnitAreDisplayed()
         {
             //Unit1
-            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit1Column, UsageReportPage.ExpectedValues.Station1UnitCVSMDeviceSerialNumbers);
+            listOfDeviceSerialNumber = new List<string>(UsageReportPageExpectedValues.Station1UnitCVSMDeviceSerialNumbers.Split(",").ToList());
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit1Column,listOfDeviceSerialNumber);
 
             //Unit2
-            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit2Column, UsageReportPage.ExpectedValues.NotSetUnitCVSMDevicesSerialNumber);
+            listOfDeviceSerialNumber = new List<string>(UsageReportPageExpectedValues.NotSetUnitCVSMDevicesSerialNumber.Split(",").ToList());
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit2Column, listOfDeviceSerialNumber);
 
             //Unit3
-            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit3Column, UsageReportPage.ExpectedValues.LuWenUnitCVSMDevicesSerialNumber);
+            listOfDeviceSerialNumber = new List<string>(UsageReportPageExpectedValues.LuWenUnitCVSMDevicesSerialNumber.Split(",").ToList());
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit3Column, listOfDeviceSerialNumber);
 
             //Unit4
-            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit4Column, UsageReportPage.ExpectedValues.ConnexCS1UnitCVSMDevicesSerialNumber);
+            listOfDeviceSerialNumber = new List<string>(UsageReportPageExpectedValues.ConnexCS1UnitCVSMDevicesSerialNumber.Split(",").ToList());
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit4Column, listOfDeviceSerialNumber);
 
             //Unit5
-            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit5Column, UsageReportPage.ExpectedValues.AndyDeskUnitCVSMDevicesSerialNumber);
+            listOfDeviceSerialNumber = new List<string>(UsageReportPageExpectedValues.AndyDeskUnitCVSMDevicesSerialNumber.Split(",").ToList());
+            _usageReportPage.CheckAllDevicesUnderUnitsIsDisplayed(_usageReportPage.SerialNumberUnit5Column, listOfDeviceSerialNumber);
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
@@ -290,16 +296,16 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"Firmware Version Report type is selected")]
         public void GivenFirmwareVersionReportTypeIsSelected()
         {
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
-            (_reportsPage.ReportTypeDDL.GetSelectedOptionFromDDL()).Should().BeEquivalentTo(ReportsPage.ExpectedValues.FirmwareVersionReportType,"Report type should be fiirmware version");
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareVersionReportType);
+            (_reportsPage.ReportTypeDDL.GetSelectedOptionFromDDL()).Should().BeEquivalentTo(ReportsPageExpectedValues.FirmwareVersionReportType,"Report type should be fiirmware version");
         }
 
         [Then(@"Firmware Version Report \(CVSM\) label is displayed")]
         public void ThenFirmwareVersionReportCVSMLabelIsDisplayed()
         {
-            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareVersionPage.Locators.FirmwareReportTitleID)));
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareVersionReportPage.Locators.FirmwareReportTitleID)));
             (_firmwareVersionPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Report title header should be displayed in Firmware version Report page.");
-            (_firmwareVersionPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.ReportCVSMLabelText, "Firmware version report title should match the expected string.");
+            (_firmwareVersionPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareVersionReportPageExpectedValues.ReportCVSMLabelText, "Firmware version report title should match the expected string.");
         }
 
 

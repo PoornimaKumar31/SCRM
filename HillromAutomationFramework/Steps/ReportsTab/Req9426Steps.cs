@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.ReportsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -47,8 +48,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                 _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
                 _mainPage.ReportsTab.JavaSciptClick(_driver);
-                _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-                _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+                _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+                _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
                 _reportsPage.GetReportButton.Click();
             }
             else
@@ -70,7 +71,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             string fileName = "";
             if(reportName.ToLower().Trim().Equals("firmware status"))
             {
-                fileName = FirmwareStatusPage.ExpectedValues.CentrellaFirmwareStatusReportName;
+                fileName = FirmwareStatusReportPageExpectedValues.CentrellaFirmwareStatusReportName;
             }
             else
             {

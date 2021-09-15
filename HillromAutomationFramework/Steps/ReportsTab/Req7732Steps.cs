@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.ReportsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -19,7 +20,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
-        private readonly FirmwareStatusPage _firmwareStatusPage;
+        private readonly FirmwareStatusReportPage _firmwareStatusPage;
 
 
         private readonly WebDriverWait _wait;
@@ -36,7 +37,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
             _reportsPage = new ReportsPage(driver);
-            _firmwareStatusPage = new FirmwareStatusPage(driver);
+            _firmwareStatusPage = new FirmwareStatusReportPage(driver);
         }
 
         [Given(@"user is on Reports page")]
@@ -52,13 +53,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"Centrella Asset type is selected")]
         public void GivenCentrellaAssetTypeIsSelected()
         {
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
         }
 
         [Given(@"Firmware Status Report type is selected")]
         public void GivenFirmwareStatusReportTypeIsSelected()
         {
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
         }
 
         [When(@"user clicks Get report button")]
@@ -71,7 +72,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenFirmwareUpgradeStatusReportCentrellaLabelIsDisplayed()
         {
             (_firmwareStatusPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Firmware upgrade status report label should be displayed in Firmware Status Report page");
-            (_firmwareStatusPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareStatusPage.ExpectedValues.FirmwareUpgradeStatusCentrellaLabel, because: "Firmware upgrade status report label should match the expected value in Firmware Status Report page.");
+            (_firmwareStatusPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareStatusReportPageExpectedValues.FirmwareUpgradeStatusCentrellaLabel, because: "Firmware upgrade status report label should match the expected value in Firmware Status Report page.");
         }
 
         [Then(@"Print button is displayed")]
@@ -126,8 +127,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenUserIsOnCentrellaFirmwareUpgradeStatusReportPage()
         {
             GivenUserIsOnReportsPage();
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
         }
 

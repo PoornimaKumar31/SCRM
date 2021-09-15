@@ -9,7 +9,7 @@ using FluentAssertions;
 
 namespace HillromAutomationFramework.PageObjects
 {
-    class FirmwareStatusPage
+    class FirmwareStatusReportPage
     {
         public static class Locators
         {
@@ -44,83 +44,8 @@ namespace HillromAutomationFramework.PageObjects
             //Search Column Elements
             public const string ColumnCommonXpath = "//div[@class='measurements']/div/div";
         }
-        public static class ExpectedValues
-        {
-            public const string FirmwareUpgradeStatusCSMLabel = "FIRMWARE UPGRADE STATUS (CSM)";
-            public const string FirmwareUpgradeStatusRV700Label = "FIRMWARE UPGRADE STATUS (RV700)";
-            public const string FirmwareUpgradeStatusCentrellaLabel = "FIRMWARE UPGRADE STATUS (CENTRELLA)";
 
-            //Firmware Upgrade status(CSM) table elements
-            public const string SerialNumberHeadingText = "Serial number";
-            public const string FirmwareVesrionHeadingText = "Firmware version";
-            public const string LocationHeadingText = "Location";
-            public const string StatusHeadingText = "Status";
-            public const string LastDeployedHeadingText = "Last deployed";
-            public const string LastConnectedHeadingText = "Last connected";
-
-            //Firmware status
-            public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
-            public const string RV700DeviceName = "RetinaVue 700 (RV700)";
-            public const string Firmware = "Firmware Status";
-            public const string CSMFirmwareStatusReportName = "Firmware_Status_Report.csv";
-            public const string RV700FirmwareStatusReportName = "Firmware_Status_Report.csv";
-            public const string CentrellaFirmwareStatusReportName = "Firmware_Status_Report.csv";
-            
-           
-
-
-
-            //CSM firmware status information
-            public const string CSMInformationPopUPHeaderText = "CSM Firmware Report Statuses:";
-            public const string CSMStratedDefinition = "Firmware update has been initiated.";
-            public const string CSMAvailableDefination = "Firmware update has been received by Service Monitor and is waiting for device to call home.";
-            public const string CSMDownloadingDefination = "Firmware update is actively downloading to the device.";
-            public const string CSMDownloadedDefination = "New firmware is available on the device.";
-            public const string CSMScheduledDefination = "Firmware update is downloaded to the device, and awaiting scheduled time to apply the update.";
-            public const string CSMUpdatingDefination = "Device is currently installing the new firmware.";
-            public const string CSMAppliedDefination = "Firmware update successful. Device is currently running the new firmware.";
-            public const string CSMCancelRequestedDefination = "Cancelation of the Firmware update has been requested.";
-            public const string CSMCancelingDefination = "Cancelation of the Firmware update has been received and is awaiting device confirmation.";
-            public const string CSMDownloadFailedDefination = "Download of Firmware update to the device has failed. Download will attempt again at next call home.";
-            public const string CSMFailedDefination = "Firmware update aborted. Check device log for details.";
-
-            //RV700 status information
-            public const string RV700InformationPopUPHeaderText = "RV700 Firmware Report Statuses:";
-            public const string RV700StratedDefinition = "Firmware update has been initiated.";
-            public const string RV700AvailableDefination = "Firmware update has been deployed and is waiting for device to call home.";
-            public const string RV700CompleteDefination = "Device firmware upgrade is complete.";
-            public const string RV700FailureDefination = "Device firmware upgrade has failed.";
-
-            //Centrella Status information
-            public const string CentrellaInformationPopUpHeaderText = "Centrella Firmware Report Statuses:";
-            public const string CentrellaStartedDefination = "A request has been sent to update the firmware on the bed.";
-            public const string CentrellaDownloadingDefination = "The firmware is downloading on the bed.";
-            public const string CentrellaStagingDefination = "The firmware is distributing to the boards.";
-            public const string CentrellaStagingCompleteDefination = "The boards have received the firmware.";
-            public const string CentrellaTogglingDefination = "The bed is updating to the new firmware.";
-            public const string CentrellaTogglingCompleteDefination = "The firmware update is complete. A bed restart is required to apply the new firmware.";
-            public const string CentrellaUpgradeSuccessDefination = "The bed successfully updated to the new firmware.";
-            public const string CentrellaDownloadFailureDefination = "A failure occurred when downloading the firmware.";
-            public const string CentrellaStagingFailureDefination = "A failure occurred when distributing the firmware to the boards.";
-            public const string CentrellaStagingInconsistentDefination = "The downloaded firmware and boards are inconsistent. Bed features may not work as expected.";
-            public const string CentrellaToggeleFailureDefination = "A failure occurred during the new firmware application to boards.";
-
-            //Centrella Search Text
-            public const string CentrellaSerialNumberSearchText = "PY673002";
-            public const string CentrellaFirmwareVersionSearchText = "1.33.006";
-            public const string CentrellaStatusSearchText = "Started";
-            public const string CentrellaLocationSearchText = "Batesville";
-            public const string CentrellaLastDeployedSearchText = "1.36.00";
-
-            //CSMSearch Text
-            public const string CSMSerialNumberSearchText = "100010000000";
-            public const string CSMFirmwareVersionSearchText = "1.00.00-A0001";
-            public const string CSMStatusSearchText = "Scheduled";
-            public const string CSMLocationSearchText = "Station2";
-            public const string CSMLastDeployedSearchText = "1.52.00-A0002";
-        }
-
-        public FirmwareStatusPage(IWebDriver driver)
+        public FirmwareStatusReportPage(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }

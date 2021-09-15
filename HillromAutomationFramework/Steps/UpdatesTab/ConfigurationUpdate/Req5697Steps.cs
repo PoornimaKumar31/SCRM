@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -57,28 +58,28 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenSelectUpdateIndicatorIsHighlighted()
         {
             string SelectUpdatecolor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
-            (SelectUpdatecolor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.HighlightedHeadingColor,because: "Select update indicator should be highlighted in select update page.");
+            (SelectUpdatecolor).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.HighlightedHeadingColor,because: "Select update indicator should be highlighted in select update page.");
         }
         
         [Then(@"Select assets indicator is not highlighted")]
         public void ThenSelectAssetsIndicatorIsNotHighlighted()
         {
             string SelectAssetsColor = _updateSelectDevicePage.Heading.GetCssValue("color");
-            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
+            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
         }
 
         [Then(@"Review action indicator is not highlighted")]
         public void ThenReviewActionIndicatorIsNotHighlighted()
         {
             string ReviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
-            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
+            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
         }
 
         [Then(@"Asset type label is displayed")]
         public void ThenAssetTypeLabelIsDisplayed()
         {
             (_updatesSelectUpdatePage.AssetTypeLabel.GetElementVisibility()).Should().BeTrue(because: "Asset type label should be displayed in Select update page.");
-            (_updatesSelectUpdatePage.AssetTypeLabel.Text).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.AssetTypeLabelText, because: "Asset type label text should match with the expected value in select update page.");
+            (_updatesSelectUpdatePage.AssetTypeLabel.Text).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.AssetTypeLabelText, because: "Asset type label text should match with the expected value in select update page.");
         }
 
 
@@ -89,13 +90,13 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("select updates elements"))
             {
                 (_updatesSelectUpdatePage.UpgradeTypeLabel.GetElementVisibility()).Should().BeTrue(because: "Update type label should be displayed in Select update page.");
-                (_updatesSelectUpdatePage.UpgradeTypeLabel.Text).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeLabelText,because: "Update type label text should match with the expected value in select update page.");
+                (_updatesSelectUpdatePage.UpgradeTypeLabel.Text).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.UpdateTypeLabelText,because: "Update type label text should match with the expected value in select update page.");
             }
             //cvsm select assets elements
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm select assets elements"))
             {
                 (_updateSelectDevicePage.TypeofUpdateConfigLabel.GetElementVisibility()).Should().BeTrue(because: "Update type label should be displayed in select assets page.");
-                (_updateSelectDevicePage.TypeofUpdateConfigLabel.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.ConfigureLabelText, because: "Update type label text should match with the expected value.");
+                (_updateSelectDevicePage.TypeofUpdateConfigLabel.Text).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.ConfigureLabelText, because: "Update type label text should match with the expected value.");
             }
             //If test step does not belong to any scenario
             else
@@ -133,14 +134,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         [When(@"user selects CVSM Asset type")]
         public void WhenUserSelectsCVSMAssetType()
         {
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CVSMDeviceName);
         }
 
         [Then(@"CVSM displays as Asset type")]
         public void ThenCVSMDisplaysAsAssetType()
         {
             string selectedOptionInAssetTypeDropdown = _updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL();
-            (selectedOptionInAssetTypeDropdown).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName,because: "CVSM should be displayed as asset type when user select CVSM in Asset type dropdown.");
+            (selectedOptionInAssetTypeDropdown).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.CVSMDeviceName,because: "CVSM should be displayed as asset type when user select CVSM in Asset type dropdown.");
         }
 
         [Then(@"Update type drop down contains Configuration entry only")]
@@ -154,7 +155,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
                 dropdownOptionTextList.Add(option.Text.ToLower());
             }
 
-            dropdownOptionTextList.Should().BeEquivalentTo(new List<string> { UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeDropdownDefault.ToLower(), UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration.ToLower() },because:"Update type drop down should contain only selct and configuration options when user selects CVSM as Asset type");
+            dropdownOptionTextList.Should().BeEquivalentTo(new List<string> { UpdatesSelectUpdatePageExpectedValues.UpdateTypeDropdownDefault.ToLower(), UpdatesSelectUpdatePageExpectedValues.UpdateTypeConfiguration.ToLower() },because:"Update type drop down should contain only selct and configuration options when user selects CVSM as Asset type");
         }
 
         [Given(@"user is on CVSM Updates page")]
@@ -162,27 +163,27 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         {
             GivenUserIsOnMainPage();
             _mainPage.UpdatesTab.JavaSciptClick(_driver);
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CVSMDeviceName);
         }
 
         [Given(@"CVSM Asset type is selected")]
         public void GivenCVSMAssetTypeIsSelected()
         {
             string selectOptionInAssetTypeDropDown = _updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL();
-            (selectOptionInAssetTypeDropDown).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName, because: "CVSM Asset type should be selected when user selects CVSM in asset type dropdown");
+            (selectOptionInAssetTypeDropDown).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.CVSMDeviceName, because: "CVSM Asset type should be selected when user selects CVSM in asset type dropdown");
         }
 
         [When(@"user selects Configuration Update type")]
         public void WhenUserSelectsConfigurationUpdateType()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeConfiguration);
         }
 
         [Then(@"Configuration displays as Update type")]
         public void ThenConfigurationDisplaysAsUpdateType()
         {
             string selectOptionInUpdateTypeDropDown = _updatesSelectUpdatePage.UpgradeTypeDropDown.GetSelectedOptionFromDDL();
-            (selectOptionInUpdateTypeDropDown).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration, because: "Configuration should be selected when user selects CVSM in asset type dropdown and Configuration in update type dropdown");
+            (selectOptionInUpdateTypeDropDown).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.UpdateTypeConfiguration, because: "Configuration should be selected when user selects CVSM in asset type dropdown and Configuration in update type dropdown");
         }
 
         [Then(@"CVSM configuration list is displayed")]
@@ -219,8 +220,8 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             }
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.UpdatesTab.JavaSciptClick(_driver);
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CVSMDeviceName);
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CVSMDeviceName);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeConfiguration);
         }
 
         [Then(@"Previous page icon is disabled")]
@@ -229,7 +230,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource, because:"Previous page icon should be disabled in First page of entries in select update page");
+            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDiabledSource, because:"Previous page icon should be disabled in First page of entries in select update page");
         }
 
         [Then(@"Next page icon is disabled")]
@@ -238,7 +239,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled");
+            (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled");
         }
 
         [Then(@"Previous page icon is enabled")]
@@ -247,14 +248,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
+            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
         }
 
 
         [Given(@"Configuration Update type is selected")]
         public void GivenConfigurationUpdateTypeIsSelected()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeConfiguration);
         }
 
         [When(@"user selects CVSM configuration from the list")]
@@ -287,7 +288,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void GivenUserIsOnCVSMConfigurationSelectAssetsPage()
         {
             GivenUserIsOnCVSMUpdatesPage();
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeConfiguration);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeConfiguration);
             _updatesSelectUpdatePage.FirstFileCVSMAndCentrellaInTable.Click();
             _updatesSelectUpdatePage.NextButton.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
@@ -298,14 +299,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         {
             _wait.Until(ExplicitWait.ElementExists(By.Id(UpdateSelectDevicesPage.Locators.DeviceCountID)));
             string selectUpdateIndicatorColor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
-            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.NonHighlightedHeadingColor,because: "Select Update tab indicator should not be highlighted.");
+            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.NonHighlightedHeadingColor,because: "Select Update tab indicator should not be highlighted.");
         }
 
         [Then(@"Select assets indicator is highlighted")]
         public void ThenSelectAssetsIndicatorIsHighlighted()
         {
             string selectAssetsIndicatorColor = _updateSelectDevicePage.Heading.GetCssValue("color");
-            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, because: "Select devices tab should not be highlighted");
+            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.HighlightedHeadingColor, because: "Select devices tab should not be highlighted");
         }
 
         [Given(@"Configuration list is not empty")]
@@ -331,14 +332,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             {
                 (_updateSelectDevicePage.ItemtoPush.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in CVSM select assets page.");
                 string ActualItemToPushLabelText = _updateSelectDevicePage.ItemtoPush.Text;
-                (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CVSM select assets page.");
+                (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CVSM select assets page.");
             }
             //For CVSM Review action page
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
             {
                 (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in CVSM Review action page.");
                 string ActualItemToPushLabelText = _updateReviewActionPage.ItemToPushLabel.Text;
-                (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CVSM Review action page.");
+                (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in CVSM Review action page.");
             }
             //If this does not belong to any scenario
             else
@@ -368,14 +369,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             {
                 (_updateSelectDevicePage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in CVSM select assets Page.");
                 string ActualDestinationLabelText = _updateSelectDevicePage.DestinationLabel.Text;
-                (ActualDestinationLabelText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in CVSM select assets Page.");
+                (ActualDestinationLabelText).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in CVSM select assets Page.");
             }
             //For CVSM Review action page
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm review action elements"))
             {
                 (_updateReviewActionPage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in CVSM review action Page.");
                 string ActualDesinationLabelText = _updateReviewActionPage.DestinationLabel.Text;
-                ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in CVSM review action Page.");
+                ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in CVSM review action Page.");
             }
             //If this does not belong to any scenario
             else
@@ -513,7 +514,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenCountOfSelectedDevicesChangesFromTo()
         {
             string ActualDestinationCountText = _updateSelectDevicePage.DeviceCount.Text;
-            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
+            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
         }
 
         [When(@"user clicks Previous button")]
@@ -567,7 +568,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenReviewActionIndicatorIsHighlighted()
         {
             string reviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
-            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in CVSM review action page");
+            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in CVSM review action page");
         }
 
         [Then(@"Confirm button is enabled")]
@@ -587,7 +588,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
             (_updateSelectDevicePage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button on CVSM review action page.");
-            (_updateSelectDevicePage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
+            (_updateSelectDevicePage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value.");
         }
 
         [Then(@"Select devices page is displayed")]
@@ -604,7 +605,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled");
+            (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled");
         }
 
         [Given(@"first (.*) entries are displayed")]

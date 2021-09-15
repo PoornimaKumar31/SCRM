@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -48,27 +49,27 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.UpdatesTab.JavaSciptClick(_driver);
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.RV700DeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.RV700DeviceName);
         }
         
         [Given(@"RV700 Asset type is selected")]
         public void GivenRVAssetTypeIsSelected()
         {
             string selectedAssetType = _updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL();
-            (selectedAssetType).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.RV700DeviceName, because: "RV700 device should be selected when selects RV700 in asset type dropdown in Select upadtes tab.");
+            (selectedAssetType).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.RV700DeviceName, because: "RV700 device should be selected when selects RV700 in asset type dropdown in Select upadtes tab.");
         }
         
         [When(@"user selects Upgrade Update type")]
         public void WhenUserSelectsUpgradeUpdateType()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
         }
         
         [Then(@"Upgrade displays as Update type")]
         public void ThenUpgradeDisplaysAsUpdateType()
         {
             string selectedUpdateType = _updatesSelectUpdatePage.UpgradeTypeDropDown.GetSelectedOptionFromDDL();
-            (selectedUpdateType).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade, because: "Upgrade type should be displayed when user selects Update as option in Upgrade type dropdown in RV700 select updates page");
+            (selectedUpdateType).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade, because: "Upgrade type should be displayed when user selects Update as option in Upgrade type dropdown in RV700 select updates page");
         }
         
         [Then(@"RV700 upgrade list is displayed")]
@@ -140,7 +141,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             int ExpectedNoOfEntires=0;
             GivenUserIsOnRVUpdatesPage();
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
             if(entries.Trim().Equals("<=50"))
             {
                 ExpectedNoOfEntires = 50;
@@ -154,20 +155,20 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             //Checking the image source
             string PreviousPageIconImageSrc = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PreviousPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationPreviousIconDiabledSource, because: "Previous page icon should be disabled in First page entries list in RV700 upgrades page");
+            (PreviousPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDiabledSource, because: "Previous page icon should be disabled in First page entries list in RV700 upgrades page");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
             string NextPageIconImageSrc = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled in RV700 upgrades page where total no of entries are less than or equal to 50.");
+            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled in RV700 upgrades page where total no of entries are less than or equal to 50.");
         }
 
         [Given(@"Upgrade Update type is selected")]
         public void GivenUpgradeUpdateTypeIsSelected()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
         }
 
         [Given(@"user has selected Upgrade file")]
@@ -195,7 +196,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             //Go to updates page
             GivenUserIsOnRVUpdatesPage();
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
 
             //Clicking on the first file
             _updatesSelectUpdatePage.RV700AndCentrellaFileNameList[0].Click();
@@ -211,21 +212,21 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             //Checking the font color
             string selectUpdateIndicatorColor = _updatesSelectUpdatePage.Heading.GetCssValue("color");
-            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.NonHighlightedHeadingColor, because: "Select Update tab indicator should not be highlighted.");
+            (selectUpdateIndicatorColor).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.NonHighlightedHeadingColor, because: "Select Update tab indicator should not be highlighted.");
         }
 
         [Then(@"Select assets indicator is highlighted")]
         public void ThenSelectAssetsIndicatorIsHighlighted()
         {
             string selectAssetsIndicatorColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
-            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.HighlightedHeadingColor, because: "Select devices tab should be highlighted in select device tab");
+            (selectAssetsIndicatorColor).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.HighlightedHeadingColor, because: "Select devices tab should be highlighted in select device tab");
         }
 
         [Then(@"Review action indicator is not highlighted")]
         public void ThenReviewActionIndicatorIsNotHighlighted()
         {
             string ReviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
-            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
+            (ReviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.NonHighlightedHeadingColor, because: "Review action indicator should not be highlighted.");
         }
 
         [Then(@"""(.*)"" label is displayed")]
@@ -237,15 +238,15 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             {
                 case "item to push":
                     label = _updateSelectDevicesPage.ItemtoPush;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.ItemToPushLabelText;
+                    ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.ItemToPushLabelText;
                     break;
                 case "asset type":
                     label = _updateSelectDevicesPage.DeviceTypeLabel;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.RV700DeviceName;
+                    ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.RV700DeviceName;
                     break;
                 case "update type":
                     label = _updateSelectDevicesPage.TypeOfUpdateUpgradeLabel;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.UpgradeLabelText;
+                    ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.UpgradeLabelText;
                     break;
                 case "upgrade file to push":
                     label = _updateSelectDevicesPage.FileName;
@@ -253,7 +254,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
                     break;
                 case "destinations":
                     label = _updateSelectDevicesPage.DestinationLabel;
-                    ExpectedLabelName = UpdateSelectDevicesPage.ExpectedValues.DestinationLabelText;
+                    ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.DestinationLabelText;
                     break;
                 default: Assert.Fail(LabelName + " is a invalid label name.");
                     break;
@@ -394,7 +395,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenCountOfSelectedDevicesChangesFromTo()
         {
             string ActualDestinationCountText = _updateSelectDevicesPage.DeviceCount.Text;
-            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
+            (ActualDestinationCountText).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.Desination1DeviceCountText, because: "Count of selected devices should change when user selects one device in select assets page.");
         }
 
         [Then(@"Next button is enabled")]
@@ -445,7 +446,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.ItemToPushLabel.GetElementVisibility()).Should().BeTrue(because: "Item to push label should be displayed in RV700 Upgrade Review action page.");
             string ActualItemToPushLabelText = _updateReviewActionPage.ItemToPushLabel.Text;
-            (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in RV700 Upgrade Review action page");
+            (ActualItemToPushLabelText).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.ItemToPushLabelText, because: "Item to push label text should match with expected value in RV700 Upgrade Review action page");
         }
 
         [Then(@"Item to push value is displayed")]
@@ -459,7 +460,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updateReviewActionPage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in RV700 upgrade review action Page.");
             string ActualDesinationLabelText = _updateReviewActionPage.DestinationLabel.Text;
-            ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in RV700 upgrade review action Page.");
+            ActualDesinationLabelText.Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.DestinationLabelText, because: "Destination label text should match with expected value in RV700 upgrade review action Page.");
         }
 
         [Then(@"Destinations value is displayed")]
@@ -472,14 +473,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenSelectAssetsIndicatorIsNotHighlighted()
         {
             string SelectAssetsColor = _updateSelectDevicesPage.Heading.GetCssValue("color");
-            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
+            (SelectAssetsColor).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.NonHighlightedHeadingColor, because: "Select assets indicator should not be highlighted.");
         }
 
         [Then(@"Review action indicator is highlighted")]
         public void ThenReviewActionIndicatorIsHighlighted()
         {
             string reviewActionColor = _updateReviewActionPage.Heading.GetCssValue("color");
-            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPage.ExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in RV700 review action page");
+            (reviewActionColor).Should().BeEquivalentTo(UpdateReviewActionPageExpectedValues.HighlightedHeadingColor, because: "Review action indicator should be highlighted in RV700 review action page");
         }
 
         [Then(@"Confirm button is enabled")]
@@ -499,7 +500,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenUpdateProcessHasBeenEstablishedMessageIsDisplayed()
         {
             (_updateSelectDevicesPage.SuccessUpadteMessage.GetElementVisibility()).Should().BeTrue(because: "Update process Message should be displayed when user clicks confirm button In RV700 Upgrade review action page.");
-            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPage.ExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value in RV700 Upgrade review action page");
+            (_updateSelectDevicesPage.SuccessUpadteMessage.Text).Should().BeEquivalentTo(UpdateSelectDevicesPageExpectedValues.UpdateProcessMessageText, because: "Update message should match with the expected value in RV700 Upgrade review action page");
         }
 
         [Then(@"Select assets page is displayed")]

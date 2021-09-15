@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.ReportsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -19,7 +20,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
-        private readonly CSMConfigStatusPage _csmConfigStatusPage;
+        private readonly ConfigStatusReportPage _csmConfigStatusPage;
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
@@ -35,7 +36,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
             _reportsPage = new ReportsPage(driver);
-            _csmConfigStatusPage = new CSMConfigStatusPage(driver);
+            _csmConfigStatusPage = new ConfigStatusReportPage(driver);
         }
 
         [Given(@"user is on CSM CONFIGURATION UPDATE STATUS page")]
@@ -45,8 +46,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.ReportsTab.JavaSciptClick(_driver);
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ConfigurationReportType);
             _reportsPage.GetReportButton.Click();
         }
         
@@ -57,23 +58,23 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch(searchType.ToLower().Trim())
             {
                 case "serial number":
-                    SearchText = CSMConfigStatusPage.ExpectedValues.SerialNumberSearchText;
+                    SearchText = ConfigStatusReportPageExpectedValues.SerialNumberSearchText;
                     break;
 
                 case "configuration":
-                    SearchText = CSMConfigStatusPage.ExpectedValues.ConfigurationSearchText;
+                    SearchText = ConfigStatusReportPageExpectedValues.ConfigurationSearchText;
                     break;
 
                 case "location":
-                    SearchText = CSMConfigStatusPage.ExpectedValues.LocationSearchText;
+                    SearchText = ConfigStatusReportPageExpectedValues.LocationSearchText;
                     break;
 
                 case "status":
-                    SearchText = CSMConfigStatusPage.ExpectedValues.StatusSearchText;
+                    SearchText = ConfigStatusReportPageExpectedValues.StatusSearchText;
                     break;
 
                 case "last deployed":
-                    SearchText = CSMConfigStatusPage.ExpectedValues.LastDeployedSearchText;
+                    SearchText = ConfigStatusReportPageExpectedValues.LastDeployedSearchText;
                     break;
 
                 default: Assert.Fail(searchType + " is a invalid search type.");
@@ -101,27 +102,27 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             {
                 case "serial number":
                     column = _csmConfigStatusPage.SerialNumberColumn;
-                    ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.SerialNumberSearchText;
+                    ExpectedSearchText = ConfigStatusReportPageExpectedValues.SerialNumberSearchText;
                     break;
 
                 case "configuration":
                     column = _csmConfigStatusPage.ConfigurationColumn;
-                    ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.ConfigurationSearchText;
+                    ExpectedSearchText = ConfigStatusReportPageExpectedValues.ConfigurationSearchText;
                     break;
 
                 case "location":
                     column = _csmConfigStatusPage.LocationColumn;
-                    ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.LocationSearchText;
+                    ExpectedSearchText = ConfigStatusReportPageExpectedValues.LocationSearchText;
                     break;
 
                 case "status":
                     column = _csmConfigStatusPage.StatusColumn;
-                    ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.StatusSearchText;
+                    ExpectedSearchText = ConfigStatusReportPageExpectedValues.StatusSearchText;
                     break;
 
                 case "last deployed":
                     column = _csmConfigStatusPage.LastDeployedColumn;
-                    ExpectedSearchText = CSMConfigStatusPage.ExpectedValues.LastDeployedSearchText;
+                    ExpectedSearchText = ConfigStatusReportPageExpectedValues.LastDeployedSearchText;
                     break;
 
                 default: Assert.Fail(searchType + " is a invalid search type.");

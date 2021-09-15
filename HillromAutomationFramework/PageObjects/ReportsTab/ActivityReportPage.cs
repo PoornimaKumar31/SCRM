@@ -28,25 +28,6 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
             public const string LocationColumnXpath = "//div[@class='measurements']//div//div[2]";
             public const string LastVitalSentColumnXpath = "//div[@class='measurements']//div//div[3]";
         }
-      
-        public static class ExpectedValues
-        {
-            //Search text
-            public const string SerialNumberSearchText = "100010000000";
-            public const string LocationSearchText = "Station1";
-
-            //CSM
-            public const string CSMActivityReportName = "Activity_Status_Report_(CSM).csv";
-            public const string ActivityReportCSMHeader = "ACTIVITY REPORT (CSM)";
-            public const string SerialNumberHeadingText = "Serial number";
-            public const string LocationHeadingText = "Location";
-            public const string LastVitalSentHeadingText = "Last vital sent";
-
-            //Centrella
-            public const string CentrellaActivityReportName = "Activity_Status_Report_(Centrella).csv";
-            public const string ActivityReportCentreallaHeader = "ACTIVITY REPORT (CENTRELLA)";
-
-        }
 
         public ActivityReportPage(IWebDriver driver)
         {

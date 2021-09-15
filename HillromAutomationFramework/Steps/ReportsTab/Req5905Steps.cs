@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.ReportsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -19,7 +20,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly LandingPage _landingPage ;
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
-        private readonly FirmwareStatusPage _firmwareStatusPage;
+        private readonly FirmwareStatusReportPage _firmwareStatusPage;
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
@@ -35,7 +36,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
             _reportsPage = new ReportsPage(driver);
-            _firmwareStatusPage = new FirmwareStatusPage(driver);
+            _firmwareStatusPage = new FirmwareStatusReportPage(driver);
         }
 
         [Given(@"user is on Centrella Firmware Upgrade Status Report page")]
@@ -48,8 +49,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             _mainPage.ReportsTab.JavaSciptClick(_driver);
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
         }
 
@@ -89,19 +90,19 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch(searchType.ToLower().Trim())
             {
                 case "serial number":
-                    searchText = flag?FirmwareStatusPage.ExpectedValues.CentrellaSerialNumberSearchText:FirmwareStatusPage.ExpectedValues.CSMSerialNumberSearchText;
+                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaSerialNumberSearchText:FirmwareStatusReportPageExpectedValues.CSMSerialNumberSearchText;
                     break;
                 case "firmware version":
-                    searchText = flag?FirmwareStatusPage.ExpectedValues.CentrellaFirmwareVersionSearchText:FirmwareStatusPage.ExpectedValues.CSMFirmwareVersionSearchText;
+                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaFirmwareVersionSearchText:FirmwareStatusReportPageExpectedValues.CSMFirmwareVersionSearchText;
                     break;
                 case "status":
-                    searchText = flag?FirmwareStatusPage.ExpectedValues.CentrellaStatusSearchText:FirmwareStatusPage.ExpectedValues.CSMStatusSearchText;
+                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaStatusSearchText:FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
                     break;
                 case "location":
-                    searchText = flag?FirmwareStatusPage.ExpectedValues.CentrellaLocationSearchText:FirmwareStatusPage.ExpectedValues.CSMLocationSearchText;
+                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaLocationSearchText:FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
                         break;
                 case "last deployed":
-                    searchText = flag?FirmwareStatusPage.ExpectedValues.CentrellaLastDeployedSearchText:FirmwareStatusPage.ExpectedValues.CSMLastDeployedSearchText;
+                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaLastDeployedSearchText:FirmwareStatusReportPageExpectedValues.CSMLastDeployedSearchText;
                     break;
                     
                 default:
@@ -151,8 +152,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
             _mainPage.ReportsTab.JavaSciptClick(_driver);
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
             _reportsPage.GetReportButton.Click();
         }
 

@@ -19,7 +19,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
-        private readonly FirmwareVersionPage _firmwareVersionPage;
+        private readonly FirmwareVersionReportPage _firmwareVersionPage;
 
         private readonly ScenarioContext _scenarioContext;
         private readonly IWebDriver _driver;
@@ -35,7 +35,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
             _reportsPage = new ReportsPage(driver);
-            _firmwareVersionPage = new FirmwareVersionPage(driver);
+            _firmwareVersionPage = new FirmwareVersionReportPage(driver);
         }
 
         [Given(@"user is on Reports page")]
@@ -51,13 +51,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Given(@"Centrella Asset type is selected in Asset type dropdown")]
         public void GivenCentrellaAssetTypeIsSelectedInAssetTypeDropdown()
         {
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
         }
 
         [Given(@"Firmware Version Report type is selected")]
         public void GivenFirmwareVersionReportTypeIsSelected()
         {
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareVersionReportType);
         }
 
         [When(@"user clicks Get report button")]
@@ -70,7 +70,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void ThenFirmwareVersionReportCentrellaLabelIsDisplayed()
         {
             (_firmwareVersionPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Firmware version report label should be displayed in Firmware Version Report page");
-            (_firmwareVersionPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareVersionPage.ExpectedValues.ReportCentrellaLabelText, because: "Firmware version report label should match the expected value in Firmware Version Report page.");
+            (_firmwareVersionPage.FirmwareReportTitle.Text).Should().BeEquivalentTo(FirmwareVersionReportPageExpectedValues.ReportCentrellaLabelText, because: "Firmware version report label should match the expected value in Firmware Version Report page.");
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
@@ -104,8 +104,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenUserIsOnCentrellaFirmwareVersionReportPage()
         {
             GivenUserIsOnReportsPage();
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CentrellaDeviceName);
-            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareVersionReportType);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareVersionReportType);
             _reportsPage.GetReportButton.Click();
         }
 

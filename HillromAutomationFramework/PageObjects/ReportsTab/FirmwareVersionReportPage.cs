@@ -4,7 +4,7 @@ using SeleniumExtras.PageObjects;
 
 namespace HillromAutomationFramework.PageObjects.ReportsTab
 {
-    class FirmwareVersionPage
+    class FirmwareVersionReportPage
     {
         public static class Locators
         {
@@ -31,18 +31,8 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
             public const string PrintButtonID = "fv-print";
 
         }
-        public static class ExpectedValues
-        {
-            public const string ReportCVSMLabelText = "FIRMWARE VERSION REPORT (CVSM)";
-            public const string ReportCSMLabelText = "FIRMWARE VERSION REPORT (CSM)";
-            public const string ReportRV700LabelText = "FIRMWARE VERSION REPORT (RV700)";
-            public const string ReportCentrellaLabelText = "FIRMWARE VERSION REPORT (CENTRELLA)";
-            public const string ComponentsHeadingText = "Components";
-            public const string FirmwareVersionHeadingText = "Firmware version";
-            public const string TotalDevicesHeadingText = "Total devices";
-        }
 
-        public FirmwareVersionPage(IWebDriver driver)
+        public FirmwareVersionReportPage(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }

@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.UpdatesTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -49,16 +50,16 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         [Given(@"CSM Asset type is selected")]
         public void GivenCSMAssetTypeIsSelected()
         {
-            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName);
+            _updatesSelectUpdatePage.AssetTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.CSMDeviceName);
             string SelectedAssetType = _updatesSelectUpdatePage.AssetTypeDropDown.GetSelectedOptionFromDDL();
-            string ExpectedAssetType = UpdatesSelectUpdatePage.ExpectedValues.CSMDeviceName;
+            string ExpectedAssetType = UpdatesSelectUpdatePageExpectedValues.CSMDeviceName;
             (SelectedAssetType).Should().BeEquivalentTo(ExpectedAssetType, because:"CSM Asset type should be selected when User CSM as Asset type");
         }
 
         [Given(@"Upgrade Update type is selected")]
         public void GivenUpgradeUpdateTypeIsSelected()
         {
-            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePage.ExpectedValues.UpdateTypeUpgrade);
+            _updatesSelectUpdatePage.UpgradeTypeDropDown.SelectDDL(UpdatesSelectUpdatePageExpectedValues.UpdateTypeUpgrade);
         }
 
         [When(@"user clicks Manage Active Updates button")]
@@ -88,7 +89,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updatesSelectUpdatePage.DestinationLabel.GetElementVisibility()).Should().BeTrue(because: "Destination label should be displayed in CSM Manage Active Upgrades page");
             string DestinationLabelText = _updatesSelectUpdatePage.DestinationLabel.Text;
-            (DestinationLabelText).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.ManageUpgradesDestinationLabel, because: "Destination label should match with the expected value in CSM Manage Active Upgrades page");
+            (DestinationLabelText).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.ManageUpgradesDestinationLabel, because: "Destination label should match with the expected value in CSM Manage Active Upgrades page");
         }
 
         [Then(@"location hierarchy selectors are displayed")]
@@ -208,7 +209,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             (_updatesSelectUpdatePage.ManageUpgradesMessage.GetElementVisibility()).Should().BeTrue(because: "Upgrade Cancelled message should be displayed when user clicks enabled cancel button in CSM Manage Active Upgrades page");
             string UpdateCancelMessageText = _updatesSelectUpdatePage.ManageUpgradesMessage.Text;
-            (UpdateCancelMessageText).Should().BeEquivalentTo(UpdatesSelectUpdatePage.ExpectedValues.ManageUpgradeCancelMessage, because: "Upgrade Cancelled message should match with the expected value in CSM Manage Active Upgrades page");
+            (UpdateCancelMessageText).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.ManageUpgradeCancelMessage, because: "Upgrade Cancelled message should match with the expected value in CSM Manage Active Upgrades page");
         }
 
     }

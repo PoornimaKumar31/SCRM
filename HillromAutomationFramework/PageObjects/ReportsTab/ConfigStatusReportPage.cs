@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace HillromAutomationFramework.PageObjects
 {
-    public class CSMConfigStatusPage
+    public class ConfigStatusReportPage
     {
         public static class Locators
         {
@@ -47,48 +47,8 @@ namespace HillromAutomationFramework.PageObjects
 
             public const string ColumnCommonXpath = "//div[@class='measurements']/div/div";
         }
-        public static class ExpectedValues
-        {
-            public const string ConfigurationUpdateStatusCSMLabelText = "CONFIGURATION UPDATE STATUS (CSM)";
 
-
-            public const string CSMConfigurationStatusReportFileName = "Configuration_Update_Status_Report_(CSM).csv";
-
-            public const string CSMDeviceName = "Connex Spot Monitor (CSM)";
-            public const string CSMConfigurationReport = "CFG Update Status";
-            public const string CSMFirmwareStatusReport = "Firmware Status";
-            public const string CSMActivityReport = "Activity";
-
-            //Sorting indicators
-            public static string IncreasingSortIndicatorURL = "url(\"" + PropertyClass.BaseURL + "/icon_sort_down.svg\")";
-            public static string DecreasingSortIndicatorURL = "url(\"" + PropertyClass.BaseURL + "/icon_sort_up.svg\")";
-
-            //status heading
-            public const string InformationPopUPHeaderText = "CSM Configuration Report Statuses:";
-            public const string StratedDefinition = "Configuration update has been initiated.";
-            public const string TransferredDefinitation = "Configuration update has been transferred.";
-            public const string AvailableDefinitation = "Configuration update has been received by Service Monitor and is waiting for device to call home.";
-            public const string AppliedDefinitation = "Configuration update successful. Device is currently using the new configuration.";
-            public const string FailedDefinition = "Configuration update aborted. Check logs for details.";
-
-            //Configuration Update status(CSM) table elements
-            public const string SerialNumberHeadingText = "Serial number";
-            public const string ConfigurationHeadingText = "Configuration";
-            public const string LocationHeadingText = "Location";
-            public const string StatusHeadingText = "Status";
-            public const string LastDeployedHeadingText = "Last deployed";
-            public const string LastConnectedHeadingText = "Last connected";
-
-            //Search Elements
-            public const string SerialNumberSearchText = "100010000000";
-            public const string ConfigurationSearchText = "NewDashboardBaseXXX";
-            public const string LocationSearchText = "Station1";
-            public const string StatusSearchText = "Available";
-            public const string LastDeployedSearchText = "Vanilla-signed.waconfig";
-            public const string LastConnectedSearchText = "20 Sep 2018, 07:11 PM";
-        }
-
-        public CSMConfigStatusPage(IWebDriver driver)
+        public ConfigStatusReportPage(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }

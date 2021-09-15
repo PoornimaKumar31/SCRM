@@ -56,29 +56,29 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     _mainPage.ReportsTab.JavaSciptClick(_driver);
-                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ConfigurationReportType);
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CSMDeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ConfigurationReportType);
                     break;
                 case "csm firmware upgrade status":
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     _mainPage.ReportsTab.JavaSciptClick(_driver);
-                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CSMDeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
                     break;
                 case "csm activity report":
                     _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
                     _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     _mainPage.ReportsTab.JavaSciptClick(_driver);
-                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.CSMDeviceName);
-                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.ActivityReportType);
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CSMDeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
                     break;
                 case "rv700 firmware upgrade status":
                     _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
                     _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
                     _mainPage.ReportsTab.JavaSciptClick(_driver);
-                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPage.ExpectedValues.RV700DeviceName);
-                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPage.ExpectedValues.FirmwareStatusReportType);
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.RV700DeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
                     break;
                 default:
                     Assert.Fail(reportName + " is a Invalid report type");
@@ -95,17 +95,17 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             switch(reportName.ToLower().Trim())
             {
                 case "configuration update status":
-                    filename= CSMConfigStatusPage.ExpectedValues.CSMConfigurationStatusReportFileName;
+                    filename= ConfigStatusReportPageExpectedValues.CSMConfigurationStatusReportFileName;
                     break;
 
                 case "firmware status":
                     if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm firmware status report download"))
                     {
-                        filename = FirmwareStatusPage.ExpectedValues.CSMFirmwareStatusReportName;
+                        filename = FirmwareStatusReportPageExpectedValues.CSMFirmwareStatusReportName;
                     }
                     else if(_scenarioContext.ScenarioInfo.Title.ToLower().Equals("rv700 firmware status report download"))
                     {
-                        filename = FirmwareStatusPage.ExpectedValues.RV700FirmwareStatusReportName;
+                        filename = FirmwareStatusReportPageExpectedValues.RV700FirmwareStatusReportName;
                     }
                     else
                     {
@@ -114,7 +114,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     break;
 
                 case "activity":
-                    filename = ActivityReportPage.ExpectedValues.CSMActivityReportName;
+                    filename = ActivityReportPageExpectedValues.CSMActivityReportName;
                     break;
                 default: Assert.Fail(reportName + " is a invalid report name.");
                     break;

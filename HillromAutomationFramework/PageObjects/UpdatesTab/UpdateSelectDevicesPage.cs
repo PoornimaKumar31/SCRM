@@ -58,12 +58,12 @@ namespace HillromAutomationFramework.PageObjects
 
             public const string ItemToPushLabelText = "Item to push";
             public const string DestinationLabelText = "DESTINATIONS";
-            public const string FirwareHeadingText = "Firmware";
+/*            public const string FirwareHeadingText = "Firmware";
             public const string ConfigHeadingText = "Config";
             public const string AssetTagHeadingText = "Asset Tag";
             public const string SerialHeadingText = "Serial Number";
             public const string LocationHeadingText = "Location";
-            public const string LastFilesDeployedHeadingText = "Last Files Deployed";
+            public const string LastFilesDeployedHeadingText = "Last Files Deployed";*/
             public const string Desination1DeviceCountText = "1 assets selected in 1 locations";
             public const string UpdateProcessMessageText = "Update process has been established";
         }

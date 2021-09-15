@@ -37,50 +37,6 @@ namespace HillromAutomationFramework.PageObjects
             public const string UpdateMessageXpath= "//*[@id=\"cdk-overlay-0\"]/snack-bar-container";
         }
 
-        public static class Inputs
-        {
-            public const string ServiceMoniterText = "Service Monitor";
-        }
-
-        public static class ExpectedValues
-        {
-            public const string ServiceMoniterLabel = "Service Monitor Settings";
-            public const string CallHomePeriodLabel = "Call home Period";
-            public const string DeploymentModeLabel = "Deployment mode";
-            public const string DestinationLabel = "DESTINATIONS";
-
-            //Call home period drop down option
-            public const string CallHomePeriodDropdownOptionP1D = "P1D (24 HOURS)";
-            public const string CallHomePeriodDropdownOptionPT8H = "PT8H (8 HOURS)";
-            public const string CallHomePeriodDropdownOptionPT4H = "PT4H (4 HOURS)";
-            public const string CallHomePeriodDropdownOptionPT15M = "PT15M (15 MINUTES)";
-
-            //Deployment mode dropdown option
-            public const string DeploymentModeDropdownOptionTrue = "TRUE";
-            public const string DeploymentModeDropdownOptionFalse = "FALSE";
-
-            public const string DestinationNoDeviceCountText = "0 devices in 0 locations";
-            public const string Destination1DeviceCountText = "1 devices in 1 locations";
-
-            //table elements
-            public const string SerialNumHeadingText = "Serial Number";
-            public const string CallHomePeriodHeadingText = "Call Home Period";
-            public const string DeploymentModeHeadingText = "Deployment Mode";
-            public const string LocationHeadingText = "Location";
-            public const string LastFilesDeployedHeadingText = "Last Files Deployed";
-
-            //Pagination
-            public static string PaginationPreviousIconDisabledSrc = PropertyClass.BaseURL + "/left_disabled.png";
-            public static string PaginationNextIconDisabledSrc = PropertyClass.BaseURL + "/right_disabled.png";
-
-            //Message
-            public const string UpdateMessageText = "Update process has been established";
-
-            public const string CallHomePeriodDropdownOptionP1DPatialText = "P1D";
-            public const string DeploymentModeDropdownOptionFalsePartialText = "False";
-
-        }
-
         public ServiceMonitorPage(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);

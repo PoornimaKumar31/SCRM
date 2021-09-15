@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CentrellaDownloadFailureDefination" xml:space="preserve">
+    <value>A failure occurred when downloading the firmware.</value>
+  </data>
+  <data name="CentrellaDownloadingDefination" xml:space="preserve">
+    <value>The firmware is downloading on the bed.</value>
+  </data>
+  <data name="CentrellaFirmwareStatusReportName" xml:space="preserve">
+    <value>Firmware_Status_Report.csv</value>
+  </data>
+  <data name="CentrellaFirmwareVersionSearchText" xml:space="preserve">
+    <value>1.33.006</value>
+  </data>
+  <data name="CentrellaInformationPopUpHeaderText" xml:space="preserve">
+    <value>Centrella Firmware Report Statuses:</value>
+  </data>
+  <data name="CentrellaLastDeployedSearchText" xml:space="preserve">
+    <value>1.36.00</value>
+  </data>
+  <data name="CentrellaLocationSearchText" xml:space="preserve">
+    <value>Batesville</value>
+  </data>
+  <data name="CentrellaSerialNumberSearchText" xml:space="preserve">
+    <value>PY673002</value>
+  </data>
+  <data name="CentrellaStagingCompleteDefination" xml:space="preserve">
+    <value>The boards have received the firmware.</value>
+  </data>
+  <data name="CentrellaStagingDefination" xml:space="preserve">
+    <value>The firmware is distributing to the boards.</value>
+  </data>
+  <data name="CentrellaStagingFailureDefination" xml:space="preserve">
+    <value>A failure occurred when distributing the firmware to the boards.</value>
+  </data>
+  <data name="CentrellaStagingInconsistentDefination" xml:space="preserve">
+    <value>The downloaded firmware and boards are inconsistent. Bed features may not work as expected.</value>
+  </data>
+  <data name="CentrellaStartedDefination" xml:space="preserve">
+    <value>A request has been sent to update the firmware on the bed.</value>
+  </data>
+  <data name="CentrellaStatusSearchText" xml:space="preserve">
+    <value>Started</value>
+  </data>
+  <data name="CentrellaToggeleFailureDefination" xml:space="preserve">
+    <value>A failure occurred during the new firmware application to boards.</value>
+  </data>
+  <data name="CentrellaTogglingCompleteDefination" xml:space="preserve">
+    <value>The firmware update is complete. A bed restart is required to apply the new firmware.</value>
+  </data>
+  <data name="CentrellaTogglingDefination" xml:space="preserve">
+    <value>The bed is updating to the new firmware.</value>
+  </data>
+  <data name="CentrellaUpgradeSuccessDefination" xml:space="preserve">
+    <value>The bed successfully updated to the new firmware.</value>
+  </data>
+  <data name="CSMAppliedDefination" xml:space="preserve">
+    <value>Firmware update successful. Device is currently running the new firmware.</value>
+  </data>
+  <data name="CSMAvailableDefination" xml:space="preserve">
+    <value>Firmware update has been received by Service Monitor and is waiting for device to call home.</value>
+  </data>
+  <data name="CSMCancelingDefination" xml:space="preserve">
+    <value>Cancelation of the Firmware update has been received and is awaiting device confirmation.</value>
+  </data>
+  <data name="CSMCancelRequestedDefination" xml:space="preserve">
+    <value>Cancelation of the Firmware update has been requested.</value>
+  </data>
+  <data name="CSMDownloadedDefination" xml:space="preserve">
+    <value>New firmware is available on the device.</value>
+  </data>
+  <data name="CSMDownloadFailedDefination" xml:space="preserve">
+    <value>Download of Firmware update to the device has failed. Download will attempt again at next call home.</value>
+  </data>
+  <data name="CSMDownloadingDefination" xml:space="preserve">
+    <value>Firmware update is actively downloading to the device.</value>
+  </data>
+  <data name="CSMFailedDefination" xml:space="preserve">
+    <value>Firmware update aborted. Check device log for details.</value>
+  </data>
+  <data name="CSMFirmwareStatusReportName" xml:space="preserve">
+    <value>Firmware_Status_Report.csv</value>
+  </data>
+  <data name="CSMFirmwareVersionSearchText" xml:space="preserve">
+    <value>1.00.00-A0001</value>
+  </data>
+  <data name="CSMInformationPopUPHeaderText" xml:space="preserve">
+    <value>CSM Firmware Report Statuses:</value>
+  </data>
+  <data name="CSMLastDeployedSearchText" xml:space="preserve">
+    <value>1.52.00-A0002</value>
+  </data>
+  <data name="CSMLocationSearchText" xml:space="preserve">
+    <value>Station2</value>
+  </data>
+  <data name="CSMScheduledDefination" xml:space="preserve">
+    <value>Firmware update is downloaded to the device, and awaiting scheduled time to apply the update.</value>
+  </data>
+  <data name="CSMSerialNumberSearchText" xml:space="preserve">
+    <value>100010000000</value>
+  </data>
+  <data name="CSMStartedDefinition" xml:space="preserve">
+    <value>Firmware update has been initiated.</value>
+  </data>
+  <data name="CSMStatusSearchText" xml:space="preserve">
+    <value>Scheduled</value>
+  </data>
+  <data name="CSMUpdatingDefination" xml:space="preserve">
+    <value>Device is currently installing the new firmware.</value>
+  </data>
+  <data name="FirmwareUpgradeStatusCentrellaLabel" xml:space="preserve">
+    <value>FIRMWARE UPGRADE STATUS (CENTRELLA)</value>
+  </data>
+  <data name="FirmwareUpgradeStatusCSMLabel" xml:space="preserve">
+    <value>FIRMWARE UPGRADE STATUS (CSM)</value>
+  </data>
+  <data name="FirmwareUpgradeStatusRV700Label" xml:space="preserve">
+    <value>FIRMWARE UPGRADE STATUS (RV700)</value>
+  </data>
+  <data name="RV700AvailableDefination" xml:space="preserve">
+    <value>Firmware update has been deployed and is waiting for device to call home.</value>
+  </data>
+  <data name="RV700CompleteDefination" xml:space="preserve">
+    <value>Device firmware upgrade is complete.</value>
+  </data>
+  <data name="RV700FailureDefination" xml:space="preserve">
+    <value>Device firmware upgrade has failed.</value>
+  </data>
+  <data name="RV700FirmwareStatusReportName" xml:space="preserve">
+    <value>Firmware_Status_Report.csv</value>
+  </data>
+  <data name="RV700InformationPopUPHeaderText" xml:space="preserve">
+    <value>RV700 Firmware Report Statuses:</value>
+  </data>
+  <data name="RV700StartedDefinition" xml:space="preserve">
+    <value>Firmware update has been initiated.</value>
+  </data>
+</root>
