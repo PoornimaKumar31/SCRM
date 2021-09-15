@@ -108,7 +108,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             {
                 string ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
                 string ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
-                if (ActualEmail == randomUsername && ActualRole == AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage)
+                if (ActualEmail == randomUsername && ActualRole == AdvancePageExpectedValues.UserRoleRegularOnUserListPage)
                 {
                     isRegularUserDisplayed = true;
                     break;

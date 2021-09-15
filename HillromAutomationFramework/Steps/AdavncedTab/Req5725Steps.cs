@@ -94,7 +94,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             SetMethods.ScrollUpWebPage(_driver);
             Thread.Sleep(4000);
             string actualUserListLabelText = _advancePage.UserListLabel.Text;
-            string expectedUserListLabelText = AdvancedPage.ExpectedValues.UserListPageLabelText;
+            string expectedUserListLabelText = AdvancePageExpectedValues.UserListPageLabelText;
             actualUserListLabelText.Should().Be(expectedUserListLabelText, "User List page should be displayed on User Management tab.");
         }
 
@@ -109,7 +109,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             {
                 string ActualEmail = list[i].FindElement(By.Id("email" + i)).Text;
                 string ActualRole = list[i].FindElement(By.Id("role" + i)).Text;
-                if (ActualEmail == RandomUsername && ActualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage)
+                if (ActualEmail == RandomUsername && ActualRole == AdvancePageExpectedValues.UserRoleAdministratorOnUserListPage)
                 {
                     isUserManagerDisplayed = true;
                     break;

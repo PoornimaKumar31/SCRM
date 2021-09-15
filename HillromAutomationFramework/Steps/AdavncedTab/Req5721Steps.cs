@@ -474,11 +474,11 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             {
                 string userNameXPath = "//*[@id=\"email" + detailsButtonPosition + "\"]";
                 string userName = _driver.FindElement(By.XPath(userNameXPath)).Text;
-                if (userName != AdvancedPage.ExpectedValues.LoggedUser)
+                if (userName != AdvancePageExpectedValues.LoggedUser)
                 {
                     roleXpath = "//*[@id=\"role" + detailsButtonPosition + "\"]";
                     string Role = _driver.FindElement(By.XPath(roleXpath)).Text;
-                    if (Role == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage)
+                    if (Role == AdvancePageExpectedValues.UserRoleAdministratorOnUserListPage)
                     {
                         _advancePage.DetailsButtonList[detailsButtonPosition].Click();
                         break;
@@ -492,7 +492,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             string actualRole = _driver.FindElement(By.XPath(roleXpath)).Text;
-            string expectedRole = AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage;
+            string expectedRole = AdvancePageExpectedValues.UserRoleRegularOnUserListPage;
             actualRole.Should().Be(expectedRole, "Regular should be displayed in Role column on User List page.");
         }
 
@@ -508,7 +508,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             Thread.Sleep(2000);
             string actualRole = _driver.FindElement(By.XPath(roleXpath)).Text;
-            string expectedRole = AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage;
+            string expectedRole = AdvancePageExpectedValues.UserRoleAdministratorOnUserListPage;
             actualRole.Should().Be(expectedRole, "Administrator should be displayed in Role column on User List page.");
         }
 

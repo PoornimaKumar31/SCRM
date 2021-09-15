@@ -73,25 +73,7 @@ namespace HillromAutomationFramework.PageObjects.AdvancedTab
             public const string DeletePopupNoButtonID = "delete-no";
         }
 
-        /// <summary>
-        /// Expected values of the Advance Page
-        /// </summary>
-        public static class ExpectedValues
-        {
-            public const string EditUserPageLabelText = "EDIT USER";
-            public const string UserListPageLabelText = "USER LIST";
-            public const string AddUserListPageText = "ADD USER";
-            public const string UserManagementLabelTextOnEditUserPage = "User Management";
-            public const string UserRoleAdministratorOnUserListPage = "Administrator";
-            public const string UserRoleRegularOnUserListPage = "Regular";
-            public const string PhoneNumberErrorMessage = "Please enter a valid phone number";
-            public const string FullNameErrorMessage = "Please enter a valid name";
-            public const string LoggedUser = "ltts_testing@hillrom.com";
-            public const string UpdatedFullName = "Alex Hasi";
-            public const string PhoneNumberInvalid = "123";
-            public const string SuperAdminUsername = "ltts_testing@hillrom.com";
-            public const string UserInformationLabel = "User Information:";
-        }
+       
 
         [FindsBy(How = How.Id, Using = Locators.DeletePopupYesButtonID)]
         public IWebElement DeletePopupYesButton { get; set; }

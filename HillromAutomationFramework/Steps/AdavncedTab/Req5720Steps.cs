@@ -74,14 +74,14 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         public void ThenAddUserPageIsDisplayed()
         {
             string addUserTitle = _advancePage.AddUserOnCreatePage.Text;
-            addUserTitle.Should().Be(AdvancedPage.ExpectedValues.AddUserListPageText, "Add User page should be displayed on clicking on CREATE button.");
+            addUserTitle.Should().Be(AdvancePageExpectedValues.AddUserListPageText, "Add User page should be displayed on clicking on CREATE button.");
         }
 
         [Then(@"User information label is displayed")]
         public void ThenUserInformationLabelIsDisplayed()
         {
             string UserInformationLabel = _advancePage.UserInformationLabel.Text;
-            UserInformationLabel.Should().Be(AdvancedPage.ExpectedValues.UserInformationLabel, "User information label should be displayed on EDIT USER page.");
+            UserInformationLabel.Should().Be(AdvancePageExpectedValues.UserInformationLabel, "User information label should be displayed on EDIT USER page.");
         }
 
         [Then(@"Username textbox is displayed")]
@@ -324,7 +324,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         [Then(@"new user role is Administrator")]
         public void ThenNewUserRoleIsAdministrator()
         {
-            bool isTrue = actualRole == AdvancedPage.ExpectedValues.UserRoleAdministratorOnUserListPage;
+            bool isTrue = actualRole == AdvancePageExpectedValues.UserRoleAdministratorOnUserListPage;
             isTrue.Should().BeTrue("New user role should appear Administrator on USER LIST page.");
         }
 
@@ -368,7 +368,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
                     break;
                 }
             }
-            actualRole.Should().Be(AdvancedPage.ExpectedValues.UserRoleRegularOnUserListPage, "New user role should be Regular on USER LIST page.");
+            actualRole.Should().Be(AdvancePageExpectedValues.UserRoleRegularOnUserListPage, "New user role should be Regular on USER LIST page.");
         }
 
         [Then(@"Username and Name match")]
