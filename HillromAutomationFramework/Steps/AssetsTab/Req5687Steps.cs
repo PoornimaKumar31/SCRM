@@ -100,7 +100,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenAllOrganizationDevicesAreDisplayed()
         {
             int TotalRecords = mainPage.DeviceListRow.GetElementCount();
-            Assert.AreEqual(MainPageExpectedValue.AllOrganizationsDevicesListWithRollUp, TotalRecords, "All Organization's devices are not displayed");
+            Assert.AreEqual(int.Parse(MainPageExpectedValue.AllOrganizationsDevicesListWithRollUp), TotalRecords, "All Organization's devices are not displayed");
         }
         
         [Then(@"all organization ""(.*)"" devices are displayed")]

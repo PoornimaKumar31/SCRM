@@ -59,7 +59,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             Thread.Sleep(3000);
             SetMethods.ScrollToBottomofWebpage(_driver);
-            Assert.AreEqual(MainPageExpectedValue.AllOrgnaizationRV700DevicesCount,_mainPage.VerifyRecordPresence(), "All devices for selected organization is not displayed");
+            Assert.AreEqual(int.Parse(MainPageExpectedValue.AllOrgnaizationRV700DevicesCount),_mainPage.VerifyRecordPresence(), "All devices for selected organization is not displayed");
         }
 
         [Given(@"user without roll-up for multiple facilities is on Assets page")]

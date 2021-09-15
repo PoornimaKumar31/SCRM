@@ -113,10 +113,10 @@ namespace HillromAutomationFramework.Hooks
                 chromeOptions.AddArgument("--incognito");
 
                 // Maximize the window
-                //chromeOptions.AddArgument("start-maximized");
+                chromeOptions.AddArgument("start-maximized");
 
                 //for full screen
-                chromeOptions.AddArgument("--start-fullscreen");
+                //chromeOptions.AddArgument("--start-fullscreen");
 
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
@@ -212,7 +212,6 @@ namespace HillromAutomationFramework.Hooks
                     // Taking a screenshot for attaching in Test Context
                     var filePath = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName+ DateTime.Now.ToString("HH.mm.ss") + screenShotNameCounter}.jpg";
                     ((ITakesScreenshot)_driver).GetScreenshot().SaveAsFile(filePath);
-                    TestContext.AddTestAttachment(filePath);
                     _specFlowOutputHelper.AddAttachment(filePath);
                     
                     //taking screenshot for extent report
