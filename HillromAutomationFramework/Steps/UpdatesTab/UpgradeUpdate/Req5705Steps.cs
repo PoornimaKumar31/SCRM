@@ -146,21 +146,21 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         public void ThenPreviousPageIconIsDisabled()
         {
             string PreviousPageIconImageSrc = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src"); 
-            (PreviousPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDiabledSource, because: "Previous page icon should be disabled in First page entries list in CSM upgrades page");
+            (PreviousPageIconImageSrc).Should().BeEquivalentTo(PropertyClass.BaseURL + UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDisabledSource, because: "Previous page icon should be disabled in First page entries list in CSM upgrades page");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
             string NextPageIconImageSrc = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled in second page entries list in CSM upgrades page where total no of entries are less than hundread.");
+            (NextPageIconImageSrc).Should().BeEquivalentTo(PropertyClass.BaseURL + UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDisabledSource, because: "Next page icon should be disabled in second page entries list in CSM upgrades page where total no of entries are less than hundread.");
         }
 
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
         {
             string NextPageIconImageSrc = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled in first page entries list in CSM upgrades page where total no of entries are greater than fifty.");
+            (NextPageIconImageSrc).Should().BeEquivalentTo(PropertyClass.BaseURL + UpdatesSelectUpdatePageExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled in first page entries list in CSM upgrades page where total no of entries are greater than fifty.");
         }
 
         [When(@"first (.*) entries are displayed")]
@@ -320,7 +320,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
+            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(PropertyClass.BaseURL + UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
         }
 
 

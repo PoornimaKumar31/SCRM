@@ -107,7 +107,7 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1.36.00.
+        ///   Looks up a localized string similar to 1.35.612.
         /// </summary>
         internal static string CentrellaLastDeployedSearchText {
             get {

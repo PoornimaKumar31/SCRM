@@ -107,7 +107,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /icon_sort_up.svg\.
+        ///   Looks up a localized string similar to /icon_sort_up.svg.
         /// </summary>
         internal static string SortDecreasingIconURL {
             get {
@@ -116,7 +116,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /icon_sort_down.svg\.
+        ///   Looks up a localized string similar to /icon_sort_down.svg.
         /// </summary>
         internal static string SortIncreasingIconURL {
             get {

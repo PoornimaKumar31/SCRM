@@ -168,7 +168,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             }
 
             _csmDeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 descending","Sorting Indicator is not as expected.");
-            _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortDecreasingIconURL);
+            _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\""+PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortDecreasingIconURL+"\")");
             _csmDeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Log file are not sorted in decreasing date");
         }
 
@@ -183,7 +183,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
                 SetMethods.WaitUntilTwoStringsAreEqual(_csmDeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 ascending");
             }
             _csmDeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 ascending", "Sorting Indicator is not as expected.");
-            _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortIncreasingIconURL);
+            _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortIncreasingIconURL + "\")");
             _csmDeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Log files are not sorted in increasing date");
         }
 
@@ -205,7 +205,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         {
             Thread.Sleep(3000);
             _csmDeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo(CSMDeviceDetailsPage.Locators.LogsDescendingClassName, "Decreasing date sorting indicator is not displayed");
-            _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortDecreasingIconURL);
+            _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortDecreasingIconURL + "\")");
         }
 
         [Then(@"logs are sorted by increasing date")]
@@ -218,7 +218,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         public void IncreasingDateSortingIndicatorIsDisplayed()
         {
             _csmDeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo(CSMDeviceDetailsPage.Locators.LogsAscendingClassName,"Increasing date sorting indicator is not displayed");
-            _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortIncreasingIconURL);
+            _csmDeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortIncreasingIconURL + "\")");
         }
 
         [Then(@"(.*) logs for CSM device are displayed")]

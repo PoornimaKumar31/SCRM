@@ -133,10 +133,10 @@
     <value>/icon_page_previous.svg</value>
   </data>
   <data name="SortDecreasingIconURL" xml:space="preserve">
-    <value>/icon_sort_up.svg\</value>
+    <value>/icon_sort_up.svg</value>
   </data>
   <data name="SortIncreasingIconURL" xml:space="preserve">
-    <value>/icon_sort_down.svg\</value>
+    <value>/icon_sort_down.svg</value>
   </data>
   <data name="UpwardPointingBlackArrowImageURL" xml:space="preserve">
     <value>/icon_pm_due.png</value>

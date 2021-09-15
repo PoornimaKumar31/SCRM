@@ -3,7 +3,6 @@ using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -136,7 +135,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
                 SetMethods.WaitUntilTwoStringsAreEqual(_rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 descending");
             }
             
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortDecreasingIconURL, "Sorting icon is not as expected");
+            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortDecreasingIconURL + "\")", "Sorting icon is not as expected");
             _rv700DeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Logs are not sorted by decreasing date");
         }
 
@@ -150,7 +149,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
                 SetMethods.WaitUntilTwoStringsAreEqual(_rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 ascending");
             }
             
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortIncreasingIconURL, "Sorting icon is not as expected");
+            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortIncreasingIconURL + "\")", "Sorting icon is not as expected");
             _rv700DeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date");
         }
 
@@ -172,7 +171,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         public void DecreasingDateSortingIndicatorIsDisplayed()
         {
             _rv700DeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 descending", "decreasing date sorting indicator is not displayed");
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortDecreasingIconURL, "Sorting icon is not as expected");
+            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL+DeviceDetailsPageExpectedValue.SortDecreasingIconURL+"\")", "Sorting icon is not as expected");
         }
 
         [Then(@"logs are sorted by increasing date")]
@@ -185,7 +184,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         public void IncreasingDateSortingIndicatorDisplayed()
         {
             _rv700DeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 ascending", "Icreasing date sorting date indicator is not displayed");
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortIncreasingIconURL, "Sorting icon is not as expected");
+            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortIncreasingIconURL + "\")", "Sorting icon is not as expected");
         }
 
         [Then(@"(.*) newest logs are displayed")]

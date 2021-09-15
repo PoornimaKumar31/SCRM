@@ -145,9 +145,9 @@ namespace HillromAutomationFramework.PageObjects.UpdatesTab {
         /// <summary>
         ///   Looks up a localized string similar to /right_disabled.png.
         /// </summary>
-        internal static string PaginationNextIconDiabledSource {
+        internal static string PaginationNextIconDisabledSource {
             get {
-                return ResourceManager.GetString("PaginationNextIconDiabledSource", resourceCulture);
+                return ResourceManager.GetString("PaginationNextIconDisabledSource", resourceCulture);
             }
         }
         
@@ -163,9 +163,9 @@ namespace HillromAutomationFramework.PageObjects.UpdatesTab {
         /// <summary>
         ///   Looks up a localized string similar to /left_disabled.png.
         /// </summary>
-        internal static string PaginationPreviousIconDiabledSource {
+        internal static string PaginationPreviousIconDisabledSource {
             get {
-                return ResourceManager.GetString("PaginationPreviousIconDiabledSource", resourceCulture);
+                return ResourceManager.GetString("PaginationPreviousIconDisabledSource", resourceCulture);
             }
         }
         

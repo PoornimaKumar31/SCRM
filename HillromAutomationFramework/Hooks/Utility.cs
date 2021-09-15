@@ -166,8 +166,6 @@ namespace HillromAutomationFramework.Hooks
             //Register webdriver as instance
             _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
 
-            //extent report path
-            _specFlowOutputHelper.WriteLine("Extent ReportPath:" +PropertyClass.extentReportPath);
         }
 
 
@@ -215,6 +213,7 @@ namespace HillromAutomationFramework.Hooks
                     var filePath = $"{TestContext.CurrentContext.TestDirectory}\\{TestContext.CurrentContext.Test.MethodName+ DateTime.Now.ToString("HH.mm.ss") + screenShotNameCounter}.jpg";
                     ((ITakesScreenshot)_driver).GetScreenshot().SaveAsFile(filePath);
                     TestContext.AddTestAttachment(filePath);
+                    _specFlowOutputHelper.AddAttachment(filePath);
                     
                     //taking screenshot for extent report
                     var mediaEntity = GetMethods.CaptureScreenshotBase64(_driver,"screenshot" + screenShotNameCounter + DateTime.Now.ToString("HH.mm.ss"));

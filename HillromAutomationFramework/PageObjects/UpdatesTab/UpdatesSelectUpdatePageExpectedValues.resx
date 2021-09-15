@@ -144,13 +144,13 @@
   <data name="NonHighlightedHeadingColor" xml:space="preserve">
     <value>rgba(68, 68, 68, 1)</value>
   </data>
-  <data name="PaginationNextIconDiabledSource" xml:space="preserve">
+  <data name="PaginationNextIconDisabledSource" xml:space="preserve">
     <value>/right_disabled.png</value>
   </data>
   <data name="PaginationNextIconEnabledSource" xml:space="preserve">
     <value>/icon_page_next.svg</value>
   </data>
-  <data name="PaginationPreviousIconDiabledSource" xml:space="preserve">
+  <data name="PaginationPreviousIconDisabledSource" xml:space="preserve">
     <value>/left_disabled.png</value>
   </data>
   <data name="PaginationPreviousIconEnabledSource" xml:space="preserve">

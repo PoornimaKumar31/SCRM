@@ -230,7 +230,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDiabledSource, because:"Previous page icon should be disabled in First page of entries in select update page");
+            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(PropertyClass.BaseURL + UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDisabledSource, because:"Previous page icon should be disabled in First page of entries in select update page");
         }
 
         [Then(@"Next page icon is disabled")]
@@ -239,7 +239,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled");
+            (PaginationNextIconImageURL).Should().BeEquivalentTo( PropertyClass.BaseURL+ UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDisabledSource, because: "Next page icon should be disabled");
         }
 
         [Then(@"Previous page icon is enabled")]
@@ -248,7 +248,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationPreviousIconID)));
             string PaginationPreviousIconImageURL = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
+            (PaginationPreviousIconImageURL).Should().BeEquivalentTo(PropertyClass.BaseURL + UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconEnabledSource, because: "Previous page icon should be enabled in second page of entries in select update page");
         }
 
 
@@ -605,7 +605,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
             SetMethods.ScrollToBottomofWebpage(_driver);
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(UpdatesSelectUpdatePage.Locators.PaginationNextIconID)));
             string PaginationNextIconImageURL = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PaginationNextIconImageURL).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled");
+            (PaginationNextIconImageURL).Should().BeEquivalentTo(PropertyClass.BaseURL + UpdatesSelectUpdatePageExpectedValues.PaginationNextIconEnabledSource, because: "Next page icon should be enabled");
         }
 
         [Given(@"first (.*) entries are displayed")]

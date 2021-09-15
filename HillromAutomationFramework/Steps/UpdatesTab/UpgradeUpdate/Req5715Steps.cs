@@ -155,14 +155,14 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
         {
             //Checking the image source
             string PreviousPageIconImageSrc = _updatesSelectUpdatePage.PaginationPreviousIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (PreviousPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDiabledSource, because: "Previous page icon should be disabled in First page entries list in RV700 upgrades page");
+            (PreviousPageIconImageSrc).Should().BeEquivalentTo(PropertyClass.BaseURL+ UpdatesSelectUpdatePageExpectedValues.PaginationPreviousIconDisabledSource, because: "Previous page icon should be disabled in First page entries list in RV700 upgrades page");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
             string NextPageIconImageSrc = _updatesSelectUpdatePage.PaginationNextIcon.FindElement(By.TagName("img")).GetAttribute("src");
-            (NextPageIconImageSrc).Should().BeEquivalentTo(UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDiabledSource, because: "Next page icon should be disabled in RV700 upgrades page where total no of entries are less than or equal to 50.");
+            (NextPageIconImageSrc).Should().BeEquivalentTo(PropertyClass.BaseURL+ UpdatesSelectUpdatePageExpectedValues.PaginationNextIconDisabledSource, because: "Next page icon should be disabled in RV700 upgrades page where total no of entries are less than or equal to 50.");
         }
 
         [Given(@"Upgrade Update type is selected")]

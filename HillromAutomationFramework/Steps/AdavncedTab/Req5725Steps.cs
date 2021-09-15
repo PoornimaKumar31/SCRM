@@ -49,7 +49,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
             _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _advancePage.AdvancedTab.JavaSciptClick(_driver);
 
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             bool IsUserListPageDisplayed = (_advancePage.FullnameLabelOnUserList.GetElementVisibility()) || (_advancePage.RoleColumnHeader.GetElementVisibility());
             (IsUserListPageDisplayed).Should().BeTrue(because: "User list page should be displayed.");
 
@@ -84,7 +84,7 @@ namespace HillromAutomationFramework.Steps.AdavncedTab
         {
             SetMethods.ScrollToBottomofWebpage(_driver);
             Thread.Sleep(2000);
-            _advancePage.SaveButtonOnCreatePage.Click();
+            _advancePage.SaveButtonOnCreatePage.ClickWebElement(_driver,"Save Button");
         }
 
         [Then(@"User List page is displayed")]
