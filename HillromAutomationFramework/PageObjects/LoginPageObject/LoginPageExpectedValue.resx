@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdminstartorsGuidePDFURL" xml:space="preserve">
+    <value>https://www.hillrom.com/content/dam/hillrom-aem/us/en/sap-documents/LIT/80028/80028398LITPDF.pdf</value>
+    <comment>PDF Documents URL</comment>
+  </data>
+  <data name="ApplicationTitleText" xml:space="preserve">
+    <value>SmartCare™</value>
+    <comment>static elements</comment>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>© 2021 Hillrom™.</value>
+    <comment>footer links</comment>
+  </data>
+  <data name="DCPFileName" xml:space="preserve">
+    <value>DCP.zip</value>
+    <comment>Software Downloads</comment>
+  </data>
+  <data name="EmailFieldHintText" xml:space="preserve">
+    <value>Email address</value>
+    <comment>login</comment>
+  </data>
+  <data name="ForgotPasswordSuccessMessage" xml:space="preserve">
+    <value>You will receive an email with a link to update your password</value>
+    <comment>Forgot password</comment>
+  </data>
+  <data name="GetStartedMessageText" xml:space="preserve">
+    <value>Learn the value of the SmartCare™ Remote Management, download software, and access documentation.</value>
+    <comment>static elements</comment>
+  </data>
+  <data name="GetStartedTitleText" xml:space="preserve">
+    <value>Ready to get started?</value>
+    <comment>static elements</comment>
+  </data>
+  <data name="InstructionForUsePDFURL" xml:space="preserve">
+    <value>https://www.hillrom.com/content/dam/hillrom-aem/us/en/sap-documents/LIT/80028/80028397LITPDF.pdf</value>
+    <comment>PDF Documents URL</comment>
+  </data>
+  <data name="InvalidEntryErrorMessage" xml:space="preserve">
+    <value>Username or password invalid.</value>
+    <comment>login</comment>
+  </data>
+  <data name="LandingPageTitle" xml:space="preserve">
+    <value>SmartCare™ Remote Management</value>
+    <comment>login</comment>
+  </data>
+  <data name="LoginInstructionsText" xml:space="preserve">
+    <value>Enter your credentials to sign in.</value>
+    <comment>static elements</comment>
+  </data>
+  <data name="NoEntryErrorMessage" xml:space="preserve">
+    <value>Full authentication is required to access this resource</value>
+    <comment>login</comment>
+  </data>
+  <data name="PartnerConnectFileName" xml:space="preserve">
+    <value>PartnerConnect.zip</value>
+    <comment>Software Downloads</comment>
+  </data>
+  <data name="PasswordFieldHintText" xml:space="preserve">
+    <value>Password</value>
+    <comment>login</comment>
+  </data>
+  <data name="PrivacyPolicyTitle" xml:space="preserve">
+    <value>Privacy Policy</value>
+    <comment>footer links</comment>
+  </data>
+  <data name="RealeaseNotesPDFURL" xml:space="preserve">
+    <value>https://www.hillrom.com/content/dam/hillrom-aem/us/en/sap-documents/LIT/80028/80028399LITPDF.pdf</value>
+    <comment>PDF Documents URL</comment>
+  </data>
+  <data name="RightsReservedMessage" xml:space="preserve">
+    <value>All rights reserved.</value>
+    <comment>footer links</comment>
+  </data>
+  <data name="ServiceMonitorFileName" xml:space="preserve">
+    <value>ServiceMonitor.zip</value>
+    <comment>Software Downloads</comment>
+  </data>
+  <data name="SupportedBrowserAppleSafari" xml:space="preserve">
+    <value>Apple Safari : iOS 14 and higher</value>
+    <comment>Supported Browser List</comment>
+  </data>
+  <data name="SupportedBrowserChrome" xml:space="preserve">
+    <value>Google Chrome : version 86 and higher</value>
+    <comment>Supported Browser List</comment>
+  </data>
+  <data name="SupportedBrowserEdge" xml:space="preserve">
+    <value>Microsoft Edge : version 89 and higher</value>
+    <comment>Supported Browser List</comment>
+  </data>
+  <data name="TermsOfUseTitle" xml:space="preserve">
+    <value>Terms of Use</value>
+    <comment>footer links</comment>
+  </data>
+</root>

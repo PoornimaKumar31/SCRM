@@ -1,4 +1,5 @@
-﻿using HillromAutomationFramework.SupportingCode;
+﻿using HillromAutomationFramework.PageObjects.LandingPageObjects;
+using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -22,36 +23,37 @@ namespace HillromAutomationFramework.PageObjects
         /// </summary>
         public static class Locator
         {
+            
 
             //Organization and facility XPath
 
             //L&T Automated Test East Organization
-            public const string LNTAutomatedTestEastOrganizationTitleXPath = "//span[text()='"+ExpectedValues.LNTAutomatedTestEastOrganizationTitle+"']";
-            public const string LNTAutomatedTestEastOrganizationFacilityPanelTest4TitleXpath = LNTAutomatedTestEastOrganizationTitleXPath + "//parent::div//parent::div//span[text()='"+ExpectedValues.LNTAutomatedTestEastOrganizationFacilityTest4+"']";
+            public const string LNTAutomatedTestEastOrganizationTitleXPath = "//span[text()='L&T Automated Test East']";
+            public const string LNTAutomatedTestEastOrganizationFacilityPanelTest4TitleXpath = LNTAutomatedTestEastOrganizationTitleXPath + "//parent::div//parent::div//span[text()='Test4']";
             public const string Organization0Facility0ServerID = "serv00";
             public const string Organization0Facility0DeviceID = "dev00";
 
             //L&T Automated Test Organization
-            public const string LNTAutomatedTestOrganizationTitleXPath = "//span[text()='" + ExpectedValues.LNTAutomatedTestOrganizationTitle + "']";
+            public const string LNTAutomatedTestOrganizationTitleXPath = "//span[text()='L&T Automated Test']";
             //L&T Automated Test Organization facility test1
-            public const string LNTAutomatedTestOrganizationFacilityTest1TitleXPath = LNTAutomatedTestOrganizationTitleXPath + "//parent::div//parent::div//span[text()='"+ExpectedValues.LNTAutomatedTestOrganizationFacilityTest1+"']";
+            public const string LNTAutomatedTestOrganizationFacilityTest1TitleXPath = LNTAutomatedTestOrganizationTitleXPath + "//parent::div//parent::div//span[text()='Test1']";
             public const string Organization1Facility0ServerID = "serv10";
             public const string Organization1Facility0DeviceID = "dev10";
 
             //L&T Automated Test Organization facility test2
-            public const string LNTAutomatedTestOrganizationFacilityTest2TitleXPath = LNTAutomatedTestOrganizationTitleXPath + "//parent::div//parent::div//span[text()='" + ExpectedValues.LNTAutomatedTestOrganizationFacilityTest2 + "']";
+            public const string LNTAutomatedTestOrganizationFacilityTest2TitleXPath = LNTAutomatedTestOrganizationTitleXPath + "//parent::div//parent::div//span[text()='Test2']";
             public const string Organization1Facility1ServerID = "serv11";
             public const string Organization1Facility1DeviceID = "dev11";
 
             //L&T Automated Eye Test Organization
-            public const string LNTAutomatedEyeTestOrganizationTitleXPath = "//span[text()='" + ExpectedValues.LNTAutomatedEyeTestOrganizationTitle + "']";
-            public const string LNTAutomatedEyeTestOrganizationFacilityTest1TitleXPath=LNTAutomatedEyeTestOrganizationTitleXPath+ "//parent::div//parent::div//span[text()='" + ExpectedValues.LNTAutomatedEyeTestOrganizationFacilityTest1 + "']";
+            public const string LNTAutomatedEyeTestOrganizationTitleXPath = "//span[text()='LT Automated Eye Test']";
+            public const string LNTAutomatedEyeTestOrganizationFacilityTest1TitleXPath=LNTAutomatedEyeTestOrganizationTitleXPath+ "//parent::div//parent::div//span[text()='Test1']";
             public const string Organization2Facility0ServerID = "serv20";
             public const string Organization2Facility0DeviceID = "dev20";
 
             //PSS Service Organization
-            public const string PSSServiceOrganizationTitleXpath = "//span[text()='" + ExpectedValues.PSSServiceOrganizationTitle + "']";
-            public const string PSSServiceOrganizationFacilityBatesvilleXpath = PSSServiceOrganizationTitleXpath + "//parent::div//parent::div//span[text()='" + ExpectedValues.PSSServiceOrganizationFacilityBatesville + "']";
+            public const string PSSServiceOrganizationTitleXpath = "//span[text()='PSS Service']";
+            public const string PSSServiceOrganizationFacilityBatesvilleXpath = PSSServiceOrganizationTitleXpath + "//parent::div//parent::div//span[text()='Batesville']";
 
             //Header elements
             public const string UserNameLogoID = "userprofile_logo";
@@ -59,28 +61,6 @@ namespace HillromAutomationFramework.PageObjects
             public const string HeaderLogoID = "servicehub_logo";
          
         }
-        public static class ExpectedValues
-        {
-            public static string RollupPageURL = PropertyClass.BaseURL + "/index.html#/rollup-page";
-
-            //L&T Automated East Organization details
-            public const string LNTAutomatedTestEastOrganizationTitle = "L&T Automated Test East";
-            public const string LNTAutomatedTestEastOrganizationFacilityTest4 = "Test4";
-
-            ///L&T Automated Test Organization details
-            public const string LNTAutomatedTestOrganizationTitle = "L&T Automated Test";
-            public const string LNTAutomatedTestOrganizationFacilityTest1 = "Test1";
-            public const string LNTAutomatedTestOrganizationFacilityTest2 = "Test2";
-
-            //L&T Automated Eye Test Organization
-            public const string LNTAutomatedEyeTestOrganizationTitle = "LT Automated Eye Test";
-            public const string LNTAutomatedEyeTestOrganizationFacilityTest1 = "Test1";
-
-            //PSS Service Organization
-            public const string PSSServiceOrganizationTitle = "PSS Service";
-            public const string PSSServiceOrganizationFacilityBatesville = "Batesville";
-        }
-
 
         /// Landing page user name logo
         [FindsBy(How = How.Id, Using = Locator.UserNameLogoID)]

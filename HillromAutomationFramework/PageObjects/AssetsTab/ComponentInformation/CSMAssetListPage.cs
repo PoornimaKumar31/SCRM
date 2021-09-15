@@ -14,12 +14,6 @@ namespace HillromAutomationFramework.PageObjects.Component_Information
             PageFactory.InitElements(driver, this);
         }
 
-        public class ExpectedValue
-        {
-            public const int UsageColumnIndex = 5;
-        }
-
-
         public class Locator
         {
             public const string DeviceRowID = "555566667777";

@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -58,7 +59,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             Thread.Sleep(3000);
             SetMethods.ScrollToBottomofWebpage(_driver);
-            Assert.AreEqual(MainPage.ExpectedValues.AllOrgnaizationRV700DevicesCount,_mainPage.VerifyRecordPresence(), "All devices for selected organization is not displayed");
+            Assert.AreEqual(MainPageExpectedValue.AllOrgnaizationRV700DevicesCount,_mainPage.VerifyRecordPresence(), "All devices for selected organization is not displayed");
         }
 
         [Given(@"user without roll-up for multiple facilities is on Assets page")]
@@ -88,7 +89,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             Thread.Sleep(3000);
             SetMethods.ScrollToBottomofWebpage(_driver); 
             int TotalRecords = _mainPage.VerifyRecordPresence();
-            Assert.AreEqual(true, MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneDeviceCount == TotalRecords, "Only devices in selected facility are not displayed");
+            Assert.AreEqual(true, int.Parse(MainPageExpectedValue.LNTAutomatedTestOrganizationFacilityOneDeviceCount) == TotalRecords, "Only devices in selected facility are not displayed");
         }
 
         [Given(@"user without roll-up for multiple units is on Assets page")]
@@ -118,7 +119,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             Thread.Sleep(5000);
             SetMethods.ScrollToBottomofWebpage(_driver);
             int TotalRecords = _mainPage.VerifyRecordPresence();
-            Assert.AreEqual(true, TotalRecords == MainPage.ExpectedValues.LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount, "Number of devices in unit of facility is not as expected");
+            Assert.AreEqual(true, TotalRecords == int.Parse(MainPageExpectedValue.LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount), "Number of devices in unit of facility is not as expected");
         }
 
         [When(@"user selects All locations from Organization dropdown")]
@@ -136,7 +137,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             Thread.Sleep(5000);
             SetMethods.ScrollToBottomofWebpage(_driver);
             int totalRecords = _mainPage.VerifyRecordPresence();
-            (totalRecords).Should().Be(MainPage.ExpectedValues.AllOrgnaizationDevicesCount, because: "All devices should be displayed for all organization");
+            (totalRecords).Should().Be(int.Parse(MainPageExpectedValue.AllOrgnaizationDevicesCount), because: "All devices should be displayed for all organization");
         }
     }
 }

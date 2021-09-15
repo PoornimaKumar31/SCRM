@@ -7,6 +7,7 @@ using TechTalk.SpecFlow;
 using System.Threading;
 using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 using FluentAssertions;
+using HillromAutomationFramework.PageObjects.LoginPageObject;
 
 namespace HillromAutomationFramework.Steps.Login
 {
@@ -81,7 +82,7 @@ namespace HillromAutomationFramework.Steps.Login
         {
             _wait.Until(ExplicitWait.ElementExists(By.XPath(LandingPage.Locator.LNTAutomatedTestEastOrganizationTitleXPath)));
             string actualTitle = _driver.Title;
-            string expectedTitle = LoginPage.ExpectedValues.LandingPageTitle;
+            string expectedTitle = LoginPageExpectedValue.LandingPageTitle;
 
             //Compare the title
             actualTitle.Should().BeEquivalentTo(expectedTitle,"User is not on the landing page"); 
@@ -94,7 +95,7 @@ namespace HillromAutomationFramework.Steps.Login
             _loginPage.ErrorMessage.GetElementVisibility().Should().BeTrue("Login invalid error message is not displayed");
             Thread.Sleep(1000);
             string ActualErrortext = _loginPage.ErrorMessage.Text;
-            string ExpectedErrorText = LoginPage.ExpectedValues.InvalidEntryErrorMessage;
+            string ExpectedErrorText = LoginPageExpectedValue.InvalidEntryErrorMessage;
             ActualErrortext.Should().BeEquivalentTo(ExpectedErrorText,"Error message not matches with the expected value"); //Compare the error message displayed.
         }
         
@@ -103,7 +104,7 @@ namespace HillromAutomationFramework.Steps.Login
         {
             _loginPage.ErrorMessage.GetElementVisibility().Should().BeTrue("Authentication error message is not displayed");
             string ActualErrortext = _loginPage.ErrorMessage.Text;
-            string ExpectedErrorText = LoginPage.ExpectedValues.NoEntryErrorMessage;
+            string ExpectedErrorText = LoginPageExpectedValue.NoEntryErrorMessage;
             ActualErrortext.Should().BeEquivalentTo(ExpectedErrorText,"Authentication error message is not matching with the expected value"); //Compare the error message displayed.
         }
 
@@ -117,7 +118,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenUsernameFieldContainsHintText()
         {
             string ActualhintText = _loginPage.EmailField.GetAttribute("placeholder");
-            string ExpectedhintText = LoginPage.ExpectedValues.EmailFieldHintText;
+            string ExpectedhintText = LoginPageExpectedValue.EmailFieldHintText;
             ActualhintText.Should().BeEquivalentTo(ExpectedhintText,"Username field hint text does not match with the expeceted value");
         }
 
@@ -131,7 +132,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenPasswordFieldContainsHintText()
         {
             string ActualhintText = _loginPage.PasswordField.GetAttribute("placeholder");
-            string ExpectedhintText = LoginPage.ExpectedValues.PasswordFieldHintText;
+            string ExpectedhintText = LoginPageExpectedValue.PasswordFieldHintText;
             ActualhintText.Should().BeEquivalentTo(ExpectedhintText,"Password field hint text does not match with the expected value");
         }
 

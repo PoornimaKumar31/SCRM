@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.PageObjects.Component_Information;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
@@ -52,7 +53,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [When(@"user selects any CVSM device")]
         public void WhenUserSelectsAnyCVSMDevice()
         {
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CVSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CVSMDeviceName);
         }
         
         [Then(@"CVSM Asset details landing page is displayed")]

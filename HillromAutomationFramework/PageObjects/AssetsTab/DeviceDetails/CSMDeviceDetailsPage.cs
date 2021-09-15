@@ -74,31 +74,6 @@ namespace HillromAutomationFramework.PageObjects
 
         }
 
-        public static class ExpectedValues
-        {
-            public const string RequestLogButtonDisabledClassName = "requestLogsbtn disable";
-            public const string NewRoomValue = "New Room";
-            public const string NewBedValue = "New Bed";
-            public const string UpdateRoomValue = "Update Room";
-            public const string UpdateBedValue = "Update Bed";
-            public const string RoomAndBedNotSet = "(not set)";
-            public static string SortDecreasingIconURL = "url(\"" + PropertyClass.BaseURL + "/icon_sort_up.svg\")";
-            public static string SortIncreasingIconURL = "url(\""+PropertyClass.BaseURL+"/icon_sort_down.svg\")";
-            public static string PreviousDisableImageURL = PropertyClass.BaseURL+"/left_disabled.png";
-            public static string PreviousEnableImageURL = PropertyClass.BaseURL+"/icon_page_previous.svg";
-            public static string NextDisableImageURL = PropertyClass.BaseURL+"/right_disabled.png";
-            public static string NextEnableImageURL = PropertyClass.BaseURL+"/icon_page_next.svg";
-
-            public static string LeftPointingRedArrowImageURL = PropertyClass.BaseURL + "/icon_pm_overdue.png";
-            public static string UpwardPointingBlackArrowImageURL = PropertyClass.BaseURL + "/icon_pm_due.png";
-
-            public const string SerialNumberwithRoomAndBed = "100010000005";
-
-            //Preventive maintainenece
-            public const string PMNameHeadingText = "Name";
-            public const string PMLastCalibrationText = "Last calibration";
-
-        }
 
         [FindsBy(How = How.Id, Using = Locators.AssetDetailsSummaryID)]
         public IWebElement AssetDetailsSummary { get; set; }

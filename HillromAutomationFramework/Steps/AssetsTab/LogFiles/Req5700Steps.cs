@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -41,7 +43,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
             _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CSMDeviceName);
             Thread.Sleep(1000);
             //select the row according to the data
             _mainPage.SearchSerialNumberAndClick("110010000025");
@@ -71,7 +73,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-           _csmDeviceDetailsPage.LogsRequestButton.GetAttribute("class").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.RequestLogButtonDisabledClassName, "Request Logs button is not disabled");
+           _csmDeviceDetailsPage.LogsRequestButton.GetAttribute("class").Should().BeEquivalentTo(CSMDeviceDetailsPageExpectedValues.RequestLogButtonDisabledClassName, "Request Logs button is not disabled");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]

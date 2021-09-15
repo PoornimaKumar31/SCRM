@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -43,7 +44,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             _wait.Message = "Main page asset list is not displayed";
             _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.RV700DeviceName);
             //Wait till the data is loaded
             Thread.Sleep(1000);
             int deviceCount = _mainPage.DeviceListRow.GetElementCount();

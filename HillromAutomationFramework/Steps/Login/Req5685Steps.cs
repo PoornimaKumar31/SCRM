@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.LoginPageObject;
 using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -35,7 +36,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"PartnerConnect zip file is downloaded")]
         public void ThenPartnerConnectZipFileIsDownloaded()
         {
-            bool IsParterConnectFileDownloaded = GetMethods.IsFileDownloaded(LoginPage.ExpectedValues.PartnerConnectFileName, waitTimeInSeconds: 300);
+            bool IsParterConnectFileDownloaded = GetMethods.IsFileDownloaded(LoginPageExpectedValue.PartnerConnectFileName, waitTimeInSeconds: 300);
             (IsParterConnectFileDownloaded).Should().BeTrue(because: "Partner Connect Zip file should be downloaded when user clicks Partner Connect link in login page");
         }
 
@@ -48,7 +49,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"Service Monitor zip file is downloaded")]
         public void ThenServiceMonitorZipFileIsDownloaded()
         {
-            bool IsServiceMoniterFileDownloaded = GetMethods.IsFileDownloaded(LoginPage.ExpectedValues.ServiceMonitorFileName, waitTimeInSeconds: 300);
+            bool IsServiceMoniterFileDownloaded = GetMethods.IsFileDownloaded(LoginPageExpectedValue.ServiceMonitorFileName, waitTimeInSeconds: 300);
             (IsServiceMoniterFileDownloaded).Should().BeTrue(because: "Service Moniter file should be downloaded when user clicks Service Moniter link.");
         }
 
@@ -61,7 +62,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"DCP zip file is downloaded")]
         public void ThenDCPZipFileIsDownloaded()
         {
-            bool IsDCPFileDownloaded = GetMethods.IsFileDownloaded(LoginPage.ExpectedValues.DCPFileName, waitTimeInSeconds: 300);
+            bool IsDCPFileDownloaded = GetMethods.IsFileDownloaded(LoginPageExpectedValue.DCPFileName, waitTimeInSeconds: 300);
             (IsDCPFileDownloaded).Should().BeTrue(because: "DCP file should be downloaded when user clicks DCP link.");
         }
 
@@ -85,7 +86,7 @@ namespace HillromAutomationFramework.Steps.Login
             // Switch to new tab.
             _driver.SwitchTo().Window(popup);
             
-            _driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.AdminstartorsGuidePDFURL, "Administator guide PDF is not opened");
+            _driver.Url.Should().BeEquivalentTo(LoginPageExpectedValue.AdminstartorsGuidePDFURL, "Administator guide PDF is not opened");
         }
 
         [When(@"user clicks Instructions for Use")]
@@ -111,7 +112,7 @@ namespace HillromAutomationFramework.Steps.Login
             // Switch to new tab.
             _driver.SwitchTo().Window(popup); 
             
-            _driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.InstructionForUsePDFURL, "Instructions for use PDF is not opened");
+            _driver.Url.Should().BeEquivalentTo(LoginPageExpectedValue.InstructionForUsePDFURL, "Instructions for use PDF is not opened");
         }
 
         [When(@"user clicks Release Notes")]
@@ -137,7 +138,7 @@ namespace HillromAutomationFramework.Steps.Login
             //Switch to new tab
             _driver.SwitchTo().Window(popup);
 
-            _driver.Url.Should().BeEquivalentTo(LoginPage.ExpectedValues.RealeaseNotesPDFURL, "Release notes pdf is not opened");
+            _driver.Url.Should().BeEquivalentTo(LoginPageExpectedValue.RealeaseNotesPDFURL, "Release notes pdf is not opened");
         }
     }
 }

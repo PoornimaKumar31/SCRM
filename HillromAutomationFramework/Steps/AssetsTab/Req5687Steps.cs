@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -65,7 +66,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Given(@"Asset type is All assets")]
         public void GivenAssetTypeIsAllAssets()
         {
-            Assert.AreEqual(true, MainPage.ExpectedValues.AllAssetsText == mainPage.AssetTypeDropDown.GetSelectedOptionFromDDL(), "All assets is not displayed");
+            Assert.AreEqual(true, MainPageExpectedValue.AllAssetsText == mainPage.AssetTypeDropDown.GetSelectedOptionFromDDL(), "All assets is not displayed");
         }
         
         
@@ -76,16 +77,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
            switch(deviceName.ToLower().Trim())
             {
                 case "csm":
-                    Device = MainPage.ExpectedValues.CSMDeviceName;
+                    Device = MainPageExpectedValue.CSMDeviceName;
                     break;
                 case "cvsm":
-                    Device = MainPage.ExpectedValues.CVSMDeviceName;
+                    Device = MainPageExpectedValue.CVSMDeviceName;
                     break;
                 case "rv700":
-                    Device = MainPage.ExpectedValues.RV700DeviceName;
+                    Device = MainPageExpectedValue.RV700DeviceName;
                     break;
                 case "centrella":
-                    Device = MainPage.ExpectedValues.CentrellaDeviceName;
+                    Device = MainPageExpectedValue.CentrellaDeviceName;
                     break;
                 default:
                     Assert.Fail("Invalid device name " + deviceName);
@@ -99,7 +100,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenAllOrganizationDevicesAreDisplayed()
         {
             int TotalRecords = mainPage.DeviceListRow.GetElementCount();
-            Assert.AreEqual(MainPage.ExpectedValues.AllOrganizationsDevicesListWithRollUp, TotalRecords, "All Organization's devices are not displayed");
+            Assert.AreEqual(MainPageExpectedValue.AllOrganizationsDevicesListWithRollUp, TotalRecords, "All Organization's devices are not displayed");
         }
         
         [Then(@"all organization ""(.*)"" devices are displayed")]

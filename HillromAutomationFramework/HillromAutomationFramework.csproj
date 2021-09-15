@@ -63,6 +63,61 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AdvancePageExpectedValues.resx</DependentUpon>
     </Compile>
+    <Compile Update="PageObjects\AssetsTab\ComponentInformation\AssetListPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AssetListPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\CentrellaDeviceDetailspageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CentrellaDeviceDetailsPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\CSMDeviceDetailsPageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CSMDeviceDetailsPageExpectedValues.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\CVSMDeviceDetailsPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CVSMDeviceDetailsPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\DeviceDetailsPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DeviceDetailsPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\RV700DeviceDetailsPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>RV700DeviceDetailsPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\LogFiles\LogFilesStaticElementsExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LogFilesStaticElementsExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\MainPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MainPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\LandingPageObjects\LandingPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LandingPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\LoginPageObject\ForgotPasswordPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ForgotPasswordPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\LoginPageObject\LoginPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LoginPageExpectedValue.resx</DependentUpon>
+    </Compile>
     <Compile Update="PageObjects\ReportsTab\ActivityReportPageExpectedValues.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -163,6 +218,50 @@
     <EmbeddedResource Update="PageObjects\UpdatesTab\UpdatesSelectUpdatePageExpectedValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdatesSelectUpdatePageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\ComponentInformation\AssetListPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AssetListPageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\CentrellaDeviceDetailsPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CentrellaDeviceDetailspageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\CSMDeviceDetailsPageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CSMDeviceDetailsPageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\CVSMDeviceDetailsPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CVSMDeviceDetailsPageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\DeviceDetailsPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeviceDetailsPageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\RV700DeviceDetailsPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RV700DeviceDetailsPageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\LogFiles\LogFilesStaticElementsExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LogFilesStaticElementsExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\MainPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainPageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\LandingPageObjects\LandingPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LandingPageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\LoginPageObject\ForgotPasswordPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ForgotPasswordPageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\LoginPageObject\LoginPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginPageExpectedValue.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

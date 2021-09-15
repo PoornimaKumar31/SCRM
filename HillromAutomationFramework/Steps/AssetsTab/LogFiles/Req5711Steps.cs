@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -41,7 +43,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.RV700DeviceName);
             Thread.Sleep(1000);
         }
 
@@ -71,7 +73,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
             _landingPage.LNTAutomatedEyeTestOrganizationFacilityTest1Title.ClickWebElement(_driver);
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.RV700DeviceName);         
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.RV700DeviceName);         
             Thread.Sleep(2000);
 
             switch (noOfLogs)
@@ -114,7 +116,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(RV700DeviceDetailsPage.ExpectedValues.NextDisableImageURL, "Button is not disabled");
+            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.NextDisableImageURL, "Button is not disabled");
         }
         
         [When(@"user clicks Next page button")]
@@ -134,7 +136,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
                 SetMethods.WaitUntilTwoStringsAreEqual(_rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 descending");
             }
             
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(RV700DeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, "Sorting icon is not as expected");
+            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortDecreasingIconURL, "Sorting icon is not as expected");
             _rv700DeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Logs are not sorted by decreasing date");
         }
 
@@ -148,7 +150,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
                 SetMethods.WaitUntilTwoStringsAreEqual(_rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 ascending");
             }
             
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(RV700DeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, "Sorting icon is not as expected");
+            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortIncreasingIconURL, "Sorting icon is not as expected");
             _rv700DeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date");
         }
 
@@ -170,7 +172,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         public void DecreasingDateSortingIndicatorIsDisplayed()
         {
             _rv700DeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 descending", "decreasing date sorting indicator is not displayed");
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(RV700DeviceDetailsPage.ExpectedValues.SortDecreasingIconURL, "Sorting icon is not as expected");
+            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortDecreasingIconURL, "Sorting icon is not as expected");
         }
 
         [Then(@"logs are sorted by increasing date")]
@@ -183,7 +185,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         public void IncreasingDateSortingIndicatorDisplayed()
         {
             _rv700DeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 ascending", "Icreasing date sorting date indicator is not displayed");
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(RV700DeviceDetailsPage.ExpectedValues.SortIncreasingIconURL, "Sorting icon is not as expected");
+            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo(DeviceDetailsPageExpectedValue.SortIncreasingIconURL, "Sorting icon is not as expected");
         }
 
         [Then(@"(.*) newest logs are displayed")]
@@ -208,25 +210,25 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
         {
-            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.NextEnableImageURL, "Button is not disabled");
+            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.NextEnableImageURL, "Button is not disabled");
         }
 
         [Then(@"Previous page icon is disabled")]
         public void ThenPreviousPageIconIsDisabled()
         {
-            _rv700DeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.PreviousDisableImageURL, "Button is not disabled");
+            _rv700DeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.PreviousDisableImageURL, "Button is not disabled");
         }
 
         [Then(@"Previous page icon is enabled")]
         public void ThenPreviousPageIconIsEnabled()
         {
-            _rv700DeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.PreviousEnableImageURL, "Button is not disabled");
+            _rv700DeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.PreviousEnableImageURL, "Button is not disabled");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
-            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.NextDisableImageURL, "Button is not disabled");
+            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL+DeviceDetailsPageExpectedValue.NextDisableImageURL, "Button is not disabled");
         }
 
     }

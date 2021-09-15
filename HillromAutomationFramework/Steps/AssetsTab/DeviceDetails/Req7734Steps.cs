@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -172,7 +173,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             string URL = _driver.Url;
             
             //Verifying if URL contains ServiceManual PDF Name
-            URL.Should().Contain(CentrellaDeviceDetailsPage.ExpectedValue.ServiceManualPDFName, "Service Manual is not displayed");
+            URL.Should().Contain(CentrellaDeviceDetailsPageExpectedValue.ServiceManualPDFName, "Service Manual is not displayed");
             
 
             //Switching Back to previous tab

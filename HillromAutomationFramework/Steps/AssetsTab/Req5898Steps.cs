@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -54,7 +55,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
             string ActualPageURL = _driver.SwitchTo().Window(popup).Url;
-            Assert.AreEqual(MainPage.ExpectedValues.GlobalServiceCenterURL, ActualPageURL, "URL is not matching");
+            Assert.AreEqual(MainPageExpectedValue.GlobalServiceCenterURL, ActualPageURL, "URL is not matching");
         }
 
         [When(@"user clicks Contact Us")]
@@ -76,7 +77,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
             string ActualPageURL = _driver.SwitchTo().Window(popup).Url;
-            Assert.AreEqual(MainPage.ExpectedValues.ContactUsURL, ActualPageURL, "URL is not matching");
+            Assert.AreEqual(MainPageExpectedValue.ContactUsURL, ActualPageURL, "URL is not matching");
         }
 
         [Scope(Tag = "TestCaseID_8947")]
@@ -93,7 +94,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
             string ActualPageURL = _driver.SwitchTo().Window(popup).Url;
-            Assert.AreEqual(MainPage.ExpectedValues.TermsAndConditonsURL, ActualPageURL, "URL is not matching");
+            Assert.AreEqual(MainPageExpectedValue.TermsAndConditonsURL, ActualPageURL, "URL is not matching");
         }
 
         
@@ -110,7 +111,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             Assert.IsTrue(!string.IsNullOrEmpty(popup));
             //Get the URL of new tab.
             string ActualPageURL = _driver.SwitchTo().Window(popup).Url;
-            Assert.AreEqual(MainPage.ExpectedValues.PrivacyPolicyURL, ActualPageURL,"URL is not matching");
+            Assert.AreEqual(MainPageExpectedValue.PrivacyPolicyURL, ActualPageURL,"URL is not matching");
         }
 
 

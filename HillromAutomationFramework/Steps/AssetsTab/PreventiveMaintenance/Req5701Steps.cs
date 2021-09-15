@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -53,7 +55,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [When(@"user selects CSM device with serial number ""(.*)""")]
         public void WhenUserSelectsCSMDeviceWithSerialNumber(string serialnumber)
         {
-            _mainPage.AssetTypeDropDown.SelectDDL(MainPage.ExpectedValues.CSMDeviceName);
+            _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CSMDeviceName);
             Thread.Sleep(2000);
             _mainPage.SearchSerialNumberAndClick(serialnumber);
         }
@@ -143,7 +145,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
 
             //Verifying whether displayed image is correct
             string leftPointingRedArrowURL = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
-            leftPointingRedArrowURL.Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.LeftPointingRedArrowImageURL, "Left pointing red arrow is displayed on " + HostControllerRow + " row.");
+            leftPointingRedArrowURL.Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.LeftPointingRedArrowImageURL, "Left pointing red arrow is displayed on " + HostControllerRow + " row.");
         }
 
         [Then(@"upward pointing black arrow is displayed on ""(.*)"" row")]
@@ -159,7 +161,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
 
             //Verifying whether displayed image is correct
             string upwardPointingBlackArrowURL = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
-            upwardPointingBlackArrowURL.Should().BeEquivalentTo(CSMDeviceDetailsPage.ExpectedValues.UpwardPointingBlackArrowImageURL, "Upward pointing black arrow is not displayed on " + HostControllerRow + " row.");                    
+            upwardPointingBlackArrowURL.Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.UpwardPointingBlackArrowImageURL, "Upward pointing black arrow is not displayed on " + HostControllerRow + " row.");                    
         }
 
         [Given(@"user is on the Preventive maintenance tab")]

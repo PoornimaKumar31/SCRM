@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.LoginPageObject;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -43,13 +44,13 @@ namespace HillromAutomationFramework.Steps.Login
             string SupportedBrowserList = _loginPage.SupportedBrowserPopup.Text;
             
             // Microsoft Edge
-            SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserEdge).Should().BeTrue("Microsoft Edge Supported Browser text does not match with the expected value");
+            SupportedBrowserList.Contains(LoginPageExpectedValue.SupportedBrowserEdge).Should().BeTrue("Microsoft Edge Supported Browser text does not match with the expected value");
             
             // Google Chrome
-            SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserChrome).Should().BeTrue("Google Chrome Supported Browser text does not match with the expected value");
+            SupportedBrowserList.Contains(LoginPageExpectedValue.SupportedBrowserChrome).Should().BeTrue("Google Chrome Supported Browser text does not match with the expected value");
             
             //Apple Safari
-            SupportedBrowserList.Contains(LoginPage.ExpectedValues.SupportedBrowserAppleSafari).Should().BeTrue("Apple Safari Supported Browser text does not match with the expected value");
+            SupportedBrowserList.Contains(LoginPageExpectedValue.SupportedBrowserAppleSafari).Should().BeTrue("Apple Safari Supported Browser text does not match with the expected value");
         }
 
 

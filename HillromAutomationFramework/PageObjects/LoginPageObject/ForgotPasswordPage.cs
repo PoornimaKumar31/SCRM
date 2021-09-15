@@ -20,16 +20,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string ResetPasswordInstructionsID = "lbl_forgot_email";
             public const string InvalidEmailErrorMessageXpath= "//input[@id='forgot_email']/parent::c8y-form-group/c8y-messages/small/div";
         }
-        public static class ExpectedValues
-        {
-            public const string ApplicationTitle = "SmartCare™";
-            public const string ApplicationSubTitle = "Remote Management";
-            public const string EmailFieldHintText = "Email address";
-            public const string FailedErrorMessage = "Invalid email address Try again";
-            public const string ResetPasswordInstructionsText = "Enter your email address and we will send you instructions for resetting your password.";
-            public const string InvalidEmailErrorMessageText = "Invalid email address.";
-        }
-
+        
         public ForgotPasswordPage(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);

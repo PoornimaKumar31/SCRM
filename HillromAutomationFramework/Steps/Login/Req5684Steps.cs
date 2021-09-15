@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
+using HillromAutomationFramework.PageObjects.LoginPageObject;
 using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -70,7 +71,7 @@ namespace HillromAutomationFramework.Steps.Login
         [Then(@"email field contains hint text")]
         public void ThenEmailFieldContainsHintText()
         {
-            string ExpectedHintText = ForgotPasswordPage.ExpectedValues.EmailFieldHintText;
+            string ExpectedHintText = ForgotPasswordPageExpectedValue.EmailFieldHintText;
             string ActualHintText = _forgotPasswordPage.EmailFeild.GetAttribute("placeholder");
             ActualHintText.Should().BeEquivalentTo(ExpectedHintText,"Email field hint text is not matching with expected value.\n");
         }
@@ -91,7 +92,7 @@ namespace HillromAutomationFramework.Steps.Login
         public void ThenForgotInvalidErrorMessageIsDisplayed()
         {
             _forgotPasswordPage.InvalidEmailErrorMessage.GetElementVisibility().Should().BeTrue("Error message should be displayed when user enters invalid format email.");
-            (_forgotPasswordPage.InvalidEmailErrorMessage.Text).Should().BeEquivalentTo(ForgotPasswordPage.ExpectedValues.InvalidEmailErrorMessageText, because:"Error message text should match the expected value.");
+            (_forgotPasswordPage.InvalidEmailErrorMessage.Text).Should().BeEquivalentTo(ForgotPasswordPageExpectedValue.InvalidEmailErrorMessageText, because:"Error message text should match the expected value.");
         }
 
 

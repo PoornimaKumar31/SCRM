@@ -47,24 +47,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string DateSortingID = "date";
             public const string LogDateClassName = "col-md-4";
         }
-        public static class ExpectedValues
-        {
-            public const string RequestLogButtonDisabledClassName = "requestLogsbtn disable";
-            public const string EditAssetDetailsPopUpTitle = "EDIT ASSET DETAILS";
-            public const string EditAssetDetailsPopUpAssetTagLabel = "Asset tag";
-            public const string EditAssetDetailsPopUpFacilityLabel = "Facility";
-            public const string EditAssetDetailsPopUpLocationLabel = "Location";
-            public const string RoomLabelHintText = "Room";
-            public const string BedLabelHintText = "Bed";
-
-            public static string SortDecreasingIconURL = "url(\""+PropertyClass.BaseURL+"/icon_sort_up.svg\")";
-            public static string SortIncreasingIconURL = "url(\""+PropertyClass.BaseURL+"/icon_sort_down.svg\")";
-            public static string PreviousDisableImageURL = PropertyClass.BaseURL+"/left_disabled.png";
-            public static string PreviousEnableImageURL = PropertyClass.BaseURL+"/icon_page_previous.svg";
-            public static string NextDisableImageURL = PropertyClass.BaseURL+"/right_disabled.png";
-            public static string NextEnableImageURL = PropertyClass.BaseURL+"/icon_page_next.svg";
-        }
-
+       
         public CVSMDeviceDetailsPage(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
