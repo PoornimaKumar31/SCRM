@@ -4,6 +4,7 @@ using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -80,11 +81,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [When(@"user selects facility from Organization dropdown")]
         public void WhenUserSelectsFacilityFromOrganizationDropdown()
         {
-            Thread.Sleep(2000);
-            _mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization DropDown");
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
+            //Clicking on the organization drop down by 30 pixels offset 
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(_mainPage.OrganizationDropdown, 30, 0,MoveToElementOffsetOrigin.Center).Perform();
+            actions.Click().Perform();
+           
+
+            Thread.Sleep(1000);
             _mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement(_driver,"LNT Automated Test organization ExpensionArrow in organization dropdown");
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             _mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement(_driver,"LNT Automated Test organization Test1 facility");
         }
 
@@ -115,8 +121,13 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [When(@"user selects unit from Organization dropdown")]
         public void WhenUserSelectsUnitFromOrganizationDropdown()
         {
-            _mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization dropdown");
+            
             Thread.Sleep(2000);
+            //Clicking on the organization drop down by 30 pixels offset 
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(_mainPage.OrganizationDropdown, 30, 0, MoveToElementOffsetOrigin.Center).Perform();
+            actions.Click().Perform();
+
             _mainPage.LNTAutmatedTestDDLFacility1ExpensionArrow.ClickWebElement(_driver,"FacilityExpansionArrow");
             Thread.Sleep(2000);
             //station1
