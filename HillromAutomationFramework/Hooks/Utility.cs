@@ -114,10 +114,10 @@ namespace HillromAutomationFramework.Hooks
                 chromeOptions.AddArgument("--incognito");
 
                 // Maximize the window
-                chromeOptions.AddArgument("start-maximized");
+                //chromeOptions.AddArgument("start-maximized");
 
                 //for full screen
-                //chromeOptions.AddArgument("--start-fullscreen");
+                chromeOptions.AddArgument("--start-fullscreen");
 
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
@@ -147,10 +147,10 @@ namespace HillromAutomationFramework.Hooks
                 edgeoptions.AddUserProfilePreference("download.prompt_for_download", false);
 
                 // Maximize the window
-                edgeoptions.AddArgument("start-maximized");
+                //edgeoptions.AddArgument("start-maximized");
 
                 //for full screen
-                //edgeoptions.AddArgument("--start-fullscreen");
+                edgeoptions.AddArgument("--start-fullscreen");
 
                 //Headless(without opening edge browser,run the test internally)
                 if (BrowserName.Contains("headless"))
