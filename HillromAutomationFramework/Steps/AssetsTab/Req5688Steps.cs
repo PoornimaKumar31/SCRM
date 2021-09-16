@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using TechTalk.SpecFlow;
 using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
@@ -49,26 +50,30 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [When(@"user selects organization from Organization dropdown")]
         public void WhenUserSelectsOrganizationFromOrganizationDropdown()
         {
-            _mainPage.OrganizationDropdown.Click();
+            _mainPage.OrganizationDropdown.ClickWebElement(_driver, "Organization dropdown");
             Thread.Sleep(1000);
-            _mainPage.AutomatedEyeTestDDLSelection.Click();
+            _mainPage.AutomatedEyeTestDDLSelection.ClickWebElement(_driver, "L&t Automated Eye Test organization");
         }
 
         [Then(@"only devices in selected organization are displayed")]
         public void ThenOnlyDevicesInSelectedOrganizationAreDisplayed()
         {
             Thread.Sleep(3000);
-            SetMethods.ScrollToBottomofWebpage(_driver);
-            Assert.AreEqual(int.Parse(MainPageExpectedValue.AllOrgnaizationRV700DevicesCount),_mainPage.VerifyRecordPresence(), "All devices for selected organization is not displayed");
+            List<string> LocationColumnDataList = _mainPage.GetColumnData("Location");
+
+            foreach(string data in LocationColumnDataList)
+            {
+                data.Should().StartWithEquivalentOf(MainPageExpectedValue.LTAutomatedEyeTestOrgnaizationText);
+            }
         }
 
         [Given(@"user without roll-up for multiple facilities is on Assets page")]
         public void GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage()
         {
             GivenUserWithoutRoll_UpForMultipleOrganizationsIsOnAssetsPage();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             _mainPage.OrganizationDropdown.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             _mainPage.LNTAutomatedTestDDLSelection.Click();
         }
 
@@ -77,7 +82,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             Thread.Sleep(2000);
             _mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization DropDown");
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             _mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement(_driver,"LNT Automated Test organization ExpensionArrow in organization dropdown");
             Thread.Sleep(2000);
             _mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement(_driver,"LNT Automated Test organization Test1 facility");
@@ -87,9 +92,13 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenOnlyDevicesInSelectedFacilityAreDisplayed()
         {
             Thread.Sleep(3000);
-            SetMethods.ScrollToBottomofWebpage(_driver); 
-            int TotalRecords = _mainPage.VerifyRecordPresence();
-            Assert.AreEqual(true, int.Parse(MainPageExpectedValue.LNTAutomatedTestOrganizationFacilityOneDeviceCount) == TotalRecords, "Only devices in selected facility are not displayed");
+            List<string> LocationColumnData = _mainPage.GetColumnData("Location");
+
+            foreach(string data in LocationColumnData)
+            {
+                data.Should().StartWithEquivalentOf(MainPageExpectedValue.LNTAutomatedTestOrganizationFacilityTest1Text,
+                    because: "only LNT Automated Test Organization Facility Test1 should be displayed in asset list page");
+            }
         }
 
         [Given(@"user without roll-up for multiple units is on Assets page")]
@@ -97,7 +106,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage();
             _mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization dropdown");
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             _mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement(_driver,"LNT Automated Test organization ExpensionArrow in organization dropdown");
             Thread.Sleep(1000);
             _mainPage.LNTAutomatedTestDDLFacility1.ClickWebElement(_driver,"LNT Automated Test organization Test1 facility");
@@ -106,20 +115,22 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [When(@"user selects unit from Organization dropdown")]
         public void WhenUserSelectsUnitFromOrganizationDropdown()
         {
-            _mainPage.OrganizationDropdown.Click();
-            Thread.Sleep(1000);
-            _mainPage.LNTAutmatedTestDDLFacility1ExpensionArrow.Click();
-            Thread.Sleep(1000);
-            _mainPage.LNTAutmatedTestDDLFacility1Unit1.Click();
+            _mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization dropdown");
+            Thread.Sleep(2000);
+            _mainPage.LNTAutmatedTestDDLFacility1ExpensionArrow.ClickWebElement(_driver,"FacilityExpansionArrow");
+            Thread.Sleep(2000);
+            //station1
+            _mainPage.LNTAutmatedTestDDLFacility1Unit1.ClickWebElement(_driver,"station1");
         }
 
         [Then(@"only devices in selected unit are displayed")]
         public void ThenOnlyDevicesInSelectedUnitAreDisplayed()
         {
             Thread.Sleep(5000);
-            SetMethods.ScrollToBottomofWebpage(_driver);
-            int TotalRecords = _mainPage.VerifyRecordPresence();
-            Assert.AreEqual(true, TotalRecords == int.Parse(MainPageExpectedValue.LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount), "Number of devices in unit of facility is not as expected");
+            List<string> LocationColumnData = _mainPage.GetColumnData("Location");
+
+            //Asserting
+            LocationColumnData.Should().AllBeEquivalentTo(MainPageExpectedValue.LNTAutomatedTestOrganizationFacilityTest1UnitStation1Text, because: "Only devices related to LNT Automated Test Organization Facility Test1 Unit Station1 should be displayed");
         }
 
         [When(@"user selects All locations from Organization dropdown")]

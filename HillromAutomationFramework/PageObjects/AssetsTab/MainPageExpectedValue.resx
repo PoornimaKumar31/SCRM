@@ -137,10 +137,6 @@
     <value>1308</value>
     <comment>device count</comment>
   </data>
-  <data name="AllOrgnaizationRV700DevicesCount" xml:space="preserve">
-    <value>24</value>
-    <comment>device count</comment>
-  </data>
   <data name="AssetTagHeadingText" xml:space="preserve">
     <value>Asset tag</value>
     <comment>table headings</comment>
@@ -189,17 +185,24 @@
     <value>194</value>
     <comment>device count</comment>
   </data>
-  <data name="LNTAutomatedTestOrganizationFacilityOneDeviceCount" xml:space="preserve">
-    <value>31</value>
-    <comment>device count</comment>
+  <data name="LNTAutomatedTestOrganizationFacilityTest1Text" xml:space="preserve">
+    <value>L&amp;T Automated Test
+Test1</value>
+    <comment>Facility filter text</comment>
   </data>
-  <data name="LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount" xml:space="preserve">
-    <value>12</value>
-    <comment>device count</comment>
+  <data name="LNTAutomatedTestOrganizationFacilityTest1UnitStation1Text" xml:space="preserve">
+    <value>L&amp;T Automated Test
+Test1
+Station1</value>
+    <comment>Unit filter text</comment>
   </data>
   <data name="LocationHeadingText" xml:space="preserve">
     <value>Location</value>
     <comment>table headings</comment>
+  </data>
+  <data name="LTAutomatedEyeTestOrgnaizationText" xml:space="preserve">
+    <value>LT Automated Eye Test</value>
+    <comment>RV700 device count</comment>
   </data>
   <data name="MACAddressText" xml:space="preserve">
     <value>AP=B4:DE:31:0B:91:E4</value>

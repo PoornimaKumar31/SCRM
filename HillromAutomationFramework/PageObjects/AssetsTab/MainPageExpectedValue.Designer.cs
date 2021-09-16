@@ -106,15 +106,6 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 24.
-        /// </summary>
-        internal static string AllOrgnaizationRV700DevicesCount {
-            get {
-                return ResourceManager.GetString("AllOrgnaizationRV700DevicesCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Asset tag.
         /// </summary>
         internal static string AssetTagHeadingText {
@@ -223,20 +214,23 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 31.
+        ///   Looks up a localized string similar to L&amp;T Automated Test
+        ///Test1.
         /// </summary>
-        internal static string LNTAutomatedTestOrganizationFacilityOneDeviceCount {
+        internal static string LNTAutomatedTestOrganizationFacilityTest1Text {
             get {
-                return ResourceManager.GetString("LNTAutomatedTestOrganizationFacilityOneDeviceCount", resourceCulture);
+                return ResourceManager.GetString("LNTAutomatedTestOrganizationFacilityTest1Text", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12.
+        ///   Looks up a localized string similar to L&amp;T Automated Test
+        ///Test1
+        ///Station1.
         /// </summary>
-        internal static string LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount {
+        internal static string LNTAutomatedTestOrganizationFacilityTest1UnitStation1Text {
             get {
-                return ResourceManager.GetString("LNTAutomatedTestOrganizationFacilityOneUnitOneDeviceCount", resourceCulture);
+                return ResourceManager.GetString("LNTAutomatedTestOrganizationFacilityTest1UnitStation1Text", resourceCulture);
             }
         }
         
@@ -246,6 +240,15 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab {
         internal static string LocationHeadingText {
             get {
                 return ResourceManager.GetString("LocationHeadingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LT Automated Eye Test.
+        /// </summary>
+        internal static string LTAutomatedEyeTestOrgnaizationText {
+            get {
+                return ResourceManager.GetString("LTAutomatedEyeTestOrgnaizationText", resourceCulture);
             }
         }
         

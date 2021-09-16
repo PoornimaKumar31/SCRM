@@ -8,6 +8,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 using TechTalk.SpecFlow;
@@ -123,7 +124,10 @@ namespace HillromAutomationFramework.Hooks
                 chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
 
                 //Headless chrome (without opening chrome browser run test cases internally)
-                //chromeOptions.AddArgument("--headless");
+                if(BrowserName.Contains("headless"))
+                {
+                    chromeOptions.AddArgument("--headless");
+                }
 
                 // Setting up the chrome driver
                 _driver= new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions);
@@ -146,13 +150,16 @@ namespace HillromAutomationFramework.Hooks
                 edgeoptions.AddArgument("start-maximized");
 
                 //for full screen
-                edgeoptions.AddArgument("--start-fullscreen");
+                //edgeoptions.AddArgument("--start-fullscreen");
 
                 //Headless(without opening edge browser,run the test internally)
-                //edgeoptions.AddArgument("--headless");
+                if (BrowserName.Contains("headless"))
+                {
+                    edgeoptions.AddArgument("--headless");
+                }
 
                 //Setting up Edge driver
-                _driver= new EdgeDriver(edgeoptions);
+                _driver = new EdgeDriver(edgeoptions);
                 _specFlowOutputHelper.WriteLine("Launched edge browser");
             }
             else
