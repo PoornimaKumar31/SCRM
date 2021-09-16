@@ -117,22 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NextDisableImageURL" xml:space="preserve">
-    <value>/right_disabled.png</value>
+  <data name="LeftPointingRedArrowImageURL" xml:space="preserve">
+    <value>/icon_pm_overdue.png</value>
   </data>
-  <data name="NextEnableImageURL" xml:space="preserve">
-    <value>/icon_page_next.svg</value>
-  </data>
-  <data name="PreviousDisableImageURL" xml:space="preserve">
-    <value>/left_disabled.png</value>
-  </data>
-  <data name="PreviousEnableImageURL" xml:space="preserve">
-    <value>/icon_page_previous.svg</value>
-  </data>
-  <data name="SortDecreasingIconURL" xml:space="preserve">
-    <value>/icon_sort_up.svg</value>
-  </data>
-  <data name="SortIncreasingIconURL" xml:space="preserve">
-    <value>/icon_sort_down.svg</value>
+  <data name="UpwardPointingBlackArrowImageURL" xml:space="preserve">
+    <value>/icon_pm_due.png</value>
   </data>
 </root>

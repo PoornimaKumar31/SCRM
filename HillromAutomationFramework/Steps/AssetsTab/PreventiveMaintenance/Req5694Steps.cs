@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.PreventiveMaintainenece;
 using HillromAutomationFramework.PageObjects.Component_Information;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -20,7 +20,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
     {
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
-        private readonly CSMDeviceDetailsPage _csmDeviceDetailsPage;
+        private readonly PreventiveMaintenancePage _preventiveMaintenancePage;
         private readonly CVSMAssetListPage _cvsmAssetListPage;
         private readonly MainPage _mainPage;
 
@@ -38,7 +38,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
             _loginPage = new LoginPage(driver);
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
-            _csmDeviceDetailsPage = new CSMDeviceDetailsPage(driver);
+            _preventiveMaintenancePage = new PreventiveMaintenancePage(driver);
             _cvsmAssetListPage = new CVSMAssetListPage(driver);
         }
 
@@ -70,14 +70,14 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         public void ThenAssetDetailsSummarySubsectionIsDisplayed()
         {
             Thread.Sleep(2000);
-            bool isAssetDetailsSummarySubsectionDisplayed =_driver.FindElement(By.Id("cvsm_details_summary")).GetElementVisibility();
+            bool isAssetDetailsSummarySubsectionDisplayed =_preventiveMaintenancePage.CVSMAssetDetailsSummary.GetElementVisibility();
             isAssetDetailsSummarySubsectionDisplayed.Should().BeTrue("Asset Details Summary subsection is not displayed.");
         }
 
         [Then(@"Preventive Maintenance Schedule subsection is displayed")]
         public void ThenPreventiveMaintenanceScheduleSubsectionIsDisplayed()
         {
-            bool IsPMScheduleSubsectionDisplayed = _csmDeviceDetailsPage.PreventiveMaintenance.GetElementVisibility();
+            bool IsPMScheduleSubsectionDisplayed = _preventiveMaintenancePage.PreventiveMaintenance.GetElementVisibility();
             IsPMScheduleSubsectionDisplayed.Should().BeTrue("Preventive maintenance schedule subsection is not displayed.");
         }
 
@@ -89,13 +89,13 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
             Thread.Sleep(3000);
             _mainPage.DeviceListRow[0].Click();
             Thread.Sleep(2000);
-            _csmDeviceDetailsPage.PMTab.Click();
+            _preventiveMaintenancePage.PMTab.Click();
         }
 
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string columnName)
         {
-            bool isColumnNameDisplayed = _csmDeviceDetailsPage.PMNameHeading.GetElementVisibility();
+            bool isColumnNameDisplayed = _preventiveMaintenancePage.PMNameHeading.GetElementVisibility();
             isColumnNameDisplayed.Should().BeTrue(columnName + " column heading is not displayed");
         }
 
@@ -103,8 +103,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         public void ThenAndCurrentCalendarYearLabelIsDisplayed(string leftArrow)
         {
             Thread.Sleep(2000);
-            bool IsLeftArrowDisplayed = _csmDeviceDetailsPage.LeftArrow.GetElementVisibility();
-            bool currentYearDisplayed = _csmDeviceDetailsPage.CurrentCalenderYear.GetElementVisibility();
+            bool IsLeftArrowDisplayed = _preventiveMaintenancePage.LeftArrow.GetElementVisibility();
+            bool currentYearDisplayed = _preventiveMaintenancePage.CurrentCalenderYear.GetElementVisibility();
 
             IsLeftArrowDisplayed.Should().BeTrue("Left arrow symbol is not displayed.");
             currentYearDisplayed.Should().BeTrue("Current calendar year label is not displayed.");
@@ -113,8 +113,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Then(@"next calendar year and ""(.*)"" is displayed")]
         public void ThenNextCalendarYearAndIsDisplayed(string rightArrow)
         {
-            bool IsRightArrowDisplayed = _csmDeviceDetailsPage.RightArrow.GetElementVisibility();
-            bool IsNextYearDisplayed = _csmDeviceDetailsPage.NextCalenderYear.GetElementVisibility();
+            bool IsRightArrowDisplayed = _preventiveMaintenancePage.RightArrow.GetElementVisibility();
+            bool IsNextYearDisplayed = _preventiveMaintenancePage.NextCalenderYear.GetElementVisibility();
 
             IsRightArrowDisplayed.Should().BeTrue("Right arrow symbol is not displayed.");
             IsNextYearDisplayed.Should().BeTrue("Next calendar year is not displayed.");
@@ -123,8 +123,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Then(@"current month is displayed followed by the other months")]
         public void ThenCurrentMonthIsDisplayedFollowedByTheOtherMonths()
         {
-            bool IsCalenderDisplayed = _csmDeviceDetailsPage.CalenderXP.GetElementVisibility();
-            string[] monthsArray = _csmDeviceDetailsPage.CalenderXP.Text.Split();
+            bool IsCalenderDisplayed = _preventiveMaintenancePage.CalenderXP.GetElementVisibility();
+            string[] monthsArray = _preventiveMaintenancePage.CalenderXP.Text.Split();
             List<string> listOfMonths = monthsArray.ToList<string>();
             listOfMonths.RemoveAll(p => string.IsNullOrEmpty(p));
 

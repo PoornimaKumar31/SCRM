@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
+namespace HillromAutomationFramework.PageObjects.AssetsTab.PreventiveMaintenance {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class DeviceDetailsPageExpectedValue {
+    internal class PreventiveMaintenancePageExpectedValues {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal DeviceDetailsPageExpectedValue() {
+        internal PreventiveMaintenancePageExpectedValues() {
         }
         
         /// <summary>
@@ -39,8 +39,8 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails.DeviceDetailsPageE" +
-                            "xpectedValue", typeof(DeviceDetailsPageExpectedValue).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HillromAutomationFramework.PageObjects.AssetsTab.PreventiveMaintenance.Preventive" +
+                            "MaintenancePageExpectedValues", typeof(PreventiveMaintenancePageExpectedValues).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,56 +62,20 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /right_disabled.png.
+        ///   Looks up a localized string similar to /icon_pm_overdue.png.
         /// </summary>
-        internal static string NextDisableImageURL {
+        internal static string LeftPointingRedArrowImageURL {
             get {
-                return ResourceManager.GetString("NextDisableImageURL", resourceCulture);
+                return ResourceManager.GetString("LeftPointingRedArrowImageURL", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /icon_page_next.svg.
+        ///   Looks up a localized string similar to /icon_pm_due.png.
         /// </summary>
-        internal static string NextEnableImageURL {
+        internal static string UpwardPointingBlackArrowImageURL {
             get {
-                return ResourceManager.GetString("NextEnableImageURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /left_disabled.png.
-        /// </summary>
-        internal static string PreviousDisableImageURL {
-            get {
-                return ResourceManager.GetString("PreviousDisableImageURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /icon_page_previous.svg.
-        /// </summary>
-        internal static string PreviousEnableImageURL {
-            get {
-                return ResourceManager.GetString("PreviousEnableImageURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /icon_sort_up.svg.
-        /// </summary>
-        internal static string SortDecreasingIconURL {
-            get {
-                return ResourceManager.GetString("SortDecreasingIconURL", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to /icon_sort_down.svg.
-        /// </summary>
-        internal static string SortIncreasingIconURL {
-            get {
-                return ResourceManager.GetString("SortIncreasingIconURL", resourceCulture);
+                return ResourceManager.GetString("UpwardPointingBlackArrowImageURL", resourceCulture);
             }
         }
     }

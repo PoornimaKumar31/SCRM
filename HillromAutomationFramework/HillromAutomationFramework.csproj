@@ -103,6 +103,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>MainPageExpectedValue.resx</DependentUpon>
     </Compile>
+    <Compile Update="PageObjects\AssetsTab\PreventiveMaintenance\PreventiveMaintenancePageExpectedValues.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PreventiveMaintenancePageExpectedValues.resx</DependentUpon>
+    </Compile>
     <Compile Update="PageObjects\LandingPageObjects\LandingPageExpectedValue.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -178,6 +183,10 @@
     <EmbeddedResource Update="PageObjects\AdvancedTab\AdvancePageExpectedValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AdvancePageExpectedValues.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\PreventiveMaintenance\PreventiveMaintenancePageExpectedValues.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PreventiveMaintenancePageExpectedValues.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="PageObjects\ReportsTab\ActivityReportPageExpectedValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>

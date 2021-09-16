@@ -2,6 +2,8 @@
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
+using HillromAutomationFramework.PageObjects.AssetsTab.PreventiveMaintainenece;
+using HillromAutomationFramework.PageObjects.AssetsTab.PreventiveMaintenance;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -20,7 +22,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
     {
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
-        private readonly CSMDeviceDetailsPage _csmDeviceDetailsPage;
+        private readonly PreventiveMaintenancePage _preventiveMaintenancePage;
         private readonly MainPage _mainPage;
 
         private readonly IWebDriver _driver;
@@ -35,7 +37,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
 
             _loginPage = new LoginPage(driver);
             _landingPage = new LandingPage(driver);
-            _csmDeviceDetailsPage = new CSMDeviceDetailsPage(driver);
+            _preventiveMaintenancePage = new PreventiveMaintenancePage(driver);
             _mainPage = new MainPage(driver);
         }
 
@@ -63,23 +65,23 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [When(@"clicks Preventive maintenance tab")]
         public void WhenClicksPreventiveMaintenanceTab()
         {
-            _csmDeviceDetailsPage.PMTab.Click();
+            _preventiveMaintenancePage.PMTab.Click();
         }
 
         [Then(@"Preventive maintenance schedule subsection is displayed")]
         public void ThenPreventiveMaintenanceScheduleSubsectionIsDisplayed()
         {
-            bool IsPMScheduleSubsectionDisplayed = _csmDeviceDetailsPage.PreventiveMaintenance.GetElementVisibility();
+            bool IsPMScheduleSubsectionDisplayed = _preventiveMaintenancePage.PreventiveMaintenance.GetElementVisibility();
             IsPMScheduleSubsectionDisplayed.Should().BeTrue("Preventive maintenance schedule subsection is displayed.");
         }
 
         [Then(@"Host controller graphic is displayed in ""(.*)"" column")]
         public void ThenHostControllerGraphicIsDisplayedInColumn(string ColumnName)
         {
-            int IndexOfName = _csmDeviceDetailsPage.PMSHeader.IndexOf(_csmDeviceDetailsPage.PMNameHeading);
-            int IndexOfHostController = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
+            int IndexOfName = _preventiveMaintenancePage.PMSHeader.IndexOf(_preventiveMaintenancePage.PMNameHeading);
+            int IndexOfHostController = _preventiveMaintenancePage.PMSRow.IndexOf(_preventiveMaintenancePage.HostContollerColumn);
             Thread.Sleep(2000);
-            bool IsHostControllerGraphicDisplayed = _csmDeviceDetailsPage.HostControllerGraphic.GetElementVisibility();
+            bool IsHostControllerGraphicDisplayed = _preventiveMaintenancePage.HostControllerGraphic.GetElementVisibility();
 
             IsHostControllerGraphicDisplayed.Should().BeTrue("Host controller graphic is displayed.");
             IndexOfHostController.Should().Be(IndexOfName, "Host controller graphic is not displayed in Name column.");
@@ -89,10 +91,10 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
        [Then(@"""(.*)"" is displayed in ""(.*)"" column")]
         public void ThenIsDisplayedInColumn(string HostController, string ColumnName)
         {
-            int IndexOfName = _csmDeviceDetailsPage.PMSHeader.IndexOf(_csmDeviceDetailsPage.PMNameHeading);
-            int IndexOfHostController = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
+            int IndexOfName = _preventiveMaintenancePage.PMSHeader.IndexOf(_preventiveMaintenancePage.PMNameHeading);
+            int IndexOfHostController = _preventiveMaintenancePage.PMSRow.IndexOf(_preventiveMaintenancePage.HostContollerColumn);
             Thread.Sleep(2000);
-            bool IsHostControllerDisplayed = _csmDeviceDetailsPage.HostController.GetElementVisibility();
+            bool IsHostControllerDisplayed = _preventiveMaintenancePage.HostController.GetElementVisibility();
 
             IsHostControllerDisplayed.Should().BeTrue("Host controller is not displayed.");
             IndexOfHostController.Should().Be(IndexOfName, "Host controller is not displayed in Name column.");
@@ -101,33 +103,33 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Then(@"""(.*)"" is ""(.*)"" on ""(.*)"" row in ""(.*)"" column")]
         public void ThenIsOnRowInColumn(string LastCalibration, string LastExpectedCalibrationDate, string HostControllerRow, string LastCalibrationColumn)
         {
-            int LastCalibrationHeading = _csmDeviceDetailsPage.PMSHeader.IndexOf(_csmDeviceDetailsPage.PMLastCalibrationHeading);
-            int LastCalibrationDate = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.LastCalibrationDate);
+            int LastCalibrationHeading = _preventiveMaintenancePage.PMSHeader.IndexOf(_preventiveMaintenancePage.PMLastCalibrationHeading);
+            int LastCalibrationDate = _preventiveMaintenancePage.PMSRow.IndexOf(_preventiveMaintenancePage.LastCalibrationDate);
             LastCalibrationDate.Should().Be(LastCalibrationHeading, "Last calibration is not in Host controller row in Last calibration column.");
 
-            string LastActualCalibrationDate = _csmDeviceDetailsPage.LastCalibrationDate.Text;
+            string LastActualCalibrationDate = _preventiveMaintenancePage.LastCalibrationDate.Text;
             LastExpectedCalibrationDate.Should().Be(LastActualCalibrationDate, "Last calibration is not 30 Sep 2015 on Host controller row in Last calibration column.");           
         }
 
         [Then(@"""(.*)"" message is displayed on ""(.*)"" row")]
         public void ThenMessageIsDisplayedOnRow(string CalibrationMessage, string HostControllerRow)
         {
-            string text = _csmDeviceDetailsPage.CalibrationOverDueText.Text;
-            string calibrationOverdueDate = _csmDeviceDetailsPage.CalibrationOverDueDate.Text;
+            string text = _preventiveMaintenancePage.CalibrationOverDueText.Text;
+            string calibrationOverdueDate = _preventiveMaintenancePage.CalibrationOverDueDate.Text;
 
             string[] calibrationOverdue = text.Split();
             string calibrationOverdueText = calibrationOverdue[0] + " " + calibrationOverdue[1];
 
             Thread.Sleep(2000);
-            int IndexOfHostController = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
+            int IndexOfHostController = _preventiveMaintenancePage.PMSRow.IndexOf(_preventiveMaintenancePage.HostContollerColumn);
             if (calibrationOverdueText == CalibrationMessage)
             {
-                bool IsDisplayed = _csmDeviceDetailsPage.CalibrationOverDueText.GetElementVisibility();
+                bool IsDisplayed = _preventiveMaintenancePage.CalibrationOverDueText.GetElementVisibility();
                 Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
             }
             else if (calibrationOverdueDate == CalibrationMessage)
             {
-                bool IsDisplayed = _csmDeviceDetailsPage.LastCalibrationDate.GetElementVisibility();
+                bool IsDisplayed = _preventiveMaintenancePage.LastCalibrationDate.GetElementVisibility();
                 Assert.AreEqual(IsDisplayed, 0 == IndexOfHostController, "Calibration overdue message is not displayed on Host controller row.");
             }
         }
@@ -136,32 +138,32 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         public void ThenLeftPointingRedArrowIsDisplayedOnRow(string HostControllerRow)
         {
             //Verifying whether element is displayed
-            bool isLeftPointingRedArrowDisplayed = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
+            bool isLeftPointingRedArrowDisplayed = _preventiveMaintenancePage.CalibrationOverDueArrow.GetElementVisibility();
             isLeftPointingRedArrowDisplayed.Should().BeTrue("Left pointing arrow is displayed on " + HostControllerRow + " row.");
 
             //Checking whether the element is in the host controller row
-            int IndexOfHostControllerColumn = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
+            int IndexOfHostControllerColumn = _preventiveMaintenancePage.PMSRow.IndexOf(_preventiveMaintenancePage.HostContollerColumn);
             IndexOfHostControllerColumn.Should().Be(0, "Left pointing arrow is displayed on " + HostControllerRow + " row.");
 
             //Verifying whether displayed image is correct
-            string leftPointingRedArrowURL = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
-            leftPointingRedArrowURL.Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.LeftPointingRedArrowImageURL, "Left pointing red arrow is displayed on " + HostControllerRow + " row.");
+            string leftPointingRedArrowURL = _preventiveMaintenancePage.CalibrationOverDueArrow.GetAttribute("src");
+            leftPointingRedArrowURL.Should().BeEquivalentTo(PropertyClass.BaseURL + PreventiveMaintenancePageExpectedValues.LeftPointingRedArrowImageURL, "Left pointing red arrow is displayed on " + HostControllerRow + " row.");
         }
 
         [Then(@"upward pointing black arrow is displayed on ""(.*)"" row")]
         public void ThenUpwardPointingBlackArrowIsDisplayedOnRow(string HostControllerRow)
         {
             //Verifying whether element is displayed
-            bool IsUpwardPointingArrowDisplayed = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetElementVisibility();
+            bool IsUpwardPointingArrowDisplayed = _preventiveMaintenancePage.CalibrationOverDueArrow.GetElementVisibility();
             IsUpwardPointingArrowDisplayed.Should().BeTrue("Upward pointing arrow is displayed on " + HostControllerRow + " row.");
 
             //Checking whether the element is in the host controller row
-            int IndexOfHostControllerColumn = _csmDeviceDetailsPage.PMSRow.IndexOf(_csmDeviceDetailsPage.HostContollerColumn);
+            int IndexOfHostControllerColumn = _preventiveMaintenancePage.PMSRow.IndexOf(_preventiveMaintenancePage.HostContollerColumn);
             IndexOfHostControllerColumn.Should().Be(0, "Upward pointing arrow is displayed on " + HostControllerRow + " row.");
 
             //Verifying whether displayed image is correct
-            string upwardPointingBlackArrowURL = _csmDeviceDetailsPage.CalibrationOverDueArrow.GetAttribute("src");
-            upwardPointingBlackArrowURL.Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.UpwardPointingBlackArrowImageURL, "Upward pointing black arrow is not displayed on " + HostControllerRow + " row.");                    
+            string upwardPointingBlackArrowURL = _preventiveMaintenancePage.CalibrationOverDueArrow.GetAttribute("src");
+            upwardPointingBlackArrowURL.Should().BeEquivalentTo(PropertyClass.BaseURL + PreventiveMaintenancePageExpectedValues.UpwardPointingBlackArrowImageURL, "Upward pointing black arrow is not displayed on " + HostControllerRow + " row.");                    
         }
 
         [Given(@"user is on the Preventive maintenance tab")]
@@ -174,7 +176,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Then(@"""(.*)"" column heading is displayed")]
         public void ThenColumnHeadingIsDisplayed(string ColumnHeading)
         {
-            bool IsColumnHeadingDisplayed = _csmDeviceDetailsPage.PMNameHeading.GetElementVisibility();
+            bool IsColumnHeadingDisplayed = _preventiveMaintenancePage.PMNameHeading.GetElementVisibility();
             Assert.IsTrue(IsColumnHeadingDisplayed, ColumnHeading + " column heading is not displayed.");
         }
 
@@ -182,8 +184,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         public void ThenAndCurrentCalendarYearLabelIsDisplayed(string LeftArrowSymbol)
         {
             Thread.Sleep(2000);
-            bool IsLeftArrowDisplayed = _csmDeviceDetailsPage.LeftArrow.GetElementVisibility();
-            bool currentYearDisplayed = _csmDeviceDetailsPage.CurrentCalenderYear.GetElementVisibility();
+            bool IsLeftArrowDisplayed = _preventiveMaintenancePage.LeftArrow.GetElementVisibility();
+            bool currentYearDisplayed = _preventiveMaintenancePage.CurrentCalenderYear.GetElementVisibility();
 
             Assert.IsTrue(IsLeftArrowDisplayed, "Left arrow symbol is not displayed.");
             Assert.IsTrue(currentYearDisplayed, "Current calendar year label is not displayed.");
@@ -192,8 +194,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Then(@"next calendar year and ""(.*)"" is displayed")]
         public void ThenNextCalendarYearAndIsDisplayed(string RigthArrowSymbol)
         {
-            bool IsRightArrowDisplayed = _csmDeviceDetailsPage.RightArrow.GetElementVisibility();
-            bool IsNextYearDisplayed = _csmDeviceDetailsPage.NextCalenderYear.GetElementVisibility();
+            bool IsRightArrowDisplayed = _preventiveMaintenancePage.RightArrow.GetElementVisibility();
+            bool IsNextYearDisplayed = _preventiveMaintenancePage.NextCalenderYear.GetElementVisibility();
 
             Assert.IsTrue(IsRightArrowDisplayed, "Right arrow symbol is not displayed.");
             Assert.IsTrue(IsNextYearDisplayed, "Next calendar year is not displayed.");
@@ -202,8 +204,8 @@ namespace HillromAutomationFramework.Steps.AssetsTab.PreventiveMaintenance
         [Then(@"current month is displayed followed by the other months")]
         public void ThenCurrentMonthIsDisplayedFollowedByTheOtherMonths()
         {           
-            bool IsCalenderDisplayed = _csmDeviceDetailsPage.CalenderXP.GetElementVisibility();
-            string[] monthsArray = _csmDeviceDetailsPage.CalenderXP.Text.Split();           
+            bool IsCalenderDisplayed = _preventiveMaintenancePage.CalenderXP.GetElementVisibility();
+            string[] monthsArray = _preventiveMaintenancePage.CalenderXP.Text.Split();           
             List<string> listOfMonths = monthsArray.ToList<string>();
             listOfMonths.RemoveAll(p => string.IsNullOrEmpty(p));
 
