@@ -321,76 +321,76 @@ this.ScenarioInitialize(scenarioInfo);
 #line 59
  testRunner.And("list is sorted in descending order by \"Config file\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 61
+#line 60
  testRunner.When("user clicks \"Status\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 62
+#line 61
  testRunner.Then("downward arrow shows beside \"Status\" column header for ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 64
+#line 62
  testRunner.And("beds with errors are at the bottom of the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 65
+#line 63
  testRunner.When("user clicks \"Status\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 66
+#line 64
  testRunner.Then("upward arrow shows beside \"Status\" column header for descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 68
+#line 65
  testRunner.And("beds with errors are at the top of the list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 70
+#line 66
  testRunner.When("user clicks \"Asset tag\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 71
+#line 67
  testRunner.Then("downward arrow shows beside \"Asset tag\" column header for ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 72
+#line 68
  testRunner.And("list is sorted in ascending order by \"Asset tag\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 73
+#line 69
  testRunner.When("user clicks \"Asset tag\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 74
+#line 70
  testRunner.Then("upward arrow shows beside \"Asset tag\" column header for descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 75
+#line 71
  testRunner.And("list is sorted in descending order by \"Asset tag\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 77
+#line 72
  testRunner.When("user clicks \"Last connected\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 78
+#line 73
  testRunner.Then("downward arrow shows beside \"Last connected\" column header for ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 79
+#line 74
  testRunner.And("list is sorted in ascending order by \"Last connected\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 80
+#line 75
  testRunner.When("user clicks \"Last connected\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 81
+#line 76
  testRunner.Then("upward arrow shows beside \"Last connected\" column header for descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 82
+#line 77
  testRunner.And("list is sorted in descending order by \"Last connected\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 83
+#line 78
  testRunner.When("user clicks \"PM due\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 84
+#line 79
  testRunner.Then("downward arrow shows beside \"PM due\" column header for ascending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 85
+#line 80
  testRunner.And("list is sorted in ascending order by \"PM due\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 86
+#line 81
  testRunner.When("user clicks \"PM due\" column header", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 87
+#line 82
  testRunner.Then("upward arrow shows beside \"PM due\" column header for descending order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 88
+#line 83
  testRunner.And("list is sorted in descending order by \"PM due\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

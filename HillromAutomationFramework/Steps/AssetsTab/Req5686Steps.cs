@@ -134,10 +134,22 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"""(.*)"" label is in column (.*)")]
         public void ThenColumnHeadingIsDisplayed(string columnName, int columnNumber)
         {
+            _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
+
             //Entire row
             IList<IWebElement> DeviceTableHeadingElements = mainPage.DeviceListTableHeader.FindElements(By.TagName("th"));
+
+            List<string> columnHeadingListText = new List<string>();
+
+            foreach (IWebElement column in DeviceTableHeadingElements)
+            {
+                columnHeadingListText.Add(column.Text.ToLower());
+            }
+            //Zero based indexing
+            columnNumber--;
+
             //Matching the column place
-            Assert.AreEqual(columnName.ToLower().Trim(), DeviceTableHeadingElements[columnNumber - 1].Text.ToLower(), columnName + " is not displayed at column number \""+columnNumber+"\".");
+            columnHeadingListText.Should().HaveElementAt(columnNumber, columnName.ToLower(), because: columnName + " column heading should be in column number " + columnNumber);
         }
 
         [Then(@"Page x of y label is displayed")]
@@ -333,7 +345,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenListIsSortedInDescendingOrderBy(string columnHeader)
         {
             Thread.Sleep(3000);
-            List<string> ColumnData = mainPage.GetColumnData(columnHeader);
+            List<string> ActualColumnData = mainPage.GetColumnData(columnHeader);
+
+            List<string> SortedColumnData;
 
             List<DateTime> columnDateList = new List<DateTime>();
 
@@ -341,7 +355,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             if (columnHeader.ToLower().Equals("pm due") || columnHeader.ToLower().Equals("last connected"))
             {
                 //Converting into date list
-                foreach(string data in ColumnData)
+                foreach(string data in ActualColumnData)
                 {
                     if(!(string.IsNullOrEmpty(data)))
                     {
@@ -356,7 +370,11 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             else
             {
                 //Asserting
-                ColumnData.Should().BeInDescendingOrder(because:"Asset list should be sorted by " + columnHeader + " in descending order.");
+                SortedColumnData = new List<string>(ActualColumnData);
+                SortedColumnData.Sort();
+                SortedColumnData.Reverse();
+
+                ActualColumnData.Should().BeEquivalentTo(SortedColumnData,because:"Asset list should be sorted by " + columnHeader + " in descending order.");
             }
         }
 
@@ -364,7 +382,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void ThenListIsSortedInAscendingOrderBy(string columnHeader)
         {
             Thread.Sleep(3000);
-            List<string> ColumnData = mainPage.GetColumnData(columnHeader);
+            List<string> ActualColumnData = mainPage.GetColumnData(columnHeader);
+
+            List<string> SortedColumnData;
 
             List<DateTime> columnDateList = new List<DateTime>();
 
@@ -372,7 +392,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             if(columnHeader.ToLower().Equals("pm due") || columnHeader.ToLower().Equals("last connected"))
             {
                 //Converting into date list
-                foreach (string data in ColumnData)
+                foreach (string data in ActualColumnData)
                 {
                     if (!(string.IsNullOrEmpty(data) && string.IsNullOrWhiteSpace(data)))
                     {
@@ -386,8 +406,11 @@ namespace HillromAutomationFramework.Steps.AssetsTab
             }
             else
             {
+                SortedColumnData = new List<string>(ActualColumnData);
+                SortedColumnData.Sort();
                 //Asserting
-                ColumnData.Should().BeInAscendingOrder(because: "Asset list should be sorted by " + columnHeader + " in ascending order.");
+
+                ActualColumnData.Should().BeEquivalentTo(SortedColumnData, because: "Asset list should be sorted by " + columnHeader + " in ascending order.");
             }  
         }
 

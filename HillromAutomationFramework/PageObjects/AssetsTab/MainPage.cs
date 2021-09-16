@@ -257,9 +257,8 @@ namespace HillromAutomationFramework.PageObjects
         {
             for(int i =1;i<TotalPage;i++)
             {
-                SetMethods.ScrollToBottomofWebpage(driver);
                 PaginationNextIcon.ClickWebElement(driver);
-                Thread.Sleep(4000);
+                Thread.Sleep(10000);
             }
         }
 

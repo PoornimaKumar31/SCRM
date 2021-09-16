@@ -53,7 +53,7 @@ namespace HillromAutomationFramework.SupportingCode
 
         public static void ClickWebElement(this IWebElement element, IWebDriver driver, string elementName="Webelement")
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15))
             {
                 Message = elementName + " element is not clickable."
             };
