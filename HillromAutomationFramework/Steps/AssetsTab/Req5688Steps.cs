@@ -82,9 +82,13 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void WhenUserSelectsFacilityFromOrganizationDropdown()
         {
             Thread.Sleep(5000);
-            //Clicking on the organization drop down by 30 pixels offset 
+            int OrganizationDropDownwidthInPixel = _mainPage.OrganizationDropdown.Size.Width;
+
+            int MoveElementByoffSetX = (OrganizationDropDownwidthInPixel / 2)-1 ;
+
+            //Clicking on the organization drop down by pixels offset 
             Actions actions = new Actions(_driver);
-            actions.MoveToElement(_mainPage.OrganizationDropdown, 30, 0,MoveToElementOffsetOrigin.Center).Perform();
+            actions.MoveToElement(_mainPage.OrganizationDropdown, MoveElementByoffSetX, 0,MoveToElementOffsetOrigin.Center).Perform();
             actions.Click().Perform();
            
 
@@ -123,9 +127,14 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             
             Thread.Sleep(2000);
-            //Clicking on the organization drop down by 30 pixels offset 
+
+            int OrganizationDropDownwidthInPixel = _mainPage.OrganizationDropdown.Size.Width;
+
+            int MoveElementByoffSetX = (OrganizationDropDownwidthInPixel / 2) - 1;
+
+            //Clicking on the organization drop down by pixels offset 
             Actions actions = new Actions(_driver);
-            actions.MoveToElement(_mainPage.OrganizationDropdown, 30, 0, MoveToElementOffsetOrigin.Center).Perform();
+            actions.MoveToElement(_mainPage.OrganizationDropdown, MoveElementByoffSetX, 0, MoveToElementOffsetOrigin.Center).Perform();
             actions.Click().Perform();
 
             _mainPage.LNTAutmatedTestDDLFacility1ExpensionArrow.ClickWebElement(_driver,"FacilityExpansionArrow");
