@@ -115,7 +115,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         public void GivenUserWithoutRoll_UpForMultipleUnitsIsOnAssetsPage()
         {
             GivenUserWithoutRoll_UpForMultipleFacilitiesIsOnAssetsPage();
-            _mainPage.OrganizationDropdown.ClickWebElement(_driver,"Organization dropdown");
+
+            int OrganizationDropDownwidthInPixel = _mainPage.OrganizationDropdown.Size.Width;
+
+            int MoveElementByoffSetX = (OrganizationDropDownwidthInPixel / 2) - 1;
+
+            //Clicking on the organization drop down by pixels offset 
+            Actions actions = new Actions(_driver);
+            actions.MoveToElement(_mainPage.OrganizationDropdown, MoveElementByoffSetX, 0, MoveToElementOffsetOrigin.Center).Perform();
+            actions.Click().Perform();
+
             Thread.Sleep(2000);
             _mainPage.LNTAutomatedTestDDLExpensionArrow.ClickWebElement(_driver,"LNT Automated Test organization ExpensionArrow in organization dropdown");
             Thread.Sleep(1000);
