@@ -38,6 +38,7 @@ namespace HillromAutomationFramework.SupportingCode
         /// Double clicks on the webelement.
         /// </summary>
         /// <param name="element">Webelement to double click.</param>
+        /// <param name="driver">web driver of the browser</param>
         public static void DoubleClick(this IWebElement element,IWebDriver driver)
         {
             try
@@ -51,6 +52,12 @@ namespace HillromAutomationFramework.SupportingCode
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element">element to click on</param>
+        /// <param name="driver">web driver of the browser</param>
+        /// <param name="elementName">name of the element</param>
         public static void ClickWebElement(this IWebElement element, IWebDriver driver, string elementName="Webelement")
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15))
@@ -77,6 +84,7 @@ namespace HillromAutomationFramework.SupportingCode
         /// Clicking on a element using javascipt
         /// </summary>
         /// <param name="webElement">WebElement to click.</param>
+        /// <param name="driver">web driver of the browser</param>
         public static void JavaSciptClick(this IWebElement webElement,IWebDriver driver)
         {
             try
@@ -94,6 +102,7 @@ namespace HillromAutomationFramework.SupportingCode
         /// <summary>
         /// Scroll to the bottom of webpage.
         /// </summary>
+        /// <param name="driver">web driver of the browser</param>
         public static void ScrollToBottomofWebpage(IWebDriver driver)
         {
             long scrollHeight = 0;
@@ -123,7 +132,7 @@ namespace HillromAutomationFramework.SupportingCode
         /// <summary>
         /// Scroll till the element is visible and clickable
         /// </summary>
-        /// <param name="element"></param>
+        /// <param name="element">element where th web page has to move</param>
         /// <param name="elementName"></param>
         public static void MoveTotheElement(this IWebElement element,IWebDriver driver,string elementName = "WebElement")
         {

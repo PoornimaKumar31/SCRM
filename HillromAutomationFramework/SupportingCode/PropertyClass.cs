@@ -1,16 +1,9 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using System;
-using System.IO;
+﻿using System;
 
 namespace HillromAutomationFramework.SupportingCode
 {
     class PropertyClass
     {
-        /// <summary>
-        /// WebDriver for operating the browser.
-        /// </summary>
-        //public static IWebDriver Driver { get; set; }
 
         /// <summary>
         /// Base URL of the application under test.

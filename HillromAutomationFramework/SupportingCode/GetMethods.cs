@@ -44,6 +44,7 @@ namespace HillromAutomationFramework.SupportingCode
         /// Takes screenshot of current screen in base 64 format
         /// </summary>
         /// <param name="name">Screenshot name</param>
+        /// <param name="driver">web driver of the browser</param>
         /// <returns>Screenshot in media entity builder format.</returns>
         public static MediaEntityModelProvider CaptureScreenshotBase64(IWebDriver driver, string name)
         {
