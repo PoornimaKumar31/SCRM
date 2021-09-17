@@ -125,16 +125,8 @@
     <value>31</value>
     <comment>search elements</comment>
   </data>
-  <data name="AllOrgnaizationCSMDevicesCount" xml:space="preserve">
-    <value>12</value>
-    <comment>device count</comment>
-  </data>
-  <data name="AllOrgnaizationCVSMDevicesCount" xml:space="preserve">
-    <value>19</value>
-    <comment>device count</comment>
-  </data>
-  <data name="AllOrgnaizationDevicesCount" xml:space="preserve">
-    <value>1308</value>
+  <data name="AllOrgnaizationText" xml:space="preserve">
+    <value>PSS Service,L&amp;T Automated Test,L&amp;T Automated Test East,LT Automated Eye Test</value>
     <comment>device count</comment>
   </data>
   <data name="AssetTagHeadingText" xml:space="preserve">

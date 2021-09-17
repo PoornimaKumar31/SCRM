@@ -1,8 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.SupportingCode;
-using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -237,7 +235,10 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.Id, Using = Locators.AllOrganizationsOptionID)]
         public IWebElement AllOrganizationsOption { get; set; }
 
-        //Search the Serial number and click on the device.
+        /// <summary>
+        /// Search the Serial number and click on the device
+        /// </summary>
+        /// <param name="serialNumber">Srial Number of the device to search</param>
         public void SearchSerialNumberAndClick(string serialNumber)
         {
             Thread.Sleep(2000);
@@ -246,18 +247,24 @@ namespace HillromAutomationFramework.PageObjects
             SearchField.EnterText(Keys.Enter);
             //Waiting for data to load
             Thread.Sleep(3000);
-            Assert.AreEqual(1, DeviceListRow.GetElementCount(), "More than one devices are present matching with serial number " + serialNumber);
-            
-            //1.Should().BeGreaterThan(DeviceListRow.GetElementCount(), "More than one devices are present matching with serial number " + serialNumber);
+
+            int deviceListCountMatchingSerilaNumber = DeviceListRow.GetElementCount();
+            deviceListCountMatchingSerilaNumber.Should().Be(1, because: "Only one device should match the serial number "+ serialNumber);
 
             DeviceListRow[0].Click();
         }
 
+        /// <summary>
+        /// Go to the last page of the device list
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <param name="TotalPage"></param>
         public void GoToLastPage(IWebDriver driver,int TotalPage)
         {
             for(int i =1;i<TotalPage;i++)
             {
                 PaginationNextIcon.ClickWebElement(driver);
+                //Delay due data load
                 Thread.Sleep(10000);
             }
         }
@@ -324,21 +331,6 @@ namespace HillromAutomationFramework.PageObjects
             RadioNewMarr.Click();
             bool IsMACAddressVisible = MACAddress.GetElementVisibility();
             return IsMACAddressVisible;
-        }
-
-        /// <summary>
-        /// Method for Verifying whether expected number of devices are present or not 
-        /// for organization/facility/unit.
-        /// </summary>
-        /// <param name="ExpectedDeviceCount">Expected Device Count</param>
-        /// <returns>Boolean</returns>
-        public int VerifyRecordPresence()
-        {
-            string[] PaginationDetails = PaginationDisplay.Text.Split();
-            Thread.Sleep(2000);
-            int TotalRecords = int.Parse(PaginationDetails[3]);           
-
-            return TotalRecords;           
         }
 
         /// <summary>

@@ -174,10 +174,35 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"all devices belonging to all user organizations are displayed")]
         public void ThenAllDevicesBelongingToAllUserOrganizationsAreDisplayed()
         {
-            Thread.Sleep(5000);
-            SetMethods.ScrollToBottomofWebpage(_driver);
-            int totalRecords = _mainPage.VerifyRecordPresence();
-            (totalRecords).Should().Be(int.Parse(MainPageExpectedValue.AllOrgnaizationDevicesCount), because: "All devices should be displayed for all organization");
+            Thread.Sleep(3000);
+
+            List<string> LocationColumnData = _mainPage.GetColumnData("Location");
+
+            bool IsdeviceBelongtoOneOfTheOrganization;
+
+            List<string> AllOrganizationList = new List<string>(MainPageExpectedValue.AllOrgnaizationText.Split(","));
+
+            string organizationData=null;
+
+            //Iterating through each location data and checking it starts with list of organization
+            foreach(string rowData in LocationColumnData)
+            {
+                IsdeviceBelongtoOneOfTheOrganization = false;
+                foreach (string organization in AllOrganizationList)
+                {
+                    if(rowData.ToLower().Trim().StartsWith(organization.ToLower()))
+                    {
+                        IsdeviceBelongtoOneOfTheOrganization = true;
+                        break;
+                    }
+                    organizationData = organization;
+                }
+
+                if(!IsdeviceBelongtoOneOfTheOrganization)
+                {
+                    Assert.Fail(organizationData+" organization does not match with any organization.");
+                }
+            }
         }
     }
 }

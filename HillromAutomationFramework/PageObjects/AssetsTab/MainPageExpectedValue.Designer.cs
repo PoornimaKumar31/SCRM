@@ -79,29 +79,11 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 12.
+        ///   Looks up a localized string similar to PSS Service,L&amp;T Automated Test,L&amp;T Automated Test East,LT Automated Eye Test.
         /// </summary>
-        internal static string AllOrgnaizationCSMDevicesCount {
+        internal static string AllOrgnaizationText {
             get {
-                return ResourceManager.GetString("AllOrgnaizationCSMDevicesCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 19.
-        /// </summary>
-        internal static string AllOrgnaizationCVSMDevicesCount {
-            get {
-                return ResourceManager.GetString("AllOrgnaizationCVSMDevicesCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1308.
-        /// </summary>
-        internal static string AllOrgnaizationDevicesCount {
-            get {
-                return ResourceManager.GetString("AllOrgnaizationDevicesCount", resourceCulture);
+                return ResourceManager.GetString("AllOrgnaizationText", resourceCulture);
             }
         }
         
