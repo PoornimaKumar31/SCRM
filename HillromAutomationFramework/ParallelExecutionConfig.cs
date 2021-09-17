@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 [assembly:Parallelizable(ParallelScope.Fixtures)]
-[assembly:LevelOfParallelism(level:4)]
+[assembly:LevelOfParallelism(level:6)]
 
 namespace HillromAutomationFramework
 {
