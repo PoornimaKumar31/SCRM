@@ -93,7 +93,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
                     break;
             }
             mainPage.AssetTypeDropDown.SelectDDL(Device);
-            Thread.Sleep(1000);
+            Thread.Sleep(3000);
         }
 
         [Then(@"all organization devices are displayed")]
