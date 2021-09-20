@@ -2,6 +2,7 @@
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
+using HillromAutomationFramework.PageObjects.AssetsTab.LogFiles;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -18,7 +19,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
-        private readonly RV700DeviceDetailsPage _rv700DeviceDetailsPage;
+        private readonly LogFilesPage _logFilesPage;
 
         private readonly IWebDriver _driver;
         private readonly ScenarioContext _scenarioContext;
@@ -33,7 +34,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _loginPage = new LoginPage(driver);
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
-            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage(driver);
+            _logFilesPage = new LogFilesPage(driver);
         }
 
         [Given(@"user is on RV700 Log Files page")]
@@ -44,40 +45,40 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.RV700DeviceName);
             Thread.Sleep(1000);
-            _mainPage.SearchSerialNumberAndClick("700090000008");
-            _rv700DeviceDetailsPage.LogsTab.Click();
+            _mainPage.SearchSerialNumberAndClick(LogFilesPageExpectedValue.RV700RequestLogFileDeviceSerialNumber);
+            _logFilesPage.LogsTab.ClickWebElement(_driver,"Logs tab");
         }
 
         [Given(@"Received, Pending or Executing message is not displayed")]
         public void GivenPendingOrExecutingMessageIsNotDisplayed()
         {
-            _rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility().Should().BeFalse("Reciving,Pending or Executing message is displayed");
+            _logFilesPage.LogsPendingMessage.GetElementVisibility().Should().BeFalse("Reciving,Pending or Executing message is displayed");
         }
 
         [When(@"user clicks Request Logs button")]
         public void WhenUserClicksRequestLogsButton()
         {
-            _rv700DeviceDetailsPage.LogsRequestButton.Click();
+            _logFilesPage.RequestLogsButton.Click();
         }
 
         [Then(@"Received, Pending or Executing message is displayed")]
         public void ThenPendingOrExecutingMessageIsDisplayed()
         {
-            _rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility().Should().BeTrue( "Reciving, Pending or Executing message is not displayed");
-             _rv700DeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification().Should().BeTrue( "Log files request status message is not matching the expected value.");
+            _logFilesPage.LogsPendingMessage.GetElementVisibility().Should().BeTrue( "Reciving, Pending or Executing message is not displayed");
+             _logFilesPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification().Should().BeTrue( "Log files request status message is not matching the expected value.");
         }
 
         [Given(@"Received, Pending or Executing message is displayed")]
         public void GivenPendingOrExecutingMessageIsDisplayed()
         {
-            _rv700DeviceDetailsPage.LogsPendingMessage.GetElementVisibility().Should().BeTrue( "Pending or Executing message is not displayed");
-             _rv700DeviceDetailsPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification().Should().BeTrue( "Log files request status message is not matching the expected value.");
+            _logFilesPage.LogsPendingMessage.GetElementVisibility().Should().BeTrue( "Pending or Executing message is not displayed");
+             _logFilesPage.LogsPendingMessage.LogFilesRequestStatusMessageVerification().Should().BeTrue( "Log files request status message is not matching the expected value.");
         }
 
         [Then(@"Request Logs button is disabled")]
         public void ThenRequestLogsButtonIsDisabled()
         {
-            _rv700DeviceDetailsPage.LogsRequestButton.GetAttribute("class").Should().BeEquivalentTo(RV700DeviceDetailsPageExpectedValue.RequestLogButtonDisabledClassName, "Request Logs button is not disabled");
+            _logFilesPage.RequestLogsButton.GetAttribute("class").Should().BeEquivalentTo(LogFilesPageExpectedValue.RequestLogButtonDisabledClassName, "Request Logs button is not disabled");
         }
 
     }

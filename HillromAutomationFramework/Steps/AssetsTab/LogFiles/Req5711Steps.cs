@@ -2,6 +2,7 @@
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
 using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
+using HillromAutomationFramework.PageObjects.AssetsTab.LogFiles;
 using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -18,7 +19,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
-        private readonly RV700DeviceDetailsPage _rv700DeviceDetailsPage;
+        private readonly LogFilesPage _logFilesPage;
 
         private readonly IWebDriver _driver;
         private readonly ScenarioContext _scenarioContext;
@@ -33,7 +34,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _loginPage = new LoginPage(driver);
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
-            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage(driver);
+            _logFilesPage = new LogFilesPage(driver);
         }
 
         [Given(@"user has selected RV700 device")]
@@ -51,19 +52,19 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         {
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.AssetsTabID)));
             _mainPage.AssetsTab.GetElementVisibility().Should().BeTrue( "Assets tab is not displayed");
-            _mainPage.SearchSerialNumberAndClick("700090000004");
+            _mainPage.SearchSerialNumberAndClick(LogFilesPageExpectedValue.RV70010LogFilesDeviceSerialNumber);
         }
 
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
         {
-            _rv700DeviceDetailsPage.LogsTab.Click();
+            _logFilesPage.LogsTab.Click();
         }
 
         [Then(@"logs for RV700 device are displayed")]
         public void ThenLogsForRVDeviceAreDisplayed()
         {
-            _rv700DeviceDetailsPage.LogFiles.GetElementCount().Should().BeGreaterThan(0,"number of logs are not as expected"); 
+            _logFilesPage.LogFiles.GetElementCount().Should().BeGreaterThan(0,"number of logs are not as expected"); 
         }
   
         [Given(@"user is on RV700 Log Files page with (.*) logs")]
@@ -79,155 +80,147 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             {
                 case 0:
                     //Selecting RV700 device with no log files
-                    _mainPage.SearchSerialNumberAndClick("700090000009");
-                    _wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
-                    _rv700DeviceDetailsPage.LogsTab.Click();
+                    _mainPage.SearchSerialNumberAndClick(LogFilesPageExpectedValue.RV700ZeroLogFileDeviceSerialNumber);
                     break;
 
                 case 10:
                     //selecting RV700 device with 10 log files
-                    _mainPage.SearchSerialNumberAndClick("700090000004");
-                    _wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
-                    _rv700DeviceDetailsPage.LogsTab.Click();
+                    _mainPage.SearchSerialNumberAndClick(LogFilesPageExpectedValue.RV70010LogFilesDeviceSerialNumber);
                     break;
                 case 24:
                     //selecting RV700 device with 24 log files
-                    _mainPage.SearchSerialNumberAndClick("700090000001");
-                    _wait.Until(ExplicitWait.ElementExists(By.Id(RV700DeviceDetailsPage.Locators.LogsTabID)));
-                    _rv700DeviceDetailsPage.LogsTab.Click();
+                    _mainPage.SearchSerialNumberAndClick(LogFilesPageExpectedValue.RV70024LogFilesDeviceSerialNumber);
                     break;
             }
+            _wait.Until(ExplicitWait.ElementExists(By.XPath(LogFilesPage.Locator.LogsTabXpath)));
+            _logFilesPage.LogsTab.Click();
         }
 
         [Then(@"no logs for RV700 device are displayed")]
         public void ThenNoLogsForRV700DeviceAreDisplayed()
         {
-            _rv700DeviceDetailsPage.LogFiles.GetElementCount().Should().Be(0,"Number of Logs are not 0");
+            _logFilesPage.LogFiles.GetElementCount().Should().Be(0,"Number of Logs are not 0");
         }
 
         [Then(@"(.*) logs for RV700 device are displayed")]
         public void ThenLogsForRVDeviceAreDisplayed(int ExpectedDeviceCount)
         {
-            _rv700DeviceDetailsPage.LogFiles.GetElementCount().Should().Be(ExpectedDeviceCount, "Number of Logs is not same as expected");
+            _logFilesPage.LogFiles.GetElementCount().Should().Be(ExpectedDeviceCount, "Number of Logs is not same as expected");
         }
 
 
         [Then(@"user cannot navigate to next logs page")]
         public void ThenUserCannotNavigateToNextLogsPage()
         {
-            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.NextDisableImageURL, "Button is not disabled");
+            _logFilesPage.NextPageIcon.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + LogFilesPageExpectedValue.NextPageIconDisableImageURL, "Button is not disabled");
         }
         
         [When(@"user clicks Next page button")]
         public void WhenUserClicksNextPageButton()
         {
-            _rv700DeviceDetailsPage.LogsNextButton.Click();
+            _logFilesPage.NextPageIcon.Click();
         }
 
 
         [Given(@"logs are sorted by decreasing date")]
         public void GivenLogsAreSortedByDecreasingDate()
         {
-            if (_rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 ascending")
+            if (_logFilesPage.DateColumn.GetAttribute("class") == "col-md-4 ascending")
             {
-                SetMethods.MoveTotheElement(_rv700DeviceDetailsPage.DateSorting, _driver, "Sorting Arrow");
-                _rv700DeviceDetailsPage.DateSorting.Click();
-                SetMethods.WaitUntilTwoStringsAreEqual(_rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 descending");
+                _logFilesPage.DateColumn.ClickWebElement(_driver, "Sorting Arrow");
+                SetMethods.WaitUntilTwoStringsAreEqual(_logFilesPage.DateColumn.GetAttribute("class"), "col-md-4 descending");
             }
             
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortDecreasingIconURL + "\")", "Sorting icon is not as expected");
-            _rv700DeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Logs are not sorted by decreasing date");
+            _logFilesPage.DateColumn.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + LogFilesPageExpectedValue.SortDecreasingIconURL + "\")", "Sorting icon is not as expected");
+            _logFilesPage.LogDateList.IsDateSorted("d").Should().BeTrue("Logs are not sorted by decreasing date");
         }
 
         [Given(@"logs are sorted by increasing date")]
         public void GivenLogsAreSortedByIncreasingDate()
         {
-            if (_rv700DeviceDetailsPage.DateSorting.GetAttribute("class") == "col-md-4 descending")
+            if (_logFilesPage.DateColumn.GetAttribute("class") == "col-md-4 descending")
             {
-                SetMethods.MoveTotheElement(_rv700DeviceDetailsPage.DateSorting, _driver, "Sorting Arrow");
-                _rv700DeviceDetailsPage.DateSorting.Click();
-                SetMethods.WaitUntilTwoStringsAreEqual(_rv700DeviceDetailsPage.DateSorting.GetAttribute("class"), "col-md-4 ascending");
+                _logFilesPage.DateColumn.ClickWebElement(_driver, "Sorting Arrow");
+                SetMethods.WaitUntilTwoStringsAreEqual(_logFilesPage.DateColumn.GetAttribute("class"), "col-md-4 ascending");
             }
             
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortIncreasingIconURL + "\")", "Sorting icon is not as expected");
-            _rv700DeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date");
+            _logFilesPage.DateColumn.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + LogFilesPageExpectedValue.SortIncreasingIconURL + "\")", "Sorting icon is not as expected");
+            _logFilesPage.LogDateList.IsDateSorted("a").Should().BeTrue("Logs are not sorted by increasing date");
         }
 
         [When(@"user clicks Date column heading")]
         public void WhenUserClicksDateColumnHeading()
         {
-            _rv700DeviceDetailsPage.DateSorting.MoveTotheElement(_driver);
-            _rv700DeviceDetailsPage.DateSorting.Click();
-
+            _logFilesPage.DateColumn.ClickWebElement(_driver, "date column");
         }
 
         [Then(@"logs are sorted by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
-            _rv700DeviceDetailsPage.LogDateList.IsDateSorted("d").Should().BeTrue("Date is not sorted in decreasing order");
+            _logFilesPage.LogDateList.IsDateSorted("d").Should().BeTrue("Date is not sorted in decreasing order");
         }
 
         [Then(@"decreasing date sorting indicator is displayed")]
         public void DecreasingDateSortingIndicatorIsDisplayed()
         {
-            _rv700DeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 descending", "decreasing date sorting indicator is not displayed");
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL+DeviceDetailsPageExpectedValue.SortDecreasingIconURL+"\")", "Sorting icon is not as expected");
+            _logFilesPage.DateColumn.GetAttribute("class").Should().BeEquivalentTo("col-md-4 descending", "decreasing date sorting indicator is not displayed");
+            _logFilesPage.DateColumn.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL+ LogFilesPageExpectedValue.SortDecreasingIconURL+"\")", "Sorting icon is not as expected");
         }
 
         [Then(@"logs are sorted by increasing date")]
         public void ThenLogsSortByIncreasingDate()
         {
-            _rv700DeviceDetailsPage.LogDateList.IsDateSorted("a").Should().BeTrue("Date is not sorted in increasing order");
+            _logFilesPage.LogDateList.IsDateSorted("a").Should().BeTrue("Date is not sorted in increasing order");
         }
 
         [Then(@"increasing date sorting indicator is displayed")]
         public void IncreasingDateSortingIndicatorDisplayed()
         {
-            _rv700DeviceDetailsPage.DateSorting.GetAttribute("class").Should().BeEquivalentTo("col-md-4 ascending", "Icreasing date sorting date indicator is not displayed");
-            _rv700DeviceDetailsPage.DateSorting.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.SortIncreasingIconURL + "\")", "Sorting icon is not as expected");
+            _logFilesPage.DateColumn.GetAttribute("class").Should().BeEquivalentTo("col-md-4 ascending", "Icreasing date sorting date indicator is not displayed");
+            _logFilesPage.DateColumn.GetCssValue("background-image").Should().BeEquivalentTo("url(\"" + PropertyClass.BaseURL + LogFilesPageExpectedValue.SortIncreasingIconURL + "\")", "Sorting icon is not as expected");
         }
 
         [Then(@"(.*) newest logs are displayed")]
         public void ThenNewestLogsAreDisplayed(int num)
         {
-            _rv700DeviceDetailsPage.NNewestLogsPresence(num).Should().BeTrue("Number of logs displayed are not as expected");
+            _logFilesPage.NNewestLogsPresence(num).Should().BeTrue("Number of logs displayed are not as expected");
         }
 
         [Then(@"next (.*) older logs are displayed")]
         public void ThenNextOlderLogsAreDisplayed(int num)
         {
-            _rv700DeviceDetailsPage.NOlderLogsPresence(num).Should().BeTrue("Number of Logs are not as expected");
+            _logFilesPage.NOlderLogsPresence(num).Should().BeTrue("Number of Logs are not as expected");
         }
 
         [Then(@"""(.*)"" pagination label is displayed")]
         public void ThenPaginationLabelIsDisplayed(string pageNumber)
         {
-            _rv700DeviceDetailsPage.LogsPageNumber.GetElementVisibility().Should().BeTrue( "Pagination label is not displayed");
-            _rv700DeviceDetailsPage.LogsPageNumber.Text.Should().BeEquivalentTo(pageNumber, "page number is not as expected");
+            _logFilesPage.PageNumber.GetElementVisibility().Should().BeTrue( "Pagination label is not displayed");
+            _logFilesPage.PageNumber.Text.Should().BeEquivalentTo(pageNumber, "page number is not as expected");
         }
 
         [Then(@"Next page icon is enabled")]
         public void ThenNextPageIconIsEnabled()
         {
-            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.NextEnableImageURL, "Button is not disabled");
+            _logFilesPage.NextPageIcon.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + LogFilesPageExpectedValue.NextPageIconEnableImageURL, "Button is not disabled");
         }
 
         [Then(@"Previous page icon is disabled")]
         public void ThenPreviousPageIconIsDisabled()
         {
-            _rv700DeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.PreviousDisableImageURL, "Button is not disabled");
+            _logFilesPage.PreviousPageIcon.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + LogFilesPageExpectedValue.PreviousPageIconDisableImageURL, "Button is not disabled");
         }
 
         [Then(@"Previous page icon is enabled")]
         public void ThenPreviousPageIconIsEnabled()
         {
-            _rv700DeviceDetailsPage.LogsPreviousButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + DeviceDetailsPageExpectedValue.PreviousEnableImageURL, "Button is not disabled");
+            _logFilesPage.PreviousPageIcon.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL + LogFilesPageExpectedValue.PreviousPageIconEnableImageURL, "Button is not disabled");
         }
 
         [Then(@"Next page icon is disabled")]
         public void ThenNextPageIconIsDisabled()
         {
-            _rv700DeviceDetailsPage.LogsNextButton.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL+DeviceDetailsPageExpectedValue.NextDisableImageURL, "Button is not disabled");
+            _logFilesPage.NextPageIcon.FindElement(By.TagName("img")).GetAttribute("src").Should().BeEquivalentTo(PropertyClass.BaseURL+ LogFilesPageExpectedValue.NextPageIconDisableImageURL, "Button is not disabled");
         }
 
     }

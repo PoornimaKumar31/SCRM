@@ -60,7 +60,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         [Then(@"Asset Details landing page is displayed")]
         public void ThenAssetDetailsLandingPageIsDisplayed()
         {
-            bool IsAssetDetailsPageDispalyed = (_rv700DeviceDetailsPage.ComponentInformationTab.GetElementVisibility()) || (_rv700DeviceDetailsPage.LogsTab.GetElementVisibility());
+            bool IsAssetDetailsPageDispalyed = (_rv700DeviceDetailsPage.ComponentInformationTab.GetElementVisibility());
             IsAssetDetailsPageDispalyed.Should().BeTrue("Asset Details page is not displayed.");
         }
 

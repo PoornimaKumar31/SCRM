@@ -34,18 +34,6 @@ namespace HillromAutomationFramework.PageObjects
             public const string RoomAndBedDetailsID = "cvsm_room";
             public const string CVSMDeviceID = "555566667777";
 
-            //Log files
-            public const string LogsTabID = "mat-tab-label-0-2";
-            public const string LogFilesID = "logName";
-            public const string LogsNextButtonID = "next";
-            public const string LogsPreviousButtonID = "previous";
-            public const string LogsPageNumberID = "pageNumber";
-            public const string LogsPageRequestButtonID = "request-logs";
-            public const string LogsPendingMessageXPath = "//div[@class = 'col-xs-8']";
-            public const string LogsDescendingClassName = "col-md-4 descending";
-            public const string LogsAscendingClassName = "col-md-4 ascending";
-            public const string DateSortingID = "date";
-            public const string LogDateClassName = "col-md-4";
         }
        
         public CVSMDeviceDetailsPage(IWebDriver driver)
@@ -102,103 +90,5 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.Id, Using = Locators.RoomAndBedDetailsID)]
         public IWebElement RoomAndBedDetails { get; set; }
 
-        //Log files related
-        [FindsBy(How = How.Id, Using = Locators.LogsTabID)]
-        public IWebElement LogsTab { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogFilesID)]
-        public IList<IWebElement> LogFiles { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogsNextButtonID)]
-        public IWebElement LogsNextButton { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogsPreviousButtonID)]
-        public IWebElement LogsPreviousButton { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogsPageNumberID)]
-        public IWebElement LogsPageNumber { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogsPageRequestButtonID)]
-        public IWebElement LogsRequestButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = Locators.LogsPendingMessageXPath)]
-        public IWebElement LogsPendingMessage { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.DateSortingID)]
-        public IWebElement DateSorting { get; set; }
-
-        [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]
-        public IList<IWebElement> LogDateList { get; set; }
-
-
-        /// <summary>
-        /// Function to verify N newest Logs presence by comparing Last Log Date of Current page 
-        /// with First Log Date of Next Page
-        /// </summary>
-        /// <param name="n">Expected Number of Logs</param>
-        /// <returns>Boolean</returns>
-        public bool NNewestLogsPresence(int n)
-        {
-            DateTime FirstElementLastPage;
-            DateTime LastElementFirstPage;
-            
-            Thread.Sleep(3000);
-            IList<IWebElement> LogDateListInitialPage = LogDateList;
-            LastElementFirstPage = DateTime.Parse(LogDateListInitialPage[n].Text);
-            int count = LogDateListInitialPage.Count-1;
-            Thread.Sleep(3000);
-            LogsNextButton.Click();
-            Thread.Sleep(3000);
-            IList<IWebElement> LogDateListNextPage = LogDateList;
-            FirstElementLastPage = DateTime.Parse(LogDateListNextPage[1].Text);           
-            LogsPreviousButton.Click();
-            Thread.Sleep(3000);
-            if (count.Equals(n))
-            {
-                if (LastElementFirstPage >= FirstElementLastPage)
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            else
-                return false;
-        }
-
-        /// <summary>
-        /// Function to verify N older Logs presence by comparing First Log Date of Current page 
-        /// with Last Log Date of Next Page
-        /// </summary>
-        /// <param name="n">Expected Number of Logs</param>
-        /// <returns>Boolean</returns>
-        public bool NOlderLogsPresence(int n)
-        {
-            DateTime FirstElementCurrentPage;
-            DateTime LastElementPreviousPage;
-
-            Thread.Sleep(3000);
-            IList<IWebElement> LogDateListCurrentPage = LogDateList;
-            FirstElementCurrentPage = DateTime.Parse(LogDateListCurrentPage[1].Text);
-            int count = LogDateListCurrentPage.Count - 1;
-            Thread.Sleep(3000);
-            LogsPreviousButton.Click();
-            Thread.Sleep(3000);
-            IList<IWebElement> LogDateListPreviousPage = LogDateList;
-            LastElementPreviousPage = DateTime.Parse(LogDateListPreviousPage[n].Text);
-            LogsNextButton.Click();
-            Thread.Sleep(3000);
-            if (count.Equals(n))
-            {
-                if (FirstElementCurrentPage <= LastElementPreviousPage)
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            else
-                return false;
-        }
     }
 }

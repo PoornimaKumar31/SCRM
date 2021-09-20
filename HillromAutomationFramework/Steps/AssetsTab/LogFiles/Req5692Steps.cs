@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.LogFiles;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -20,7 +21,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
-        private readonly CVSMDeviceDetailsPage _cvsmDeviceDetailsPage;
+        private readonly LogFilesPage _logFilesPage;
 
         private readonly ScenarioContext _scenarioContext;
         private readonly IWebDriver _driver;
@@ -31,11 +32,11 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _scenarioContext = scenarioContext;
             _driver = driver;
             _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-
-            _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(driver);
+         
             _loginPage = new LoginPage(driver);
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
+            _logFilesPage = new LogFilesPage(driver);
         }
 
         [Given(@"user is on CVSM Log Files page")]
@@ -49,33 +50,33 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _mainPage.AssetTypeDropDown.SelectDDL(MainPageExpectedValue.CVSMDeviceName);
             Thread.Sleep(2000);
             
-            _mainPage.SearchSerialNumberAndClick("100020000007");
-            _cvsmDeviceDetailsPage.LogsTab.Click();
+            _mainPage.SearchSerialNumberAndClick(LogFilesPageExpectedValue.CVSM10LogFileDeviceSerialNumber);
+            _logFilesPage.LogsTab.Click();
         }
 
         [Given(@"at least one log is present")]
         public void GivenAtLeastOneLogIsPresent()
         {
-            _cvsmDeviceDetailsPage.LogFiles.GetElementCount().Should().BeGreaterThan(0);
+            _logFilesPage.LogFiles.GetElementCount().Should().BeGreaterThan(0,because:"Atleat one log file should present to download.");
         }
 
         [When(@"user clicks log")]
         public void WhenUserClicksLog()
         {
-            _cvsmDeviceDetailsPage.LogFiles[0].Click();
+            _logFilesPage.LogFiles[0].Click();
         }
 
         [Then(@"log is downloaded to computer")]
         public void ThenLogIsDownloadedToComputer()
         {
-            bool IsCVSMLofFileDownloaded = GetMethods.IsFileDownloaded(_cvsmDeviceDetailsPage.LogFiles[0].Text, waitTimeInSeconds: 20);
+            bool IsCVSMLofFileDownloaded = GetMethods.IsFileDownloaded(_logFilesPage.LogFiles[0].Text, waitTimeInSeconds: 20);
             (IsCVSMLofFileDownloaded).Should().BeTrue(because: "CVSM Log file should be downloaded when user clicks First Log File in Logs page");
         }
 
         [Then(@"downloaded filename matches")]
         public void ThenDownloadedFilenameMatches()
         {
-            File.Exists(PropertyClass.DownloadPath + "\\" + _cvsmDeviceDetailsPage.LogFiles[0].Text).Should().BeTrue("Log file name does not match with downloaded file.");
+            File.Exists(PropertyClass.DownloadPath + "\\" + _logFilesPage.LogFiles[0].Text).Should().BeTrue("Log file name does not match with downloaded file.");
         }
 
     }

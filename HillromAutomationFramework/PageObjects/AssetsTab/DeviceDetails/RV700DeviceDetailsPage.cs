@@ -22,19 +22,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string RoomAndBedDetailsID = "rv700_room";
             public const string RV700DeviceID = "555566667777";
 
-            //Log files
-            public const string LogsTabID = "mat-tab-label-0-1";
-            public const string LogFilesID = "logName";
-            public const string LogsNextButtonID = "next";
-            public const string LogsPreviousButtonID = "previous";
-            public const string LogsPageNumberID = "pageNumber";
-            public const string LogsPageRequestButtonID = "request-logs";
-            public const string LogsPendingMessageXPath = "//*[@id=\"mat-tab-content-0-1\"]/div/div/c8y-hillrom-request-logs/div/div[3]/div[1]/div[1]";
-            public const string LogsDescendingClassName = "col-md-4 descending";
-            public const string LogsAscendingClassName = "col-md-4 ascending";
-            public const string DateSortingID = "date";
-            public const string LogDateClassName = "col-md-4";
-
+            public const string LogsTabXpath = "//div[text()='Logs']";
             //Component Information
             public const string ComponentInformationTabXpath = "//div[contains(text(),'Component information')]";
             public const string SummarySectionID = "rv700_details_summary";
@@ -92,26 +80,13 @@ namespace HillromAutomationFramework.PageObjects
             public const string SummaryLastConfigurationDeployedValueID = "rv700_config";
         }
 
-        public static class ExpectedValues
-        {
-            public const string RequestLogButtonDisabledClassName = "requestLogsbtn disable";
-            public const string NewRoomValue = "New Room";
-            public const string NewBedValue = "New Bed";
-            public const string UpdateRoomValue = "Update Room";
-            public const string UpdateBedValue = "Update Bed";
-            public const string RoomAndBedNotSet = "(not set)";                                                                              
-            public static string SortDecreasingIconURL = "url(\""+PropertyClass.BaseURL+"/icon_sort_up.svg\")";
-            public static string SortIncreasingIconURL = "url(\""+ PropertyClass.BaseURL+"/icon_sort_down.svg\")";
-            public static string PreviousDisableImageURL = PropertyClass.BaseURL + "/left_disabled.png";
-            public static string PreviousEnableImageURL = PropertyClass.BaseURL + "/icon_page_previous.svg";
-            public static string NextDisableImageURL = PropertyClass.BaseURL + "/right_disabled.png";
-            public static string NextEnableImageURL = PropertyClass.BaseURL+"/icon_page_next.svg";
-        }
-
         public RV700DeviceDetailsPage(IWebDriver driver)
         {
             PageFactory.InitElements(driver, this);
         }
+
+        [FindsBy(How = How.XPath, Using = Locators.LogsTabXpath)]
+        public IWebElement LogsTab { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.RV700DeviceID)]
         public IList<IWebElement> RV700Devices { get; set; }
@@ -134,34 +109,6 @@ namespace HillromAutomationFramework.PageObjects
 
         [FindsBy(How = How.Id, Using = Locators.RoomAndBedDetailsID)]
         public IWebElement RoomAndBedDetails { get; set; }
-
-        //Log files related
-        [FindsBy(How = How.Id, Using = Locators.LogsTabID)]
-        public IWebElement LogsTab { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogFilesID)]
-        public IList<IWebElement> LogFiles { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogsNextButtonID)]
-        public IWebElement LogsNextButton { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogsPreviousButtonID)]
-        public IWebElement LogsPreviousButton { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogsPageNumberID)]
-        public IWebElement LogsPageNumber { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.LogsPageRequestButtonID)]
-        public IWebElement LogsRequestButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = Locators.LogsPendingMessageXPath)]
-        public IWebElement LogsPendingMessage { get; set; }
-
-        [FindsBy(How = How.Id, Using = Locators.DateSortingID)]
-        public IWebElement DateSorting { get; set; }
-
-        [FindsBy(How = How.ClassName, Using = Locators.LogDateClassName)]
-        public IList<IWebElement> LogDateList { get; set; }
 
         //Component Information
         [FindsBy(How =How.XPath,Using =Locators.ComponentInformationTabXpath)]
@@ -306,120 +253,5 @@ namespace HillromAutomationFramework.PageObjects
 
         [FindsBy(How = How.Id, Using = Locators.SummaryLastConfigurationDeployedValueID)]
         public IWebElement SummaryLastConfigurationDeployedValue { get; set; }
-
-
-        /// <summary>
-        /// Function to get List of All Log Dates for device 
-        /// </summary>
-        /// <param name="n">Number of Logs</param>
-        /// <returns>List<DateTime></returns>
-        public List<DateTime> AllLogsDate(IWebDriver driver,int n)
-        {
-            List<DateTime> AllDateList = new List<DateTime>();
-            for (int page=1; page<=(n/10)+1; page++)
-            {
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.TextToBePresentInElement(LogsPageNumber, page.ToString()));
-                foreach (IWebElement element in LogDateList)
-                {
-                    if (element.Text != "Date")
-                    {
-                        AllDateList.Add(DateTime.Parse(element.Text));
-                    }
-                }
-                LogsNextButton.Click();  
-            }
-            return AllDateList;
-        }
-
-
-        /// <summary>
-        /// Function to verify N newest Logs presence by comparing Last Log Date of Current page 
-        /// with First Log Date of Next Page
-        /// </summary>
-        /// <param name="n">Expected Number of Logs</param>
-        /// <returns>Boolean</returns>
-        public bool NNewestLogsPresence(int n)
-        {
-            DateTime FirstElementLastPage;
-            DateTime LastElementFirstPage;
-
-            Thread.Sleep(3000);
-            IList<IWebElement> LogDateListInitialPage = LogDateList;
-            LastElementFirstPage = DateTime.Parse(LogDateListInitialPage[n].Text);
-            int count = LogDateListInitialPage.Count - 1;
-            Thread.Sleep(3000);
-            LogsNextButton.Click();
-            Thread.Sleep(3000);
-            IList<IWebElement> LogDateListNextPage = LogDateList;
-            FirstElementLastPage = DateTime.Parse(LogDateListNextPage[1].Text);
-            LogsPreviousButton.Click();
-            Thread.Sleep(3000);
-            if (count.Equals(n))
-            {
-                if (LastElementFirstPage >= FirstElementLastPage)
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            else
-                return false;
-        }
-
-
-        /// <summary>
-        /// Function to verify N older Logs presence by comparing First Log Date of Current page 
-        /// with Last Log Date of Next Page
-        /// </summary>
-        /// <param name="n">Expected Number of Logs</param>
-        /// <returns>Boolean</returns>
-        public bool NOlderLogsPresence(int n)
-        {
-            DateTime FirstElementCurrentPage;
-            DateTime LastElementPreviousPage;
-
-            Thread.Sleep(3000);
-            IList<IWebElement> LogDateListCurrentPage = LogDateList;
-            FirstElementCurrentPage = DateTime.Parse(LogDateListCurrentPage[1].Text);
-            int count = LogDateListCurrentPage.Count - 1;
-            Console.WriteLine("Current Page Logs : ");
-            foreach (IWebElement a in LogDateListCurrentPage)
-            {
-                if (a.Text != "Date")
-                {
-                    Console.WriteLine(DateTime.Parse(a.Text));
-                }
-            }
-            Thread.Sleep(3000);
-            LogsPreviousButton.Click();
-            Thread.Sleep(3000);
-            IList<IWebElement> LogDateListPreviousPage = LogDateList;
-            LastElementPreviousPage = DateTime.Parse(LogDateListPreviousPage[n].Text);
-            Console.WriteLine("Previous Page Logs : ");
-            foreach (IWebElement a in LogDateListPreviousPage)
-            {
-                if (a.Text != "Date")
-                {
-                    Console.WriteLine(DateTime.Parse(a.Text));
-                }
-            }
-            LogsNextButton.Click();
-            Thread.Sleep(3000);
-            Console.WriteLine("Value :: " + FirstElementCurrentPage + " " + LastElementPreviousPage);
-            Console.WriteLine(count);
-            if (count.Equals(n))
-            {
-                if (FirstElementCurrentPage <= LastElementPreviousPage)
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-            else
-                return false;
-        }
     }
 }

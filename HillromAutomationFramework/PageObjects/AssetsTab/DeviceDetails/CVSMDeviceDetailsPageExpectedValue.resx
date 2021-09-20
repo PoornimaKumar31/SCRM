@@ -132,9 +132,6 @@
   <data name="EditAssetDetailsPopUpTitle" xml:space="preserve">
     <value>EDIT ASSET DETAILS</value>
   </data>
-  <data name="RequestLogButtonDisabledClassName" xml:space="preserve">
-    <value>requestLogsbtn disable</value>
-  </data>
   <data name="RoomLabelHintText" xml:space="preserve">
     <value>Room</value>
   </data>

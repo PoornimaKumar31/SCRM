@@ -83,20 +83,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>CVSMDeviceDetailsPageExpectedValue.resx</DependentUpon>
     </Compile>
-    <Compile Update="PageObjects\AssetsTab\DeviceDetails\DeviceDetailsPageExpectedValue.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DeviceDetailsPageExpectedValue.resx</DependentUpon>
-    </Compile>
     <Compile Update="PageObjects\AssetsTab\DeviceDetails\RV700DeviceDetailsPageExpectedValue.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>RV700DeviceDetailsPageExpectedValue.resx</DependentUpon>
     </Compile>
-    <Compile Update="PageObjects\AssetsTab\LogFiles\LogFilesStaticElementsExpectedValue.Designer.cs">
+    <Compile Update="PageObjects\AssetsTab\LogFiles\LogFilesPageExpectedValue.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>LogFilesStaticElementsExpectedValue.resx</DependentUpon>
+      <DependentUpon>LogFilesPageExpectedValue.resx</DependentUpon>
     </Compile>
     <Compile Update="PageObjects\AssetsTab\MainPageExpectedValue.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -244,17 +239,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CVSMDeviceDetailsPageExpectedValue.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\DeviceDetailsPageExpectedValue.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>DeviceDetailsPageExpectedValue.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\RV700DeviceDetailsPageExpectedValue.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RV700DeviceDetailsPageExpectedValue.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="PageObjects\AssetsTab\LogFiles\LogFilesStaticElementsExpectedValue.resx">
+    <EmbeddedResource Update="PageObjects\AssetsTab\LogFiles\LogFilesPageExpectedValue.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>LogFilesStaticElementsExpectedValue.Designer.cs</LastGenOutput>
+      <LastGenOutput>LogFilesPageExpectedValue.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="PageObjects\AssetsTab\MainPageExpectedValue.resx">
       <Generator>ResXFileCodeGenerator</Generator>

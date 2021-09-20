@@ -123,9 +123,6 @@
   <data name="NewRoomValue" xml:space="preserve">
     <value>New Room</value>
   </data>
-  <data name="RequestLogButtonDisabledClassName" xml:space="preserve">
-    <value>requestLogsbtn disable</value>
-  </data>
   <data name="RoomAndBedNotSet" xml:space="preserve">
     <value>(not set)</value>
   </data>

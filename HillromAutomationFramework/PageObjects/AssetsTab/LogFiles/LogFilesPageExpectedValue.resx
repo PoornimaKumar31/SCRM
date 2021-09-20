@@ -117,17 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NextDisableImageURL" xml:space="preserve">
+  <data name="CSM10LogFileDeviceSerialNumber" xml:space="preserve">
+    <value>110010000019</value>
+  </data>
+  <data name="CSM24LogFileDeviceSerialNumber" xml:space="preserve">
+    <value>110010000000</value>
+  </data>
+  <data name="CSMRequestLogFileDeviceSerialNumber" xml:space="preserve">
+    <value>110010000025</value>
+  </data>
+  <data name="CSMZeroLogFileDeviceSerialNumber" xml:space="preserve">
+    <value>100010000005</value>
+  </data>
+  <data name="CVSM10LogFileDeviceSerialNumber" xml:space="preserve">
+    <value>100020000007</value>
+  </data>
+  <data name="CVSM24LogFileDeviceSerialNumber" xml:space="preserve">
+    <value>100020000001</value>
+  </data>
+  <data name="CVSMRequestLogDeviceSerialNumber" xml:space="preserve">
+    <value>100020000004</value>
+  </data>
+  <data name="CVSMZeroLogFileDeviceSerialNumber" xml:space="preserve">
+    <value>100020000000</value>
+  </data>
+  <data name="LogFilesLabel" xml:space="preserve">
+    <value>LOG FILES</value>
+  </data>
+  <data name="NextPageIconDisableImageURL" xml:space="preserve">
     <value>/right_disabled.png</value>
   </data>
-  <data name="NextEnableImageURL" xml:space="preserve">
+  <data name="NextPageIconEnableImageURL" xml:space="preserve">
     <value>/icon_page_next.svg</value>
   </data>
-  <data name="PreviousDisableImageURL" xml:space="preserve">
+  <data name="PreviousPageIconDisableImageURL" xml:space="preserve">
     <value>/left_disabled.png</value>
   </data>
-  <data name="PreviousEnableImageURL" xml:space="preserve">
+  <data name="PreviousPageIconEnableImageURL" xml:space="preserve">
     <value>/icon_page_previous.svg</value>
+  </data>
+  <data name="RequestLogButton" xml:space="preserve">
+    <value>Request Log</value>
+  </data>
+  <data name="RequestLogButtonDisabledClassName" xml:space="preserve">
+    <value>requestLogsbtn disable</value>
+  </data>
+  <data name="RV70010LogFilesDeviceSerialNumber" xml:space="preserve">
+    <value>700090000004</value>
+  </data>
+  <data name="RV70024LogFilesDeviceSerialNumber" xml:space="preserve">
+    <value>700090000001</value>
+  </data>
+  <data name="RV700RequestLogFileDeviceSerialNumber" xml:space="preserve">
+    <value>700090000008</value>
+  </data>
+  <data name="RV700ZeroLogFileDeviceSerialNumber" xml:space="preserve">
+    <value>700090000009</value>
   </data>
   <data name="SortDecreasingIconURL" xml:space="preserve">
     <value>/icon_sort_up.svg</value>

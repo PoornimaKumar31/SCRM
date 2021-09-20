@@ -14,7 +14,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
     public class LogFilesStaticElementsSteps
     {
         private readonly LoginPage _loginPage;
-        private readonly LogFilesStaticElements _logFilesStaticElements;
+        private readonly LogFilesPage _logFilesStaticElements;
         private readonly MainPage _mainPage;
         private readonly CVSMDeviceDetailsPage _cvsmDeviceDetailsPage;
 
@@ -29,7 +29,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
 
             _loginPage = new LoginPage(driver);
-            _logFilesStaticElements = new LogFilesStaticElements(driver);
+            _logFilesStaticElements = new LogFilesPage(driver);
             _mainPage = new MainPage(driver);
             _cvsmDeviceDetailsPage = new CVSMDeviceDetailsPage(driver);
         }
@@ -53,7 +53,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [When(@"user clicks Logs tab")]
         public void WhenUserClicksLogsTab()
         {
-            _cvsmDeviceDetailsPage.LogsTab.Click();
+            _logFilesStaticElements.LogsTab.Click();
         }
 
         [Then(@"Log Files label is displayed")]
@@ -97,13 +97,13 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
         [Then(@"Previous page icon is displayed")]
         public void ThenPreviousPageIconIsDisplayed()
         {
-            _logFilesStaticElements.PreviousIcon.GetElementVisibility().Should().BeTrue("Previous page icon is not displayed");
+            _logFilesStaticElements.PreviousPageIcon.GetElementVisibility().Should().BeTrue("Previous page icon is not displayed");
         }
 
         [Then(@"Next page icon is displayed")]
         public void ThenNextPageIconIsDisplayed()
         {
-            _logFilesStaticElements.NextIcon.GetElementVisibility().Should().BeTrue("Next page icon is not displayed");
+            _logFilesStaticElements.NextPageIcon.GetElementVisibility().Should().BeTrue("Next page icon is not displayed");
         }
 
         [Then(@"Page number is displayed")]

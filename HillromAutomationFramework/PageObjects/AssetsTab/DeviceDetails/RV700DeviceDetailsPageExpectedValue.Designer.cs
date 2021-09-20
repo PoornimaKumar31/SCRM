@@ -80,15 +80,6 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to requestLogsbtn disable.
-        /// </summary>
-        internal static string RequestLogButtonDisabledClassName {
-            get {
-                return ResourceManager.GetString("RequestLogButtonDisabledClassName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to (not set).
         /// </summary>
         internal static string RoomAndBedNotSet {
