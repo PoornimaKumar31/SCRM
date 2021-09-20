@@ -28,7 +28,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         {
             _scenarioContext = scenarioContext;
             _driver = driver;
-            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            _wait = new WebDriverWait(driver, TimeSpan.FromSeconds(20));
 
             _loginPage = new LoginPage(driver);
             _mainPage = new MainPage(driver);
