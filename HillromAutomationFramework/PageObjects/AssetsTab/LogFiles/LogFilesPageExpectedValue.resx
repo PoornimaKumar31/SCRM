@@ -119,27 +119,35 @@
   </resheader>
   <data name="CSM10LogFileDeviceSerialNumber" xml:space="preserve">
     <value>110010000019</value>
+    <comment>CSM 10 Log files</comment>
   </data>
   <data name="CSM24LogFileDeviceSerialNumber" xml:space="preserve">
     <value>110010000000</value>
+    <comment>CSM 24 Log files</comment>
   </data>
   <data name="CSMRequestLogFileDeviceSerialNumber" xml:space="preserve">
     <value>110010000025</value>
+    <comment>Request Logs</comment>
   </data>
   <data name="CSMZeroLogFileDeviceSerialNumber" xml:space="preserve">
     <value>100010000005</value>
+    <comment>CSM 0 Log files</comment>
   </data>
   <data name="CVSM10LogFileDeviceSerialNumber" xml:space="preserve">
     <value>100020000007</value>
+    <comment>CVSM 10 Log files</comment>
   </data>
   <data name="CVSM24LogFileDeviceSerialNumber" xml:space="preserve">
     <value>100020000001</value>
+    <comment>CVSM 24 Log files</comment>
   </data>
   <data name="CVSMRequestLogDeviceSerialNumber" xml:space="preserve">
     <value>100020000004</value>
+    <comment>Request Logs</comment>
   </data>
   <data name="CVSMZeroLogFileDeviceSerialNumber" xml:space="preserve">
     <value>100020000000</value>
+    <comment>CVSM 0 Log files</comment>
   </data>
   <data name="LogFilesLabel" xml:space="preserve">
     <value>LOG FILES</value>
@@ -164,15 +172,19 @@
   </data>
   <data name="RV70010LogFilesDeviceSerialNumber" xml:space="preserve">
     <value>700090000004</value>
+    <comment>RV700 10 Log files</comment>
   </data>
   <data name="RV70024LogFilesDeviceSerialNumber" xml:space="preserve">
     <value>700090000001</value>
+    <comment>RV700 24 Log files</comment>
   </data>
   <data name="RV700RequestLogFileDeviceSerialNumber" xml:space="preserve">
     <value>700090000008</value>
+    <comment>Request Logs</comment>
   </data>
   <data name="RV700ZeroLogFileDeviceSerialNumber" xml:space="preserve">
     <value>700090000009</value>
+    <comment>RV700 0 Log files</comment>
   </data>
   <data name="SortDecreasingIconURL" xml:space="preserve">
     <value>/icon_sort_up.svg</value>

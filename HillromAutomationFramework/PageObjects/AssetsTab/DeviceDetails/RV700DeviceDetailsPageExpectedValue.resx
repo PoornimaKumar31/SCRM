@@ -117,19 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NewBedValue" xml:space="preserve">
-    <value>New Bed</value>
-  </data>
-  <data name="NewRoomValue" xml:space="preserve">
-    <value>New Room</value>
-  </data>
   <data name="RoomAndBedNotSet" xml:space="preserve">
     <value>(not set)</value>
-  </data>
-  <data name="UpdateBedValue" xml:space="preserve">
-    <value>Update Bed</value>
-  </data>
-  <data name="UpdateRoomValue" xml:space="preserve">
-    <value>Update Room</value>
   </data>
 </root>

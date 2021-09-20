@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
+using HillromAutomationFramework.PageObjects.AssetsTab.ComponentInformation;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -18,7 +19,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
-        private readonly RV700DeviceDetailsPage _rv700DeviceDetailsPage;
+        private readonly RV700AssetListPage _rv700AssetListPage;
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
@@ -33,7 +34,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             _loginPage = new LoginPage(driver);
             _landingPage = new LandingPage(driver);
             _mainPage = new MainPage(driver);
-            _rv700DeviceDetailsPage = new RV700DeviceDetailsPage(driver);
+            _rv700AssetListPage = new RV700AssetListPage(driver);
         }
 
         [Given(@"user is on Asset List page with more than one RV700")]
@@ -60,33 +61,33 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         [Then(@"Asset Details landing page is displayed")]
         public void ThenAssetDetailsLandingPageIsDisplayed()
         {
-            bool IsAssetDetailsPageDispalyed = (_rv700DeviceDetailsPage.ComponentInformationTab.GetElementVisibility());
+            bool IsAssetDetailsPageDispalyed = (_rv700AssetListPage.ComponentInformationTab.GetElementVisibility());
             IsAssetDetailsPageDispalyed.Should().BeTrue("Asset Details page is not displayed.");
         }
 
         [Then(@"Asset Detail summary subsection with Edit button is displayed")]
         public void ThenAssetDetailSummarySubsectionWithEditButtonIsDisplayed()
         {
-            _rv700DeviceDetailsPage.SummarySection.GetElementVisibility().Should().BeTrue("Asset details summary section is not displayed.");
-            _rv700DeviceDetailsPage.EditButton.GetElementVisibility().Should().BeTrue( "Edit button is not displayed on asset details page.");
+            _rv700AssetListPage.SummarySection.GetElementVisibility().Should().BeTrue("Asset details summary section is not displayed.");
+            _rv700AssetListPage.EditButton.GetElementVisibility().Should().BeTrue( "Edit button is not displayed on asset details page.");
         }
 
         [Then(@"Component Information tab is displayed")]
         public void ThenComponentInformationTabIsDisplayed()
         {
-            _rv700DeviceDetailsPage.ComponentInformationTab.GetElementVisibility().Should().BeTrue( "Component information tab is not displayed.");
+            _rv700AssetListPage.ComponentInformationTab.GetElementVisibility().Should().BeTrue( "Component information tab is not displayed.");
         }
 
         [Then(@"Logs tab is displayed")]
         public void ThenLogsTabIsDisplayed()
         {
-            _rv700DeviceDetailsPage.LogsTab.GetElementVisibility().Should().BeTrue( "Logs tab is not displayed.");
+            _rv700AssetListPage.LogsTab.GetElementVisibility().Should().BeTrue( "Logs tab is not displayed.");
         }
 
         [Then(@"Asset Detail subsection is displayed")]
         public void ThenAssetDetailSubsectionIsDisplayed()
         {
-            _rv700DeviceDetailsPage.AssetDetailsSubSection.GetElementVisibility().Should().BeTrue("Asset details subsection is not displayed.");
+            _rv700AssetListPage.AssetDetailsSubSection.GetElementVisibility().Should().BeTrue("Asset details subsection is not displayed.");
         }
 
 
@@ -105,7 +106,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             Thread.Sleep(3000);
 
             //Checking if assert page is displayed
-            bool IsAssetDetailsPageDispalyed = (_rv700DeviceDetailsPage.ComponentInformationTab.GetElementVisibility()) || (_rv700DeviceDetailsPage.LogsTab.GetElementVisibility());
+            bool IsAssetDetailsPageDispalyed = (_rv700AssetListPage.ComponentInformationTab.GetElementVisibility()) || (_rv700AssetListPage.LogsTab.GetElementVisibility());
             IsAssetDetailsPageDispalyed.Should().BeTrue("Asset Details page is not displayed.");
             
         }
@@ -117,15 +118,15 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch(labelName.ToLower().Trim())
             {
                 case "name":
-                    webElement = _rv700DeviceDetailsPage.DeviceName;
+                    webElement = _rv700AssetListPage.DeviceName;
                     break;
 
                 case "firmware version":
-                    webElement = _rv700DeviceDetailsPage.FirmwareVersion;
+                    webElement = _rv700AssetListPage.FirmwareVersion;
                     break;
 
                 case "serial number":
-                    webElement = _rv700DeviceDetailsPage.SerialNumber;
+                    webElement = _rv700AssetListPage.SerialNumber;
                     break;
 
                 default: Assert.Fail(labelName + " is a invalid label name.");
@@ -143,31 +144,31 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch(labelName.ToLower().Trim())
             {
                 case "name":
-                    labelElement = _rv700DeviceDetailsPage.NewMarName;
+                    labelElement = _rv700AssetListPage.NewMarName;
                     break;
 
                 case "firmware version":
-                    labelElement = _rv700DeviceDetailsPage.NewMarFirmwareVersion;
+                    labelElement = _rv700AssetListPage.NewMarFirmwareVersion;
                     break;
 
                 case "serial number":
-                    labelElement = _rv700DeviceDetailsPage.NewMarSerialNumber;
+                    labelElement = _rv700AssetListPage.NewMarSerialNumber;
                     break;
 
                 case "mac address":
-                    labelElement = _rv700DeviceDetailsPage.NewMarMACAddresValue;
+                    labelElement = _rv700AssetListPage.NewMarMACAddresValue;
                     break;
 
                 case "ip address":
-                    labelElement = _rv700DeviceDetailsPage.NewMarIPAdressValue;
+                    labelElement = _rv700AssetListPage.NewMarIPAdressValue;
                     break;
 
                 case "rssi":
-                    labelElement = _rv700DeviceDetailsPage.NewMarRSSIValue;
+                    labelElement = _rv700AssetListPage.NewMarRSSIValue;
                     break;
 
                 case "guid":
-                    labelElement = _rv700DeviceDetailsPage.NewMarGUIDValue;
+                    labelElement = _rv700AssetListPage.NewMarGUIDValue;
                     break;
 
                 default: Assert.Fail(labelName + " is a invalid label name.");
@@ -180,7 +181,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         [When(@"user clicks Newmar toggle arrow")]
         public void WhenUserClicksNewmarToggleArrow()
         {
-            _rv700DeviceDetailsPage.NewMarToggleArrow.Click();
+            _rv700AssetListPage.NewMarToggleArrow.Click();
         }
 
         [Then(@"Radio ""(.*)"" label is displayed")]
@@ -190,18 +191,18 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch(labelName.ToLower().Trim())
             {
                 case "mac address":
-                    labelElement = _rv700DeviceDetailsPage.NewMarMACAddressLabel;
+                    labelElement = _rv700AssetListPage.NewMarMACAddressLabel;
                     break;
                 case "ip address":
-                    labelElement = _rv700DeviceDetailsPage.NewMarIPAdressLabel;
+                    labelElement = _rv700AssetListPage.NewMarIPAdressLabel;
                     break;
 
                 case "rssi":
-                    labelElement = _rv700DeviceDetailsPage.NewMarRSSILabel;
+                    labelElement = _rv700AssetListPage.NewMarRSSILabel;
                     break;
 
                 case "guid":
-                    labelElement = _rv700DeviceDetailsPage.NewMarGUIDLabel;
+                    labelElement = _rv700AssetListPage.NewMarGUIDLabel;
                     break;
 
                 default: Assert.Fail(labelName + "is a invalid label name.");
@@ -215,7 +216,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
         [Then(@"RV700 image is displayed")]
         public void ThenRVImageIsDisplayed()
         {
-            _rv700DeviceDetailsPage.RV700Image.GetElementVisibility().Should().BeTrue("Rv700 image is not displayed.");
+            _rv700AssetListPage.RV700Image.GetElementVisibility().Should().BeTrue("Rv700 image is not displayed.");
         }
 
         [Then(@"summary ""(.*)"" label is displayed")]
@@ -225,45 +226,45 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch(labelName.ToLower().Trim())
             {
                 case "asset name":
-                    labelElement = _rv700DeviceDetailsPage.SummaryAssetNameLabel;
+                    labelElement = _rv700AssetListPage.SummaryAssetNameLabel;
                     break;
 
                 case "asset tag":
-                    labelElement = _rv700DeviceDetailsPage.SummaryAssetTagLabel;
+                    labelElement = _rv700AssetListPage.SummaryAssetTagLabel;
                     break;
 
                 case "serial number":
-                    labelElement = _rv700DeviceDetailsPage.SummarySerialNumberLabel;
+                    labelElement = _rv700AssetListPage.SummarySerialNumberLabel;
                     break;
                 case "ip address":
-                    labelElement = _rv700DeviceDetailsPage.SummaryIPAddressLabel;
+                    labelElement = _rv700AssetListPage.SummaryIPAddressLabel;
                     break;
                 case "model":
-                    labelElement = _rv700DeviceDetailsPage.SummaryModelNumberLabel;
+                    labelElement = _rv700AssetListPage.SummaryModelNumberLabel;
                     break;
                 case "radio mac address":
-                    labelElement = _rv700DeviceDetailsPage.SummaryRadioMACAddressLabel;
+                    labelElement = _rv700AssetListPage.SummaryRadioMACAddressLabel;
                     break;
                 case "facility":
-                    labelElement = _rv700DeviceDetailsPage.SummaryFacilityLabel;
+                    labelElement = _rv700AssetListPage.SummaryFacilityLabel;
                     break;
                 case "radio ip address":
-                    labelElement = _rv700DeviceDetailsPage.SummaryRadioIPAddressLabel;
+                    labelElement = _rv700AssetListPage.SummaryRadioIPAddressLabel;
                     break;
                 case "location":
-                    labelElement = _rv700DeviceDetailsPage.SummaryLocationLabel;
+                    labelElement = _rv700AssetListPage.SummaryLocationLabel;
                     break;
                 case "connection status":
-                    labelElement = _rv700DeviceDetailsPage.SummaryLabelConnectionStatusLabel;
+                    labelElement = _rv700AssetListPage.SummaryLabelConnectionStatusLabel;
                     break;
                 case "room/bed":
-                    labelElement = _rv700DeviceDetailsPage.SummaryRoomBedLabel;
+                    labelElement = _rv700AssetListPage.SummaryRoomBedLabel;
                     break;
                 case "last firmware deployed":
-                    labelElement = _rv700DeviceDetailsPage.SummaryLastFirmwareDeployedLabel;
+                    labelElement = _rv700AssetListPage.SummaryLastFirmwareDeployedLabel;
                     break;
                 case "last configuration deployed":
-                    labelElement = _rv700DeviceDetailsPage.SummaryLastConfigurationLabel;
+                    labelElement = _rv700AssetListPage.SummaryLastConfigurationLabel;
                     break;
 
                 default: Assert.Fail(labelName + " is a invalid label name.");
@@ -279,28 +280,28 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch(labelName.ToLower().Trim())
             {
                 case "asset name":
-                    labelValueElement = _rv700DeviceDetailsPage.SummaryAssetNameValue;
+                    labelValueElement = _rv700AssetListPage.SummaryAssetNameValue;
                     break;
                 case "serial number":
-                    labelValueElement = _rv700DeviceDetailsPage.SummarySerialNumberValue;
+                    labelValueElement = _rv700AssetListPage.SummarySerialNumberValue;
                     break;
                 case "ip address":
-                    labelValueElement = _rv700DeviceDetailsPage.SummaryIPAddressValue;
+                    labelValueElement = _rv700AssetListPage.SummaryIPAddressValue;
                     break;
                 case "model":
-                    labelValueElement = _rv700DeviceDetailsPage.SummaryModelValue;
+                    labelValueElement = _rv700AssetListPage.SummaryModelValue;
                     break;
                 case "radio mac address":
-                    labelValueElement = _rv700DeviceDetailsPage.SummaryRadioMACAddressValue;
+                    labelValueElement = _rv700AssetListPage.SummaryRadioMACAddressValue;
                     break;
                 case "facility":
-                    labelValueElement = _rv700DeviceDetailsPage.SummaryFacilityValue;
+                    labelValueElement = _rv700AssetListPage.SummaryFacilityValue;
                     break;
                 case "location":
-                    labelValueElement = _rv700DeviceDetailsPage.SummaryLocationValue;
+                    labelValueElement = _rv700AssetListPage.SummaryLocationValue;
                     break;
                 case "room/bed":
-                    labelValueElement = _rv700DeviceDetailsPage.SummaryRoomBedValue;
+                    labelValueElement = _rv700AssetListPage.SummaryRoomBedValue;
                     break;
                 default: Assert.Fail(labelName + " is a invalid label name.");
                     break;
@@ -316,16 +317,16 @@ namespace HillromAutomationFramework.Steps.AssetsTab.ComponentInformation
             switch(labelName.ToLower().Trim())
             {
                 case "asset tag":
-                    labelElement = _rv700DeviceDetailsPage.SummaryAssetTagValue;
+                    labelElement = _rv700AssetListPage.SummaryAssetTagValue;
                     break;
                 case "radio ip address":
-                    labelElement = _rv700DeviceDetailsPage.SummaryRadioIPAddressValue;
+                    labelElement = _rv700AssetListPage.SummaryRadioIPAddressValue;
                     break;
                 case "last firmware deployed":
-                    labelElement = _rv700DeviceDetailsPage.SummaryLastFirmwareDeployedValue;
+                    labelElement = _rv700AssetListPage.SummaryLastFirmwareDeployedValue;
                     break;
                 case "last configuration deployed":
-                    labelElement = _rv700DeviceDetailsPage.SummaryLastFirmwareDeployedValue;
+                    labelElement = _rv700AssetListPage.SummaryLastFirmwareDeployedValue;
                     break;
                 default: Assert.Fail(labelName + " is a invalid label name.");
                     break;

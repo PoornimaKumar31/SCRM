@@ -117,14 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NewBedValue" xml:space="preserve">
-    <value>New Bed</value>
-    <comment>CSM DeviceDetails Page</comment>
-  </data>
-  <data name="NewRoomValue" xml:space="preserve">
-    <value>New Room</value>
-    <comment>CSM DeviceDetails Page</comment>
-  </data>
   <data name="PMLastCalibrationText" xml:space="preserve">
     <value>Last calibration</value>
     <comment>Preventive maintainenece</comment>
@@ -133,24 +125,12 @@
     <value>Name</value>
     <comment>Preventive maintainenece</comment>
   </data>
-  <data name="RequestLogButtonDisabledClassName" xml:space="preserve">
-    <value>requestLogsbtn disable</value>
-    <comment>CSM DeviceDetails Page</comment>
-  </data>
   <data name="RoomAndBedNotSet" xml:space="preserve">
     <value>(not set)</value>
     <comment>CSM DeviceDetails Page</comment>
   </data>
   <data name="SerialNumberwithRoomAndBed" xml:space="preserve">
     <value>100010000005</value>
-    <comment>CSM DeviceDetails Page</comment>
-  </data>
-  <data name="UpdateBedValue" xml:space="preserve">
-    <value>Update Bed</value>
-    <comment>CSM DeviceDetails Page</comment>
-  </data>
-  <data name="UpdateRoomValue" xml:space="preserve">
-    <value>Update Room</value>
     <comment>CSM DeviceDetails Page</comment>
   </data>
 </root>

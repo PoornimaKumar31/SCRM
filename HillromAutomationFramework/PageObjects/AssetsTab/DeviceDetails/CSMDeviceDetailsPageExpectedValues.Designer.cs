@@ -62,24 +62,6 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Bed.
-        /// </summary>
-        internal static string NewBedValue {
-            get {
-                return ResourceManager.GetString("NewBedValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to New Room.
-        /// </summary>
-        internal static string NewRoomValue {
-            get {
-                return ResourceManager.GetString("NewRoomValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Last calibration.
         /// </summary>
         internal static string PMLastCalibrationText {
@@ -98,15 +80,6 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to requestLogsbtn disable.
-        /// </summary>
-        internal static string RequestLogButtonDisabledClassName {
-            get {
-                return ResourceManager.GetString("RequestLogButtonDisabledClassName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to (not set).
         /// </summary>
         internal static string RoomAndBedNotSet {
@@ -121,24 +94,6 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         internal static string SerialNumberwithRoomAndBed {
             get {
                 return ResourceManager.GetString("SerialNumberwithRoomAndBed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Bed.
-        /// </summary>
-        internal static string UpdateBedValue {
-            get {
-                return ResourceManager.GetString("UpdateBedValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Room.
-        /// </summary>
-        internal static string UpdateRoomValue {
-            get {
-                return ResourceManager.GetString("UpdateRoomValue", resourceCulture);
             }
         }
     }
