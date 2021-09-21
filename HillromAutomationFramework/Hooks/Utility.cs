@@ -108,6 +108,8 @@ namespace HillromAutomationFramework.Hooks
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
             _scenario.AssignCategory(_scenarioContext.ScenarioInfo.Tags);
 
+            int height = 2048;
+            int width = 1536;
 
             //Browser setup  
             string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
@@ -125,7 +127,7 @@ namespace HillromAutomationFramework.Hooks
                 //chromeOptions.AddArgument("--start-fullscreen");
 
                 //Screen Size
-                //chromeOptions.AddArgument("--window-size=2048,1536");
+                chromeOptions.AddArgument("--window-size="+height+","+width);
 
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
@@ -160,6 +162,9 @@ namespace HillromAutomationFramework.Hooks
                 //for full screen
                 //edgeoptions.AddArgument("--start-fullscreen");
 
+                //Screen Size
+                edgeoptions.AddArgument("--window-size=" + height + "," + width);
+
                 //Headless(without opening edge browser,run the test internally)
                 if (BrowserName.Contains("headless"))
                 {
@@ -177,11 +182,6 @@ namespace HillromAutomationFramework.Hooks
                 Environment.Exit(1);
             }
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); // Implicit wait for 5 seconds
-
-            int height = 2048;
-            int width = 1536;
-
-            _driver.Manage().Window.Size = new Size(height,width);
 
             //Register webdriver as instance
             _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
