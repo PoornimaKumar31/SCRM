@@ -30,30 +30,32 @@ namespace HillromAutomationFramework.PageObjects
             //L&T Automated Test East Organization
             public const string LNTAutomatedTestEastOrganizationTitleXPath = "//span[text()='L&T Automated Test East']";
             public const string LNTAutomatedTestEastOrganizationFacilityPanelTest4TitleXpath = LNTAutomatedTestEastOrganizationTitleXPath + "//parent::div//parent::div//span[text()='Test4']";
-            public const string Organization0Facility0ServerID = "serv00";
-            public const string Organization0Facility0DeviceID = "dev00";
+            public const string Organization0Facility0ServerXpath = "//span[text()='L&T Automated Test East']/parent::div/parent::div/div[2]/div/div/p[1]/span";
+            public const string Organization0Facility0DeviceXpath = "//span[text()='L&T Automated Test East']/parent::div/parent::div/div[2]/div/div/p[2]/span";
 
             //L&T Automated Test Organization
             public const string LNTAutomatedTestOrganizationTitleXPath = "//span[text()='L&T Automated Test']";
             //L&T Automated Test Organization facility test1
             public const string LNTAutomatedTestOrganizationFacilityTest1TitleXPath = LNTAutomatedTestOrganizationTitleXPath + "//parent::div//parent::div//span[text()='Test1']";
-            public const string Organization1Facility0ServerID = "serv10";
-            public const string Organization1Facility0DeviceID = "dev10";
+            public const string Organization1Facility0ServerXpath = "//span[text()='L&T Automated Test']/parent::div/parent::div/div[2]/div[1]/div/p[1]/span";
+            public const string Organization1Facility0DeviceXpath = "//span[text()='L&T Automated Test']/parent::div/parent::div/div[2]/div[1]/div/p[2]/span";
 
             //L&T Automated Test Organization facility test2
             public const string LNTAutomatedTestOrganizationFacilityTest2TitleXPath = LNTAutomatedTestOrganizationTitleXPath + "//parent::div//parent::div//span[text()='Test2']";
-            public const string Organization1Facility1ServerID = "serv11";
-            public const string Organization1Facility1DeviceID = "dev11";
+            public const string Organization1Facility1ServerXpath = "//span[text()='L&T Automated Test']/parent::div/parent::div/div[2]/div[2]/div/p[1]/span";
+            public const string Organization1Facility1DeviceXpath = "//span[text()='L&T Automated Test']/parent::div/parent::div/div[2]/div[2]/div/p[2]/span";
 
             //L&T Automated Eye Test Organization
             public const string LNTAutomatedEyeTestOrganizationTitleXPath = "//span[text()='LT Automated Eye Test']";
             public const string LNTAutomatedEyeTestOrganizationFacilityTest1TitleXPath=LNTAutomatedEyeTestOrganizationTitleXPath+ "//parent::div//parent::div//span[text()='Test1']";
-            public const string Organization2Facility0ServerID = "serv20";
-            public const string Organization2Facility0DeviceID = "dev20";
+            public const string Organization2Facility0ServerXpath = "//span[text()='LT Automated Eye Test']/parent::div/parent::div/div[2]/div/div/p[1]/span";
+            public const string Organization2Facility0DeviceXpath = "//span[text()='LT Automated Eye Test']/parent::div/parent::div/div[2]/div/div/p[2]/span";
 
             //PSS Service Organization
             public const string PSSServiceOrganizationTitleXpath = "//span[text()='PSS Service']";
             public const string PSSServiceOrganizationFacilityBatesvilleXpath = PSSServiceOrganizationTitleXpath + "//parent::div//parent::div//span[text()='Batesville']";
+            public const string PSSServiceOrganizationFacilityBatesvilleServerXpath = "//span[text()='PSS Service']/parent::div/parent::div/div[2]/div/div/p[1]/span";
+            public const string PSSServiceOrganizationFacilityBatesvilleDeviceXpath = "//span[text()='PSS Service']/parent::div/parent::div/div[2]/div/div/p[2]/span";
 
             //Header elements
             public const string UserNameLogoID = "userprofile_logo";
@@ -78,10 +80,10 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.XPath, Using = Locator.LNTAutomatedTestEastOrganizationFacilityPanelTest4TitleXpath)]
         public IWebElement LNTAutomatedTestEastOrganizationFacilityPanelTest4Title { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.Organization0Facility0ServerID)]
+        [FindsBy(How = How.XPath, Using = Locator.Organization0Facility0ServerXpath)]
         public IWebElement Organization0Facility0Server { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.Organization0Facility0DeviceID)]
+        [FindsBy(How = How.XPath, Using = Locator.Organization0Facility0DeviceXpath)]
         public IWebElement Organization0Facility0Device { get; set; }
 
 
@@ -94,20 +96,20 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.XPath, Using = Locator.LNTAutomatedTestOrganizationFacilityTest1TitleXPath)]
         public IWebElement LNTAutomatedTestOrganizationFacilityTest1Title { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.Organization1Facility0ServerID)]
+        [FindsBy(How = How.XPath, Using = Locator.Organization1Facility0ServerXpath)]
         public IWebElement Organization1Facility0Server { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.Organization1Facility0DeviceID)]
+        [FindsBy(How = How.XPath, Using = Locator.Organization1Facility0DeviceXpath)]
         public IWebElement Organization1Facility0Device { get; set; }
 
         ///L&T Automated Test Organization facility test2
         [FindsBy(How = How.XPath, Using = Locator.LNTAutomatedTestOrganizationFacilityTest2TitleXPath)]
         public IWebElement LNTAutomatedTestOrganizationFacilityTest2Title { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.Organization1Facility1ServerID)]
+        [FindsBy(How = How.XPath, Using = Locator.Organization1Facility1ServerXpath)]
         public IWebElement Organization1Facility1Server { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.Organization1Facility1DeviceID)]
+        [FindsBy(How = How.XPath, Using = Locator.Organization1Facility1DeviceXpath)]
         public IWebElement Organization1Facility1Device { get; set; }
 
 
@@ -118,10 +120,10 @@ namespace HillromAutomationFramework.PageObjects
         [FindsBy(How = How.XPath, Using = Locator.LNTAutomatedEyeTestOrganizationFacilityTest1TitleXPath)]
         public IWebElement LNTAutomatedEyeTestOrganizationFacilityTest1Title { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.Organization2Facility0ServerID)]
+        [FindsBy(How = How.XPath, Using = Locator.Organization2Facility0ServerXpath)]
         public IWebElement Organization2Facility0Server { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locator.Organization2Facility0DeviceID)]
+        [FindsBy(How = How.XPath, Using = Locator.Organization2Facility0DeviceXpath)]
         public IWebElement Organization2Facility0Device { get; set; }
 
         ///PSS Service organization
