@@ -4,15 +4,19 @@ using AventStack.ExtentReports.Reporter;
 using BoDi;
 using HillromAutomationFramework.SupportingCode;
 using Microsoft.Edge.SeleniumTools;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Reflection;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
+
+/// Parallel excution Setup
+using NUnit.Framework;
+[assembly: Parallelizable(ParallelScope.Fixtures)]
+[assembly: LevelOfParallelism(level: 3)]
+
 
 namespace HillromAutomationFramework.Hooks
 {
