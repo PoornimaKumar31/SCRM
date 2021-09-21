@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using System.IO;
+using System.Drawing;
 using System.Reflection;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Infrastructure;
@@ -121,7 +122,10 @@ namespace HillromAutomationFramework.Hooks
                 //chromeOptions.AddArgument("start-maximized");
 
                 //for full screen
-                chromeOptions.AddArgument("--start-fullscreen");
+                //chromeOptions.AddArgument("--start-fullscreen");
+
+                //Screen Size
+                //chromeOptions.AddArgument("--window-size=2048,1536");
 
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
@@ -154,7 +158,7 @@ namespace HillromAutomationFramework.Hooks
                 //edgeoptions.AddArgument("start-maximized");
 
                 //for full screen
-                edgeoptions.AddArgument("--start-fullscreen");
+                //edgeoptions.AddArgument("--start-fullscreen");
 
                 //Headless(without opening edge browser,run the test internally)
                 if (BrowserName.Contains("headless"))
@@ -173,6 +177,11 @@ namespace HillromAutomationFramework.Hooks
                 Environment.Exit(1);
             }
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); // Implicit wait for 5 seconds
+
+            int height = 2048;
+            int width = 1536;
+
+            _driver.Manage().Window.Size = new Size(height,width);
 
             //Register webdriver as instance
             _objectContainer.RegisterInstanceAs<IWebDriver>(_driver);
