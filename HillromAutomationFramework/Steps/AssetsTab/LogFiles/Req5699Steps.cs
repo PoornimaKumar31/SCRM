@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab;
-using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
 using HillromAutomationFramework.PageObjects.AssetsTab.LogFiles;
 using HillromAutomationFramework.SupportingCode;
 using NUnit.Framework;
@@ -10,7 +9,6 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.IO;
 using System.Threading;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 

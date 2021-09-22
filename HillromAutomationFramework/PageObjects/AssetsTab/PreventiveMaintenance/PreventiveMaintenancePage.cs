@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace HillromAutomationFramework.PageObjects.AssetsTab.PreventiveMaintainenece
 {

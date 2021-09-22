@@ -1,8 +1,7 @@
 ﻿using FluentAssertions;
 using HillromAutomationFramework.PageObjects;
 using HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails;
-using HillromAutomationFramework.SupportingCode;    
-using NUnit.Framework;
+using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;

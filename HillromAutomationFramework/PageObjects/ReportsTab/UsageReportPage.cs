@@ -3,7 +3,6 @@ using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace HillromAutomationFramework.PageObjects.ReportsTab
 {

@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System;

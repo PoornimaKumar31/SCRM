@@ -1,5 +1,4 @@
-﻿using HillromAutomationFramework.SupportingCode;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using System.Collections.Generic;
 

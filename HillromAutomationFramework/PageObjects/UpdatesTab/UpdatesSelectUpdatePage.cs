@@ -1,10 +1,7 @@
 ﻿using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace HillromAutomationFramework.PageObjects
 {
