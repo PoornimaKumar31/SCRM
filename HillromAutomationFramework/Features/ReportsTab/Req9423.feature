@@ -29,11 +29,11 @@ Scenario: Centrella Activity Report Page Table Elements
 	Given user is on Centrella Activity Report page
 	Then "Serial number" column heading is displayed
 	And "Location" column heading is displayed
-	And "Last vital sent" column heading is displayed
+	And "PM due" column heading is displayed
 
 @TestCaseID_9897 @UISID_8684 @UISID_8685 @UISID_8693
 Scenario: Centrella Activity Report Page Table Elements Columns
 	Given user is on Centrella Activity Report page
 	Then "Serial number" label is in column 1
 	And "Location" label is in column 2
-	And "Last vital sent" label is in column 3
+	And "PM due" label is in column 3

@@ -160,8 +160,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     column = _activityReportPage.LocationHeading;
                     break;
 
-                case "last vital sent":
-                    column = _activityReportPage.LastVitalSentHeading;
+                case "pm due":
+                    column = _activityReportPage.PMDueHeading;
                     break;
 
                 default:

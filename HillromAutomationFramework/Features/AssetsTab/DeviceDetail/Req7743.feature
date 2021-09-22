@@ -42,7 +42,7 @@ Scenario: Centrella Asset Data Summary
 
 @TestCaseID_9933 @UISID_9819
 Scenario: Centrella Preventive Maintenance None
-	Given user is on device details page for Centrella Serial number "PY9885"
+	Given user is on device details page for Centrella Serial number "PY673003"
 	When user clicks Preventive maintenance tab
 	Then "Preventive maintenance" label is displayed
 	And "Recent maintenance history" label is displayed

@@ -17,6 +17,7 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
             public const string SerialNumberHeadingID = "serialNo";
             public const string LocationHeadingID = "loc";
             public const string LastVitalSentHeadingID = "lastVital";
+            public const string PMDueHeadingID = "calibration";
             public const string TableHeadingClassName = "device-info-list";
             //Table elements
             public const string PaginationPreviousPageIconId = "previous";
@@ -54,6 +55,9 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
 
         [FindsBy(How = How.Id, Using = Locators.LastVitalSentHeadingID)]
         public IWebElement LastVitalSentHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PMDueHeadingID)]
+        public IWebElement PMDueHeading { get; set; }
 
         [FindsBy(How = How.ClassName, Using = Locators.TableHeadingClassName)]
         public IWebElement TableHeading { get; set; }
