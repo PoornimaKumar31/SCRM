@@ -14,8 +14,10 @@ using TechTalk.SpecFlow.Infrastructure;
 
 /// Parallel excution Setup
 using NUnit.Framework;
+using OpenQA.Selenium.Firefox;
+
 [assembly: Parallelizable(ParallelScope.Fixtures)]
-[assembly: LevelOfParallelism(level: 3)]
+//[assembly: LevelOfParallelism(level: 3)]
 
 
 namespace HillromAutomationFramework.Hooks
@@ -111,11 +113,12 @@ namespace HillromAutomationFramework.Hooks
             int width = 1536;
 
             //Browser setup  
-            string BrowserName = PropertyClass.BrowserName.ToLower().Trim();
+            string BrowserName =PropertyClass.BrowserName.ToLower().Trim();
 
             if(BrowserName.Contains("chrome"))
             {
                 ChromeOptions chromeOptions = new ChromeOptions();
+
                 //for incognito mode
                 chromeOptions.AddArgument("--incognito");
 
