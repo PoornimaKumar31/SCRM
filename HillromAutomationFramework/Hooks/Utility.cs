@@ -17,7 +17,7 @@ using NUnit.Framework;
 using OpenQA.Selenium.Firefox;
 
 [assembly: Parallelizable(ParallelScope.Fixtures)]
-//[assembly: LevelOfParallelism(level: 3)]
+[assembly: LevelOfParallelism(level: 3)]
 
 
 namespace HillromAutomationFramework.Hooks
