@@ -109,8 +109,8 @@ namespace HillromAutomationFramework.Hooks
             _scenario = _feature.CreateNode<Scenario>(_scenarioContext.ScenarioInfo.Title,_scenarioContext.ScenarioInfo.Description);
             _scenario.AssignCategory(_scenarioContext.ScenarioInfo.Tags);
 
-            int height = 2048;
-            int width = 1536;
+            int Screenheight = 2048;
+            int Screenwidth = 1536;
 
             //Browser setup  
             string BrowserName =PropertyClass.BrowserName.ToLower().Trim();
@@ -129,7 +129,7 @@ namespace HillromAutomationFramework.Hooks
                 //chromeOptions.AddArgument("--start-fullscreen");
 
                 //Screen Size
-                chromeOptions.AddArgument("--window-size="+height+","+width);
+                chromeOptions.AddArgument("--window-size="+Screenheight+","+Screenwidth);
 
                 // to set the chrome download directory
                 chromeOptions.AddUserProfilePreference("download.default_directory", PropertyClass.DownloadPath);
@@ -165,7 +165,7 @@ namespace HillromAutomationFramework.Hooks
                 //edgeoptions.AddArgument("--start-fullscreen");
 
                 //Screen Size
-                edgeoptions.AddArgument("--window-size=" + height + "," + width);
+                edgeoptions.AddArgument("--window-size=" + Screenheight + "," + Screenwidth);
 
                 //Headless(without opening edge browser,run the test internally)
                 if (BrowserName.Contains("headless"))

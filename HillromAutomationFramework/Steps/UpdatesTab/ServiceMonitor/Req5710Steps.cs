@@ -5,6 +5,7 @@ using HillromAutomationFramework.SupportingCode;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
@@ -67,6 +68,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
         [Then(@"Update process has been established message displays")]
         public void ThenUpdateProcessHasBeenEstablishedMessageDisplays()
         {
+            Thread.Sleep(1000);
             (_serviceMoniterPage.UpdateMessage.GetElementVisibility()).Should().BeTrue(because:"Update message should be displayed when user clicks on the confirm button");
             string updateMessageText = _serviceMoniterPage.UpdateMessage.Text;
             (updateMessageText).Should().BeEquivalentTo(ServiceMonitorPageExpectedValues.UpdateMessageText, because: "Update message should match with the expected text");

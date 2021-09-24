@@ -181,7 +181,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.LogFiles
             _logFilesPage.DateColumn.ClickWebElement(_driver, "Date column Heading");
         }
 
-        [Then(@"logs are sorted by decreasin date")]
+        [Then(@"logs are sorted by decreasing date")]
         public void ThenLogsSortByDecreasingDate()
         {
             Thread.Sleep(3000);
