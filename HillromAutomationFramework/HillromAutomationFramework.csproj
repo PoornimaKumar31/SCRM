@@ -25,8 +25,8 @@
     <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="16.11.0" />
     <PackageReference Include="Selenium.Support" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
-    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="93.0.4577.1500" />
-    <PackageReference Include="Selenium.WebDriver.MSEdgeDriver" Version="93.0.967" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="96.0.4664.4500" />
+    <PackageReference Include="Selenium.WebDriver.MSEdgeDriver" Version="96.0.1054.26" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
 
     
