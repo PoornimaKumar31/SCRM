@@ -123,6 +123,9 @@
   <data name="ActivityReportCSMHeader" xml:space="preserve">
     <value>ACTIVITY REPORT (CSM)</value>
   </data>
+  <data name="ActivityReportProgressaHeader" xml:space="preserve">
+    <value>ACTIVITY REPORT (PROGRESSA)</value>
+  </data>
   <data name="CentrellaActivityReportName" xml:space="preserve">
     <value>Activity_Status_Report_(Centrella).csv</value>
   </data>

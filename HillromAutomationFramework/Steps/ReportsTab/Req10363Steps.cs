@@ -13,8 +13,8 @@ using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
-    [Binding, Scope(Tag = "SoftwareRequirementID_9423")]
-    public class Req9423Steps
+    [Binding, Scope(Tag = "SoftwareRequirementID_10363")]
+    public class Req10363Steps
     {
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
@@ -26,7 +26,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly WebDriverWait _wait;
         private readonly IWebDriver _driver;
 
-        public Req9423Steps(ScenarioContext scenarioContext, IWebDriver driver)
+        public Req10363Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
             _driver = driver;
@@ -44,16 +44,16 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenUserIsOnReportsPage()
         {
             _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
-            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Progressa Orgaization");
             _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
             _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.ReportsTab.JavaSciptClick(_driver);
         }
         
-        [Given(@"Centrella Asset type is selected")]
-        public void GivenCentrellaAssetTypeIsSelected()
+        [Given(@"Progressa Asset type is selected")]
+        public void GivenProgressaAssetTypeIsSelected()
         {
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.ProgressaDeviceName);
         }
         
         [When(@"user clicks report type dropdown")]
@@ -85,61 +85,61 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _reportsPage.GetReportButton.Click();
         }
 
-        [Then(@"Activity Report \(Centrella\) label is displayed")]
-        public void ThenActivityReportCentrellaLabelIsDisplayed()
+        [Then(@"Activity Report \(Progressa\) label is displayed")]
+        public void ThenActivityReportProgressaLabelIsDisplayed()
         {
-            (_activityReportPage.ActivityReportHeader.GetElementVisibility()).Should().BeTrue("Activity Report (Centrella) label should be displayed in Centrella Activity Report Page.");
-            (_activityReportPage.ActivityReportHeader.Text).Should().BeEquivalentTo(ActivityReportPageExpectedValues.ActivityReportCentreallaHeader, because: "Activity report header should match the expected value in Centrella Activity Report Page.");
+            (_activityReportPage.ActivityReportHeader.GetElementVisibility()).Should().BeTrue("Activity Report (Progressa) label should be displayed in Progressa Activity Report Page.");
+            (_activityReportPage.ActivityReportHeader.Text).Should().BeEquivalentTo(ActivityReportPageExpectedValues.ActivityReportProgressaHeader, because: "Activity report header should match the expected value in Progressa Activity Report Page.");
         }
 
         [Then(@"Print button is displayed")]
         public void ThenPrintButtonIsDisplayed()
         {
-            (_activityReportPage.PrintButton.GetElementVisibility()).Should().BeTrue("Print button should be displayed in Centrella Activity Report Page.");
+            (_activityReportPage.PrintButton.GetElementVisibility()).Should().BeTrue("Print button should be displayed in Progressa Activity Report Page.");
         }
 
         [Then(@"Download button is displayed")]
         public void ThenDownloadButtonIsDisplayed()
         {
-            (_activityReportPage.DownloadButton.GetElementVisibility()).Should().BeTrue("Download button should be displayed in Centrella Activity Report Page.");
+            (_activityReportPage.DownloadButton.GetElementVisibility()).Should().BeTrue("Download button should be displayed in Progressa Activity Report Page.");
         }
 
         [Then(@"Search box is displayed")]
         public void ThenSearchBoxIsDisplayed()
         {
-            (_activityReportPage.SearchBox.GetElementVisibility()).Should().BeTrue(because: "Search box should be displayed in Centrella Activity Report Page.");
+            (_activityReportPage.SearchBox.GetElementVisibility()).Should().BeTrue(because: "Search box should be displayed in Progressa Activity Report Page.");
         }
 
         [Then(@"Previous page icon is displayed")]
         public void ThenPreviousPageIconIsDisplayed()
         {
-            (_activityReportPage.PaginationPreviousPageIcon.GetElementVisibility()).Should().BeTrue(because: "Previous page icon should be displayed in Centrella Activity Report Page.");
+            (_activityReportPage.PaginationPreviousPageIcon.GetElementVisibility()).Should().BeTrue(because: "Previous page icon should be displayed in Progressa Activity Report Page.");
         }
 
         [Then(@"Next page icon is displayed")]
         public void ThenNextPageIconIsDisplayed()
         {
-            (_activityReportPage.PaginationNextPageIcon.GetElementVisibility()).Should().BeTrue(because: "Next page icon should be displayed in Centrella Activity Report Page.");
+            (_activityReportPage.PaginationNextPageIcon.GetElementVisibility()).Should().BeTrue(because: "Next page icon should be displayed in Progressa Activity Report Page.");
         }
 
         [Then(@"Page x of y indicator is displayed")]
         public void ThenPageXOfYIndicatorIsDisplayed()
         {
-            (_activityReportPage.PaginationPageXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y indicator should be displayed in Centrella Activity Report Page.");
+            (_activityReportPage.PaginationPageXofY.GetElementVisibility()).Should().BeTrue(because: "Page x of y indicator should be displayed in Progressa Activity Report Page.");
         }
 
         [Then(@"Displaying x to y of z results indicator is displayed")]
         public void ThenDisplayingXToYOfZResultsIndicatorIsDisplayed()
         {
-            (_activityReportPage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue(because: "Display x to y of z results label should be displayed in Centrella Activity Report Page.");
+            (_activityReportPage.PaginationDisplayXY.GetElementVisibility()).Should().BeTrue(because: "Display x to y of z results label should be displayed in Progressa Activity Report Page.");
         }
 
-        [Given(@"user is on Centrella Activity Report page")]
-        public void GivenUserIsOnCentrellaActivityReportPage()
+        [Given(@"user is on Progressa Activity Report page")]
+        public void GivenUserIsOnProgressaActivityReportPage()
         {
             GivenUserIsOnReportsPage();
-            //Selecting Centrella device
-            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+            //Selecting Progressa device
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.ProgressaDeviceName);
             //Selecting the Activity Report
             _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
             _reportsPage.GetReportButton.Click();
@@ -172,9 +172,9 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     Assert.Fail(columnHeading + " is a invalid heading name.");
                     break;
             }
-            (column.GetElementVisibility()).Should().BeTrue(because: columnHeading + " should be displayed in Centrella Activity Report Page Table.");
+            (column.GetElementVisibility()).Should().BeTrue(because: columnHeading + " should be displayed in Progressa Activity Report Page Table.");
             string ActualcolumnName = column.Text;
-            (ActualcolumnName).Should().BeEquivalentTo(columnHeading, because: columnHeading + " column heading should match with the expected value in Centrella Activity Report Page Table.");
+            (ActualcolumnName).Should().BeEquivalentTo(columnHeading, because: columnHeading + " column heading should match with the expected value in Progressa Activity Report Page Table.");
         }
 
         [Then(@"""(.*)"" label is in column (.*)")]

@@ -30,6 +30,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string CVSMDeviceName = "Connex Vital Signs Monitor (CVSM)";
             public const string RV700DeviceName = "RetinaVue 700 (RV700)";
             public const string CentrellaDeviceName = "Centrella";
+            public const string ProgressaDeviceName = "Progressa";
             public const string ConfigurationReportType = "CFG Update Status";
             public const string FirmwareVersionReportType = "Firmware Version";
             public const string ActivityReportType = "Activity";

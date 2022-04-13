@@ -132,6 +132,9 @@
   <data name="ReportCVSMLabelText" xml:space="preserve">
     <value>FIRMWARE VERSION REPORT (CVSM)</value>
   </data>
+  <data name="ReportProgressaLabelText" xml:space="preserve">
+    <value>FIRMWARE VERSION REPORT (PROGRESSA)</value>
+  </data>
   <data name="ReportRV700LabelText" xml:space="preserve">
     <value>FIRMWARE VERSION REPORT (RV700)</value>
   </data>

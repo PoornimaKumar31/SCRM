@@ -1,21 +1,21 @@
-﻿@SoftwareRequirementID_9423
-Feature: Software Requirement 9423
-	The customer portal shall display Centrella Activity report.
+﻿@SoftwareRequirementID_10363
+Feature: Software Requirement 10363
+	The customer portal shall display Progressa Activity report.
 
-@TestCaseID_9894 @UISID_8684
-Scenario: Centrella Report Type Dropdown Content
+@TestCaseID_10866 @UISID_8684
+Scenario: Progressa Report Type Dropdown Content
 	Given user is on Reports page
-	And Centrella Asset type is selected
+	And Progressa Asset type is selected
 	When user clicks report type dropdown
 	Then Report type dropdown displays "Firmware version, Firmware status, Activity, Maintenance, Access Point Locations"
 
-@TestCaseID_9895 @UISID_8684 @UISID_8693
-Scenario: Centrella Activity Report Page Elements
+@TestCaseID_10867 @UISID_8684 @UISID_8693
+Scenario: Progressa Activity Report Page Elements
 	Given user is on Reports page
-	And Centrella Asset type is selected
+	And Progressa Asset type is selected
 	And Activity Report type is selected
 	When user clicks Get report button
-	Then Activity Report (Centrella) label is displayed
+	Then Activity Report (Progressa) label is displayed
 	And Print button is displayed
 	And Download button is displayed
 	And Search box is displayed
@@ -24,17 +24,17 @@ Scenario: Centrella Activity Report Page Elements
 	And Page x of y indicator is displayed
 	And Displaying x to y of z results indicator is displayed
 
-@TestCaseID_9896 @UISID_8684 @UISID_8685 @UISID_8693
-Scenario: Centrella Activity Report Page Table Elements
-	Given user is on Centrella Activity Report page
+@TestCaseID_10868 @UISID_8684 @UISID_8685 @UISID_8693
+Scenario: Progressa Activity Report Page Table Elements
+	Given user is on Progressa Activity Report page
 	Then "Serial number" column heading is displayed
-	And "AP location" column heading is displayed
+	And "AP Location" column heading is displayed
 	And "Patient present" column heading is displayed
 	And "PM due" column heading is displayed
 
-@TestCaseID_9897 @UISID_8684 @UISID_8685 @UISID_8693
-Scenario: Centrella Activity Report Page Table Elements Columns
-	Given user is on Centrella Activity Report page
+@TestCaseID_10869 @UISID_8684 @UISID_8685 @UISID_8693
+Scenario: Progressa Activity Report Page Table Elements Columns
+	Given user is on Progressa Activity Report page
 	Then "Serial number" label is in column 1
 	And "AP Location" label is in column 2
 	And "Patient present" label is in column 3

@@ -14,10 +14,13 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
             public const string DownloadButtonID = "ac-download";
             //ACTIVITY REPORT (CSM) table elements
             public const string SerialNumberHeadingID = "serialNo";
-            public const string LocationHeadingID = "loc";
+            public const string LocationHeadingID = "apLoc";
             public const string LastVitalSentHeadingID = "lastVital";
-            public const string PMDueHeadingID = "calibration";
+            public const string PMDueHeadingID = "pmDue";
             public const string TableHeadingClassName = "device-info-list";
+
+            //ACTIVITY REPORT (CENTRELLA and PROGRESSA) table elements
+            public const string PatientPresentID = "patientPresence";
             //Table elements
             public const string PaginationPreviousPageIconId = "previous";
             public const string PaginationNextPageIconId = "next";
@@ -51,6 +54,9 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
 
         [FindsBy(How = How.Id, Using = Locators.LocationHeadingID)]
         public IWebElement LocationHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.PatientPresentID)]
+        public IWebElement PatientPresentHeading { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.LastVitalSentHeadingID)]
         public IWebElement LastVitalSentHeading { get; set; }

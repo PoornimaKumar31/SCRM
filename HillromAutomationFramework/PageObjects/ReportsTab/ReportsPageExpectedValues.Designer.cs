@@ -133,6 +133,15 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progressa.
+        /// </summary>
+        internal static string ProgressaDeviceName {
+            get {
+                return ResourceManager.GetString("ProgressaDeviceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RetinaVue 700 (RV700).
         /// </summary>
         internal static string RV700DeviceName {

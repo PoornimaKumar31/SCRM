@@ -316,6 +316,15 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Progressa.
+        /// </summary>
+        internal static string ProgressaDeviceName {
+            get {
+                return ResourceManager.GetString("ProgressaDeviceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 58.
         /// </summary>
         internal static string PSSServiceBastesvilleDeviceCount {

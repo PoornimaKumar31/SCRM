@@ -80,6 +80,15 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ACTIVITY REPORT (PROGRESSA).
+        /// </summary>
+        internal static string ActivityReportProgressaHeader {
+            get {
+                return ResourceManager.GetString("ActivityReportProgressaHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activity_Status_Report_(Centrella).csv.
         /// </summary>
         internal static string CentrellaActivityReportName {

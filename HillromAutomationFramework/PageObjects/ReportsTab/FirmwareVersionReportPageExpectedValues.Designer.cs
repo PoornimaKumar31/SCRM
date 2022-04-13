@@ -107,6 +107,15 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FIRMWARE VERSION REPORT (PROGRESSA).
+        /// </summary>
+        internal static string ReportProgressaLabelText {
+            get {
+                return ResourceManager.GetString("ReportProgressaLabelText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FIRMWARE VERSION REPORT (RV700).
         /// </summary>
         internal static string ReportRV700LabelText {

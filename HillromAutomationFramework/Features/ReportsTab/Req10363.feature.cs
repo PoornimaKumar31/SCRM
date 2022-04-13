@@ -20,25 +20,25 @@ namespace HillromAutomationFramework.Features.ReportsTab
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Software Requirement 9423")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_9423")]
-    public partial class SoftwareRequirement9423Feature
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 10363")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_10363")]
+    public partial class SoftwareRequirement10363Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_9423"};
+                "SoftwareRequirementID_10363"};
         
-#line 1 "Req9423.feature"
+#line 1 "Req10363.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ReportsTab", "Software Requirement 9423", "\tThe customer portal shall display Centrella Activity report.", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_9423"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ReportsTab", "Software Requirement 10363", "\tThe customer portal shall display Progressa Activity report.", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_10363"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -77,16 +77,16 @@ namespace HillromAutomationFramework.Features.ReportsTab
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Centrella Report Type Dropdown Content")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9894")]
+        [NUnit.Framework.DescriptionAttribute("Progressa Report Type Dropdown Content")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10866")]
         [NUnit.Framework.CategoryAttribute("UISID_8684")]
-        public virtual void CentrellaReportTypeDropdownContent()
+        public virtual void ProgressaReportTypeDropdownContent()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9894",
+                    "TestCaseID_10866",
                     "UISID_8684"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Report Type Dropdown Content", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Report Type Dropdown Content", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Reports page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 8
- testRunner.And("Centrella Asset type is selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Progressa Asset type is selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 9
  testRunner.When("user clicks report type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -125,18 +125,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Centrella Activity Report Page Elements")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9895")]
+        [NUnit.Framework.DescriptionAttribute("Progressa Activity Report Page Elements")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10867")]
         [NUnit.Framework.CategoryAttribute("UISID_8684")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
-        public virtual void CentrellaActivityReportPageElements()
+        public virtual void ProgressaActivityReportPageElements()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9895",
+                    "TestCaseID_10867",
                     "UISID_8684",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Activity Report Page Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Activity Report Page Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 13
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -161,7 +161,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Reports page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 15
- testRunner.And("Centrella Asset type is selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Progressa Asset type is selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
  testRunner.And("Activity Report type is selected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -170,7 +170,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks Get report button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 18
- testRunner.Then("Activity Report (Centrella) label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Activity Report (Progressa) label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 19
  testRunner.And("Print button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -198,20 +198,20 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Centrella Activity Report Page Table Elements")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9896")]
+        [NUnit.Framework.DescriptionAttribute("Progressa Activity Report Page Table Elements")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10868")]
         [NUnit.Framework.CategoryAttribute("UISID_8684")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
-        public virtual void CentrellaActivityReportPageTableElements()
+        public virtual void ProgressaActivityReportPageTableElements()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9896",
+                    "TestCaseID_10868",
                     "UISID_8684",
                     "UISID_8685",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Activity Report Page Table Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Activity Report Page Table Elements", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 28
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -233,13 +233,13 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 29
- testRunner.Given("user is on Centrella Activity Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Progressa Activity Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 30
  testRunner.Then("\"Serial number\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 31
- testRunner.And("\"AP location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"AP Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 32
  testRunner.And("\"Patient present\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -252,20 +252,20 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Centrella Activity Report Page Table Elements Columns")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9897")]
+        [NUnit.Framework.DescriptionAttribute("Progressa Activity Report Page Table Elements Columns")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10869")]
         [NUnit.Framework.CategoryAttribute("UISID_8684")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
-        public virtual void CentrellaActivityReportPageTableElementsColumns()
+        public virtual void ProgressaActivityReportPageTableElementsColumns()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9897",
+                    "TestCaseID_10869",
                     "UISID_8684",
                     "UISID_8685",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Activity Report Page Table Elements Columns", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Activity Report Page Table Elements Columns", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 36
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -287,7 +287,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 37
- testRunner.Given("user is on Centrella Activity Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on Progressa Activity Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 38
  testRunner.Then("\"Serial number\" label is in column 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

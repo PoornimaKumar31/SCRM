@@ -141,6 +141,10 @@
     <value>Centrella</value>
     <comment>Asset type dropdowm elements</comment>
   </data>
+  <data name="ProgressaDeviceName" xml:space="preserve">
+    <value>Progressa</value>
+    <comment>Asset type dropdowm elements</comment>
+  </data>
   <data name="ConfigFileHeadingText" xml:space="preserve">
     <value>Config file</value>
     <comment>table headings</comment>
