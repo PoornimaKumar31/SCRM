@@ -81,3 +81,46 @@ Scenario: CSM Firmware Status Last Deployed Search
 	When user enters "last deployed" in Search textbox
 	And presses Enter
 	Then devices with matching "last deployed" are displayed
+
+@TestCaseID_10909 @UISID_8685 @UISID_8692
+Scenario: Progressa Firmware Status Search
+	Given user is on Progressa Firmware Upgrade Status Report page
+	Then Search textbox displays "Search by firmware, serial no. etc"
+
+@TestCaseID_10910 @UISID_8685 @UISID_8692
+Scenario: Progressa Firmware Status Serial Number Search
+	Given user is on Progressa Firmware Upgrade Status Report page
+	When user enters "serial number" in Search textbox
+	And presses Enter
+	Then device with matching "serial number" is displayed
+
+@TestCaseID_10911 @UISID_8685 @UISID_8692
+Scenario: Progressa Firmware Status Firmware Version Search
+	Given user is on Progressa Firmware Upgrade Status Report page
+	When user enters "firmware version" in Search textbox
+	And presses Enter
+	Then devices with matching "firmware version" are displayed
+
+@TestCaseID_10912 @UISID_8685 @UISID_8692
+Scenario: Progressa Firmware Status Status Search
+	Given user is on Progressa Firmware Upgrade Status Report page
+	When user enters "status" in Search textbox
+	And presses Enter
+	Then devices with matching "status" are displayed
+
+@TestCaseID_100913 @UISID_8685 @UISID_8692
+Scenario: Progressa Firmware Status Location Search
+	Given user is on Progressa Firmware Upgrade Status Report page
+	When user enters "ownership" in Search textbox
+	And presses Enter
+	Then devices with matching "ownership" are displayed
+
+@TestCaseID_10914 @UISID_8685 @UISID_8692
+Scenario: Progressa Firmware Status Last Deployed Search
+	Given user is on Progressa Firmware Upgrade Status Report page
+	When user enters "last deployed" in Search textbox
+	And presses Enter
+	Then devices with matching "last deployed" are displayed
+
+
+

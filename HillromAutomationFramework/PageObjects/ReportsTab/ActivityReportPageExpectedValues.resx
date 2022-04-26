@@ -135,6 +135,9 @@
   <data name="LocationSearchText" xml:space="preserve">
     <value>Station1</value>
   </data>
+  <data name="ProgressaActivityReportName" xml:space="preserve">
+    <value>Activity_Report_(Progressa).csv</value>
+  </data>
   <data name="SerialNumberSearchText" xml:space="preserve">
     <value>100010000000</value>
   </data>

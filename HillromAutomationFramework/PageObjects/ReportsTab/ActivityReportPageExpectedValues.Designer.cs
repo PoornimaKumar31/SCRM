@@ -116,6 +116,15 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activity_Report_(Progressa).csv.
+        /// </summary>
+        internal static string ProgressaActivityReportName {
+            get {
+                return ResourceManager.GetString("ProgressaActivityReportName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 100010000000.
         /// </summary>
         internal static string SerialNumberSearchText {

@@ -404,11 +404,74 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FIRMWARE UPGRADE STATUS (PROGRESSA).
+        /// </summary>
+        internal static string FirmwareUpgradeStatusProgressaLabel {
+            get {
+                return ResourceManager.GetString("FirmwareUpgradeStatusProgressaLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FIRMWARE UPGRADE STATUS (RV700).
         /// </summary>
         internal static string FirmwareUpgradeStatusRV700Label {
             get {
                 return ResourceManager.GetString("FirmwareUpgradeStatusRV700Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firmware_Status_Report.csv.
+        /// </summary>
+        internal static string ProgressaFirmwareStatusReportName {
+            get {
+                return ResourceManager.GetString("ProgressaFirmwareStatusReportName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 22013101.
+        /// </summary>
+        internal static string ProgressaFirmwareVersionSearchText {
+            get {
+                return ResourceManager.GetString("ProgressaFirmwareVersionSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 21121901.
+        /// </summary>
+        internal static string ProgressaLastDeployedSearchText {
+            get {
+                return ResourceManager.GetString("ProgressaLastDeployedSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batesville.
+        /// </summary>
+        internal static string ProgressaLocationSearchText {
+            get {
+                return ResourceManager.GetString("ProgressaLocationSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PY685004.
+        /// </summary>
+        internal static string ProgressaSerialNumberSearchText {
+            get {
+                return ResourceManager.GetString("ProgressaSerialNumberSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Started.
+        /// </summary>
+        internal static string ProgressaStatusSearchText {
+            get {
+                return ResourceManager.GetString("ProgressaStatusSearchText", resourceCulture);
             }
         }
         
