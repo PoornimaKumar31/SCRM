@@ -15,8 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req7732 - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req8309 - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req9423 - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req9425 - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req9426 - Copy.feature.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,6 +71,15 @@
     </Compile>
     <Compile Update="Features\ReportsTab\Req10359.feature.cs">
       <DependentUpon>Req10359.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\ReportsTab\Req10358.feature.cs">
+      <DependentUpon>Req10358.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\ReportsTab\Req10364.feature.cs">
+      <DependentUpon>Req10364.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\ReportsTab\Req10357.feature.cs">
+      <DependentUpon>Req10357.feature</DependentUpon>
     </Compile>
     <Compile Update="PageObjects\AdvancedTab\AdvancePageExpectedValues.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -282,6 +294,18 @@
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\ReportsTab\Req10359.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\ReportsTab\Req10358.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\ReportsTab\Req10364.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\ReportsTab\Req10357.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>

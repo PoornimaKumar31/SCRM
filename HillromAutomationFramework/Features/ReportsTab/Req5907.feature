@@ -73,3 +73,12 @@ Scenario: Centrella Firmware Status Information Close
 	When user clicks Close button
 	Then Centrella Firmware Report Statuses dialog closes
 	And Centrella Firmware Upgrade Status page is displayed
+
+@TestCaseID_10878 @UISID_8685
+Scenario: Progressa Firmware Status Information Close
+	Given user is on Progressa Firmware Upgrade Status report page
+	And Progressa Firmware Report Statuses dialog is displayed
+	When user clicks Close button
+	Then Progressa Firmware Report Statuses dialog closes
+	And Progressa Firmware Upgrade Status page is displayed
+	

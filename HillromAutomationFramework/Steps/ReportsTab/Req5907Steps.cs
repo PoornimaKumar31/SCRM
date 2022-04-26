@@ -332,5 +332,41 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             (_firmwareStatusPage.InformationButton.GetElementVisibility()).Should().BeTrue("when user clicks on close button in Centrella Firmware Report Statuses dialog,Then Centrella firmware upgrade status page should be displayed");
         }
 
+        //Progressa Firmware Status Information Close
+
+        [Given(@"user is on Progressa Firmware Upgrade Status report page")]
+        public void GivenUserIsOnProgressaFirmwareUpgradeStatusReportPage()
+        {
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Progressa Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.ProgressaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
+        }
+
+        [Given(@"Progressa Firmware Report Statuses dialog is displayed")]
+        public void GivenProgressaFirmwareReportStatusesDialogIsDisplayed()
+        {
+            _firmwareStatusPage.InformationButton.Click();
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareStatusReportPage.Locators.InformationPopUpId)));
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("Progressa Firmware Report Statuses dialog should be displayed When user clicks information button on Progressa Firmware Upgrade Status report page.");
+        }
+
+        [Then(@"Progressa Firmware Report Statuses dialog closes")]
+        public void ThenProgressaFirmwareReportStatusesDialogCloses()
+        {
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeFalse(because: "when user clicks on the close button in Progressa Firmware Report Statuses dialog,Then Progressa Firmware Report Statuses dialog should be closed");
+        }
+
+        [Then(@"Progressa Firmware Upgrade Status page is displayed")]
+        public void ThenProgressaFirmwareUpgradeStatusPageIsDisplayed()
+        {
+            (_firmwareStatusPage.InformationButton.GetElementVisibility()).Should().BeTrue("when user clicks on close button in Progressa Firmware Report Statuses dialog,Then Progressa firmware upgrade status page should be displayed");
+        }
+
     }
 }

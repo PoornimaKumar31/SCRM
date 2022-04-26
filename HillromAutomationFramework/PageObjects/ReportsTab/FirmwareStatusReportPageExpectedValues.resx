@@ -231,8 +231,29 @@
   <data name="FirmwareUpgradeStatusCSMLabel" xml:space="preserve">
     <value>FIRMWARE UPGRADE STATUS (CSM)</value>
   </data>
+  <data name="FirmwareUpgradeStatusProgressaLabel" xml:space="preserve">
+    <value>FIRMWARE UPGRADE STATUS (PROGRESSA)</value>
+  </data>
   <data name="FirmwareUpgradeStatusRV700Label" xml:space="preserve">
     <value>FIRMWARE UPGRADE STATUS (RV700)</value>
+  </data>
+  <data name="ProgressaFirmwareStatusReportName" xml:space="preserve">
+    <value>Firmware_Status_Report.csv</value>
+  </data>
+  <data name="ProgressaFirmwareVersionSearchText" xml:space="preserve">
+    <value>22013101</value>
+  </data>
+  <data name="ProgressaLastDeployedSearchText" xml:space="preserve">
+    <value>21121901</value>
+  </data>
+  <data name="ProgressaLocationSearchText" xml:space="preserve">
+    <value>Batesville</value>
+  </data>
+  <data name="ProgressaSerialNumberSearchText" xml:space="preserve">
+    <value>PY685004</value>
+  </data>
+  <data name="ProgressaStatusSearchText" xml:space="preserve">
+    <value>Started</value>
   </data>
   <data name="RV700AvailableDefination" xml:space="preserve">
     <value>Firmware update has been deployed and is waiting for device to call home.</value>

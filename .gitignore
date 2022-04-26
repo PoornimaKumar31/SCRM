@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/HillromAutomationFramework/Steps/ReportsTab/ReqProgressa5905Steps.cs
+/HillromAutomationFramework/Features/ReportsTab/ReqProgressa5905.feature
+/HillromAutomationFramework/Features/ReportsTab/ReqProgressa5905.feature.cs

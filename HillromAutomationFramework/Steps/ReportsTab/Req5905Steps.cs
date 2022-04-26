@@ -16,8 +16,8 @@ namespace HillromAutomationFramework.Steps.ReportsTab
     [Binding, Scope(Tag = "SoftwareRequirementID_5905")]
     public sealed class Req5905Steps
     {
-        private readonly LoginPage _loginPage ;
-        private readonly LandingPage _landingPage ;
+        private readonly LoginPage _loginPage;
+        private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
         private readonly FirmwareStatusReportPage _firmwareStatusPage;
@@ -25,7 +25,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;
         private readonly IWebDriver _driver;
-
+        
         public Req5905Steps(ScenarioContext scenarioContext, IWebDriver driver)
         {
             _scenarioContext = scenarioContext;
@@ -57,7 +57,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         [Then(@"Search textbox displays ""(.*)""")]
         public void ThenSearchTextboxDisplays(string hintText)
         {
-            (_firmwareStatusPage.SearchBox.GetElementVisibility()).Should().BeTrue("Search box should be displayed in Centrella Firmware Upgrade Status Report page");
+            (_firmwareStatusPage.SearchBox.GetElementVisibility()).Should().BeTrue("Search box should be displayed in Firmware Upgrade Status Report page");
             //Matching place holder value
             string ActualHintText = _firmwareStatusPage.SearchBox.GetAttribute("placeholder");
             ActualHintText.Should().BeEquivalentTo(hintText,because:"Search box hint text should match the expected string");
@@ -74,6 +74,11 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             {
                 flag = true;
             }
+            //Progressa
+            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("progressa"))
+            {
+                flag = true;
+            }
             //CSM
             else if(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("csm"))
             {
@@ -86,30 +91,58 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
 
 
-            string searchText=null;
-            switch(searchType.ToLower().Trim())
+            string searchText = null;
+
+            if(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("centrella"))
             {
-                case "serial number":
-                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaSerialNumberSearchText:FirmwareStatusReportPageExpectedValues.CSMSerialNumberSearchText;
-                    break;
-                case "firmware version":
-                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaFirmwareVersionSearchText:FirmwareStatusReportPageExpectedValues.CSMFirmwareVersionSearchText;
-                    break;
-                case "status":
-                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaStatusSearchText:FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
-                    break;
-                case "location":
-                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaLocationSearchText:FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaSerialNumberSearchText : FirmwareStatusReportPageExpectedValues.CSMSerialNumberSearchText;
                         break;
-                case "last deployed":
-                    searchText = flag?FirmwareStatusReportPageExpectedValues.CentrellaLastDeployedSearchText:FirmwareStatusReportPageExpectedValues.CSMLastDeployedSearchText;
-                    break;
-                    
-                default:
-                    Assert.Fail(searchType + " is a invalid search type.");
-                    break;
+                    case "firmware version":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaFirmwareVersionSearchText : FirmwareStatusReportPageExpectedValues.CSMFirmwareVersionSearchText;
+                        break;
+                    case "status":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaStatusSearchText : FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
+                        break;
+                    case "location":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaLocationSearchText : FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
+                        break;
+                    case "last deployed":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaLastDeployedSearchText : FirmwareStatusReportPageExpectedValues.CSMLastDeployedSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is a invalid search type.");
+                        break;
+                }
             }
-            
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("progressa"))
+            {
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaSerialNumberSearchText : FirmwareStatusReportPageExpectedValues.CSMSerialNumberSearchText;
+                        break;
+                    case "firmware version":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaFirmwareVersionSearchText : FirmwareStatusReportPageExpectedValues.CSMFirmwareVersionSearchText;
+                        break;
+                    case "status":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaStatusSearchText : FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
+                        break;
+                    case "ownership":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaLocationSearchText : FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
+                        break;
+                    case "last deployed":
+                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaLastDeployedSearchText : FirmwareStatusReportPageExpectedValues.CSMLastDeployedSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is a invalid search type.");
+                        break;
+                }
+            }
 
             //Adding search text to scenario context
             _scenarioContext.Add("searchText", searchText);
@@ -157,7 +190,20 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _reportsPage.GetReportButton.Click();
         }
 
+        [Given(@"user is on Progressa Firmware Upgrade Status Report page")]
+        public void GivenUserIsOnProgressaFirmwareUpgradeStatusReportPage()
+        {
+            //Loging in
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Progressa Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.ProgressaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
+            _reportsPage.GetReportButton.Click();
+        }
 
     }
 }
