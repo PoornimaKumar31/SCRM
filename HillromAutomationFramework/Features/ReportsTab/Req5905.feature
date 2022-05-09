@@ -108,7 +108,7 @@ Scenario: Progressa Firmware Status Status Search
 	And presses Enter
 	Then devices with matching "status" are displayed
 
-@TestCaseID_100913 @UISID_8685 @UISID_8692
+@TestCaseID_10913 @UISID_8685 @UISID_8692
 Scenario: Progressa Firmware Status Location Search
 	Given user is on Progressa Firmware Upgrade Status Report page
 	When user enters "ownership" in Search textbox
@@ -121,6 +121,3 @@ Scenario: Progressa Firmware Status Last Deployed Search
 	When user enters "last deployed" in Search textbox
 	And presses Enter
 	Then devices with matching "last deployed" are displayed
-
-
-

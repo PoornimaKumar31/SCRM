@@ -845,13 +845,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Progressa Firmware Status Location Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_100913")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10913")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
         [NUnit.Framework.CategoryAttribute("UISID_8692")]
         public virtual void ProgressaFirmwareStatusLocationSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_100913",
+                    "TestCaseID_10913",
                     "UISID_8685",
                     "UISID_8692"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();

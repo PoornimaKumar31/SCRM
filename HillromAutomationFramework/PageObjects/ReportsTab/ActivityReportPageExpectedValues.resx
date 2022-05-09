@@ -129,14 +129,26 @@
   <data name="CentrellaActivityReportName" xml:space="preserve">
     <value>Activity_Status_Report_(Centrella).csv</value>
   </data>
+  <data name="CentrellaSerialNumberSearchText" xml:space="preserve">
+    <value>PY673003</value>
+  </data>
   <data name="CSMActivityReportName" xml:space="preserve">
     <value>Activity_Status_Report_(CSM).csv</value>
+  </data>
+  <data name="CVSMLocationSearchText" xml:space="preserve">
+    <value>Station1</value>
+  </data>
+  <data name="CVSMSerialNumberSearchText" xml:space="preserve">
+    <value>100020000001</value>
   </data>
   <data name="LocationSearchText" xml:space="preserve">
     <value>Station1</value>
   </data>
   <data name="ProgressaActivityReportName" xml:space="preserve">
     <value>Activity_Report_(Progressa).csv</value>
+  </data>
+  <data name="ProgressaSerialNumberSearchText" xml:space="preserve">
+    <value>PY685010</value>
   </data>
   <data name="SerialNumberSearchText" xml:space="preserve">
     <value>100010000000</value>

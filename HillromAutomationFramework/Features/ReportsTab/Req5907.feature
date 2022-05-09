@@ -74,11 +74,32 @@ Scenario: Centrella Firmware Status Information Close
 	Then Centrella Firmware Report Statuses dialog closes
 	And Centrella Firmware Upgrade Status page is displayed
 
+@TestCaseID_10877 @UISID_8685
+Scenario: Progressa Firmware Status Information
+	Given user is on Progressa Firmware Upgrade Status report page
+	When user clicks Information button
+	Then Progressa Firmware Report Statuses dialog is displayed
+	And Progressa Firmware Report Statuses header is displayed
+	And "Downloading" status and definition of Progressa is displayed
+	And "Mounting" status and definition of Progressa is displayed
+	And "Mounting complete" status and definition of Progressa is displayed
+	And "Initializing" status and definition of Progressa is displayed
+	And "Staging" status and definition of Progressa is displayed
+	And "Updating WAM" status and definition of Progressa is displayed
+	And "Upgrade Success" status and definition of Progressa is displayed
+	And "Local Upgrade Performed" status and definition of Progressa is displayed
+	And "Download Failure" status and definition of Progressa is displayed
+	And "Inconsistent Software Error" status and definition of Progressa is displayed
+	And "Initializing Failure" status and definition of Progressa is displayed
+	And "Mounting Failure" status and definition of Progressa is displayed
+	And "Staging Failure" status and definition of Progressa is displayed
+	And "WAM Update Failure" status and definition of Progressa is displayed
+	And Close button is displayed
+	
 @TestCaseID_10878 @UISID_8685
 Scenario: Progressa Firmware Status Information Close
 	Given user is on Progressa Firmware Upgrade Status report page
 	And Progressa Firmware Report Statuses dialog is displayed
 	When user clicks Close button
 	Then Progressa Firmware Report Statuses dialog closes
-	And Progressa Firmware Upgrade Status page is displayed
-	
+	And Progressa Firmware Upgrade Status page is displayed	

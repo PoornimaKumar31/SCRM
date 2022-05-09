@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\AssetsTab\DeviceDetail\Req7743 - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req7732 - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req8309 - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req9423 - Copy.feature.cs" />
@@ -66,6 +67,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Config.resx</DependentUpon>
     </Compile>
+    <Compile Update="Features\AssetsTab\DeviceDetail\Req10362.feature.cs">
+      <DependentUpon>Req10362.feature</DependentUpon>
+    </Compile>
     <Compile Update="Features\ReportsTab\Req10363.feature.cs">
       <DependentUpon>Req10363.feature</DependentUpon>
     </Compile>
@@ -91,10 +95,25 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AssetListPageExpectedValue.resx</DependentUpon>
     </Compile>
-    <Compile Update="PageObjects\AssetsTab\DeviceDetails\CentrellaDeviceDetailspageExpectedValue.Designer.cs">
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\CentrellaDeviceDetailspageExpectedValue - Copy - Copy %282%29.Designer.cs">
+      <DependentUpon>CentrellaDeviceDetailspageExpectedValue - Copy.Designer.cs</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\CentrellaDeviceDetailspageExpectedValue - Copy - Copy - Copy.Designer.cs">
+      <DependentUpon>CentrellaDeviceDetailspageExpectedValue - Copy - Copy.Designer.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\CentrellaDeviceDetailspageExpectedValue - Copy - Copy.Designer.cs">
+      <DependentUpon>CentrellaDeviceDetailspageExpectedValue - Copy.Designer.cs</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\CentrellaDeviceDetailspageExpectedValue - Copy.Designer.cs">
       <DependentUpon>CentrellaDeviceDetailsPageExpectedValue.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Update="PageObjects\AssetsTab\DeviceDetails\CSMDeviceDetailsPageExpectedValues.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -202,6 +221,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AdvancePageExpectedValues.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\CentrellaDeviceDetailsPageExpectedValue - Copy.resx">
+      <LastGenOutput>CentrellaDeviceDetailspageExpectedValue.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="PageObjects\AssetsTab\PreventiveMaintenance\PreventiveMaintenancePageExpectedValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PreventiveMaintenancePageExpectedValues.Designer.cs</LastGenOutput>
@@ -289,6 +312,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SpecFlowFeatureFiles Update="Features\AssetsTab\DeviceDetail\Req10362.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
     <SpecFlowFeatureFiles Update="Features\ReportsTab\Req10363.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>

@@ -69,18 +69,70 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void WhenUserTypeInSearchTextbox(string searchType)
         {
             string searchText = "";
-            switch(searchType.ToLower().Trim())
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("csm"))
             {
-                case "serial number":
-                    searchText = ActivityReportPageExpectedValues.SerialNumberSearchText;
-                    break;
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        searchText = ActivityReportPageExpectedValues.SerialNumberSearchText;
+                        break;
 
-                case "location":
-                    searchText = ActivityReportPageExpectedValues.LocationSearchText;
-                    break;
+                    case "location":
+                        searchText = ActivityReportPageExpectedValues.LocationSearchText;
+                        break;
 
-                default: Assert.Fail(searchType + " is a invalid search type");
-                    break;
+                    default:
+                        Assert.Fail(searchType + " is a invalid search type");
+                        break;
+                }
+            }
+
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("cvsm"))
+            {
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        searchText = ActivityReportPageExpectedValues.CVSMSerialNumberSearchText;
+                        break;
+
+                    case "ownership unit":
+                        searchText = ActivityReportPageExpectedValues.CVSMLocationSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is a invalid search type");
+                        break;
+                }
+            }
+
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("centrella"))
+            {
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        searchText = ActivityReportPageExpectedValues.CentrellaSerialNumberSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is a invalid search type");
+                        break;
+                }
+
+            }
+
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("progressa"))
+            {
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        searchText = ActivityReportPageExpectedValues.ProgressaSerialNumberSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is a invalid search type");
+                        break;
+                }
+
             }
             //entering the search text in the search box.
             _activityReportPage.SearchBox.EnterText(searchText);
@@ -93,22 +145,72 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             Thread.Sleep(1000);
             string ExpectedSearchText = "";
             IList<IWebElement> column = null;
-            switch (searchType.ToLower().Trim())
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("csm"))
             {
-                case "serial number":
-                    column = _activityReportPage.SerialNumberColumn;
-                    ExpectedSearchText = ActivityReportPageExpectedValues.SerialNumberSearchText;
-                    break;
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        column = _activityReportPage.SerialNumberColumn;
+                        ExpectedSearchText = ActivityReportPageExpectedValues.SerialNumberSearchText;
+                        break;
 
-                case "location":
-                    column = _activityReportPage.LocationColumn;
-                    ExpectedSearchText = ActivityReportPageExpectedValues.LocationSearchText;
-                    break;
+                    case "location":
+                        column = _activityReportPage.LocationColumn;
+                        ExpectedSearchText = ActivityReportPageExpectedValues.LocationSearchText;
+                        break;
 
-                default: Assert.Fail(searchType + " is invalid search type.");
-                    break;
+                    default:
+                        Assert.Fail(searchType + " is invalid search type.");
+                        break;
+                }
             }
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("cvsm"))
+            {
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        column = _activityReportPage.SerialNumberColumn;
+                        ExpectedSearchText = ActivityReportPageExpectedValues.CVSMSerialNumberSearchText;
+                        break;
 
+                    case "ownership unit":
+                        column = _activityReportPage.LocationColumn;
+                        ExpectedSearchText = ActivityReportPageExpectedValues.CVSMLocationSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is invalid search type.");
+                        break;
+                }
+            }
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("centrella"))
+            {
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        column = _activityReportPage.SerialNumberColumn;
+                        ExpectedSearchText = ActivityReportPageExpectedValues.CentrellaSerialNumberSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is invalid search type.");
+                        break;
+                }
+            }
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("progressa"))
+            {
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        column = _activityReportPage.SerialNumberColumn;
+                        ExpectedSearchText = ActivityReportPageExpectedValues.ProgressaSerialNumberSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is invalid search type.");
+                        break;
+                }
+            }
             //checking the no of results
             int noOfResults = column.GetElementCount();
             noOfResults.Should().BeGreaterThan(0, "Atleast one device should match the search result.");
@@ -120,7 +222,45 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
         }
 
+        [Given(@"user is on CVSM ACTIVITY REPORT page")]
+        public void GivenUserIsOnCVSMACTIVITYREPORTPage()
+        {
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
 
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CVSMDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
+            _reportsPage.GetReportButton.Click();
+        }
 
+        [Given(@"user is on Centrella Activity Report page")]
+        public void GivenUserIsOnCentrellaACTIVITYREPORTPage()
+        {
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Centrella Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CentrellaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
+            _reportsPage.GetReportButton.Click();
+        }
+
+        [Given(@"user is on Progressa Activity Report page")]
+        public void GivenUserIsOnProgressaACTIVITYREPORTPage()
+        {
+            _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);
+            SetMethods.MoveTotheElement(_landingPage.PSSServiceOrganizationFacilityBatesville, _driver, "Progressa Orgaization");
+            _landingPage.PSSServiceOrganizationFacilityBatesville.Click();
+            _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+
+            _mainPage.ReportsTab.JavaSciptClick(_driver);
+            _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.ProgressaDeviceName);
+            _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
+            _reportsPage.GetReportButton.Click();
+        }
     }
 }
