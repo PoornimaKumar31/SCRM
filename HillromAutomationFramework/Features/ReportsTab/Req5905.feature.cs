@@ -268,18 +268,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Centrella Firmware Status Location Search")]
+        [NUnit.Framework.DescriptionAttribute("Centrella Firmware Status Ownership Search")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_10026")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
         [NUnit.Framework.CategoryAttribute("UISID_8692")]
-        public virtual void CentrellaFirmwareStatusLocationSearch()
+        public virtual void CentrellaFirmwareStatusOwnershipSearch()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_10026",
                     "UISID_8685",
                     "UISID_8692"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Firmware Status Location Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Centrella Firmware Status Ownership Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -304,13 +304,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Centrella Firmware Upgrade Status Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 34
- testRunner.When("user enters \"location\" in Search textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters \"ownership\" in Search textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
  testRunner.And("presses Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
- testRunner.Then("devices with matching \"location\" are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("devices with matching \"ownership\" are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -556,18 +556,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Firmware Status Location Search")]
+        [NUnit.Framework.DescriptionAttribute("CSM Firmware Status Ownership Search")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_10032")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
         [NUnit.Framework.CategoryAttribute("UISID_8692")]
-        public virtual void CSMFirmwareStatusLocationSearch()
+        public virtual void CSMFirmwareStatusOwnershipSearch()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_10032",
                     "UISID_8685",
                     "UISID_8692"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Firmware Status Location Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Firmware Status Ownership Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 72
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -592,13 +592,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on CSM Firmware Upgrade Status Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 74
- testRunner.When("user enters \"location\" in Search textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("user enters \"ownership\" in Search textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 75
  testRunner.And("presses Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 76
- testRunner.Then("devices with matching \"location\" are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("devices with matching \"ownership\" are displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -844,18 +844,18 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Progressa Firmware Status Location Search")]
+        [NUnit.Framework.DescriptionAttribute("Progressa Firmware Status Ownership Search")]
         [NUnit.Framework.CategoryAttribute("TestCaseID_10913")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
         [NUnit.Framework.CategoryAttribute("UISID_8692")]
-        public virtual void ProgressaFirmwareStatusLocationSearch()
+        public virtual void ProgressaFirmwareStatusOwnershipSearch()
         {
             string[] tagsOfScenario = new string[] {
                     "TestCaseID_10913",
                     "UISID_8685",
                     "UISID_8692"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Firmware Status Location Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Firmware Status Ownership Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 112
 this.ScenarioInitialize(scenarioInfo);
 #line hidden

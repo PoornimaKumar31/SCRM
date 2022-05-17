@@ -31,7 +31,7 @@ Scenario: Centrella Select Assets Elements
 	And Select assets indicator is highlighted
 	And Review action indicator is not highlighted
 	And "Item to push" label is displayed
-	And "Device type" label is displayed
+	And "Asset type" label is displayed
 	And "Update type" label is displayed
 	And "Upgrade file to push" label is displayed
 	And "Destinations" label is displayed
@@ -50,7 +50,7 @@ Scenario: Centrella Select Assets Elements Table
 	And "Config" column heading is displayed
 	And "Asset Tag" column heading is displayed
 	And "Serial number" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Last Files Deployed" column heading is displayed
 
 @TestCaseID_9947 @UISID_8697
@@ -61,7 +61,7 @@ Scenario: Centrella Select Assets Elements Table Columns
 	And "Config" label is in column 3
 	And "Asset Tag" label is in column 4
 	And "Serial number" label is in column 5
-	And "Location" label is in column 6
+	And "Ownership" label is in column 6
 	And "Last Files Deployed" label is in column 7
 
 @TestCaseID_9948 @UISID_8697

@@ -106,7 +106,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     case "status":
                         searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaStatusSearchText : FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
                         break;
-                    case "location":
+                    case "ownership":
                         searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaLocationSearchText : FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
                         break;
                     case "last deployed":

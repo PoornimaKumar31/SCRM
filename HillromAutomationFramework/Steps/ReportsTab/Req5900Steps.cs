@@ -222,7 +222,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             }
         }
 
-        [Given(@"user is on CVSM ACTIVITY REPORT page")]
+        [Given(@"user is on CVSM Activity Report page")]
         public void GivenUserIsOnCVSMACTIVITYREPORTPage()
         {
             _loginPage.LogIn(_driver, LoginPage.LogInType.AdminWithRollUpPage);

@@ -35,7 +35,7 @@ Scenario: CVSM Activity Serial Number Search
 
 @TestCaseID_10919 @UISID_8693
 Scenario: CVSM Activity Location Search
-	Given user is on CVSM ACTIVITY REPORT page
+	Given user is on CVSM Activity Report page
 	When user enters "ownership unit" in Search textbox
 	And presses Enter
 	Then device with matching "ownership unit" is displayed
@@ -52,12 +52,12 @@ Scenario: Centrella Activity Serial Number Search
 	And presses Enter
 	Then device with matching "serial number" is displayed
 
-@TestCaseID_10922 @UISID_8693
+@TestCaseID_10923 @UISID_8693
 Scenario: Progressa Activity Search
 	Given user is on Progressa Activity Report page
     Then Search Textbox displays "Search by Serial No. etc"
 
-@TestCaseID_10923 @UISID_8693
+@TestCaseID_10924 @UISID_8693
 Scenario: Progressa Activity Serial Number Search
 	Given user is on Progressa Activity Report page
 	When user enters "serial number" in Search textbox

@@ -332,7 +332,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 38
- testRunner.Given("user is on CVSM ACTIVITY REPORT page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user is on CVSM Activity Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 39
  testRunner.When("user enters \"ownership unit\" in Search textbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -437,12 +437,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Progressa Activity Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_10922")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10923")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
         public virtual void ProgressaActivitySearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_10922",
+                    "TestCaseID_10923",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Activity Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
@@ -478,12 +478,12 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Progressa Activity Serial Number Search")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_10923")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10924")]
         [NUnit.Framework.CategoryAttribute("UISID_8693")]
         public virtual void ProgressaActivitySerialNumberSearch()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_10923",
+                    "TestCaseID_10924",
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Activity Serial Number Search", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
