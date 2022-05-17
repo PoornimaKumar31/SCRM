@@ -8,18 +8,18 @@ namespace HillromAutomationFramework.SupportingCode
         /// <summary>
         /// Base URL of the application under test.
         /// </summary>
-        public static string BaseURL = Environment.GetEnvironmentVariable("BaseURL");
+        public static string BaseURL = "https://incubator.deviot.hillrom.com/apps/remotemanagement";//Environment.GetEnvironmentVariable("BaseURL");
 
 
         /// <summary>
         /// Version number of AUT
         /// </summary>
-        public static string VersionNumber = Environment.GetEnvironmentVariable("ApplicationVersionNumber");
+        public static string VersionNumber = "Version 6.3.0 ENG01";//Environment.GetEnvironmentVariable("ApplicationVersionNumber");
 
         /// <summary>
         /// Name of the browser to run tests.
         /// </summary>
-        public static string BrowserName = Environment.GetEnvironmentVariable("BrowserName");
+        public static string BrowserName = "Edge";//Environment.GetEnvironmentVariable("BrowserName");
 
         /// <summary>
         /// Current Working Directory i.e. //bin

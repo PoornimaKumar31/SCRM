@@ -132,6 +132,9 @@
   <data name="CSMActivityReportName" xml:space="preserve">
     <value>Activity_Status_Report_(CSM).csv</value>
   </data>
+  <data name="CVSMActivityReportName" xml:space="preserve">
+    <value>Activity_Status_Report_(CVSM).csv</value>
+  </data>
   <data name="LocationSearchText" xml:space="preserve">
     <value>Station1</value>
   </data>
