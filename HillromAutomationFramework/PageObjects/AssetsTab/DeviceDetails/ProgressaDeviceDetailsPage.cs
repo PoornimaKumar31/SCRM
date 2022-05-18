@@ -17,7 +17,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         {
             public const string ErrorCodeTabXPath = "//div[@class = 'mat-tab-list']/div/div[1]";
             public const string PreventiveMaintenanceTabXPath = "//div[@class = 'mat-tab-list']/div/div[2]";
-            public const string NoErrorReportedLabelID = "//*[@id='centrella-errorcode-details']/div[2]/span";
+            public const string NoErrorReportedLabelXPath = "//*[@id='centrella-errorcode-details']/div[2]/span";
             public const string ReferenceButtonID = "btn_reference";
             public const string SaverityColumnHeadingID = "severity";
             public const string TimeStampColumnHeadingID = "time_stamp";
@@ -27,7 +27,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
             public const string ErrorRowExpenstionArrowXPath = "//div[@id ='error0']/div/img";
 
             //Error popup
-            public const string ErrorPopupDialogBoxXPath = "//mat-dialog-container[contains(@id, 'mat-dialog')]";
+            public const string ErrorPopupDialogBoxID = "mat-dialog-0";
             public const string ErrorCodeTitleLabelID = "lbl_error_title";
             public const string ErrorCodeLabelID = "lbl_errorCode";
             public const string ErrorCodeValueID = "error_code";
@@ -73,7 +73,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
             //Preventive Maintenance Tab
             public const string ProgressaPreventiveMaintenanceLabelID = "lbl-prev-maintenance";
             public const string ProgressaRecentMaintenanceHistoryLabelID = "lbl-maintenance-history";
-            public const string ProgressaNoMaintenanceHistoryLabelID = "//span[contains(text(),'There is no maintenance history.')]";
+            public const string ProgressaNoMaintenanceHistoryLabelXPath = "//span[contains(text(),'There is no maintenance history.')]";
             public const string ProgressaServiceDatePickerControlID = "date_picker_icon";
             public const string ProgressaSaveButtonClassName = "saveButton";
             public const string ProgressaCancelButtonClassName = "cancelButton";
@@ -214,7 +214,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         [FindsBy(How = How.Id, Using = Locators.ProgressaRecentMaintenanceHistoryLabelID)]
         public IWebElement ProgressaRecentMaintenanceHistoryLabel { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.ProgressaNoMaintenanceHistoryLabelID)]
+        [FindsBy(How = How.XPath, Using = Locators.ProgressaNoMaintenanceHistoryLabelXPath)]
         public IWebElement ProgressaNoMaintenanceHistoryLabel { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.ProgressaServiceDatePickerControlID)]
@@ -338,7 +338,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         [FindsBy(How = How.Id, Using = Locators.ErrorSolutionLabelID)]
         public IWebElement ErrorSolutionLabel { get; set; }
 
-        [FindsBy(How = How.XPath, Using = Locators.ErrorPopupDialogBoxXPath)]
+        [FindsBy(How = How.Id, Using = Locators.ErrorPopupDialogBoxID)]
         public IWebElement ErrorPopupDialogBox { get; set; }
 
         [FindsBy(How = How.XPath, Using = Locators.ErrorRowExpenstionArrowXPath)]
@@ -369,7 +369,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab
         [FindsBy(How = How.XPath, Using = Locators.PreventiveMaintenanceTabXPath)]
         public IWebElement PreventiveMaintenanceTab { get; set; }
 
-        [FindsBy(How = How.Id, Using = Locators.NoErrorReportedLabelID)]
+        [FindsBy(How = How.XPath, Using = Locators.NoErrorReportedLabelXPath)]
         public IWebElement NoErrorReportedLabel { get; set; }
 
         public IWebElement RandomDate(IWebDriver driver)
