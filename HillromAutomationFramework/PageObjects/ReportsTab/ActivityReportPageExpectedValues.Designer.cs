@@ -98,11 +98,38 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PY673003.
+        /// </summary>
+        internal static string CentrellaSerialNumberSearchText {
+            get {
+                return ResourceManager.GetString("CentrellaSerialNumberSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Activity_Status_Report_(CSM).csv.
         /// </summary>
         internal static string CSMActivityReportName {
             get {
                 return ResourceManager.GetString("CSMActivityReportName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Station1.
+        /// </summary>
+        internal static string CVSMLocationSearchText {
+            get {
+                return ResourceManager.GetString("CVSMLocationSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 100020000001.
+        /// </summary>
+        internal static string CVSMSerialNumberSearchText {
+            get {
+                return ResourceManager.GetString("CVSMSerialNumberSearchText", resourceCulture);
             }
         }
         
@@ -121,6 +148,15 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         internal static string ProgressaActivityReportName {
             get {
                 return ResourceManager.GetString("ProgressaActivityReportName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PY685010.
+        /// </summary>
+        internal static string ProgressaSerialNumberSearchText {
+            get {
+                return ResourceManager.GetString("ProgressaSerialNumberSearchText", resourceCulture);
             }
         }
         

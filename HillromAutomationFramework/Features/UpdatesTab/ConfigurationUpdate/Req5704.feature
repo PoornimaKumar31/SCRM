@@ -68,7 +68,7 @@ Scenario: CSM Select Assets Elements Configuration
 	And Select devices indicator is highlighted
 	And Review action indicator is not highlighted
 	And "Item to push" label is displayed
-	And "Device type" label is displayed
+	And "Asset type" label is displayed
 	And "Update type" label is displayed
 	And "Config file to push" label is displayed
 	And "Destinations" label is displayed

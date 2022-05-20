@@ -237,23 +237,68 @@
   <data name="FirmwareUpgradeStatusRV700Label" xml:space="preserve">
     <value>FIRMWARE UPGRADE STATUS (RV700)</value>
   </data>
+  <data name="ProgressaDownloadFailureDefination" xml:space="preserve">
+    <value>A failure occurred when downloading the firmware. Attempt the firmware update process again.</value>
+  </data>
+  <data name="ProgressaDownloadingDefination" xml:space="preserve">
+    <value>The firmware is downloading on the bed.</value>
+  </data>
   <data name="ProgressaFirmwareStatusReportName" xml:space="preserve">
     <value>Firmware_Status_Report.csv</value>
   </data>
   <data name="ProgressaFirmwareVersionSearchText" xml:space="preserve">
     <value>22013101</value>
   </data>
+  <data name="ProgressaInconsistentSoftwareErrorDefination" xml:space="preserve">
+    <value>The downloaded firmware is inconsistent OR does not support Remote Service. Check the firmware release notes and attempt the firmware update process again.</value>
+  </data>
+  <data name="ProgressaInformationPopUpHeaderText" xml:space="preserve">
+    <value>Progressa Firmware Report Statuses:</value>
+  </data>
+  <data name="ProgressaInitializingDefination" xml:space="preserve">
+    <value>The bed is preparing the firmware update process after a user input is received on the bed side.</value>
+  </data>
+  <data name="ProgressaInitializingFailureDefination" xml:space="preserve">
+    <value>A failure occurred when initializing the firmware update, after a user input is received on the bed side. Check the firmware release notes and attempt the firmware update process again.</value>
+  </data>
   <data name="ProgressaLastDeployedSearchText" xml:space="preserve">
     <value>21121901</value>
+  </data>
+  <data name="ProgressaLocalUpgradePerformedDefination" xml:space="preserve">
+    <value>An update at the bedside was initiated. The remote firmware update is cancelled.</value>
   </data>
   <data name="ProgressaLocationSearchText" xml:space="preserve">
     <value>Batesville</value>
   </data>
+  <data name="ProgressaMountingCompleteDefination" xml:space="preserve">
+    <value>The firmware is mounted on the virtual USB drive to initiate update.</value>
+  </data>
+  <data name="ProgressaMountingDefination" xml:space="preserve">
+    <value>The firmware is mounting on the virtual USB drive to initiate update.</value>
+  </data>
+  <data name="ProgressaMountingFailureDefination" xml:space="preserve">
+    <value>A failure occurred when mounting the firmware to the board. Check the firmware release notes and attempt the firmware update process again.</value>
+  </data>
   <data name="ProgressaSerialNumberSearchText" xml:space="preserve">
     <value>PY685004</value>
   </data>
+  <data name="ProgressaStagingDefination" xml:space="preserve">
+    <value>The firmware is distributing to the boards.</value>
+  </data>
+  <data name="ProgressaStagingFailureDefination" xml:space="preserve">
+    <value>A failure occurred when distributing the firmware to the board. See DTC code of the failure for more troubleshooting instructions.</value>
+  </data>
   <data name="ProgressaStatusSearchText" xml:space="preserve">
     <value>Started</value>
+  </data>
+  <data name="ProgressaUpdatingWAMDefination" xml:space="preserve">
+    <value>The bed is updating the new firmware to WAM board.</value>
+  </data>
+  <data name="ProgressaUpgradeSuccessDefination" xml:space="preserve">
+    <value>The bed successfully updated to the new firmware.</value>
+  </data>
+  <data name="ProgressaWamUpdateFailureDefination" xml:space="preserve">
+    <value>A failure occurred when updating the firmware to the WAM board. Attempt the firmware update process again.</value>
   </data>
   <data name="RV700AvailableDefination" xml:space="preserve">
     <value>Firmware update has been deployed and is waiting for device to call home.</value>
