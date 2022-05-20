@@ -156,6 +156,9 @@
   <data name="PaginationPreviousIconEnabledSource" xml:space="preserve">
     <value>/icon_page_previous.svg</value>
   </data>
+  <data name="ProgressaDeviceName" xml:space="preserve">
+    <value>Progressa</value>
+  </data>
   <data name="RV700DeviceName" xml:space="preserve">
     <value>RetinaVue 700 (RV700)</value>
   </data>
