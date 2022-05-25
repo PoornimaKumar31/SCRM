@@ -141,6 +141,9 @@
   <data name="CVSMSerialNumberSearchText" xml:space="preserve">
     <value>100020000001</value>
   </data>
+  <data name="CVSMActivityReportName" xml:space="preserve">
+    <value>Activity_Status_Report_(CVSM).csv</value>
+  </data>
   <data name="LocationSearchText" xml:space="preserve">
     <value>Station1</value>
   </data>

@@ -116,6 +116,15 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Activity_Status_Report_(CVSM).csv.
+        /// </summary>
+        internal static string CVSMActivityReportName {
+            get {
+                return ResourceManager.GetString("CVSMActivityReportName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Station1.
         /// </summary>
         internal static string CVSMLocationSearchText {

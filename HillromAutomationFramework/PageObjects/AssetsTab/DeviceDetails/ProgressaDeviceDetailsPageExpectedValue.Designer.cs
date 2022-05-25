@@ -22,14 +22,14 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CentrellaDeviceDetailsPageExpectedValue {
+    internal class ProgressaDeviceDetailsPageExpectedValue {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal CentrellaDeviceDetailsPageExpectedValue() {
+        internal ProgressaDeviceDetailsPageExpectedValue() {
         }
         
         /// <summary>
@@ -39,8 +39,8 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails.CentrellaDeviceDet" +
-                            "ailsPageExpectedValue", typeof(CentrellaDeviceDetailsPageExpectedValue).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails.ProgressaDeviceDet" +
+                            "ailsPageExpectedValue", typeof(ProgressaDeviceDetailsPageExpectedValue).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,7 +62,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 193588_12.pdf.
+        ///   Looks up a localized string similar to 171748_3.pdf.
         /// </summary>
         internal static string ServiceManualPDFName {
             get {

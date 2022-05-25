@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\AssetsTab\DeviceDetail\Req7743 - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\AssetsTab\DeviceDetail\Req7733 - Copy.feature.cs" />
+    <SpecFlowObsoleteCodeBehindFiles Remove="Features\AssetsTab\DeviceDetail\Req7734 - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req7732 - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req8309 - Copy.feature.cs" />
     <SpecFlowObsoleteCodeBehindFiles Remove="Features\ReportsTab\Req9423 - Copy.feature.cs" />
@@ -69,6 +71,12 @@
     </Compile>
     <Compile Update="Features\AssetsTab\DeviceDetail\Req10362.feature.cs">
       <DependentUpon>Req10362.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\AssetsTab\DeviceDetail\Req10360.feature.cs">
+      <DependentUpon>Req10360.feature</DependentUpon>
+    </Compile>
+    <Compile Update="Features\AssetsTab\DeviceDetail\Req10361.feature.cs">
+      <DependentUpon>Req10361.feature</DependentUpon>
     </Compile>
     <Compile Update="Features\ReportsTab\Req10363.feature.cs">
       <DependentUpon>Req10363.feature</DependentUpon>
@@ -124,6 +132,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>CVSMDeviceDetailsPageExpectedValue.resx</DependentUpon>
+    </Compile>
+    <Compile Update="PageObjects\AssetsTab\DeviceDetails\ProgressaDeviceDetailsPageExpectedValue.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ProgressaDeviceDetailsPageExpectedValue.resx</DependentUpon>
     </Compile>
     <Compile Update="PageObjects\AssetsTab\DeviceDetails\RV700DeviceDetailsPageExpectedValue.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -225,6 +238,10 @@
       <LastGenOutput>CentrellaDeviceDetailspageExpectedValue.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="PageObjects\AssetsTab\DeviceDetails\ProgressaDeviceDetailsPageExpectedValue.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProgressaDeviceDetailsPageExpectedValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="PageObjects\AssetsTab\PreventiveMaintenance\PreventiveMaintenancePageExpectedValues.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PreventiveMaintenancePageExpectedValues.Designer.cs</LastGenOutput>
@@ -313,6 +330,14 @@
 
   <ItemGroup>
     <SpecFlowFeatureFiles Update="Features\AssetsTab\DeviceDetail\Req10362.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\AssetsTab\DeviceDetail\Req10360.feature">
+      <Visible>$(UsingMicrosoftNETSdk)</Visible>
+      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
+    </SpecFlowFeatureFiles>
+    <SpecFlowFeatureFiles Update="Features\AssetsTab\DeviceDetail\Req10361.feature">
       <Visible>$(UsingMicrosoftNETSdk)</Visible>
       <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
     </SpecFlowFeatureFiles>

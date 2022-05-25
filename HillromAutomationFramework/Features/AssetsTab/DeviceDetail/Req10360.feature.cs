@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace HillromAutomationFramework.Features.ReportsTab
+namespace HillromAutomationFramework.Features.AssetsTab.DeviceDetail
 {
     using TechTalk.SpecFlow;
     using System;
@@ -20,27 +20,25 @@ namespace HillromAutomationFramework.Features.ReportsTab
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Software Requirement 5719")]
-    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_5719")]
-    public partial class SoftwareRequirement5719Feature
+    [NUnit.Framework.DescriptionAttribute("Software Requirement 10360")]
+    [NUnit.Framework.CategoryAttribute("SoftwareRequirementID_10360")]
+    public partial class SoftwareRequirement10360Feature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private string[] _featureTags = new string[] {
-                "SoftwareRequirementID_5719"};
+                "SoftwareRequirementID_10360"};
         
-#line 1 "Req5719.feature"
+#line 1 "Req10360.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/ReportsTab", "Software Requirement 5719", "\tThe Customer Portal shall have a feature for downloading the following report as" +
-                    " a csv formatted file:\t\r\n\tCSM Configuration Status report\r\n\tCSM Firmware Status " +
-                    "report\r\n\tCSM Activity report\r\n\tRV700 Firmware Status report", ProgrammingLanguage.CSharp, new string[] {
-                        "SoftwareRequirementID_5719"});
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features/AssetsTab/DeviceDetail", "Software Requirement 10360", "\tThe Customer Portal shall display errors reported from Progressa bed.", ProgrammingLanguage.CSharp, new string[] {
+                        "SoftwareRequirementID_10360"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -79,17 +77,17 @@ namespace HillromAutomationFramework.Features.ReportsTab
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Configuration Status Report Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9401")]
-        [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void CSMConfigurationStatusReportDownload()
+        [NUnit.Framework.DescriptionAttribute("Progressa Asset List Status Column")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10884")]
+        [NUnit.Framework.CategoryAttribute("UISID_8666")]
+        public virtual void ProgressaAssetListStatusColumn()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9401",
-                    "UISID_8685"};
+                    "TestCaseID_10884",
+                    "UISID_8666"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Status Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 10
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Asset List Status Column", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -109,31 +107,33 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 11
- testRunner.Given("user is on \"CSM CONFIGURATION UPDATE STATUS\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.Given("user is on Asset List for an organization with Progressa devices", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 12
- testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+ testRunner.Then("an error icon is displayed in the \"Status\" column for bed with serial number \"PY6" +
+                        "85008\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 13
- testRunner.Then("\"Configuration Update Status\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 9
+ testRunner.And("an error icon is not displayed in the \"Status\" column for bed with serial number " +
+                        "\"PY685010\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Firmware Status Report Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9402")]
-        [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void CSMFirmwareStatusReportDownload()
+        [NUnit.Framework.DescriptionAttribute("Progressa Asset Details Error Tab No Errors")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10885")]
+        [NUnit.Framework.CategoryAttribute("UISID_9816")]
+        public virtual void ProgressaAssetDetailsErrorTabNoErrors()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9402",
-                    "UISID_8685"};
+                    "TestCaseID_10885",
+                    "UISID_9816"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Firmware Status Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 16
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Asset Details Error Tab No Errors", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -153,75 +153,84 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 17
- testRunner.Given("user is on \"CSM FIRMWARE UPGRADE STATUS\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+ testRunner.Given("user is on device details page for Progressa Serial number \"PY685010\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+#line 14
+ testRunner.Then("\"No errors reported.\" is displayed in Error codes tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Progressa Asset Details Error Tab Table")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10886")]
+        [NUnit.Framework.CategoryAttribute("UISID_9816")]
+        public virtual void ProgressaAssetDetailsErrorTabTable()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_10886",
+                    "UISID_9816"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Asset Details Error Tab Table", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 17
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
 #line 18
- testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("user is on device details page for Progressa Serial number \"PY685008\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 19
- testRunner.Then("\"Firmware Status\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("user clicks Error codes tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CSM Activity Report Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9403")]
-        [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void CSMActivityReportDownload()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9403",
-                    "UISID_8685"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Activity Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 20
+ testRunner.Then("Reference button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 21
+ testRunner.And("\"Severity\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 22
-this.ScenarioInitialize(scenarioInfo);
+ testRunner.And("\"Timestamp\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
 #line 23
- testRunner.Given("user is on \"CSM ACTIVITY REPORT\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.And("\"Code\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 24
- testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 25
- testRunner.Then("\"Activity\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("\"Description\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("RV700 Firmware Status Report Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_9404")]
-        [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void RV700FirmwareStatusReportDownload()
+        [NUnit.Framework.DescriptionAttribute("Progressa Asset Details Error Tab Table Columns")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10887")]
+        [NUnit.Framework.CategoryAttribute("UISID_9816")]
+        public virtual void ProgressaAssetDetailsErrorTabTableColumns()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_9404",
-                    "UISID_8685"};
+                    "TestCaseID_10887",
+                    "UISID_9816"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RV700 Firmware Status Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 28
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Asset Details Error Tab Table Columns", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 27
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -241,58 +250,23 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
+#line 28
+ testRunner.Given("user is on device details page for Progressa Serial number \"PY685008\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
 #line 29
- testRunner.Given("user is on \"RV700 FIRMWARE UPGRADE STATUS\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("user clicks Error codes tab", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 30
- testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("\"Severity\" label is in column 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 31
- testRunner.Then("\"Firmware Status\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("\"Timestamp\" label is in column 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("CVSM Activity Report Download")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_10926")]
-        [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void CVSMActivityReportDownload()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "TestCaseID_10926",
-                    "UISID_8685"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CVSM Activity Report Download", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 34
-this.ScenarioInitialize(scenarioInfo);
+#line 32
+ testRunner.And("\"Code\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 35
- testRunner.Given("user is on \"CVSM ACTIVITY REPORT\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 36
- testRunner.When("user clicks Download button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 37
- testRunner.Then("\"Activity\" Report is downloaded as csv file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
+ testRunner.And("\"Description\" label is in column 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
