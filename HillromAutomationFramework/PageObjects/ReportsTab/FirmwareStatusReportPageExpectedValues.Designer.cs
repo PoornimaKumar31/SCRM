@@ -422,6 +422,24 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A failure occurred when downloading the firmware. Attempt the firmware update process again..
+        /// </summary>
+        internal static string ProgressaDownloadFailureDefination {
+            get {
+                return ResourceManager.GetString("ProgressaDownloadFailureDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The firmware is downloading on the bed..
+        /// </summary>
+        internal static string ProgressaDownloadingDefination {
+            get {
+                return ResourceManager.GetString("ProgressaDownloadingDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firmware_Status_Report.csv.
         /// </summary>
         internal static string ProgressaFirmwareStatusReportName {
@@ -440,11 +458,56 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The downloaded firmware is inconsistent OR does not support Remote Service. Check the firmware release notes and attempt the firmware update process again..
+        /// </summary>
+        internal static string ProgressaInconsistentSoftwareErrorDefination {
+            get {
+                return ResourceManager.GetString("ProgressaInconsistentSoftwareErrorDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Progressa Firmware Report Statuses:.
+        /// </summary>
+        internal static string ProgressaInformationPopUpHeaderText {
+            get {
+                return ResourceManager.GetString("ProgressaInformationPopUpHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bed is preparing the firmware update process after a user input is received on the bed side..
+        /// </summary>
+        internal static string ProgressaInitializingDefination {
+            get {
+                return ResourceManager.GetString("ProgressaInitializingDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A failure occurred when initializing the firmware update, after a user input is received on the bed side. Check the firmware release notes and attempt the firmware update process again..
+        /// </summary>
+        internal static string ProgressaInitializingFailureDefination {
+            get {
+                return ResourceManager.GetString("ProgressaInitializingFailureDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 21121901.
         /// </summary>
         internal static string ProgressaLastDeployedSearchText {
             get {
                 return ResourceManager.GetString("ProgressaLastDeployedSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An update at the bedside was initiated. The remote firmware update is cancelled..
+        /// </summary>
+        internal static string ProgressaLocalUpgradePerformedDefination {
+            get {
+                return ResourceManager.GetString("ProgressaLocalUpgradePerformedDefination", resourceCulture);
             }
         }
         
@@ -458,6 +521,33 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The firmware is mounted on the virtual USB drive to initiate update..
+        /// </summary>
+        internal static string ProgressaMountingCompleteDefination {
+            get {
+                return ResourceManager.GetString("ProgressaMountingCompleteDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The firmware is mounting on the virtual USB drive to initiate update..
+        /// </summary>
+        internal static string ProgressaMountingDefination {
+            get {
+                return ResourceManager.GetString("ProgressaMountingDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A failure occurred when mounting the firmware to the board. Check the firmware release notes and attempt the firmware update process again..
+        /// </summary>
+        internal static string ProgressaMountingFailureDefination {
+            get {
+                return ResourceManager.GetString("ProgressaMountingFailureDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to PY685004.
         /// </summary>
         internal static string ProgressaSerialNumberSearchText {
@@ -467,11 +557,56 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The firmware is distributing to the boards..
+        /// </summary>
+        internal static string ProgressaStagingDefination {
+            get {
+                return ResourceManager.GetString("ProgressaStagingDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A failure occurred when distributing the firmware to the board. See DTC code of the failure for more troubleshooting instructions..
+        /// </summary>
+        internal static string ProgressaStagingFailureDefination {
+            get {
+                return ResourceManager.GetString("ProgressaStagingFailureDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Started.
         /// </summary>
         internal static string ProgressaStatusSearchText {
             get {
                 return ResourceManager.GetString("ProgressaStatusSearchText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bed is updating the new firmware to WAM board..
+        /// </summary>
+        internal static string ProgressaUpdatingWAMDefination {
+            get {
+                return ResourceManager.GetString("ProgressaUpdatingWAMDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bed successfully updated to the new firmware..
+        /// </summary>
+        internal static string ProgressaUpgradeSuccessDefination {
+            get {
+                return ResourceManager.GetString("ProgressaUpgradeSuccessDefination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A failure occurred when updating the firmware to the WAM board. Attempt the firmware update process again..
+        /// </summary>
+        internal static string ProgressaWamUpdateFailureDefination {
+            get {
+                return ResourceManager.GetString("ProgressaWamUpdateFailureDefination", resourceCulture);
             }
         }
         

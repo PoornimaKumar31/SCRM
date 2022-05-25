@@ -450,16 +450,16 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Progressa Firmware Status Information Close")]
-        [NUnit.Framework.CategoryAttribute("TestCaseID_10878")]
+        [NUnit.Framework.DescriptionAttribute("Progressa Firmware Status Information")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10877")]
         [NUnit.Framework.CategoryAttribute("UISID_8685")]
-        public virtual void ProgressaFirmwareStatusInformationClose()
+        public virtual void ProgressaFirmwareStatusInformation()
         {
             string[] tagsOfScenario = new string[] {
-                    "TestCaseID_10878",
+                    "TestCaseID_10877",
                     "UISID_8685"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Firmware Status Information Close", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Firmware Status Information", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 78
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -484,15 +484,107 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("user is on Progressa Firmware Upgrade Status report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 80
- testRunner.And("Progressa Firmware Report Statuses dialog is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("user clicks Information button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 81
- testRunner.When("user clicks Close button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("Progressa Firmware Report Statuses dialog is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 82
- testRunner.Then("Progressa Firmware Report Statuses dialog closes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Progressa Firmware Report Statuses header is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 83
+ testRunner.And("\"Downloading\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 84
+ testRunner.And("\"Mounting\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 85
+ testRunner.And("\"Mounting complete\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 86
+ testRunner.And("\"Initializing\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 87
+ testRunner.And("\"Staging\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 88
+ testRunner.And("\"Updating WAM\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 89
+ testRunner.And("\"Upgrade Success\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 90
+ testRunner.And("\"Local Upgrade Performed\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 91
+ testRunner.And("\"Download Failure\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 92
+ testRunner.And("\"Inconsistent Software Error\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 93
+ testRunner.And("\"Initializing Failure\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 94
+ testRunner.And("\"Mounting Failure\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 95
+ testRunner.And("\"Staging Failure\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 96
+ testRunner.And("\"WAM Update Failure\" status and definition of Progressa is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 97
+ testRunner.And("Close button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Progressa Firmware Status Information Close")]
+        [NUnit.Framework.CategoryAttribute("TestCaseID_10878")]
+        [NUnit.Framework.CategoryAttribute("UISID_8685")]
+        public virtual void ProgressaFirmwareStatusInformationClose()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "TestCaseID_10878",
+                    "UISID_8685"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Progressa Firmware Status Information Close", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 100
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 101
+ testRunner.Given("user is on Progressa Firmware Upgrade Status report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 102
+ testRunner.And("Progressa Firmware Report Statuses dialog is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 103
+ testRunner.When("user clicks Close button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 104
+ testRunner.Then("Progressa Firmware Report Statuses dialog closes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 105
  testRunner.And("Progressa Firmware Upgrade Status page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

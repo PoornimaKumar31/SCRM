@@ -225,10 +225,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Summary \"Radio RSSI\" is \"-68\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
- testRunner.And("Summary \"Location\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Summary \"Facility\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 37
- testRunner.And("Summary \"Location\" is \"not set\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Summary \"Facility\" is \"Batesville\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 38
  testRunner.And("Summary \"Room/bed/presence\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

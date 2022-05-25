@@ -44,7 +44,7 @@ Scenario: CSM Select Assets Elements Upgrade
 	And Select assets indicator is highlighted
 	And Review action indicator is not highlighted
 	And "Item to push" label is displayed
-	And "Device type" label is displayed
+	And "Asset type" label is displayed
 	And "Update type" label is displayed
 	And "Upgrade file to push" label is displayed
 	And "Destinations" label is displayed

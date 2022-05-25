@@ -8,7 +8,7 @@ Scenario: Centrella Firmware Upgrade Status Report Page Elements
 	And Centrella Asset type is selected
 	And Firmware Status Report type is selected
 	When user clicks Get report button
-	Then Firmware Upgrade Status Report (Centrella) label is displayed
+	Then Firmware Upgrade Status (Centrella) label is displayed
 	And Print button is displayed
 	And Information button is displayed
 	And Download button is displayed
@@ -23,7 +23,7 @@ Scenario: Centrella Firmware Upgrade Status Report Page Table Elements
 	Given user is on Centrella Firmware Upgrade Status Report page
 	Then "Serial number" column heading is displayed
 	And "Firmware version" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Status" column heading is displayed
 	And "Last deployed" column heading is displayed
 	And "Last connected" column heading is displayed
@@ -33,7 +33,7 @@ Scenario: Centrella Firmware Upgrade Status Report Page Table Elements Columns
 	Given user is on Centrella Firmware Upgrade Status Report page
 	Then "Serial number" label is in column 1
 	And "Firmware version" label is in column 2
-	And "Location" label is in column 3
+	And "Ownership" label is in column 3
 	And "Status" label is in column 4
 	And "Last deployed" label is in column 5
 	And "Last connected" label is in column 6
