@@ -57,6 +57,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
                 case "centrella":
                     landingPage.PSSServiceOrganizationFacilityBatesville.ClickWebElement(_driver);
                     break;
+                case "progressa":
+                    landingPage.PSSServiceOrganizationFacilityBatesville.ClickWebElement(_driver);
+                    break;
                 default: Assert.Fail("Invalid device name " + deviceName);
                     break;
             }
@@ -87,6 +90,9 @@ namespace HillromAutomationFramework.Steps.AssetsTab
                     break;
                 case "centrella":
                     Device = MainPageExpectedValue.CentrellaDeviceName;
+                    break;
+                case "progressa":
+                    Device = MainPageExpectedValue.ProgressaDeviceName;
                     break;
                 default:
                     Assert.Fail("Invalid device name " + deviceName);
