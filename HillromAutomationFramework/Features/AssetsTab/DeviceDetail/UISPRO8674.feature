@@ -20,7 +20,7 @@ Scenario: AP Mapping List Elements Manager User
 	Then Locate Asset pop-up dialog is displayed
 	And "Source" label and value is "Source : Access Point"
 	And "MAC address" label and value is "MAC address : 28:c6:8e:78:18:2c"
-	And "RSSI" label and value is "RSSI : -61"
+	And "RSSI" label and value is "RSSI : -66"
 	And Edit AP Mapping button is displayed
 	And Close button is displayed
 

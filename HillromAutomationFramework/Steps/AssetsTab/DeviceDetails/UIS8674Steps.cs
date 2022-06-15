@@ -510,7 +510,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
                 {
                     case "campus":
                         _progressaDeviceDetailsPage.ProgressaAPMappingCampusTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                        ActualValue = _centrellaDeviceDetailsPage.APMappingCampusTextBox.GetAttribute("value");
+                        ActualValue = _progressaDeviceDetailsPage.ProgressaAPMappingCampusTextBox.GetAttribute("value");
                         break;
 
                     case "building":
@@ -520,12 +520,12 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
 
                     case "floor":
                         _progressaDeviceDetailsPage.ProgressaAPMappingFloorTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                        ActualValue = _centrellaDeviceDetailsPage.APMappingFloorTextBox.GetAttribute("value");
+                        ActualValue = _progressaDeviceDetailsPage.ProgressaAPMappingFloorTextBox.GetAttribute("value");
                         break;
 
                     case "ap location":
                         _progressaDeviceDetailsPage.ProgressaAPMappingAPLocationTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                        ActualValue = _centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetAttribute("value");
+                        ActualValue = _progressaDeviceDetailsPage.ProgressaAPMappingAPLocationTextBox.GetAttribute("value");
                         break;
 
                     default:

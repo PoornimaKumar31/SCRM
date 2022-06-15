@@ -182,7 +182,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"MAC address\" label and value is \"MAC address : 28:c6:8e:78:18:2c\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
- testRunner.And("\"RSSI\" label and value is \"RSSI : -61\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"RSSI\" label and value is \"RSSI : -66\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 24
  testRunner.And("Edit AP Mapping button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
