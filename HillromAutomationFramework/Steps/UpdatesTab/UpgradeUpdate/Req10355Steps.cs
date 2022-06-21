@@ -236,7 +236,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
                     label = _updateSelectDevicesPage.ItemtoPush;
                     ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.ItemToPushLabelText;
                     break;
-                case "device type":
+                case "asset type":
                     label = _updateSelectDevicesPage.DeviceTypeLabel;
                     ExpectedLabelName = UpdateSelectDevicesPageExpectedValues.ProgressaDeviceName;
                     break;
