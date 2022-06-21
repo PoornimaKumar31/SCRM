@@ -78,7 +78,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("progressa"))
             {
                 _wait.Until(ExplicitWait.ElementIsVisible(By.XPath(ProgressaDeviceDetailsPage.Locators.ProgressaAPMappingLocateAssetPopupDialogXPath)));
-                _centrellaDeviceDetailsPage.APMappingLocateAssetPopupDialog.GetElementVisibility().Should().BeTrue("Dialog box is not displayed");
+                _progressaDeviceDetailsPage.ProgressaAPMappingLocateAssetPopupDialog.GetElementVisibility().Should().BeTrue("Dialog box is not displayed");
             }
         }
 
@@ -416,17 +416,17 @@ namespace HillromAutomationFramework.Steps.AssetsTab.DeviceDetails
 
                     case "building":
                         _progressaDeviceDetailsPage.ProgressaAPMappingBuildingTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                        ActualValue = _centrellaDeviceDetailsPage.APMappingBuildingTextBox.GetAttribute("placeholder");
+                        ActualValue = _progressaDeviceDetailsPage.ProgressaAPMappingBuildingTextBox.GetAttribute("placeholder");
                         break;
 
                     case "floor":
                         _progressaDeviceDetailsPage.ProgressaAPMappingFloorTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                        ActualValue = _centrellaDeviceDetailsPage.APMappingFloorTextBox.GetAttribute("placeholder");
+                        ActualValue = _progressaDeviceDetailsPage.ProgressaAPMappingFloorTextBox.GetAttribute("placeholder");
                         break;
 
                     case "ap location":
                         _progressaDeviceDetailsPage.ProgressaAPMappingAPLocationTextBox.GetElementVisibility().Should().BeTrue(textBoxName + " is not displayed");
-                        ActualValue = _centrellaDeviceDetailsPage.APMappingAPLocationTextBox.GetAttribute("placeholder");
+                        ActualValue = _progressaDeviceDetailsPage.ProgressaAPMappingAPLocationTextBox.GetAttribute("placeholder");
                         break;
 
                     default:
