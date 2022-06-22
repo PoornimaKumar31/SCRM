@@ -123,7 +123,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks Get report button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.Then("Firmware Upgrade Status Report (Centrella) label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Firmware Upgrade Status (Centrella) label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
  testRunner.And("Print button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -198,7 +198,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Firmware version\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
- testRunner.And("\"Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 27
  testRunner.And("\"Status\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -258,7 +258,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Firmware version\" label is in column 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
- testRunner.And("\"Location\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 37
  testRunner.And("\"Status\" label is in column 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

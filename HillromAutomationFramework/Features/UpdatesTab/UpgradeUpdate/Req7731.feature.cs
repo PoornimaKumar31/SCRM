@@ -246,7 +246,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Item to push\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 34
- testRunner.And("\"Device type\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Asset type\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 35
  testRunner.And("\"Update type\" label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -329,7 +329,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Serial number\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 53
- testRunner.And("\"Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 54
  testRunner.And("\"Last Files Deployed\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -388,7 +388,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Serial number\" label is in column 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 64
- testRunner.And("\"Location\" label is in column 6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" label is in column 6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 65
  testRunner.And("\"Last Files Deployed\" label is in column 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

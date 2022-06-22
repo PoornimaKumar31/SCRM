@@ -68,7 +68,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _reportsPage.GetReportButton.Click();
         }
 
-        [Then(@"Firmware Upgrade Status Report \(Centrella\) label is displayed")]
+        [Then(@"Firmware Upgrade Status \(Centrella\) label is displayed")]
         public void ThenFirmwareUpgradeStatusReportCentrellaLabelIsDisplayed()
         {
             (_firmwareStatusPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Firmware upgrade status report label should be displayed in Firmware Status Report page");
@@ -146,7 +146,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     column = _firmwareStatusPage.FirmwareVerionHeading;
                     break;
 
-                case "location":
+                case "ownership":
                     column = _firmwareStatusPage.LocationHeading;
                     break;
 

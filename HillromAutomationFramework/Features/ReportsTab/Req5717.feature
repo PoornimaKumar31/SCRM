@@ -12,7 +12,7 @@ Scenario: CSM Report Type Dropdown Content
 	Given user is on Reports page
 	And CSM Asset type is selected
 	When user clicks report type dropdown
-	Then Report type dropdown displays "Usage, Firmware version, CFG Update Status, Firmware status, Activity, Access Point Locations"
+	Then Report type dropdown displays "Usage, Activity, Maintenance, Firmware Status, Firmware Version, CFG Update Status, Access Point Locations"
 
 @TestCaseID_9373 @UISID_8684 @UISID_8686
 Scenario: CSM Usage Report Elements

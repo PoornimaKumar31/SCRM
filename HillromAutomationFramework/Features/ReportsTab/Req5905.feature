@@ -29,11 +29,11 @@ Scenario: Centrella Firmware Status Status Search
 	Then devices with matching "status" are displayed
 
 @TestCaseID_10026 @UISID_8685 @UISID_8692
-Scenario: Centrella Firmware Status Location Search
+Scenario: Centrella Firmware Status Ownership Search
 	Given user is on Centrella Firmware Upgrade Status Report page
-	When user enters "location" in Search textbox
+	When user enters "ownership" in Search textbox
 	And presses Enter
-	Then devices with matching "location" are displayed
+	Then devices with matching "ownership" are displayed
 
 @TestCaseID_10027 @UISID_8685 @UISID_8692
 Scenario: Centrella Firmware Status Last Deployed Search
@@ -69,11 +69,11 @@ Scenario: CSM Firmware Status Status Search
 	Then devices with matching "status" are displayed
 
 @TestCaseID_10032 @UISID_8685 @UISID_8692
-Scenario: CSM Firmware Status Location Search
+Scenario: CSM Firmware Status Ownership Search
 	Given user is on CSM Firmware Upgrade Status Report page
-	When user enters "location" in Search textbox
+	When user enters "ownership" in Search textbox
 	And presses Enter
-	Then devices with matching "location" are displayed
+	Then devices with matching "ownership" are displayed
 
 @TestCaseID_10033 @UISID_8685 @UISID_8692
 Scenario: CSM Firmware Status Last Deployed Search
@@ -108,8 +108,8 @@ Scenario: Progressa Firmware Status Status Search
 	And presses Enter
 	Then devices with matching "status" are displayed
 
-@TestCaseID_100913 @UISID_8685 @UISID_8692
-Scenario: Progressa Firmware Status Location Search
+@TestCaseID_10913 @UISID_8685 @UISID_8692
+Scenario: Progressa Firmware Status Ownership Search
 	Given user is on Progressa Firmware Upgrade Status Report page
 	When user enters "ownership" in Search textbox
 	And presses Enter
@@ -121,6 +121,3 @@ Scenario: Progressa Firmware Status Last Deployed Search
 	When user enters "last deployed" in Search textbox
 	And presses Enter
 	Then devices with matching "last deployed" are displayed
-
-
-

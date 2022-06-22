@@ -368,5 +368,78 @@ namespace HillromAutomationFramework.Steps.DeviceDetails
             (_firmwareStatusPage.InformationButton.GetElementVisibility()).Should().BeTrue("when user clicks on close button in Progressa Firmware Report Statuses dialog,Then Progressa firmware upgrade status page should be displayed");
         }
 
+        [Then(@"Progressa Firmware Report Statuses dialog is displayed")]
+        public void ThenProgresaFirmwareReportStatusesDialogIsDisplayed()
+        {
+            _wait.Until(ExplicitWait.ElementIsVisible(By.Id(FirmwareStatusReportPage.Locators.InformationPopUpId)));
+            (_firmwareStatusPage.InformationPopUp.GetElementVisibility()).Should().BeTrue("Centrella Firmware Report Statuses dialog should be displayed When user clicks information button on Centrella Firmware Upgrade Status report page.");
+        }
+
+        [Then(@"Progressa Firmware Report Statuses header is displayed")]
+        public void ThenProgressaFirmwareReportStatusesHeaderIsDisplayed()
+        {
+            (_firmwareStatusPage.InformationPopUpHeader.GetElementVisibility()).Should().BeTrue(because: "Progressa firmware report header should be displayed in Progressa Firmware Report Statuses dialog");
+            (_firmwareStatusPage.InformationPopUpHeader.Text).Should().BeEquivalentTo(FirmwareStatusReportPageExpectedValues.ProgressaInformationPopUpHeaderText, because: "Progressa firmware report header should match with the expected value.");
+        }
+
+        [Then(@"""(.*)"" status and definition of Progressa is displayed")]
+        public void ThenStatusAndDefinitionOfProgressaIsDisplayed(string statusTitle)
+        {
+            //status and defination
+            string statusTabledata = _firmwareStatusPage.InformationPopUpData.Text;
+            statusDefinationPairs = _firmwareStatusPage.GetstatusTable(statusTabledata);
+            string ActualDefination = statusDefinationPairs[statusTitle];
+            string ExpectedDefinaton = null;
+            switch (statusTitle.ToLower().Trim())
+            {
+                case "downloading":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaDownloadingDefination;
+                    break;
+                case "mounting":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaMountingDefination;
+                    break;
+                case "mounting complete":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaMountingCompleteDefination;
+                    break;
+                case "initializing":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaInitializingDefination;
+                    break;
+                case "staging":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaStagingDefination;
+                    break;
+                case "updating wam":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaUpdatingWAMDefination;
+                    break;
+                case "upgrade success":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaUpgradeSuccessDefination;
+                    break;
+                case "local upgrade performed":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaLocalUpgradePerformedDefination;
+                    break;
+                case "download failure":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaDownloadFailureDefination;
+                    break;
+                case "inconsistent software error":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaInconsistentSoftwareErrorDefination;
+                    break;
+                case "initializing failure":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaInitializingFailureDefination;
+                    break;
+                case "mounting failure":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaMountingFailureDefination;
+                    break;
+                case "staging failure":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaStagingFailureDefination;
+                    break;
+                case "wam update failure":
+                    ExpectedDefinaton = FirmwareStatusReportPageExpectedValues.ProgressaWamUpdateFailureDefination;
+                    break;
+                default:
+                    Assert.Fail(statusTitle + " does not exist in test data");
+                    break;
+            }
+            ActualDefination.Should().BeEquivalentTo(ExpectedDefinaton, because: statusTitle + " defination should match with expected text");
+        }
+
     }
 }

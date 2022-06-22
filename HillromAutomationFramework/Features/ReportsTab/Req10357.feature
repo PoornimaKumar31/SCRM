@@ -8,7 +8,7 @@ Feature: Software Requirement 10357
 	And Progressa Asset type is selected
 	And Firmware Status Report type is selected
 	When user clicks Get report button
-	Then Firmware Upgrade Status Report (Progressa) label is displayed
+	Then Firmware Upgrade Status (Progressa) label is displayed
 	And Print button is displayed
 	And Information button is displayed
 	And Download button is displayed

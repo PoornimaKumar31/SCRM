@@ -9,7 +9,7 @@ Scenario: CVSM Report Type Dropdown Content
 	Given user is on Reports page
 	And CVSM Asset type is selected in Asset type dropdown
 	When user clicks report type dropdown
-	Then Report type dropdown displays "Usage, Firmware Version, Access Point Locations"
+	Then Report type dropdown displays "Usage, Activity, Maintenance, Firmware version, Access Point Locations"
 
 @TestCaseID_9365 @UISID_8684 @UISID_8685 @UISID_8686
 Scenario: CVSM Usage Report Elements

@@ -29,3 +29,9 @@ Scenario: RV700 Firmware Status Report Download
 	Given user is on "RV700 FIRMWARE UPGRADE STATUS" page
 	When user clicks Download button
 	Then "Firmware Status" Report is downloaded as csv file
+
+@TestCaseID_10926 @UISID_8685
+Scenario: CVSM Activity Report Download
+	Given user is on "CVSM ACTIVITY REPORT" page
+	When user clicks Download button
+	Then "Activity" Report is downloaded as csv file

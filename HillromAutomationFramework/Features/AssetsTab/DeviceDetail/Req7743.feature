@@ -33,8 +33,8 @@ Scenario: Centrella Asset Data Summary
 	And Summary "Radio MAC address" is "98:84:E3:46:4E:5B"
 	And Summary "Radio RSSI" label is displayed
 	And Summary "Radio RSSI" is "-68"
-	And Summary "Location" label is displayed
-	And Summary "Location" is "not set"
+	And Summary "Facility" label is displayed
+	And Summary "Facility" is "Batesville"
 	And Summary "Room/bed/presence" label is displayed
 	And Summary "Room/bed/presence" is "Room 15 / Patient Absent"
 	And Summary "Firmware version" label is displayed

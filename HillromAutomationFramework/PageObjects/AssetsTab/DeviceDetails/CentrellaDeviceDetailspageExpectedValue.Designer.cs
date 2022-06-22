@@ -62,7 +62,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab.DeviceDetails {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 193588_11.pdf.
+        ///   Looks up a localized string similar to 193588_12.pdf.
         /// </summary>
         internal static string ServiceManualPDFName {
             get {

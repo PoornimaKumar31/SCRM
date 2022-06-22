@@ -80,6 +80,13 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.RV700DeviceName);
                     _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.FirmwareStatusReportType);
                     break;
+                case "cvsm activity report":
+                    _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+                    _wait.Until(ExplicitWait.ElementExists(By.Id(MainPage.Locators.DeviceListTableID)));
+                    _mainPage.ReportsTab.JavaSciptClick(_driver);
+                    _reportsPage.AssetTypeDDL.SelectDDL(ReportsPageExpectedValues.CVSMDeviceName);
+                    _reportsPage.ReportTypeDDL.SelectDDL(ReportsPageExpectedValues.ActivityReportType);
+                    break;
                 default:
                     Assert.Fail(reportName + " is a Invalid report type");
                     break;
@@ -114,8 +121,23 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     break;
 
                 case "activity":
-                    filename = ActivityReportPageExpectedValues.CSMActivityReportName;
+
+                    if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("csm activity report download"))
+                    {
+                        filename = ActivityReportPageExpectedValues.CSMActivityReportName;
+                    }
+                    else if (_scenarioContext.ScenarioInfo.Title.ToLower().Equals("cvsm activity report download"))
+                    {
+                        filename = ActivityReportPageExpectedValues.CVSMActivityReportName;
+                    }
+                    else
+                    {
+                        Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+                    }
                     break;
+
+                    //filename = ActivityReportPageExpectedValues.CSMActivityReportName;
+                    //break;
                 default: Assert.Fail(reportName + " is a invalid report name.");
                     break;
             }

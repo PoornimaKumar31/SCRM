@@ -68,7 +68,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             _reportsPage.GetReportButton.Click();
         }
 
-        [Then(@"Firmware Upgrade Status Report \(Progressa\) label is displayed")]
+        [Then(@"Firmware Upgrade Status \(Progressa\) label is displayed")]
         public void ThenFirmwareUpgradeStatusReportProgressaLabelIsDisplayed()
         {
             (_firmwareStatusPage.FirmwareReportTitle.GetElementVisibility()).Should().BeTrue("Firmware upgrade status report label should be displayed in Firmware Status Report page");
