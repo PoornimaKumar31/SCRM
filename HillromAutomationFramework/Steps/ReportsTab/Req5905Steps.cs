@@ -67,50 +67,28 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void WhenUserEntersInSearchTextbox(string searchType)
         {
             bool flag=false;
+            string searchText = null;
             //Setting the Flag based on the device
 
             //Centrella
-            if(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("centrella"))
-            {
-                flag = true;
-            }
-            //Progressa
-            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("progressa"))
-            {
-                flag = true;
-            }
-            //CSM
-            else if(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("csm"))
-            {
-                flag = false;
-            }
-            //if secnario does not belong to any device
-            else
-            {
-                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
-            }
-
-
-            string searchText = null;
-
-            if(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("centrella"))
+            if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("centrella"))
             {
                 switch (searchType.ToLower().Trim())
                 {
                     case "serial number":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaSerialNumberSearchText : FirmwareStatusReportPageExpectedValues.CSMSerialNumberSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.CentrellaSerialNumberSearchText;
                         break;
                     case "firmware version":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaFirmwareVersionSearchText : FirmwareStatusReportPageExpectedValues.CSMFirmwareVersionSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.CentrellaFirmwareVersionSearchText;
                         break;
                     case "status":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaStatusSearchText : FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.CentrellaStatusSearchText;
                         break;
                     case "ownership":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaLocationSearchText : FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.CentrellaLocationSearchText;
                         break;
                     case "last deployed":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaLastDeployedSearchText : FirmwareStatusReportPageExpectedValues.CSMLastDeployedSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.CentrellaLastDeployedSearchText;
                         break;
 
                     default:
@@ -118,24 +96,51 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         break;
                 }
             }
+            //csm
+            else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("csm"))
+            {
+                switch (searchType.ToLower().Trim())
+                {
+                    case "serial number":
+                        searchText = FirmwareStatusReportPageExpectedValues.CSMSerialNumberSearchText;
+                        break;
+                    case "firmware version":
+                        searchText = FirmwareStatusReportPageExpectedValues.CSMFirmwareVersionSearchText;
+                        break;
+                    case "status":
+                        searchText = FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
+                        break;
+                    case "ownership":
+                        searchText = FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
+                        break;
+                    case "last deployed":
+                        searchText = FirmwareStatusReportPageExpectedValues.CSMLastDeployedSearchText;
+                        break;
+
+                    default:
+                        Assert.Fail(searchType + " is a invalid search type.");
+                        break;
+                }
+            }
+            //Progressa
             else if (_scenarioContext.ScenarioInfo.Title.ToLower().Contains("progressa"))
             {
                 switch (searchType.ToLower().Trim())
                 {
                     case "serial number":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaSerialNumberSearchText : FirmwareStatusReportPageExpectedValues.CSMSerialNumberSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.ProgressaSerialNumberSearchText;
                         break;
                     case "firmware version":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaFirmwareVersionSearchText : FirmwareStatusReportPageExpectedValues.CSMFirmwareVersionSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.ProgressaFirmwareVersionSearchText;
                         break;
                     case "status":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaStatusSearchText : FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.ProgressaStatusSearchText;
                         break;
                     case "ownership":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaLocationSearchText : FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.ProgressaLocationSearchText;
                         break;
                     case "last deployed":
-                        searchText = flag ? FirmwareStatusReportPageExpectedValues.ProgressaLastDeployedSearchText : FirmwareStatusReportPageExpectedValues.CSMLastDeployedSearchText;
+                        searchText = FirmwareStatusReportPageExpectedValues.ProgressaLastDeployedSearchText;
                         break;
 
                     default:
@@ -143,9 +148,53 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         break;
                 }
             }
+            else
+            {
+                Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            }
+            
+            ////CSM
+            //else if(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("csm"))
+            //{
+            //    flag = false;
+            //}
+            //if secnario does not belong to any device
+            //else
+            //{
+            //    Assert.Fail(_scenarioContext.ScenarioInfo.Title + " does not have step defination for " + _scenarioContext.StepContext.StepInfo.Text);
+            //}
 
-            //Adding search text to scenario context
-            _scenarioContext.Add("searchText", searchText);
+
+           // string searchText = null;
+
+            //if*/(_scenarioContext.ScenarioInfo.Title.ToLower().Contains("centrella"))
+            //{
+                //switch (searchType.ToLower().Trim())
+                //{
+                //    case "serial number":
+                //        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaSerialNumberSearchText : FirmwareStatusReportPageExpectedValues.CSMSerialNumberSearchText;
+                //        break;
+                //    case "firmware version":
+                //        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaFirmwareVersionSearchText : FirmwareStatusReportPageExpectedValues.CSMFirmwareVersionSearchText;
+                //        break;
+                //    case "status":
+                //        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaStatusSearchText : FirmwareStatusReportPageExpectedValues.CSMStatusSearchText;
+                //        break;
+                //    case "ownership":
+                //        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaLocationSearchText : FirmwareStatusReportPageExpectedValues.CSMLocationSearchText;
+                //        break;
+                //    case "last deployed":
+                //        searchText = flag ? FirmwareStatusReportPageExpectedValues.CentrellaLastDeployedSearchText : FirmwareStatusReportPageExpectedValues.CSMLastDeployedSearchText;
+                //        break;
+
+                //    default:
+                //        Assert.Fail(searchType + " is a invalid search type.");
+                //        break;
+                //}
+            //}
+            
+         //Adding search text to scenario context
+        _scenarioContext.Add("searchText", searchText);
 
             //Enter the text in search box
             _firmwareStatusPage.SearchBox.EnterText(searchText);

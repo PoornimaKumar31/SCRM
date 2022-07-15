@@ -462,7 +462,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ConfigurationUpdate
                     case "serial number":
                         HeadingWebElement = _updateSelectDevicePage.SerialNoHeading;
                         break;
-                    case "location":
+                    case "ownership":
                         HeadingWebElement = _updateSelectDevicePage.LocationHeading;
                         break;
                     case "last files deployed":

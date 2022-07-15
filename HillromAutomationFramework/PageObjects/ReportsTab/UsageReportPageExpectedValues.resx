@@ -129,8 +129,8 @@
   <data name="NotSetUnitCVSMDevicesSerialNumber" xml:space="preserve">
     <value>103001220212,100085374016,100073764115,103001220213,103001220216,103001220214,100009382218</value>
   </data>
-  <data name="NumberofDevicesOnEachFloorLabelText" xml:space="preserve">
-    <value>NUMBER OF DEVICES ON EACH FLOOR</value>
+  <data name="NumberOfAssetsByUnitLabelText" xml:space="preserve">
+    <value>NUMBER OF ASSETS BY UNIT</value>
   </data>
   <data name="ReportTiltleHeaderCSM" xml:space="preserve">
     <value>ASSET USAGE REPORT (CSM)</value>

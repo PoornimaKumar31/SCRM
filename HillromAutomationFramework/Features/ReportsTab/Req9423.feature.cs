@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks report type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("Report type dropdown displays \"Activity, Maintenance, Firmware Status, Firmware V" +
+ testRunner.Then("Report type dropdown displays \"Activity, CMMS Report, Firmware Status, Firmware V" +
                         "ersion, Access Point Locations\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

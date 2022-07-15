@@ -49,7 +49,7 @@ Scenario: RV700 Firmware Upgrade Status Report Page Table Elements
 	Given user is on RV700 Firmware Upgrade Status Report page
 	Then "Serial number" column heading is displayed
 	And "Firmware version" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Status" column heading is displayed
 	And "Last deployed" column heading is displayed
 	And "Last connected" column heading is displayed
@@ -59,7 +59,7 @@ Scenario: RV700 Firmware Upgrade Status Report Page Table Elements Columns
 	Given user is on RV700 Firmware Upgrade Status Report page
 	Then "Serial number" label is in column 1
 	And "Firmware version" label is in column 2
-	And "Location" label is in column 3
+	And "Ownership" label is in column 3
 	And "Status" label is in column 4
 	And "Last deployed" label is in column 5
 	And "Last connected" label is in column 6

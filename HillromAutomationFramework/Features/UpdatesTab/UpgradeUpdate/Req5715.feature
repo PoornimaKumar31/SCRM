@@ -57,7 +57,7 @@ Scenario: RV700 Select Assets Elements Table
 	And "Config" column heading is displayed
 	And "Asset Tag" column heading is displayed
 	And "Serial Number" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Last Files Deployed" column heading is displayed
 
 @TestCaseID_9410 @UISID_8697
@@ -68,7 +68,7 @@ Scenario: RV700 Select Assets Elements Table Columns
 	And "Config" label is in column 3
 	And "Asset Tag" label is in column 4
 	And "Serial Number" label is in column 5
-	And "Location" label is in column 6
+	And "ownership" label is in column 6
 	And "Last Files Deployed" label is in column 7
 
 @TestCaseID_9411 @UISID_8697

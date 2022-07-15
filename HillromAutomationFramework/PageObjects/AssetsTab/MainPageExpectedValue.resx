@@ -193,7 +193,7 @@ Station1</value>
     <comment>Unit filter text</comment>
   </data>
   <data name="LocationHeadingText" xml:space="preserve">
-    <value>Location</value>
+    <value>Ownership</value>
     <comment>table headings</comment>
   </data>
   <data name="LTAutomatedEyeTestOrgnaizationText" xml:space="preserve">

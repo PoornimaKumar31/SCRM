@@ -18,7 +18,7 @@ namespace HillromAutomationFramework.PageObjects.Component_Information
             public const string CSMDetailsSummaryID = "csm_details_summary";
             public const string EditButtonID = "csm-edit";
             public const string PreventiveMaintenanceTabXPath = "//div[text()=\"Preventive maintenance\"]";
-            public const string ComponentInformationTabXPath = "//div[text()=\"Component information\"]";
+            public const string ComponentInformationTabXPath = "//div/span[text()=\"Component information\"]";
             public const string LogsTabXPath = "//div[text()=\"Logs\"]";
             public const string AssetDetailsSubsectionID = "device-details";
 

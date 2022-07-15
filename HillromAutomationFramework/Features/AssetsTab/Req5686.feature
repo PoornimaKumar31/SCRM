@@ -17,7 +17,7 @@ Scenario: Assets List Elements
 	And "Config file" column heading is displayed
 	And "Asset tag" column heading is displayed
 	And "Serial number" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Last connected" column heading is displayed
 	And "PM due" column heading is displayed
 	And Page x of y label is displayed
@@ -33,7 +33,7 @@ Scenario: Assets List Elements Table Columns
 	And "Config file" label is in column 4
 	And "Asset tag" label is in column 5
 	And "Serial number" label is in column 6
-	And "Location" label is in column 7
+	And "Ownership" label is in column 7
 	And "Last connected" label is in column 8
 	And "PM due" label is in column 9
 

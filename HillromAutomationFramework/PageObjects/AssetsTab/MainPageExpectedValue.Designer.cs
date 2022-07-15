@@ -217,7 +217,7 @@ namespace HillromAutomationFramework.PageObjects.AssetsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Location.
+        ///   Looks up a localized string similar to Ownership.
         /// </summary>
         internal static string LocationHeadingText {
             get {

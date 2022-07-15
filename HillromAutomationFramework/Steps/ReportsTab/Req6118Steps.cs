@@ -237,7 +237,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                     column = _firmwareStatusPage.FirmwareVerionHeading;
                     break;
 
-                case "location":
+                case "ownership":
                     column = _firmwareStatusPage.LocationHeading;
                     break;
 

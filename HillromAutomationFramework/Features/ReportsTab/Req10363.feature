@@ -7,7 +7,7 @@ Scenario: Progressa Report Type Dropdown Content
 	Given user is on Reports page
 	And Progressa Asset type is selected
 	When user clicks report type dropdown
-	Then Report type dropdown displays "Activity, Maintenance, Firmware Status, Firmware Version, Access Point Locations"
+	Then Report type dropdown displays "Activity, CMMS Report, Firmware Status, Firmware Version, Access Point Locations"
 
 @TestCaseID_10867 @UISID_8684 @UISID_8693
 Scenario: Progressa Activity Report Page Elements

@@ -28,7 +28,7 @@ Scenario: CSM Manage Active Updates Elements Table
 	And "Firmware" column heading is displayed
 	And "Serial number" column heading is displayed
 	And "New firmware" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Schedule" column heading is displayed
 
 @TestCaseID_9212 @UISID_8700
@@ -38,7 +38,7 @@ Scenario: CSM Manage Active Updates Elements Table Columns
 	And "Firmware" label is in column 2
 	And "Serial number" label is in column 3
 	And "New firmware" label is in column 4
-	And "Location" label is in column 5
+	And "Ownership" label is in column 5
 	And "Schedule" label is in column 6
 
 @TestCaseID_9173 @UISID_8700

@@ -63,7 +63,7 @@ Scenario: CSM Select Assets Elements Table Upgrade
 	And "Config" column heading is displayed
 	And "Asset Tag" column heading is displayed
 	And "Serial Number" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Last Files Deployed" column heading is displayed
 
 @TestCaseID_9211 @UISID_8697
@@ -74,7 +74,7 @@ Scenario: CSM Select Assets Elements Table Columns Upgrade
 	And "Config" label is in column 3
 	And "Asset Tag" label is in column 4
 	And "Serial Number" label is in column 5
-	And "Location" label is in column 6
+	And "Ownership" label is in column 6
 	And "Last Files Deployed" label is in column 7
 
 @TestCaseID_9160 @UISID_8697

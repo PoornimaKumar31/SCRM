@@ -147,7 +147,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
                 case "serial number":
                         HeadingElement = _updatesSelectUpdatePage.ManageUpgradeSerialNumberHeading;
                         break;
-                case "location":
+                case "ownership":
                         HeadingElement = _updatesSelectUpdatePage.ManageUpgradeLocationHeading;
                         break;
 

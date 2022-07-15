@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
@@ -14,7 +15,6 @@ namespace HillromAutomationFramework.Steps.ReportsTab
     [Binding, Scope(Tag = "SoftwareRequirementID_10359")]
     public sealed class Req10359Steps
     {
-
         private readonly LoginPage _loginPage;
         private readonly LandingPage _landingPage;
         private readonly MainPage _mainPage;
