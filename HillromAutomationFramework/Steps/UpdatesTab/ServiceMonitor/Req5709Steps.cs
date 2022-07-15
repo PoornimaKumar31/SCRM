@@ -233,7 +233,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.ServiceMonitor
                 case "deployment mode":
                     headingElement = _serviceMoniterPage.DeploymentModeHeading;
                     break;
-                case "location":
+                case "ownership":
                     headingElement = _serviceMoniterPage.LocationHeading;
                     break;
                 case "last files deployed":

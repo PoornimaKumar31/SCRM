@@ -107,7 +107,7 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activity_Status_Report_(CSM).csv.
+        ///   Looks up a localized string similar to Activity_Report_(CSM).csv.
         /// </summary>
         internal static string CSMActivityReportName {
             get {
@@ -116,7 +116,7 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activity_Status_Report_(CVSM).csv.
+        ///   Looks up a localized string similar to Activity_ReportCVSM.csv.
         /// </summary>
         internal static string CVSMActivityReportName {
             get {

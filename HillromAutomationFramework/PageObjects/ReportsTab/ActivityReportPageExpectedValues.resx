@@ -133,7 +133,7 @@
     <value>PY673003</value>
   </data>
   <data name="CSMActivityReportName" xml:space="preserve">
-    <value>Activity_Status_Report_(CSM).csv</value>
+    <value>Activity_Report_(CSM).csv</value>
   </data>
   <data name="CVSMLocationSearchText" xml:space="preserve">
     <value>Station1</value>
@@ -142,7 +142,7 @@
     <value>100020000001</value>
   </data>
   <data name="CVSMActivityReportName" xml:space="preserve">
-    <value>Activity_Status_Report_(CVSM).csv</value>
+    <value>Activity_ReportCVSM.csv</value>
   </data>
   <data name="LocationSearchText" xml:space="preserve">
     <value>Station1</value>

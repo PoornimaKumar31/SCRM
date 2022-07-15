@@ -14,10 +14,16 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
             public const string DownloadButtonID = "ac-download";
             //ACTIVITY REPORT (CSM) table elements
             public const string SerialNumberHeadingID = "serialNo";
+            public const string OwnershipUnitHeadingID = "unit";
             public const string LocationHeadingID = "apLoc";
+            public const string BatteryChargeLevelHeadingID = "battery";
+            public const string BatteryCycleCountHeadingID = "cycleCount";
+            public const string MaximumCapacityHeadingID = "batteryHealth";
+            public const string ReplaceHeadingID = "batteryReplace";
             public const string LastVitalSentHeadingID = "lastVital";
             public const string PMDueHeadingID = "pmDue";
             public const string TableHeadingClassName = "device-info-list";
+
 
             //ACTIVITY REPORT (CENTRELLA and PROGRESSA) table elements
             public const string PatientPresentID = "patientPresence";
@@ -52,8 +58,23 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
         [FindsBy(How = How.Id, Using = Locators.SerialNumberHeadingID)]
         public IWebElement SerialNumberHeading { get; set; }
 
+        [FindsBy(How = How.Id, Using = Locators.OwnershipUnitHeadingID)]
+        public IWebElement OwnershipUnitHeading { get; set; }
+
         [FindsBy(How = How.Id, Using = Locators.LocationHeadingID)]
         public IWebElement LocationHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.BatteryChargeLevelHeadingID)]
+        public IWebElement BatteryChargeLevelHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.BatteryCycleCountHeadingID)]
+        public IWebElement BatteryCycleCountHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.MaximumCapacityHeadingID)]
+        public IWebElement MaximumCapacityHeading { get; set; }
+
+        [FindsBy(How = How.Id, Using = Locators.ReplaceHeadingID)]
+        public IWebElement ReplaceHeading { get; set; }
 
         [FindsBy(How = How.Id, Using = Locators.PatientPresentID)]
         public IWebElement PatientPresentHeading { get; set; }

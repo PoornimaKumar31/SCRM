@@ -97,11 +97,11 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NUMBER OF DEVICES ON EACH FLOOR.
+        ///   Looks up a localized string similar to NUMBER OF ASSETS BY UNIT.
         /// </summary>
-        internal static string NumberofDevicesOnEachFloorLabelText {
+        internal static string NumberOfAssetsByUnitLabelText {
             get {
-                return ResourceManager.GetString("NumberofDevicesOnEachFloorLabelText", resourceCulture);
+                return ResourceManager.GetString("NumberOfAssetsByUnitLabelText", resourceCulture);
             }
         }
         

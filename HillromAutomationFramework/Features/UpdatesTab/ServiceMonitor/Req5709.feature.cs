@@ -384,7 +384,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Deployment mode\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 57
- testRunner.And("\"Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 58
  testRunner.And("\"Last files deployed\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -440,7 +440,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Deployment mode\" label is in column 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 67
- testRunner.And("\"Location\" label is in column 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" label is in column 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 68
  testRunner.And("\"Last files deployed\" label is in column 6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

@@ -54,7 +54,7 @@ Scenario: Service Monitor Settings Elements Table
 	And "Serial Number" column heading is displayed
 	And "Call home period" column heading is displayed
 	And "Deployment mode" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Last files deployed" column heading is displayed
 
 @TestCaseID_9208 @UISID_8699
@@ -64,7 +64,7 @@ Scenario: Service Monitor Settings Elements Table Columns
 	And "Serial Number" label is in column 2
 	And "Call home period" label is in column 3
 	And "Deployment mode" label is in column 4
-	And "Location" label is in column 5
+	And "Ownership" label is in column 5
 	And "Last files deployed" label is in column 6
 
 @TestCaseID_9074 @UISID_8699 @UISID_8669

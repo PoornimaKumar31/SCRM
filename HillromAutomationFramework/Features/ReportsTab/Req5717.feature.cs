@@ -121,7 +121,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("user clicks report type dropdown", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.Then("Report type dropdown displays \"Usage, Activity, Maintenance, Firmware Status, Fir" +
+ testRunner.Then("Report type dropdown displays \"Usage, Activity, CMMS Report, Firmware Status, Fir" +
                         "mware Version, CFG Update Status, Access Point Locations\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -180,7 +180,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Print button is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 25
- testRunner.And("Number of Devices on Each Floor label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Number of Assets By Unit label is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
  testRunner.And("pie chart is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -653,7 +653,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Configuration\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 104
- testRunner.And("\"Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 105
  testRunner.And("\"Status\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -713,7 +713,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Configuration\" label is in column 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 114
- testRunner.And("\"Location\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 115
  testRunner.And("\"Status\" label is in column 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -892,7 +892,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Firmware version\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 145
- testRunner.And("\"Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 146
  testRunner.And("\"Status\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -952,7 +952,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Firmware version\" label is in column 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 155
- testRunner.And("\"Location\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 156
  testRunner.And("\"Status\" label is in column 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1125,10 +1125,28 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("\"Serial number\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 184
- testRunner.And("\"Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership Unit\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 185
- testRunner.And("\"Last vital sent\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"AP location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 186
+ testRunner.And("\"Battery charge level\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 187
+ testRunner.And("\"Battery cycle count\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 188
+ testRunner.And("\"Maximum capacity\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 189
+ testRunner.And("\"Replace?\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 190
+ testRunner.And("\"Last vitals sent\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 191
+ testRunner.And("\"PM due\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1149,7 +1167,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Activity Report Page Table Elements Columns", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 188
+#line 194
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1169,17 +1187,35 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 189
+#line 195
  testRunner.Given("user is on CSM Activity Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 190
+#line 196
  testRunner.Then("\"Serial number\" label is in column 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 191
- testRunner.And("\"Location\" label is in column 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 197
+ testRunner.And("\"Ownership Unit\" label is in column 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 192
- testRunner.And("\"Last vital sent\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 198
+ testRunner.And("\"AP Location\" label is in column 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 199
+ testRunner.And("\"Battery charge level\" label is in column 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 200
+ testRunner.And("\"Battery cycle count\" label is in column 5", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 201
+ testRunner.And("\"Maximum capacity\" label is in column 6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 202
+ testRunner.And("\"Replace?\" label is in column 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 203
+ testRunner.And("\"Last vitals sent\" label is in column 8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 204
+ testRunner.And("\"PM due\" label is in column 9", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1200,7 +1236,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "UISID_8693"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("CSM Configuration Update Status Report Sorting", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 195
+#line 207
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -1220,25 +1256,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 196
+#line 208
  testRunner.Given("user is on CSM Configuration Update Status Report page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 197
+#line 209
  testRunner.When("user clicks \"Serial number\" column heading", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 198
+#line 210
  testRunner.Then("logs are sorted by increasing \"serial number\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 199
+#line 211
  testRunner.And("increasing \"serial number\" sorting indicator is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 200
+#line 212
  testRunner.When("user clicks \"Serial number\" column heading", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 201
+#line 213
  testRunner.Then("logs are sorted by decreasing \"serial number\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 202
+#line 214
  testRunner.And("decreasing \"serial number\" sorting indicator is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

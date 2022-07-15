@@ -56,7 +56,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         public void GivenUserIsOnReportPage()
         {
             _loginPage.LogIn(_driver,LoginPage.LogInType.AdminWithRollUpPage);
-            _landingPage.LNTAutomatedTestOrganizationFacilityTest1Title.Click();
+            _landingPage.LNTAutomatedTestOrganizationFacilityTest2Title.Click();
             _wait.Message = "Asset list is not displayed in main page.Timed out after 10 seconds.";
             _wait.Until(ExplicitWait.ElementIsVisible(By.Id(MainPage.Locators.DeviceListTableID)));
             _mainPage.ReportsTab.JavaSciptClick(_driver);
@@ -113,11 +113,11 @@ namespace HillromAutomationFramework.Steps.ReportsTab
             (_reportsPage.PrintButton.GetElementVisibility()).Should().BeTrue("Print button should be displayed in Report page");
         }
 
-        [Then(@"Number of Devices on Each Floor label is displayed")]
-        public void ThenNumberOfDevicesOnEachFloorLabelIsDisplayed()
+        [Then(@"Number of Assets By Unit label is displayed")]
+        public void ThenNumberOfAssetsByUnitLabelIsDisplayed()
         {
-            (_usageReportPage.NumberOfdevicesOneachFloorLabel.GetElementVisibility()).Should().BeTrue("Number of Devices on Each Floor label should be displayed in usage report page.");
-            (_usageReportPage.NumberOfdevicesOneachFloorLabel.Text).Should().BeEquivalentTo(UsageReportPageExpectedValues.NumberofDevicesOnEachFloorLabelText, "Number of Devices on Each Floor label should match the expected text.");
+            (_usageReportPage.NumberOfdevicesOneachFloorLabel.GetElementVisibility()).Should().BeTrue("Number of Assets By Unit label should be displayed in usage report page.");
+            (_usageReportPage.NumberOfdevicesOneachFloorLabel.Text).Should().BeEquivalentTo(UsageReportPageExpectedValues.NumberOfAssetsByUnitLabelText, "Number of Assets By Unit label should match the expected text.");
         }
 
         [Then(@"pie chart is displayed")]
@@ -237,7 +237,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         column = _csmConfigStatusPage.ConfigurationHeading;
                         break;
 
-                    case "location":
+                    case "ownership":
                         column = _csmConfigStatusPage.LocationHeading;
                         break;
 
@@ -272,7 +272,7 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         column = _firmwareStatusPage.FirmwareVerionHeading;
                         break;
 
-                    case "location":
+                    case "ownership":
                         column = _firmwareStatusPage.LocationHeading;
                         break;
 
@@ -303,12 +303,36 @@ namespace HillromAutomationFramework.Steps.ReportsTab
                         column = _activityReportPage.SerialNumberHeading;
                         break;
 
-                    case "location":
+                    case "ownership unit":
+                        column = _activityReportPage.OwnershipUnitHeading;
+                        break;
+
+                    case "ap location":
                         column = _activityReportPage.LocationHeading;
                         break;
 
-                    case "last vital sent":
+                    case "battery charge level":
+                        column = _activityReportPage.BatteryChargeLevelHeading;
+                        break;
+                        
+                    case "battery cycle count":
+                        column = _activityReportPage.BatteryCycleCountHeading;
+                        break;
+
+                    case "maximum capacity":
+                        column = _activityReportPage.MaximumCapacityHeading;
+                        break;
+
+                    case "replace?":
+                        column = _activityReportPage.ReplaceHeading;
+                        break;
+
+                    case "last vitals sent":
                         column = _activityReportPage.LastVitalSentHeading;
+                        break;
+
+                    case "pm due":
+                        column = _activityReportPage.PMDueHeading;
                         break;
 
                     default:

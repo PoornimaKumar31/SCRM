@@ -87,7 +87,7 @@ Scenario: CSM Select Assets Elements Table Configuration
 	And "Config" column heading is displayed
 	And "Asset tag" column heading is displayed
 	And "Serial Number" column heading is displayed
-	And "Location" column heading is displayed
+	And "Ownership" column heading is displayed
 	And "Last Files Deployed" column heading is displayed
 
 @TestCaseID_9209 @UISID_8697
@@ -98,7 +98,7 @@ Scenario: CSM Select Assets Elements Table Columns Configuration
 	And "Config" label is in column 3
 	And "Asset tag" label is in column 4
 	And "Serial Number" label is in column 5
-	And "Location" label is in column 6
+	And "Ownership" label is in column 6
 	And "Last files deployed" label is in column 7
 
 

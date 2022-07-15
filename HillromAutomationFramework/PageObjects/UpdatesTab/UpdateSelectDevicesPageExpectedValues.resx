@@ -144,6 +144,9 @@
   <data name="NonHighlightedHeadingColor" xml:space="preserve">
     <value>rgba(68, 68, 68, 1)</value>
   </data>
+  <data name="ProgressaDeviceName" xml:space="preserve">
+    <value>Progressa</value>
+  </data>
   <data name="RV700DeviceName" xml:space="preserve">
     <value>RV700</value>
   </data>

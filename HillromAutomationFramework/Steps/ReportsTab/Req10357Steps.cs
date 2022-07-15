@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using TechTalk.SpecFlow;
 using ExplicitWait = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-
 namespace HillromAutomationFramework.Steps.ReportsTab
 {
     [Binding, Scope(Tag = "SoftwareRequirementID_10357")]
@@ -21,7 +20,6 @@ namespace HillromAutomationFramework.Steps.ReportsTab
         private readonly MainPage _mainPage;
         private readonly ReportsPage _reportsPage;
         private readonly FirmwareStatusReportPage _firmwareStatusPage;
-
 
         private readonly WebDriverWait _wait;
         private readonly ScenarioContext _scenarioContext;

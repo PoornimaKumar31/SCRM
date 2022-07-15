@@ -111,7 +111,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
                     heading = mainPage.SerialNumberHeading;
                     ExpectedText = MainPageExpectedValue.SerialNumberHeadingText;
                     break;
-                case "location":
+                case "ownership":
                     heading = mainPage.LocationHeading;
                     ExpectedText = MainPageExpectedValue.LocationHeadingText;
                     break;
@@ -458,7 +458,7 @@ namespace HillromAutomationFramework.Steps.AssetsTab
         [Then(@"beds with errors are at the bottom of the list")]
         public void ThenBedsWithErrorsAreAtTheBottomOfTheList()
         {
-            mainPage.GoToLastPage(_driver,27);
+            mainPage.GoToLastPage(_driver,24);
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(0); // Implicit wait for 5 seconds
 
             //Finding the index of sorted column

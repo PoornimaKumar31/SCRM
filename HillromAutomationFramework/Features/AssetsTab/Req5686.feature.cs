@@ -150,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Serial number\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 20
- testRunner.And("\"Location\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
  testRunner.And("\"Last connected\" column heading is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -226,7 +226,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("\"Serial number\" label is in column 6", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 36
- testRunner.And("\"Location\" label is in column 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("\"Ownership\" label is in column 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 37
  testRunner.And("\"Last connected\" label is in column 8", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

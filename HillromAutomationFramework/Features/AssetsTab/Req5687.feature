@@ -31,3 +31,9 @@ Scenario: Asset Type Centrella
 	Given user is on Assets List page with more than one "Centrella"
 	When user selects "Centrella" from Asset type dropdown
 	Then all organization "Centrella" devices are displayed
+
+@TestCaseID_10915 @UISID_8666
+Scenario: Asset Type Progressa
+	Given user is on Assets List page with more than one "Progressa"
+	When user selects "Progressa" from Asset type dropdown
+	Then all organization "Progressa" devices are displayed
