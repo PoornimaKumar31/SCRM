@@ -15,8 +15,8 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab
             //CSM
             public const string TotalRowID = "location_header0";
             public const string TotalRowDetailsID = "unitMetrics0";
-            public const string Unit1RowID = "location_header1";
-            public const string Unit1RowDetailsID = "unitMetrics1";
+            public const string Unit1RowID = "location_header4";
+            public const string Unit1RowDetailsID = "unitMetrics4";
 
             //CVSM
             public const string AndyDeskUnitID = "location_header2";

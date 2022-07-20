@@ -89,7 +89,7 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activity_Status_Report_(Centrella).csv.
+        ///   Looks up a localized string similar to Activity_Report_(Centrella).csv.
         /// </summary>
         internal static string CentrellaActivityReportName {
             get {
