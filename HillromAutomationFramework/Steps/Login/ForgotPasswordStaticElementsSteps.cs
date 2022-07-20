@@ -57,3 +57,4 @@ namespace HillromAutomationFramework.Steps.Login
         }
     }
 }
+// Checking commit status
