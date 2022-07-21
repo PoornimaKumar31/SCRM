@@ -127,7 +127,7 @@
     <value>ACTIVITY REPORT (PROGRESSA)</value>
   </data>
   <data name="CentrellaActivityReportName" xml:space="preserve">
-    <value>Activity_Status_Report_(Centrella).csv</value>
+    <value>Activity_Report_(Centrella).csv</value>
   </data>
   <data name="CentrellaSerialNumberSearchText" xml:space="preserve">
     <value>PY673003</value>

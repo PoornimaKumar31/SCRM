@@ -11,7 +11,7 @@ namespace HillromAutomationFramework.PageObjects
         public static class Locator
         {
             public const string LogsTabXpath = "//div[text()='Logs']";
-            public const string ComponentInformationTabXpath = "//div[text()='Component information']";
+            public const string ComponentInformationTabXpath = "//span[text()='Component information']";
             public const string RequestLogsButtonID = "request-logs";
             public const string LogFilesLabelID = "lbl_request_log";
 

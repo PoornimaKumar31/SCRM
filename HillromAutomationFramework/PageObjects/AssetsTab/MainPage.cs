@@ -48,7 +48,7 @@ namespace HillromAutomationFramework.PageObjects
             public const string DeviceListTableBodyID = "tbody_assets";
             public const string DeviceListTableID = "deviceTable";
             public const string DeviceListRowID = "555566667777";
-            public const string CompInfXPath = "//div[contains(text(),\"Component information\")]";
+            public const string CompInfXPath = "//span[contains(text(),\"Component information\")]";
             public const string RadioNewMarrID = "radioLamar";
             public const string MACAddressID = "radio_mac_address";
             //table headings

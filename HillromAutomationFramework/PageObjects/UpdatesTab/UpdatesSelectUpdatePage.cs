@@ -10,7 +10,7 @@ namespace HillromAutomationFramework.PageObjects
         public static class Locators
         {
             public const string HeadingID = "select_update";
-            public const string AssetTypeLabelID = "lbl_asset_type";
+            public const string AssetTypeLabelID = "device_type";
             public const string AssetTypeDropDownID = "modelFilter";
             public const string UpgradeTypeLabelID = "lbl_update_type";
             public const string UpgradeTypeDropDownID = "typeFilter";
