@@ -318,7 +318,7 @@ namespace HillromAutomationFramework.Steps.UpdatesTab.UpgradeUpdate
                 case "serial number":
                     HeadingElement = _updateSelectDevicesPage.SerialNoHeading;
                     break;
-                case "location":
+                case "ownership":
                     HeadingElement = _updateSelectDevicesPage.LocationHeading;
                     break;
                 case "last files deployed":
