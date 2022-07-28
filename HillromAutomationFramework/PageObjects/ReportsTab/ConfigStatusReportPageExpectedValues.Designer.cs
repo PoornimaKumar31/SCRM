@@ -188,7 +188,7 @@ namespace HillromAutomationFramework.PageObjects.ReportsTab {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vanilla-signed.waconfig.
+        ///   Looks up a localized string similar to Chocolate-signed.waconfig.
         /// </summary>
         internal static string LastDeployedSearchText {
             get {
