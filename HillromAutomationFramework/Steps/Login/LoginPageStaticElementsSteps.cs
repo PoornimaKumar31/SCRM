@@ -88,4 +88,4 @@ namespace HillromAutomationFramework.Steps.Login
             _loginpage.Rights.Text.Should().BeEquivalentTo(LoginPageExpectedValue.RightsReservedMessage, "Right reserved message is not matching with the expected value");
         }
     }
-}
+} // Making changes
